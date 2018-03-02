@@ -778,6 +778,39 @@
     </entry>
     
     <entry>
+      <title><![CDATA[【Android TimeCat】 跳转QQ加群]]></title>
+      <url>/2018/02/26/2018-02-26-Android-TimeCat-%E8%B7%B3%E8%BD%ACQQ%E5%8A%A0%E7%BE%A4/</url>
+      <content type="html"><![CDATA[<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>TimeCat项目内测需要用到</p>
+<h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><ol>
+<li>访问<a href="https://qun.qq.com/join.html" target="_blank" rel="noopener">https://qun.qq.com/join.html</a></li>
+<li>登录</li>
+<li>左边选择QQ群，右边有代码，直接复制到项目即可</li>
+</ol>
+<p><img src="/assets/blog/img/2018-02-26/30.png" width="700"></p>
+<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><ol>
+<li>必须明确QQ群号</li>
+<li>该用户必须是QQ群号的管理员或群主</li>
+</ol>
+]]></content>
+      
+        <categories>
+            
+            <category> Android </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Android </tag>
+            
+            <tag> QQ </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[【Android TimeCat】 Android Studio 高效配置]]></title>
       <url>/2018/02/26/2018-02-26-Android-TimeCat-Android%20Studio%E9%AB%98%E6%95%88%E9%85%8D%E7%BD%AE/</url>
       <content type="html"><![CDATA[<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><h1 id="1、代码提示不区分大小写"><a href="#1、代码提示不区分大小写" class="headerlink" title="1、代码提示不区分大小写"></a>1、代码提示不区分大小写</h1><p>File | Settings 打开设置，选择Editor | General | Code Completion</p>
@@ -841,39 +874,6 @@
             <tag> Android </tag>
             
             <tag> Android Studio </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[【Android TimeCat】 跳转QQ加群]]></title>
-      <url>/2018/02/26/2018-02-26-Android-TimeCat-%E8%B7%B3%E8%BD%ACQQ%E5%8A%A0%E7%BE%A4/</url>
-      <content type="html"><![CDATA[<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>TimeCat项目内测需要用到</p>
-<h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><ol>
-<li>访问<a href="https://qun.qq.com/join.html" target="_blank" rel="noopener">https://qun.qq.com/join.html</a></li>
-<li>登录</li>
-<li>左边选择QQ群，右边有代码，直接复制到项目即可</li>
-</ol>
-<p><img src="/assets/blog/img/2018-02-26/30.png" width="700"></p>
-<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><ol>
-<li>必须明确QQ群号</li>
-<li>该用户必须是QQ群号的管理员或群主</li>
-</ol>
-]]></content>
-      
-        <categories>
-            
-            <category> Android </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Android </tag>
-            
-            <tag> QQ </tag>
             
         </tags>
         
@@ -1861,14 +1861,22 @@
     </entry>
     
     <entry>
-      <title><![CDATA[update nodejs and npm]]></title>
-      <url>/2018/01/22/2018-01-22-update-nodejs-and-npm/</url>
-      <content type="html"><![CDATA[<h1 id="升级node-js和npm"><a href="#升级node-js和npm" class="headerlink" title="升级node.js和npm"></a>升级node.js和npm</h1><p>一行命令搞定npm和node.js的升级，省去了重新编译和安装的过程。具体如下：</p>
-<h2 id="升级node-js"><a href="#升级node-js" class="headerlink" title="升级node.js"></a>升级node.js</h2><p>npm中有一个模块叫做“n”，专门用来管理node.js版本的。<br>更新到最新的稳定版只需要在命令行中打下如下代码：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install -g n</span><br><span class="line">n stable</span><br></pre></td></tr></table></figure></p>
-<p>如需最新版本则用<code>n latest</code></p>
-<p>当然，n后面也可以跟具体的版本号：<code>n v6.2.0</code></p>
-<p>node.js升级就是这么简单。</p>
-<h2 id="升级npm"><a href="#升级npm" class="headerlink" title="升级npm"></a>升级npm</h2><p>npm升级就更简单了，只需要在终端中输入：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm -g install npm@next</span><br></pre></td></tr></table></figure></p>
+      <title><![CDATA[running Ubuntu GUI in Windows10]]></title>
+      <url>/2018/01/22/2018-01-22-running-Ubuntu-GUI-in-Windows10/</url>
+      <content type="html"><![CDATA[<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>先安装显示图形界面的程序<a href="https://sourceforge.net/projects/vcxsrv/" target="_blank" rel="noopener">vcxsrv</a><br>然后运行以下命令<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">echo "export DISPLAY=:0.0" &gt;&gt; ~/.bashrc</span><br><span class="line">export DISPLAY=:0.0</span><br><span class="line">sudo apt-get install dbus --reinstall</span><br><span class="line">sudo sed -i 's/&lt;listen&gt;.*&lt;\/listen&gt;/&lt;listen&gt;tcp:host=localhost,port=0&lt;\/listen&gt;/' /etc/dbus-1/session.conf</span><br><span class="line">sudo apt-get install ubuntu-desktop</span><br><span class="line">sudo apt-get install unity</span><br><span class="line">sudo apt-get install compiz-core</span><br><span class="line">sudo apt-get install compizconfig-settings-manager</span><br></pre></td></tr></table></figure></p>
+<h1 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h1><p>先启动<code>XLaunch</code>,选择<code>只启动一个大窗口</code>,把<code>-1</code>改为<code>0</code><br>这时候的窗口是黑的,因为没有视频输入<br>然后运行命令<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compiz</span><br></pre></td></tr></table></figure></p>
+<p>这时又视频输入了，切到<code>XLaunch</code>就可以浪了</p>
+<div class="image-package"><br><img src="/assets/blog/img/2018-01-22/0.png" width="700"><br><br><br><div class="image-caption">0.png</div><br></div>
+
+<div class="image-package"><br><img src="/assets/blog/img/2018-01-22/1.png" width="700"><br><br><br><div class="image-caption">1.png</div><br></div>
+
+<div class="image-package"><br><img src="/assets/blog/img/2018-01-22/2.png" width="700"><br><br><br><div class="image-caption">2.png</div><br></div>
+
+<div class="image-package"><br><img src="/assets/blog/img/2018-01-22/3.png" width="700"><br><br><br><div class="image-caption">3.png</div><br></div>
+
+<div class="image-package"><br><img src="/assets/blog/img/2018-01-22/4.png" width="700"><br><br><br><div class="image-caption">4.png</div><br></div>
+
+<div class="image-package"><br><img src="/assets/blog/img/2018-01-22/5.png" width="700"><br><br><br><div class="image-caption">5.png</div><br></div>
 ]]></content>
       
         <categories>
@@ -1887,22 +1895,14 @@
     </entry>
     
     <entry>
-      <title><![CDATA[running Ubuntu GUI in Windows10]]></title>
-      <url>/2018/01/22/2018-01-22-running-Ubuntu-GUI-in-Windows10/</url>
-      <content type="html"><![CDATA[<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>先安装显示图形界面的程序<a href="https://sourceforge.net/projects/vcxsrv/" target="_blank" rel="noopener">vcxsrv</a><br>然后运行以下命令<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">echo "export DISPLAY=:0.0" &gt;&gt; ~/.bashrc</span><br><span class="line">export DISPLAY=:0.0</span><br><span class="line">sudo apt-get install dbus --reinstall</span><br><span class="line">sudo sed -i 's/&lt;listen&gt;.*&lt;\/listen&gt;/&lt;listen&gt;tcp:host=localhost,port=0&lt;\/listen&gt;/' /etc/dbus-1/session.conf</span><br><span class="line">sudo apt-get install ubuntu-desktop</span><br><span class="line">sudo apt-get install unity</span><br><span class="line">sudo apt-get install compiz-core</span><br><span class="line">sudo apt-get install compizconfig-settings-manager</span><br></pre></td></tr></table></figure></p>
-<h1 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h1><p>先启动<code>XLaunch</code>,选择<code>只启动一个大窗口</code>,把<code>-1</code>改为<code>0</code><br>这时候的窗口是黑的,因为没有视频输入<br>然后运行命令<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compiz</span><br></pre></td></tr></table></figure></p>
-<p>这时又视频输入了，切到<code>XLaunch</code>就可以浪了</p>
-<div class="image-package"><br><img src="/assets/blog/img/2018-01-22/0.png" width="700"><br><br><br><div class="image-caption">0.png</div><br></div>
-
-<div class="image-package"><br><img src="/assets/blog/img/2018-01-22/1.png" width="700"><br><br><br><div class="image-caption">1.png</div><br></div>
-
-<div class="image-package"><br><img src="/assets/blog/img/2018-01-22/2.png" width="700"><br><br><br><div class="image-caption">2.png</div><br></div>
-
-<div class="image-package"><br><img src="/assets/blog/img/2018-01-22/3.png" width="700"><br><br><br><div class="image-caption">3.png</div><br></div>
-
-<div class="image-package"><br><img src="/assets/blog/img/2018-01-22/4.png" width="700"><br><br><br><div class="image-caption">4.png</div><br></div>
-
-<div class="image-package"><br><img src="/assets/blog/img/2018-01-22/5.png" width="700"><br><br><br><div class="image-caption">5.png</div><br></div>
+      <title><![CDATA[update nodejs and npm]]></title>
+      <url>/2018/01/22/2018-01-22-update-nodejs-and-npm/</url>
+      <content type="html"><![CDATA[<h1 id="升级node-js和npm"><a href="#升级node-js和npm" class="headerlink" title="升级node.js和npm"></a>升级node.js和npm</h1><p>一行命令搞定npm和node.js的升级，省去了重新编译和安装的过程。具体如下：</p>
+<h2 id="升级node-js"><a href="#升级node-js" class="headerlink" title="升级node.js"></a>升级node.js</h2><p>npm中有一个模块叫做“n”，专门用来管理node.js版本的。<br>更新到最新的稳定版只需要在命令行中打下如下代码：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install -g n</span><br><span class="line">n stable</span><br></pre></td></tr></table></figure></p>
+<p>如需最新版本则用<code>n latest</code></p>
+<p>当然，n后面也可以跟具体的版本号：<code>n v6.2.0</code></p>
+<p>node.js升级就是这么简单。</p>
+<h2 id="升级npm"><a href="#升级npm" class="headerlink" title="升级npm"></a>升级npm</h2><p>npm升级就更简单了，只需要在终端中输入：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm -g install npm@next</span><br></pre></td></tr></table></figure></p>
 ]]></content>
       
         <categories>
@@ -3355,9 +3355,9 @@ id* | pid(FK) | finish | name | date | content
         
         <tags>
             
-            <tag> Proxy </tag>
-            
             <tag> Python </tag>
+            
+            <tag> Proxy </tag>
             
         </tags>
         
@@ -4867,37 +4867,6 @@ id* | pid(FK) | finish | name | date | content
     </entry>
     
     <entry>
-      <title><![CDATA[python Tips]]></title>
-      <url>/2017/05/20/2017-9-18-python-require-install/</url>
-      <content type="html"><![CDATA[<h1 id="自动生成和安装requirements-txt依赖"><a href="#自动生成和安装requirements-txt依赖" class="headerlink" title="自动生成和安装requirements.txt依赖"></a>自动生成和安装requirements.txt依赖</h1><p>requirements.txt可以通过pip命令自动生成和安装</p>
-<ul>
-<li><p>生成requirements.txt文件</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip freeze &gt; requirements.txt</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>安装requirements.txt依赖</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install -r requirements.txt</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-]]></content>
-      
-        <categories>
-            
-            <category> Tips </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Tips </tag>
-            
-            <tag> python </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[正则表达式入门笔记]]></title>
       <url>/2017/05/20/2017-05-20-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/</url>
       <content type="html"><![CDATA[<hr>
@@ -4997,6 +4966,37 @@ id* | pid(FK) | finish | name | date | content
         <tags>
             
             <tag> Linux </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[python Tips]]></title>
+      <url>/2017/05/20/2017-9-18-python-require-install/</url>
+      <content type="html"><![CDATA[<h1 id="自动生成和安装requirements-txt依赖"><a href="#自动生成和安装requirements-txt依赖" class="headerlink" title="自动生成和安装requirements.txt依赖"></a>自动生成和安装requirements.txt依赖</h1><p>requirements.txt可以通过pip命令自动生成和安装</p>
+<ul>
+<li><p>生成requirements.txt文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip freeze &gt; requirements.txt</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装requirements.txt依赖</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install -r requirements.txt</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> Tips </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Tips </tag>
+            
+            <tag> python </tag>
             
         </tags>
         
