@@ -543,8 +543,8 @@ article .card-content .entry h1 {
   padding: 6px 15px;
   margin-bottom: 20px;
   margin-top: 5px;
-  background: #b9d3ee;
-  box-shadow: 0px 5px 5px #9fb6cd;
+  background: #eee;
+  box-shadow: 0px 5px 5px #ccc;
   border-left: 6px solid #66bb6a;
   position: relative;
 }
@@ -556,8 +556,8 @@ article .card-content .entry h2 {
   padding: 6px 45px;
   margin-bottom: 20px;
   margin-top: 5px;
-  background: #bbcae4;
-  box-shadow: 0px 5px 5px #9fb6cd;
+  background: #eee;
+  box-shadow: 0px 3px 3px #ddd;
   border-left: 6px solid #1874cd;
   position: relative;
 }
@@ -632,12 +632,11 @@ article .toc-child {
 }
 .prev-btn,
 .next-btn {
-  border-radius: 4px;
+  border-radius: 5px;
   padding: 6px 15px;
   margin-bottom: 20px;
   margin-top: 5px;
-  background: #ddd;
-  box-shadow: 0px 5px 5px #9fb6cd;
+  background: #eee;
 }
 a.social-link {
   display: inline-block;
@@ -1132,6 +1131,8 @@ figure.highlight {
   margin-left: 0;
   margin-right: 0;
   overflow: auto;
+}
+figure.highlight table {
   margin-bottom: 0;
 }
 figure.highlight td {

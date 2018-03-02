@@ -432,6 +432,33 @@
   </entry>
   
   <entry>
+    <title>【Android TimeCat】 Android Studio 高效配置</title>
+    <link href="http://xichen.pub/2018/02/26/2018-02-26-Android-TimeCat-Android%20Studio%E9%AB%98%E6%95%88%E9%85%8D%E7%BD%AE/"/>
+    <id>http://xichen.pub/2018/02/26/2018-02-26-Android-TimeCat-Android Studio高效配置/</id>
+    <published>2018-02-25T22:25:00.000Z</published>
+    <updated>2018-03-02T14:52:03.986Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><h1 id="1、代码提示不区分大小写"><a href="#1、代码提示不区分大小写" class="headerlink" title="1、代码提示不区分大小写"></a>1、代码提示不区分大小写</h1><p>File | Settings 打开设置，选择Editor | General | Code Completion</p><p>Case sensitive completion：选择None。</p><p><img src="/assets/blog/img/2018-02-26/5.png" width="700"></p><h1 id="2、显示行号"><a href="#2、显示行号" class="headerlink" title="2、显示行号"></a>2、显示行号</h1><p>File | Settings 打开设置，选择Editor | General | Appearance</p><p>如图勾选 Show line numbers。</p><p><img src="/assets/blog/img/2018-02-26/6.png" width="700"></p><h1 id="3、自动导包"><a href="#3、自动导包" class="headerlink" title="3、自动导包"></a>3、自动导包</h1><p>在 Android Studio 中， Alt + Enter 和 Control + Alt + O 是用来导包和清除无用导包。但是，你可以设置其快速自动导包的。</p><p>File | Settings打开设置，选择 Editor | General | Auto Import，勾选 Optimize imports on the fly 和 Add unambiguous imports on the fly 。</p><p><img src="/assets/blog/img/2018-02-26/7.png" width="700"></p><h1 id="4、Log日志的颜色自定义"><a href="#4、Log日志的颜色自定义" class="headerlink" title="4、Log日志的颜色自定义"></a>4、Log日志的颜色自定义</h1><p>Android Studio中 Logcat 的默认只有红白两种颜色，这样不利于我们分析Log打印的信息。建议还是采用Android Holo主题的配色方案。</p><p>File | Settings 打开设置，选择Editor | Color &amp; Fonts | Android Logcat，点击 Click on Save As…按钮创建一个新的配色 myLog。</p><p>注意：修改之前一定要取消勾选 Use inherited attributes</p><p><img src="/assets/blog/img/2018-02-26/8.png" width="700"></p><h1 id="5、屏幕截图与屏幕录屏"><a href="#5、屏幕截图与屏幕录屏" class="headerlink" title="5、屏幕截图与屏幕录屏"></a>5、屏幕截图与屏幕录屏</h1><p>Android Studio中 自带了截屏与录屏的功能。如图</p><p>截屏：</p><p><img src="/assets/blog/img/2018-02-26/9.png" width="200"><br><img src="/assets/blog/img/2018-02-26/10.png" width="200"></p><p>录屏：</p><p><img src="/assets/blog/img/2018-02-26/11.png" width="700"><br><img src="/assets/blog/img/2018-02-26/12.png" width="700"><br><img src="/assets/blog/img/2018-02-26/13.png" width="400"></p><h1 id="6、Android-Studio真机ADB-WiFi调试"><a href="#6、Android-Studio真机ADB-WiFi调试" class="headerlink" title="6、Android Studio真机ADB WiFi调试"></a>6、Android Studio真机ADB WiFi调试</h1><p>第一步，安装ADBWIFI插件，安装后之后重启AndroidStudio。</p><p><img src="/assets/blog/img/2018-02-26/14.png" width="300"><br><img src="/assets/blog/img/2018-02-26/15.png" width="300"><br><img src="/assets/blog/img/2018-02-26/16.png" width="300"></p><p>第二步，重启后，你会发现Tools | Android 多了一个 ADB WIFI。</p><p><img src="/assets/blog/img/2018-02-26/17.png" width="700"></p><p>手机通过数据线连上电脑，如图点击ADB Restart，出现如下图则成功</p><p><img src="/assets/blog/img/2018-02-26/18.png" width="700"></p><p>再点击 ADB USB to WIFI，出现如下图则成功，便可拔掉数据线无线调试了。</p><p><img src="/assets/blog/img/2018-02-26/19.png" width="700"></p><h1 id="7、WaKaTime"><a href="#7、WaKaTime" class="headerlink" title="7、WaKaTime"></a>7、WaKaTime</h1><p>一款可以记录你敲代码时间的插件。</p><p>安装wakatime插件如上面，安装后重启。记得在官网上注册账号获取API Key。在Tools下面点击WaKaTime Settings 设置你的API Key。</p><p>官网地址：<a href="https://wakatime.com/" target="_blank" rel="noopener">https://wakatime.com/</a></p><p><img src="/assets/blog/img/2018-02-26/20.png" width="700"><br><img src="/assets/blog/img/2018-02-26/21.png" width="700"><br><img src="/assets/blog/img/2018-02-26/22.png" width="700"></p><h1 id="8、SexyEditor插件（AndroidStudio设置背景）"><a href="#8、SexyEditor插件（AndroidStudio设置背景）" class="headerlink" title="8、SexyEditor插件（AndroidStudio设置背景）"></a>8、SexyEditor插件（AndroidStudio设置背景）</h1><p>你可以在你的AndroidStudio上设置一张背景图片。File | Settings 打开设置，Other Settings下面的SexyEditor。</p><p>opacity：设置图片的 透明度 0-100 数值越大  背景图片越清晰。</p><p>shrink to fit: 缩小到适合尺寸。设置图片的缩放。</p><p>random:设置图片随机循环播放。</p><p>file list ：批量选择图片列表。</p><p>往下拉有个Insert 插入图片的按钮。</p><p><img src="/assets/blog/img/2018-02-26/23.png" width="700"><br><img src="/assets/blog/img/2018-02-26/24.png" width="700"></p><p>效果怎么样，是不是高大上。</p><p><img src="/assets/blog/img/2018-02-26/25.png" width="700"></p><h1 id="9、ECTranslation翻译插件"><a href="#9、ECTranslation翻译插件" class="headerlink" title="9、ECTranslation翻译插件"></a>9、ECTranslation翻译插件</h1><p>选中某个单词，翻译中文。</p><p><img src="/assets/blog/img/2018-02-26/26.png" width="700"></p><p>安装完插件重启，然后在Preferences -&gt; Keymap -&gt; 搜索Translate，右键设置快捷键。</p><p><img src="/assets/blog/img/2018-02-26/27.png" width="700"></p><p>选中某个单词+快捷键如图：</p><p><img src="/assets/blog/img/2018-02-26/28.png" width="700"></p><h1 id="10、GsonFormat"><a href="#10、GsonFormat" class="headerlink" title="10、GsonFormat"></a>10、GsonFormat</h1><p>json数据自动生成实体类。安装插件和上面一样，重启之后你可以设置一下快捷键，方法和上面一样，我的快捷键设置的是Alt+S。下面是演示。</p><p><img src="/assets/blog/img/2018-02-26/29.png" width="700"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h1&gt;&lt;h1 id=&quot;1、代码提示不区分大小写&quot;&gt;&lt;a href=&quot;#1、代码提示不区分大小写&quot; class=&quot;headerlink&quot; title=&quot;1
+      
+    
+    </summary>
+    
+      <category term="Android" scheme="http://xichen.pub/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="http://xichen.pub/tags/Android/"/>
+    
+      <category term="Android Studio" scheme="http://xichen.pub/tags/Android-Studio/"/>
+    
+  </entry>
+  
+  <entry>
     <title>【Android TimeCat】 跳转QQ加群</title>
     <link href="http://xichen.pub/2018/02/26/2018-02-26-Android-TimeCat-%E8%B7%B3%E8%BD%ACQQ%E5%8A%A0%E7%BE%A4/"/>
     <id>http://xichen.pub/2018/02/26/2018-02-26-Android-TimeCat-跳转QQ加群/</id>
@@ -456,33 +483,6 @@
       <category term="Android" scheme="http://xichen.pub/tags/Android/"/>
     
       <category term="QQ" scheme="http://xichen.pub/tags/QQ/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【Android TimeCat】 Android Studio 高效配置</title>
-    <link href="http://xichen.pub/2018/02/26/2018-02-26-Android-TimeCat-Android%20Studio%E9%AB%98%E6%95%88%E9%85%8D%E7%BD%AE/"/>
-    <id>http://xichen.pub/2018/02/26/2018-02-26-Android-TimeCat-Android Studio高效配置/</id>
-    <published>2018-02-25T22:25:00.000Z</published>
-    <updated>2018-03-02T14:52:03.986Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><h1 id="1、代码提示不区分大小写"><a href="#1、代码提示不区分大小写" class="headerlink" title="1、代码提示不区分大小写"></a>1、代码提示不区分大小写</h1><p>File | Settings 打开设置，选择Editor | General | Code Completion</p><p>Case sensitive completion：选择None。</p><p><img src="/assets/blog/img/2018-02-26/5.png" width="700"></p><h1 id="2、显示行号"><a href="#2、显示行号" class="headerlink" title="2、显示行号"></a>2、显示行号</h1><p>File | Settings 打开设置，选择Editor | General | Appearance</p><p>如图勾选 Show line numbers。</p><p><img src="/assets/blog/img/2018-02-26/6.png" width="700"></p><h1 id="3、自动导包"><a href="#3、自动导包" class="headerlink" title="3、自动导包"></a>3、自动导包</h1><p>在 Android Studio 中， Alt + Enter 和 Control + Alt + O 是用来导包和清除无用导包。但是，你可以设置其快速自动导包的。</p><p>File | Settings打开设置，选择 Editor | General | Auto Import，勾选 Optimize imports on the fly 和 Add unambiguous imports on the fly 。</p><p><img src="/assets/blog/img/2018-02-26/7.png" width="700"></p><h1 id="4、Log日志的颜色自定义"><a href="#4、Log日志的颜色自定义" class="headerlink" title="4、Log日志的颜色自定义"></a>4、Log日志的颜色自定义</h1><p>Android Studio中 Logcat 的默认只有红白两种颜色，这样不利于我们分析Log打印的信息。建议还是采用Android Holo主题的配色方案。</p><p>File | Settings 打开设置，选择Editor | Color &amp; Fonts | Android Logcat，点击 Click on Save As…按钮创建一个新的配色 myLog。</p><p>注意：修改之前一定要取消勾选 Use inherited attributes</p><p><img src="/assets/blog/img/2018-02-26/8.png" width="700"></p><h1 id="5、屏幕截图与屏幕录屏"><a href="#5、屏幕截图与屏幕录屏" class="headerlink" title="5、屏幕截图与屏幕录屏"></a>5、屏幕截图与屏幕录屏</h1><p>Android Studio中 自带了截屏与录屏的功能。如图</p><p>截屏：</p><p><img src="/assets/blog/img/2018-02-26/9.png" width="200"><br><img src="/assets/blog/img/2018-02-26/10.png" width="200"></p><p>录屏：</p><p><img src="/assets/blog/img/2018-02-26/11.png" width="700"><br><img src="/assets/blog/img/2018-02-26/12.png" width="700"><br><img src="/assets/blog/img/2018-02-26/13.png" width="400"></p><h1 id="6、Android-Studio真机ADB-WiFi调试"><a href="#6、Android-Studio真机ADB-WiFi调试" class="headerlink" title="6、Android Studio真机ADB WiFi调试"></a>6、Android Studio真机ADB WiFi调试</h1><p>第一步，安装ADBWIFI插件，安装后之后重启AndroidStudio。</p><p><img src="/assets/blog/img/2018-02-26/14.png" width="300"><br><img src="/assets/blog/img/2018-02-26/15.png" width="300"><br><img src="/assets/blog/img/2018-02-26/16.png" width="300"></p><p>第二步，重启后，你会发现Tools | Android 多了一个 ADB WIFI。</p><p><img src="/assets/blog/img/2018-02-26/17.png" width="700"></p><p>手机通过数据线连上电脑，如图点击ADB Restart，出现如下图则成功</p><p><img src="/assets/blog/img/2018-02-26/18.png" width="700"></p><p>再点击 ADB USB to WIFI，出现如下图则成功，便可拔掉数据线无线调试了。</p><p><img src="/assets/blog/img/2018-02-26/19.png" width="700"></p><h1 id="7、WaKaTime"><a href="#7、WaKaTime" class="headerlink" title="7、WaKaTime"></a>7、WaKaTime</h1><p>一款可以记录你敲代码时间的插件。</p><p>安装wakatime插件如上面，安装后重启。记得在官网上注册账号获取API Key。在Tools下面点击WaKaTime Settings 设置你的API Key。</p><p>官网地址：<a href="https://wakatime.com/" target="_blank" rel="noopener">https://wakatime.com/</a></p><p><img src="/assets/blog/img/2018-02-26/20.png" width="700"><br><img src="/assets/blog/img/2018-02-26/21.png" width="700"><br><img src="/assets/blog/img/2018-02-26/22.png" width="700"></p><h1 id="8、SexyEditor插件（AndroidStudio设置背景）"><a href="#8、SexyEditor插件（AndroidStudio设置背景）" class="headerlink" title="8、SexyEditor插件（AndroidStudio设置背景）"></a>8、SexyEditor插件（AndroidStudio设置背景）</h1><p>你可以在你的AndroidStudio上设置一张背景图片。File | Settings 打开设置，Other Settings下面的SexyEditor。</p><p>opacity：设置图片的 透明度 0-100 数值越大  背景图片越清晰。</p><p>shrink to fit: 缩小到适合尺寸。设置图片的缩放。</p><p>random:设置图片随机循环播放。</p><p>file list ：批量选择图片列表。</p><p>往下拉有个Insert 插入图片的按钮。</p><p><img src="/assets/blog/img/2018-02-26/23.png" width="700"><br><img src="/assets/blog/img/2018-02-26/24.png" width="700"></p><p>效果怎么样，是不是高大上。</p><p><img src="/assets/blog/img/2018-02-26/25.png" width="700"></p><h1 id="9、ECTranslation翻译插件"><a href="#9、ECTranslation翻译插件" class="headerlink" title="9、ECTranslation翻译插件"></a>9、ECTranslation翻译插件</h1><p>选中某个单词，翻译中文。</p><p><img src="/assets/blog/img/2018-02-26/26.png" width="700"></p><p>安装完插件重启，然后在Preferences -&gt; Keymap -&gt; 搜索Translate，右键设置快捷键。</p><p><img src="/assets/blog/img/2018-02-26/27.png" width="700"></p><p>选中某个单词+快捷键如图：</p><p><img src="/assets/blog/img/2018-02-26/28.png" width="700"></p><h1 id="10、GsonFormat"><a href="#10、GsonFormat" class="headerlink" title="10、GsonFormat"></a>10、GsonFormat</h1><p>json数据自动生成实体类。安装插件和上面一样，重启之后你可以设置一下快捷键，方法和上面一样，我的快捷键设置的是Alt+S。下面是演示。</p><p><img src="/assets/blog/img/2018-02-26/29.png" width="700"></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h1&gt;&lt;h1 id=&quot;1、代码提示不区分大小写&quot;&gt;&lt;a href=&quot;#1、代码提示不区分大小写&quot; class=&quot;headerlink&quot; title=&quot;1
-      
-    
-    </summary>
-    
-      <category term="Android" scheme="http://xichen.pub/categories/Android/"/>
-    
-    
-      <category term="Android" scheme="http://xichen.pub/tags/Android/"/>
-    
-      <category term="Android Studio" scheme="http://xichen.pub/tags/Android-Studio/"/>
     
   </entry>
   
