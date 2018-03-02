@@ -1,0 +1,873 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>网页排序算法（一）PageRank | XiChen&#39;s Blog</title>
+    <meta name="author" content="Lin Xueyuan">
+    
+    <meta name="description" content="嗨，我是兮尘，全栈数据学徒。这里没有花俏艳丽的魔法，没有苍蛮霸道的斗气，有的，仅仅是繁衍到巅峰的代码！">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="网页排序算法（一）PageRank"/>
+    <meta property="og:site_name" content="XiChen"/>
+
+    
+    <meta property="og:image" content=""/>
+    
+
+    <link rel="icon" type="image/png" href="/assets/images/favicon.ico" />
+    <link rel="alternate" href="/atom.xml" title="XiChen" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+    <link rel="stylesheet" href="//fonts.gdgdocs.org/css?family=Lobster" type="text/css">
+    
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
+
+    <nav class="indigo nav">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="">
+            <div style="font-family: Lobster, Monospace;">
+                <a href="/" class="brand-logo hide-on-med-and-down" style="font-family: Lobster, Monospace;">
+                    XiChen
+                </a>
+            </div>
+            <ul class="nav-menu right hide-on-med-and-down">
+                
+                    <li class="tab">
+                        <a class="menu-home " href="/"
+                            >
+                                <i class="fa fa-home "></i>
+                                
+                                    Home
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-archive " href="/archives"
+                            >
+                                <i class="fa fa-archive "></i>
+                                
+                                    Archives
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-category category-menu" href="javascript:;"
+                            data-activates="category-menu"
+                            >
+                                <i class="fa fa-bookmark "></i>
+                                
+                                    Categories
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-apps " href="/apps"
+                            >
+                                <i class="fa fa-link "></i>
+                                
+                                    App
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-tools " href="/tools"
+                            >
+                                <i class="fa fa-wrench "></i>
+                                
+                                    Tool
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-reading " href="/reading"
+                            >
+                                <i class="fa fa-book "></i>
+                                
+                                    Reading
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-about " href="/about"
+                            >
+                                <i class="fa fa-user "></i>
+                                
+                                    About
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-search modal-trigger " href="#search"
+                            >
+                                <i class="fa fa-search "></i>
+                                
+                                    Search
+                        </a>
+                    </li>
+                    
+            </ul>
+            <div>
+    <ul class="side-nav indigo darken-1" id="main-menu">
+        
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4 no-padding logo-a">
+                    <img class="avatar-image circle responsive-img logo" src="/assets/images/avatar.jpg" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper no-padding">
+                    <div class="valign">
+                        <p class="name">兮尘</p>
+                        <p class="desc">Web前端/Android/技术宅</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-home " href="/" >
+                    <i class="fa fa-home "></i>
+                    
+                    Home
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-archive " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    
+                    Archives
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    
+                    Categories
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-apps " href="/apps" >
+                    <i class="fa fa-link "></i>
+                    
+                    App
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-tools " href="/tools" >
+                    <i class="fa fa-wrench "></i>
+                    
+                    Tool
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-reading " href="/reading" >
+                    <i class="fa fa-book "></i>
+                    
+                    Reading
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-about " href="/about" >
+                    <i class="fa fa-user "></i>
+                    
+                    About
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-search modal-trigger " href="#search" >
+                    <i class="fa fa-search "></i>
+                    
+                    Search
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav indigo darken-1" id="category-menu">
+    
+
+            
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Linux/">
+                    Linux <span class="right">8</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tips/">
+                    Tips <span class="right">7</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Deep-Learning/">
+                    Deep-Learning <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Proxy/">
+                    Proxy <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/GO/">
+                    GO <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tools/">
+                    Tools <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Ubuntu/">
+                    Ubuntu <span class="right">4</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Spider/">
+                    Spider <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/区块链/">
+                    区块链 <span class="right">7</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/算法/">
+                    算法 <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Web/">
+                    Web <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Algorithms/">
+                    Algorithms <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Latex/">
+                    Latex <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/密码学/">
+                    密码学 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/杂思/">
+                    杂思 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Android/">
+                    Android <span class="right">25</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Github/">
+                    Github <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Git/">
+                    Git <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+<div id="search" class="modal search-modal">
+    <div class="row">
+        <div class="input-field col s12">
+              <input id="search-input" type="text">
+              <label for="search-input">Search</label>
+        </div>
+
+    </div>
+    <div id="search-result" class="search-result col s12">
+
+    </div>
+</div>
+
+    <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper indigo">
+        <span class="breadcrumb">Current page(Categories)</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/算法/">算法</a>
+
+
+        
+
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>网页排序算法（一）PageRank</h1>
+    
+
+
+            </div>
+            <i class="fa fa-calendar"></i><time class="green-link-context" datetime="2017-12-05T12:22:00.000Z"><a href="/2017/12/05/2017-12-05-网页排序算法（一）PageRank/">2017-12-05</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/PageRank/" class="chip green lighten-1">PageRank</a>
+        
+    </div>
+    
+
+
+            <div class="toc green-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#直观理解"><span class="section table-of-contents-number">1.</span> <span class="section table-of-contents-text">直观理解</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#基本思想"><span class="section table-of-contents-number">1.1.</span> <span class="section table-of-contents-text">基本思想</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#如何计算"><span class="section table-of-contents-number">1.2.</span> <span class="section table-of-contents-text">如何计算</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#一个简单实例"><span class="section table-of-contents-number">1.3.</span> <span class="section table-of-contents-text">一个简单实例</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#迭代次数"><span class="section table-of-contents-number">1.4.</span> <span class="section table-of-contents-text">迭代次数</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#PR初始值"><span class="section table-of-contents-number">1.5.</span> <span class="section table-of-contents-text">PR初始值</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#Damping-factor"><span class="section table-of-contents-number">1.6.</span> <span class="section table-of-contents-text">Damping factor</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#PageRank计算方法"><span class="section table-of-contents-number">2.</span> <span class="section table-of-contents-text">PageRank计算方法</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#用NetworkX求PageRank"><span class="section table-of-contents-number">3.</span> <span class="section table-of-contents-text">用NetworkX求PageRank</span></a></li></ol>
+</div>
+
+
+            <div class="entry green-link-context">
+                <p>参加数学建模的时候要研究一下PageRank，为了巩固3天从入门到精通的成果，把了解到的整理成文。</p>
+<h1 id="直观理解"><a href="#直观理解" class="headerlink" title="直观理解"></a>直观理解</h1><h2 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h2><p>PageRank是以Google创始人Larry Page的姓命名的，于1999被提出来，用于测量网页的相对重要性（对网页进行排序），学术论文如下：</p>
+<blockquote>
+<p>Page, L., Brin, S., Motwani, R., &amp; Winograd, T. (1999). The PageRank citation ranking: Bringing order to the web. Stanford InfoLab. [PDF]</p>
+</blockquote>
+<p>PageRank的设计受到学术论文引用启发（两人的父亲都是大学教授）。衡量一篇学术论文质量高与否，最重要的一个指标是引用次数，高引用量的论文通常意味着高质量。同理，如果一张网页被引用（以超链接的形式）多了，那么这张网页就比较重要。总结起来，PageRank的核心思想有两点（结合图1说明）：</p>
+<ul>
+<li>越多的网页链接到一个网页（可以理解成投票，<code>D --&gt; B</code>，<code>D</code>给<code>B</code>投了一票），说明这个网页更加重要，如图1的<code>B</code>。(一篇论文被很多论文引用)</li>
+<li>PageRank高的网页链接到一个网页，说明这张网页也很重要。如图1，尽管C只有一张网页B链接到它，但C的重要性高于E，尽管E有一堆小罗罗给它投票。（论文被大牛引用了，说明这篇论文很有价值）（也可以从话语权角度理解，重要的人说话份量重）</li>
+</ul>
+<div class="image-package"><br><img src="/assets/blog/img/2017-12-5/0.png" width="700"><br><br><br><div class="image-caption">Fig. 1: PageRanks for a simple network (image from Wikipedia)</div><br></div>
+
+<p>整个万维网（World Wide Web）可以抽象成一张有向图，节点表示网页，连线$$p_i\to p_j$$表示网页$$p_i$$包含了超链接$$p_j$$（$$p_i$$指向了$$p_j$$）。如果能对图中每个节点重要性量化，那么就能对网页进行排序了。PageRank提出之初就是为了对网页进行排序。</p>
+<p>搜索引擎的工作原理可以简化为：输入关键词，返回与该关键词相关的网页（一个集合，相当于得到一张子图），在该子图上计算每个节点的PageRank值，PR值高的网页排在前面，低的就排在后面。</p>
+<h2 id="如何计算"><a href="#如何计算" class="headerlink" title="如何计算"></a>如何计算</h2><p>接下来的问题是，如何计算每个节点的PageRank。想要知道一个网页$$p_i$$的PR值，需要知道：</p>
+<ul>
+<li>有多少网页链接到了$$p_i$$</li>
+<li>这些网页的PR值是多少<br>其他网页的PR值又很可能是依赖于$$p_i$$，这就陷入了“先有鸡还是先有蛋”的循环，要想知道$$p_i$$的PR值，就得知道链向$$p_i$$所有网页的PR值，而要知道其他网页的PR值，又得先知道$$p_i$$的PR值。</li>
+</ul>
+<p>为了打破这个循环，佩奇和布林采用了一个很巧妙的思路， 即分析一个虚拟用户在互联网上的漫游过程。 他们假定：虚拟用户一旦访问了一个网页，下一步将以相同的概率访问被该网页所链接的任何一个其它网页[3]。比如，网页$$p_i$$包含N个超链接，那么虚拟用户访问这N个页面中的任何一个的概率是1/N。那么，网页的排序就可以看成一个虚拟用户在万维网漫游了很长时间，页面被访问的概率越大，其PR值就越高，网页排名也越靠前。</p>
+<p>先从简化的PageRank说起，以PageRank论文的例子为例，看看PageRank是怎么计算的，如下：</p>
+<div class="image-package"><br><img src="/assets/blog/img/2017-12-5/1.png" width="700"><br><br><br><div class="image-caption">Fig. 2: Simplified PageRank calculation (image from [1])</div><br></div>
+
+<p>每个节点初始化或者指定一个PageRank值（如<code>PR(A)=0.4</code>），网页<code>A</code>包含两个超链接，分别指向<code>B</code>和<code>C</code>（或者说<code>A</code>投票给<code>B</code>和<code>C</code>），<code>0.4</code>拆分成两份，每份<code>0.2</code>，所以<code>PR(B)=0.2</code>。<code>A</code>和<code>B</code>同时给<code>C</code>投票，所以<code>PR(C)=0.2+0.2=0.4</code>。如此，不断地迭代，最后每个节点的值会趋于稳定（或者说收敛），这样就求得了所有节点的PR值。事实上，在这个例子中，PageRank已收俭。</p>
+<p>每个页面将其当前的PageRank值平均分配到本页面所有出链上，一个页面将所有入链的PR值累加起来就构成了该页面新的PR值。如此迭代下去，最后得到一个稳定值。用数学公式表达，如下：</p>
+<p>$$PR(A)=\frac{PR(B)}{L(B)}+\frac{PR(C)}{L(C)}+\frac{PR(D)}{L(D)}+⋯$$</p>
+<p>更一般化地（$$B(p_i)$$表示所有链向网页$$p_i$$的集合），</p>
+<p>$$PR(pi)=\sum_{p_j\in B(p_i)}\frac{PR(p_j)}{L(p_j)}$$</p>
+<p>但这样算存在两个问题：</p>
+<ul>
+<li>对于没有forward links (outedges)的网页，即只有别人给她投票，她从不给别人投票，那么她的PageRank每次迭代都会增加。</li>
+<li>对于没有blacklinks (inedges)的网页，即没人给她投票，其PageRank永远等于0。</li>
+</ul>
+<p>对于第一个问题，给等式乘以一个小于1的常数d（damping factor，翻译成阻尼因数？）；对于第二个问题，给等式加上一个常数。新的等式如下（N表示网页总数，或者节点数目）：</p>
+<p>$$PR(p<em>i)=\frac{1−d}{N}+d\sum</em>{p_j\in B(p_i)}\frac{PR(p_j)}{L(p_j)}$$</p>
+<p>其中，</p>
+<ul>
+<li>$$B(p_i)$$：链接到网页pipi的集合（a set of pages link to pipi）</li>
+<li>$$L(p_j)$$：从$$p_j$$链出去的网页数目（the number of outbound links）<br>这样，就确保所有节点的PR值加起来等于1。</li>
+</ul>
+<h2 id="一个简单实例"><a href="#一个简单实例" class="headerlink" title="一个简单实例"></a>一个简单实例</h2><p>以一个很简单的例子（<code>A &lt; --&gt; B</code>）来看PageRank是怎么收俭的。</p>
+<div class="image-package"><br><img src="/assets/blog/img/2017-12-5/2.png" width="700"><br><br><br><div class="image-caption">Fig. 2: An illustration of PageRank calculation.</div><br></div>
+
+<p>假设他们的初始PR值为1，第一次迭代后，PR(A)和PR(B)的值为：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PR(A) = <span class="number">0.15</span>/<span class="number">2</span> + <span class="number">0.85</span>*<span class="number">1.0</span>                   = <span class="number">0.9249999999999999</span></span><br><span class="line">PR(B) = <span class="number">0.15</span>/<span class="number">2</span> + <span class="number">0.85</span>*<span class="number">0.9249999999999999</span>    = <span class="number">0.8612499999999998</span></span><br></pre></td></tr></table></figure></p>
+<p>写个简单的Python脚本，得到每次迭代后的值，部分如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"> <span class="number">1</span>: A=<span class="number">0.925000</span>     B=<span class="number">0.861250</span> </span><br><span class="line"> <span class="number">2</span>: A=<span class="number">0.807062</span>     B=<span class="number">0.761003</span> </span><br><span class="line"> <span class="number">3</span>: A=<span class="number">0.721853</span>     B=<span class="number">0.688575</span> </span><br><span class="line"> <span class="number">4</span>: A=<span class="number">0.660289</span>     B=<span class="number">0.636245</span> </span><br><span class="line"> <span class="number">5</span>: A=<span class="number">0.615808</span>     B=<span class="number">0.598437</span> </span><br><span class="line"> <span class="number">6</span>: A=<span class="number">0.583672</span>     B=<span class="number">0.571121</span> </span><br><span class="line"> <span class="number">7</span>: A=<span class="number">0.560453</span>     B=<span class="number">0.551385</span> </span><br><span class="line"> <span class="number">8</span>: A=<span class="number">0.543677</span>     B=<span class="number">0.537126</span> </span><br><span class="line"> <span class="number">9</span>: A=<span class="number">0.531557</span>     B=<span class="number">0.526823</span> </span><br><span class="line"><span class="number">10</span>: A=<span class="number">0.522800</span>     B=<span class="number">0.519380</span> </span><br><span class="line"><span class="number">11</span>: A=<span class="number">0.516473</span>     B=<span class="number">0.514002</span> </span><br><span class="line"><span class="number">12</span>: A=<span class="number">0.511902</span>     B=<span class="number">0.510116</span> </span><br><span class="line"><span class="number">13</span>: A=<span class="number">0.508599</span>     B=<span class="number">0.507309</span></span><br><span class="line"><span class="number">14</span>: A=<span class="number">0.506213</span>     B=<span class="number">0.505281</span> </span><br><span class="line"><span class="number">15</span>: A=<span class="number">0.504489</span>     B=<span class="number">0.503815</span> </span><br><span class="line"><span class="number">16</span>: A=<span class="number">0.503243</span>     B=<span class="number">0.502757</span> </span><br><span class="line"><span class="number">17</span>: A=<span class="number">0.502343</span>     B=<span class="number">0.501992</span> </span><br><span class="line"><span class="number">18</span>: A=<span class="number">0.501693</span>     B=<span class="number">0.501439</span> </span><br><span class="line"><span class="number">19</span>: A=<span class="number">0.501223</span>     B=<span class="number">0.501040</span> </span><br><span class="line"><span class="number">20</span>: A=<span class="number">0.500884</span>     B=<span class="number">0.500751</span></span><br><span class="line">...</span><br><span class="line"><span class="number">42</span>: A=<span class="number">0.500001</span>     B=<span class="number">0.500001</span> </span><br><span class="line"><span class="number">43</span>: A=<span class="number">0.500001</span>     B=<span class="number">0.500000</span> </span><br><span class="line"><span class="number">44</span>: A=<span class="number">0.500000</span>     B=<span class="number">0.500000</span> </span><br><span class="line"><span class="number">45</span>: A=<span class="number">0.500000</span>     B=<span class="number">0.500000</span></span><br></pre></td></tr></table></figure></p>
+<p>可见，随着迭代次数的增加，PageRank越来越接近收俭值0.5。Python源代码如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">pagerank_ab</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    Calculate PageRank for A &lt;--&gt; B</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    pr = &#123;<span class="string">'A'</span>:<span class="number">1.0</span>, <span class="string">'B'</span>:<span class="number">1.0</span>&#125;</span><br><span class="line">    max_iter = <span class="number">50</span></span><br><span class="line"> </span><br><span class="line">    <span class="keyword">for</span> idx <span class="keyword">in</span> range(<span class="number">1</span>, max_iter+<span class="number">1</span>):</span><br><span class="line">        pr[<span class="string">'A'</span>] = <span class="number">0.15</span>/<span class="number">2</span> + <span class="number">0.85</span>*pr[<span class="string">'B'</span>]</span><br><span class="line">        pr[<span class="string">'B'</span>] = <span class="number">0.15</span>/<span class="number">2</span> + <span class="number">0.85</span>*pr[<span class="string">'A'</span>]</span><br><span class="line"> </span><br><span class="line">        s = <span class="string">'&#123;:3d&#125;: A=&#123;:&lt;10f&#125;\tB=&#123;:&lt;10f&#125;'</span>.format(idx, pr[<span class="string">'A'</span>], pr[<span class="string">'B'</span>])</span><br><span class="line">        print(s)</span><br></pre></td></tr></table></figure></p>
+<h2 id="迭代次数"><a href="#迭代次数" class="headerlink" title="迭代次数"></a>迭代次数</h2><p>迭代次数越多，结果越准确，但花费时间也越长。出于效率考虑，在实际应用中，当PR值落在误差允许范围内（PR值跟前一次比较，如<code>PR′(A)−PR(A)&lt;1.0e−6PR′(A)−PR(A)&lt;1.0e−6</code>，想想浮点数在计算机的存储），就可以返回结果了。<br>Python实现的nx.pagerank相关源代码如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># check convergence, l1 norm</span></span><br><span class="line">err = sum([abs(x[n] - xlast[n]) <span class="keyword">for</span> n <span class="keyword">in</span> x])</span><br><span class="line"><span class="keyword">if</span> err &lt; N*tol: <span class="comment"># tol=1.0e-6</span></span><br><span class="line">    <span class="keyword">return</span> x</span><br></pre></td></tr></table></figure></p>
+<p>当然，对于超大型网络来说，有更复杂的计算方法，比如分布式。</p>
+<h2 id="PR初始值"><a href="#PR初始值" class="headerlink" title="PR初始值"></a>PR初始值</h2><p>不管节点PR初始值怎么设置，最后节点的PR值都一样，但收俭速度不一样。可以修改上面Python代码的PR初始值，运行代码，自行感受下。NetworkX的pagerank实现是将PR值初始化为1/N。</p>
+<h2 id="Damping-factor"><a href="#Damping-factor" class="headerlink" title="Damping factor"></a>Damping factor</h2><p>跟PR初始值类似，d的取值也会影响算法效率。根据Page的论文，d通常设为0.85。</p>
+<h1 id="PageRank计算方法"><a href="#PageRank计算方法" class="headerlink" title="PageRank计算方法"></a>PageRank计算方法</h1><p>(1) 迭代方法</p>
+<p>详情见另一篇博文<a href="https://linxueyuanstdio.github.io/2017/12/网页排序算法-二-迭代方法求PageRank/" target="_blank" rel="noopener">《网页排序算法（二）迭代方法求PageRank》</a>。</p>
+<p>（2）代数方法</p>
+<p>详情见另一篇博文<a href="https://linxueyuanstdio.github.io/2017/12/网页排序算法-三-代数方法求PageRank" target="_blank" rel="noopener">《网页排序算法（三）代数方法求PageRank》</a>。</p>
+<p>（3）Power Method</p>
+<p>待续。</p>
+<h1 id="用NetworkX求PageRank"><a href="#用NetworkX求PageRank" class="headerlink" title="用NetworkX求PageRank"></a>用NetworkX求PageRank</h1><p>NetworkX提供3个求PageRank的API，如下：</p>
+<ul>
+<li>pagerank(…)</li>
+<li>pagerank_numpy(…)</li>
+<li>pagerank_scipy(…)</li>
+</ul>
+<p>详细API如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">pagerank(G, alpha=<span class="number">0.85</span>, personalization=<span class="keyword">None</span>, max_iter=<span class="number">100</span>, tol=<span class="number">1e-06</span>, nstart=<span class="keyword">None</span>, weight=<span class="string">'weight'</span>, dangling=<span class="keyword">None</span>)</span><br><span class="line"> </span><br><span class="line">pagerank_numpy(G, alpha=<span class="number">0.85</span>, personalization=<span class="keyword">None</span>, weight=<span class="string">'weight'</span>, dangling=<span class="keyword">None</span>)</span><br><span class="line"> </span><br><span class="line">pagerank_scipy(G, alpha=<span class="number">0.85</span>, personalization=<span class="keyword">None</span>, max_iter=<span class="number">100</span>, tol=<span class="number">1e-06</span>, weight=<span class="string">'weight'</span>, dangling=<span class="keyword">None</span>)</span><br></pre></td></tr></table></figure>
+<p>References:</p>
+<ul>
+<li>[1] <a href="http://ilpubs.stanford.edu:8090/422/1/1999-66.pdf" target="_blank" rel="noopener">Page, L., Brin, S., Motwani, R., &amp; Winograd, T. (1999). The PageRank citation ranking: Bringing order to the web. Stanford InfoLab. [PDF]</a></li>
+<li>[2] <a href="http://www.sci.unich.it/~francesc/teaching/network/pagerank" target="_blank" rel="noopener">PageRank Centrality by Massimo Franceschet</a></li>
+<li>[3] <a href="http://www.changhai.org/articles/technology/misc/google_math.php" target="_blank" rel="noopener">谷歌背后的数学 by 卢昌海</a></li>
+<li>[4] <a href="https://en.wikipedia.org/wiki/PageRank" target="_blank" rel="noopener">Wikipedia: PageRank</a></li>
+<li>[5] <a href="http://www.cs.princeton.edu/~chazelle/courses/BIB/pagerank.htm" target="_blank" rel="noopener">The Google Pagerank Algorithm and How It Works</a></li>
+</ul>
+
+                
+<p class="green-link-context prev-btn">
+    <a href="/2017/12/06/2017-12-06-区块链开发（二）部署并运行以太坊智能合约/" rel="next" title="区块链开发（二）部署并运行以太坊智能合约">
+    Prev: 区块链开发（二）部署并运行以太坊智能合约
+  </a>
+</p>
+
+
+
+<p class="green-link-context next-btn">
+    <a href="/2017/12/01/2017-12-01-迪菲-赫尔曼密钥交换/" rel="next" title="迪菲-赫尔曼密钥交换">
+    Next: 迪菲-赫尔曼密钥交换
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+
+
+
+    <div id="gitment_container"></div>
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <link rel="stylesheet" href="/css/gitment.css" media="screen" type="text/css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <script>
+    var gitment = new Gitment({
+        id: 'Tue Dec 05 2017 20:22:00 GMT+0800',
+        owner: 'linxueyuanstdio',
+        repo: 'linxueyuanstdio.github.io',
+        oauth: {
+            client_id: '2f7f71f1ba398039ff23',
+            client_secret: '3ebc908a7042fef2d56a83a2eb8c18777374a087',
+        },
+    })
+    gitment.render('gitment_container')
+    </script>
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large pink">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect green" title="Return to top"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse yellow darken-1"  data-activates="main-menu" title="Menu"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer indigo darken-1">
+    
+    <div class="footer-container container">
+        <div class="row">
+            
+            <div class="social-group col m4 s12">
+                <h5 class="white-text">Social</h5>
+                
+                    <a class="social-link" href="http://weibo.com/LinXueyuanStdio" target="_blank">
+                        <i class="fa fa-2x fa-weibo"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://github.com/LinXueyuanStdio" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://www.zhihu.com/people/lin-xue-yuan-86" target="_blank">
+                        <i class="fa fa-2x fa-graduation-cap"></i>
+                    </a>
+                
+                    <a class="social-link" href="http://twitter.com/cwBQ3A5cz3Jzso7" target="_blank">
+                        <i class="fa fa-2x fa-twitter"></i>
+                    </a>
+                
+                    <a class="social-link" href="mailto:761516186@qq.com" target="_blank">
+                        <i class="fa fa-2x fa-envelope"></i>
+                    </a>
+                
+                    <a class="social-link" href="/atom.xml" target="_blank">
+                        <i class="fa fa-2x fa-rss"></i>
+                    </a>
+                
+                
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+    </script>
+    <div class="site-visitors-container white-text">
+        <span>
+            <i class="fa fa-user"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+        </span>
+        <span>&nbsp;|&nbsp;</span>
+        <span>
+            <i class="fa fa-eye"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+        </span>
+    </div>
+
+
+            </div>
+            
+
+            
+            <div class="col m8 s12">
+                <h5 class="white-text">Links</h5>
+                
+                    <a class="social-link" href="http://raytaylorlin.com/" target="_blank">raytaylorism主题作者</a>
+                
+                    <a class="social-link" href="https://github.com/raytaylorlin" target="_blank">Github地址</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    
+
+    <div class="footer-copyright green-link-context">
+        <div class="container">
+            © 2018 xichen.pub, All rights reserved.
+            <p class="right" style="margin-top: 0;">Blog powered by <a href="https://hexo.io">Hexo</a> | Theme <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
+        </div>
+    </div>
+</footer>
+
+
+    <noscript>
+    <div class="noscript">
+        <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+    </div>
+</noscript>
+<div class="noscript">
+    <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+<script src="/js/canvas.js"></script>
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 隐藏禁用javascript（针对微信内置浏览器）的提示
+            $('.noscript').hide();
+
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
+
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed').each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt') || ' ');
+            }).materialbox();
+
+            // 优化表格的显示
+            $('table').each(function() {
+                var $table = $(this);
+                // 除去多行代码的情况
+                if ($table.find('pre').length == 0) {
+                    $table.addClass('responsive-table striped bordered');
+                }
+            });
+
+            // 首页幻灯片
+            $('.slider').slider({indicators: true, full_width: true, interval: 8000});
+
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+
+            // 目录随屏幕滚动（防止目录过长越过footer）
+            var $toc = $('.toc');
+            var scrollTargetTop = 0;
+            $(window).scroll(function() {
+                var $activeLink = $toc.find('a.active.section');
+                if ($(window).scrollTop() < 100) {
+                    scrollTargetTop = 0;
+                } else {
+                    if ($activeLink[0]) {
+                        scrollTargetTop = $activeLink.offset().top - $toc.offset().top;
+                    }
+                }
+                $toc.css('top', '-' + scrollTargetTop + 'px');
+            });
+
+            // 修正文章目录的left-border颜色
+            var color = $('.table-of-contents-text').css('color');
+            $('.table-of-contents-link').css('border-left-color', color);
+
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({
+                    scrollTop: 0
+                }, 500);
+            });
+
+            // 重置读书页面的Tab标签页的颜色
+            $('li.tab a').hover(function() {
+                $(this).toggleClass('text-lighten-4');
+            });
+            $('.indicator').addClass('pink lighten-2');
+
+            
+            // 添加new标签
+            $('.menu-apps').append('<span class="new badge pink"></span>');
+            
+
+            // 搜索功能
+            $('.modal-trigger').leanModal({
+                // 打开搜索框时自动聚焦
+                ready: function() {
+                    if ($('#search').is(":visible")) {
+                        $('#search-input').focus();
+                    }
+                }
+            });
+            var searchXml = "search.xml";
+            if (searchXml.length == 0) {
+             	searchXml = "search.xml";
+            }
+            var searchPath = "/" + searchXml;
+            initSearch(searchPath, 'search-input', 'search-result');
+        });
+
+        // 初始化搜索与匹配函数
+        var initSearch = function(path, search_id, content_id) {
+            'use strict';
+            $.ajax({
+                url: path,
+                dataType: "xml",
+                success: function(xmlResponse) {
+                    // get the contents from search data
+                    var datas = $("entry", xmlResponse).map(function() {
+                        return {
+                            title: $("title", this).text(),
+                            content: $("content", this).text(),
+                            url: $("url", this).text()
+                        };
+                    }).get();
+                    var $input = document.getElementById(search_id);
+                    var $resultContent = document.getElementById(content_id);
+                    $input.addEventListener('input', function() {
+                        var str = '<ul class=\"search-result-list\">';
+                        var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                        $resultContent.innerHTML = "";
+                        if (this.value.trim().length <= 0) {
+                            return;
+                        }
+                        // perform local searching
+                        datas.forEach(function(data) {
+                            var isMatch = true;
+                            var content_index = [];
+                            var data_title = data.title.trim().toLowerCase();
+                            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                            var data_url = data.url;
+                            var index_title = -1;
+                            var index_content = -1;
+                            var first_occur = -1;
+                            // only match artiles with not empty titles and contents
+                            if (data_title != '' && data_content != '') {
+                                keywords.forEach(function(keyword, i) {
+                                    index_title = data_title.indexOf(keyword);
+                                    index_content = data_content.indexOf(keyword);
+                                    if (index_title < 0 && index_content < 0) {
+                                        isMatch = false;
+                                    } else {
+                                        if (index_content < 0) {
+                                            index_content = 0;
+                                        }
+                                        if (i == 0) {
+                                            first_occur = index_content;
+                                        }
+                                    }
+                                });
+                            }
+                            // show search results
+                            if (isMatch) {
+                                keywords.forEach(function(keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword green lighten-2\">" + keyword + "</span>");
+                                });
+
+                                str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                                if (first_occur >= 0) {
+                                    // cut out 100 characters
+                                    var start = first_occur - 20;
+                                    var end = first_occur + 80;
+                                    if (start < 0) {
+                                        start = 0;
+                                    }
+                                    if (start == 0) {
+                                        end = 100;
+                                    }
+                                    if (end > content.length) {
+                                        end = content.length;
+                                    }
+                                    var match_content = content.substring(start, end);
+                                    // highlight all keywords
+                                    keywords.forEach(function(keyword) {
+                                        var regS = new RegExp(keyword, "gi");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword green lighten-2\">" + keyword + "</span>");
+                                    });
+
+                                    str += "<p class=\"search-result\">..." + match_content + "...</p>"
+                                }
+                                str += "</li>";
+                            }
+                        });
+                        str += "</ul>";
+                        $resultContent.innerHTML = str;
+                    });
+                }
+            });
+        }
+    })(jQuery);
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+</body>
+</html>

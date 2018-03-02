@@ -1,0 +1,878 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>Android Studio 3.0及Gradle Plugin 3.0升级注意事项 | XiChen&#39;s Blog</title>
+    <meta name="author" content="Lin Xueyuan">
+    
+    <meta name="description" content="嗨，我是兮尘，全栈数据学徒。这里没有花俏艳丽的魔法，没有苍蛮霸道的斗气，有的，仅仅是繁衍到巅峰的代码！">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="Android Studio 3.0及Gradle Plugin 3.0升级注意事项"/>
+    <meta property="og:site_name" content="XiChen"/>
+
+    
+    <meta property="og:image" content=""/>
+    
+
+    <link rel="icon" type="image/png" href="/assets/images/favicon.ico" />
+    <link rel="alternate" href="/atom.xml" title="XiChen" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+    <link rel="stylesheet" href="//fonts.gdgdocs.org/css?family=Lobster" type="text/css">
+    
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
+
+    <nav class="indigo nav">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="">
+            <div style="font-family: Lobster, Monospace;">
+                <a href="/" class="brand-logo hide-on-med-and-down" style="font-family: Lobster, Monospace;">
+                    XiChen
+                </a>
+            </div>
+            <ul class="nav-menu right hide-on-med-and-down">
+                
+                    <li class="tab">
+                        <a class="menu-home " href="/"
+                            >
+                                <i class="fa fa-home "></i>
+                                
+                                    Home
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-archive " href="/archives"
+                            >
+                                <i class="fa fa-archive "></i>
+                                
+                                    Archives
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-category category-menu" href="javascript:;"
+                            data-activates="category-menu"
+                            >
+                                <i class="fa fa-bookmark "></i>
+                                
+                                    Categories
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-apps " href="/apps"
+                            >
+                                <i class="fa fa-link "></i>
+                                
+                                    App
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-tools " href="/tools"
+                            >
+                                <i class="fa fa-wrench "></i>
+                                
+                                    Tool
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-reading " href="/reading"
+                            >
+                                <i class="fa fa-book "></i>
+                                
+                                    Reading
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-about " href="/about"
+                            >
+                                <i class="fa fa-user "></i>
+                                
+                                    About
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-search modal-trigger " href="#search"
+                            >
+                                <i class="fa fa-search "></i>
+                                
+                                    Search
+                        </a>
+                    </li>
+                    
+            </ul>
+            <div>
+    <ul class="side-nav indigo darken-1" id="main-menu">
+        
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4 no-padding logo-a">
+                    <img class="avatar-image circle responsive-img logo" src="/assets/images/avatar.jpg" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper no-padding">
+                    <div class="valign">
+                        <p class="name">兮尘</p>
+                        <p class="desc">Web前端/Android/技术宅</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-home " href="/" >
+                    <i class="fa fa-home "></i>
+                    
+                    Home
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-archive " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    
+                    Archives
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    
+                    Categories
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-apps " href="/apps" >
+                    <i class="fa fa-link "></i>
+                    
+                    App
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-tools " href="/tools" >
+                    <i class="fa fa-wrench "></i>
+                    
+                    Tool
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-reading " href="/reading" >
+                    <i class="fa fa-book "></i>
+                    
+                    Reading
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-about " href="/about" >
+                    <i class="fa fa-user "></i>
+                    
+                    About
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-search modal-trigger " href="#search" >
+                    <i class="fa fa-search "></i>
+                    
+                    Search
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav indigo darken-1" id="category-menu">
+    
+
+            
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Linux/">
+                    Linux <span class="right">8</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tips/">
+                    Tips <span class="right">7</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Deep-Learning/">
+                    Deep-Learning <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Proxy/">
+                    Proxy <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/GO/">
+                    GO <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tools/">
+                    Tools <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Ubuntu/">
+                    Ubuntu <span class="right">4</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Spider/">
+                    Spider <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/区块链/">
+                    区块链 <span class="right">7</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/算法/">
+                    算法 <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Web/">
+                    Web <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Algorithms/">
+                    Algorithms <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Latex/">
+                    Latex <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/密码学/">
+                    密码学 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/杂思/">
+                    杂思 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Android/">
+                    Android <span class="right">25</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Github/">
+                    Github <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Git/">
+                    Git <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+<div id="search" class="modal search-modal">
+    <div class="row">
+        <div class="input-field col s12">
+              <input id="search-input" type="text">
+              <label for="search-input">Search</label>
+        </div>
+
+    </div>
+    <div id="search-result" class="search-result col s12">
+
+    </div>
+</div>
+
+    <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper indigo">
+        <span class="breadcrumb">Current page(Categories)</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/Android/">Android</a>
+
+
+        
+
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>Android Studio 3.0及Gradle Plugin 3.0升级注意事项</h1>
+    
+
+
+            </div>
+            <i class="fa fa-calendar"></i><time class="green-link-context" datetime="2018-01-23T00:48:00.000Z"><a href="/2018/01/23/2018-01-23-Android-Studio-3.0及Gradle-Plugin-3.0升级注意事项/">2018-01-23</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/Android/" class="chip green lighten-1">Android</a>
+        
+            <a href="/tags/Android-Studio/" class="chip green lighten-1">Android Studio</a>
+        
+            <a href="/tags/Gradle/" class="chip green lighten-1">Gradle</a>
+        
+    </div>
+    
+
+
+            <div class="toc green-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#Gradle版本升级"><span class="section table-of-contents-number">1.</span> <span class="section table-of-contents-text">Gradle版本升级</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#生成APK文件名属性outputFile变为只读"><span class="section table-of-contents-number">2.</span> <span class="section table-of-contents-text">生成APK文件名属性outputFile变为只读</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#依赖关键字的改变"><span class="section table-of-contents-number">3.</span> <span class="section table-of-contents-text">依赖关键字的改变</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#渠道需要声明flavor-dimensions"><span class="section table-of-contents-number">4.</span> <span class="section table-of-contents-text">渠道需要声明flavor dimensions</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#库多variant依赖方式的修改"><span class="section table-of-contents-number">5.</span> <span class="section table-of-contents-text">库多variant依赖方式的修改</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#处理app与lib的依赖匹配问题"><span class="section table-of-contents-number">6.</span> <span class="section table-of-contents-text">处理app与lib的依赖匹配问题</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#情形1：app中有某个build-type但library却木有"><span class="section table-of-contents-number">6.1.</span> <span class="section table-of-contents-text">情形1：app中有某个build type但library却木有</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#情景2：在同一个dimension维度下，如：tier。若app中有某个flavor但library却木有："><span class="section table-of-contents-number">6.2.</span> <span class="section table-of-contents-text">情景2：在同一个dimension维度下，如：tier。若app中有某个flavor但library却木有：</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#情景3：library中有某个dimension维度，但app中却没有"><span class="section table-of-contents-number">6.3.</span> <span class="section table-of-contents-text">情景3：library中有某个dimension维度，但app中却没有:</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#情景4：若library没有任何dimension和flavor，则不需app做任何flavor的回退处理"><span class="section table-of-contents-number">6.4.</span> <span class="section table-of-contents-text">情景4：若library没有任何dimension和flavor，则不需app做任何flavor的回退处理~</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#Java8特性的支持"><span class="section table-of-contents-number">7.</span> <span class="section table-of-contents-text">Java8特性的支持</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#android-apt相关的异常"><span class="section table-of-contents-number">8.</span> <span class="section table-of-contents-text">android-apt相关的异常</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#更多"><span class="section table-of-contents-number">9.</span> <span class="section table-of-contents-text">更多</span></a></li></ol>
+</div>
+
+
+            <div class="entry green-link-context">
+                <p>最近终于有空升级了一下项目中的<code>Gradle</code>和<code>Gradle Plugin</code>的版本，还是踩了蛮多的坑。特别是依赖以及渠道编译这块变动较大，因此把遇到的一些问题点记录下来，分享给后人查阅~</p>
+<h2 id="Gradle版本升级"><a href="#Gradle版本升级" class="headerlink" title="Gradle版本升级"></a>Gradle版本升级</h2><p>其实当AS升级到3.0之后，Gradle Plugin和Gradle不升级也是可以继续使用的，但很多新的特性如：Java8支持、新的依赖匹配机制、AAPT2等新功能都无法正常使用~  所以长期看来，最后还是得升的。</p>
+<ul>
+<li><p>Gradle Plugin升级到<code>3.0.0</code>及以上，修改<code>project/build.gradle</code>文件：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">buildscript</span> &#123;</span><br><span class="line">    <span class="keyword">repositories</span> &#123;</span><br><span class="line">        ...</span><br><span class="line">        <span class="comment">// You need to add the following repository to download the</span></span><br><span class="line">        <span class="comment">// new plugin.</span></span><br><span class="line">        google()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">dependencies</span> &#123;</span><br><span class="line">        <span class="keyword">classpath</span> <span class="string">'com.android.tools.build:gradle:3.0.0'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Gradle升级到<code>4.1</code>及以上，修改<code>project/gradle/gradle-wrapper.properties</code>文件：</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">distributionUrl=https\<span class="symbol">://services</span>.gradle.org/distributions/gradle-<span class="number">4.1</span>-all.zip</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="生成APK文件名属性outputFile变为只读"><a href="#生成APK文件名属性outputFile变为只读" class="headerlink" title="生成APK文件名属性outputFile变为只读"></a>生成APK文件名属性<code>outputFile</code>变为只读</h2><p>改完第一步后会提示如下报错：</p>
+<blockquote>
+<p>Error:(88, 0) Cannot set the value of read-only property ‘outputFile’ for ApkVariantOutputImpl_Decorated{apkData=Main{type=MAIN, fullName=appDebug, filters=[]}} of type com.android.build.gradle.internal.api.ApkVariantOutputImpl.</p>
+</blockquote>
+<p>之前改apk名字的代码类似：<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">applicationVariants.all &#123; variant -&gt;</span><br><span class="line">    variant.outputs.<span class="keyword">each</span> &#123; output -&gt;</span><br><span class="line">        <span class="keyword">def</span> <span class="keyword">file</span> = output.outputFile</span><br><span class="line">        <span class="keyword">def</span> apkName = <span class="string">'xxx-xxx-xxx-signed.apk'</span></span><br><span class="line">        output.outputFile = <span class="keyword">new</span> <span class="keyword">File</span>(<span class="keyword">file</span>.parent, apkName)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>由于<code>outputFile</code>属性变为只读，需要进行如下修改，直接对<code>outputFileName</code>属性赋值即可：<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">applicationVariants.all &#123; variant -&gt;</span><br><span class="line">    variant.outputs.all &#123;</span><br><span class="line">        <span class="keyword">def</span> apkName = <span class="string">'xxx-xxx-xxx-signed.apk'</span></span><br><span class="line">        outputFileName = apkName</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="依赖关键字的改变"><a href="#依赖关键字的改变" class="headerlink" title="依赖关键字的改变"></a>依赖关键字的改变</h2><ul>
+<li>api: 对应之前的<code>compile</code>关键字，功能一模一样。会传递依赖，导致gradle编译的时候遍历整颗依赖树</li>
+<li>implementation: 对应之前的<code>compile</code>，与<code>api</code>类似，关键区别是不会有依赖传递</li>
+<li>compileOnly: 对应之前的<code>provided</code>，依赖仅用于编译期不会打包进最终的apk中</li>
+<li>runtimeOnly: 对应之前的’apk’，与上面的<code>compileOnly</code>相反</li>
+</ul>
+<p>关于<code>implementation</code>与<code>api</code>的区别，主要在依赖是否会传递上。如：A依赖B，B依赖C，若使用<code>api</code>则A可以引用C，而<code>implementation</code>则不能引用。</p>
+<p>这里更推荐用<code>implementation</code>，一是不会间接的暴露引用，清晰知道目前项目的依赖情况；二是可以提高编译时依赖树的查找速度，进而提升编译速度。详见SO的这个回答，讲得非常详细了：<a href="https://stackoverflow.com/questions/44413952/gradle-implementation-vs-api-configuration" target="_blank" rel="noopener">https://stackoverflow.com/questions/44413952/gradle-implementation-vs-api-configuration</a></p>
+<h2 id="渠道需要声明flavor-dimensions"><a href="#渠道需要声明flavor-dimensions" class="headerlink" title="渠道需要声明flavor dimensions"></a>渠道需要声明flavor dimensions</h2><p>刚开始Sync的时候应该会报错：</p>
+<blockquote>
+<p>Error:All flavors must now belong to a named flavor dimension. Learn more at <a href="https://d.android.com/r/tools/flavorDimensions-missing-error-message.html" target="_blank" rel="noopener">https://d.android.com/r/tools/flavorDimensions-missing-error-message.html</a></p>
+</blockquote>
+<p>也就是每个flavor渠道都必须归属一个dimension维度，若只有一个维度，渠道中可以不写dimension属性，默认分配到该维度。直接添加一个默认的维度即可，如：<code>flavorDimensions &quot;dimension&quot;</code>。当然<code>flavorDimensions</code>也可以设置多个维度，详见官方实例：<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Specifies two flavor dimensions.</span></span><br><span class="line">flavorDimensions <span class="string">"mode"</span>, <span class="string">"minApi"</span></span><br><span class="line"></span><br><span class="line">productFlavors &#123;</span><br><span class="line">    free &#123;</span><br><span class="line">        <span class="comment">// Assigns this product flavor to the "tier" flavor dimension. Specifying</span></span><br><span class="line">        <span class="comment">// this property is optional if you are using only one dimension.</span></span><br><span class="line">        dimension <span class="string">"mode"</span></span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    paid &#123;</span><br><span class="line">        dimension <span class="string">"mode"</span></span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    minApi23 &#123;</span><br><span class="line">        dimension <span class="string">"minApi"</span></span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    minApi18 &#123;</span><br><span class="line">        dimension <span class="string">"minApi"</span></span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="库多variant依赖方式的修改"><a href="#库多variant依赖方式的修改" class="headerlink" title="库多variant依赖方式的修改"></a>库多variant依赖方式的修改</h2><p><code>Gradle plugin 3.0.0+</code>之后引入了新的variant自动匹配机制，也就是说app的flavorDebug变体会自动匹配library的flavorDebug变体。</p>
+<p>回顾一下旧的方式，如果app在某个variant下需要依赖library相应的类型，需要按照下面的方式声明依赖：<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">dependencies</span> &#123;</span><br><span class="line">    <span class="comment">// This is the old method and no longer works for local</span></span><br><span class="line">    <span class="comment">// library modules:</span></span><br><span class="line">    debugCompile <span class="keyword">project</span>(path: <span class="string">':library'</span>, configuration: <span class="string">'debug'</span>)</span><br><span class="line">    releaseCompile <span class="keyword">project</span>(path: <span class="string">':library'</span>, configuration: <span class="string">'release'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>新的方式，gradle会自动感知并匹配对应的variant（前提是app与library中有对应的variant类型）：<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">dependencies</span> &#123;</span><br><span class="line">    <span class="comment">// Instead, simply use the following to take advantage of</span></span><br><span class="line">    <span class="comment">// variant-aware dependency resolution. You can learn more about</span></span><br><span class="line">    <span class="comment">// the 'implementation' configuration in the section about</span></span><br><span class="line">    <span class="comment">// new dependency configurations.</span></span><br><span class="line">    implementation <span class="keyword">project</span>(<span class="string">':library'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="处理app与lib的依赖匹配问题"><a href="#处理app与lib的依赖匹配问题" class="headerlink" title="处理app与lib的依赖匹配问题"></a>处理app与lib的依赖匹配问题</h2><p>上面我们了解到新的variant匹配机制，但若app或library中不存在对应的variant类型呢？匹配将如何进行？下面列出了可能出现的几种情形：</p>
+<h3 id="情形1：app中有某个build-type但library却木有"><a href="#情形1：app中有某个build-type但library却木有" class="headerlink" title="情形1：app中有某个build type但library却木有"></a>情形1：app中有某个build type但library却木有</h3><p>可以通过<code>matchingFallbacks</code>属性来设置回退策略，提供可能的匹配列表，代码如下：<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// In the app's build.gradle file.</span></span><br><span class="line">android &#123;</span><br><span class="line">    buildTypes &#123;</span><br><span class="line">        debug &#123;&#125;</span><br><span class="line">        release &#123;&#125;</span><br><span class="line">        staging &#123;</span><br><span class="line">            <span class="comment">// Specifies a sorted list of fallback build types that the</span></span><br><span class="line">            <span class="comment">// plugin should try to use when a dependency does not include a</span></span><br><span class="line">            <span class="comment">// "staging" build type. You may specify as many fallbacks as you</span></span><br><span class="line">            <span class="comment">// like, and the plugin selects the first build type that's</span></span><br><span class="line">            <span class="comment">// available in the dependency.</span></span><br><span class="line">            matchingFallbacks = [<span class="string">'debug'</span>, <span class="string">'qa'</span>, <span class="string">'release'</span>]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>若希望可以针对app的每个build type都执行相同的回退策略（例如我们大量的library只有一个release的build type），则可以使用批量指令：<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">buildTypes.all &#123; type -&gt;</span><br><span class="line">    type.matchingFallbacks = [<span class="string">'release'</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>（注意：在该情景下，若library中有某个build type但app却木有，不会对app有任何影响）</strong></p>
+<h3 id="情景2：在同一个dimension维度下，如：tier。若app中有某个flavor但library却木有："><a href="#情景2：在同一个dimension维度下，如：tier。若app中有某个flavor但library却木有：" class="headerlink" title="情景2：在同一个dimension维度下，如：tier。若app中有某个flavor但library却木有："></a>情景2：在同一个dimension维度下，如：tier。若app中有某个flavor但library却木有：</h3><p>同样可以通过<code>matchingFallbacks</code>属性来设置回退策略，代码如下：<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// In the app's build.gradle file.</span></span><br><span class="line">android &#123;</span><br><span class="line">    defaultConfig&#123;</span><br><span class="line">    <span class="comment">// Do not configure matchingFallbacks in the defaultConfig block.</span></span><br><span class="line">    <span class="comment">// Instead, you must specify fallbacks for a given product flavor in the</span></span><br><span class="line">    <span class="comment">// productFlavors block, as shown below.</span></span><br><span class="line">    &#125;</span><br><span class="line">    flavorDimensions <span class="string">'tier'</span></span><br><span class="line">    productFlavors &#123;</span><br><span class="line">        paid &#123;</span><br><span class="line">            dimension <span class="string">'tier'</span></span><br><span class="line">            <span class="comment">// Because the dependency already includes a "paid" flavor in its</span></span><br><span class="line">            <span class="comment">// "tier" dimension, you don't need to provide a list of fallbacks</span></span><br><span class="line">            <span class="comment">// for the "paid" flavor.</span></span><br><span class="line">        &#125;</span><br><span class="line">        free &#123;</span><br><span class="line">            dimension <span class="string">'tier'</span></span><br><span class="line">            <span class="comment">// Specifies a sorted list of fallback flavors that the plugin</span></span><br><span class="line">            <span class="comment">// should try to use when a dependency's matching dimension does</span></span><br><span class="line">            <span class="comment">// not include a "free" flavor. You may specify as many</span></span><br><span class="line">            <span class="comment">// fallbacks as you like, and the plugin selects the first flavor</span></span><br><span class="line">            <span class="comment">// that's available in the dependency's "tier" dimension.</span></span><br><span class="line">            matchingFallbacks = [<span class="string">'demo'</span>, <span class="string">'trial'</span>]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>（注意：在该情景下，若library中有某个flavor但app却木有，不会对app有任何影响）</strong></p>
+<h3 id="情景3：library中有某个dimension维度，但app中却没有"><a href="#情景3：library中有某个dimension维度，但app中却没有" class="headerlink" title="情景3：library中有某个dimension维度，但app中却没有:"></a>情景3：library中有某个dimension维度，但app中却没有:</h3><p>可以通过<code>missingDimensionStrategy</code>属性来设置选择策略，代码如下：<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// In the app's build.gradle file.</span></span><br><span class="line">android &#123;</span><br><span class="line">    defaultConfig&#123;</span><br><span class="line">    <span class="comment">// Specifies a sorted list of flavors that the plugin should try to use from</span></span><br><span class="line">    <span class="comment">// a given dimension. The following tells the plugin that, when encountering</span></span><br><span class="line">    <span class="comment">// a dependency that includes a "minApi" dimension, it should select the</span></span><br><span class="line">    <span class="comment">// "minApi18" flavor. You can include additional flavor names to provide a</span></span><br><span class="line">    <span class="comment">// sorted list of fallbacks for the dimension.</span></span><br><span class="line">    missingDimensionStrategy <span class="string">'minApi'</span>, <span class="string">'minApi18'</span>, <span class="string">'minApi23'</span></span><br><span class="line">    &#125;</span><br><span class="line">    flavorDimensions <span class="string">'tier'</span></span><br><span class="line">    productFlavors &#123;</span><br><span class="line">        free &#123;</span><br><span class="line">            dimension <span class="string">'tier'</span></span><br><span class="line">            <span class="comment">// You can override the default selection at the product flavor</span></span><br><span class="line">            <span class="comment">// level by configuring another missingDimensionStrategy property</span></span><br><span class="line">            <span class="comment">// for the "minApi" dimension.</span></span><br><span class="line">            missingDimensionStrategy <span class="string">'minApi'</span>, <span class="string">'minApi23'</span>, <span class="string">'minApi18'</span></span><br><span class="line">        &#125;</span><br><span class="line">        paid &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>说明：其中<code>missingDimensionStrategy</code>属性的第一个值为dimension维度，后面的Strings为该维度下的渠道flavors。我们可以看下它的函数原型：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">missingDimensionStrategy</span><span class="params">(String dimension, String requestedValue)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">missingDimensionStrategy</span><span class="params">(String dimension, String... requestedValues)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">missingDimensionStrategy</span><span class="params">(String dimension, List&lt;String&gt; requestedValues)</span></span>;</span><br></pre></td></tr></table></figure></p>
+<p><strong>（注意：在该情景下，若app中有某个dimension维度，但library中却没有，不会对app有任何影响）</strong></p>
+<h3 id="情景4：若library没有任何dimension和flavor，则不需app做任何flavor的回退处理"><a href="#情景4：若library没有任何dimension和flavor，则不需app做任何flavor的回退处理" class="headerlink" title="情景4：若library没有任何dimension和flavor，则不需app做任何flavor的回退处理~"></a>情景4：若library没有任何dimension和flavor，则不需app做任何flavor的回退处理~</h3><p>说了这么多种场景，是不是快被绕晕了？其实诸如dimension的声明以及提供匹配回退策略都是为了实现精确的variant匹配。但是这么多的场景咋看之下还是比较晕，在遇到具体的业务依赖场景后再回来看这一块的内容，你会更加的有收获~</p>
+<h2 id="Java8特性的支持"><a href="#Java8特性的支持" class="headerlink" title="Java8特性的支持"></a>Java8特性的支持</h2><p>升级到Gradle Plugin 3.0.0之后，一直被诟病的<code>Jack</code>已经被官方弃用了，取而代之的是最新的<code>desugar</code>方案。</p>
+<p>若项目之前用了类似<code>retrolambda</code>或者<code>Jack</code>这种旧方案的话，会出现以下提示告诉你移除相关的代码：</p>
+<blockquote>
+<p>Warning:One of the plugins you are using supports Java 8 language features. To try the support built into the Android plugin, remove the following from your build.gradle: apply plugin: ‘me.tatarka.retrolambda’ To learn more, go to <a href="https://d.android.com/r/tools/java-8-support-message.html" target="_blank" rel="noopener">https://d.android.com/r/tools/java-8-support-message.html</a></p>
+</blockquote>
+<p>启用最新的<code>desugar</code>也非常简单，设置一下<code>sourceCompatibility</code>和<code>targetCompatibility</code>即可：<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">android &#123;</span><br><span class="line">  ...</span><br><span class="line">  <span class="comment">// Configure only for each module that uses Java 8</span></span><br><span class="line">  <span class="comment">// language features (either in its source code or</span></span><br><span class="line">  <span class="comment">// through dependencies).</span></span><br><span class="line">  compileOptions &#123;</span><br><span class="line">    <span class="keyword">sourceCompatibility</span> JavaVersion.VERSION_1_8</span><br><span class="line">    <span class="keyword">targetCompatibility</span> JavaVersion.VERSION_1_8</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>目前所支持Java8的特性有：</p>
+<ul>
+<li>Lambda expressions</li>
+<li>Method References</li>
+<li>Type Annotations</li>
+<li>Default and static interface methods</li>
+<li>Repeating annotations</li>
+</ul>
+<p><strong>（注意：stream及function包下的api只能在API level 24+以上才可以使用）</strong></p>
+<p>禁用该特性也是分分钟的事情：<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android.enableDesugar=<span class="keyword">false</span></span><br></pre></td></tr></table></figure></p>
+<p>官方文档：<br><a href="https://developer.android.com/studio/write/java8-support.html" target="_blank" rel="noopener">https://developer.android.com/studio/write/java8-support.html</a></p>
+<h2 id="android-apt相关的异常"><a href="#android-apt相关的异常" class="headerlink" title="android-apt相关的异常"></a>android-apt相关的异常</h2><p>最后的最后很多同学会遇到以下关于<code>android-apt</code>的报错：</p>
+<p>解决方法：</p>
+<ul>
+<li><p>移除<code>android-apt</code>相关的plugin，如：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">classpath</span> <span class="string">'com.neenbedankt.gradle.plugins:android-apt:1.8'</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>依赖中的<code>apt</code>改成<code>annotationProcessor</code>，如：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">annotationProcessor <span class="string">'com.android.databinding:compiler:3.0.0'</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果有用到类似Realm这种第三方的plugin，确保升级到最新版试试（旧版的Realm用的还是<code>android-apt</code>），突然发现升级到最新版后api接口被改了，泪奔中…</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">buildscript</span> &#123;</span><br><span class="line">    <span class="keyword">repositories</span> &#123;</span><br><span class="line">        jcenter()</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">dependencies</span> &#123;</span><br><span class="line">        <span class="keyword">classpath</span> <span class="string">"io.realm:realm-gradle-plugin:4.2.0"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="更多"><a href="#更多" class="headerlink" title="更多"></a>更多</h2><p>还有更多的迁移变化，由于项目中还没涉及到，就先不写了，大家可以参考官方文档：<br><a href="https://developer.android.com/studio/build/gradle-plugin-3-0-0-migration.html" target="_blank" rel="noopener">https://developer.android.com/studio/build/gradle-plugin-3-0-0-migration.html</a></p>
+
+                
+<p class="green-link-context prev-btn">
+    <a href="/2018/01/23/2018-01-23-Git的4个阶段的撤销更改/" rel="next" title="Git的4个阶段的撤销更改">
+    Prev: Git的4个阶段的撤销更改
+  </a>
+</p>
+
+
+
+<p class="green-link-context next-btn">
+    <a href="/2018/01/22/2018-01-22-running-Ubuntu-GUI-in-Windows10/" rel="next" title="running Ubuntu GUI in Windows10">
+    Next: running Ubuntu GUI in Windows10
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+
+
+
+    <div id="gitment_container"></div>
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <link rel="stylesheet" href="/css/gitment.css" media="screen" type="text/css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <script>
+    var gitment = new Gitment({
+        id: 'Tue Jan 23 2018 08:48:00 GMT+0800',
+        owner: 'linxueyuanstdio',
+        repo: 'linxueyuanstdio.github.io',
+        oauth: {
+            client_id: '2f7f71f1ba398039ff23',
+            client_secret: '3ebc908a7042fef2d56a83a2eb8c18777374a087',
+        },
+    })
+    gitment.render('gitment_container')
+    </script>
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large pink">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect green" title="Return to top"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse yellow darken-1"  data-activates="main-menu" title="Menu"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer indigo darken-1">
+    
+    <div class="footer-container container">
+        <div class="row">
+            
+            <div class="social-group col m4 s12">
+                <h5 class="white-text">Social</h5>
+                
+                    <a class="social-link" href="http://weibo.com/LinXueyuanStdio" target="_blank">
+                        <i class="fa fa-2x fa-weibo"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://github.com/LinXueyuanStdio" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://www.zhihu.com/people/lin-xue-yuan-86" target="_blank">
+                        <i class="fa fa-2x fa-graduation-cap"></i>
+                    </a>
+                
+                    <a class="social-link" href="http://twitter.com/cwBQ3A5cz3Jzso7" target="_blank">
+                        <i class="fa fa-2x fa-twitter"></i>
+                    </a>
+                
+                    <a class="social-link" href="mailto:761516186@qq.com" target="_blank">
+                        <i class="fa fa-2x fa-envelope"></i>
+                    </a>
+                
+                    <a class="social-link" href="/atom.xml" target="_blank">
+                        <i class="fa fa-2x fa-rss"></i>
+                    </a>
+                
+                
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+    </script>
+    <div class="site-visitors-container white-text">
+        <span>
+            <i class="fa fa-user"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+        </span>
+        <span>&nbsp;|&nbsp;</span>
+        <span>
+            <i class="fa fa-eye"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+        </span>
+    </div>
+
+
+            </div>
+            
+
+            
+            <div class="col m8 s12">
+                <h5 class="white-text">Links</h5>
+                
+                    <a class="social-link" href="http://raytaylorlin.com/" target="_blank">raytaylorism主题作者</a>
+                
+                    <a class="social-link" href="https://github.com/raytaylorlin" target="_blank">Github地址</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    
+
+    <div class="footer-copyright green-link-context">
+        <div class="container">
+            © 2018 xichen.pub, All rights reserved.
+            <p class="right" style="margin-top: 0;">Blog powered by <a href="https://hexo.io">Hexo</a> | Theme <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
+        </div>
+    </div>
+</footer>
+
+
+    <noscript>
+    <div class="noscript">
+        <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+    </div>
+</noscript>
+<div class="noscript">
+    <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+<script src="/js/canvas.js"></script>
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 隐藏禁用javascript（针对微信内置浏览器）的提示
+            $('.noscript').hide();
+
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
+
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed').each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt') || ' ');
+            }).materialbox();
+
+            // 优化表格的显示
+            $('table').each(function() {
+                var $table = $(this);
+                // 除去多行代码的情况
+                if ($table.find('pre').length == 0) {
+                    $table.addClass('responsive-table striped bordered');
+                }
+            });
+
+            // 首页幻灯片
+            $('.slider').slider({indicators: true, full_width: true, interval: 8000});
+
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+
+            // 目录随屏幕滚动（防止目录过长越过footer）
+            var $toc = $('.toc');
+            var scrollTargetTop = 0;
+            $(window).scroll(function() {
+                var $activeLink = $toc.find('a.active.section');
+                if ($(window).scrollTop() < 100) {
+                    scrollTargetTop = 0;
+                } else {
+                    if ($activeLink[0]) {
+                        scrollTargetTop = $activeLink.offset().top - $toc.offset().top;
+                    }
+                }
+                $toc.css('top', '-' + scrollTargetTop + 'px');
+            });
+
+            // 修正文章目录的left-border颜色
+            var color = $('.table-of-contents-text').css('color');
+            $('.table-of-contents-link').css('border-left-color', color);
+
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({
+                    scrollTop: 0
+                }, 500);
+            });
+
+            // 重置读书页面的Tab标签页的颜色
+            $('li.tab a').hover(function() {
+                $(this).toggleClass('text-lighten-4');
+            });
+            $('.indicator').addClass('pink lighten-2');
+
+            
+            // 添加new标签
+            $('.menu-apps').append('<span class="new badge pink"></span>');
+            
+
+            // 搜索功能
+            $('.modal-trigger').leanModal({
+                // 打开搜索框时自动聚焦
+                ready: function() {
+                    if ($('#search').is(":visible")) {
+                        $('#search-input').focus();
+                    }
+                }
+            });
+            var searchXml = "search.xml";
+            if (searchXml.length == 0) {
+             	searchXml = "search.xml";
+            }
+            var searchPath = "/" + searchXml;
+            initSearch(searchPath, 'search-input', 'search-result');
+        });
+
+        // 初始化搜索与匹配函数
+        var initSearch = function(path, search_id, content_id) {
+            'use strict';
+            $.ajax({
+                url: path,
+                dataType: "xml",
+                success: function(xmlResponse) {
+                    // get the contents from search data
+                    var datas = $("entry", xmlResponse).map(function() {
+                        return {
+                            title: $("title", this).text(),
+                            content: $("content", this).text(),
+                            url: $("url", this).text()
+                        };
+                    }).get();
+                    var $input = document.getElementById(search_id);
+                    var $resultContent = document.getElementById(content_id);
+                    $input.addEventListener('input', function() {
+                        var str = '<ul class=\"search-result-list\">';
+                        var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                        $resultContent.innerHTML = "";
+                        if (this.value.trim().length <= 0) {
+                            return;
+                        }
+                        // perform local searching
+                        datas.forEach(function(data) {
+                            var isMatch = true;
+                            var content_index = [];
+                            var data_title = data.title.trim().toLowerCase();
+                            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                            var data_url = data.url;
+                            var index_title = -1;
+                            var index_content = -1;
+                            var first_occur = -1;
+                            // only match artiles with not empty titles and contents
+                            if (data_title != '' && data_content != '') {
+                                keywords.forEach(function(keyword, i) {
+                                    index_title = data_title.indexOf(keyword);
+                                    index_content = data_content.indexOf(keyword);
+                                    if (index_title < 0 && index_content < 0) {
+                                        isMatch = false;
+                                    } else {
+                                        if (index_content < 0) {
+                                            index_content = 0;
+                                        }
+                                        if (i == 0) {
+                                            first_occur = index_content;
+                                        }
+                                    }
+                                });
+                            }
+                            // show search results
+                            if (isMatch) {
+                                keywords.forEach(function(keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword green lighten-2\">" + keyword + "</span>");
+                                });
+
+                                str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                                if (first_occur >= 0) {
+                                    // cut out 100 characters
+                                    var start = first_occur - 20;
+                                    var end = first_occur + 80;
+                                    if (start < 0) {
+                                        start = 0;
+                                    }
+                                    if (start == 0) {
+                                        end = 100;
+                                    }
+                                    if (end > content.length) {
+                                        end = content.length;
+                                    }
+                                    var match_content = content.substring(start, end);
+                                    // highlight all keywords
+                                    keywords.forEach(function(keyword) {
+                                        var regS = new RegExp(keyword, "gi");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword green lighten-2\">" + keyword + "</span>");
+                                    });
+
+                                    str += "<p class=\"search-result\">..." + match_content + "...</p>"
+                                }
+                                str += "</li>";
+                            }
+                        });
+                        str += "</ul>";
+                        $resultContent.innerHTML = str;
+                    });
+                }
+            });
+        }
+    })(jQuery);
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+</body>
+</html>

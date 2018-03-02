@@ -1,0 +1,944 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>【Android TimeCat】 OrmLite框架入门与封装（一）快速入门 | XiChen&#39;s Blog</title>
+    <meta name="author" content="Lin Xueyuan">
+    
+    <meta name="description" content="嗨，我是兮尘，全栈数据学徒。这里没有花俏艳丽的魔法，没有苍蛮霸道的斗气，有的，仅仅是繁衍到巅峰的代码！">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="【Android TimeCat】 OrmLite框架入门与封装（一）快速入门"/>
+    <meta property="og:site_name" content="XiChen"/>
+
+    
+    <meta property="og:image" content=""/>
+    
+
+    <link rel="icon" type="image/png" href="/assets/images/favicon.ico" />
+    <link rel="alternate" href="/atom.xml" title="XiChen" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+    <link rel="stylesheet" href="//fonts.gdgdocs.org/css?family=Lobster" type="text/css">
+    
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
+
+    <nav class="indigo nav">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="">
+            <div style="font-family: Lobster, Monospace;">
+                <a href="/" class="brand-logo hide-on-med-and-down" style="font-family: Lobster, Monospace;">
+                    XiChen
+                </a>
+            </div>
+            <ul class="nav-menu right hide-on-med-and-down">
+                
+                    <li class="tab">
+                        <a class="menu-home " href="/"
+                            >
+                                <i class="fa fa-home "></i>
+                                
+                                    Home
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-archive " href="/archives"
+                            >
+                                <i class="fa fa-archive "></i>
+                                
+                                    Archives
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-category category-menu" href="javascript:;"
+                            data-activates="category-menu"
+                            >
+                                <i class="fa fa-bookmark "></i>
+                                
+                                    Categories
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-apps " href="/apps"
+                            >
+                                <i class="fa fa-link "></i>
+                                
+                                    App
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-tools " href="/tools"
+                            >
+                                <i class="fa fa-wrench "></i>
+                                
+                                    Tool
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-reading " href="/reading"
+                            >
+                                <i class="fa fa-book "></i>
+                                
+                                    Reading
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-about " href="/about"
+                            >
+                                <i class="fa fa-user "></i>
+                                
+                                    About
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-search modal-trigger " href="#search"
+                            >
+                                <i class="fa fa-search "></i>
+                                
+                                    Search
+                        </a>
+                    </li>
+                    
+            </ul>
+            <div>
+    <ul class="side-nav indigo darken-1" id="main-menu">
+        
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4 no-padding logo-a">
+                    <img class="avatar-image circle responsive-img logo" src="/assets/images/avatar.jpg" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper no-padding">
+                    <div class="valign">
+                        <p class="name">兮尘</p>
+                        <p class="desc">Web前端/Android/技术宅</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-home " href="/" >
+                    <i class="fa fa-home "></i>
+                    
+                    Home
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-archive " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    
+                    Archives
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    
+                    Categories
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-apps " href="/apps" >
+                    <i class="fa fa-link "></i>
+                    
+                    App
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-tools " href="/tools" >
+                    <i class="fa fa-wrench "></i>
+                    
+                    Tool
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-reading " href="/reading" >
+                    <i class="fa fa-book "></i>
+                    
+                    Reading
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-about " href="/about" >
+                    <i class="fa fa-user "></i>
+                    
+                    About
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-search modal-trigger " href="#search" >
+                    <i class="fa fa-search "></i>
+                    
+                    Search
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav indigo darken-1" id="category-menu">
+    
+
+            
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Linux/">
+                    Linux <span class="right">8</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tips/">
+                    Tips <span class="right">7</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Deep-Learning/">
+                    Deep-Learning <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Proxy/">
+                    Proxy <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/GO/">
+                    GO <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tools/">
+                    Tools <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Ubuntu/">
+                    Ubuntu <span class="right">4</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Spider/">
+                    Spider <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/区块链/">
+                    区块链 <span class="right">7</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/算法/">
+                    算法 <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Web/">
+                    Web <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Algorithms/">
+                    Algorithms <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Latex/">
+                    Latex <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/密码学/">
+                    密码学 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/杂思/">
+                    杂思 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Android/">
+                    Android <span class="right">25</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Github/">
+                    Github <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Git/">
+                    Git <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+<div id="search" class="modal search-modal">
+    <div class="row">
+        <div class="input-field col s12">
+              <input id="search-input" type="text">
+              <label for="search-input">Search</label>
+        </div>
+
+    </div>
+    <div id="search-result" class="search-result col s12">
+
+    </div>
+</div>
+
+    <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper indigo">
+        <span class="breadcrumb">Current page(Categories)</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/Android/">Android</a>
+
+
+        
+
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>【Android TimeCat】 OrmLite框架入门与封装（一）快速入门</h1>
+    
+
+
+            </div>
+            <i class="fa fa-calendar"></i><time class="green-link-context" datetime="2018-02-25T22:49:00.000Z"><a href="/2018/02/26/2018-02-26-Android-TimeCat-OrmLite框架入门与封装（一）快速入门/">2018-02-26</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/Android/" class="chip green lighten-1">Android</a>
+        
+            <a href="/tags/OrmLite/" class="chip green lighten-1">OrmLite</a>
+        
+            <a href="/tags/database/" class="chip green lighten-1">database</a>
+        
+    </div>
+    
+
+
+            <div class="toc green-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#背景"><span class="section table-of-contents-number">1.</span> <span class="section table-of-contents-text">背景</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#添加-OrmLite-包"><span class="section table-of-contents-number">2.</span> <span class="section table-of-contents-text">添加 OrmLite 包</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#创建项目中使用DatabaseHelper类"><span class="section table-of-contents-number">3.</span> <span class="section table-of-contents-text">创建项目中使用DatabaseHelper类</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#继承-OrmLiteSqliteOpenHelper-实现几个方法说明"><span class="section table-of-contents-number">4.</span> <span class="section table-of-contents-text">继承 OrmLiteSqliteOpenHelper 实现几个方法说明</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#构造函数"><span class="section table-of-contents-number">4.1.</span> <span class="section table-of-contents-text">构造函数</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#创建数据库表"><span class="section table-of-contents-number">4.2.</span> <span class="section table-of-contents-text">创建数据库表</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#数据库版本提升更新方法"><span class="section table-of-contents-number">4.3.</span> <span class="section table-of-contents-text">数据库版本提升更新方法</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#创建数据库表对应的-Bean"><span class="section table-of-contents-number">5.</span> <span class="section table-of-contents-text">创建数据库表对应的 Bean</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#数据库中字段注解设置说明："><span class="section table-of-contents-number">6.</span> <span class="section table-of-contents-text">数据库中字段注解设置说明：</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#获取操作数据库对应表的-Bean-的-Dao"><span class="section table-of-contents-number">7.</span> <span class="section table-of-contents-text">获取操作数据库对应表的 Bean 的 Dao</span></a></li></ol>
+</div>
+
+
+            <div class="entry green-link-context">
+                <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>本来打算把<code>Time Cat</code>做成完全依赖网络的，但是考虑到业务场景，离线使用的占比不低，只好做个数据库来适应需求。</p>
+<p>本文主要针对 Android 使用 <code>OrmLite 框架</code> 对数据库的基本操作介绍，如有那些地方介绍的不对，请指出来，一起学习，一起进步。</p>
+<h1 id="添加-OrmLite-包"><a href="#添加-OrmLite-包" class="headerlink" title="添加 OrmLite 包"></a>添加 OrmLite 包</h1><p>向工程中添加 OrmLite 的 jar 包有两种方式：</p>
+<ol>
+<li>到 OrmLite 官网下载 ormlite-core-4.49.jar 和 ormlite-android-4.49.jar 两个jar 包添加到工程中。</li>
+<li>在项目中添加依赖的方式。</li>
+</ol>
+<h1 id="创建项目中使用DatabaseHelper类"><a href="#创建项目中使用DatabaseHelper类" class="headerlink" title="创建项目中使用DatabaseHelper类"></a>创建项目中使用DatabaseHelper类</h1><p>首先要简单说一下 <code>OrmLite 框架</code>中 <code>OrmLiteSqliteOpenHelper</code> 类 ，<code>OrmLiteSqliteOpenHelper</code> 类继承了 <code>SQLiteOpenHelper</code>。所以，创建项目中的D<code>atabaseHelper</code> 类，要使该类继承 <code>OrmLite 框架</code> 的 <code>OrmLiteSqliteOpenHelper</code> 类来获得 <code>SQLiteHelper</code>.</p>
+<h1 id="继承-OrmLiteSqliteOpenHelper-实现几个方法说明"><a href="#继承-OrmLiteSqliteOpenHelper-实现几个方法说明" class="headerlink" title="继承 OrmLiteSqliteOpenHelper 实现几个方法说明"></a>继承 <code>OrmLiteSqliteOpenHelper</code> 实现几个方法说明</h1><h2 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">DatabaseHelper</span><span class="params">(Context context, String databaseName, SQLiteDatabase.CursorFactory factory, <span class="keyword">int</span> databaseVersion)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(context, databaseName, factory, databaseVersion);</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 参数说明：</span></span><br><span class="line"><span class="comment">         * context：上下文。</span></span><br><span class="line"><span class="comment">         * databaseName： 数据库名。</span></span><br><span class="line"><span class="comment">         * factory： 游标实例，多数时候设置成NULL。</span></span><br><span class="line"><span class="comment">         * databaseVersion：数据库版本，当数据库版本升高时，会调用onUpgrade（）方法。</span></span><br><span class="line"><span class="comment">         */</span></span><br></pre></td></tr></table></figure>
+<h2 id="创建数据库表"><a href="#创建数据库表" class="headerlink" title="创建数据库表"></a>创建数据库表</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(SQLiteDatabase sqLiteDatabase, ConnectionSource connectionSource)</span> </span>&#123; </span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 在该方法中进行创建表操作</span></span><br><span class="line"><span class="comment">         * 使用`OrmLite 框架`的 TableUtils.createTable进行创建表操作。</span></span><br><span class="line"><span class="comment">         *eg.</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            TableUtils.createTable(connectionSource, UserInfo.class);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="数据库版本提升更新方法"><a href="#数据库版本提升更新方法" class="headerlink" title="数据库版本提升更新方法"></a>数据库版本提升更新方法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onUpgrade</span><span class="params">(SQLiteDatabase sqLiteDatabase, ConnectionSource connectionSource, <span class="keyword">int</span> i, <span class="keyword">int</span> i1)</span> </span>&#123; </span><br><span class="line">    <span class="comment">//在该方法中进行更新操作</span></span><br></pre></td></tr></table></figure>
+<h1 id="创建数据库表对应的-Bean"><a href="#创建数据库表对应的-Bean" class="headerlink" title="创建数据库表对应的 Bean"></a>创建数据库表对应的 Bean</h1><p>Bean 类中的变量对应数据库中的字段，在 Bean 中使用注解方式进行设置。<br>实例代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@DatabaseTable</span>(tableName = <span class="string">"tb_user_info"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserInfo</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@DatabaseField</span>(generatedId = <span class="keyword">true</span>)</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> userId;</span><br><span class="line">    <span class="meta">@DatabaseField</span>(columnName = <span class="string">"name"</span>)</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="meta">@DatabaseField</span>(columnName = <span class="string">"addr"</span>)</span><br><span class="line">    <span class="keyword">private</span> String addr;</span><br><span class="line">    <span class="meta">@DatabaseField</span>(columnName = <span class="string">"sex"</span>)</span><br><span class="line">    <span class="keyword">private</span> String sex;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 对应字段的set 和 get 方法</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="数据库中字段注解设置说明："><a href="#数据库中字段注解设置说明：" class="headerlink" title="数据库中字段注解设置说明："></a>数据库中字段注解设置说明：</h1><table>
+<thead>
+<tr>
+<th style="text-align:center">字段名</th>
+<th style="text-align:center">参数名</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">@DatabaseTable</td>
+<td style="text-align:center">tableName</td>
+<td style="text-align:center">指定表明,没有将使用类名作为表明</td>
+</tr>
+<tr>
+<td style="text-align:center">@DatabaseField</td>
+<td style="text-align:center">cloumnName</td>
+<td style="text-align:center">指定字段名,不指定则变量名作为字段名</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">canBeNull</td>
+<td style="text-align:center">是否可以为null</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">dataType</td>
+<td style="text-align:center">指定字段的类型</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">defaultValue</td>
+<td style="text-align:center">指定默认值</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">width</td>
+<td style="text-align:center">指定长度</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">id</td>
+<td style="text-align:center">指定字段为id</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">generatedId</td>
+<td style="text-align:center">指定字段为自增长的id</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">generatedIdSequence</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">foreign</td>
+<td style="text-align:center">指定这个字段的对象是一个外键,外键值是这个对象的id</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">useGetSet</td>
+<td style="text-align:center">指定ormlite访问变量使用set,get方法默认使用的是反射机制直接访问变量</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">throwIfNull</td>
+<td style="text-align:center">如果空值抛出异常</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">persisted</td>
+<td style="text-align:center">指定是否持久化此变量,默认true</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">unique</td>
+<td style="text-align:center">字段值唯一</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">uniqueCombo</td>
+<td style="text-align:center">整列的值唯一</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">index</td>
+<td style="text-align:center">索引</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">uniqueIndex</td>
+<td style="text-align:center">唯一索引</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">foreignAutoRefresh</td>
+<td style="text-align:center">外键值,自动刷新</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">uniqueIndex</td>
+<td style="text-align:center">外键值,自动刷新</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">foreignAutoCreate</td>
+<td style="text-align:center">外键不存在时是否自动添加到外间表中</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">foreignColumnName</td>
+<td style="text-align:center">外键字段指定的外键表中的哪个字段</td>
+</tr>
+</tbody>
+</table>
+<h1 id="获取操作数据库对应表的-Bean-的-Dao"><a href="#获取操作数据库对应表的-Bean-的-Dao" class="headerlink" title="获取操作数据库对应表的 Bean 的 Dao"></a>获取操作数据库对应表的 Bean 的 Dao</h1><p>在<code>OrmLite 框架</code>中。操作数据是通过 对应<code>Bean</code>的<code>Dao</code> 实现的。 </p>
+<p>那么Dao 是如何获取的呢？ </p>
+<p>Dao 的获取方式： </p>
+<p>对应Bean是通过 <code>OrmLiteSqliteOpenHelper</code> 类中 <code>getDao(Class clazz)</code> 方法获取。</p>
+<p>实例代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserDao</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> DatabaseHelper helper;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Dao&lt;UserInfo,Integer&gt; <span class="title">getUserDao</span><span class="params">(Context context)</span> <span class="keyword">throws</span> SQLException </span>&#123;</span><br><span class="line">        helper = <span class="keyword">new</span> DatabaseHelper(context);</span><br><span class="line">        <span class="keyword">return</span> helper.getDao(UserInfo.class);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>通过 <code>Dao</code> 对数据库进行简单增、删、改、查操作<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UserDao mDao = <span class="keyword">new</span> UserDao();</span><br></pre></td></tr></table></figure></p>
+<p>增：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">        UserInfo u1 = <span class="keyword">new</span> UserInfo(<span class="string">"zhangsan"</span>,<span class="string">"beijng"</span>,<span class="string">"nan"</span>);</span><br><span class="line">        mDao.getUserDao(mContext).create(u1);</span><br><span class="line">&#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">         e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>删：<br>下面的示例是使用删除集合完成删除<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//修改和删除要通过id 进行操作</span></span><br><span class="line">UserInfo u4 = <span class="keyword">new</span> UserInfo(<span class="string">"zhangsan"</span>,<span class="string">"北京"</span>,<span class="string">"女"</span>);</span><br><span class="line">u4.setUserId(<span class="number">4</span>);</span><br><span class="line"></span><br><span class="line">UserInfo u3 = <span class="keyword">new</span> UserInfo(<span class="string">"招商"</span>,<span class="string">"beijng"</span>,<span class="string">"女"</span>);</span><br><span class="line">u3.setUserId(<span class="number">3</span>);</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    Collection&lt;UserInfo&gt; collection = <span class="keyword">new</span> ArrayList&lt;UserInfo&gt;();</span><br><span class="line">    collection.add(u4);</span><br><span class="line">    collection.add(u3);</span><br><span class="line">    mDao.getUserDao(mContext).delete(collection);</span><br><span class="line">&#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>改：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">UserInfo u4 = <span class="keyword">new</span> UserInfo(<span class="string">"updateMan"</span>,<span class="string">"北京"</span>,<span class="string">"女"</span>);</span><br><span class="line">u4.setUserId(<span class="number">4</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    mDao.getUserDao(mContext).update(u4);</span><br><span class="line">&#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">     e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>查：<br>注：这里只举了一个查询方式，查询全部。条件查询请参考（OrmLite 复杂条件查询）<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">List&lt;UserInfo&gt; infos =  mDao.getUserDao(mContext).queryForAll();</span><br><span class="line">    <span class="keyword">for</span>(UserInfo info : infos)&#123;</span><br><span class="line">        <span class="comment">//在此处使用TextView进行显示</span></span><br><span class="line">        mUserText.append(<span class="string">"\n"</span> + info.toString() + <span class="string">"\n"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>参考：<br><a href="http://blog.csdn.net/u013501637/article/details/52388802" target="_blank" rel="noopener">http://blog.csdn.net/u013501637/article/details/52388802</a></p>
+
+                
+<p class="green-link-context prev-btn">
+    <a href="/2018/02/26/2018-02-26-Android-TimeCat-OrmLite框架入门与封装（二）高级操作/" rel="next" title="【Android TimeCat】 OrmLite框架入门与封装（二）高级操作">
+    Prev: 【Android TimeCat】 OrmLite框架入门与封装（二）高级操作
+  </a>
+</p>
+
+
+
+<p class="green-link-context next-btn">
+    <a href="/2018/02/26/2018-02-26-Android-TimeCat-制作捐赠二维码，实现捐赠收款/" rel="next" title="【Android TimeCat】 制作捐赠二维码，实现捐赠收款">
+    Next: 【Android TimeCat】 制作捐赠二维码，实现捐赠收款
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+
+
+
+    <div id="gitment_container"></div>
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <link rel="stylesheet" href="/css/gitment.css" media="screen" type="text/css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <script>
+    var gitment = new Gitment({
+        id: 'Mon Feb 26 2018 06:49:00 GMT+0800',
+        owner: 'linxueyuanstdio',
+        repo: 'linxueyuanstdio.github.io',
+        oauth: {
+            client_id: '2f7f71f1ba398039ff23',
+            client_secret: '3ebc908a7042fef2d56a83a2eb8c18777374a087',
+        },
+    })
+    gitment.render('gitment_container')
+    </script>
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large pink">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect green" title="Return to top"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse yellow darken-1"  data-activates="main-menu" title="Menu"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer indigo darken-1">
+    
+    <div class="footer-container container">
+        <div class="row">
+            
+            <div class="social-group col m4 s12">
+                <h5 class="white-text">Social</h5>
+                
+                    <a class="social-link" href="http://weibo.com/LinXueyuanStdio" target="_blank">
+                        <i class="fa fa-2x fa-weibo"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://github.com/LinXueyuanStdio" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://www.zhihu.com/people/lin-xue-yuan-86" target="_blank">
+                        <i class="fa fa-2x fa-graduation-cap"></i>
+                    </a>
+                
+                    <a class="social-link" href="http://twitter.com/cwBQ3A5cz3Jzso7" target="_blank">
+                        <i class="fa fa-2x fa-twitter"></i>
+                    </a>
+                
+                    <a class="social-link" href="mailto:761516186@qq.com" target="_blank">
+                        <i class="fa fa-2x fa-envelope"></i>
+                    </a>
+                
+                    <a class="social-link" href="/atom.xml" target="_blank">
+                        <i class="fa fa-2x fa-rss"></i>
+                    </a>
+                
+                
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+    </script>
+    <div class="site-visitors-container white-text">
+        <span>
+            <i class="fa fa-user"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+        </span>
+        <span>&nbsp;|&nbsp;</span>
+        <span>
+            <i class="fa fa-eye"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+        </span>
+    </div>
+
+
+            </div>
+            
+
+            
+            <div class="col m8 s12">
+                <h5 class="white-text">Links</h5>
+                
+                    <a class="social-link" href="http://raytaylorlin.com/" target="_blank">raytaylorism主题作者</a>
+                
+                    <a class="social-link" href="https://github.com/raytaylorlin" target="_blank">Github地址</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    
+
+    <div class="footer-copyright green-link-context">
+        <div class="container">
+            © 2018 xichen.pub, All rights reserved.
+            <p class="right" style="margin-top: 0;">Blog powered by <a href="https://hexo.io">Hexo</a> | Theme <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
+        </div>
+    </div>
+</footer>
+
+
+    <noscript>
+    <div class="noscript">
+        <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+    </div>
+</noscript>
+<div class="noscript">
+    <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+<script src="/js/canvas.js"></script>
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 隐藏禁用javascript（针对微信内置浏览器）的提示
+            $('.noscript').hide();
+
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
+
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed').each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt') || ' ');
+            }).materialbox();
+
+            // 优化表格的显示
+            $('table').each(function() {
+                var $table = $(this);
+                // 除去多行代码的情况
+                if ($table.find('pre').length == 0) {
+                    $table.addClass('responsive-table striped bordered');
+                }
+            });
+
+            // 首页幻灯片
+            $('.slider').slider({indicators: true, full_width: true, interval: 8000});
+
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+
+            // 目录随屏幕滚动（防止目录过长越过footer）
+            var $toc = $('.toc');
+            var scrollTargetTop = 0;
+            $(window).scroll(function() {
+                var $activeLink = $toc.find('a.active.section');
+                if ($(window).scrollTop() < 100) {
+                    scrollTargetTop = 0;
+                } else {
+                    if ($activeLink[0]) {
+                        scrollTargetTop = $activeLink.offset().top - $toc.offset().top;
+                    }
+                }
+                $toc.css('top', '-' + scrollTargetTop + 'px');
+            });
+
+            // 修正文章目录的left-border颜色
+            var color = $('.table-of-contents-text').css('color');
+            $('.table-of-contents-link').css('border-left-color', color);
+
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({
+                    scrollTop: 0
+                }, 500);
+            });
+
+            // 重置读书页面的Tab标签页的颜色
+            $('li.tab a').hover(function() {
+                $(this).toggleClass('text-lighten-4');
+            });
+            $('.indicator').addClass('pink lighten-2');
+
+            
+            // 添加new标签
+            $('.menu-apps').append('<span class="new badge pink"></span>');
+            
+
+            // 搜索功能
+            $('.modal-trigger').leanModal({
+                // 打开搜索框时自动聚焦
+                ready: function() {
+                    if ($('#search').is(":visible")) {
+                        $('#search-input').focus();
+                    }
+                }
+            });
+            var searchXml = "search.xml";
+            if (searchXml.length == 0) {
+             	searchXml = "search.xml";
+            }
+            var searchPath = "/" + searchXml;
+            initSearch(searchPath, 'search-input', 'search-result');
+        });
+
+        // 初始化搜索与匹配函数
+        var initSearch = function(path, search_id, content_id) {
+            'use strict';
+            $.ajax({
+                url: path,
+                dataType: "xml",
+                success: function(xmlResponse) {
+                    // get the contents from search data
+                    var datas = $("entry", xmlResponse).map(function() {
+                        return {
+                            title: $("title", this).text(),
+                            content: $("content", this).text(),
+                            url: $("url", this).text()
+                        };
+                    }).get();
+                    var $input = document.getElementById(search_id);
+                    var $resultContent = document.getElementById(content_id);
+                    $input.addEventListener('input', function() {
+                        var str = '<ul class=\"search-result-list\">';
+                        var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                        $resultContent.innerHTML = "";
+                        if (this.value.trim().length <= 0) {
+                            return;
+                        }
+                        // perform local searching
+                        datas.forEach(function(data) {
+                            var isMatch = true;
+                            var content_index = [];
+                            var data_title = data.title.trim().toLowerCase();
+                            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                            var data_url = data.url;
+                            var index_title = -1;
+                            var index_content = -1;
+                            var first_occur = -1;
+                            // only match artiles with not empty titles and contents
+                            if (data_title != '' && data_content != '') {
+                                keywords.forEach(function(keyword, i) {
+                                    index_title = data_title.indexOf(keyword);
+                                    index_content = data_content.indexOf(keyword);
+                                    if (index_title < 0 && index_content < 0) {
+                                        isMatch = false;
+                                    } else {
+                                        if (index_content < 0) {
+                                            index_content = 0;
+                                        }
+                                        if (i == 0) {
+                                            first_occur = index_content;
+                                        }
+                                    }
+                                });
+                            }
+                            // show search results
+                            if (isMatch) {
+                                keywords.forEach(function(keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword green lighten-2\">" + keyword + "</span>");
+                                });
+
+                                str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                                if (first_occur >= 0) {
+                                    // cut out 100 characters
+                                    var start = first_occur - 20;
+                                    var end = first_occur + 80;
+                                    if (start < 0) {
+                                        start = 0;
+                                    }
+                                    if (start == 0) {
+                                        end = 100;
+                                    }
+                                    if (end > content.length) {
+                                        end = content.length;
+                                    }
+                                    var match_content = content.substring(start, end);
+                                    // highlight all keywords
+                                    keywords.forEach(function(keyword) {
+                                        var regS = new RegExp(keyword, "gi");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword green lighten-2\">" + keyword + "</span>");
+                                    });
+
+                                    str += "<p class=\"search-result\">..." + match_content + "...</p>"
+                                }
+                                str += "</li>";
+                            }
+                        });
+                        str += "</ul>";
+                        $resultContent.innerHTML = str;
+                    });
+                }
+            });
+        }
+    })(jQuery);
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+</body>
+</html>

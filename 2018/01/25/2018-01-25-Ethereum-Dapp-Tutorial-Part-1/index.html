@@ -1,0 +1,884 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>Ethereum Dapp Tutorial — Part 1 | XiChen&#39;s Blog</title>
+    <meta name="author" content="Lin Xueyuan">
+    
+    <meta name="description" content="嗨，我是兮尘，全栈数据学徒。这里没有花俏艳丽的魔法，没有苍蛮霸道的斗气，有的，仅仅是繁衍到巅峰的代码！">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="Ethereum Dapp Tutorial — Part 1"/>
+    <meta property="og:site_name" content="XiChen"/>
+
+    
+    <meta property="og:image" content=""/>
+    
+
+    <link rel="icon" type="image/png" href="/assets/images/favicon.ico" />
+    <link rel="alternate" href="/atom.xml" title="XiChen" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+    <link rel="stylesheet" href="//fonts.gdgdocs.org/css?family=Lobster" type="text/css">
+    
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
+
+    <nav class="indigo nav">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="">
+            <div style="font-family: Lobster, Monospace;">
+                <a href="/" class="brand-logo hide-on-med-and-down" style="font-family: Lobster, Monospace;">
+                    XiChen
+                </a>
+            </div>
+            <ul class="nav-menu right hide-on-med-and-down">
+                
+                    <li class="tab">
+                        <a class="menu-home " href="/"
+                            >
+                                <i class="fa fa-home "></i>
+                                
+                                    Home
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-archive " href="/archives"
+                            >
+                                <i class="fa fa-archive "></i>
+                                
+                                    Archives
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-category category-menu" href="javascript:;"
+                            data-activates="category-menu"
+                            >
+                                <i class="fa fa-bookmark "></i>
+                                
+                                    Categories
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-apps " href="/apps"
+                            >
+                                <i class="fa fa-link "></i>
+                                
+                                    App
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-tools " href="/tools"
+                            >
+                                <i class="fa fa-wrench "></i>
+                                
+                                    Tool
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-reading " href="/reading"
+                            >
+                                <i class="fa fa-book "></i>
+                                
+                                    Reading
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-about " href="/about"
+                            >
+                                <i class="fa fa-user "></i>
+                                
+                                    About
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-search modal-trigger " href="#search"
+                            >
+                                <i class="fa fa-search "></i>
+                                
+                                    Search
+                        </a>
+                    </li>
+                    
+            </ul>
+            <div>
+    <ul class="side-nav indigo darken-1" id="main-menu">
+        
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4 no-padding logo-a">
+                    <img class="avatar-image circle responsive-img logo" src="/assets/images/avatar.jpg" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper no-padding">
+                    <div class="valign">
+                        <p class="name">兮尘</p>
+                        <p class="desc">Web前端/Android/技术宅</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-home " href="/" >
+                    <i class="fa fa-home "></i>
+                    
+                    Home
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-archive " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    
+                    Archives
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    
+                    Categories
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-apps " href="/apps" >
+                    <i class="fa fa-link "></i>
+                    
+                    App
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-tools " href="/tools" >
+                    <i class="fa fa-wrench "></i>
+                    
+                    Tool
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-reading " href="/reading" >
+                    <i class="fa fa-book "></i>
+                    
+                    Reading
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-about " href="/about" >
+                    <i class="fa fa-user "></i>
+                    
+                    About
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-search modal-trigger " href="#search" >
+                    <i class="fa fa-search "></i>
+                    
+                    Search
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav indigo darken-1" id="category-menu">
+    
+
+            
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Linux/">
+                    Linux <span class="right">8</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tips/">
+                    Tips <span class="right">7</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Deep-Learning/">
+                    Deep-Learning <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Proxy/">
+                    Proxy <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/GO/">
+                    GO <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tools/">
+                    Tools <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Ubuntu/">
+                    Ubuntu <span class="right">4</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Spider/">
+                    Spider <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/区块链/">
+                    区块链 <span class="right">7</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/算法/">
+                    算法 <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Web/">
+                    Web <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Algorithms/">
+                    Algorithms <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Latex/">
+                    Latex <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/密码学/">
+                    密码学 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/杂思/">
+                    杂思 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Android/">
+                    Android <span class="right">25</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Github/">
+                    Github <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Git/">
+                    Git <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+<div id="search" class="modal search-modal">
+    <div class="row">
+        <div class="input-field col s12">
+              <input id="search-input" type="text">
+              <label for="search-input">Search</label>
+        </div>
+
+    </div>
+    <div id="search-result" class="search-result col s12">
+
+    </div>
+</div>
+
+    <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper indigo">
+        <span class="breadcrumb">Current page(Categories)</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/区块链/">区块链</a>
+
+
+        
+
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>Ethereum Dapp Tutorial — Part 1</h1>
+    
+
+
+            </div>
+            <i class="fa fa-calendar"></i><time class="green-link-context" datetime="2018-01-24T18:01:00.000Z"><a href="/2018/01/25/2018-01-25-Ethereum-Dapp-Tutorial-Part-1/">2018-01-25</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/区块链/" class="chip green lighten-1">区块链</a>
+        
+            <a href="/tags/Ethereum/" class="chip green lighten-1">Ethereum</a>
+        
+            <a href="/tags/Dapp/" class="chip green lighten-1">Dapp</a>
+        
+    </div>
+    
+
+
+            <div class="toc green-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#构建应用程序"><span class="section table-of-contents-number">1.</span> <span class="section table-of-contents-text">构建应用程序</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#搭建开发环境"><span class="section table-of-contents-number">1.1.</span> <span class="section table-of-contents-text">搭建开发环境</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#简单的投票合约"><span class="section table-of-contents-number">1.2.</span> <span class="section table-of-contents-text">简单的投票合约</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#在nodes控制台和合约进行交互"><span class="section table-of-contents-number">1.3.</span> <span class="section table-of-contents-text">在nodes控制台和合约进行交互</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#web页面链接区块链和投票"><span class="section table-of-contents-number">1.4.</span> <span class="section table-of-contents-text">web页面链接区块链和投票</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#总结"><span class="section table-of-contents-number">2.</span> <span class="section table-of-contents-text">总结</span></a></li></ol>
+</div>
+
+
+            <div class="entry green-link-context">
+                <ol>
+<li><a href="http://xichen.pub/2018/01/24/2018-01-24-Ethereum-Dapp-Tutorial-Part-0/">Part 0</a></li>
+<li><a href="http://xichen.pub/2018/01/25/2018-01-25-Ethereum-Dapp-Tutorial-Part-1/">Part 1</a></li>
+<li><a href="http://xichen.pub/2018/01/26/2018-01-26-Ethereum-Dapp-Tutorial-Part-2/">Part 2</a></li>
+<li><a href="http://xichen.pub/2018/01/27/2018-01-27-Ethereum-Dapp-Tutorial-Part-3/">Part 3</a></li>
+</ol>
+<p>在<a href="http://xichen.pub/2018/01/27/2018-01-24-Ethereum-Dapp-Tutorial-Part-0/">上一篇文章</a>中，通过和传统的 web程序相比较解释了以太坊平台的结构。作为一个开发者，学习新技术的最好的方式就是构建一个玩具程序。</p>
+<p>在这篇文章中构建一个简单的“hello word”程序，这个程序是一个投票程序。</p>
+<p>这个程序非常简单，包括：<code>初始化一个参加者集合</code>，<code>让任何人为候选人投票</code>，<code>显示每一个候选人获得的投票数</code>。我们的目的不仅仅是编写一个应用，目的是学习应用编译，部署，交互的过程。</p>
+<p>总的来说这章是对上一篇文章的延续，如果你是刚接触Ethereum，我建议你最好读一读上一篇文章。</p>
+<p>练习目的：</p>
+<ol>
+<li>搭建开发环境</li>
+<li>学习在开发环境下编写，编译，部署合约。</li>
+<li>在区块链上通过node.js控制台利用合约进行交互。</li>
+<li>通过一个简单的web页面利用合约来交互，通过这个页面显示投票数，以及每个候选人的获得的投票数。</li>
+</ol>
+<p>整个应用部署在<code>ubuntu 16.04</code>上，在<code>macos</code>上也行。</p>
+<h1 id="构建应用程序"><a href="#构建应用程序" class="headerlink" title="构建应用程序"></a>构建应用程序</h1><div class="image-package"><br><img src="/assets/blog/img/2018-01-25/0.png" width="700"><br></div>
+
+<h2 id="搭建开发环境"><a href="#搭建开发环境" class="headerlink" title="搭建开发环境"></a>搭建开发环境</h2><p>这里不是基于活跃的区块链的开发app，而是使用一个叫做<code>testrpc</code>的内存区块链。在<a href="http://xichen.pub/2018/01/27/2018-01-26-Ethereum-Dapp-Tutorial-Part-2/">Part 2</a>中，我们将会在真正的区块链上进行交互，<br>下面来<code>安装testrpc,web3js</code>以及<code>在linux环境中启动一个测试区块链</code>。对于<code>windows</code>来说可以使用下面的方式：<a href="https://medium.com/@PrateeshNanada/steps-to-install-testrpc-in-windows-10-96989a6cd594" target="_blank" rel="noopener">https://medium.com/@PrateeshNanada/steps-to-install-testrpc-in-windows-10-96989a6cd594</a></p>
+<blockquote>
+<p>注意：这个教程当前工作的<code>web3js</code>的版本是0.20.1，运行<code>npm install ethereumjs-testrpc web3@0.20.1</code><br>  而不是运行<code>npm install ethereumjs-testrpc web3</code> ，在web3js的1.0文档版发布之后我会更新这个教程。</p>
+</blockquote>
+<div class="image-package"><br><img src="/assets/blog/img/2018-01-25/1.png" width="700"><br></div>
+
+<p>注意<code>testrpc</code>在自动运行的时候会自动创建10个测试帐号。这些帐号都预装了100个假的以太网节点。</p>
+<h2 id="简单的投票合约"><a href="#简单的投票合约" class="headerlink" title="简单的投票合约"></a>简单的投票合约</h2><p>用solidity语言来编写合约。</p>
+<p>编写的智能合约叫做Voting（在你熟悉的面相对象语言中想象合约就是一个类），Voting有一个初始化候选人的数组结构。<br>有两个方法，一个是返回候选人获得的总选票，另一个是给候选人加票的方法。</p>
+<blockquote>
+<p>注意：把合约部署到区块链上的时候，构造函数只能被调用一次，和web世界不同，web世界中你的代码部署的时候你可以使用新代码来覆盖以前的老代码，但是在区块链上部署的代码是不可更改的。如果你更新合约重新部署代码，旧的合约以及数据依然在区块链上。新部署的将会创建一个新的合约实例。</p>
+</blockquote>
+<p>下面是一个投票合约的代码，每一行都有注释：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^0.4.11;</span><br><span class="line">// We have to specify what version of compiler this code will compile with</span><br><span class="line"></span><br><span class="line">contract Voting &#123;</span><br><span class="line">  /* mapping field below is equivalent to an associative array or hash.</span><br><span class="line">  The key of the mapping is candidate name stored as type bytes32 and value is</span><br><span class="line">  an unsigned integer to store the vote count</span><br><span class="line">  */</span><br><span class="line">  </span><br><span class="line">  mapping (bytes32 =&gt; uint8) public votesReceived;</span><br><span class="line">  </span><br><span class="line">  /* Solidity doesn&apos;t let you pass in an array of strings in the constructor (yet).</span><br><span class="line">  We will use an array of bytes32 instead to store the list of candidates</span><br><span class="line">  */</span><br><span class="line">  </span><br><span class="line">  bytes32[] public candidateList;</span><br><span class="line"></span><br><span class="line">  /* This is the constructor which will be called once when you</span><br><span class="line">  deploy the contract to the blockchain. When we deploy the contract,</span><br><span class="line">  we will pass an array of candidates who will be contesting in the election</span><br><span class="line">  */</span><br><span class="line">  function Voting(bytes32[] candidateNames) &#123;</span><br><span class="line">    candidateList = candidateNames;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  // This function returns the total votes a candidate has received so far</span><br><span class="line">  function totalVotesFor(bytes32 candidate) returns (uint8) &#123;</span><br><span class="line">    if (validCandidate(candidate) == false) throw;</span><br><span class="line">    return votesReceived[candidate];</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  // This function increments the vote count for the specified candidate. This</span><br><span class="line">  // is equivalent to casting a vote</span><br><span class="line">  function voteForCandidate(bytes32 candidate) &#123;</span><br><span class="line">    if (validCandidate(candidate) == false) throw;</span><br><span class="line">    votesReceived[candidate] += 1;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  function validCandidate(bytes32 candidate) returns (bool) &#123;</span><br><span class="line">    for(uint i = 0; i &lt; candidateList.length; i++) &#123;</span><br><span class="line">      if (candidateList[i] == candidate) &#123;</span><br><span class="line">        return true;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return false;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>拷贝下面代码到<code>hello_world_voting</code>目录的文件<code>Voting.sol</code>文件中，现在编译代码，并把它部署到<code>testrps</code>上面。</p>
+<p>编译<code>solidity</code>代码，首先要通过<code>npm</code>安装<code>npm module</code>：<code>solc</code></p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="keyword">install</span> solc</span><br></pre></td></tr></table></figure>
+<p>用带有<code>node.js</code>控制台的包，来编译智能合约，从上一章知道，<code>web3js</code>是一个让你通过RPC来和区块链交互的包。<br>用<code>web3js</code>这个包来进行部署与交互。</p>
+<p>首先，在控制台运行node命令来调用node控制台，并初始化solc和web3js对象。下面所有的代码片段，都需要在node的交互式环境下。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> node</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> Web3 = require(<span class="string">'web3'</span>)</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> web3 = new Web3(new Web3.providers.HttpProvider(<span class="string">"http://localhost:8545"</span>));</span></span><br></pre></td></tr></table></figure>
+<p>为了确保<code>web3js对象</code>被初始化了，并且可以和区块链通信，查询所有在区块链上的账户。你会看到类似下面的输出结果：</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt; web3.eth.accounts</span><br><span class="line">['0x9c02f5c68e<span class="number">0239</span>0a3ab81f<span class="number">6334</span>1edc1ba5dbb39e',</span><br><span class="line">'0x7d920be073e92a590dc47e4ccea2f28db3f218cc',</span><br><span class="line">'0xf8a9c7c65c4d1c0c21b06c06ee5da80bd8f074a9',</span><br><span class="line">'0x9d8ee8c3d4f8b1e<span class="number">0880</span>3da274bdaff80c<span class="number">2204</span>fc6',</span><br><span class="line">'0x26bb5d139aa7bdb<span class="number">1380</span>af0e1e8f<span class="number">9814</span>7ef4c406a',</span><br><span class="line">'0x622e557aad13c<span class="number">3645</span>9fac<span class="number">8324</span>0f25ae<span class="number">91882127</span>c',</span><br><span class="line">'0xbf8b<span class="number">1630</span>d<span class="number">5640</span>e272f<span class="number">3365</span>3e<span class="number">8309</span>2ce33d302fd2',</span><br><span class="line">'0xe37a<span class="number">3157</span>cb<span class="number">3081</span>ea7a96ba9f9e942c72cf7ad87b',</span><br><span class="line">'0x175dae<span class="number">8134</span>5f<span class="number">3677</span>5db285d368f0b1d49f61b2f8',</span><br><span class="line">'0xc26bda5f<span class="number">3370</span>bdd46e7c84bdb909aead4d8f35f3']</span><br></pre></td></tr></table></figure>
+<p>编译智能合约：通过从<code>Voting.sol</code>文件中加载智能合约到一个字符串变量中，然后编译。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> code = fs.readFileSync(<span class="string">'Voting.sol'</span>).toString()</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> solc = require(<span class="string">'solc'</span>)</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> compiledCode = solc.compile(code)</span></span><br></pre></td></tr></table></figure>
+<p>当你成功编译了代码，打印了合约对象（仅仅是在控制台中查看到的上面<code>compiledCode</code>类型的内容），你会发现这里有两个重要的字段，理解他们十分重要：</p>
+<ol>
+<li><code>compiledCode.contracts[‘:Voting’].bytecode</code>：<code>Voting.sol</code>编译得到的是二进制代码。这个就是将要部署到区块链上的代码。</li>
+<li><code>compiledCode.contracts[‘:Voting’].interface</code>：这是一个智能合约接口或者是智能合约模版（叫做abi），他告诉合约使用者，合约中可以使用的方法。<br>在将来无论你在什么时候要与智能合约交互，你都会用到这个abi的定义。你可以在这里查看更多<a href="https://github.com/ethereum/wiki/wiki/Ethereum-Contract-ABI" target="_blank" rel="noopener">关于abi的详细描述</a></li>
+</ol>
+<p>现在来部署智能合约。首先你要创建一个合约对象（下面的<code>VotingContract</code>），这个合约对象用来在区块链上部署和初始化合约。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; abiDefinition = JSON.parse(compiledCode<span class="selector-class">.contracts</span>[<span class="string">':Voting'</span>].interface)</span><br><span class="line">&gt; VotingContract = web3<span class="selector-class">.eth</span><span class="selector-class">.contract</span>(abiDefinition)</span><br><span class="line">&gt; byteCode = compiledCode<span class="selector-class">.contracts</span>[<span class="string">':Voting'</span>].bytecode</span><br><span class="line">&gt; deployedContract = VotingContract.new([<span class="string">'Rama'</span>,<span class="string">'Nick'</span>,<span class="string">'Jose'</span>],&#123;data: byteCode, from: web3<span class="selector-class">.eth</span><span class="selector-class">.accounts</span>[<span class="number">0</span>], gas: <span class="number">4700000</span>&#125;)</span><br><span class="line">&gt; deployedContract.address</span><br><span class="line">&gt; contractInstance = VotingContract.at(deployedContract.address)</span><br></pre></td></tr></table></figure>
+<p>上面的<code>VotingContract.new</code>用来在区块链上部署智能合约。<br>第一个参数是候选人数组，这些候选人在选举竞争中都是相对简单的。<br>第二个参数的hash：</p>
+<ol>
+<li><code>data</code>：这是在区块链上部署的编译后的二进制代码。</li>
+<li><code>from</code>：区块链必须记录谁部署了这个智能合约。在这个例子中选择第一个账户来作为这个智能合约的拥有者（将会部署这个合约到区块链上）。<br>这第一个账户通过调用<code>web3.eth.accounts</code>来获取。上面代码<code>web3.eth.accounts</code>返回一个数组，数组里面包含10个由<code>testrpc</code>创建的测试账户，<br>这10个账户是在启动测试区块链的时候创建。在真实活跃的区块链中，在没创建之前，不能使用任何账户。必须在交易（通信／交流）前拥有这个账户，并解锁。<br>创建账户时要求填写密码，这个密码用来证明你和账户的关系。为了方便<code>testrpc</code>默认解锁了10个账户。</li>
+<li><code>gas</code>：和区块链交互花费的钱，这些钱是给矿工的，矿工的所有工作是在区块链上引入你的代码。必须指定你会支付多少钱给把你的代码包含到区块链上的人。这些钱就是通过设置gas的值来指定的。你的上面代码from中的账户的以太坊余额可以用来购买gas。gas的价格由网络来设定。</li>
+</ol>
+<p>现在已经部署了智能合约并有了一个合约实例（上面的<code>contractInstance变量</code>）。可以使用这个合约来进行交互。<br>区块链上有成千上万的合约部署在上面。但是，在区块链上怎么辨别自己的合约呢？答案就是<code>deployedContract.address</code>。<br>当你利用你的合约进行交互的时候，你需要这个部署地址，以及上面提到的abi的描述。</p>
+<h2 id="在nodes控制台和合约进行交互"><a href="#在nodes控制台和合约进行交互" class="headerlink" title="在nodes控制台和合约进行交互"></a>在nodes控制台和合约进行交互</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt; contractInstance<span class="selector-class">.totalVotesFor</span><span class="selector-class">.call</span>(<span class="string">'Rama'</span>)</span><br><span class="line">&#123; [String: <span class="string">'0'</span>] s: <span class="number">1</span>, e: <span class="number">0</span>, c: [ <span class="number">0</span> ] &#125;</span><br><span class="line">&gt; contractInstance.voteForCandidate(<span class="string">'Rama'</span>, &#123;from: web3<span class="selector-class">.eth</span><span class="selector-class">.accounts</span>[<span class="number">0</span>]&#125;)</span><br><span class="line"><span class="string">'0xdedc7ae544c3dde74ab5a0b07422c5a51b5240603d31074f5b75c0ebc786bf53'</span></span><br><span class="line">&gt; contractInstance.voteForCandidate(<span class="string">'Rama'</span>, &#123;from: web3<span class="selector-class">.eth</span><span class="selector-class">.accounts</span>[<span class="number">0</span>]&#125;)</span><br><span class="line"><span class="string">'0x02c054d238038d68b65d55770fabfca592a5cf6590229ab91bbe7cd72da46de9'</span></span><br><span class="line">&gt; contractInstance.voteForCandidate(<span class="string">'Rama'</span>, &#123;from: web3<span class="selector-class">.eth</span><span class="selector-class">.accounts</span>[<span class="number">0</span>]&#125;)</span><br><span class="line"><span class="string">'0x3da069a09577514f2baaa11bc3015a16edf26aad28dffbcd126bde2e71f2b76f'</span></span><br><span class="line">&gt; contractInstance<span class="selector-class">.totalVotesFor</span><span class="selector-class">.call</span>(<span class="string">'Rama'</span>).toLocaleString()</span><br><span class="line"><span class="string">'3'</span></span><br></pre></td></tr></table></figure>
+<p>在你的node交互控制台上试试上面的命令，你将会看到投票的数量增加。每次当你为一个候选人投票，你就会获得一个交易的ID：<br>例如:上面的: <code>&#39;0xdedc7ae544c3dde74ab5a0b07422c5a51b5240603d31074f5b75c0ebc786bf53&#39;</code> 这个交易ID是交易发生的证据。<br>将来你可以在任何时间来返回去查看他（数据可追踪）。这个交易是不可更改的。这种不可更改的特性是以太坊这种区块链的很大优势之一。<br>在接下来的教程中，会用其不可更改性来构建应用。</p>
+<h2 id="web页面链接区块链和投票"><a href="#web页面链接区块链和投票" class="headerlink" title="web页面链接区块链和投票"></a>web页面链接区块链和投票</h2><p>现在所有的工作都完成了，现在要做的就是构建一个包含候选人的简单的html文件。<br>并在一个js文件中调用投票命令（这个投票命令已经在前面的node控制台中测试过了）。下面你会看到html代码和js文件。</p>
+<p>在<code>hello_world_voting</code>文件夹下复制，并在你的浏览器中打开<code>index.html</code></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>Hello World DApp<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">'https://fonts.googleapis.com/css?family=Open+Sans:400,700'</span> <span class="attr">rel</span>=<span class="string">'stylesheet'</span> <span class="attr">type</span>=<span class="string">'text/css'</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'</span> <span class="attr">rel</span>=<span class="string">'stylesheet'</span> <span class="attr">type</span>=<span class="string">'text/css'</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span>A Simple Hello World Voting Application<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"table-responsive"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">table</span> <span class="attr">class</span>=<span class="string">"table table-bordered"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">thead</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">th</span>&gt;</span>Candidate<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">th</span>&gt;</span>Votes<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">thead</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">tbody</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">td</span>&gt;</span>Rama<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">td</span> <span class="attr">id</span>=<span class="string">"candidate-1"</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">td</span>&gt;</span>Nick<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">td</span> <span class="attr">id</span>=<span class="string">"candidate-2"</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">td</span>&gt;</span>Jose<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">td</span> <span class="attr">id</span>=<span class="string">"candidate-3"</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">tbody</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"candidate"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">onclick</span>=<span class="string">"voteForCandidate()"</span> <span class="attr">class</span>=<span class="string">"btn btn-primary"</span>&gt;</span>Vote<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.rawgit.com/ethereum/web3.js/develop/dist/web3.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://code.jquery.com/jquery-3.1.1.slim.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./index.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><code>index.js</code>文件：</p>
+<figure class="highlight openscad"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">web3 = new Web3(new Web3.providers.HttpProvider(<span class="string">"http://localhost:8545"</span>));</span><br><span class="line">abi = JSON.parse('[&#123;<span class="string">"constant"</span>:<span class="literal">false</span>,<span class="string">"inputs"</span>:[&#123;<span class="string">"name"</span>:<span class="string">"candidate"</span>,<span class="string">"type"</span>:<span class="string">"bytes32"</span>&#125;],<span class="string">"name"</span>:<span class="string">"totalVotesFor"</span>,<span class="string">"outputs"</span>:[&#123;<span class="string">"name"</span>:<span class="string">""</span>,<span class="string">"type"</span>:<span class="string">"uint8"</span>&#125;],<span class="string">"payable"</span>:<span class="literal">false</span>,<span class="string">"type"</span>:<span class="string">"function"</span>&#125;,&#123;<span class="string">"constant"</span>:<span class="literal">false</span>,<span class="string">"inputs"</span>:[&#123;<span class="string">"name"</span>:<span class="string">"candidate"</span>,<span class="string">"type"</span>:<span class="string">"bytes32"</span>&#125;],<span class="string">"name"</span>:<span class="string">"validCandidate"</span>,<span class="string">"outputs"</span>:[&#123;<span class="string">"name"</span>:<span class="string">""</span>,<span class="string">"type"</span>:<span class="string">"bool"</span>&#125;],<span class="string">"payable"</span>:<span class="literal">false</span>,<span class="string">"type"</span>:<span class="string">"function"</span>&#125;,&#123;<span class="string">"constant"</span>:<span class="literal">true</span>,<span class="string">"inputs"</span>:[&#123;<span class="string">"name"</span>:<span class="string">""</span>,<span class="string">"type"</span>:<span class="string">"bytes32"</span>&#125;],<span class="string">"name"</span>:<span class="string">"votesReceived"</span>,<span class="string">"outputs"</span>:[&#123;<span class="string">"name"</span>:<span class="string">""</span>,<span class="string">"type"</span>:<span class="string">"uint8"</span>&#125;],<span class="string">"payable"</span>:<span class="literal">false</span>,<span class="string">"type"</span>:<span class="string">"function"</span>&#125;,&#123;<span class="string">"constant"</span>:<span class="literal">true</span>,<span class="string">"inputs"</span>:[&#123;<span class="string">"name"</span>:<span class="string">"x"</span>,<span class="string">"type"</span>:<span class="string">"bytes32"</span>&#125;],<span class="string">"name"</span>:<span class="string">"bytes32ToString"</span>,<span class="string">"outputs"</span>:[&#123;<span class="string">"name"</span>:<span class="string">""</span>,<span class="string">"type"</span>:<span class="string">"string"</span>&#125;],<span class="string">"payable"</span>:<span class="literal">false</span>,<span class="string">"type"</span>:<span class="string">"function"</span>&#125;,&#123;<span class="string">"constant"</span>:<span class="literal">true</span>,<span class="string">"inputs"</span>:[&#123;<span class="string">"name"</span>:<span class="string">""</span>,<span class="string">"type"</span>:<span class="string">"uint256"</span>&#125;],<span class="string">"name"</span>:<span class="string">"candidateList"</span>,<span class="string">"outputs"</span>:[&#123;<span class="string">"name"</span>:<span class="string">""</span>,<span class="string">"type"</span>:<span class="string">"bytes32"</span>&#125;],<span class="string">"payable"</span>:<span class="literal">false</span>,<span class="string">"type"</span>:<span class="string">"function"</span>&#125;,&#123;<span class="string">"constant"</span>:<span class="literal">false</span>,<span class="string">"inputs"</span>:[&#123;<span class="string">"name"</span>:<span class="string">"candidate"</span>,<span class="string">"type"</span>:<span class="string">"bytes32"</span>&#125;],<span class="string">"name"</span>:<span class="string">"voteForCandidate"</span>,<span class="string">"outputs"</span>:[],<span class="string">"payable"</span>:<span class="literal">false</span>,<span class="string">"type"</span>:<span class="string">"function"</span>&#125;,&#123;<span class="string">"constant"</span>:<span class="literal">true</span>,<span class="string">"inputs"</span>:[],<span class="string">"name"</span>:<span class="string">"contractOwner"</span>,<span class="string">"outputs"</span>:[&#123;<span class="string">"name"</span>:<span class="string">""</span>,<span class="string">"type"</span>:<span class="string">"address"</span>&#125;],<span class="string">"payable"</span>:<span class="literal">false</span>,<span class="string">"type"</span>:<span class="string">"function"</span>&#125;,&#123;<span class="string">"inputs"</span>:[&#123;<span class="string">"name"</span>:<span class="string">"candidateNames"</span>,<span class="string">"type"</span>:<span class="string">"bytes32[]"</span>&#125;],<span class="string">"payable"</span>:<span class="literal">false</span>,<span class="string">"type"</span>:<span class="string">"constructor"</span>&#125;]')</span><br><span class="line">VotingContract = web3.eth.contract(abi);</span><br><span class="line"><span class="comment">// In your nodejs console, execute contractInstance.address to get the address at which the contract is deployed and change the line below to use your deployed address</span></span><br><span class="line">contractInstance = VotingContract.at('<span class="number">0</span>x2a9c1d265d06d47e8f7b00ffa987c9185aecf672');</span><br><span class="line">candidates = &#123;<span class="string">"Rama"</span>: <span class="string">"candidate-1"</span>, <span class="string">"Nick"</span>: <span class="string">"candidate-2"</span>, <span class="string">"Jose"</span>: <span class="string">"candidate-3"</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">voteForCandidate</span><span class="params">()</span> &#123;</span></span><br><span class="line">  candidateName = $(<span class="string">"#candidate"</span>).val();</span><br><span class="line">  contractInstance.voteForCandidate(candidateName, &#123;from: web3.eth.accounts[<span class="number">0</span>]&#125;, <span class="function"><span class="keyword">function</span><span class="params">()</span> &#123;</span></span><br><span class="line">    <span class="built_in">let</span> div_id = candidates[candidateName];</span><br><span class="line">    $(<span class="string">"#"</span> + div_id).html(contractInstance.totalVotesFor.call(candidateName).toString());</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$(document).ready(<span class="function"><span class="keyword">function</span><span class="params">()</span> &#123;</span></span><br><span class="line">  candidateNames = Object.keys(candidates);</span><br><span class="line">  <span class="keyword">for</span> (var i = <span class="number">0</span>; i &lt; candidateNames.length; i++) &#123;</span><br><span class="line">    <span class="built_in">let</span> name = candidateNames[i];</span><br><span class="line">    <span class="built_in">let</span> val = contractInstance.totalVotesFor.call(name).toString()</span><br><span class="line">    $(<span class="string">"#"</span> + candidates[name]).html(val);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>不知道还记得前面说过和任何合约进行交互必须需要abi和地址。在上面的<code>index.js</code>文件中可以看到是怎么使用合约来进行交互的</p>
+<p>下面是你在浏览器中打开<code>index.html</code>文件。</p>
+<div class="image-package"><br><img src="/assets/blog/img/2018-01-25/2.png" width="700"><br></div>
+
+<p>如果你可以进入上面文本框的候选人名字，并投票并且会看到投票增加。你已经成功构建了你的第一个应用。Congratulation！</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul>
+<li>搭建环境</li>
+<li>编写简单合约</li>
+<li>编译及部署合约到区块链上</li>
+<li>能够通过nodejs控制台进行交互，同时也能通过web页面进行同样交互。</li>
+</ul>
+<p>在<a href="http://xichen.pub/2018/01/27/2018-01-26-Ethereum-Dapp-Tutorial-Part-2/">Part 2</a>会部署这个合约到一个公共的测试网络，这样整个世界都会看到并给候选人进行投票。</p>
+<p><a href="http://xichen.pub/2018/01/27/2018-01-26-Ethereum-Dapp-Tutorial-Part-2/">Part 2</a>使用truffle框架来开发（不要使用node的控制台来管理整个过程）。</p>
+<p>参考：<br><a href="https://medium.com/@mvmurthy/full-stack-hello-world-voting-ethereum-dapp-tutorial-part-1-40d2d0d807c2" target="_blank" rel="noopener">https://medium.com/@mvmurthy/full-stack-hello-world-voting-ethereum-dapp-tutorial-part-1-40d2d0d807c2</a></p>
+
+                
+<p class="green-link-context prev-btn">
+    <a href="/2018/01/26/2018-01-26-Ethereum-Dapp-Tutorial-Part-2/" rel="next" title="Ethereum Dapp Tutorial — Part 2">
+    Prev: Ethereum Dapp Tutorial — Part 2
+  </a>
+</p>
+
+
+
+<p class="green-link-context next-btn">
+    <a href="/2018/01/24/2018-01-24-Ethereum-Dapp-Tutorial-Part-0/" rel="next" title="Ethereum Dapp Tutorial — Part 0">
+    Next: Ethereum Dapp Tutorial — Part 0
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+
+
+
+    <div id="gitment_container"></div>
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <link rel="stylesheet" href="/css/gitment.css" media="screen" type="text/css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <script>
+    var gitment = new Gitment({
+        id: 'Thu Jan 25 2018 02:01:00 GMT+0800',
+        owner: 'linxueyuanstdio',
+        repo: 'linxueyuanstdio.github.io',
+        oauth: {
+            client_id: '2f7f71f1ba398039ff23',
+            client_secret: '3ebc908a7042fef2d56a83a2eb8c18777374a087',
+        },
+    })
+    gitment.render('gitment_container')
+    </script>
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large pink">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect green" title="Return to top"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse yellow darken-1"  data-activates="main-menu" title="Menu"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer indigo darken-1">
+    
+    <div class="footer-container container">
+        <div class="row">
+            
+            <div class="social-group col m4 s12">
+                <h5 class="white-text">Social</h5>
+                
+                    <a class="social-link" href="http://weibo.com/LinXueyuanStdio" target="_blank">
+                        <i class="fa fa-2x fa-weibo"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://github.com/LinXueyuanStdio" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://www.zhihu.com/people/lin-xue-yuan-86" target="_blank">
+                        <i class="fa fa-2x fa-graduation-cap"></i>
+                    </a>
+                
+                    <a class="social-link" href="http://twitter.com/cwBQ3A5cz3Jzso7" target="_blank">
+                        <i class="fa fa-2x fa-twitter"></i>
+                    </a>
+                
+                    <a class="social-link" href="mailto:761516186@qq.com" target="_blank">
+                        <i class="fa fa-2x fa-envelope"></i>
+                    </a>
+                
+                    <a class="social-link" href="/atom.xml" target="_blank">
+                        <i class="fa fa-2x fa-rss"></i>
+                    </a>
+                
+                
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+    </script>
+    <div class="site-visitors-container white-text">
+        <span>
+            <i class="fa fa-user"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+        </span>
+        <span>&nbsp;|&nbsp;</span>
+        <span>
+            <i class="fa fa-eye"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+        </span>
+    </div>
+
+
+            </div>
+            
+
+            
+            <div class="col m8 s12">
+                <h5 class="white-text">Links</h5>
+                
+                    <a class="social-link" href="http://raytaylorlin.com/" target="_blank">raytaylorism主题作者</a>
+                
+                    <a class="social-link" href="https://github.com/raytaylorlin" target="_blank">Github地址</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    
+
+    <div class="footer-copyright green-link-context">
+        <div class="container">
+            © 2018 xichen.pub, All rights reserved.
+            <p class="right" style="margin-top: 0;">Blog powered by <a href="https://hexo.io">Hexo</a> | Theme <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
+        </div>
+    </div>
+</footer>
+
+
+    <noscript>
+    <div class="noscript">
+        <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+    </div>
+</noscript>
+<div class="noscript">
+    <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+<script src="/js/canvas.js"></script>
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 隐藏禁用javascript（针对微信内置浏览器）的提示
+            $('.noscript').hide();
+
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
+
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed').each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt') || ' ');
+            }).materialbox();
+
+            // 优化表格的显示
+            $('table').each(function() {
+                var $table = $(this);
+                // 除去多行代码的情况
+                if ($table.find('pre').length == 0) {
+                    $table.addClass('responsive-table striped bordered');
+                }
+            });
+
+            // 首页幻灯片
+            $('.slider').slider({indicators: true, full_width: true, interval: 8000});
+
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+
+            // 目录随屏幕滚动（防止目录过长越过footer）
+            var $toc = $('.toc');
+            var scrollTargetTop = 0;
+            $(window).scroll(function() {
+                var $activeLink = $toc.find('a.active.section');
+                if ($(window).scrollTop() < 100) {
+                    scrollTargetTop = 0;
+                } else {
+                    if ($activeLink[0]) {
+                        scrollTargetTop = $activeLink.offset().top - $toc.offset().top;
+                    }
+                }
+                $toc.css('top', '-' + scrollTargetTop + 'px');
+            });
+
+            // 修正文章目录的left-border颜色
+            var color = $('.table-of-contents-text').css('color');
+            $('.table-of-contents-link').css('border-left-color', color);
+
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({
+                    scrollTop: 0
+                }, 500);
+            });
+
+            // 重置读书页面的Tab标签页的颜色
+            $('li.tab a').hover(function() {
+                $(this).toggleClass('text-lighten-4');
+            });
+            $('.indicator').addClass('pink lighten-2');
+
+            
+            // 添加new标签
+            $('.menu-apps').append('<span class="new badge pink"></span>');
+            
+
+            // 搜索功能
+            $('.modal-trigger').leanModal({
+                // 打开搜索框时自动聚焦
+                ready: function() {
+                    if ($('#search').is(":visible")) {
+                        $('#search-input').focus();
+                    }
+                }
+            });
+            var searchXml = "search.xml";
+            if (searchXml.length == 0) {
+             	searchXml = "search.xml";
+            }
+            var searchPath = "/" + searchXml;
+            initSearch(searchPath, 'search-input', 'search-result');
+        });
+
+        // 初始化搜索与匹配函数
+        var initSearch = function(path, search_id, content_id) {
+            'use strict';
+            $.ajax({
+                url: path,
+                dataType: "xml",
+                success: function(xmlResponse) {
+                    // get the contents from search data
+                    var datas = $("entry", xmlResponse).map(function() {
+                        return {
+                            title: $("title", this).text(),
+                            content: $("content", this).text(),
+                            url: $("url", this).text()
+                        };
+                    }).get();
+                    var $input = document.getElementById(search_id);
+                    var $resultContent = document.getElementById(content_id);
+                    $input.addEventListener('input', function() {
+                        var str = '<ul class=\"search-result-list\">';
+                        var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                        $resultContent.innerHTML = "";
+                        if (this.value.trim().length <= 0) {
+                            return;
+                        }
+                        // perform local searching
+                        datas.forEach(function(data) {
+                            var isMatch = true;
+                            var content_index = [];
+                            var data_title = data.title.trim().toLowerCase();
+                            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                            var data_url = data.url;
+                            var index_title = -1;
+                            var index_content = -1;
+                            var first_occur = -1;
+                            // only match artiles with not empty titles and contents
+                            if (data_title != '' && data_content != '') {
+                                keywords.forEach(function(keyword, i) {
+                                    index_title = data_title.indexOf(keyword);
+                                    index_content = data_content.indexOf(keyword);
+                                    if (index_title < 0 && index_content < 0) {
+                                        isMatch = false;
+                                    } else {
+                                        if (index_content < 0) {
+                                            index_content = 0;
+                                        }
+                                        if (i == 0) {
+                                            first_occur = index_content;
+                                        }
+                                    }
+                                });
+                            }
+                            // show search results
+                            if (isMatch) {
+                                keywords.forEach(function(keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword green lighten-2\">" + keyword + "</span>");
+                                });
+
+                                str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                                if (first_occur >= 0) {
+                                    // cut out 100 characters
+                                    var start = first_occur - 20;
+                                    var end = first_occur + 80;
+                                    if (start < 0) {
+                                        start = 0;
+                                    }
+                                    if (start == 0) {
+                                        end = 100;
+                                    }
+                                    if (end > content.length) {
+                                        end = content.length;
+                                    }
+                                    var match_content = content.substring(start, end);
+                                    // highlight all keywords
+                                    keywords.forEach(function(keyword) {
+                                        var regS = new RegExp(keyword, "gi");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword green lighten-2\">" + keyword + "</span>");
+                                    });
+
+                                    str += "<p class=\"search-result\">..." + match_content + "...</p>"
+                                }
+                                str += "</li>";
+                            }
+                        });
+                        str += "</ul>";
+                        $resultContent.innerHTML = str;
+                    });
+                }
+            });
+        }
+    })(jQuery);
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+</body>
+</html>

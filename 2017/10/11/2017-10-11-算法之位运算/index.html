@@ -1,0 +1,843 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>algorithms-Bit-Options | XiChen&#39;s Blog</title>
+    <meta name="author" content="Lin Xueyuan">
+    
+    <meta name="description" content="嗨，我是兮尘，全栈数据学徒。这里没有花俏艳丽的魔法，没有苍蛮霸道的斗气，有的，仅仅是繁衍到巅峰的代码！">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="algorithms-Bit-Options"/>
+    <meta property="og:site_name" content="XiChen"/>
+
+    
+    <meta property="og:image" content=""/>
+    
+
+    <link rel="icon" type="image/png" href="/assets/images/favicon.ico" />
+    <link rel="alternate" href="/atom.xml" title="XiChen" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+    <link rel="stylesheet" href="//fonts.gdgdocs.org/css?family=Lobster" type="text/css">
+    
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
+
+    <nav class="indigo nav">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="">
+            <div style="font-family: Lobster, Monospace;">
+                <a href="/" class="brand-logo hide-on-med-and-down" style="font-family: Lobster, Monospace;">
+                    XiChen
+                </a>
+            </div>
+            <ul class="nav-menu right hide-on-med-and-down">
+                
+                    <li class="tab">
+                        <a class="menu-home " href="/"
+                            >
+                                <i class="fa fa-home "></i>
+                                
+                                    Home
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-archive " href="/archives"
+                            >
+                                <i class="fa fa-archive "></i>
+                                
+                                    Archives
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-category category-menu" href="javascript:;"
+                            data-activates="category-menu"
+                            >
+                                <i class="fa fa-bookmark "></i>
+                                
+                                    Categories
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-apps " href="/apps"
+                            >
+                                <i class="fa fa-link "></i>
+                                
+                                    App
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-tools " href="/tools"
+                            >
+                                <i class="fa fa-wrench "></i>
+                                
+                                    Tool
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-reading " href="/reading"
+                            >
+                                <i class="fa fa-book "></i>
+                                
+                                    Reading
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-about " href="/about"
+                            >
+                                <i class="fa fa-user "></i>
+                                
+                                    About
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-search modal-trigger " href="#search"
+                            >
+                                <i class="fa fa-search "></i>
+                                
+                                    Search
+                        </a>
+                    </li>
+                    
+            </ul>
+            <div>
+    <ul class="side-nav indigo darken-1" id="main-menu">
+        
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4 no-padding logo-a">
+                    <img class="avatar-image circle responsive-img logo" src="/assets/images/avatar.jpg" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper no-padding">
+                    <div class="valign">
+                        <p class="name">兮尘</p>
+                        <p class="desc">Web前端/Android/技术宅</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-home " href="/" >
+                    <i class="fa fa-home "></i>
+                    
+                    Home
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-archive " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    
+                    Archives
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    
+                    Categories
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-apps " href="/apps" >
+                    <i class="fa fa-link "></i>
+                    
+                    App
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-tools " href="/tools" >
+                    <i class="fa fa-wrench "></i>
+                    
+                    Tool
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-reading " href="/reading" >
+                    <i class="fa fa-book "></i>
+                    
+                    Reading
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-about " href="/about" >
+                    <i class="fa fa-user "></i>
+                    
+                    About
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-search modal-trigger " href="#search" >
+                    <i class="fa fa-search "></i>
+                    
+                    Search
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav indigo darken-1" id="category-menu">
+    
+
+            
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Linux/">
+                    Linux <span class="right">8</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tips/">
+                    Tips <span class="right">7</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Deep-Learning/">
+                    Deep-Learning <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Proxy/">
+                    Proxy <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/GO/">
+                    GO <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tools/">
+                    Tools <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Ubuntu/">
+                    Ubuntu <span class="right">4</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Spider/">
+                    Spider <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/区块链/">
+                    区块链 <span class="right">7</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/算法/">
+                    算法 <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Web/">
+                    Web <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Algorithms/">
+                    Algorithms <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Latex/">
+                    Latex <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/密码学/">
+                    密码学 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/杂思/">
+                    杂思 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Android/">
+                    Android <span class="right">25</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Github/">
+                    Github <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Git/">
+                    Git <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+<div id="search" class="modal search-modal">
+    <div class="row">
+        <div class="input-field col s12">
+              <input id="search-input" type="text">
+              <label for="search-input">Search</label>
+        </div>
+
+    </div>
+    <div id="search-result" class="search-result col s12">
+
+    </div>
+</div>
+
+    <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper indigo">
+        <span class="breadcrumb">Current page(Categories)</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/Algorithms/">Algorithms</a>
+
+
+        
+
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>algorithms-Bit-Options</h1>
+    
+
+
+            </div>
+            <i class="fa fa-calendar"></i><time class="green-link-context" datetime="2017-10-11T06:25:00.000Z"><a href="/2017/10/11/2017-10-11-算法之位运算/">2017-10-11</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/算法/" class="chip green lighten-1">算法</a>
+        
+    </div>
+    
+
+
+            <div class="toc green-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#算法"><span class="section table-of-contents-number">1.</span> <span class="section table-of-contents-text">算法</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#获得int型最大值"><span class="section table-of-contents-number">1.1.</span> <span class="section table-of-contents-text">获得int型最大值</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#获得int型最小值"><span class="section table-of-contents-number">1.2.</span> <span class="section table-of-contents-text">获得int型最小值</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#获得long类型的最大值"><span class="section table-of-contents-number">1.3.</span> <span class="section table-of-contents-text">获得long类型的最大值</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2运算"><span class="section table-of-contents-number">1.4.</span> <span class="section table-of-contents-text">2运算</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#判断一个数的奇偶性"><span class="section table-of-contents-number">1.5.</span> <span class="section table-of-contents-text">判断一个数的奇偶性</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#不用临时变量交换两个数（面试常考）"><span class="section table-of-contents-number">1.6.</span> <span class="section table-of-contents-text">不用临时变量交换两个数（面试常考）</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#取绝对值"><span class="section table-of-contents-number">1.7.</span> <span class="section table-of-contents-text">取绝对值</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#取两个数的最大值"><span class="section table-of-contents-number">1.8.</span> <span class="section table-of-contents-text">取两个数的最大值</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#取两个数的最小值"><span class="section table-of-contents-number">1.9.</span> <span class="section table-of-contents-text">取两个数的最小值</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#判断符号是否相同"><span class="section table-of-contents-number">1.10.</span> <span class="section table-of-contents-text">判断符号是否相同</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#计算2的n次方"><span class="section table-of-contents-number">1.11.</span> <span class="section table-of-contents-text">计算2的n次方</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#判断一个数是不是2的幂"><span class="section table-of-contents-number">1.12.</span> <span class="section table-of-contents-text">判断一个数是不是2的幂</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#对2的n次方取余"><span class="section table-of-contents-number">1.13.</span> <span class="section table-of-contents-text">对2的n次方取余</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#求两个整数的平均值"><span class="section table-of-contents-number">1.14.</span> <span class="section table-of-contents-text">求两个整数的平均值</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#从低位到高位-取n的第m位"><span class="section table-of-contents-number">1.15.</span> <span class="section table-of-contents-text">从低位到高位,取n的第m位</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#从低位到高位-将n的第m位置设为1"><span class="section table-of-contents-number">1.16.</span> <span class="section table-of-contents-text">从低位到高位.将n的第m位置设为1</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#从低位到高位-将n的第m位置设为0"><span class="section table-of-contents-number">1.17.</span> <span class="section table-of-contents-text">从低位到高位,将n的第m位置设为0</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#另附一些对程序效率上没有实质提高的位运算技巧，一些也是位运算的常识（面试也许会遇到）"><span class="section table-of-contents-number">1.18.</span> <span class="section table-of-contents-text">另附一些对程序效率上没有实质提高的位运算技巧，一些也是位运算的常识（面试也许会遇到）</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#获取整数二进制表示中最右侧的1"><span class="section table-of-contents-number">1.19.</span> <span class="section table-of-contents-text">获取整数二进制表示中最右侧的1</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#二进制中1的个数"><span class="section table-of-contents-number">1.20.</span> <span class="section table-of-contents-text">二进制中1的个数</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#翻转"><span class="section table-of-contents-number">1.21.</span> <span class="section table-of-contents-text">翻转</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#输入两个数A和B，输出将A转换为B所需改变的二进制的位数。"><span class="section table-of-contents-number">1.22.</span> <span class="section table-of-contents-text">输入两个数A和B，输出将A转换为B所需改变的二进制的位数。</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#数组中只出现一次的数字"><span class="section table-of-contents-number">1.23.</span> <span class="section table-of-contents-text">数组中只出现一次的数字</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#数组中，只有一个数出现一次，剩下都出现两次，找出出现一次的数"><span class="section table-of-contents-number">1.23.1.</span> <span class="section table-of-contents-text">数组中，只有一个数出现一次，剩下都出现两次，找出出现一次的数</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#数组中，只有一个数出现一次，剩下都出现三次，找出出现一次的数"><span class="section table-of-contents-number">1.23.2.</span> <span class="section table-of-contents-text">数组中，只有一个数出现一次，剩下都出现三次，找出出现一次的数</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#数组中，只有两个数出现一次，剩下都出现两次，找出出现一次的数"><span class="section table-of-contents-number">1.24.</span> <span class="section table-of-contents-text">数组中，只有两个数出现一次，剩下都出现两次，找出出现一次的数</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#位操作实现加减乘除运算"><span class="section table-of-contents-number">1.25.</span> <span class="section table-of-contents-text">位操作实现加减乘除运算</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#reference"><span class="section table-of-contents-number">2.</span> <span class="section table-of-contents-text">reference:</span></a></li></ol>
+</div>
+
+
+            <div class="entry green-link-context">
+                <h1 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h1><p>常用的一个等式：<code>-n = ~(n - 1) = ~n + 1</code></p>
+<h2 id="获得int型最大值"><a href="#获得int型最大值" class="headerlink" title="获得int型最大值"></a>获得int型最大值</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getMaxInt</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="number">1</span> &lt;&lt; <span class="number">31</span>) - <span class="number">1</span>;<span class="comment">//2147483647,由于优先级关系,括号不可省略</span></span><br><span class="line">    <span class="keyword">return</span> ~(<span class="number">1</span> &lt;&lt; <span class="number">31</span>);   <span class="comment">//2147483647</span></span><br><span class="line">    <span class="keyword">return</span> (<span class="number">1</span> &lt;&lt; -<span class="number">1</span>) - <span class="number">1</span>;<span class="comment">//2147483647</span></span><br><span class="line">    <span class="keyword">return</span> ((unsigned <span class="keyword">int</span>) - <span class="number">1</span>) &gt;&gt; <span class="number">1</span>;<span class="comment">//2147483647</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="获得int型最小值"><a href="#获得int型最小值" class="headerlink" title="获得int型最小值"></a>获得int型最小值</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getMinInt</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span> &lt;&lt; <span class="number">31</span>;<span class="comment">//-2147483648</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span> &lt;&lt; -<span class="number">1</span>;<span class="comment">//-2147483648</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="获得long类型的最大值"><a href="#获得long类型的最大值" class="headerlink" title="获得long类型的最大值"></a>获得long类型的最大值</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">long</span> <span class="title">getMaxLong</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> ((unsigned <span class="keyword">long</span>) - <span class="number">1</span>) &gt;&gt; <span class="number">1</span>;<span class="comment">//2147483647　c语言版</span></span><br><span class="line">    <span class="keyword">return</span> ((<span class="keyword">long</span>)<span class="number">1</span> &lt;&lt; <span class="number">127</span>) - <span class="number">1</span>;<span class="comment">//9223372036854775807  java版</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>获得long最小值，和其他类型的最大值，最小值同理.</p>
+<h2 id="2运算"><a href="#2运算" class="headerlink" title="2运算"></a>2运算</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">n &lt;&lt; <span class="number">1</span>　<span class="comment">// 乘以2</span></span><br><span class="line">n &gt;&gt; <span class="number">1</span> <span class="comment">// 除以2</span></span><br><span class="line">n &lt;&lt; m <span class="comment">// 乘以2的m次方</span></span><br><span class="line">n &gt;&gt; m <span class="comment">// 除以2的m次方</span></span><br></pre></td></tr></table></figure>
+<h2 id="判断一个数的奇偶性"><a href="#判断一个数的奇偶性" class="headerlink" title="判断一个数的奇偶性"></a>判断一个数的奇偶性</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">isOddNumber</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (n &amp; <span class="number">1</span>) == <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="不用临时变量交换两个数（面试常考）"><a href="#不用临时变量交换两个数（面试常考）" class="headerlink" title="不用临时变量交换两个数（面试常考）"></a>不用临时变量交换两个数（面试常考）</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span> *a,<span class="keyword">int</span> *b)</span></span>&#123;</span><br><span class="line">    (*a) ^= (*b) ^= (*a) ^= (*b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通用版（一些语言中得分开写）<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">a</span><span class="regexp"> ^=</span> b;</span><br><span class="line"><span class="attribute">b</span><span class="regexp"> ^=</span> a;</span><br><span class="line"><span class="attribute">a</span><span class="regexp"> ^=</span> b;</span><br></pre></td></tr></table></figure></p>
+<h2 id="取绝对值"><a href="#取绝对值" class="headerlink" title="取绝对值"></a>取绝对值</h2><p>（某些机器上，效率比n&gt;0  ?  n:-n 高）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">abs</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (n ^ (n &gt;&gt; <span class="number">31</span>)) - (n &gt;&gt; <span class="number">31</span>);</span><br><span class="line"><span class="comment">/* n&gt;&gt;31 取得n的符号，若n为正数，n&gt;&gt;31等于0，若n为负数，n&gt;&gt;31等于-1 </span></span><br><span class="line"><span class="comment">若n为正数 n^0=0,数不变，若n为负数有n^-1 需要计算n和-1的补码，然后进行异或运算， </span></span><br><span class="line"><span class="comment">结果n变号并且为n的绝对值减1，再减去-1就是绝对值 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="取两个数的最大值"><a href="#取两个数的最大值" class="headerlink" title="取两个数的最大值"></a>取两个数的最大值</h2><p>（某些机器上，效率比a&gt;b ? a:b高）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> b &amp; ((a-b) &gt;&gt; <span class="number">31</span>) | a &amp; (~(a-b) &gt;&gt; <span class="number">31</span>);</span><br><span class="line">    <span class="comment">/*如果a&gt;=b,(a-b)&gt;&gt;31为0，否则为-1*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>C语言版<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x ^ ((x ^ y) &amp; -(x &lt; y));</span><br><span class="line">    <span class="comment">/*如果x&lt;y x&lt;y返回1，否则返回0，</span></span><br><span class="line"><span class="comment">    与0做与运算结果为0，与-1做与运算结果不变*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="取两个数的最小值"><a href="#取两个数的最小值" class="headerlink" title="取两个数的最小值"></a>取两个数的最小值</h2><p>（某些机器上，效率比a&gt;b ? b:a高）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">min</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a &amp; ((a-b) &gt;&gt; <span class="number">31</span>) | b &amp; (~(a-b) &gt;&gt; <span class="number">31</span>);</span><br><span class="line">    <span class="comment">/*如果a&gt;=b,(a-b)&gt;&gt;31为0，否则为-1*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>C语言版<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">min</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> y ^ ((x ^ y) &amp; -(x &lt; y));</span><br><span class="line">    <span class="comment">/*如果x&lt;y x&lt;y返回1，否则返回0， </span></span><br><span class="line"><span class="comment">      与0做与运算结果为0，与-1做与运算结果不变*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="判断符号是否相同"><a href="#判断符号是否相同" class="headerlink" title="判断符号是否相同"></a>判断符号是否相同</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">isSameSign</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>&#123; <span class="comment">//有0的情况例外</span></span><br><span class="line">    <span class="keyword">return</span> (x ^ y) &gt;= <span class="number">0</span>; <span class="comment">// true 表示 x和y有相同的符号， false表示x，y有相反的符号。</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="计算2的n次方"><a href="#计算2的n次方" class="headerlink" title="计算2的n次方"></a>计算2的n次方</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getFactorialofTwo</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;<span class="comment">//n &gt; 0</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span> &lt;&lt; (n-<span class="number">1</span>);<span class="comment">//2的n次方</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="判断一个数是不是2的幂"><a href="#判断一个数是不是2的幂" class="headerlink" title="判断一个数是不是2的幂"></a>判断一个数是不是2的幂</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">isFactorialofTwo</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n &gt; <span class="number">0</span> ? (n &amp; (n - <span class="number">1</span>)) == <span class="number">0</span> : <span class="keyword">false</span>;</span><br><span class="line">    <span class="comment">/*如果是2的幂，n一定是100... n-1就是1111.... </span></span><br><span class="line"><span class="comment">       所以做与运算结果为0*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="对2的n次方取余"><a href="#对2的n次方取余" class="headerlink" title="对2的n次方取余"></a>对2的n次方取余</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">quyu</span><span class="params">(<span class="keyword">int</span> m,<span class="keyword">int</span> n)</span></span>&#123;<span class="comment">//n为2的次方</span></span><br><span class="line">    <span class="keyword">return</span> m &amp; (n - <span class="number">1</span>);</span><br><span class="line">    <span class="comment">/*如果是2的幂，n一定是100... n-1就是1111.... </span></span><br><span class="line"><span class="comment">     所以做与运算结果保留m在n范围的非0的位*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="求两个整数的平均值"><a href="#求两个整数的平均值" class="headerlink" title="求两个整数的平均值"></a>求两个整数的平均值</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getAverage</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (x + y) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getAverage</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> ((x ^ y) &gt;&gt; <span class="number">1</span>) + (x &amp; y);</span><br><span class="line">    <span class="comment">/*(x^y) &gt;&gt; 1得到x，y其中一个为1的位并除以2， </span></span><br><span class="line"><span class="comment">       x&amp;y得到x，y都为1的部分，加一起就是平均数了*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>下面是三个最基本对二进制位的操作</p>
+<h2 id="从低位到高位-取n的第m位"><a href="#从低位到高位-取n的第m位" class="headerlink" title="从低位到高位,取n的第m位"></a>从低位到高位,取n的第m位</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getBit</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (n &gt;&gt; (m-<span class="number">1</span>)) &amp; <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="从低位到高位-将n的第m位置设为1"><a href="#从低位到高位-将n的第m位置设为1" class="headerlink" title="从低位到高位.将n的第m位置设为1"></a>从低位到高位.将n的第m位置设为1</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">setBitToOne</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n | (<span class="number">1</span> &lt;&lt; (m-<span class="number">1</span>));</span><br><span class="line">    <span class="comment">/*将1左移m-1位找到第m位，得到000...1...000 </span></span><br><span class="line"><span class="comment">      n在和这个数做或运算*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="从低位到高位-将n的第m位置设为0"><a href="#从低位到高位-将n的第m位置设为0" class="headerlink" title="从低位到高位,将n的第m位置设为0"></a>从低位到高位,将n的第m位置设为0</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">setBitToZero</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n &amp; ~(<span class="number">1</span> &lt;&lt; (m-<span class="number">1</span>));</span><br><span class="line">    <span class="comment">/* 将1左移m-1位找到第m位，取反后变成111...0...1111 </span></span><br><span class="line"><span class="comment">       n再和这个数做与运算*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="另附一些对程序效率上没有实质提高的位运算技巧，一些也是位运算的常识（面试也许会遇到）"><a href="#另附一些对程序效率上没有实质提高的位运算技巧，一些也是位运算的常识（面试也许会遇到）" class="headerlink" title="另附一些对程序效率上没有实质提高的位运算技巧，一些也是位运算的常识（面试也许会遇到）"></a>另附一些对程序效率上没有实质提高的位运算技巧，一些也是位运算的常识（面试也许会遇到）</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">n+<span class="number">1</span> = -~n</span><br><span class="line">n-<span class="number">1</span> = ~-n</span><br><span class="line">-n  = ~n+<span class="number">1</span></span><br><span class="line">-n  = (n^-<span class="number">1</span>)+<span class="number">1</span></span><br><span class="line">x = a ^ b ^ x &lt;=&gt; <span class="keyword">if</span>(x == a) x = b; <span class="keyword">if</span>(x == b) x = a;</span><br><span class="line">sign(x) = !!n - (((unsigned)n &gt;&gt; <span class="number">31</span>) &lt;&lt; <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="获取整数二进制表示中最右侧的1"><a href="#获取整数二进制表示中最右侧的1" class="headerlink" title="获取整数二进制表示中最右侧的1"></a>获取整数二进制表示中最右侧的1</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">n &amp; (-n)  &lt;=&gt; n &amp; ~(n - <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="二进制中1的个数"><a href="#二进制中1的个数" class="headerlink" title="二进制中1的个数"></a>二进制中1的个数</h2><p>用到了n &amp; (n - 1)<br>由x &amp; (x - 1)消去x最后一位的1可知。不断使用 x &amp; (x - 1) 消去x最后一位的1，计算总共消去了多少次即可。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">countOnes</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(num != <span class="number">0</span>) &#123;</span><br><span class="line">        num = num &amp; (num-<span class="number">1</span>);</span><br><span class="line">        count++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="翻转"><a href="#翻转" class="headerlink" title="翻转"></a>翻转</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 翻转</span></span><br><span class="line"><span class="function">unsigned <span class="keyword">int</span> <span class="title">Bit_Reverse</span><span class="params">(unsigned <span class="keyword">int</span> v)</span> </span>&#123;</span><br><span class="line">    v = ((v &gt;&gt; <span class="number">1</span>) &amp; <span class="number">0x55555555</span>) | ((v &lt;&lt; <span class="number">1</span>) &amp; <span class="number">0xaaaaaaaa</span>);</span><br><span class="line">    v = ((v &gt;&gt; <span class="number">2</span>) &amp; <span class="number">0x33333333</span>) | ((v &lt;&lt; <span class="number">2</span>) &amp; <span class="number">0xcccccccc</span>);</span><br><span class="line">    v = ((v &gt;&gt; <span class="number">4</span>) &amp; <span class="number">0x0f0f0f0f</span>) | ((v &lt;&lt; <span class="number">4</span>) &amp; <span class="number">0xf0f0f0f0</span>);</span><br><span class="line">    v = ((v &gt;&gt; <span class="number">8</span>) &amp; <span class="number">0x00ff00ff</span>) | ((v &lt;&lt; <span class="number">8</span>) &amp; <span class="number">0xff00ff00</span>);</span><br><span class="line">    v = ((v &gt;&gt; <span class="number">16</span>) &amp; <span class="number">0x0000ffff</span>) | ((v &lt;&lt; <span class="number">16</span>) &amp; <span class="number">0xffff0000</span>);</span><br><span class="line">    <span class="keyword">return</span> v;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="输入两个数A和B，输出将A转换为B所需改变的二进制的位数。"><a href="#输入两个数A和B，输出将A转换为B所需改变的二进制的位数。" class="headerlink" title="输入两个数A和B，输出将A转换为B所需改变的二进制的位数。"></a>输入两个数A和B，输出将A转换为B所需改变的二进制的位数。</h2><p>首先，A异或B得到的是A和B中不相同位数组成的数，然后再求这个数二进制表示中1的个数，即为所求。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">countOnes(A^B);</span><br></pre></td></tr></table></figure></p>
+<h2 id="数组中只出现一次的数字"><a href="#数组中只出现一次的数字" class="headerlink" title="数组中只出现一次的数字"></a>数组中只出现一次的数字</h2><p>用到了n &amp; (n - 1) 和 a ^ b ^ b = a</p>
+<h3 id="数组中，只有一个数出现一次，剩下都出现两次，找出出现一次的数"><a href="#数组中，只有一个数出现一次，剩下都出现两次，找出出现一次的数" class="headerlink" title="数组中，只有一个数出现一次，剩下都出现两次，找出出现一次的数"></a>数组中，只有一个数出现一次，剩下都出现两次，找出出现一次的数</h3><p>因为只有一个数恰好出现一个，剩下的都出现过两次，所以只要将所有的数异或起来，就可以得到唯一的那个数。<br>参考文章：<a href="http://zhedahht.blog.163.com/blog/static/2541117420071128950682/" target="_blank" rel="noopener">http://zhedahht.blog.163.com/blog/static/2541117420071128950682/</a></p>
+<h3 id="数组中，只有一个数出现一次，剩下都出现三次，找出出现一次的数"><a href="#数组中，只有一个数出现一次，剩下都出现三次，找出出现一次的数" class="headerlink" title="数组中，只有一个数出现一次，剩下都出现三次，找出出现一次的数"></a>数组中，只有一个数出现一次，剩下都出现三次，找出出现一次的数</h3><p>因为数是出现三次的，也就是说，对于每一个二进制位，如果只出现一次的数在该二进制位为1，那么这个二进制位在全部数字中出现次数无法被3整除。</p>
+<p>膜3运算只有三种状态：00,01,10，因此我们可以使用两个位来表示当前位%3，对于每一位，我们让Two，One表示当前位的状态，B表示输入数字的对应位，Two+和One+表示输出状态。</p>
+<p>参考文章：<a href="http://zhedahht.blog.163.com/blog/static/25411174201283084246412/" target="_blank" rel="noopener">http://zhedahht.blog.163.com/blog/static/25411174201283084246412/</a></p>
+<h2 id="数组中，只有两个数出现一次，剩下都出现两次，找出出现一次的数"><a href="#数组中，只有两个数出现一次，剩下都出现两次，找出出现一次的数" class="headerlink" title="数组中，只有两个数出现一次，剩下都出现两次，找出出现一次的数"></a>数组中，只有两个数出现一次，剩下都出现两次，找出出现一次的数</h2><p>有了第一题的基本的思路，我们可以将数组分成两个部分，每个部分里只有一个元素出现一次，其余元素都出现两次。那么使用这种方法就可以找出这两个元素了。<br>不妨假设出现一个的两个元素是x，y，那么最终所有的元素异或的结果就是res = x^y。并且res！=0，那么我们可以找出res二进制表示中的某一位是1。对于原来的数组，我们可以根据这个位置是不是1就可以将数组分成两个部分。x，y在不同的两个子数组中。而且对于其他成对出现的元素，要么在x所在的那个数组，要么在y所在的那个数组。</p>
+<h2 id="位操作实现加减乘除运算"><a href="#位操作实现加减乘除运算" class="headerlink" title="位操作实现加减乘除运算"></a>位操作实现加减乘除运算</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//加法</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">BinaryAdd</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> carry, add;</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        add = a ^ b; <span class="comment">//该操作得到本位的加法结果  </span></span><br><span class="line">        carry = (a &amp; b) &lt;&lt; <span class="number">1</span>; <span class="comment">//该操作得到该位对高位的进位值  </span></span><br><span class="line">        a = add;  </span><br><span class="line">        b = carry;  </span><br><span class="line">    &#125; <span class="keyword">while</span> (carry != <span class="number">0</span>); <span class="comment">//循环直到某次运算没有进位，运算结束</span></span><br><span class="line">    <span class="keyword">return</span> add;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//减法</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">BinarySub</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> BinaryAdd(a, BinaryAdd(~b, <span class="number">1</span>));</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*乘法 </span></span><br><span class="line"><span class="comment">该过程中的bit_map是为了快速得到乘法过程中某位相乘的中间结果S[i] </span></span><br><span class="line"><span class="comment">需要位移的位数。bit_map的键值是2^0, 2^1,2^2, ……之类的数，对应的 </span></span><br><span class="line"><span class="comment">值是0，1,2,……(即需要位移的位数)。 </span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">BinaryMultiply</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">bool</span> neg = (b &lt; <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span>(b &lt; <span class="number">0</span>)</span><br><span class="line">        b = -b;  </span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; bit_map;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">32</span>; i++) &#123;</span><br><span class="line">        bit_map.insert(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(<span class="number">1</span> &lt;&lt; i, i));  </span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">    <span class="keyword">while</span>(b &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">/* </span></span><br><span class="line"><span class="comment">        b &amp; ~(b - 1)可以得到乘数b的二进制表示中最右侧1的位置 </span></span><br><span class="line"><span class="comment">        last_bit记录被乘数a需要位移的位数 </span></span><br><span class="line"><span class="comment">        */</span>  </span><br><span class="line">        <span class="keyword">int</span> last_bit = bit_map[b &amp; ~(b - <span class="number">1</span>)];  </span><br><span class="line">        <span class="comment">//将得到的乘法结果全部相加即为最后结果  </span></span><br><span class="line">        sum += (a &lt;&lt; last_bit);  </span><br><span class="line">        b &amp;= b - <span class="number">1</span>; <span class="comment">//每次将b的二进制表示的最右侧1去掉用于下一次乘法  </span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(neg)</span><br><span class="line">        sum = -sum;  </span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//除法</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">BinaryDivide</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">bool</span> neg = (a &gt; <span class="number">0</span>) ^ (b &gt; <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span>(a &lt; <span class="number">0</span>)</span><br><span class="line">        a = -a;  </span><br><span class="line">    <span class="keyword">if</span>(b &lt; <span class="number">0</span>)</span><br><span class="line">        b = -b;  </span><br><span class="line">    <span class="keyword">if</span>(a &lt; b)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">    <span class="keyword">int</span> msb = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//msd记录除数需要左移的位数</span></span><br><span class="line">    <span class="keyword">for</span>(msb = <span class="number">0</span>; msb &lt; <span class="number">32</span>; msb++) &#123;</span><br><span class="line">        <span class="keyword">if</span>((b &lt;&lt; msb) &gt;= a)  </span><br><span class="line">            <span class="keyword">break</span>;  </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> q = <span class="number">0</span>; <span class="comment">//记录每次除法的商</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = msb; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="keyword">if</span>((b &lt;&lt; i) &gt; a)  </span><br><span class="line">            <span class="keyword">continue</span>;  </span><br><span class="line">        q |= (<span class="number">1</span> &lt;&lt; i);  </span><br><span class="line">        a -= (b &lt;&lt; i);  </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(neg)</span><br><span class="line">        <span class="keyword">return</span> -q;  </span><br><span class="line">    <span class="keyword">return</span> q;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="reference"><a href="#reference" class="headerlink" title="reference:"></a>reference:</h1><ul>
+<li><a href="http://blog.csdn.net/zmazon/article/details/8262185" target="_blank" rel="noopener">优秀程序员不得不知道的20个位运算技巧</a><a href="http://blog.csdn.net/zmazon/article/details/8262185" target="_blank" rel="noopener">http://blog.csdn.net/zmazon/article/details/8262185</a></li>
+<li><a href="http://blog.csdn.net/u013074465/article/details/42680239" target="_blank" rel="noopener">位操作实现加减乘除四则运算</a><a href="http://blog.csdn.net/u013074465/article/details/42680239" target="_blank" rel="noopener">http://blog.csdn.net/u013074465/article/details/42680239</a></li>
+</ul>
+
+                
+<p class="green-link-context prev-btn">
+    <a href="/2017/10/13/2017-10-11-python-proxy/" rel="next" title="Python Tweepy 翻墙抓取Twitter信息">
+    Prev: Python Tweepy 翻墙抓取Twitter信息
+  </a>
+</p>
+
+
+
+<p class="green-link-context next-btn">
+    <a href="/2017/09/18/2017-9-18-面向过程-面向对象-函数式/" rel="next" title="面向过程，面向对象，函数式">
+    Next: 面向过程，面向对象，函数式
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+
+
+
+    <div id="gitment_container"></div>
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <link rel="stylesheet" href="/css/gitment.css" media="screen" type="text/css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <script>
+    var gitment = new Gitment({
+        id: 'Wed Oct 11 2017 14:25:00 GMT+0800',
+        owner: 'linxueyuanstdio',
+        repo: 'linxueyuanstdio.github.io',
+        oauth: {
+            client_id: '2f7f71f1ba398039ff23',
+            client_secret: '3ebc908a7042fef2d56a83a2eb8c18777374a087',
+        },
+    })
+    gitment.render('gitment_container')
+    </script>
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large pink">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect green" title="Return to top"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse yellow darken-1"  data-activates="main-menu" title="Menu"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer indigo darken-1">
+    
+    <div class="footer-container container">
+        <div class="row">
+            
+            <div class="social-group col m4 s12">
+                <h5 class="white-text">Social</h5>
+                
+                    <a class="social-link" href="http://weibo.com/LinXueyuanStdio" target="_blank">
+                        <i class="fa fa-2x fa-weibo"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://github.com/LinXueyuanStdio" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://www.zhihu.com/people/lin-xue-yuan-86" target="_blank">
+                        <i class="fa fa-2x fa-graduation-cap"></i>
+                    </a>
+                
+                    <a class="social-link" href="http://twitter.com/cwBQ3A5cz3Jzso7" target="_blank">
+                        <i class="fa fa-2x fa-twitter"></i>
+                    </a>
+                
+                    <a class="social-link" href="mailto:761516186@qq.com" target="_blank">
+                        <i class="fa fa-2x fa-envelope"></i>
+                    </a>
+                
+                    <a class="social-link" href="/atom.xml" target="_blank">
+                        <i class="fa fa-2x fa-rss"></i>
+                    </a>
+                
+                
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+    </script>
+    <div class="site-visitors-container white-text">
+        <span>
+            <i class="fa fa-user"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+        </span>
+        <span>&nbsp;|&nbsp;</span>
+        <span>
+            <i class="fa fa-eye"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+        </span>
+    </div>
+
+
+            </div>
+            
+
+            
+            <div class="col m8 s12">
+                <h5 class="white-text">Links</h5>
+                
+                    <a class="social-link" href="http://raytaylorlin.com/" target="_blank">raytaylorism主题作者</a>
+                
+                    <a class="social-link" href="https://github.com/raytaylorlin" target="_blank">Github地址</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    
+
+    <div class="footer-copyright green-link-context">
+        <div class="container">
+            © 2018 xichen.pub, All rights reserved.
+            <p class="right" style="margin-top: 0;">Blog powered by <a href="https://hexo.io">Hexo</a> | Theme <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
+        </div>
+    </div>
+</footer>
+
+
+    <noscript>
+    <div class="noscript">
+        <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+    </div>
+</noscript>
+<div class="noscript">
+    <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+<script src="/js/canvas.js"></script>
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 隐藏禁用javascript（针对微信内置浏览器）的提示
+            $('.noscript').hide();
+
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
+
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed').each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt') || ' ');
+            }).materialbox();
+
+            // 优化表格的显示
+            $('table').each(function() {
+                var $table = $(this);
+                // 除去多行代码的情况
+                if ($table.find('pre').length == 0) {
+                    $table.addClass('responsive-table striped bordered');
+                }
+            });
+
+            // 首页幻灯片
+            $('.slider').slider({indicators: true, full_width: true, interval: 8000});
+
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+
+            // 目录随屏幕滚动（防止目录过长越过footer）
+            var $toc = $('.toc');
+            var scrollTargetTop = 0;
+            $(window).scroll(function() {
+                var $activeLink = $toc.find('a.active.section');
+                if ($(window).scrollTop() < 100) {
+                    scrollTargetTop = 0;
+                } else {
+                    if ($activeLink[0]) {
+                        scrollTargetTop = $activeLink.offset().top - $toc.offset().top;
+                    }
+                }
+                $toc.css('top', '-' + scrollTargetTop + 'px');
+            });
+
+            // 修正文章目录的left-border颜色
+            var color = $('.table-of-contents-text').css('color');
+            $('.table-of-contents-link').css('border-left-color', color);
+
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({
+                    scrollTop: 0
+                }, 500);
+            });
+
+            // 重置读书页面的Tab标签页的颜色
+            $('li.tab a').hover(function() {
+                $(this).toggleClass('text-lighten-4');
+            });
+            $('.indicator').addClass('pink lighten-2');
+
+            
+            // 添加new标签
+            $('.menu-apps').append('<span class="new badge pink"></span>');
+            
+
+            // 搜索功能
+            $('.modal-trigger').leanModal({
+                // 打开搜索框时自动聚焦
+                ready: function() {
+                    if ($('#search').is(":visible")) {
+                        $('#search-input').focus();
+                    }
+                }
+            });
+            var searchXml = "search.xml";
+            if (searchXml.length == 0) {
+             	searchXml = "search.xml";
+            }
+            var searchPath = "/" + searchXml;
+            initSearch(searchPath, 'search-input', 'search-result');
+        });
+
+        // 初始化搜索与匹配函数
+        var initSearch = function(path, search_id, content_id) {
+            'use strict';
+            $.ajax({
+                url: path,
+                dataType: "xml",
+                success: function(xmlResponse) {
+                    // get the contents from search data
+                    var datas = $("entry", xmlResponse).map(function() {
+                        return {
+                            title: $("title", this).text(),
+                            content: $("content", this).text(),
+                            url: $("url", this).text()
+                        };
+                    }).get();
+                    var $input = document.getElementById(search_id);
+                    var $resultContent = document.getElementById(content_id);
+                    $input.addEventListener('input', function() {
+                        var str = '<ul class=\"search-result-list\">';
+                        var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                        $resultContent.innerHTML = "";
+                        if (this.value.trim().length <= 0) {
+                            return;
+                        }
+                        // perform local searching
+                        datas.forEach(function(data) {
+                            var isMatch = true;
+                            var content_index = [];
+                            var data_title = data.title.trim().toLowerCase();
+                            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                            var data_url = data.url;
+                            var index_title = -1;
+                            var index_content = -1;
+                            var first_occur = -1;
+                            // only match artiles with not empty titles and contents
+                            if (data_title != '' && data_content != '') {
+                                keywords.forEach(function(keyword, i) {
+                                    index_title = data_title.indexOf(keyword);
+                                    index_content = data_content.indexOf(keyword);
+                                    if (index_title < 0 && index_content < 0) {
+                                        isMatch = false;
+                                    } else {
+                                        if (index_content < 0) {
+                                            index_content = 0;
+                                        }
+                                        if (i == 0) {
+                                            first_occur = index_content;
+                                        }
+                                    }
+                                });
+                            }
+                            // show search results
+                            if (isMatch) {
+                                keywords.forEach(function(keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword green lighten-2\">" + keyword + "</span>");
+                                });
+
+                                str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                                if (first_occur >= 0) {
+                                    // cut out 100 characters
+                                    var start = first_occur - 20;
+                                    var end = first_occur + 80;
+                                    if (start < 0) {
+                                        start = 0;
+                                    }
+                                    if (start == 0) {
+                                        end = 100;
+                                    }
+                                    if (end > content.length) {
+                                        end = content.length;
+                                    }
+                                    var match_content = content.substring(start, end);
+                                    // highlight all keywords
+                                    keywords.forEach(function(keyword) {
+                                        var regS = new RegExp(keyword, "gi");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword green lighten-2\">" + keyword + "</span>");
+                                    });
+
+                                    str += "<p class=\"search-result\">..." + match_content + "...</p>"
+                                }
+                                str += "</li>";
+                            }
+                        });
+                        str += "</ul>";
+                        $resultContent.innerHTML = str;
+                    });
+                }
+            });
+        }
+    })(jQuery);
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+</body>
+</html>

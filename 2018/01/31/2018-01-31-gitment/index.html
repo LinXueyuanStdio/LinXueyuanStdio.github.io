@@ -1,0 +1,860 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>添加Gitment评论系统踩过的坑 | XiChen&#39;s Blog</title>
+    <meta name="author" content="Lin Xueyuan">
+    
+    <meta name="description" content="嗨，我是兮尘，全栈数据学徒。这里没有花俏艳丽的魔法，没有苍蛮霸道的斗气，有的，仅仅是繁衍到巅峰的代码！">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="添加Gitment评论系统踩过的坑"/>
+    <meta property="og:site_name" content="XiChen"/>
+
+    
+    <meta property="og:image" content=""/>
+    
+
+    <link rel="icon" type="image/png" href="/assets/images/favicon.ico" />
+    <link rel="alternate" href="/atom.xml" title="XiChen" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+    <link rel="stylesheet" href="//fonts.gdgdocs.org/css?family=Lobster" type="text/css">
+    
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
+
+    <nav class="indigo nav">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="">
+            <div style="font-family: Lobster, Monospace;">
+                <a href="/" class="brand-logo hide-on-med-and-down" style="font-family: Lobster, Monospace;">
+                    XiChen
+                </a>
+            </div>
+            <ul class="nav-menu right hide-on-med-and-down">
+                
+                    <li class="tab">
+                        <a class="menu-home " href="/"
+                            >
+                                <i class="fa fa-home "></i>
+                                
+                                    Home
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-archive " href="/archives"
+                            >
+                                <i class="fa fa-archive "></i>
+                                
+                                    Archives
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-category category-menu" href="javascript:;"
+                            data-activates="category-menu"
+                            >
+                                <i class="fa fa-bookmark "></i>
+                                
+                                    Categories
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-apps " href="/apps"
+                            >
+                                <i class="fa fa-link "></i>
+                                
+                                    App
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-tools " href="/tools"
+                            >
+                                <i class="fa fa-wrench "></i>
+                                
+                                    Tool
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-reading " href="/reading"
+                            >
+                                <i class="fa fa-book "></i>
+                                
+                                    Reading
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-about " href="/about"
+                            >
+                                <i class="fa fa-user "></i>
+                                
+                                    About
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-search modal-trigger " href="#search"
+                            >
+                                <i class="fa fa-search "></i>
+                                
+                                    Search
+                        </a>
+                    </li>
+                    
+            </ul>
+            <div>
+    <ul class="side-nav indigo darken-1" id="main-menu">
+        
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4 no-padding logo-a">
+                    <img class="avatar-image circle responsive-img logo" src="/assets/images/avatar.jpg" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper no-padding">
+                    <div class="valign">
+                        <p class="name">兮尘</p>
+                        <p class="desc">Web前端/Android/技术宅</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-home " href="/" >
+                    <i class="fa fa-home "></i>
+                    
+                    Home
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-archive " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    
+                    Archives
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    
+                    Categories
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-apps " href="/apps" >
+                    <i class="fa fa-link "></i>
+                    
+                    App
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-tools " href="/tools" >
+                    <i class="fa fa-wrench "></i>
+                    
+                    Tool
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-reading " href="/reading" >
+                    <i class="fa fa-book "></i>
+                    
+                    Reading
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-about " href="/about" >
+                    <i class="fa fa-user "></i>
+                    
+                    About
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-search modal-trigger " href="#search" >
+                    <i class="fa fa-search "></i>
+                    
+                    Search
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav indigo darken-1" id="category-menu">
+    
+
+            
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Linux/">
+                    Linux <span class="right">8</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tips/">
+                    Tips <span class="right">7</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Deep-Learning/">
+                    Deep-Learning <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Proxy/">
+                    Proxy <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/GO/">
+                    GO <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tools/">
+                    Tools <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Ubuntu/">
+                    Ubuntu <span class="right">4</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Spider/">
+                    Spider <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/区块链/">
+                    区块链 <span class="right">7</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/算法/">
+                    算法 <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Web/">
+                    Web <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Algorithms/">
+                    Algorithms <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Latex/">
+                    Latex <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/密码学/">
+                    密码学 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/杂思/">
+                    杂思 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Android/">
+                    Android <span class="right">25</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Github/">
+                    Github <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Git/">
+                    Git <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+<div id="search" class="modal search-modal">
+    <div class="row">
+        <div class="input-field col s12">
+              <input id="search-input" type="text">
+              <label for="search-input">Search</label>
+        </div>
+
+    </div>
+    <div id="search-result" class="search-result col s12">
+
+    </div>
+</div>
+
+    <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper indigo">
+        <span class="breadcrumb">Current page(Categories)</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/Web/">Web</a>
+
+
+        
+
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>添加Gitment评论系统踩过的坑</h1>
+    
+
+
+            </div>
+            <i class="fa fa-calendar"></i><time class="green-link-context" datetime="2018-01-31T06:26:00.000Z"><a href="/2018/01/31/2018-01-31-gitment/">2018-01-31</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/gitment/" class="chip green lighten-1">gitment</a>
+        
+            <a href="/tags/github/" class="chip green lighten-1">github</a>
+        
+            <a href="/tags/github-issue/" class="chip green lighten-1">github issue</a>
+        
+    </div>
+    
+
+
+            <div class="toc green-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#备忘-配置流程"><span class="section table-of-contents-number">1.</span> <span class="section table-of-contents-text">备忘-配置流程</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#在setting-OAuth-Application-注册页面完成注册"><span class="section table-of-contents-number">1.1.</span> <span class="section table-of-contents-text">在setting - OAuth Application 注册页面完成注册</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#在-config-yaml添加"><span class="section table-of-contents-number">1.2.</span> <span class="section table-of-contents-text">在_config.yaml添加</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#在comment-ejs添加"><span class="section table-of-contents-number">1.3.</span> <span class="section table-of-contents-text">在comment.ejs添加</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#初始化"><span class="section table-of-contents-number">1.4.</span> <span class="section table-of-contents-text">初始化</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#坑"><span class="section table-of-contents-number">2.</span> <span class="section table-of-contents-text">坑</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#Error：NOT-FOUND"><span class="section table-of-contents-number">2.1.</span> <span class="section table-of-contents-text">Error：NOT FOUND</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#Error-Comments-Not-Initialized"><span class="section table-of-contents-number">2.2.</span> <span class="section table-of-contents-text">Error: Comments Not Initialized</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#初始化时在评论框点击登录，但是没有跳到授权页面"><span class="section table-of-contents-number">2.3.</span> <span class="section table-of-contents-text">初始化时在评论框点击登录，但是没有跳到授权页面</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#Error：validation-failed"><span class="section table-of-contents-number">2.4.</span> <span class="section table-of-contents-text">Error：validation failed</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#2018-02-25更新"><span class="section table-of-contents-number">2.4.1.</span> <span class="section table-of-contents-text">2018-02-25更新</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#大小写问题"><span class="section table-of-contents-number">2.5.</span> <span class="section table-of-contents-text">大小写问题</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#测试时产生的issue何去何从"><span class="section table-of-contents-number">2.6.</span> <span class="section table-of-contents-text">测试时产生的issue何去何从</span></a></li></ol></li></ol>
+</div>
+
+
+            <div class="entry green-link-context">
+                <h1 id="备忘-配置流程"><a href="#备忘-配置流程" class="headerlink" title="备忘-配置流程"></a>备忘-配置流程</h1><h2 id="在setting-OAuth-Application-注册页面完成注册"><a href="#在setting-OAuth-Application-注册页面完成注册" class="headerlink" title="在setting - OAuth Application 注册页面完成注册"></a>在<a href="https://github.com/settings/applications/new" target="_blank" rel="noopener">setting - OAuth Application 注册页面</a>完成注册</h2><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Application <span class="string">Name:</span> gitment 评论 <span class="comment">//随便填</span></span><br><span class="line">Homepage <span class="string">Url:</span> <span class="string">http:</span><span class="comment">//XiChen.pub //自己的域名</span></span><br><span class="line">Application <span class="string">description:</span> <span class="comment">//随便填，留空也可以</span></span><br><span class="line">Authorization Callback <span class="string">URL:</span> <span class="string">http:</span><span class="comment">//XiChen.pub //自己的域名</span></span><br></pre></td></tr></table></figure>
+<p>注册成功后会得到<code>Client ID</code>和<code>Client Secret</code></p>
+<h2 id="在-config-yaml添加"><a href="#在-config-yaml添加" class="headerlink" title="在_config.yaml添加"></a>在<code>_config.yaml</code>添加</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">gitment:</span></span><br><span class="line"><span class="attr">  enable:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">  id:</span> <span class="string">''</span> <span class="comment">#页面 ID, 可选。默认为 location.href</span></span><br><span class="line"><span class="attr">  owner:</span> <span class="string">linxueyuanstdio</span></span><br><span class="line"><span class="attr">  repo:</span> <span class="string">linxueyuanstdio.github.io</span> <span class="comment">#存储评论的 repo</span></span><br><span class="line"><span class="attr">  client_id:</span> <span class="string">'2f7f71f1ba398039ff23'</span> <span class="comment">#你的 Client ID</span></span><br><span class="line"><span class="attr">  client_secret:</span> <span class="string">'3ebc908a7042fef2d56a83a2eb8c18777374a087'</span> <span class="comment">#你的 Client secret</span></span><br></pre></td></tr></table></figure>
+<h2 id="在comment-ejs添加"><a href="#在comment-ejs添加" class="headerlink" title="在comment.ejs添加"></a>在<code>comment.ejs</code>添加</h2><figure class="highlight erb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">%</span></span></span><span class="ruby"> <span class="keyword">if</span> (theme.gitment.client_id &amp;&amp; theme.gitment.client_secret &amp;&amp; theme.gitment.enable )&#123; </span><span class="xml"><span class="tag">%&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"gitment_container"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"https://imsun.github.io/gitment/style/default.css"</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://imsun.github.io/gitment/dist/gitment.browser.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span></span><br><span class="line"><span class="xml">    var gitment = new Gitment(&#123;</span></span><br><span class="line"><span class="xml">        id: '<span class="tag">&lt;<span class="name">%=</span></span></span><span class="ruby"> page.title </span><span class="xml"><span class="tag">%&gt;</span>',</span></span><br><span class="line"><span class="xml">        owner: '<span class="tag">&lt;<span class="name">%=</span></span></span><span class="ruby"> theme.gitment.owner </span><span class="xml"><span class="tag">%&gt;</span>',</span></span><br><span class="line"><span class="xml">        repo: '<span class="tag">&lt;<span class="name">%=</span></span></span><span class="ruby"> theme.gitment.repo </span><span class="xml"><span class="tag">%&gt;</span>',</span></span><br><span class="line"><span class="xml">        oauth: &#123;</span></span><br><span class="line"><span class="xml">            client_id: '<span class="tag">&lt;<span class="name">%=</span></span></span><span class="ruby"> theme.gitment.client_id </span><span class="xml"><span class="tag">%&gt;</span>',</span></span><br><span class="line"><span class="xml">            client_secret: '<span class="tag">&lt;<span class="name">%=</span></span></span><span class="ruby"> theme.gitment.client_secret </span><span class="xml"><span class="tag">%&gt;</span>',</span></span><br><span class="line"><span class="xml">        &#125;,</span></span><br><span class="line"><span class="xml">    &#125;)</span></span><br><span class="line"><span class="xml">    gitment.render('gitment_container')</span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">%</span></span></span><span class="ruby"> &#125; </span><span class="xml"><span class="tag">%&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><p>其实到这里差不多已经配置好了 只需要初始化一下</p>
+<ol>
+<li>发布你的页面</li>
+<li>然后在评论框登录你的github账号，必须跟第二步owner用户名相同的账号</li>
+<li>登录之后点击初始化按钮</li>
+</ol>
+<h1 id="坑"><a href="#坑" class="headerlink" title="坑"></a>坑</h1><h2 id="Error：NOT-FOUND"><a href="#Error：NOT-FOUND" class="headerlink" title="Error：NOT FOUND"></a>Error：NOT FOUND</h2><p>owner或者repo配置错误了，照着第二步来就好，网页端生成后如下<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="actionscript">    <span class="keyword">var</span> gitment = <span class="keyword">new</span> Gitment(&#123;</span></span><br><span class="line"><span class="actionscript">        id: <span class="string">'blog comment'</span>,</span></span><br><span class="line"><span class="actionscript">        owner: <span class="string">'linxueyuanstdio'</span>,</span></span><br><span class="line"><span class="actionscript">        repo: <span class="string">'linxueyuanstdio.github.io'</span>,</span></span><br><span class="line"><span class="undefined">        oauth: &#123;</span></span><br><span class="line"><span class="actionscript">            client_id: <span class="string">'2f7f71f1ba398039ff23'</span>,</span></span><br><span class="line"><span class="actionscript">            client_secret: <span class="string">'3ebc908a7042fef2d56a83a2eb8c18777374a087'</span>,</span></span><br><span class="line"><span class="undefined">        &#125;,</span></span><br><span class="line"><span class="undefined">    &#125;)</span></span><br><span class="line"><span class="actionscript">    gitment.render(<span class="string">'gitment_container'</span>)</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<h2 id="Error-Comments-Not-Initialized"><a href="#Error-Comments-Not-Initialized" class="headerlink" title="Error: Comments Not Initialized"></a>Error: Comments Not Initialized</h2><ul>
+<li>在注册<code>OAuth Application</code>这个步骤中，给<code>Authorization callback URL</code>指定的地址错了</li>
+<li>还没有在该页面的Gitment评论区登陆GitHub账号</li>
+</ul>
+<h2 id="初始化时在评论框点击登录，但是没有跳到授权页面"><a href="#初始化时在评论框点击登录，但是没有跳到授权页面" class="headerlink" title="初始化时在评论框点击登录，但是没有跳到授权页面"></a>初始化时在评论框点击登录，但是没有跳到授权页面</h2><p>不要在本地测试，因为在<a href="https://github.com/settings/applications/new" target="_blank" rel="noopener">setting - OAuth Application 注册页面</a>填的<code>Authorization Callback URL</code>是自己的域名，不是本地调试的域名，比如<code>http://localhost:4000/</code>。当然，蛋疼的话可以另外申请一个<code>OAuth Application</code>填<code>http://localhost:4000/</code>也是可以的。</p>
+<h2 id="Error：validation-failed"><a href="#Error：validation-failed" class="headerlink" title="Error：validation failed"></a>Error：validation failed</h2><p>看开发者工具的console，跟踪过去</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Failed <span class="keyword">to</span> load resource: the<span class="built_in"> server </span>responded with a status of 422 (Unprocessable Entity)</span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">POST https:<span class="regexp">//</span>api.github.com<span class="regexp">/repos/</span>linxueyuanstdio<span class="regexp">/linxueyuanstdio.github.io/i</span>ssues <span class="number">422</span> (Unprocessable Entity)</span><br></pre></td></tr></table></figure>
+<p>在<code>Network</code>那里找到原因，是id不合法。原来的gitment有一项id配置成了<code>window.location.pathname</code>，但仍报错。</p>
+<div class="image-package"><br><img src="/assets/blog/img/2018-01-31/0.png" width="700"><br></div>
+
+<p>尝试去掉id，留空行不行？按官网文档应该可以的，但是报错=. =。</p>
+<p>思考一下，设定的id给评论对应的issue一个label，这个label的值就是id的值，那么id的作用应该是使issue和文章通过label连接在一起。</p>
+<p>那么写死<code>id: &#39;blog comment&#39;</code>行不行呢？不行，每篇文章的评论是要根据id动态加载的，写死的话导致所有的文章共享一个issue。</p>
+<p>麻痹，感觉这篇文章坑了我<a href="https://extremegtr.github.io/2017/09/07/Add-Gitment-comment-system-to-hexo-theme-NexT/" target="_blank" rel="noopener">添加Gitment评论系统到Hexo主题NexT</a>，而且官网的默认配置（把id留空）不对。</p>
+<p>冷静，继续追踪</p>
+<div class="image-package"><br><img src="/assets/blog/img/2018-01-31/2.png" width="700"><br></div>
+
+<p>传值是对的呀…</p>
+<p>既然知道传值对了，id的作用也清楚了，难道是GitHub在搞事情？</p>
+<p>去新建一个label，把值复制进去…</p>
+<div class="image-package"><br><img src="/assets/blog/img/2018-01-31/1.png" width="700"><br></div>
+
+<p>卧槽，真的有长度限制！</p>
+<p>那就简单了，只取title做id，平时写标题不要太浪~~~</p>
+<figure class="highlight erb"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml">id: '<span class="tag">&lt;<span class="name">%=</span></span></span><span class="ruby"> page.title </span><span class="xml"><span class="tag">%&gt;</span>'</span></span><br></pre></td></tr></table></figure>
+<h3 id="2018-02-25更新"><a href="#2018-02-25更新" class="headerlink" title="2018-02-25更新"></a>2018-02-25更新</h3><p>最近在整理项目开发的系列文章，发现标题不是想不浪就能克制得住的哇。评论中<a href="https://github.com/iHTCboy" target="_blank" rel="noopener">iHTCboy</a>的解决方法很有通用性，就采用他的方法好了。</p>
+<p>主要思想是用时间作id</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">id</span>: '&lt;%= page.<span class="built_in">date</span> %&gt;'</span><br></pre></td></tr></table></figure>
+<p>这样传给github的标签是定长的，不会超过长度限制。同时<code>date</code>可以自己写，只要精确到分秒，区分文章不是问题。Good job!</p>
+<p>哇！！！写标题快浪起来！！！</p>
+<ul>
+<li>PS：一个date的例子：<code>date: 2018-02-25 11:48:00.000000000+8:00</code> 更改后面的0可以达到毫秒微秒纳秒级别</li>
+<li>PS：<a href="https://github.com/xjzsq" target="_blank" rel="noopener">xjzsq</a>的方法也很好，思想是用副标题作id，可以看下<a href="http://www.xjdesyxx.top/2018/02/07/errsln/" target="_blank" rel="noopener">他的文章</a></li>
+</ul>
+<h2 id="大小写问题"><a href="#大小写问题" class="headerlink" title="大小写问题"></a>大小写问题</h2><p>配置项中，可能github账号中含大小写，比如我的是<code>LinXueyuanStdio</code>，但是在配置时不用关心大小写问题，因为POST的时候一律转成小写</p>
+<h2 id="测试时产生的issue何去何从"><a href="#测试时产生的issue何去何从" class="headerlink" title="测试时产生的issue何去何从"></a>测试时产生的issue何去何从</h2><p>删不掉的，死心吧。<br>不过可以改title，改内容，改label等等，对应issues的每一个操作都会记录下来。<br>另外，版本提交的commits，也是删不掉的。</p>
+<p>顺便总结一下<a href="http://xichen.pub/2018/01/31/2018-01-31-github-issue-usage/">github issue 的用法</a></p>
+<p>参考：</p>
+<ul>
+<li><a href="https://extremegtr.github.io/2017/09/07/Add-Gitment-comment-system-to-hexo-theme-NexT/" target="_blank" rel="noopener">添加Gitment评论系统到Hexo主题NexT</a></li>
+<li><a href="http://vayi.site/2017/08/16/Hexo-gitment/" target="_blank" rel="noopener">Hexo+gitment</a></li>
+<li><a href="https://imsun.net/posts/gitment-introduction/#more" target="_blank" rel="noopener">Gitment：使用 GitHub Issues 搭建评论系统</a></li>
+</ul>
+
+                
+<p class="green-link-context prev-btn">
+    <a href="/2018/01/31/2018-01-31-github-issue-usage/" rel="next" title="github issue 的用法">
+    Prev: github issue 的用法
+  </a>
+</p>
+
+
+
+<p class="green-link-context next-btn">
+    <a href="/2018/01/27/2018-01-27-Ethereum-Dapp-Tutorial-Part-3/" rel="next" title="Ethereum Dapp Tutorial — Part 3">
+    Next: Ethereum Dapp Tutorial — Part 3
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+
+
+
+    <div id="gitment_container"></div>
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <link rel="stylesheet" href="/css/gitment.css" media="screen" type="text/css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <script>
+    var gitment = new Gitment({
+        id: 'Wed Jan 31 2018 14:26:00 GMT+0800',
+        owner: 'linxueyuanstdio',
+        repo: 'linxueyuanstdio.github.io',
+        oauth: {
+            client_id: '2f7f71f1ba398039ff23',
+            client_secret: '3ebc908a7042fef2d56a83a2eb8c18777374a087',
+        },
+    })
+    gitment.render('gitment_container')
+    </script>
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large pink">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect green" title="Return to top"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse yellow darken-1"  data-activates="main-menu" title="Menu"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer indigo darken-1">
+    
+    <div class="footer-container container">
+        <div class="row">
+            
+            <div class="social-group col m4 s12">
+                <h5 class="white-text">Social</h5>
+                
+                    <a class="social-link" href="http://weibo.com/LinXueyuanStdio" target="_blank">
+                        <i class="fa fa-2x fa-weibo"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://github.com/LinXueyuanStdio" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://www.zhihu.com/people/lin-xue-yuan-86" target="_blank">
+                        <i class="fa fa-2x fa-graduation-cap"></i>
+                    </a>
+                
+                    <a class="social-link" href="http://twitter.com/cwBQ3A5cz3Jzso7" target="_blank">
+                        <i class="fa fa-2x fa-twitter"></i>
+                    </a>
+                
+                    <a class="social-link" href="mailto:761516186@qq.com" target="_blank">
+                        <i class="fa fa-2x fa-envelope"></i>
+                    </a>
+                
+                    <a class="social-link" href="/atom.xml" target="_blank">
+                        <i class="fa fa-2x fa-rss"></i>
+                    </a>
+                
+                
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+    </script>
+    <div class="site-visitors-container white-text">
+        <span>
+            <i class="fa fa-user"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+        </span>
+        <span>&nbsp;|&nbsp;</span>
+        <span>
+            <i class="fa fa-eye"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+        </span>
+    </div>
+
+
+            </div>
+            
+
+            
+            <div class="col m8 s12">
+                <h5 class="white-text">Links</h5>
+                
+                    <a class="social-link" href="http://raytaylorlin.com/" target="_blank">raytaylorism主题作者</a>
+                
+                    <a class="social-link" href="https://github.com/raytaylorlin" target="_blank">Github地址</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    
+
+    <div class="footer-copyright green-link-context">
+        <div class="container">
+            © 2018 xichen.pub, All rights reserved.
+            <p class="right" style="margin-top: 0;">Blog powered by <a href="https://hexo.io">Hexo</a> | Theme <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
+        </div>
+    </div>
+</footer>
+
+
+    <noscript>
+    <div class="noscript">
+        <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+    </div>
+</noscript>
+<div class="noscript">
+    <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+<script src="/js/canvas.js"></script>
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 隐藏禁用javascript（针对微信内置浏览器）的提示
+            $('.noscript').hide();
+
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
+
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed').each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt') || ' ');
+            }).materialbox();
+
+            // 优化表格的显示
+            $('table').each(function() {
+                var $table = $(this);
+                // 除去多行代码的情况
+                if ($table.find('pre').length == 0) {
+                    $table.addClass('responsive-table striped bordered');
+                }
+            });
+
+            // 首页幻灯片
+            $('.slider').slider({indicators: true, full_width: true, interval: 8000});
+
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+
+            // 目录随屏幕滚动（防止目录过长越过footer）
+            var $toc = $('.toc');
+            var scrollTargetTop = 0;
+            $(window).scroll(function() {
+                var $activeLink = $toc.find('a.active.section');
+                if ($(window).scrollTop() < 100) {
+                    scrollTargetTop = 0;
+                } else {
+                    if ($activeLink[0]) {
+                        scrollTargetTop = $activeLink.offset().top - $toc.offset().top;
+                    }
+                }
+                $toc.css('top', '-' + scrollTargetTop + 'px');
+            });
+
+            // 修正文章目录的left-border颜色
+            var color = $('.table-of-contents-text').css('color');
+            $('.table-of-contents-link').css('border-left-color', color);
+
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({
+                    scrollTop: 0
+                }, 500);
+            });
+
+            // 重置读书页面的Tab标签页的颜色
+            $('li.tab a').hover(function() {
+                $(this).toggleClass('text-lighten-4');
+            });
+            $('.indicator').addClass('pink lighten-2');
+
+            
+            // 添加new标签
+            $('.menu-apps').append('<span class="new badge pink"></span>');
+            
+
+            // 搜索功能
+            $('.modal-trigger').leanModal({
+                // 打开搜索框时自动聚焦
+                ready: function() {
+                    if ($('#search').is(":visible")) {
+                        $('#search-input').focus();
+                    }
+                }
+            });
+            var searchXml = "search.xml";
+            if (searchXml.length == 0) {
+             	searchXml = "search.xml";
+            }
+            var searchPath = "/" + searchXml;
+            initSearch(searchPath, 'search-input', 'search-result');
+        });
+
+        // 初始化搜索与匹配函数
+        var initSearch = function(path, search_id, content_id) {
+            'use strict';
+            $.ajax({
+                url: path,
+                dataType: "xml",
+                success: function(xmlResponse) {
+                    // get the contents from search data
+                    var datas = $("entry", xmlResponse).map(function() {
+                        return {
+                            title: $("title", this).text(),
+                            content: $("content", this).text(),
+                            url: $("url", this).text()
+                        };
+                    }).get();
+                    var $input = document.getElementById(search_id);
+                    var $resultContent = document.getElementById(content_id);
+                    $input.addEventListener('input', function() {
+                        var str = '<ul class=\"search-result-list\">';
+                        var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                        $resultContent.innerHTML = "";
+                        if (this.value.trim().length <= 0) {
+                            return;
+                        }
+                        // perform local searching
+                        datas.forEach(function(data) {
+                            var isMatch = true;
+                            var content_index = [];
+                            var data_title = data.title.trim().toLowerCase();
+                            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                            var data_url = data.url;
+                            var index_title = -1;
+                            var index_content = -1;
+                            var first_occur = -1;
+                            // only match artiles with not empty titles and contents
+                            if (data_title != '' && data_content != '') {
+                                keywords.forEach(function(keyword, i) {
+                                    index_title = data_title.indexOf(keyword);
+                                    index_content = data_content.indexOf(keyword);
+                                    if (index_title < 0 && index_content < 0) {
+                                        isMatch = false;
+                                    } else {
+                                        if (index_content < 0) {
+                                            index_content = 0;
+                                        }
+                                        if (i == 0) {
+                                            first_occur = index_content;
+                                        }
+                                    }
+                                });
+                            }
+                            // show search results
+                            if (isMatch) {
+                                keywords.forEach(function(keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword green lighten-2\">" + keyword + "</span>");
+                                });
+
+                                str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                                if (first_occur >= 0) {
+                                    // cut out 100 characters
+                                    var start = first_occur - 20;
+                                    var end = first_occur + 80;
+                                    if (start < 0) {
+                                        start = 0;
+                                    }
+                                    if (start == 0) {
+                                        end = 100;
+                                    }
+                                    if (end > content.length) {
+                                        end = content.length;
+                                    }
+                                    var match_content = content.substring(start, end);
+                                    // highlight all keywords
+                                    keywords.forEach(function(keyword) {
+                                        var regS = new RegExp(keyword, "gi");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword green lighten-2\">" + keyword + "</span>");
+                                    });
+
+                                    str += "<p class=\"search-result\">..." + match_content + "...</p>"
+                                }
+                                str += "</li>";
+                            }
+                        });
+                        str += "</ul>";
+                        $resultContent.innerHTML = str;
+                    });
+                }
+            });
+        }
+    })(jQuery);
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+</body>
+</html>

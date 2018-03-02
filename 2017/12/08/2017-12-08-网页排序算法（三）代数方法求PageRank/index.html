@@ -1,0 +1,841 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>网页排序算法（三）代数方法求PageRank | XiChen&#39;s Blog</title>
+    <meta name="author" content="Lin Xueyuan">
+    
+    <meta name="description" content="嗨，我是兮尘，全栈数据学徒。这里没有花俏艳丽的魔法，没有苍蛮霸道的斗气，有的，仅仅是繁衍到巅峰的代码！">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="网页排序算法（三）代数方法求PageRank"/>
+    <meta property="og:site_name" content="XiChen"/>
+
+    
+    <meta property="og:image" content=""/>
+    
+
+    <link rel="icon" type="image/png" href="/assets/images/favicon.ico" />
+    <link rel="alternate" href="/atom.xml" title="XiChen" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+    <link rel="stylesheet" href="//fonts.gdgdocs.org/css?family=Lobster" type="text/css">
+    
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
+
+    <nav class="indigo nav">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="">
+            <div style="font-family: Lobster, Monospace;">
+                <a href="/" class="brand-logo hide-on-med-and-down" style="font-family: Lobster, Monospace;">
+                    XiChen
+                </a>
+            </div>
+            <ul class="nav-menu right hide-on-med-and-down">
+                
+                    <li class="tab">
+                        <a class="menu-home " href="/"
+                            >
+                                <i class="fa fa-home "></i>
+                                
+                                    Home
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-archive " href="/archives"
+                            >
+                                <i class="fa fa-archive "></i>
+                                
+                                    Archives
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-category category-menu" href="javascript:;"
+                            data-activates="category-menu"
+                            >
+                                <i class="fa fa-bookmark "></i>
+                                
+                                    Categories
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-apps " href="/apps"
+                            >
+                                <i class="fa fa-link "></i>
+                                
+                                    App
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-tools " href="/tools"
+                            >
+                                <i class="fa fa-wrench "></i>
+                                
+                                    Tool
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-reading " href="/reading"
+                            >
+                                <i class="fa fa-book "></i>
+                                
+                                    Reading
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-about " href="/about"
+                            >
+                                <i class="fa fa-user "></i>
+                                
+                                    About
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-search modal-trigger " href="#search"
+                            >
+                                <i class="fa fa-search "></i>
+                                
+                                    Search
+                        </a>
+                    </li>
+                    
+            </ul>
+            <div>
+    <ul class="side-nav indigo darken-1" id="main-menu">
+        
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4 no-padding logo-a">
+                    <img class="avatar-image circle responsive-img logo" src="/assets/images/avatar.jpg" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper no-padding">
+                    <div class="valign">
+                        <p class="name">兮尘</p>
+                        <p class="desc">Web前端/Android/技术宅</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-home " href="/" >
+                    <i class="fa fa-home "></i>
+                    
+                    Home
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-archive " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    
+                    Archives
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    
+                    Categories
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-apps " href="/apps" >
+                    <i class="fa fa-link "></i>
+                    
+                    App
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-tools " href="/tools" >
+                    <i class="fa fa-wrench "></i>
+                    
+                    Tool
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-reading " href="/reading" >
+                    <i class="fa fa-book "></i>
+                    
+                    Reading
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-about " href="/about" >
+                    <i class="fa fa-user "></i>
+                    
+                    About
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-search modal-trigger " href="#search" >
+                    <i class="fa fa-search "></i>
+                    
+                    Search
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav indigo darken-1" id="category-menu">
+    
+
+            
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Linux/">
+                    Linux <span class="right">8</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tips/">
+                    Tips <span class="right">7</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Deep-Learning/">
+                    Deep-Learning <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Proxy/">
+                    Proxy <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/GO/">
+                    GO <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tools/">
+                    Tools <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Ubuntu/">
+                    Ubuntu <span class="right">4</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Spider/">
+                    Spider <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/区块链/">
+                    区块链 <span class="right">7</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/算法/">
+                    算法 <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Web/">
+                    Web <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Algorithms/">
+                    Algorithms <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Latex/">
+                    Latex <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/密码学/">
+                    密码学 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/杂思/">
+                    杂思 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Android/">
+                    Android <span class="right">25</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Github/">
+                    Github <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Git/">
+                    Git <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+<div id="search" class="modal search-modal">
+    <div class="row">
+        <div class="input-field col s12">
+              <input id="search-input" type="text">
+              <label for="search-input">Search</label>
+        </div>
+
+    </div>
+    <div id="search-result" class="search-result col s12">
+
+    </div>
+</div>
+
+    <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper indigo">
+        <span class="breadcrumb">Current page(Categories)</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/算法/">算法</a>
+
+
+        
+
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>网页排序算法（三）代数方法求PageRank</h1>
+    
+
+
+            </div>
+            <i class="fa fa-calendar"></i><time class="green-link-context" datetime="2017-12-08T12:22:00.000Z"><a href="/2017/12/08/2017-12-08-网页排序算法（三）代数方法求PageRank/">2017-12-08</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/PageRank/" class="chip green lighten-1">PageRank</a>
+        
+    </div>
+    
+
+
+            <div class="toc green-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#代数方法"><span class="section table-of-contents-number">1.</span> <span class="section table-of-contents-text">代数方法</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#Adjacency-function"><span class="section table-of-contents-number">1.1.</span> <span class="section table-of-contents-text">Adjacency function</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#矩阵M"><span class="section table-of-contents-number">1.2.</span> <span class="section table-of-contents-text">矩阵M</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#求解"><span class="section table-of-contents-number">1.3.</span> <span class="section table-of-contents-text">求解</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#Python源代码"><span class="section table-of-contents-number">2.</span> <span class="section table-of-contents-text">Python源代码</span></a></li></ol>
+</div>
+
+
+            <div class="entry green-link-context">
+                <p>本文结合实例介绍如何用代数方法求PageRank。</p>
+<p>博文<a href="https://linxueyuanstdio.github.io/2017/12/%E7%BD%91%E9%A1%B5%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95-%E4%B8%80-PageRank/" target="_blank" rel="noopener">《网页排序算法（一）PageRank》</a>介绍了PageRank，计算PageRank可以用迭代的方法也可以用代数的方法，其背后的数学基本运算是一样的，即：</p>
+<p>$$PR(p<em>i)=\frac{1−d}{N}+d \sum</em>{p_j\in B(p_i)} \frac{PR(p_j)}{L(p_j)}$$</p>
+<p>下文结合图1介绍如何用代数方法求PageRank。</p>
+<div class="image-package"><br><img src="/assets/blog/img/2017-12-8/0.png" width="700"><br><br><br><div class="image-caption">Fig. 1: PageRanks for a simple network (image from Wikipedia)</div><br></div>
+
+<p>为了便于讨论，将图1下方的节点分别标上G, H, I, J, K，如下图所示：</p>
+<div class="image-package"><br><img src="/assets/blog/img/2017-12-8/1.png" width="700"><br><br><br><div class="image-caption"><br>Fig. 2: Draw Fig. 1 in NetworkX.<br></div><br></div>
+
+<h1 id="代数方法"><a href="#代数方法" class="headerlink" title="代数方法"></a>代数方法</h1><p>根据1中的等式，把所有节点都放在一块，可以得到：</p>
+<p>$$\begin{bmatrix}<br>PR(p_1) \<br>PR(p_2) \<br>\vdots \<br>PR(p_3)<br>\end{bmatrix} =<br>\begin{bmatrix}<br>{(1-d)/ N} \<br>{(1-d) / N} \<br>\vdots \<br>{(1-d) / N}<br>\end{bmatrix}</p>
+<ul>
+<li>d<br>\begin{bmatrix}<br>\ell(p_1,p_1) &amp; \ell(p_1,p_2) &amp; \cdots &amp; \ell(p_1,p_N) \<br>\ell(p_2,p_1) &amp; \ddots &amp;  &amp; \vdots \<br>\vdots &amp; &amp; \ell(p_i,p_j) &amp; \<br>\ell(p_N,p_1) &amp; \cdots &amp; &amp; \ell(p_N,p_N)<br>\end{bmatrix}<br>\begin{bmatrix}<br>PR(p_1) \<br>PR(p_2) \<br>\vdots \<br>PR(p_3)<br>\end{bmatrix}$$</li>
+</ul>
+<p>上述等式可以缩写为：</p>
+<p>$$\mathbf{R} = d \mathcal{M}\mathbf{R} + \frac{1-d}{N} \mathbf{1}.       (**)$$</p>
+<p>其中，1为N维的列向量，所有元素皆为1。以图1为例，该列向量为，<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">N = len(G.nodes())      <span class="comment"># N = 11</span></span><br><span class="line">column_vector = np.ones((N, <span class="number">1</span>), dtype=np.int)</span><br><span class="line"> </span><br><span class="line">[[<span class="number">1</span>]</span><br><span class="line"> [<span class="number">1</span>]</span><br><span class="line"> [<span class="number">1</span>]</span><br><span class="line"> [<span class="number">1</span>]</span><br><span class="line"> [<span class="number">1</span>]</span><br><span class="line"> [<span class="number">1</span>]</span><br><span class="line"> [<span class="number">1</span>]</span><br><span class="line"> [<span class="number">1</span>]</span><br><span class="line"> [<span class="number">1</span>]</span><br><span class="line"> [<span class="number">1</span>]</span><br><span class="line"> [<span class="number">1</span>]]</span><br></pre></td></tr></table></figure></p>
+<h2 id="Adjacency-function"><a href="#Adjacency-function" class="headerlink" title="Adjacency function"></a>Adjacency function</h2><p>邻接函数（adjacency function）$$\ell(p_1,p_2)$$组成了矩阵M，</p>
+<p>$$\mathcal{M}_{ij} =\ell(pi,pj) =  \begin{cases} 1 /L(p_j) , &amp; \mbox{if }j\mbox{ links to }i\ L(pj)是指从pj链出去的网页数目\ 0, &amp; \mbox{otherwise} \end{cases}$$</p>
+<p>这样矩阵每一行乘以R，就得到了新的PR值，比如第二行（图1的节点B），</p>
+<p>$$\begin{align}<br>M_{2j}    &amp;=\ell(p_2,p_1)⋅PR(p_2)+\ell(p_2,p_2)⋅PR(p_2)+⋯+\ell(p_2,p_N)⋅PR(p_2)\<br>&amp;=0 (‘A’)+0 (‘B’)+1 (‘C’)+12 (‘D’)+13 (‘E’)+12 (‘F’) +12 (‘G’)+12 (`H’)+12 (‘I’)+0 (‘J’)+0 (‘K’)<br> \end{align}$$</p>
+<p>以节点<code>G</code>为例，<code>G</code>给<code>B</code>和<code>E</code>投票，所以<code>B</code>得到<code>1/2</code>。</p>
+<p>矩阵<code>M</code>每一列加起来都是<code>1</code>（值得注意的是，对于没有出链的节点，列加起来等于0，比如图1的节点<code>A</code>），即<br>$$\sum_{i=1}^{N}\ell(p_i,p_j)=1$$。事实上，M是一个转移矩阵transition matrix（也叫概率矩阵probability matrix，马尔可夫矩阵Markov matrix）。因此，PageRank是eigenvector centrality的一个变体。</p>
+<h2 id="矩阵M"><a href="#矩阵M" class="headerlink" title="矩阵M"></a>矩阵M</h2><p>事实上，M可以被看成normalized的图邻接矩阵，即：</p>
+<p>$$M=(K^{−1}A)^T$$<br>其中，A为图的邻接矩阵，以图1为例，<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Get adjacency matrix</span></span><br><span class="line">nodelist = [<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>, <span class="string">'D'</span>, <span class="string">'E'</span>, <span class="string">'F'</span>, <span class="string">'G'</span>, <span class="string">'H'</span>, <span class="string">'I'</span>, <span class="string">'J'</span>, <span class="string">'K'</span>]  <span class="comment"># sorted(G.nodes())</span></span><br><span class="line">A = nx.to_numpy_matrix(G, nodelist)</span><br><span class="line"> </span><br><span class="line">  <span class="string">'A'</span> <span class="string">'B'</span> <span class="string">'C'</span> <span class="string">'D'</span> <span class="string">'E'</span> <span class="string">'F'</span> <span class="string">'G'</span> <span class="string">'H'</span> <span class="string">'I'</span> <span class="string">'J'</span> <span class="string">'K'</span></span><br><span class="line">[[ <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>]</span><br><span class="line"> [ <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">1.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>]</span><br><span class="line"> [ <span class="number">0.</span>  <span class="number">1.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>]</span><br><span class="line"> [ <span class="number">1.</span>  <span class="number">1.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>]</span><br><span class="line"> [ <span class="number">0.</span>  <span class="number">1.</span>  <span class="number">0.</span>  <span class="number">1.</span>  <span class="number">0.</span>  <span class="number">1.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>]</span><br><span class="line"> [ <span class="number">0.</span>  <span class="number">1.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">1.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>]</span><br><span class="line"> [ <span class="number">0.</span>  <span class="number">1.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">1.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>]</span><br><span class="line"> [ <span class="number">0.</span>  <span class="number">1.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">1.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>]</span><br><span class="line"> [ <span class="number">0.</span>  <span class="number">1.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">1.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>]</span><br><span class="line"> [ <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">1.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>]</span><br><span class="line"> [ <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">1.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>]]</span><br></pre></td></tr></table></figure></p>
+<p>A是对角矩阵，对角线上的元素是对应节点的出度。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">nodelist = [<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>, <span class="string">'D'</span>, <span class="string">'E'</span>, <span class="string">'F'</span>, <span class="string">'G'</span>, <span class="string">'H'</span>, <span class="string">'I'</span>, <span class="string">'J'</span>, <span class="string">'K'</span>]  <span class="comment"># sorted(G.nodes())</span></span><br><span class="line">list_outdegree = map(operator.itemgetter(<span class="number">1</span>), sorted(G.out_degree().items()))</span><br><span class="line">K = np.diag(list_outdegree)</span><br><span class="line"> </span><br><span class="line">[[<span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span>]</span><br><span class="line"> [<span class="number">0</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span>]</span><br><span class="line"> [<span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span>]</span><br><span class="line"> [<span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">2</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span>]</span><br><span class="line"> [<span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">3</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span>]</span><br><span class="line"> [<span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">2</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span>]</span><br><span class="line"> [<span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">2</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span>]</span><br><span class="line"> [<span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">2</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span>]</span><br><span class="line"> [<span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">2</span> <span class="number">0</span> <span class="number">0</span>]</span><br><span class="line"> [<span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">0</span>]</span><br><span class="line"> [<span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span>]]</span><br></pre></td></tr></table></figure></p>
+<p>K的逆矩阵$$K^{-1}$$为，<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">K_inv = np.linalg.pinv(K)</span><br><span class="line"> </span><br><span class="line">[[ <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>  ]</span><br><span class="line"> [ <span class="number">0.</span>    <span class="number">1.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>  ]</span><br><span class="line"> [ <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">1.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>  ]</span><br><span class="line"> [ <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.5</span>   <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>  ]</span><br><span class="line"> [ <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.33</span>  <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>  ]</span><br><span class="line"> [ <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.5</span>   <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>  ]</span><br><span class="line"> [ <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.5</span>   <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>  ]</span><br><span class="line"> [ <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.5</span>   <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>  ]</span><br><span class="line"> [ <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.5</span>   <span class="number">0.</span>    <span class="number">0.</span>  ]</span><br><span class="line"> [ <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">1.</span>    <span class="number">0.</span>  ]</span><br><span class="line"> [ <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">1.</span>  ]]</span><br></pre></td></tr></table></figure></p>
+<p>那么，根据公式$$M=(K^{−1}A)^T$$就可以求得M，如下，<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">M = (K_inv * A).transpose()</span><br><span class="line"> </span><br><span class="line">[[ <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.5</span>   <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>  ]</span><br><span class="line"> [ <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">1.</span>    <span class="number">0.5</span>   <span class="number">0.33</span>  <span class="number">0.5</span>   <span class="number">0.5</span>   <span class="number">0.5</span>   <span class="number">0.5</span>   <span class="number">0.</span>    <span class="number">0.</span>  ]</span><br><span class="line"> [ <span class="number">0.</span>    <span class="number">1.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>  ]</span><br><span class="line"> [ <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.33</span>  <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>  ]</span><br><span class="line"> [ <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.5</span>   <span class="number">0.5</span>   <span class="number">0.5</span>   <span class="number">0.5</span>   <span class="number">1.</span>    <span class="number">1.</span>  ]</span><br><span class="line"> [ <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.33</span>  <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>  ]</span><br><span class="line"> [ <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>  ]</span><br><span class="line"> [ <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>  ]</span><br><span class="line"> [ <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>  ]</span><br><span class="line"> [ <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>  ]</span><br><span class="line"> [ <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>    <span class="number">0.</span>  ]]</span><br></pre></td></tr></table></figure></p>
+<h2 id="求解"><a href="#求解" class="headerlink" title="求解"></a>求解</h2><p>R是2.1等式的特征向量（eigenvector），求解等式得：</p>
+<p>$$\mathbf{R} =  (\mathbf{I}-d \mathcal{M})^{-1}  \frac{1-d}{N}  \mathbf{1},$$</p>
+<p>其中$$\mathbf{I}$$是单位矩阵。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">d = <span class="number">0.85</span></span><br><span class="line">I = np.identity(N)</span><br><span class="line">R = np.linalg.pinv(I - d*M) * (<span class="number">1</span>-d)/N * column_vector </span><br><span class="line"> </span><br><span class="line">[[ <span class="number">0.028</span>]</span><br><span class="line"> [ <span class="number">0.324</span>]</span><br><span class="line"> [ <span class="number">0.289</span>]</span><br><span class="line"> [ <span class="number">0.033</span>]</span><br><span class="line"> [ <span class="number">0.068</span>]</span><br><span class="line"> [ <span class="number">0.033</span>]</span><br><span class="line"> [ <span class="number">0.014</span>]</span><br><span class="line"> [ <span class="number">0.014</span>]</span><br><span class="line"> [ <span class="number">0.014</span>]</span><br><span class="line"> [ <span class="number">0.014</span>]</span><br><span class="line"> [ <span class="number">0.014</span>]]</span><br></pre></td></tr></table></figure></p>
+<p>咦，结果怎么跟图1不一样。得到R需要normalized，如此，所有节点的PR加起来才能等于1。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">R = R/sum(R)    <span class="comment"># normalized R, so that page ranks sum to 1.</span></span><br><span class="line"> </span><br><span class="line">[[ <span class="number">0.033</span>]</span><br><span class="line"> [ <span class="number">0.384</span>]</span><br><span class="line"> [ <span class="number">0.343</span>]</span><br><span class="line"> [ <span class="number">0.039</span>]</span><br><span class="line"> [ <span class="number">0.081</span>]</span><br><span class="line"> [ <span class="number">0.039</span>]</span><br><span class="line"> [ <span class="number">0.016</span>]</span><br><span class="line"> [ <span class="number">0.016</span>]</span><br><span class="line"> [ <span class="number">0.016</span>]</span><br><span class="line"> [ <span class="number">0.016</span>]</span><br><span class="line"> [ <span class="number">0.016</span>]]</span><br></pre></td></tr></table></figure></p>
+<p>用NetworkX作出来的图，是这样的：</p>
+<div class="image-package"><br><img src="/assets/blog/img/2017-12-8/2.png" width="700"><br><br><br><div class="image-caption"><br>Fig. 3: PageRanks for a simple network<br></div><br></div>
+
+<h1 id="Python源代码"><a href="#Python源代码" class="headerlink" title="Python源代码"></a>Python源代码</h1><p>NetworkX实现了PageRank的代数计算方法<code>nx.pagerank_numpy</code>，源代码在这里。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">pagerank_numpy</span><span class="params">(G, alpha=<span class="number">0.85</span>, personalization=None, weight=<span class="string">'weight'</span>, dangling=None)</span>:</span></span><br><span class="line">    <span class="string">"""Return the PageRank of the nodes in the graph.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line"> </span><br><span class="line">    <span class="keyword">if</span> len(G) == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> &#123;&#125;</span><br><span class="line"> </span><br><span class="line">    M = google_matrix(G, alpha, personalization=personalization,</span><br><span class="line">                      weight=weight, dangling=dangling)</span><br><span class="line"> </span><br><span class="line">    <span class="comment"># use numpy LAPACK solver</span></span><br><span class="line">    eigenvalues, eigenvectors = np.linalg.eig(M.T)</span><br><span class="line">    ind = eigenvalues.argsort()</span><br><span class="line"> </span><br><span class="line">    <span class="comment"># eigenvector of largest eigenvalue at ind[-1], normalized</span></span><br><span class="line">    largest = np.array(eigenvectors[:, ind[<span class="number">-1</span>]]).flatten().real</span><br><span class="line">    norm = float(largest.sum())</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">return</span> dict(zip(G, map(float, largest / norm)))</span><br></pre></td></tr></table></figure></p>
+<p>References:</p>
+<ul>
+<li>[1] <a href="http://stackoverflow.com/questions/42224302/incorrect-pagerank-calculation-result" target="_blank" rel="noopener">StackOverflow: Incorrect PageRank calculation result</a></li>
+</ul>
+
+                
+<p class="green-link-context prev-btn">
+    <a href="/2017/12/09/2017-12-9-git-tips/" rel="next" title="Git Tips">
+    Prev: Git Tips
+  </a>
+</p>
+
+
+
+<p class="green-link-context next-btn">
+    <a href="/2017/12/07/2017-12-07-网页排序算法（二）迭代方法求PageRank/" rel="next" title="网页排序算法（二）迭代方法求PageRank">
+    Next: 网页排序算法（二）迭代方法求PageRank
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+
+
+
+    <div id="gitment_container"></div>
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <link rel="stylesheet" href="/css/gitment.css" media="screen" type="text/css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <script>
+    var gitment = new Gitment({
+        id: 'Fri Dec 08 2017 20:22:00 GMT+0800',
+        owner: 'linxueyuanstdio',
+        repo: 'linxueyuanstdio.github.io',
+        oauth: {
+            client_id: '2f7f71f1ba398039ff23',
+            client_secret: '3ebc908a7042fef2d56a83a2eb8c18777374a087',
+        },
+    })
+    gitment.render('gitment_container')
+    </script>
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large pink">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect green" title="Return to top"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse yellow darken-1"  data-activates="main-menu" title="Menu"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer indigo darken-1">
+    
+    <div class="footer-container container">
+        <div class="row">
+            
+            <div class="social-group col m4 s12">
+                <h5 class="white-text">Social</h5>
+                
+                    <a class="social-link" href="http://weibo.com/LinXueyuanStdio" target="_blank">
+                        <i class="fa fa-2x fa-weibo"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://github.com/LinXueyuanStdio" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://www.zhihu.com/people/lin-xue-yuan-86" target="_blank">
+                        <i class="fa fa-2x fa-graduation-cap"></i>
+                    </a>
+                
+                    <a class="social-link" href="http://twitter.com/cwBQ3A5cz3Jzso7" target="_blank">
+                        <i class="fa fa-2x fa-twitter"></i>
+                    </a>
+                
+                    <a class="social-link" href="mailto:761516186@qq.com" target="_blank">
+                        <i class="fa fa-2x fa-envelope"></i>
+                    </a>
+                
+                    <a class="social-link" href="/atom.xml" target="_blank">
+                        <i class="fa fa-2x fa-rss"></i>
+                    </a>
+                
+                
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+    </script>
+    <div class="site-visitors-container white-text">
+        <span>
+            <i class="fa fa-user"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+        </span>
+        <span>&nbsp;|&nbsp;</span>
+        <span>
+            <i class="fa fa-eye"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+        </span>
+    </div>
+
+
+            </div>
+            
+
+            
+            <div class="col m8 s12">
+                <h5 class="white-text">Links</h5>
+                
+                    <a class="social-link" href="http://raytaylorlin.com/" target="_blank">raytaylorism主题作者</a>
+                
+                    <a class="social-link" href="https://github.com/raytaylorlin" target="_blank">Github地址</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    
+
+    <div class="footer-copyright green-link-context">
+        <div class="container">
+            © 2018 xichen.pub, All rights reserved.
+            <p class="right" style="margin-top: 0;">Blog powered by <a href="https://hexo.io">Hexo</a> | Theme <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
+        </div>
+    </div>
+</footer>
+
+
+    <noscript>
+    <div class="noscript">
+        <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+    </div>
+</noscript>
+<div class="noscript">
+    <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+<script src="/js/canvas.js"></script>
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 隐藏禁用javascript（针对微信内置浏览器）的提示
+            $('.noscript').hide();
+
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
+
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed').each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt') || ' ');
+            }).materialbox();
+
+            // 优化表格的显示
+            $('table').each(function() {
+                var $table = $(this);
+                // 除去多行代码的情况
+                if ($table.find('pre').length == 0) {
+                    $table.addClass('responsive-table striped bordered');
+                }
+            });
+
+            // 首页幻灯片
+            $('.slider').slider({indicators: true, full_width: true, interval: 8000});
+
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+
+            // 目录随屏幕滚动（防止目录过长越过footer）
+            var $toc = $('.toc');
+            var scrollTargetTop = 0;
+            $(window).scroll(function() {
+                var $activeLink = $toc.find('a.active.section');
+                if ($(window).scrollTop() < 100) {
+                    scrollTargetTop = 0;
+                } else {
+                    if ($activeLink[0]) {
+                        scrollTargetTop = $activeLink.offset().top - $toc.offset().top;
+                    }
+                }
+                $toc.css('top', '-' + scrollTargetTop + 'px');
+            });
+
+            // 修正文章目录的left-border颜色
+            var color = $('.table-of-contents-text').css('color');
+            $('.table-of-contents-link').css('border-left-color', color);
+
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({
+                    scrollTop: 0
+                }, 500);
+            });
+
+            // 重置读书页面的Tab标签页的颜色
+            $('li.tab a').hover(function() {
+                $(this).toggleClass('text-lighten-4');
+            });
+            $('.indicator').addClass('pink lighten-2');
+
+            
+            // 添加new标签
+            $('.menu-apps').append('<span class="new badge pink"></span>');
+            
+
+            // 搜索功能
+            $('.modal-trigger').leanModal({
+                // 打开搜索框时自动聚焦
+                ready: function() {
+                    if ($('#search').is(":visible")) {
+                        $('#search-input').focus();
+                    }
+                }
+            });
+            var searchXml = "search.xml";
+            if (searchXml.length == 0) {
+             	searchXml = "search.xml";
+            }
+            var searchPath = "/" + searchXml;
+            initSearch(searchPath, 'search-input', 'search-result');
+        });
+
+        // 初始化搜索与匹配函数
+        var initSearch = function(path, search_id, content_id) {
+            'use strict';
+            $.ajax({
+                url: path,
+                dataType: "xml",
+                success: function(xmlResponse) {
+                    // get the contents from search data
+                    var datas = $("entry", xmlResponse).map(function() {
+                        return {
+                            title: $("title", this).text(),
+                            content: $("content", this).text(),
+                            url: $("url", this).text()
+                        };
+                    }).get();
+                    var $input = document.getElementById(search_id);
+                    var $resultContent = document.getElementById(content_id);
+                    $input.addEventListener('input', function() {
+                        var str = '<ul class=\"search-result-list\">';
+                        var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                        $resultContent.innerHTML = "";
+                        if (this.value.trim().length <= 0) {
+                            return;
+                        }
+                        // perform local searching
+                        datas.forEach(function(data) {
+                            var isMatch = true;
+                            var content_index = [];
+                            var data_title = data.title.trim().toLowerCase();
+                            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                            var data_url = data.url;
+                            var index_title = -1;
+                            var index_content = -1;
+                            var first_occur = -1;
+                            // only match artiles with not empty titles and contents
+                            if (data_title != '' && data_content != '') {
+                                keywords.forEach(function(keyword, i) {
+                                    index_title = data_title.indexOf(keyword);
+                                    index_content = data_content.indexOf(keyword);
+                                    if (index_title < 0 && index_content < 0) {
+                                        isMatch = false;
+                                    } else {
+                                        if (index_content < 0) {
+                                            index_content = 0;
+                                        }
+                                        if (i == 0) {
+                                            first_occur = index_content;
+                                        }
+                                    }
+                                });
+                            }
+                            // show search results
+                            if (isMatch) {
+                                keywords.forEach(function(keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword green lighten-2\">" + keyword + "</span>");
+                                });
+
+                                str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                                if (first_occur >= 0) {
+                                    // cut out 100 characters
+                                    var start = first_occur - 20;
+                                    var end = first_occur + 80;
+                                    if (start < 0) {
+                                        start = 0;
+                                    }
+                                    if (start == 0) {
+                                        end = 100;
+                                    }
+                                    if (end > content.length) {
+                                        end = content.length;
+                                    }
+                                    var match_content = content.substring(start, end);
+                                    // highlight all keywords
+                                    keywords.forEach(function(keyword) {
+                                        var regS = new RegExp(keyword, "gi");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword green lighten-2\">" + keyword + "</span>");
+                                    });
+
+                                    str += "<p class=\"search-result\">..." + match_content + "...</p>"
+                                }
+                                str += "</li>";
+                            }
+                        });
+                        str += "</ul>";
+                        $resultContent.innerHTML = str;
+                    });
+                }
+            });
+        }
+    })(jQuery);
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+</body>
+</html>
