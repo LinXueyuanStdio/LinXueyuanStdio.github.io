@@ -7,7 +7,7 @@
 
     
 
-    <title>面向过程，面向对象，函数式 | XiChen&#39;s Blog</title>
+    <title>【Android TimeCat】 切换软键盘和标签键盘时界面跳动 | XiChen&#39;s Blog</title>
     <meta name="author" content="Lin Xueyuan">
     
     <meta name="description" content="嗨，我是兮尘，全栈数据学徒。这里没有花俏艳丽的魔法，没有苍蛮霸道的斗气，有的，仅仅是繁衍到巅峰的代码！">
@@ -15,7 +15,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <meta property="og:title" content="面向过程，面向对象，函数式"/>
+    <meta property="og:title" content="【Android TimeCat】 切换软键盘和标签键盘时界面跳动"/>
     <meta property="og:site_name" content="XiChen"/>
 
     
@@ -389,7 +389,7 @@
             
     
     
-    <a class="breadcrumb" href="/categories/杂思/">杂思</a>
+    <a class="breadcrumb" href="/categories/Android/">Android</a>
 
 
         
@@ -406,12 +406,12 @@
             <div class="article-title">
                 
     
-        <h1>面向过程，面向对象，函数式</h1>
+        <h1>【Android TimeCat】 切换软键盘和标签键盘时界面跳动</h1>
     
 
 
             </div>
-            <i class="fa fa-calendar"></i><time class="green-link-context" datetime="2017-09-17T22:42:14.000Z"><a href="/2017/09/18/2017-9-18-面向过程-面向对象-函数式/">2017-09-18</a></time>
+            <i class="fa fa-calendar"></i><time class="green-link-context" datetime="2018-03-06T04:11:00.000Z"><a href="/2018/03/06/2018-03-06-Android-TimeCat-切换软键盘和标签键盘时界面跳动/">2018-03-06</a></time>
 
             <span id="busuanzi_container_page_pv" class="read-times-container">
     <i class="fa fa-eye"></i>
@@ -421,36 +421,34 @@
             
     <div class="tags-row">
         
-            <a href="/tags/杂思/" class="chip green lighten-1">杂思</a>
+            <a href="/tags/Android/" class="chip green lighten-1">Android</a>
+        
+            <a href="/tags/Keyboard/" class="chip green lighten-1">Keyboard</a>
         
     </div>
     
 
 
             <div class="toc green-link-context hide-on-med-and-down">
-    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#如何把大象关进冰箱里？"><span class="section table-of-contents-number">1.</span> <span class="section table-of-contents-text">如何把大象关进冰箱里？</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#面向过程："><span class="section table-of-contents-number">1.1.</span> <span class="section table-of-contents-text">面向过程：</span></a></li><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#面向对象："><span class="section table-of-contents-number">1.2.</span> <span class="section table-of-contents-text">面向对象：</span></a></li><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#函数式："><span class="section table-of-contents-number">1.3.</span> <span class="section table-of-contents-text">函数式：</span></a></li></ol></li></ol>
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#背景"><span class="section table-of-contents-number">1.</span> <span class="section table-of-contents-text">背景</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#解决"><span class="section table-of-contents-number">2.</span> <span class="section table-of-contents-text">解决</span></a></li></ol>
 </div>
 
 
             <div class="entry green-link-context">
-                <h3 id="如何把大象关进冰箱里？"><a href="#如何把大象关进冰箱里？" class="headerlink" title="如何把大象关进冰箱里？"></a>如何把大象关进冰箱里？</h3><h4 id="面向过程："><a href="#面向过程：" class="headerlink" title="面向过程："></a>面向过程：</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">把冰箱门打开 =&gt; 大象放冰箱里 =&gt; 冰箱门关上</span><br></pre></td></tr></table></figure>
-<h4 id="面向对象："><a href="#面向对象：" class="headerlink" title="面向对象："></a>面向对象：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">冰箱.开门（）</span><br><span class="line">冰箱.放入（大象）</span><br><span class="line">冰箱.关门（）</span><br></pre></td></tr></table></figure>
-<p>or</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">冰箱.开门().放入(大象).关门()</span><br></pre></td></tr></table></figure>
-<h4 id="函数式："><a href="#函数式：" class="headerlink" title="函数式："></a>函数式：</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">关进（冰箱，大象）:</span><br><span class="line">    关门（放入（开门（冰箱），大象））</span><br></pre></td></tr></table></figure>
+                <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>在信息操作页面，点击标签打开对应的选择面板时，输入界面会上下跳动一下。分析一下原因，点击标签按钮后，先收起了软键盘，当前Activity的高度变高，输入框回到了界面底部；再打开选择面板时，输入框又被顶上来，所有看起来点击标签按钮后输入框会上下跳动一下。无论是先隐藏软键盘还是先打开选择面板都会有这个问题</p>
+<h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><p>如果这时候去纠结隐藏软键盘和打开面板如何同步的话就会走进一个牛角尖，去处理不同机型之间的兼容性问题了。其实解决思路非常简单，输入框不是会上下跳么，那固定它的位置不就好了？</p>
+<p>举个例子，如果整个界面的根布局是<code>LinearLayout</code>，那么一个控件的位置其实是由它上面所有控件的高度决定的，如果它上面所有控件的高度都不变化，那即使整个<code>Activity</code>的高度变化（开/关软键盘）也不会影响这个控件的位置，也就不会发生跳动了。</p>
+<p>但是我们发现，即使锁定了我们的信息操作页面根布局的高度，切换时还是有小幅度跳动。经过细致的分析冷静思考，我们终于找到了答案。由于我们的信息操作页面是用<code>Activity</code>通过设置弹框样式<code>android:theme=&quot;@style/EditDialogStyle&quot;</code>来实现的，而弹框样式是悬浮着的，会自动调整页面位置，软键盘显示时即使根布局的高度锁定，整个视图仍然会小幅度上移。所以我们的完美解决方案是同时锁定根布局高度和页面位置。</p>
+<p>具体实现我们已经封装在<code>SmartKeyboardManager</code>类中，自动处理锁定高度和锁定页面位置的问题，顺便封装了<code>addKeyboard</code>方法来绑定按钮和相应的面板，并且使用了建造者设计模式。使用时如下调用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 设置软键盘和选择面板的平滑交互</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">setKeyboardManager</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    mSmartKeyboardManager = <span class="keyword">new</span> SmartKeyboardManager.Builder(<span class="keyword">this</span>)</span><br><span class="line">            .setContentView(ll_content_view)</span><br><span class="line">            .setEditText(et_content)</span><br><span class="line">            .addKeyboard(btn_label,   select_label)</span><br><span class="line">            .addKeyboard(btn_date,   select_date)</span><br><span class="line">            .addKeyboard(btn_time,   select_time)</span><br><span class="line">            .addKeyboard(btn_remind, select_remind)</span><br><span class="line">            .addKeyboard(btn_tag,    select_tag)</span><br><span class="line">            .create();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://github.com/triline3/timecat/blob/eb89b51218b8ca865d3bf0df442cd9c1380cce73/app/src/main/java/com/time/cat/mvp/view/keyboardManager/SmartKeyboardManager.java" target="_blank" rel="noopener">SmartKeyboardManager</a></p>
 
                 
-<p class="green-link-context prev-btn">
-    <a href="/2017/10/11/2017-10-11-算法之位运算/" rel="next" title="algorithms-Bit-Options">
-    上一篇：algorithms-Bit-Options
-  </a>
-</p>
-
 
 
 <p class="green-link-context next-btn">
-    <a href="/2017/08/28/2017-08-28-Terminal-tips/" rel="next" title="terminal tips">
-    下一篇：terminal tips
+    <a href="/2018/03/01/2018-03-01-Android-TimeCat-原地归并排序/" rel="next" title="【Android TimeCat】 原地归并排序">
+    下一篇：【Android TimeCat】 原地归并排序
   </a>
 </p>
 
@@ -470,7 +468,7 @@
     <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
     <script>
     var gitment = new Gitment({
-        id: 'Mon Sep 18 2017 06:42:14 GMT+0800',
+        id: 'Tue Mar 06 2018 12:11:00 GMT+0800',
         owner: 'linxueyuanstdio',
         repo: 'linxueyuanstdio.github.io',
         oauth: {
