@@ -32,6 +32,44 @@
     </entry>
     
     <entry>
+      <title><![CDATA[【Android TimeCat】 解决Gradle :Resolve dependencies :classpath的办法]]></title>
+      <url>/2018/03/06/2018-03-06-Android-TimeCat-/</url>
+      <content type="html"><![CDATA[<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>想学习一下别人的成型项目FastHub，结果build失败，gradle信息如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">Executing tasks: [assemble]</span><br><span class="line"></span><br><span class="line">Configuration on demand is an incubating feature.</span><br><span class="line"></span><br><span class="line">FAILURE: Build failed with an exception.</span><br><span class="line"></span><br><span class="line">* What went wrong:</span><br><span class="line">A problem occurred configuring root project <span class="string">'FastHub'</span>.</span><br><span class="line">&gt; Could not resolve all files <span class="keyword">for</span> configuration <span class="string">':classpath'</span>.</span><br><span class="line">   &gt; Could not resolve com.android.tools.build:gradle:<span class="number">3.2</span>.0-alpha04.</span><br><span class="line">     Required by:</span><br><span class="line">         project :</span><br><span class="line">      &gt; Could not resolve com.android.tools.build:gradle:<span class="number">3.2</span>.0-alpha04.</span><br><span class="line">         &gt; Could not get resource <span class="string">'https://dl.google.com/dl/android/maven2/com/android/tools/build/gradle/3.2.0-alpha04/gradle-3.2.0-alpha04.pom'</span>.</span><br><span class="line">            &gt; Could not GET <span class="string">'https://dl.google.com/dl/android/maven2/com/android/tools/build/gradle/3.2.0-alpha04/gradle-3.2.0-alpha04.pom'</span>.</span><br><span class="line">               &gt; Connect to dl.google.com:<span class="number">443</span> [dl.google.com/<span class="number">2404</span>:<span class="number">6800</span>:<span class="number">4008</span>:c01:<span class="number">0</span>:<span class="number">0</span>:<span class="number">0</span>:<span class="number">88</span>] failed: Connection timed out: connect</span><br><span class="line">   &gt; Could not resolve com.android.tools.build:gradle:<span class="number">3.2</span>.0-alpha04.</span><br><span class="line">     Required by:</span><br><span class="line">         project : &gt; com.apollographql.apollo:gradle-plugin:<span class="number">0.4</span>.1</span><br><span class="line">      &gt; Could not resolve com.android.tools.build:gradle:<span class="number">3.2</span>.0-alpha04.</span><br><span class="line">         &gt; Could not get resource <span class="string">'https://dl.google.com/dl/android/maven2/com/android/tools/build/gradle/3.2.0-alpha04/gradle-3.2.0-alpha04.pom'</span>.</span><br><span class="line">            &gt; Could not GET <span class="string">'https://dl.google.com/dl/android/maven2/com/android/tools/build/gradle/3.2.0-alpha04/gradle-3.2.0-alpha04.pom'</span>.</span><br><span class="line">               &gt; Connect to dl.google.com:<span class="number">443</span> [dl.google.com/<span class="number">2404</span>:<span class="number">6800</span>:<span class="number">4008</span>:c01:<span class="number">0</span>:<span class="number">0</span>:<span class="number">0</span>:<span class="number">88</span>] failed: Connection timed out: connect</span><br><span class="line"></span><br><span class="line">* Try:</span><br><span class="line">Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output. Run with --scan to get full insights.</span><br><span class="line"></span><br><span class="line">* Get more help at https:<span class="comment">//help.gradle.org</span></span><br><span class="line"></span><br><span class="line">BUILD FAILED in <span class="number">3</span>m <span class="number">18</span>s</span><br></pre></td></tr></table></figure>
+<p>首先在<code>设置</code>&gt;<code>proxy</code>里使用系统默认代理，<code>check connection</code> 使用<code>&#39;https://dl.google.com/dl/android/maven2/com/android/tools/build/gradle/3.2.0-alpha04/gradle-3.2.0-alpha04.pom&#39;</code>完美通过，心想应该不是proxy的问题。可就是build失败，提示要么<code>Connection timed out</code>，要么<code>unknown host: dl.google.com</code>，简直逼疯。最后参考了一下，死马当活马医，在参考的文章里找到了解决方案。（我参考的不只下面的3个参考页面，开了一大堆csdn、StackOverflow、github issue的相关网页，都没解决，这3个是我解决时的参考，所以放这里了）</p>
+<h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><p>在项目目录下新建文件<code>gradle.properties</code>:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## Project-wide Gradle settings.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># For more details on how to configure your build environment visit</span></span><br><span class="line"><span class="comment"># http://www.gradle.org/docs/current/userguide/build_environment.html</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Specifies the JVM arguments used for the daemon process.</span></span><br><span class="line"><span class="comment"># The setting is particularly useful for tweaking memory settings.</span></span><br><span class="line"><span class="comment"># Default value: -Xmx1024m -XX:MaxPermSize=256m</span></span><br><span class="line"><span class="comment"># org.gradle.jvmargs=-Xmx2048m -XX:MaxPermSize=512m -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># When configured, Gradle will run in incubating parallel mode.</span></span><br><span class="line"><span class="comment"># This option should only be used with decoupled projects. More details, visit</span></span><br><span class="line"><span class="comment"># http://www.gradle.org/docs/current/userguide/multi_project_builds.html#sec:decoupled_projects</span></span><br><span class="line"><span class="comment"># org.gradle.parallel=true</span></span><br><span class="line"><span class="comment">#Fri Mar 09 22:26:51 CST 2018</span></span><br><span class="line">systemProp.https.proxyPort=<span class="number">1080</span></span><br><span class="line">systemProp.http.proxyHost=<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></span><br><span class="line">systemProp.https.proxyHost=<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></span><br><span class="line">systemProp.http.proxyPort=<span class="number">1080</span></span><br></pre></td></tr></table></figure>
+<p>内容意思是使用本地127.0.0.1:8000端口进行代理。</p>
+<p>注意：</p>
+<ul>
+<li><code>gradle.properties</code>与<code>app</code>文件夹同级，而不是在<code>app</code>文件夹内。</li>
+<li>记得把<code>shadowsocks</code>挂到<code>1080</code>端口，之前的<code>check connection</code>没卵用。</li>
+</ul>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><img src="http://blog.csdn.net/fanfangemini/article/details/78310163" alt="android studio 解决Gradle :Resolve dependencies :classpath的办法"></li>
+<li><img src="http://blog.csdn.net/zx422359126/article/details/77046462" alt="Android Studio 解决resolve dependencies &#39;classpath&#39;卡住"></li>
+<li><img src="https://docs.gradle.org/current/userguide/userguide_single.html#sec:accessing_the_web_via_a_proxy" alt="Accessing the web through a HTTP proxy"></li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> Android </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Android </tag>
+            
+            <tag> Gradle </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[【Android TimeCat】 原地归并排序]]></title>
       <url>/2018/03/01/2018-03-01-Android-TimeCat-%E5%8E%9F%E5%9C%B0%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/</url>
       <content type="html"><![CDATA[<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>Time Cat中有个需求，需要把用户的task排序。</p>
@@ -1510,7 +1548,7 @@
 <h1 id="与voting合约交互"><a href="#与voting合约交互" class="headerlink" title="与voting合约交互"></a>与voting合约交互</h1><p>成功部署合同后，现在应该能够获取投票计数并通过<code>truffle</code>控制台进行投票。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ truffle <span class="built_in">console</span></span><br><span class="line">truffle(<span class="keyword">default</span>)&gt; Voting.deployed().then(<span class="function"><span class="keyword">function</span>(<span class="params">contractInstance</span>) </span>&#123;contractInstance.voteForCandidate(<span class="string">'Rama'</span>).then(<span class="function"><span class="keyword">function</span>(<span class="params">v</span>) </span>&#123;<span class="built_in">console</span>.log(v)&#125;)&#125;)</span><br><span class="line"><span class="comment">// After a few seconds, you should see a transaction receipt like this:</span></span><br><span class="line">receipt:</span><br><span class="line">&#123; <span class="attr">blockHash</span>: <span class="string">'0x7229f668db0ac335cdd0c4c86e0394a35dd471a1095b8fafb52ebd7671433156'</span>,</span><br><span class="line">blockNumber: <span class="number">469628</span>,</span><br><span class="line">contractAddress: <span class="literal">null</span>,</span><br><span class="line">....</span><br><span class="line">....</span><br><span class="line">truffle(<span class="keyword">default</span>)&gt; Voting.deployed().then(<span class="function"><span class="keyword">function</span>(<span class="params">contractInstance</span>) </span>&#123;contractInstance.totalVotesFor.call(<span class="string">'Rama'</span>).then(<span class="function"><span class="keyword">function</span>(<span class="params">v</span>) </span>&#123;<span class="built_in">console</span>.log(v)&#125;)&#125;)</span><br><span class="line">&#123; [<span class="built_in">String</span>: <span class="string">'1'</span>] s: <span class="number">1</span>, <span class="attr">e</span>: <span class="number">0</span>, <span class="attr">c</span>: [ <span class="number">1</span>] &#125;</span><br></pre></td></tr></table></figure>
 <p>现在启动服务器</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> npm run dev</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm <span class="keyword">run</span><span class="bash"> dev</span></span><br></pre></td></tr></table></figure>
 <p>应该在<code>localhost：8080</code>看到投票页面，并且能够投票并看到所有候选人的投票数量。由于我们正在处理一个真正的区块链，所以每次写入区块链（voteForCandidate）将需要几秒钟的时间（矿工必须将您的交易包括在区块中，区块中包含区块链）。</p>
 <div class="image-package"><br><img src="/assets/blog/img/2018-01-26/0.png" width="700"><br></div>
 
@@ -2737,26 +2775,6 @@ id* | pid(FK) | finish | name | date | content
     </entry>
     
     <entry>
-      <title><![CDATA[区块链开发（二）部署并运行以太坊智能合约]]></title>
-      <url>/2017/12/06/2017-12-06-%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91%EF%BC%88%E4%BA%8C%EF%BC%89%E9%83%A8%E7%BD%B2%E5%B9%B6%E8%BF%90%E8%A1%8C%E4%BB%A5%E5%A4%AA%E5%9D%8A%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/</url>
-      <content type="html"></content>
-      
-        <categories>
-            
-            <category> 区块链 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> 区块链 </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[区块链开发（零）概念入门]]></title>
       <url>/2017/12/06/2017-11-27-%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91%EF%BC%88%E9%9B%B6%EF%BC%89%E6%A6%82%E5%BF%B5%E5%85%A5%E9%97%A8/</url>
       <content type="html"><![CDATA[<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><h2 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h2><p>比特币地址（例如：1DSrfJdB2AnWaFNgSbv3MZC2m74996JafV）由一串字符和数字组成，以阿拉伯数字“1”开头。就像别人向你的email地址发送电子邮件一样，他可以通过你的比特币地址向你发送比特币。</p>
@@ -2808,6 +2826,26 @@ id* | pid(FK) | finish | name | date | content
 <li><a href="http://zhibimo.com/read/wang-miao/mastering-bitcoin" target="_blank" rel="noopener">http://zhibimo.com/read/wang-miao/mastering-bitcoin</a></li>
 </ul>
 ]]></content>
+      
+        <categories>
+            
+            <category> 区块链 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 区块链 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[区块链开发（二）部署并运行以太坊智能合约]]></title>
+      <url>/2017/12/06/2017-12-06-%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91%EF%BC%88%E4%BA%8C%EF%BC%89%E9%83%A8%E7%BD%B2%E5%B9%B6%E8%BF%90%E8%A1%8C%E4%BB%A5%E5%A4%AA%E5%9D%8A%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/</url>
+      <content type="html"></content>
       
         <categories>
             
@@ -4566,9 +4604,9 @@ id* | pid(FK) | finish | name | date | content
         
         <tags>
             
-            <tag> Tips </tag>
-            
             <tag> Latex </tag>
+            
+            <tag> Tips </tag>
             
         </tags>
         
