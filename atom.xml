@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xichen.pub/"/>
-  <updated>2018-03-09T06:46:21.797Z</updated>
+  <updated>2018-03-13T15:16:06.817Z</updated>
   <id>http://xichen.pub/</id>
   
   <author>
@@ -15,6 +15,63 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【计算机组成原理】 八大思想之抽象</title>
+    <link href="http://xichen.pub/2018/03/13/2018-03-13-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E5%85%AB%E5%A4%A7%E6%80%9D%E6%83%B3%E4%B9%8B%E6%8A%BD%E8%B1%A1/"/>
+    <id>http://xichen.pub/2018/03/13/2018-03-13-计算机组成原理-八大思想之抽象/</id>
+    <published>2018-03-12T20:11:00.000Z</published>
+    <updated>2018-03-13T15:16:06.817Z</updated>
+    
+    <content type="html"><![CDATA[<p>计算机领域对我影响最大的思想是抽象。</p><p>何为抽象？抽象就是隐藏具体，暴露功能。用通俗一点的话说，抽象就是你好好做自己的事，以及知道别人能帮你干什么事，至于别人是如何帮你完成的，你没必要知道。</p><p>比如理发就是一个抽象，我想理发，我只需要知道理发师会理发就可以了，至于理发师是怎样理发的，我不用关心。当然，这个例子中我们通常喜欢选最好的理发师，这些理发师虽然都有理发的功能，但理发的速度等是有区别的，这里的区别也就是其实现的不同。甚至一个能理发的机器也是可以的，因为其也有理发的功能，虽然机器理发的具体实现有点奇怪。</p><p>目前数据结构课程中的抽象数据类型其实是抽象的具体实现。比如栈，作为使用者你只需要知道它有push、pop、isEmpty等方法，但它的底层实现到底是array还是linked list，你是不需要知道的。</p><p>抽象思想大大提高了开发者的工作效率。因为开发者只需要关注功能和组装功能，完成需求就行了。用行话就是不用重复造轮子。。。不过要提升自己，最好还是做个创造者，走进轮子内部，学习具体的实现，而不是只会搬砖。。</p><p>事实上，抽象可以放到人类社会的方方面面，上面理发是一个例子。各行各业都是抽象的，比如软件开发，也是提供接口给人类使用；比如平面设计，也是提供一个看的接口；比如学校、人民教师、官员等等，一步一步抽象下去，最后都是提供了为人民服务的接口。。。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;计算机领域对我影响最大的思想是抽象。&lt;/p&gt;
+&lt;p&gt;何为抽象？抽象就是隐藏具体，暴露功能。用通俗一点的话说，抽象就是你好好做自己的事，以及知道别人能帮你干什么事，至于别人是如何帮你完成的，你没必要知道。&lt;/p&gt;
+&lt;p&gt;比如理发就是一个抽象，我想理发，我只需要知道理发师会理发
+      
+    
+    </summary>
+    
+      <category term="计算机组成原理" scheme="http://xichen.pub/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/"/>
+    
+    
+      <category term="计算机组成原理" scheme="http://xichen.pub/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/"/>
+    
+      <category term="八大思想" scheme="http://xichen.pub/tags/%E5%85%AB%E5%A4%A7%E6%80%9D%E6%83%B3/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【Android TimeCat】 解决Gradle :Resolve dependencies :classpath的办法</title>
+    <link href="http://xichen.pub/2018/03/06/2018-03-06-Android-TimeCat-%E8%A7%A3%E5%86%B3Gradle-Resolvedependencies-classpath%E7%9A%84%E5%8A%9E%E6%B3%95/"/>
+    <id>http://xichen.pub/2018/03/06/2018-03-06-Android-TimeCat-解决Gradle-Resolvedependencies-classpath的办法/</id>
+    <published>2018-03-06T06:11:00.000Z</published>
+    <updated>2018-03-13T13:50:42.646Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>想学习一下别人的成型项目FastHub，结果build失败，gradle信息如下：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">Executing tasks: [assemble]</span><br><span class="line"></span><br><span class="line">Configuration on demand is an incubating feature.</span><br><span class="line"></span><br><span class="line">FAILURE: Build failed with an exception.</span><br><span class="line"></span><br><span class="line">* What went wrong:</span><br><span class="line">A problem occurred configuring root project <span class="string">'FastHub'</span>.</span><br><span class="line">&gt; Could not resolve all files <span class="keyword">for</span> configuration <span class="string">':classpath'</span>.</span><br><span class="line">   &gt; Could not resolve com.android.tools.build:gradle:<span class="number">3.2</span>.0-alpha04.</span><br><span class="line">     Required by:</span><br><span class="line">         project :</span><br><span class="line">      &gt; Could not resolve com.android.tools.build:gradle:<span class="number">3.2</span>.0-alpha04.</span><br><span class="line">         &gt; Could not get resource <span class="string">'https://dl.google.com/dl/android/maven2/com/android/tools/build/gradle/3.2.0-alpha04/gradle-3.2.0-alpha04.pom'</span>.</span><br><span class="line">            &gt; Could not GET <span class="string">'https://dl.google.com/dl/android/maven2/com/android/tools/build/gradle/3.2.0-alpha04/gradle-3.2.0-alpha04.pom'</span>.</span><br><span class="line">               &gt; Connect to dl.google.com:<span class="number">443</span> [dl.google.com/<span class="number">2404</span>:<span class="number">6800</span>:<span class="number">4008</span>:c01:<span class="number">0</span>:<span class="number">0</span>:<span class="number">0</span>:<span class="number">88</span>] failed: Connection timed out: connect</span><br><span class="line">   &gt; Could not resolve com.android.tools.build:gradle:<span class="number">3.2</span>.0-alpha04.</span><br><span class="line">     Required by:</span><br><span class="line">         project : &gt; com.apollographql.apollo:gradle-plugin:<span class="number">0.4</span>.1</span><br><span class="line">      &gt; Could not resolve com.android.tools.build:gradle:<span class="number">3.2</span>.0-alpha04.</span><br><span class="line">         &gt; Could not get resource <span class="string">'https://dl.google.com/dl/android/maven2/com/android/tools/build/gradle/3.2.0-alpha04/gradle-3.2.0-alpha04.pom'</span>.</span><br><span class="line">            &gt; Could not GET <span class="string">'https://dl.google.com/dl/android/maven2/com/android/tools/build/gradle/3.2.0-alpha04/gradle-3.2.0-alpha04.pom'</span>.</span><br><span class="line">               &gt; Connect to dl.google.com:<span class="number">443</span> [dl.google.com/<span class="number">2404</span>:<span class="number">6800</span>:<span class="number">4008</span>:c01:<span class="number">0</span>:<span class="number">0</span>:<span class="number">0</span>:<span class="number">88</span>] failed: Connection timed out: connect</span><br><span class="line"></span><br><span class="line">* Try:</span><br><span class="line">Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output. Run with --scan to get full insights.</span><br><span class="line"></span><br><span class="line">* Get more help at https:<span class="comment">//help.gradle.org</span></span><br><span class="line"></span><br><span class="line">BUILD FAILED in <span class="number">3</span>m <span class="number">18</span>s</span><br></pre></td></tr></table></figure><p>首先在<code>设置</code>&gt;<code>proxy</code>里使用系统默认代理，<code>check connection</code> 使用<code>&#39;https://dl.google.com/dl/android/maven2/com/android/tools/build/gradle/3.2.0-alpha04/gradle-3.2.0-alpha04.pom&#39;</code>完美通过，心想应该不是proxy的问题。可就是build失败，提示要么<code>Connection timed out</code>，要么<code>unknown host: dl.google.com</code>，简直逼疯。最后参考了一下，死马当活马医，在参考的文章里找到了解决方案。（我参考的不只下面的3个参考页面，开了一大堆csdn、StackOverflow、github issue的相关网页，都没解决，这3个是我解决时的参考，所以放这里了）</p><h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><p>在项目目录下新建文件<code>gradle.properties</code>:</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## Project-wide Gradle settings.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># For more details on how to configure your build environment visit</span></span><br><span class="line"><span class="comment"># http://www.gradle.org/docs/current/userguide/build_environment.html</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Specifies the JVM arguments used for the daemon process.</span></span><br><span class="line"><span class="comment"># The setting is particularly useful for tweaking memory settings.</span></span><br><span class="line"><span class="comment"># Default value: -Xmx1024m -XX:MaxPermSize=256m</span></span><br><span class="line"><span class="comment"># org.gradle.jvmargs=-Xmx2048m -XX:MaxPermSize=512m -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># When configured, Gradle will run in incubating parallel mode.</span></span><br><span class="line"><span class="comment"># This option should only be used with decoupled projects. More details, visit</span></span><br><span class="line"><span class="comment"># http://www.gradle.org/docs/current/userguide/multi_project_builds.html#sec:decoupled_projects</span></span><br><span class="line"><span class="comment"># org.gradle.parallel=true</span></span><br><span class="line"><span class="comment">#Fri Mar 09 22:26:51 CST 2018</span></span><br><span class="line">systemProp.https.proxyPort=<span class="number">1080</span></span><br><span class="line">systemProp.http.proxyHost=<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></span><br><span class="line">systemProp.https.proxyHost=<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></span><br><span class="line">systemProp.http.proxyPort=<span class="number">1080</span></span><br></pre></td></tr></table></figure><p>内容意思是使用本地127.0.0.1:8000端口进行代理。</p><p>注意：</p><ul><li><code>gradle.properties</code>与<code>app</code>文件夹同级，而不是在<code>app</code>文件夹内。</li><li>记得把<code>shadowsocks</code>挂到<code>1080</code>端口，之前的<code>check connection</code>没卵用。</li></ul><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul><li><a href="http://blog.csdn.net/fanfangemini/article/details/78310163" target="_blank" rel="noopener">android studio 解决Gradle :Resolve dependencies :classpath的办法</a></li><li><a href="http://blog.csdn.net/zx422359126/article/details/77046462" target="_blank" rel="noopener">Android Studio 解决resolve dependencies ‘classpath’卡住</a></li><li><a href="https://docs.gradle.org/current/userguide/userguide_single.html#sec:accessing_the_web_via_a_proxy" target="_blank" rel="noopener">Accessing the web through a HTTP proxy</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h1&gt;&lt;p&gt;想学习一下别人的成型项目FastHub，结果build失败，gradle信息如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight
+      
+    
+    </summary>
+    
+      <category term="Android" scheme="http://xichen.pub/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="http://xichen.pub/tags/Android/"/>
+    
+      <category term="Gradle" scheme="http://xichen.pub/tags/Gradle/"/>
+    
+  </entry>
   
   <entry>
     <title>【Android TimeCat】 切换软键盘和标签键盘时界面跳动</title>
@@ -40,34 +97,6 @@
       <category term="Android" scheme="http://xichen.pub/tags/Android/"/>
     
       <category term="Keyboard" scheme="http://xichen.pub/tags/Keyboard/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【Android TimeCat】 解决Gradle :Resolve dependencies :classpath的办法</title>
-    <link href="http://xichen.pub/2018/03/06/2018-03-06-Android-TimeCat-%E8%A7%A3%E5%86%B3Gradle-Resolvedependencies-classpath%E7%9A%84%E5%8A%9E%E6%B3%95/"/>
-    <id>http://xichen.pub/2018/03/06/2018-03-06-Android-TimeCat-解决Gradle-Resolvedependencies-classpath的办法/</id>
-    <published>2018-03-06T04:11:00.000Z</published>
-    <updated>2018-03-12T07:36:25.081Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>想学习一下别人的成型项目FastHub，结果build失败，gradle信息如下：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">Executing tasks: [assemble]</span><br><span class="line"></span><br><span class="line">Configuration on demand is an incubating feature.</span><br><span class="line"></span><br><span class="line">FAILURE: Build failed with an exception.</span><br><span class="line"></span><br><span class="line">* What went wrong:</span><br><span class="line">A problem occurred configuring root project <span class="string">'FastHub'</span>.</span><br><span class="line">&gt; Could not resolve all files <span class="keyword">for</span> configuration <span class="string">':classpath'</span>.</span><br><span class="line">   &gt; Could not resolve com.android.tools.build:gradle:<span class="number">3.2</span>.0-alpha04.</span><br><span class="line">     Required by:</span><br><span class="line">         project :</span><br><span class="line">      &gt; Could not resolve com.android.tools.build:gradle:<span class="number">3.2</span>.0-alpha04.</span><br><span class="line">         &gt; Could not get resource <span class="string">'https://dl.google.com/dl/android/maven2/com/android/tools/build/gradle/3.2.0-alpha04/gradle-3.2.0-alpha04.pom'</span>.</span><br><span class="line">            &gt; Could not GET <span class="string">'https://dl.google.com/dl/android/maven2/com/android/tools/build/gradle/3.2.0-alpha04/gradle-3.2.0-alpha04.pom'</span>.</span><br><span class="line">               &gt; Connect to dl.google.com:<span class="number">443</span> [dl.google.com/<span class="number">2404</span>:<span class="number">6800</span>:<span class="number">4008</span>:c01:<span class="number">0</span>:<span class="number">0</span>:<span class="number">0</span>:<span class="number">88</span>] failed: Connection timed out: connect</span><br><span class="line">   &gt; Could not resolve com.android.tools.build:gradle:<span class="number">3.2</span>.0-alpha04.</span><br><span class="line">     Required by:</span><br><span class="line">         project : &gt; com.apollographql.apollo:gradle-plugin:<span class="number">0.4</span>.1</span><br><span class="line">      &gt; Could not resolve com.android.tools.build:gradle:<span class="number">3.2</span>.0-alpha04.</span><br><span class="line">         &gt; Could not get resource <span class="string">'https://dl.google.com/dl/android/maven2/com/android/tools/build/gradle/3.2.0-alpha04/gradle-3.2.0-alpha04.pom'</span>.</span><br><span class="line">            &gt; Could not GET <span class="string">'https://dl.google.com/dl/android/maven2/com/android/tools/build/gradle/3.2.0-alpha04/gradle-3.2.0-alpha04.pom'</span>.</span><br><span class="line">               &gt; Connect to dl.google.com:<span class="number">443</span> [dl.google.com/<span class="number">2404</span>:<span class="number">6800</span>:<span class="number">4008</span>:c01:<span class="number">0</span>:<span class="number">0</span>:<span class="number">0</span>:<span class="number">88</span>] failed: Connection timed out: connect</span><br><span class="line"></span><br><span class="line">* Try:</span><br><span class="line">Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output. Run with --scan to get full insights.</span><br><span class="line"></span><br><span class="line">* Get more help at https:<span class="comment">//help.gradle.org</span></span><br><span class="line"></span><br><span class="line">BUILD FAILED in <span class="number">3</span>m <span class="number">18</span>s</span><br></pre></td></tr></table></figure><p>首先在<code>设置</code>&gt;<code>proxy</code>里使用系统默认代理，<code>check connection</code> 使用<code>&#39;https://dl.google.com/dl/android/maven2/com/android/tools/build/gradle/3.2.0-alpha04/gradle-3.2.0-alpha04.pom&#39;</code>完美通过，心想应该不是proxy的问题。可就是build失败，提示要么<code>Connection timed out</code>，要么<code>unknown host: dl.google.com</code>，简直逼疯。最后参考了一下，死马当活马医，在参考的文章里找到了解决方案。（我参考的不只下面的3个参考页面，开了一大堆csdn、StackOverflow、github issue的相关网页，都没解决，这3个是我解决时的参考，所以放这里了）</p><h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><p>在项目目录下新建文件<code>gradle.properties</code>:</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## Project-wide Gradle settings.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># For more details on how to configure your build environment visit</span></span><br><span class="line"><span class="comment"># http://www.gradle.org/docs/current/userguide/build_environment.html</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Specifies the JVM arguments used for the daemon process.</span></span><br><span class="line"><span class="comment"># The setting is particularly useful for tweaking memory settings.</span></span><br><span class="line"><span class="comment"># Default value: -Xmx1024m -XX:MaxPermSize=256m</span></span><br><span class="line"><span class="comment"># org.gradle.jvmargs=-Xmx2048m -XX:MaxPermSize=512m -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># When configured, Gradle will run in incubating parallel mode.</span></span><br><span class="line"><span class="comment"># This option should only be used with decoupled projects. More details, visit</span></span><br><span class="line"><span class="comment"># http://www.gradle.org/docs/current/userguide/multi_project_builds.html#sec:decoupled_projects</span></span><br><span class="line"><span class="comment"># org.gradle.parallel=true</span></span><br><span class="line"><span class="comment">#Fri Mar 09 22:26:51 CST 2018</span></span><br><span class="line">systemProp.https.proxyPort=<span class="number">1080</span></span><br><span class="line">systemProp.http.proxyHost=<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></span><br><span class="line">systemProp.https.proxyHost=<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></span><br><span class="line">systemProp.http.proxyPort=<span class="number">1080</span></span><br></pre></td></tr></table></figure><p>内容意思是使用本地127.0.0.1:8000端口进行代理。</p><p>注意：</p><ul><li><code>gradle.properties</code>与<code>app</code>文件夹同级，而不是在<code>app</code>文件夹内。</li><li>记得把<code>shadowsocks</code>挂到<code>1080</code>端口，之前的<code>check connection</code>没卵用。</li></ul><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul><li><a href="http://blog.csdn.net/fanfangemini/article/details/78310163" target="_blank" rel="noopener">android studio 解决Gradle :Resolve dependencies :classpath的办法</a></li><li><a href="http://blog.csdn.net/zx422359126/article/details/77046462" target="_blank" rel="noopener">Android Studio 解决resolve dependencies ‘classpath’卡住</a></li><li><a href="https://docs.gradle.org/current/userguide/userguide_single.html#sec:accessing_the_web_via_a_proxy" target="_blank" rel="noopener">Accessing the web through a HTTP proxy</a></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h1&gt;&lt;p&gt;想学习一下别人的成型项目FastHub，结果build失败，gradle信息如下：&lt;/p&gt;
-&lt;figure class=&quot;highlight
-      
-    
-    </summary>
-    
-      <category term="Android" scheme="http://xichen.pub/categories/Android/"/>
-    
-    
-      <category term="Android" scheme="http://xichen.pub/tags/Android/"/>
-    
-      <category term="Gradle" scheme="http://xichen.pub/tags/Gradle/"/>
     
   </entry>
   
@@ -487,34 +516,6 @@
   </entry>
   
   <entry>
-    <title>【Android TimeCat】 跳转QQ加群</title>
-    <link href="http://xichen.pub/2018/02/26/2018-02-26-Android-TimeCat-%E8%B7%B3%E8%BD%ACQQ%E5%8A%A0%E7%BE%A4/"/>
-    <id>http://xichen.pub/2018/02/26/2018-02-26-Android-TimeCat-跳转QQ加群/</id>
-    <published>2018-02-25T22:25:00.000Z</published>
-    <updated>2018-03-02T14:52:04.015Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>TimeCat项目内测需要用到</p><h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><ol><li>访问<a href="https://qun.qq.com/join.html" target="_blank" rel="noopener">https://qun.qq.com/join.html</a></li><li>登录</li><li>左边选择QQ群，右边有代码，直接复制到项目即可</li></ol><p><img src="/assets/blog/img/2018-02-26/30.png" width="700"></p><h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><ol><li>必须明确QQ群号</li><li>该用户必须是QQ群号的管理员或群主</li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h1&gt;&lt;p&gt;TimeCat项目内测需要用到&lt;/p&gt;
-&lt;h1 id=&quot;步骤&quot;&gt;&lt;a href=&quot;#步骤&quot; class=&quot;headerlink&quot; title
-      
-    
-    </summary>
-    
-      <category term="Android" scheme="http://xichen.pub/categories/Android/"/>
-    
-    
-      <category term="Android" scheme="http://xichen.pub/tags/Android/"/>
-    
-      <category term="QQ" scheme="http://xichen.pub/tags/QQ/"/>
-    
-  </entry>
-  
-  <entry>
     <title>【Android TimeCat】 Android Studio 高效配置</title>
     <link href="http://xichen.pub/2018/02/26/2018-02-26-Android-TimeCat-Android%20Studio%E9%AB%98%E6%95%88%E9%85%8D%E7%BD%AE/"/>
     <id>http://xichen.pub/2018/02/26/2018-02-26-Android-TimeCat-Android Studio高效配置/</id>
@@ -542,20 +543,20 @@
   </entry>
   
   <entry>
-    <title>【Android TimeCat】 Android Studio拾色器</title>
-    <link href="http://xichen.pub/2018/02/26/2018-02-26-Android-TimeCat-Android%20Studio%E6%8B%BE%E8%89%B2%E5%99%A8/"/>
-    <id>http://xichen.pub/2018/02/26/2018-02-26-Android-TimeCat-Android Studio拾色器/</id>
-    <published>2018-02-25T21:37:00.000Z</published>
-    <updated>2018-03-02T14:52:03.991Z</updated>
+    <title>【Android TimeCat】 跳转QQ加群</title>
+    <link href="http://xichen.pub/2018/02/26/2018-02-26-Android-TimeCat-%E8%B7%B3%E8%BD%ACQQ%E5%8A%A0%E7%BE%A4/"/>
+    <id>http://xichen.pub/2018/02/26/2018-02-26-Android-TimeCat-跳转QQ加群/</id>
+    <published>2018-02-25T22:25:00.000Z</published>
+    <updated>2018-03-02T14:52:04.015Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>在考虑UI颜色配置的时候需要颜色对齐，需要用的次数多了，给Android Studio自带的拾色器作个小总结。</p><p>你可能下载过一些获取颜色值的一些小工具，<br>　　这种方式获取颜色，需要先切换窗口转跳到桌面，然后打开拾色器小工具程序，然后去拾取颜色；</p><p>你可能也知道Android Studio自带一个颜色拾色器，通过下面这种方式才能找到<br>　　这种方式获取颜色值限制性很强，需要特定的窗口，需要点击那么一小块颜色才能弹出窗口，才能使用</p><p><img src="/assets/blog/img/2018-02-26/1.png" width="700"></p><p>那有没有更好的方式？ 答案是肯定的，不然这些个干嘛~~<br>不用向上面那样去打开拾色器小工具程序，不用在特定的窗口点击特定的位置弹出拾色器工具，是用我们最喜欢的快捷键的方式打开<br>Android Studio自带了颜色拾色器工具，但是它没有设置快捷键，也没有告诉我们， 这才是问题，<br>不罗嗦了，跟着下面的设置去设置快捷键吧 </p><p><img src="/assets/blog/img/2018-02-26/2.png" width="700"></p><p><img src="/assets/blog/img/2018-02-26/3.png" width="700"></p><p>设置好之后Apply应用 + OK确认下就好了</p><p>下面就能愉快的玩耍了，Alt+C~~ </p><p><img src="/assets/blog/img/2018-02-26/4.png" width="700"></p><p>参考：<br><a href="http://blog.csdn.net/shibin1990_/article/details/51684877" target="_blank" rel="noopener">Android Studio设置颜色拾色器工具Color Picker</a></p>]]></content>
+    <content type="html"><![CDATA[<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>TimeCat项目内测需要用到</p><h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><ol><li>访问<a href="https://qun.qq.com/join.html" target="_blank" rel="noopener">https://qun.qq.com/join.html</a></li><li>登录</li><li>左边选择QQ群，右边有代码，直接复制到项目即可</li></ol><p><img src="/assets/blog/img/2018-02-26/30.png" width="700"></p><h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><ol><li>必须明确QQ群号</li><li>该用户必须是QQ群号的管理员或群主</li></ol>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h1 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h1&gt;&lt;p&gt;在考虑UI颜色配置的时候需要颜色对齐，需要用的次数多了，给Android Studio自带的拾色器作个小总结。&lt;/p&gt;
-&lt;p&gt;你可能下载过一
+        &lt;h1 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h1&gt;&lt;p&gt;TimeCat项目内测需要用到&lt;/p&gt;
+&lt;h1 id=&quot;步骤&quot;&gt;&lt;a href=&quot;#步骤&quot; class=&quot;headerlink&quot; title
       
     
     </summary>
@@ -565,7 +566,7 @@
     
       <category term="Android" scheme="http://xichen.pub/tags/Android/"/>
     
-      <category term="Android Studio" scheme="http://xichen.pub/tags/Android-Studio/"/>
+      <category term="QQ" scheme="http://xichen.pub/tags/QQ/"/>
     
   </entry>
   
