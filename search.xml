@@ -3,6 +3,183 @@
   
     
     <entry>
+      <title><![CDATA[【Android TimeCat】 反编译]]></title>
+      <url>/2018/04/11/2018-04-11-Android-TimeCat-%E5%8F%8D%E7%BC%96%E8%AF%91/</url>
+      <content type="html"><![CDATA[<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>需要参考一些好的项目，但是并没有开源，自己写是不会写的，这辈子都不会写的，抄又不能直接抄，只有靠反编译才能维持得了生活这样子。。。</p>
+<h1 id="神操作"><a href="#神操作" class="headerlink" title="神操作"></a>神操作</h1><p>在线反编译：<a href="http://www.javadecompilers.com/apk" target="_blank" rel="noopener">http://www.javadecompilers.com/apk</a></p>
+<h1 id="常规操作"><a href="#常规操作" class="headerlink" title="常规操作"></a>常规操作</h1><h2 id="APK-Analyzer"><a href="#APK-Analyzer" class="headerlink" title="APK Analyzer"></a>APK Analyzer</h2><p>Android Studio 自带的 APK Analyzer 可直接查看APK内的 图片，xml内容，dex结构，文件尺寸等，还可以比较两个apk的差异。</p>
+<p>虽然不能导出资源有点可惜，但已经很强大方便了。</p>
+<p>用法：将 apk 拖入 AndroidStudio 就好了</p>
+<p>参考：developer.android.com/studio/buil…</p>
+<h2 id="常用三件套"><a href="#常用三件套" class="headerlink" title="常用三件套"></a>常用三件套</h2><h3 id="安装java"><a href="#安装java" class="headerlink" title="安装java"></a>安装java</h3><p><a href="http://www.cnblogs.com/liuhongfeng/p/4177568.html" target="_blank" rel="noopener">Windows环境下JDK安装与环境变量配置详细的图文教程</a></p>
+<h3 id="下载工具"><a href="#下载工具" class="headerlink" title="下载工具"></a>下载工具</h3><ul>
+<li><p>apktool：资源文件获取，可以提取出图片文件和布局文件进行使用查看<br>下载地址：<a href="https://ibotpeaches.github.io/Apktool/" target="_blank" rel="noopener">https://ibotpeaches.github.io/Apktool/</a><br>Mac下载地址：<a href="http://mac.softpedia.com/get/Developer-Tools/Apktool.shtml" target="_blank" rel="noopener">http://mac.softpedia.com/get/Developer-Tools/Apktool.shtml</a></p>
+</li>
+<li><p>dex2jar：将apk反编译成java源码（classes.dex转化成jar文件）<br>下载地址：<a href="https://github.com/pxb1988/dex2jar" target="_blank" rel="noopener">https://github.com/pxb1988/dex2jar</a><br>Mac下载地址：<a href="http://mac.softpedia.com/get/Developer-Tools/dex2jar.shtml" target="_blank" rel="noopener">http://mac.softpedia.com/get/Developer-Tools/dex2jar.shtml</a></p>
+</li>
+<li>jd-gui：查看APK中classes.dex转化成出的jar文件，即源码文件<br>下载地址：<a href="https://code.google.com/archive/p/innlab/downloads" target="_blank" rel="noopener">https://code.google.com/archive/p/innlab/downloads</a><br>Mac下载地址：<a href="http://mac.softpedia.com/get/Development/Java/JD-GUI.shtml" target="_blank" rel="noopener">http://mac.softpedia.com/get/Development/Java/JD-GUI.shtml</a></li>
+</ul>
+<blockquote>
+<p>注：有个合集，更加傻瓜化的工具onekey-decompile-apk：<a href="https://github.com/ufologist/onekey-decompile-apk" target="_blank" rel="noopener">https://github.com/ufologist/onekey-decompile-apk</a><br>把apk拖到文件目录下就能直接反编译了</p>
+</blockquote>
+<p>其实一些常见工具都可以通过 homebrew 或 homebrew-cask 安装<br><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">brew </span><span class="keyword">install </span>apktool</span><br><span class="line"><span class="keyword">brew </span><span class="keyword">install </span>smali</span><br><span class="line"><span class="keyword">brew </span><span class="keyword">install </span>dex2jar</span><br><span class="line"><span class="keyword">brew </span><span class="keyword">install </span><span class="keyword">jadx</span></span><br><span class="line"><span class="keyword">brew </span>cask <span class="keyword">install </span><span class="keyword">jd-gui</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><h4 id="apktool"><a href="#apktool" class="headerlink" title="apktool"></a>apktool</h4><p>apk 虽然实际上是个 zip 可以直接 unzip，但里边的 xml 都是 Binaray XML 形式，需要再次转化成 xml 才能查看。</p>
+<p>apktool 可以将 apk 内的资源全部提取出来，同时 xml 也转化好可直接查看内容。</p>
+<p>apktool 也可以用于在修改资源后重新打包 apk</p>
+<p>用法：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 提取资源</span></span><br><span class="line">apktool d test.apk</span><br><span class="line"></span><br><span class="line"><span class="comment">// 提取资源并指定输出目录</span></span><br><span class="line">apktool d test<span class="selector-class">.apk</span> -o test</span><br><span class="line"></span><br><span class="line"><span class="comment">// 重新打包apk</span></span><br><span class="line">apktool <span class="selector-tag">b</span> test</span><br></pre></td></tr></table></figure></p>
+<p>参考：<a href="ibotpeaches.github.io/Apktool/">ibotpeaches.github.io/Apktool/</a></p>
+<h4 id="smali-baksmali"><a href="#smali-baksmali" class="headerlink" title="smali/baksmali"></a>smali/baksmali</h4><p>baksmali 可将 dex/odex 转成 .smali 文件集<br>smali 可将 .smali 文件集 转成 dex/odex</p>
+<p>注：odex 转 smali 需要相应系统的 framework，adb pull /system/framework</p>
+<p>用法：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 将 test.dex 分解到 test 目录</span></span><br><span class="line">baksmali test<span class="selector-class">.dex</span> -o test </span><br><span class="line"></span><br><span class="line"><span class="comment">// 将 test 目录里的 smali 文件组装到 haha.dex</span></span><br><span class="line">smali test -o haha.dex</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取系统 framework</span></span><br><span class="line">adb pull /system/framework</span><br><span class="line"><span class="comment">// 将 test.odex 分解到 test 目录</span></span><br><span class="line">baksmali test<span class="selector-class">.odex</span> <span class="selector-tag">b</span> framework -o test</span><br></pre></td></tr></table></figure></p>
+<p>参考: <a href="https://github.com/JesusFreke/smali/wiki" target="_blank" rel="noopener">https://github.com/JesusFreke/smali/wiki</a><br>下载：<a href="https://bitbucket.org/JesusFreke/smali/downloads/" target="_blank" rel="noopener">https://bitbucket.org/JesusFreke/smali/downloads/</a></p>
+<h4 id="dex2jar"><a href="#dex2jar" class="headerlink" title="dex2jar"></a>dex2jar</h4><p>dex2jar 可将 .dex 转换成 .jar</p>
+<p>用法：<br><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 将 <span class="keyword">test</span>.dex 转成 <span class="keyword">test</span>.jar 文件</span><br><span class="line">d2j-dex2jar <span class="keyword">test</span>.dex -o <span class="keyword">test</span>.jar</span><br></pre></td></tr></table></figure></p>
+<p>参考: <a href="https://github.com/pxb1988/dex2jar" target="_blank" rel="noopener">https://github.com/pxb1988/dex2jar</a><br>下载：<a href="https://bitbucket.org/pxb1988/dex2jar/downloads/" target="_blank" rel="noopener">https://bitbucket.org/pxb1988/dex2jar/downloads/</a></p>
+<h4 id="jadx"><a href="#jadx" class="headerlink" title="jadx"></a>jadx</h4><p>jadx 可以将 .dex/.jar/.class 文件反编译成 .java 源码<br>jadx 也可以直接反编译 .apk 并处理好资源(binary xml -&gt; xml)</p>
+<p>jadx-gui 可视化查看工具</p>
+<p>用法：<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 反编译 test.dex 并输出到 test 目录</span></span><br><span class="line">jadx <span class="keyword">test</span>.dex -<span class="keyword">d</span> <span class="keyword">test</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 反编译 test.apk</span></span><br><span class="line">jadx <span class="keyword">test</span>.apk -<span class="keyword">d</span> <span class="keyword">test</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 反编译 test.jar</span></span><br><span class="line">jadx <span class="keyword">test</span>.jar -<span class="keyword">d</span> <span class="keyword">test</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 反编译 test.class</span></span><br><span class="line">jadx <span class="keyword">test</span>.<span class="keyword">class</span> -<span class="keyword">d</span> <span class="keyword">test</span></span><br></pre></td></tr></table></figure></p>
+<p>参考：<a href="github.com/skylot/jadx">github.com/skylot/jadx</a></p>
+<h4 id="jd-gui"><a href="#jd-gui" class="headerlink" title="jd-gui"></a>jd-gui</h4><p>jd-gui 可视化反编译查看 .jar 文件</p>
+<p>参考：<a href="jd.benow.ca/">jd.benow.ca/</a></p>
+<h1 id="附-Android-APK中的Java代码可以被反编译到什么程度"><a href="#附-Android-APK中的Java代码可以被反编译到什么程度" class="headerlink" title="附:Android APK中的Java代码可以被反编译到什么程度"></a>附:Android APK中的Java代码可以被反编译到什么程度</h1><p>Android APK中的Java代码可以被反编译到什么程度主要看APK的加密程度。</p>
+<p>第一种情况：无混淆无加密无加壳。直接利用Dex2jar和JD-GUI可把源码从APK里抠出来，代码逻辑清晰，基本上做到可复用，只是资源文件的引用需要计算一下。</p>
+<p>第二种情况：混淆。通常是利用Proguard做的防护。因为是对jar做的不可逆混淆（除非有mapping），因此不能还原成原来的代码。但是代码结构，代码逻辑一致，只要花长时间对代码进行梳理一样可找准核心代码，解密方法跟第一种一致。</p>
+<p>第三种情况：加密。这里以DexGuard为例。对于这种代码加密的方法，在程序运行中必定会进行解密，只要抽出它解密的逻辑便可。PS：我自己做过DexGuard的解密，如果用Dex2jar反编译看的话逻辑是不对的，一定要从Smali代码看。后来发现网上已经有人做了。解密的脚本：<a href="https://www.pnfsoftware.com/blog/2013/04/02/a-look-inside-dexguard/" target="_blank" rel="noopener">A look inside Dexguard</a></p>
+<p>第四种情况：加壳。这种情况跟第三种类似。无论你怎么加壳，运行的时候必定是Dalvik可识别的Odex代码，建议直接在内存里dump出来。这里推荐Xpose的ZjDroid。脱壳教程：<a href="http://www.cnblogs.com/goodhacker/p/3961045.html" target="_blank" rel="noopener">ZjDroid工具介绍及脱壳详细示例</a><br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">作者：Vince</span><br><span class="line">链接：https:<span class="regexp">//</span>www.zhihu.com<span class="regexp">/question/</span><span class="number">30723538</span><span class="regexp">/answer/</span><span class="number">49382019</span></span><br><span class="line">来源：知乎</span><br><span class="line">著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</span><br></pre></td></tr></table></figure></p>
+<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><ul>
+<li><a href="https://developer.android.com/studio/intro/studio-config?hl=zh-cn" target="_blank" rel="noopener">官方-配置 Android Studio</a></li>
+<li><a href="https://blog.csdn.net/xyxjn/article/details/46906909" target="_blank" rel="noopener">Android Studio 设置内存大小及原理</a></li>
+<li><a href="www.javadecompilers.com/apk">APK 在线反编译</a></li>
+<li><a href="https://segmentfault.com/a/1190000007359713" target="_blank" rel="noopener">反编译apk的步骤</a></li>
+<li><a href="https://segmentfault.com/a/1190000005133219" target="_blank" rel="noopener">手把手教你逆向分析 Android 程序</a></li>
+<li><a href="https://blog.csdn.net/jiangwei0910410003/article/details/51671019" target="_blank" rel="noopener">Android逆向之旅—反编译利器Apktool和Jadx源码分析以及错误纠正</a></li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> Android </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Android Studio </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[【Android TimeCat】 让Android-Studio快十倍]]></title>
+      <url>/2018/04/09/2018-04-09-Android-TimeCat-%E8%AE%A9Android-Studio%E5%BF%AB%E5%8D%81%E5%80%8D/</url>
+      <content type="html"><![CDATA[<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>Android Studio 越用越卡，明明电脑配置不低了。。。</p>
+<h1 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h1><p>Android Studio 是Java写的软件，运行在Java虚拟机上，如果使用时间长，会频繁触发垃圾回收机制，导致卡顿。</p>
+<h1 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h1><p>配置Android Studio，给它分多点内存。给2048m应该够用了，如果不够，再来4096m.</p>
+<p><img src="/assets/blog/img/2018-04-9/0.png" width="700"></p>
+<h1 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h1><p>配置Android Studio，给它分多点内存。</p>
+<p>Android Studio 通过 Help 菜单提供对两个配置文件的访问：</p>
+<ul>
+<li><code>studio.vmoptions</code>：自定义 Studio Java 虚拟机 (JVM) 的选项，如堆内存和缓存大小。请注意，对于 Linux 机器，此文件可能命名为 studio64.vmoptions，具体取决于您的 Android Studio 版本。</li>
+<li><code>idea.properties</code>：自定义 Android Studio 的属性，如插件文件夹路径或最大支持文件大小。</li>
+</ul>
+<h2 id="自定义-VM-选项"><a href="#自定义-VM-选项" class="headerlink" title="自定义 VM 选项"></a>自定义 VM 选项</h2><p>通过 studio.vmoptions 文件，您可以自定义适用于 Android Studio 的 JVM 的选项。为了提高 Studio 的性能，最常用的调节选项是最大堆内存，但您也可以使用 studio.vmoptions 文件替换其他默认设置，如初始堆内存、缓存大小和 Java 垃圾回收开关。</p>
+<p>要新建 studio.vmoptions 文件或打开现有文件，请执行以下步骤：</p>
+<p>点击 Help &gt; Edit Custom VM Options。如果您之前从未编辑过适用于 Android Studio 的 VM 选项，IDE 将提示您新建一个 studio.vmoptions 文件。点击 Yes 创建文件。</p>
+<p>此时 studio.vmoptions 文件将在 Android Studio 的编辑器窗口中打开。编辑文件以添加您自己的自定义 VM 选项。如需可自定义 JVM 选项的完整列表，请参阅 Oracle 的 Java HotSpot VM 选项页。<br>您创建的 studio.vmoptions 文件将添加至默认 studio.vmoptions 文件，后者位于 Android Studio 安装文件夹内的 bin/ 目录中。</p>
+<p>请注意，切勿直接编辑 Android Studio 程序文件夹内的 studio.vmoptions 文件。尽管您可以访问该文件来查看 Studio 的默认 VM 选项，但仅编辑自己的 studio.vmoptions 文件可确保您不会替换 Android Studio 的重要默认设置。因此，在您的 studio.vmoptions 文件中，请仅替换您关注的属性，使 Android Studio 可以继续使用未更改的任何属性的默认值。</p>
+<h2 id="最大堆内存"><a href="#最大堆内存" class="headerlink" title="最大堆内存"></a>最大堆内存</h2><p>默认情况下，Android Studio 的最大堆内存为 1280MB。如果您要处理大项目，或者您的系统有大量 RAM 可用，您可以通过在 Android Studio 的 VM 选项中增加最大堆内存来提高性能。如果系统的内存有限，您可能希望降低最大堆内存。</p>
+<p>要更改最大堆内存，请执行以下步骤：</p>
+<p>点击 Help &gt; Edit Custom VM Options 以打开您的 studio.vmoptions 文件。<br>向 studio.vmoptions 文件添加一个行，使用语法 -XmxheapSize 设置最大堆内存。您选择的大小应该基于项目大小以及机器上的可用 RAM。作为基准，如果您有 4GB 以上的 RAM 和中等大小的项目，则应该将最大堆内存设置为 2GB 或更高。以下行可将最大堆内存设置为 2GB：<br><figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="deletion">-Xmx2g</span></span><br></pre></td></tr></table></figure></p>
+<p>保存对 studio.vmoptions 文件所做的更改，然后重新启动 Android Studio 以使更改生效。</p>
+<p>#</p>
+<p>从AndroidStudio的启动参数了解到的下JVM的一些东西（内存使用，JIT等）</p>
+<p>如果你使用AndroidStudio经常觉得很卡，那有可能是因为系统给AS分配的内存不够的原因。打开/Applications/Android Studio.app/Contents/bin/studio.vmoptions (Mac)，可以看到有以下配置：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-Xms128m -Xmx750m -XX:<span class="attribute">MaxPermSize</span>=350m -XX:<span class="attribute">ReservedCodeCacheSize</span>=96m -XX:+UseCompressedOops</span><br></pre></td></tr></table></figure></p>
+<p>这些参数分别是什么意思呢？</p>
+<h3 id="Xms128m"><a href="#Xms128m" class="headerlink" title="-Xms128m"></a>-Xms128m</h3><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The -Xms option sets <span class="keyword">the</span> initial <span class="keyword">and</span> minimum Java heap size. The Java heap (<span class="keyword">the</span> “heap”) is <span class="keyword">the</span> part <span class="keyword">of</span> <span class="keyword">the</span> memory where blocks <span class="keyword">of</span> memory are allocated <span class="built_in">to</span> objects <span class="keyword">and</span> freed during garbage collection.</span><br></pre></td></tr></table></figure>
+<p>就是JVM启动的起始堆内存，堆内存是分配给对象的内存。这里我把它改成了512m</p>
+<h3 id="Xmx750m"><a href="#Xmx750m" class="headerlink" title="-Xmx750m"></a>-Xmx750m</h3><figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">This <span class="keyword">option</span> <span class="keyword">sets</span> the <span class="comment">maximum Java heap size.</span></span><br></pre></td></tr></table></figure>
+<p>也就是AndroidStudio能使用的最大heap内存，这里我改成了2048m</p>
+<p>这两个参数都是-X开头的，表示非标准的参数。什么叫非标准的呢？我们知道JVM有很多个实现，Oracle的，OpenJDK等等，这里的-X参数，是Oracle的JVM实现使用的，OpenJDK不一定能使用，也就是没有将这些参数标准化，让所有的JVM实现都能使用。</p>
+<h3 id="XX-MaxPermSize-350m"><a href="#XX-MaxPermSize-350m" class="headerlink" title="-XX:MaxPermSize=350m"></a>-XX:MaxPermSize=350m</h3><p>这个参数指定最大的Permanent generation大小。<br>根据oracle的文档：<br><figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Permanent Generation (non-heap): The pool containing all the reflective data <span class="keyword">of</span> the <span class="keyword">virtual</span> machine itself, such <span class="keyword">as</span> <span class="keyword">class</span> <span class="keyword">and</span> <span class="function"><span class="keyword">method</span> <span class="title">objects</span>. <span class="title">With</span> <span class="title">Java</span> <span class="title">VMs</span> <span class="title">that</span> <span class="title">use</span> <span class="title">class</span> <span class="title">data</span> <span class="title">sharing</span>, <span class="title">this</span> <span class="title">generation</span> <span class="title">is</span> <span class="title">divided</span> <span class="title">into</span> <span class="title">read</span>-<span class="title">only</span> <span class="title">and</span> <span class="title">read</span>-<span class="title">write</span> <span class="title">areas</span>.</span></span><br></pre></td></tr></table></figure></p>
+<p>可知，Permanent Generation也是一块内存区域，跟heap不同，它里面存放的事类本身（不是对象），以及方法，一些固定的字符串等等。更多关于Permanent Generation</p>
+<h3 id="XX-ReservedCodeCacheSize-90m"><a href="#XX-ReservedCodeCacheSize-90m" class="headerlink" title="-XX:ReservedCodeCacheSize=90m"></a>-XX:ReservedCodeCacheSize=90m</h3><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ReservedCodeCacheSize (<span class="keyword">and</span> InitialCodeCacheSize) is <span class="keyword">an</span> option <span class="keyword">for</span> <span class="keyword">the</span> (just-<span class="keyword">in</span>-<span class="built_in">time</span>) compiler <span class="keyword">of</span> <span class="keyword">the</span> Java Hotspot VM. Basically <span class="keyword">it</span> sets <span class="keyword">the</span> maximum size <span class="keyword">for</span> <span class="keyword">the</span> compiler<span class="string">'s code cache.</span></span><br></pre></td></tr></table></figure>
+<p>设置JIT java compiler在compile的时候的最大代码缓存。简单地说就是JIT（Just In Time）编译器在编译代码的时候，需要缓存一些东西，这个参数指定最多能使用多大内存来缓存这些东西。<br>什么叫JIT呢？看wikipedia的解释：<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">In computing, just-<span class="keyword">in</span>-<span class="built_in">time</span> compilation (JIT), also known <span class="keyword">as</span> dynamic translation, is compilation done during execution <span class="keyword">of</span> <span class="keyword">a</span> program – <span class="keyword">at</span> run <span class="built_in">time</span> – rather than prior <span class="built_in">to</span> execution.Most often this consists <span class="keyword">of</span> translation <span class="built_in">to</span> machine code, which is <span class="keyword">then</span> executed directly, but can also refer <span class="built_in">to</span> translation <span class="built_in">to</span> another <span class="built_in">format</span>. JIT compilation is <span class="keyword">a</span> combination <span class="keyword">of</span> <span class="keyword">the</span> <span class="literal">two</span> traditional approaches <span class="built_in">to</span> translation <span class="built_in">to</span> machine code – ahead-<span class="keyword">of</span>-<span class="built_in">time</span> compilation (AOT), <span class="keyword">and</span> interpretation – <span class="keyword">and</span> combines some advantages <span class="keyword">and</span> drawbacks <span class="keyword">of</span> both.[<span class="number">1</span>] Roughly, JIT compilation combines <span class="keyword">the</span> speed <span class="keyword">of</span> compiled code <span class="keyword">with</span> <span class="keyword">the</span> flexibility <span class="keyword">of</span> interpretation, <span class="keyword">with</span> <span class="keyword">the</span> overhead <span class="keyword">of</span> <span class="keyword">an</span> interpreter <span class="keyword">and</span> <span class="keyword">the</span> additional overhead <span class="keyword">of</span> compiling (<span class="keyword">not</span> just interpreting). JIT compilation is <span class="keyword">a</span> form <span class="keyword">of</span> dynamic compilation, <span class="keyword">and</span> allows adaptive optimization such <span class="keyword">as</span> dynamic recompilation – thus <span class="keyword">in</span> principle JIT compilation can yield faster execution than static compilation. Interpretation <span class="keyword">and</span> JIT compilation are particularly suited <span class="keyword">for</span> dynamic programming languages, <span class="keyword">as</span> <span class="keyword">the</span> runtime <span class="keyword">system</span> can handle late-bound data types <span class="keyword">and</span> enforce security guarantees.</span><br></pre></td></tr></table></figure></p>
+<p>我们知道编程语言分两种： - 编译型，先将人写的代码整个编译成汇编语言或机器语言，一条一条代码然后执行。 - 解释型，不需要编译，将人写的代码一条一条拿过来一次执行，先取一条，执行，完了再取下一条，然后在执行。</p>
+<p>而对于Java来说，这个情况就比较特殊了，因为在Java这里，JVM先是将Java代码整个编译成bytecode，然后在JVM内部再一条一条执行bytecode代码。你说它是编译型的吧，bytecode又不用编译成机器代码，二是一条条bytecode一次执行。你说它是解释型的吧，它又有一个编译的过程。对于Java到底是编译型还是解释型到现在也没有一个定论。不过，我们还是可以探讨一下Java的JIT编译技术。<br>刚刚说了，在bytecode层面，代码是解释执行的。解释型的语言会比较慢，因为它没有办法根据上下文对代码进行优化。而编译型的语言则可以进行优化。Java的JIT技术，就是在bytecode解释执行的时候，它不一定是一条条解释执行的，二是取一段代码，编译成机器代码，然后执行，这样的话就有了上下文，可以对代码进行优化了，所以执行速度也会更快。<br>可见，JIT技术结合了编译型（速度更快）和解释型语言（代码更灵活）二者的优势。对于动态语言的执行来说，是一个非常大的优势。</p>
+<h3 id="XX-UseCompressedOops"><a href="#XX-UseCompressedOops" class="headerlink" title="-XX:+UseCompressedOops"></a>-XX:+UseCompressedOops</h3><p>这个参数允许系统将代码里面的引用(reference)类型用32位存储，同时却能够让引用能够使用64位的内存大小。<br>我们知道现代的机器基本都是64位的，在这种情况下，Java代码里面的reference类型也变成了用64位来存储，这就导致了两个问题：</p>
+<ol>
+<li><p>64位比32为更大，占的内存更多，这是显然的，当然这个问题在整个程序看来根本不显然，因为哪怕系统同时有1000个引用存在，那多出来的内存也就4M，这个不重要，因为现在手机都动不动好几个G，大型服务器就更加不用说了。更重要的是第二点。 </p>
+</li>
+<li><p>相对于内存，CPU的cache就小的可怜了，当reference从32bit变成64bit时，cache里面能存放的reference数量就顿时少了很多。所以64bit的reference对cache是个大问题，于是就有了这个选项，可以允许系统用32bit来存储reference，让cache里面能存放更多的reference，同时又不影响reference的取址范围。至于他们是怎么做到的，我就不得而知了。。。</p>
+</li>
+</ol>
+<p>以上三个参数是以-XX开头的，根据Oracle的说明，<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Options <span class="keyword">that</span> are specified <span class="keyword">with</span> -XX are <span class="keyword">not</span> stable <span class="keyword">and</span> are subject <span class="keyword">to</span> change <span class="keyword">without</span> notice.</span><br></pre></td></tr></table></figure></p>
+<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><ul>
+<li><a href="https://developer.android.com/studio/intro/studio-config?hl=zh-cn" target="_blank" rel="noopener">官方-配置 Android Studio</a></li>
+<li><a href="https://blog.csdn.net/xyxjn/article/details/46906909" target="_blank" rel="noopener">Android Studio 设置内存大小及原理</a></li>
+<li><a href="https://intellij-support.jetbrains.com/hc/en-us/articles/206544869-Configuring-JVM-options-and-platform-properties" target="_blank" rel="noopener">Configuring JVM options and platform properties</a></li>
+<li><a href="http://www.cnblogs.com/redcreen/archive/2011/05/04/2037057.html" target="_blank" rel="noopener">JVM系列三:JVM参数设置、分析</a></li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> Android </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Android Studio </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[【Android TimeCat】 解决cannot resolve symbol R]]></title>
+      <url>/2018/04/08/2018-04-08-Android-TimeCat-%E8%A7%A3%E5%86%B3cant-resolve-symbol-R/</url>
+      <content type="html"><![CDATA[<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>莫名其妙出现了，鬼知道怎么来的。</p>
+<h1 id="解决方法总结"><a href="#解决方法总结" class="headerlink" title="解决方法总结"></a>解决方法总结</h1><h2 id="1-推荐"><a href="#1-推荐" class="headerlink" title="1. 推荐"></a>1. 推荐</h2><p>解决90%的情况：</p>
+<p><code>Build-&gt;Clean Project</code><br><code>Build-&gt;Rebuild Project</code></p>
+<p><img src="/assets/blog/img/2018-04-8/0.png" width="700"></p>
+<h2 id="2-不常见"><a href="#2-不常见" class="headerlink" title="2. 不常见"></a>2. 不常见</h2><p>Android Studio 有个奇葩的设置。。</p>
+<p><img src="/assets/blog/img/2018-04-8/1.png" width="700"><br><img src="/assets/blog/img/2018-04-8/2.png" width="700"></p>
+<p>欸，来搞一下分配的空间就行了。</p>
+<p>打开ide配置</p>
+<p><img src="/assets/blog/img/2018-04-8/3.png" width="700"></p>
+<p>填入<code>idea.max.intellisense.filesize=99999999</code></p>
+<p><img src="/assets/blog/img/2018-04-8/4.png" width="700"></p>
+<p>清缓存然后重启Android Studio</p>
+<p><img src="/assets/blog/img/2018-04-8/5.png" width="700"><br><img src="/assets/blog/img/2018-04-8/6.png" width="700"></p>
+<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><ul>
+<li><a href="https://stackoverflow.com/questions/17054000/cannot-resolve-symbol-r-in-android-studio" target="_blank" rel="noopener">“cannot resolve symbol R” in Android Studio
+</a></li>
+<li><a href="https://developer.android.com/studio/intro/studio-config?hl=zh-cn" target="_blank" rel="noopener">官方-配置 Android Studio</a></li>
+<li><a href="https://stackoverflow.com/questions/23057988/file-size-exceeds-configured-limit-2560000-code-insight-features-not-availabl?utm_medium=organic&amp;utm_source=google_rich_qa&amp;utm_campaign=google_rich_qa" target="_blank" rel="noopener">File size exceeds configured limit (2560000), code insight features not available
+</a></li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> Android </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Android Studio </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[【计算机组成原理】 八大思想之抽象]]></title>
       <url>/2018/03/13/2018-03-13-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E5%85%AB%E5%A4%A7%E6%80%9D%E6%83%B3%E4%B9%8B%E6%8A%BD%E8%B1%A1/</url>
       <content type="html"><![CDATA[<p>计算机领域对我影响最大的思想是抽象。</p>
@@ -873,39 +1050,6 @@
     </entry>
     
     <entry>
-      <title><![CDATA[【Android TimeCat】 跳转QQ加群]]></title>
-      <url>/2018/02/26/2018-02-26-Android-TimeCat-%E8%B7%B3%E8%BD%ACQQ%E5%8A%A0%E7%BE%A4/</url>
-      <content type="html"><![CDATA[<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>TimeCat项目内测需要用到</p>
-<h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><ol>
-<li>访问<a href="https://qun.qq.com/join.html" target="_blank" rel="noopener">https://qun.qq.com/join.html</a></li>
-<li>登录</li>
-<li>左边选择QQ群，右边有代码，直接复制到项目即可</li>
-</ol>
-<p><img src="/assets/blog/img/2018-02-26/30.png" width="700"></p>
-<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><ol>
-<li>必须明确QQ群号</li>
-<li>该用户必须是QQ群号的管理员或群主</li>
-</ol>
-]]></content>
-      
-        <categories>
-            
-            <category> Android </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Android </tag>
-            
-            <tag> QQ </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[【Android TimeCat】 Android Studio 高效配置]]></title>
       <url>/2018/02/26/2018-02-26-Android-TimeCat-Android%20Studio%E9%AB%98%E6%95%88%E9%85%8D%E7%BD%AE/</url>
       <content type="html"><![CDATA[<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><h1 id="1、代码提示不区分大小写"><a href="#1、代码提示不区分大小写" class="headerlink" title="1、代码提示不区分大小写"></a>1、代码提示不区分大小写</h1><p>File | Settings 打开设置，选择Editor | General | Code Completion</p>
@@ -969,6 +1113,39 @@
             <tag> Android </tag>
             
             <tag> Android Studio </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[【Android TimeCat】 跳转QQ加群]]></title>
+      <url>/2018/02/26/2018-02-26-Android-TimeCat-%E8%B7%B3%E8%BD%ACQQ%E5%8A%A0%E7%BE%A4/</url>
+      <content type="html"><![CDATA[<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>TimeCat项目内测需要用到</p>
+<h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><ol>
+<li>访问<a href="https://qun.qq.com/join.html" target="_blank" rel="noopener">https://qun.qq.com/join.html</a></li>
+<li>登录</li>
+<li>左边选择QQ群，右边有代码，直接复制到项目即可</li>
+</ol>
+<p><img src="/assets/blog/img/2018-02-26/30.png" width="700"></p>
+<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><ol>
+<li>必须明确QQ群号</li>
+<li>该用户必须是QQ群号的管理员或群主</li>
+</ol>
+]]></content>
+      
+        <categories>
+            
+            <category> Android </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Android </tag>
+            
+            <tag> QQ </tag>
             
         </tags>
         
@@ -1303,9 +1480,9 @@
             
             <tag> Android </tag>
             
-            <tag> ViewPager </tag>
-            
             <tag> Fragment </tag>
+            
+            <tag> ViewPager </tag>
             
             <tag> BottomNavigationView </tag>
             
@@ -1956,22 +2133,14 @@
     </entry>
     
     <entry>
-      <title><![CDATA[running Ubuntu GUI in Windows10]]></title>
-      <url>/2018/01/22/2018-01-22-running-Ubuntu-GUI-in-Windows10/</url>
-      <content type="html"><![CDATA[<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>先安装显示图形界面的程序<a href="https://sourceforge.net/projects/vcxsrv/" target="_blank" rel="noopener">vcxsrv</a><br>然后运行以下命令<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">echo "export DISPLAY=:0.0" &gt;&gt; ~/.bashrc</span><br><span class="line">export DISPLAY=:0.0</span><br><span class="line">sudo apt-get install dbus --reinstall</span><br><span class="line">sudo sed -i 's/&lt;listen&gt;.*&lt;\/listen&gt;/&lt;listen&gt;tcp:host=localhost,port=0&lt;\/listen&gt;/' /etc/dbus-1/session.conf</span><br><span class="line">sudo apt-get install ubuntu-desktop</span><br><span class="line">sudo apt-get install unity</span><br><span class="line">sudo apt-get install compiz-core</span><br><span class="line">sudo apt-get install compizconfig-settings-manager</span><br></pre></td></tr></table></figure></p>
-<h1 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h1><p>先启动<code>XLaunch</code>,选择<code>只启动一个大窗口</code>,把<code>-1</code>改为<code>0</code><br>这时候的窗口是黑的,因为没有视频输入<br>然后运行命令<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compiz</span><br></pre></td></tr></table></figure></p>
-<p>这时又视频输入了，切到<code>XLaunch</code>就可以浪了</p>
-<div class="image-package"><br><img src="/assets/blog/img/2018-01-22/0.png" width="700"><br><br><br><div class="image-caption">0.png</div><br></div>
-
-<div class="image-package"><br><img src="/assets/blog/img/2018-01-22/1.png" width="700"><br><br><br><div class="image-caption">1.png</div><br></div>
-
-<div class="image-package"><br><img src="/assets/blog/img/2018-01-22/2.png" width="700"><br><br><br><div class="image-caption">2.png</div><br></div>
-
-<div class="image-package"><br><img src="/assets/blog/img/2018-01-22/3.png" width="700"><br><br><br><div class="image-caption">3.png</div><br></div>
-
-<div class="image-package"><br><img src="/assets/blog/img/2018-01-22/4.png" width="700"><br><br><br><div class="image-caption">4.png</div><br></div>
-
-<div class="image-package"><br><img src="/assets/blog/img/2018-01-22/5.png" width="700"><br><br><br><div class="image-caption">5.png</div><br></div>
+      <title><![CDATA[update nodejs and npm]]></title>
+      <url>/2018/01/22/2018-01-22-update-nodejs-and-npm/</url>
+      <content type="html"><![CDATA[<h1 id="升级node-js和npm"><a href="#升级node-js和npm" class="headerlink" title="升级node.js和npm"></a>升级node.js和npm</h1><p>一行命令搞定npm和node.js的升级，省去了重新编译和安装的过程。具体如下：</p>
+<h2 id="升级node-js"><a href="#升级node-js" class="headerlink" title="升级node.js"></a>升级node.js</h2><p>npm中有一个模块叫做“n”，专门用来管理node.js版本的。<br>更新到最新的稳定版只需要在命令行中打下如下代码：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install -g n</span><br><span class="line">n stable</span><br></pre></td></tr></table></figure></p>
+<p>如需最新版本则用<code>n latest</code></p>
+<p>当然，n后面也可以跟具体的版本号：<code>n v6.2.0</code></p>
+<p>node.js升级就是这么简单。</p>
+<h2 id="升级npm"><a href="#升级npm" class="headerlink" title="升级npm"></a>升级npm</h2><p>npm升级就更简单了，只需要在终端中输入：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm -g install npm@next</span><br></pre></td></tr></table></figure></p>
 ]]></content>
       
         <categories>
@@ -1990,14 +2159,22 @@
     </entry>
     
     <entry>
-      <title><![CDATA[update nodejs and npm]]></title>
-      <url>/2018/01/22/2018-01-22-update-nodejs-and-npm/</url>
-      <content type="html"><![CDATA[<h1 id="升级node-js和npm"><a href="#升级node-js和npm" class="headerlink" title="升级node.js和npm"></a>升级node.js和npm</h1><p>一行命令搞定npm和node.js的升级，省去了重新编译和安装的过程。具体如下：</p>
-<h2 id="升级node-js"><a href="#升级node-js" class="headerlink" title="升级node.js"></a>升级node.js</h2><p>npm中有一个模块叫做“n”，专门用来管理node.js版本的。<br>更新到最新的稳定版只需要在命令行中打下如下代码：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install -g n</span><br><span class="line">n stable</span><br></pre></td></tr></table></figure></p>
-<p>如需最新版本则用<code>n latest</code></p>
-<p>当然，n后面也可以跟具体的版本号：<code>n v6.2.0</code></p>
-<p>node.js升级就是这么简单。</p>
-<h2 id="升级npm"><a href="#升级npm" class="headerlink" title="升级npm"></a>升级npm</h2><p>npm升级就更简单了，只需要在终端中输入：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm -g install npm@next</span><br></pre></td></tr></table></figure></p>
+      <title><![CDATA[running Ubuntu GUI in Windows10]]></title>
+      <url>/2018/01/22/2018-01-22-running-Ubuntu-GUI-in-Windows10/</url>
+      <content type="html"><![CDATA[<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>先安装显示图形界面的程序<a href="https://sourceforge.net/projects/vcxsrv/" target="_blank" rel="noopener">vcxsrv</a><br>然后运行以下命令<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">echo "export DISPLAY=:0.0" &gt;&gt; ~/.bashrc</span><br><span class="line">export DISPLAY=:0.0</span><br><span class="line">sudo apt-get install dbus --reinstall</span><br><span class="line">sudo sed -i 's/&lt;listen&gt;.*&lt;\/listen&gt;/&lt;listen&gt;tcp:host=localhost,port=0&lt;\/listen&gt;/' /etc/dbus-1/session.conf</span><br><span class="line">sudo apt-get install ubuntu-desktop</span><br><span class="line">sudo apt-get install unity</span><br><span class="line">sudo apt-get install compiz-core</span><br><span class="line">sudo apt-get install compizconfig-settings-manager</span><br></pre></td></tr></table></figure></p>
+<h1 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h1><p>先启动<code>XLaunch</code>,选择<code>只启动一个大窗口</code>,把<code>-1</code>改为<code>0</code><br>这时候的窗口是黑的,因为没有视频输入<br>然后运行命令<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compiz</span><br></pre></td></tr></table></figure></p>
+<p>这时又视频输入了，切到<code>XLaunch</code>就可以浪了</p>
+<div class="image-package"><br><img src="/assets/blog/img/2018-01-22/0.png" width="700"><br><br><br><div class="image-caption">0.png</div><br></div>
+
+<div class="image-package"><br><img src="/assets/blog/img/2018-01-22/1.png" width="700"><br><br><br><div class="image-caption">1.png</div><br></div>
+
+<div class="image-package"><br><img src="/assets/blog/img/2018-01-22/2.png" width="700"><br><br><br><div class="image-caption">2.png</div><br></div>
+
+<div class="image-package"><br><img src="/assets/blog/img/2018-01-22/3.png" width="700"><br><br><br><div class="image-caption">3.png</div><br></div>
+
+<div class="image-package"><br><img src="/assets/blog/img/2018-01-22/4.png" width="700"><br><br><br><div class="image-caption">4.png</div><br></div>
+
+<div class="image-package"><br><img src="/assets/blog/img/2018-01-22/5.png" width="700"><br><br><br><div class="image-caption">5.png</div><br></div>
 ]]></content>
       
         <categories>
@@ -3691,9 +3868,9 @@ id* | pid(FK) | finish | name | date | content
             
             <tag> Linux </tag>
             
-            <tag> Ubuntu </tag>
-            
             <tag> Tips </tag>
+            
+            <tag> Ubuntu </tag>
             
         </tags>
         
@@ -3890,32 +4067,6 @@ id* | pid(FK) | finish | name | date | content
     </entry>
     
     <entry>
-      <title><![CDATA[代理]]></title>
-      <url>/2017/08/21/2017-08-21-%E4%BB%A3%E7%90%86/</url>
-      <content type="html"><![CDATA[<h2 id="1-lantern"><a href="#1-lantern" class="headerlink" title="1.lantern"></a>1.lantern</h2><h4 id="浏览器代理"><a href="#浏览器代理" class="headerlink" title="浏览器代理"></a>浏览器代理</h4><p><a href="https://github.com/getlantern/lantern" target="_blank" rel="noopener">https://github.com/getlantern/lantern</a></p>
-<h4 id="命令行代理"><a href="#命令行代理" class="headerlink" title="命令行代理"></a>命令行代理</h4><p>打开蓝灯后，终端下输入：</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">export</span> <span class="attribute">http_proxy</span>=http://127.0.0.1:8787</span><br><span class="line"></span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">https_proxy</span>=http://127.0.0.1:8787</span><br></pre></td></tr></table></figure>
-<p>:8787是端口号，具体查看<code>系统设置</code>–<code>网络</code>–<code>网络代理</code></p>
-]]></content>
-      
-        <categories>
-            
-            <category> Proxy </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Proxy </tag>
-            
-            <tag> Lantern </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[GO的安装和配置]]></title>
       <url>/2017/08/21/2017-08-21-Go%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/</url>
       <content type="html"><![CDATA[<h2 id="0-Install-Go"><a href="#0-Install-Go" class="headerlink" title="0.Install Go"></a>0.Install Go</h2><blockquote>
@@ -3969,6 +4120,32 @@ id* | pid(FK) | finish | name | date | content
             <tag> Install </tag>
             
             <tag> Settings </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[代理]]></title>
+      <url>/2017/08/21/2017-08-21-%E4%BB%A3%E7%90%86/</url>
+      <content type="html"><![CDATA[<h2 id="1-lantern"><a href="#1-lantern" class="headerlink" title="1.lantern"></a>1.lantern</h2><h4 id="浏览器代理"><a href="#浏览器代理" class="headerlink" title="浏览器代理"></a>浏览器代理</h4><p><a href="https://github.com/getlantern/lantern" target="_blank" rel="noopener">https://github.com/getlantern/lantern</a></p>
+<h4 id="命令行代理"><a href="#命令行代理" class="headerlink" title="命令行代理"></a>命令行代理</h4><p>打开蓝灯后，终端下输入：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">export</span> <span class="attribute">http_proxy</span>=http://127.0.0.1:8787</span><br><span class="line"></span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">https_proxy</span>=http://127.0.0.1:8787</span><br></pre></td></tr></table></figure>
+<p>:8787是端口号，具体查看<code>系统设置</code>–<code>网络</code>–<code>网络代理</code></p>
+]]></content>
+      
+        <categories>
+            
+            <category> Proxy </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Proxy </tag>
+            
+            <tag> Lantern </tag>
             
         </tags>
         
@@ -4703,9 +4880,9 @@ id* | pid(FK) | finish | name | date | content
             
             <tag> Linux </tag>
             
-            <tag> Ubuntu </tag>
-            
             <tag> Tips </tag>
+            
+            <tag> Ubuntu </tag>
             
         </tags>
         
