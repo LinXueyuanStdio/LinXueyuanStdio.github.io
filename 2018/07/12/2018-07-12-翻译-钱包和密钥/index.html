@@ -1,0 +1,1007 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>【翻译】 钱包和密钥 | XiChen&#39;s Blog</title>
+    <meta name="author" content="Lin Xueyuan">
+    
+    <meta name="description" content="嗨，我是兮尘，全栈数据学徒。这里没有花俏艳丽的魔法，没有苍蛮霸道的斗气，有的，仅仅是繁衍到巅峰的代码！">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="【翻译】 钱包和密钥"/>
+    <meta property="og:site_name" content="XiChen"/>
+
+    
+    <meta property="og:image" content=""/>
+    
+
+    <link rel="icon" type="image/png" href="/assets/images/favicon.ico" />
+    <link rel="alternate" href="/atom.xml" title="XiChen" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+    <link rel="stylesheet" href="//fonts.gdgdocs.org/css?family=Lobster" type="text/css">
+    
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
+
+    <nav class="indigo nav">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="">
+            <div style="font-family: Lobster, Monospace;">
+                <a href="/" class="brand-logo hide-on-med-and-down" style="font-family: Lobster, Monospace;">
+                    XiChen
+                </a>
+            </div>
+            <ul class="nav-menu right hide-on-med-and-down">
+                
+                    <li class="tab">
+                        <a class="menu-home " href="/"
+                            >
+                                <i class="fa fa-home "></i>
+                                
+                                    Home
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-archive " href="/archives"
+                            >
+                                <i class="fa fa-archive "></i>
+                                
+                                    Archives
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-category category-menu" href="javascript:;"
+                            data-activates="category-menu"
+                            >
+                                <i class="fa fa-bookmark "></i>
+                                
+                                    Categories
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-apps " href="/apps"
+                            >
+                                <i class="fa fa-link "></i>
+                                
+                                    App
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-tools " href="/tools"
+                            >
+                                <i class="fa fa-wrench "></i>
+                                
+                                    Tool
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-reading " href="/reading"
+                            >
+                                <i class="fa fa-book "></i>
+                                
+                                    Reading
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-about " href="/about"
+                            >
+                                <i class="fa fa-user "></i>
+                                
+                                    About
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-search modal-trigger " href="#search"
+                            >
+                                <i class="fa fa-search "></i>
+                                
+                                    Search
+                        </a>
+                    </li>
+                    
+            </ul>
+            <div>
+    <ul class="side-nav indigo darken-1" id="main-menu">
+        
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4 no-padding logo-a">
+                    <img class="avatar-image circle responsive-img logo" src="/assets/images/avatar.jpg" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper no-padding">
+                    <div class="valign">
+                        <p class="name">兮尘</p>
+                        <p class="desc">Web前端/Android/技术宅</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-home " href="/" >
+                    <i class="fa fa-home "></i>
+                    
+                    Home
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-archive " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    
+                    Archives
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    
+                    Categories
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-apps " href="/apps" >
+                    <i class="fa fa-link "></i>
+                    
+                    App
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-tools " href="/tools" >
+                    <i class="fa fa-wrench "></i>
+                    
+                    Tool
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-reading " href="/reading" >
+                    <i class="fa fa-book "></i>
+                    
+                    Reading
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-about " href="/about" >
+                    <i class="fa fa-user "></i>
+                    
+                    About
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-search modal-trigger " href="#search" >
+                    <i class="fa fa-search "></i>
+                    
+                    Search
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav indigo darken-1" id="category-menu">
+    
+
+            
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Linux/">
+                    Linux <span class="right">8</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tips/">
+                    Tips <span class="right">7</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Deep-Learning/">
+                    Deep-Learning <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Proxy/">
+                    Proxy <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tools/">
+                    Tools <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/GO/">
+                    GO <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Ubuntu/">
+                    Ubuntu <span class="right">4</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Spider/">
+                    Spider <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Algorithms/">
+                    Algorithms <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/区块链/">
+                    区块链 <span class="right">24</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/算法/">
+                    算法 <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/密码学/">
+                    密码学 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Web/">
+                    Web <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Latex/">
+                    Latex <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/杂思/">
+                    杂思 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Git/">
+                    Git <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Android/">
+                    Android <span class="right">30</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Github/">
+                    Github <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/计算机组成原理/">
+                    计算机组成原理 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+<div id="search" class="modal search-modal">
+    <div class="row">
+        <div class="input-field col s12">
+              <input id="search-input" type="text">
+              <label for="search-input">Search</label>
+        </div>
+
+    </div>
+    <div id="search-result" class="search-result col s12">
+
+    </div>
+</div>
+
+    <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper indigo">
+        <span class="breadcrumb">Current page(Categories)</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/区块链/">区块链</a>
+
+
+        
+
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>【翻译】 钱包和密钥</h1>
+    
+
+
+            </div>
+            <i class="fa fa-calendar"></i><time class="green-link-context" datetime="2018-07-12T06:11:00.000Z"><a href="/2018/07/12/2018-07-12-翻译-钱包和密钥/">2018-07-12</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/区块链/" class="chip green lighten-1">区块链</a>
+        
+            <a href="/tags/Qtum/" class="chip green lighten-1">Qtum</a>
+        
+            <a href="/tags/翻译/" class="chip green lighten-1">翻译</a>
+        
+    </div>
+    
+
+
+            <div class="toc green-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#钱包和密钥-2018年7月25日"><span class="section table-of-contents-number">1.</span> <span class="section table-of-contents-text">钱包和密钥-2018年7月25日</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#介绍"><span class="section table-of-contents-number">2.</span> <span class="section table-of-contents-text">介绍</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#私钥和种子词"><span class="section table-of-contents-number">3.</span> <span class="section table-of-contents-text">私钥和种子词</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#测试网例子"><span class="section table-of-contents-number">4.</span> <span class="section table-of-contents-text">测试网例子</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#A-手机到-Web-钱包"><span class="section table-of-contents-number">4.1.</span> <span class="section table-of-contents-text">A. 手机到 Web 钱包</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#B-Core-到-Web-钱包"><span class="section table-of-contents-number">4.2.</span> <span class="section table-of-contents-text">B. Core 到 Web 钱包</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#参考："><span class="section table-of-contents-number">5.</span> <span class="section table-of-contents-text">参考：</span></a></li></ol>
+</div>
+
+
+            <div class="entry green-link-context">
+                <p>原文：<a href="https://medium.com/@jb395official/wallets-and-keys-july-23-2018-92abf2a2d2bf" target="_blank" rel="noopener">https://medium.com/@jb395official/wallets-and-keys-july-23-2018-92abf2a2d2bf</a><br>译者：中山大学数学学院（珠海）林学渊<br>大二时给量子做的翻译，转载注明出处，谢谢</p>
+<p>Wallets and Keys — July 25, 2018</p>
+<h1 id="钱包和密钥-2018年7月25日"><a href="#钱包和密钥-2018年7月25日" class="headerlink" title="钱包和密钥-2018年7月25日"></a>钱包和密钥-2018年7月25日</h1><p>本文考虑钱包和密钥。先简要介绍，再上例子。大多数例子基于浏览器上的 <a href="https://qtumwallet.org/" target="_blank" rel="noopener">Qtum Web 钱包</a>，类似于以太坊钱包 MyEtherWallet和MyCrypto。 Qtum Web 钱包运行在浏览器上，并不需要下载区块链，而是通过专用全节点连接到区块链。</p>
+<p><img src="https://cdn-images-1.medium.com/max/960/1*sxyzaMzH1k1QMIM4WOmawA.jpeg" alt="变色龙示威，[Yathin S Krishnappa](https://commons.wikimedia.org/wiki/User:Yathin_sk)摄，裁剪过"></p>
+<p>Web 钱包是一个强大的变色龙，提供了很多恢复其他类型Qtum钱包的方式。没有 Web 钱包恢复不了的钱包（如果你用本博客的技术的话）。注意Web钱包具有完整QRC20令牌功能。</p>
+<p>注意事项：本博客和钱包恢复步骤包括处理私钥和种子词。在你尝试这些步骤前，确保你完全理解流程且电脑没有恶意软件和病毒。简单地发送QTUM或代币到一个新钱包比乱动私钥更安全，但有时无法发送代币，比如，你的手机钱包掉马桶或被忘在浴缸里一整夜。永远不要把你的私钥或种子词给别人因为他们能拿走你的币。</p>
+<p><img src="https://cdn-images-1.medium.com/max/960/1*2co82T2PlBqiWtajX0A4uA.jpeg" alt=""></p>
+<p>我是一名独立研究员，偶尔写博客和主持社交媒体，十分中意Qtum的技术指导。如果你对本文有想法或批评，请在社交软件上发给我或在下面评论。</p>
+<hr>
+<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><blockquote>
+<p>TL;DR Qtum 钱包的安装使用了随机生成的私钥或种子词。通过导出私钥或种子词，你能在各种钱包之间转移你的 Qtum 地址。重要的是保证私钥和种子词安全–保持你的私人私密！</p>
+</blockquote>
+<p>你知道钱包在区块链建立它们的身份时使用了一个 Qtum地址 “Q…”。 这个地址生成自公钥，而公钥生成自私钥。</p>
+<p>Satoshi 给比特币取了错误的名字 “钱包”， 因为钱包实际上不存任何币或代币，它们存在区块链里。“钱包”的正确名字应该是“密钥库”因为钱包的主要工作是保存和管理私钥，通过私钥来支持交易。</p>
+<h1 id="私钥和种子词"><a href="#私钥和种子词" class="headerlink" title="私钥和种子词"></a>私钥和种子词</h1><p><img src="https://cdn-images-1.medium.com/max/960/1*zQsSpuPYc66g-_peB2qwDA.jpeg" alt=""></p>
+<p>一个私钥是一个简陋的字符串，但它是通往王国的关键。私钥（不用密码）允许存储在由私钥生成的地址中的QTUM访问。你需要十分小心地使用私钥，因为如果任何一个人（黑客、恶意软件、甜言蜜语的热心人）拿了你的私钥，他们就可以拿了你的钱。</p>
+<p><img src="https://cdn-images-1.medium.com/max/960/1*r8NdMNvHsshagpqlV-agtg.jpeg" alt=""></p>
+<p>私钥也能用种子词生成。典型的是，钱包使用的种子词有两种，桌面钱包使用 bip-039 种子词，手机钱包使用“字典”种子词。这两种不相容，这个差别由 Web 钱包管理，它两种都能接受，是 bip-039 种子词则使用 “从助记符中恢复” ，是“字典”种子词则使用“从手机钱包恢复”。</p>
+<p>比特币改进协议（Bitcoin Improvement Protocol 39 （bip-039)）给出了规则，生成私钥要使用从 2,048 个单词列表中导出的 12 个种子词[参考文献1]。手机钱包使用的“字典”单词一列是 4,216个类似bip-039的单词[参考文献2]。</p>
+<p>输入种子词来恢复钱包有风险，因为私钥是从种子词里精确地生成而来，多一个符号或一个空格都会生成一个完全不同的私钥和完全不同的 Qtum 地址。如果你错输了种子词，你会创建给钱包创建一个你不期望的 Qtum 地址。如果你发币给那个地址，你很有可能永远无法再输入那个错字恢复钱包地址，这就意味着你的币永久丢失了。</p>
+<p>下图显示了用于创建钱包或恢复钱包的所有 Web 钱包选项： </p>
+<ol>
+<li><p>生成新钱包 – 创建一个随机地址，下载一个密钥文件</p>
+</li>
+<li><p>用助记符创建 – 创建 12 个种子词生成的一个随机地址</p>
+</li>
+<li><p>从助记符恢复 – 使用 12 个 bip-039 种子词从另一个钱包恢复一个地址</p>
+</li>
+<li><p>从 WIF 恢复 – 从一个密钥中恢复一个地址</p>
+</li>
+<li><p>从手机钱包恢复 – 使用 12 个 “字典” 种子词从一个 Qtum 手机钱包中恢复一个地址</p>
+</li>
+<li><p>从密钥文件恢复 – 从 Web 钱包创建的密钥文件中恢复一个地址</p>
+</li>
+<li><p>从 Ledger 恢复 - 允许使用安全存储在 Ledger 硬件钱包中的私钥进行交易</p>
+</li>
+</ol>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*jbZEYQ8-jqb70LjZTJ8ZuQ.jpeg" alt=""></p>
+<p>让我们逐个详细地介绍这些选项。</p>
+<ol>
+<li>生成新钱包</li>
+</ol>
+<p>生成新钱包会创建一个随机地址并下载一个密钥文件，其名称由 unix 纪元时间（以毫秒为单位）给出，例如 “1532053935952.txt”，其中包含由密码加密的文本，例如：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;“<span class="keyword">version</span>”:”<span class="number">0.1</span><span class="comment">",”content”:”tFz3ctzaITRniFjD6lDm1m8Zyu7LeNjNm/j2ao/hxoIhYAwqlC9iZYZ9TCermbrxF2ljd/wTXnRq/Ca6nYPYZNJ4GC0=”&#125;</span></span><br></pre></td></tr></table></figure>
+<p>将密钥文件保存在计算机上，并备份到多个USB设备。重新启动 / 恢复用“生成新钱包”选项创建的钱包的唯一方法是通过加载密钥文件并输入密码来“从密钥文件恢复”（请参阅​​下面的步骤6）。</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*wIaJRnmbnL0uMZ0ceN1uUw.jpeg" alt=""></p>
+<p>使用又长又强的密码，而不是像“12345”这样的简单密码。</p>
+<ol>
+<li>用助记符创建</li>
+</ol>
+<p>“用助记符创建” 创建 12 个种子词生成的一个随机地址。你必须重新输入那 12 个种子词，确保你以及保存好种子词了。</p>
+<p>用这个选项你只要下面的 3 步就能从助记符（种子词）中恢复钱包。你也能（必须能）通过“转储为密钥文件”创建一个密钥文件来备份钱包。现在你有 2 种方式恢复钱包，使用种子词和密钥文件。这很有效地使你恢复钱包的能力翻倍，但也意味着你现在需要安全地存储三样东西（密码，种子词和密钥文件）。</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*kVzIe1b-8C_WO3GPruXO7w.jpeg" alt=""></p>
+<p>注意，助记符不同于 Core 钱包密码短语（这是一种自由格式的文本密码短语并且不是种子词）</p>
+<ol>
+<li>从助记符恢复</li>
+</ol>
+<p>“从助记符恢复”使用 12 个 bip-039 种子词从另一个钱包恢复一个地址。输入种子词时，他们必须和原种子词字字匹配。这意味着全部小写（永远没有大写字母）因为这是种子词生成的形式。任何差异或额外单词都会为钱包创建一个不同的随机的地址，也就是它会显示 0 零钱，这很危险，如果你发送 QTUM 给这个新地址的话。确保你检查过地址并确认那就是你要的地址。安全一点的是从助记符恢复以保存密钥文件，并使用密钥文件恢复钱包以打开钱包。</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*3xqlhNWHTzGOt5X1U40CrQ.jpeg" alt=""></p>
+<ol>
+<li>从 WIF 恢复</li>
+</ol>
+<p>WIF 电子钱包导入格式（Wallet Import Format） 是私钥一种纠错和缩短的格式[参考文献3]。你遇到的大多数私钥都使用WIF，通常长度为52个字符，而本地私钥使用 64 个十六进制字符。 Web钱包和Core钱包提供私钥作为WIF，此选项将允许从WIF私钥恢复钱包地址。</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*Pr47C0oYLqIihq1LjbJxiQ.jpeg" alt=""></p>
+<ol>
+<li>从手机钱包恢复</li>
+</ol>
+<p>“从手机钱包恢复”使用 12 个 “字典” 种子词从一个 Qtum 手机钱包中恢复一个地址。要让这种恢复正常工作，必须为每个字符正确输入手机钱包种子词（现在这听起来熟悉吗？）。单词总是小写，永远不会有大写字符。 此外，请勿在任何单词后面输入尾随空格，否则生成一个非常危险的新随机地址。 请确认这个选项创建的地址与你手机钱包中的地址相匹配（否则你输入的种子词不正确）。</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*hdW_vYwAWFOqlo_TMtSrfQ.jpeg" alt=""></p>
+<p>选择 CONFIRM 后，选择要恢复的地址：</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*-72KpXo1e-I1CAzME0bYaQ.jpeg" alt=""></p>
+<ol>
+<li>从密钥文件恢复</li>
+</ol>
+<p>“从密钥文件恢复”从 Web 钱包创建的密钥文件中恢复一个地址。从电脑加载密钥文件并输入密码来恢复钱包地址。</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*NviSnaTLVTYbDunYyVGXhA.jpeg" alt=""></p>
+<ol>
+<li>从 Ledger 恢复</li>
+</ol>
+<p>这个选项与其他选项的工作方式不同。“从 Ledger 恢复”允许使用安全存储在 Ledger 硬件钱包中的私钥进行交易。对于这个选项来说，私钥不会离开硬件钱包，而是 Ledger 签署交易（允许手动验证）和批准交易。</p>
+<p>要使用 Ledger 硬件钱包，请在 Web 钱包上选择“从 Ledger 恢复”，连接你的 Ledger，登录并启动 Qtum 应用程序，然后选择CONNECT 来让 Web 钱包连接到 Ledger。</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*4t8J2AThaRn_wiRKSY7ddw.jpeg" alt=""></p>
+<p>选择默认路径 m/44’/88’/0’/0 并单击绿色挂锁按钮：</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*RtixVkMflh7ai-Z3O5ghFw.jpeg" alt=""></p>
+<p>在屏幕上默认路径 m/44’/88’/0’/0 选择所需的地址，然后单击绿色挂锁按钮：</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*dyuJxEWOqPHcsVwzUHe9yA.jpeg" alt=""></p>
+<p>这仅仅会启动标准 Web 钱包页面，因为私钥仍然锁定在Ledger中，没有可用的私钥，并且“转储到密钥文件” 按钮不可用。</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*0F1OkKnfXaNqlTOp1dMh-w.jpeg" alt=""></p>
+<hr>
+<h1 id="测试网例子"><a href="#测试网例子" class="headerlink" title="测试网例子"></a>测试网例子</h1><p><img src="https://cdn-images-1.medium.com/max/960/1*KrwCpKAiDIp_cWbzep2dEQ.jpeg" alt="测试网资源管理器"></p>
+<p>接下来是在各种 Qtum 钱包之间转移私钥或种子词来恢复钱包的一些真实示例。在本练习中，我使用Qtum Testnet，如果你需要在 Testnet 上进行复习，请参阅<a href="https://medium.com/@jb395official/testnet-and-qtum-mainnet-performance-january-1-8-e7af03a5d430" target="_blank" rel="noopener">这个博客</a>。</p>
+<p><img src="https://cdn-images-1.medium.com/max/960/1*3v9Agworepo_g-Paz5bAtQ.jpeg" alt=""></p>
+<p>让我说我对 Testnet QTUM 的价格发展感到非常失望。似乎 <a href="https://testnet.qtum.info/misc/rich-list" target="_blank" rel="noopener">Testnet QTUM 大佬</a> 正在操纵这种币抑制价格，这对于 Testnet QTUM 持有者来说是很伤心。 没有价格升值，而且这种币似乎永远停留在 0 satoshis。 Testnet QTUM 在任何主要交易所，任何小型交易所或任何交易所都没有交易对。 它基本上是一个毫无价值的币，我们唯一可以做的就是在 Qtum Testnet 上进行测试，所以我们就这样做。</p>
+<h2 id="A-手机到-Web-钱包"><a href="#A-手机到-Web-钱包" class="headerlink" title="A. 手机到 Web 钱包"></a>A. 手机到 Web 钱包</h2><p>要在网络钱包上恢复 Qtum 手机钱包，请在移动设备上转到个人资料 - 电子钱包备份并输入你的个人识别码以查看种子词（你之前也应保存它们）。 在 Web 钱包上，选择“从手机钱包恢复”，准确输入种子词，然后选择确认。 从 Qtum 地址列表中（除非你在移动设备上选择了其他地址，否则应该是最重要的地址）找到所需的 Qtum 地址并选择 CHOOSE。检查恢复的地址是否与你的移动钱包地址相同（如果没有，请重新输入种子词并仔细检查所有字符）。使用“转储作为密钥文件”成功还原后，你可能要备份密钥文件。</p>
+<h2 id="B-Core-到-Web-钱包"><a href="#B-Core-到-Web-钱包" class="headerlink" title="B. Core 到 Web 钱包"></a>B. Core 到 Web 钱包</h2><p>在 Qtum Core 钱包（显示 qtum-qt）上，选择 “帮助” - “调试窗口” - “命令”，并输入 dumpprivkey 命令需要的所有地址（有关多个地址的信息，请参阅参考资料4）。 复制 WIF 私钥，这里是 “cPuz…”。 在 Web 钱包上选择“从 WIF 恢复”，粘贴私钥，然后单击确认。 使用“转储为密钥文件”成功还原后，你可能要备份密钥文件。</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*ujFP9icgoj1eEZ0-Fr2rVA.jpeg" alt=""></p>
+<p>C. Web 到 Core 钱包</p>
+<p>这与上面的 B 正好相反。 在 Web 钱包上选择“查看钱包信息”，查看私钥并复制私钥。 在 qtum-qt Core 钱包上选择“帮助” - “调试窗口” - “控制台”并输入命令 importprivkey 并粘贴私钥：</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*0Rc6meMnP-lpORRXl8fyFg.jpeg" alt=""></p>
+<p>Core 钱包将扫描区块链一两分钟，调试窗口标题将显示（Not Responding），Console 响应为“null”，你应该看到新地址加了 QTUM 余额。 你应该对 wallet.dat 文件重新备份，因为它包含一个新的私钥。 </p>
+<p>D. 手机到 Core 钱包</p>
+<p>显然，做 A - 手机到 Web 钱包再做 C - Web 到 Core 钱包。</p>
+<p>E. Qbao 到 Web 钱包</p>
+<p>在Qbao上转到“我” - “助记符导出” - 输入你的 PIN（密码）并复制助记符（12个种子词 - 你之前应该保存这些）。 在 Web 钱包上，选择“从手机钱包恢复”，并仔细输入12个种子字（无额外空格）并选择确认。 通过选择 CHOOSE 从“从手机钱包恢复”列表中选择所需的地址。 你可能要使用“转储为密钥文件”来保存密钥文件。</p>
+<p>F. Electrum 到 Web 钱包</p>
+<p>要使用种子词将地址从 Electrum 钱包转移到 Web 钱包，你需要在初始安装中将 Electrum 设置为与 Qtum 手机种子词兼容（然后使用手机钱包种子词来恢复 Electrum 上的手机钱包 ）。这个设置的 Electrum 配置截屏为：</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*3pODwbYSz0uYGPaesLpgaQ.jpeg" alt=""></p>
+<p>在这个截图之后，你输入手机钱包种子词（这些单词也与“从手机钱包中恢复”的 Web 钱包选项兼容）。</p>
+<p>如果你尚未将 Electrum 钱包设置为与手机钱包兼容，则可以使用私钥恢复 Web 钱包上的 Electrum 钱包。 在 Electrum 钱包上选择“钱包” - “私钥” - “导出”，你将导出文件 qtum-electrum-private-keys.csv 或只复制一个私钥。 在 Web 钱包上选择“从 WIF 恢复”，粘贴私钥并选择确认。 检查钱包地址是否正确。 你可能需要使用“转储为密钥文件”来保存密钥文件。</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*4q46uLQwpBZ-X4u2t6OX9w.jpeg" alt=""></p>
+<p>F. Core 到 Core</p>
+<p>见下面的参考文献4。</p>
+<hr>
+<p>我希望这个关于私钥和种子词的解释有助于你理解钱包。请记住，钱包不会存储硬币或代币。 硬币和代币总是存储在区块链中，但钱包存储私钥并使用私钥管理交易。 直接使用私钥和种子词时请务必小心。 确保你的计算机不含病毒和恶意软件，并且永远不要使用在线存储来存储私钥，种子词或密码</p>
+<p>保持在线安全。</p>
+<p>Jackson</p>
+<hr>
+<h1 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h1><ol>
+<li><p><a href="https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki" target="_blank" rel="noopener">bip-039 参数</a>。 <a href="https://github.com/bitcoin/bips/blob/master/bip-0039/english.txt" target="_blank" rel="noopener">bip-039种子词 英语单词表</a>。 如果你的 bip-039 种子词不在这个表中，那么你写错了！</p>
+</li>
+<li><p><a href="https://github.com/qtumproject/qtum-android/blob/5a14b25a82fe04d9436147d776d1482e7f7ad242/app/src/main/java/org/qtum/wallet/utils/DictionaryWords.java" target="_blank" rel="noopener">“字典”种子词列表</a>。 如果你的种子词不在这个列表中，你就错了！</p>
+</li>
+<li><p>钱包导入格式（Wallet Import Format），比特币的一个<a href="https://en.bitcoin.it/wiki/Wallet_import_format" target="_blank" rel="noopener">例子</a>。</p>
+</li>
+<li><p>转移私钥 - Core 到 Core 钱包（显示为 qtum-qt Desktop GUI Core 钱包）</p>
+</li>
+</ol>
+<p>在导出私钥之前，最好更新防病毒软件并运行完整的防病毒扫描。 永远不要把私钥给任何人，他们可以拿走你的 QTUM。</p>
+<ol>
+<li>如果你有加密钱包，请解锁钱包（而不是仅用于 staking）</li>
+</ol>
+<ul>
+<li>转到“设置” - “解锁钱包”，取消选中“仅限 staking”，输入你的密码并按“确定” </li>
+<li>你应该看到小挂锁符号搭扣打开了 </li>
+</ul>
+<p><img src="https://cdn-images-1.medium.com/max/1280/1*AIswxXEdSuAIpFnoPEfjAg.png" alt=""></p>
+<ol>
+<li>选择要导出私钥的 Qtum 地址</li>
+</ol>
+<ul>
+<li><p>转到“文件” - “接收地址…”，然后复制 Qtum 地址以导出私钥</p>
+</li>
+<li><p>选择地址并按 COPY，关闭该窗口 </p>
+</li>
+<li><p>如果你的钱包有多个持有 QTUM 的接收地址，你可以找到哪些地址持有 QTUM，请转到“文件” - “调试窗口” - “控制台”并输入命令 listaddressgroupings 。</p>
+<p><img src="https://cdn-images-1.medium.com/max/1280/1*vTy9q9TrXS5QHJEt9KknMQ.png" alt=""></p>
+<p>滚动列表并复制保存 QTUM 的地址以导出这些私钥</p>
+</li>
+</ul>
+<ol>
+<li>打开控制台并输入命令以导出私钥</li>
+</ol>
+<ul>
+<li><p>转到“文件” - “调试窗口” - “控制台”</p>
+</li>
+<li><p>在控制台底部，开始输入命令dumpprivkey</p>
+</li>
+<li><p>然后粘贴你刚刚复制的地址。 这个命令看起来像这样：</p>
+<p><code>dumpprivkey QskjfhGF28374Daskfjh238742837482374</code><br><img src="https://cdn-images-1.medium.com/max/1280/1*DaZMckv-xWHur4FZNLFAtA.png" alt=""></p>
+</li>
+<li><p>输入命令</p>
+</li>
+</ul>
+<ol>
+<li>私钥将作为包含 52 个字符的文本字符串显示在控制台上</li>
+</ol>
+<ul>
+<li>将私钥复制到文本文件中并保证其安全。这是一个未加密的私钥，任何拥有这个私钥的人都可以使用你的 QTUM。 切勿将私钥交给任何人。</li>
+</ul>
+<ol>
+<li><p>要在第二个 Qtum Core 钱包上导入这个私钥，请启动该钱包并将其解锁（如果已加密）</p>
+</li>
+<li><p>在控制台中输入 importprivkey 命令</p>
+</li>
+</ol>
+<ul>
+<li><p>转到“文件” - “调试窗口” - “控制台”，并在底部开始输入命令importprivkey </p>
+</li>
+<li><p>复制并粘贴先前转储的私钥。 该命令看起来像这样：<br><code>importprivkey Siufy238746FGasj127356asjdhYTVss93845kajsfmyQTUM</code><br><img src="https://cdn-images-1.medium.com/max/1280/1*zQ60gUGNG0AGvu5X4wgUXw.png" alt=""></p>
+</li>
+<li><p>输入命令</p>
+</li>
+<li><p>钱包将重新扫描本地区块链大约两分钟，以查找此新地址的交易，在此期间，调试窗口标题将显示“无响应(Not Responding）”</p>
+</li>
+</ul>
+<p><img src="https://cdn-images-1.medium.com/max/1280/1*Nx79UjkLWp6vezmBGlT-Qg.png" alt=""></p>
+<ul>
+<li>然后响应 “null”</li>
+</ul>
+<p><img src="https://cdn-images-1.medium.com/max/1280/1*jCEK9RvFGL9PWx6kc_pqjw.png" alt=""></p>
+<ul>
+<li>你应该看到新私钥的未花费的交易的值已添加到钱包的总余额中。</li>
+</ul>
+<p>你可能要将所有转移过的私钥（它将与你在步骤 2 中开始的地址）中的所有 QTUM 发送到另一个地址，因为私钥已导出并暴露在加密钱包之外（丢弃这个私钥）。 </p>
+
+                
+<p class="green-link-context prev-btn">
+    <a href="/2018/07/18/2018-07-18-翻译-新手钱包/" rel="next" title="【翻译】 新手钱包">
+    Prev: 【翻译】 新手钱包
+  </a>
+</p>
+
+
+
+<p class="green-link-context next-btn">
+    <a href="/2018/07/06/2018-07-06-翻译-以太坊的挑战者-量子链(QTUM)/" rel="next" title="【翻译】 以太坊的挑战者：量子链（QTUM）">
+    Next: 【翻译】 以太坊的挑战者：量子链（QTUM）
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+
+
+
+    <div id="gitment_container"></div>
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <link rel="stylesheet" href="/css/gitment.css" media="screen" type="text/css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <script>
+    var gitment = new Gitment({
+        id: 'Thu Jul 12 2018 14:11:00 GMT+0800',
+        owner: 'linxueyuanstdio',
+        repo: 'linxueyuanstdio.github.io',
+        oauth: {
+            client_id: '2f7f71f1ba398039ff23',
+            client_secret: '3ebc908a7042fef2d56a83a2eb8c18777374a087',
+        },
+    })
+    gitment.render('gitment_container')
+    </script>
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large pink">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect green" title="Return to top"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse yellow darken-1"  data-activates="main-menu" title="Menu"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer indigo darken-1">
+    
+    <div class="footer-container container">
+        <div class="row">
+            
+            <div class="social-group col m4 s12">
+                <h5 class="white-text">Social</h5>
+                
+                    <a class="social-link" href="http://weibo.com/LinXueyuanStdio" target="_blank">
+                        <i class="fa fa-2x fa-weibo"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://github.com/LinXueyuanStdio" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://www.zhihu.com/people/lin-xue-yuan-86" target="_blank">
+                        <i class="fa fa-2x fa-graduation-cap"></i>
+                    </a>
+                
+                    <a class="social-link" href="http://twitter.com/cwBQ3A5cz3Jzso7" target="_blank">
+                        <i class="fa fa-2x fa-twitter"></i>
+                    </a>
+                
+                    <a class="social-link" href="mailto:761516186@qq.com" target="_blank">
+                        <i class="fa fa-2x fa-envelope"></i>
+                    </a>
+                
+                    <a class="social-link" href="/atom.xml" target="_blank">
+                        <i class="fa fa-2x fa-rss"></i>
+                    </a>
+                
+                
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+    </script>
+    <div class="site-visitors-container white-text">
+        <span>
+            <i class="fa fa-user"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+        </span>
+        <span>&nbsp;|&nbsp;</span>
+        <span>
+            <i class="fa fa-eye"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+        </span>
+    </div>
+
+
+            </div>
+            
+
+            
+            <div class="col m8 s12">
+                <h5 class="white-text">Links</h5>
+                
+                    <a class="social-link" href="http://raytaylorlin.com/" target="_blank">raytaylorism主题作者</a>
+                
+                    <a class="social-link" href="https://github.com/raytaylorlin" target="_blank">Github地址</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    
+
+    <div class="footer-copyright green-link-context">
+        <div class="container">
+            © 2018 xichen.pub, All rights reserved.
+            <p class="right" style="margin-top: 0;">Blog powered by <a href="https://hexo.io">Hexo</a> | Theme <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
+        </div>
+    </div>
+</footer>
+
+
+    <noscript>
+    <div class="noscript">
+        <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+    </div>
+</noscript>
+<div class="noscript">
+    <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+<script src="/js/canvas.js"></script>
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 隐藏禁用javascript（针对微信内置浏览器）的提示
+            $('.noscript').hide();
+
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
+
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed').each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt') || ' ');
+            }).materialbox();
+
+            // 优化表格的显示
+            $('table').each(function() {
+                var $table = $(this);
+                // 除去多行代码的情况
+                if ($table.find('pre').length == 0) {
+                    $table.addClass('responsive-table striped bordered');
+                }
+            });
+
+            // 首页幻灯片
+            $('.slider').slider({indicators: true, full_width: true, interval: 8000});
+
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+
+            // 目录随屏幕滚动（防止目录过长越过footer）
+            var $toc = $('.toc');
+            var scrollTargetTop = 0;
+            $(window).scroll(function() {
+                var $activeLink = $toc.find('a.active.section');
+                if ($(window).scrollTop() < 100) {
+                    scrollTargetTop = 0;
+                } else {
+                    if ($activeLink[0]) {
+                        scrollTargetTop = $activeLink.offset().top - $toc.offset().top;
+                    }
+                }
+                $toc.css('top', '-' + scrollTargetTop + 'px');
+            });
+
+            // 修正文章目录的left-border颜色
+            var color = $('.table-of-contents-text').css('color');
+            $('.table-of-contents-link').css('border-left-color', color);
+
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({
+                    scrollTop: 0
+                }, 500);
+            });
+
+            // 重置读书页面的Tab标签页的颜色
+            $('li.tab a').hover(function() {
+                $(this).toggleClass('text-lighten-4');
+            });
+            $('.indicator').addClass('pink lighten-2');
+
+            
+            // 添加new标签
+            $('.menu-apps').append('<span class="new badge pink"></span>');
+            
+
+            // 搜索功能
+            $('.modal-trigger').leanModal({
+                // 打开搜索框时自动聚焦
+                ready: function() {
+                    if ($('#search').is(":visible")) {
+                        $('#search-input').focus();
+                    }
+                }
+            });
+            var searchXml = "search.xml";
+            if (searchXml.length == 0) {
+             	searchXml = "search.xml";
+            }
+            var searchPath = "/" + searchXml;
+            initSearch(searchPath, 'search-input', 'search-result');
+        });
+
+        // 初始化搜索与匹配函数
+        var initSearch = function(path, search_id, content_id) {
+            'use strict';
+            $.ajax({
+                url: path,
+                dataType: "xml",
+                success: function(xmlResponse) {
+                    // get the contents from search data
+                    var datas = $("entry", xmlResponse).map(function() {
+                        return {
+                            title: $("title", this).text(),
+                            content: $("content", this).text(),
+                            url: $("url", this).text()
+                        };
+                    }).get();
+                    var $input = document.getElementById(search_id);
+                    var $resultContent = document.getElementById(content_id);
+                    $input.addEventListener('input', function() {
+                        var str = '<ul class=\"search-result-list\">';
+                        var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                        $resultContent.innerHTML = "";
+                        if (this.value.trim().length <= 0) {
+                            return;
+                        }
+                        // perform local searching
+                        datas.forEach(function(data) {
+                            var isMatch = true;
+                            var content_index = [];
+                            var data_title = data.title.trim().toLowerCase();
+                            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                            var data_url = data.url;
+                            var index_title = -1;
+                            var index_content = -1;
+                            var first_occur = -1;
+                            // only match artiles with not empty titles and contents
+                            if (data_title != '' && data_content != '') {
+                                keywords.forEach(function(keyword, i) {
+                                    index_title = data_title.indexOf(keyword);
+                                    index_content = data_content.indexOf(keyword);
+                                    if (index_title < 0 && index_content < 0) {
+                                        isMatch = false;
+                                    } else {
+                                        if (index_content < 0) {
+                                            index_content = 0;
+                                        }
+                                        if (i == 0) {
+                                            first_occur = index_content;
+                                        }
+                                    }
+                                });
+                            }
+                            // show search results
+                            if (isMatch) {
+                                keywords.forEach(function(keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword green lighten-2\">" + keyword + "</span>");
+                                });
+
+                                str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                                if (first_occur >= 0) {
+                                    // cut out 100 characters
+                                    var start = first_occur - 20;
+                                    var end = first_occur + 80;
+                                    if (start < 0) {
+                                        start = 0;
+                                    }
+                                    if (start == 0) {
+                                        end = 100;
+                                    }
+                                    if (end > content.length) {
+                                        end = content.length;
+                                    }
+                                    var match_content = content.substring(start, end);
+                                    // highlight all keywords
+                                    keywords.forEach(function(keyword) {
+                                        var regS = new RegExp(keyword, "gi");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword green lighten-2\">" + keyword + "</span>");
+                                    });
+
+                                    str += "<p class=\"search-result\">..." + match_content + "...</p>"
+                                }
+                                str += "</li>";
+                            }
+                        });
+                        str += "</ul>";
+                        $resultContent.innerHTML = str;
+                    });
+                }
+            });
+        }
+    })(jQuery);
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+</body>
+</html>

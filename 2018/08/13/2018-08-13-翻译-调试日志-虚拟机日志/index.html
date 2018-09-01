@@ -1,0 +1,946 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>【翻译】 调试日志，虚拟机日志 | XiChen&#39;s Blog</title>
+    <meta name="author" content="Lin Xueyuan">
+    
+    <meta name="description" content="嗨，我是兮尘，全栈数据学徒。这里没有花俏艳丽的魔法，没有苍蛮霸道的斗气，有的，仅仅是繁衍到巅峰的代码！">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="【翻译】 调试日志，虚拟机日志"/>
+    <meta property="og:site_name" content="XiChen"/>
+
+    
+    <meta property="og:image" content=""/>
+    
+
+    <link rel="icon" type="image/png" href="/assets/images/favicon.ico" />
+    <link rel="alternate" href="/atom.xml" title="XiChen" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+    <link rel="stylesheet" href="//fonts.gdgdocs.org/css?family=Lobster" type="text/css">
+    
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
+
+    <nav class="indigo nav">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="">
+            <div style="font-family: Lobster, Monospace;">
+                <a href="/" class="brand-logo hide-on-med-and-down" style="font-family: Lobster, Monospace;">
+                    XiChen
+                </a>
+            </div>
+            <ul class="nav-menu right hide-on-med-and-down">
+                
+                    <li class="tab">
+                        <a class="menu-home " href="/"
+                            >
+                                <i class="fa fa-home "></i>
+                                
+                                    Home
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-archive " href="/archives"
+                            >
+                                <i class="fa fa-archive "></i>
+                                
+                                    Archives
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-category category-menu" href="javascript:;"
+                            data-activates="category-menu"
+                            >
+                                <i class="fa fa-bookmark "></i>
+                                
+                                    Categories
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-apps " href="/apps"
+                            >
+                                <i class="fa fa-link "></i>
+                                
+                                    App
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-tools " href="/tools"
+                            >
+                                <i class="fa fa-wrench "></i>
+                                
+                                    Tool
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-reading " href="/reading"
+                            >
+                                <i class="fa fa-book "></i>
+                                
+                                    Reading
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-about " href="/about"
+                            >
+                                <i class="fa fa-user "></i>
+                                
+                                    About
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-search modal-trigger " href="#search"
+                            >
+                                <i class="fa fa-search "></i>
+                                
+                                    Search
+                        </a>
+                    </li>
+                    
+            </ul>
+            <div>
+    <ul class="side-nav indigo darken-1" id="main-menu">
+        
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4 no-padding logo-a">
+                    <img class="avatar-image circle responsive-img logo" src="/assets/images/avatar.jpg" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper no-padding">
+                    <div class="valign">
+                        <p class="name">兮尘</p>
+                        <p class="desc">Web前端/Android/技术宅</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-home " href="/" >
+                    <i class="fa fa-home "></i>
+                    
+                    Home
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-archive " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    
+                    Archives
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    
+                    Categories
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-apps " href="/apps" >
+                    <i class="fa fa-link "></i>
+                    
+                    App
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-tools " href="/tools" >
+                    <i class="fa fa-wrench "></i>
+                    
+                    Tool
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-reading " href="/reading" >
+                    <i class="fa fa-book "></i>
+                    
+                    Reading
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-about " href="/about" >
+                    <i class="fa fa-user "></i>
+                    
+                    About
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-search modal-trigger " href="#search" >
+                    <i class="fa fa-search "></i>
+                    
+                    Search
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav indigo darken-1" id="category-menu">
+    
+
+            
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Linux/">
+                    Linux <span class="right">8</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tips/">
+                    Tips <span class="right">7</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Deep-Learning/">
+                    Deep-Learning <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Proxy/">
+                    Proxy <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tools/">
+                    Tools <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/GO/">
+                    GO <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Ubuntu/">
+                    Ubuntu <span class="right">4</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Spider/">
+                    Spider <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Algorithms/">
+                    Algorithms <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/区块链/">
+                    区块链 <span class="right">24</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/算法/">
+                    算法 <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/密码学/">
+                    密码学 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Web/">
+                    Web <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Latex/">
+                    Latex <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/杂思/">
+                    杂思 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Git/">
+                    Git <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Android/">
+                    Android <span class="right">30</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Github/">
+                    Github <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/计算机组成原理/">
+                    计算机组成原理 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+<div id="search" class="modal search-modal">
+    <div class="row">
+        <div class="input-field col s12">
+              <input id="search-input" type="text">
+              <label for="search-input">Search</label>
+        </div>
+
+    </div>
+    <div id="search-result" class="search-result col s12">
+
+    </div>
+</div>
+
+    <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper indigo">
+        <span class="breadcrumb">Current page(Categories)</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/区块链/">区块链</a>
+
+
+        
+
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>【翻译】 调试日志，虚拟机日志</h1>
+    
+
+
+            </div>
+            <i class="fa fa-calendar"></i><time class="green-link-context" datetime="2018-08-12T20:11:00.000Z"><a href="/2018/08/13/2018-08-13-翻译-调试日志-虚拟机日志/">2018-08-13</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/区块链/" class="chip green lighten-1">区块链</a>
+        
+            <a href="/tags/Qtum/" class="chip green lighten-1">Qtum</a>
+        
+            <a href="/tags/翻译/" class="chip green lighten-1">翻译</a>
+        
+    </div>
+    
+
+
+            <div class="toc green-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#调试日志，虚拟机日志，2018-年-3-月-13-日"><span class="section table-of-contents-number">1.</span> <span class="section table-of-contents-text">调试日志，虚拟机日志，2018 年 3 月 13 日</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#网络权重，节点数"><span class="section table-of-contents-number">1.1.</span> <span class="section table-of-contents-text">网络权重，节点数</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#调试日志文件"><span class="section table-of-contents-number">1.2.</span> <span class="section table-of-contents-text">调试日志文件</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#非常自然，非常健康"><span class="section table-of-contents-number">1.3.</span> <span class="section table-of-contents-text">非常自然，非常健康</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#启动"><span class="section table-of-contents-number">1.4.</span> <span class="section table-of-contents-text">启动</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#接收"><span class="section table-of-contents-number">1.5.</span> <span class="section table-of-contents-text">接收</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#发送"><span class="section table-of-contents-number">1.6.</span> <span class="section table-of-contents-text">发送</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#其他调试模式"><span class="section table-of-contents-number">1.7.</span> <span class="section table-of-contents-text">其他调试模式</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#坏事发生在好钱包"><span class="section table-of-contents-number">1.8.</span> <span class="section table-of-contents-text">坏事发生在好钱包</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#1-网络连接断开"><span class="section table-of-contents-number">1.8.1.</span> <span class="section table-of-contents-text">1. 网络连接断开</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#2-时钟设置不正确"><span class="section table-of-contents-number">1.8.2.</span> <span class="section table-of-contents-text">2. 时钟设置不正确</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#3-钱包不同步区块"><span class="section table-of-contents-number">1.8.3.</span> <span class="section table-of-contents-text">3. 钱包不同步区块</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#特别奖主题：虚拟机日志"><span class="section table-of-contents-number">1.9.</span> <span class="section table-of-contents-text">特别奖主题：虚拟机日志</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#好交易"><span class="section table-of-contents-number">1.10.</span> <span class="section table-of-contents-text">好交易</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#不太好"><span class="section table-of-contents-number">1.11.</span> <span class="section table-of-contents-text">不太好</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#参考"><span class="section table-of-contents-number">1.12.</span> <span class="section table-of-contents-text">参考</span></a></li></ol></li></ol>
+</div>
+
+
+            <div class="entry green-link-context">
+                <p>原文：<a href="https://medium.com/@jb395official/the-debug-log-the-virtual-machine-log-march-13-2018-76ddbe568f2" target="_blank" rel="noopener">https://medium.com/@jb395official/the-debug-log-the-virtual-machine-log-march-13-2018-76ddbe568f2</a><br>译者：中山大学数学学院（珠海）林学渊<br>大二时给量子做的翻译，转载注明出处，谢谢</p>
+<h1 id="调试日志，虚拟机日志，2018-年-3-月-13-日"><a href="#调试日志，虚拟机日志，2018-年-3-月-13-日" class="headerlink" title="调试日志，虚拟机日志，2018 年 3 月 13 日"></a>调试日志，虚拟机日志，2018 年 3 月 13 日</h1><p><img src="https://cdn-images-1.medium.com/max/2000/1*xcYyb6Iu9J6c-h1ZTVH9UQ.jpeg" alt=""></p>
+<p>这个星期我们研究 debug.log。当你怀疑你的钱包有问题时（或者如果你只是对 Qtum 感到好奇的话），debug.log 就是你的好朋友。我们来看看如何找到调试日志（debug log），如何阅读它，以及如何从中发现问题。特别奖主题是虚拟机日志 vm.log。</p>
+<p>我是一名独立研究员，偶尔是博主，社交版主，并中意 Qtum 团队的技术指导和社区的高谈阔论。如果你对本文有任何意见或更正，请在社交媒体上联系我。</p>
+<hr>
+<h2 id="网络权重，节点数"><a href="#网络权重，节点数" class="headerlink" title="网络权重，节点数"></a>网络权重，节点数</h2><p>从 3 月 4 日至 11 日，已知余额为 590.5 万的大钱包赢得了总 4,779 块奖励中的 709 块，或者说 14.84％，网络权重为 3980 万，年回报率为 2.20％。本计算用了大约 11 倍的数据点，并且用了比钱包计算网络权重更好的算法（IMHO），但这个数字是每周更新，而钱包计算的网络权重是每块更新。（编辑过）</p>
+<hr>
+<h2 id="调试日志文件"><a href="#调试日志文件" class="headerlink" title="调试日志文件"></a>调试日志文件</h2><blockquote>
+<p>TL;DR debug.log 文件与 wallet.dat 文件位于同一 Qtum 目录中，是记录基本钱包操作和错误情况的文本日志。每行日志都带有 UTC 时间戳，并显示每个同步到钱包区块链的新区块，发送动作，接收动作和错误情况。Qtum 虚拟机日志记录了钱包添加到区块链的合约交易，是代币交易问题很好的参考文件。</p>
+</blockquote>
+<p>每次你更新钱包时，你只要重命名 debug.log 文件为当前日期，比如“debug-2018-03-13.log”，就能保留旧的调试日志，以供参考（或者不保留删掉）。重启新版本钱包就可以写入一个新的 debug.log 文件了。对于 qtumd，使用默认设置的话，debug.log 文件每周保存大约4 MB。</p>
+<p>在与 wallet.dat 文件相同的目录下找 debug.log 文件。 debug.log 文件是纯文本文件，可以使用任何文本编辑器或 QT 钱包打开。</p>
+<p>每条日志都以 UTC 时间戳开头（不是你当地的时间，不用担心夏令时转换）</p>
+<p><img src="https://cdn-images-1.medium.com/max/1280/1*XhNa5oRvsK7zVEI5jQ4ePA.jpeg" alt=""></p>
+<p>这行日志表示在 3 月 7 日 14:27:34 UTC，钱包处理了一个区块并接受了这个区块。</p>
+<p><img src="https://cdn-images-1.medium.com/max/960/1*abPTNvRmGr6OUvKrEwEssQ.jpeg" alt=""></p>
+<p>我一般在钱包运行时获取 debug.log 文件的副本。我不确定这在技术上是否正确，但也没有弄坏钱包。QT 钱包中点击帮助 - 调试窗口 - 信息，屏幕的右下角提供了一个按钮，用于打开 debug.log 文件。</p>
+<h2 id="非常自然，非常健康"><a href="#非常自然，非常健康" class="headerlink" title="非常自然，非常健康"></a>非常自然，非常健康</h2><p>我们将从调试日志显示的正常钱包操作开始，包括钱包启动，正常同步以及发送和接收操作。</p>
+<h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><p>启动时，钱包在初始化节点和读取多个文件方面做了很多工作，也许最重要的是 wallet.dat 文件，它包含钱包私钥。初始化后，钱包开始与其他节点建立连接，加载区块，同步区块链。Qtum Core 钱包是一个全节点，需要完整的区块链副本。调试日志显示追赶块写入很快，每秒几个。钱包验证每个区块并将其写入本地的区块链副本。下面例子中，整个启动流程记录了 148 行。这里有摘录的一些要点，为了清晰起见缩短了一些行，黄色高亮是我标出的：</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*uDH9_zohmqSH33LZHwd7fg.jpeg" alt=""></p>
+<p>钱包初始化后，在 18:01:26 处它比当前区块链高度落后大约半天（350个区块），并开始从其他对等点快速下载它没有的区块。直到 18:09:27，区块同步更新完毕，继续正常同步新区块。</p>
+<p>下面我会举一个钱包日志文件的例子，它无法连接到对等点来同步区块链，so sad。</p>
+<h2 id="接收"><a href="#接收" class="headerlink" title="接收"></a>接收</h2><p>接受到交易后，日志会显示一个带有交易 ID 的 “AddToWallet” 交易：</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*uabvv0iMVwHkjTM0Lg6_Ig.jpeg" alt=""></p>
+<p>交易可以是支付区块奖励或其他接收交易。金额没有列出来，但可以使用交易 ID 在你喜欢的资源管理器中找到详细信息。</p>
+<h2 id="发送"><a href="#发送" class="headerlink" title="发送"></a>发送</h2><p>发送日志稍微复杂一些。现在我发送 0.2 QTUM; 你可以看到金额和交易ID：</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*84rRR0jDRu7OEiv9QZuJOQ.jpeg" alt=""></p>
+<p>发送的简单解释是 Qtum（née bitcoin）未花费交易输出（UTXO）模型。钱包选择先前整个未花费交易，在本例子中，未花费交易是 1.00000000 QTUM （在日志中没显示，但你可以在资源管理器中查看详细信息）。钱包必须发送整个 1.00000000 交易，对应指令将 0.20000000 提供给新地址并将 0.79909600 返回到钱包控制的零钱地址。发送的  1.00000000，接收地址的 0.20000000 和零钱地址的 0.79909600 之间的差值是 0.00090400：</p>
+<p><img src="https://cdn-images-1.medium.com/max/1280/1*jhiasALQmf2D1XLp11-LuQ.jpeg" alt=""></p>
+<p>这个差值是块奖励获奖钱包保留作为发布交易的“小费”，称为交易费用。</p>
+<h2 id="其他调试模式"><a href="#其他调试模式" class="headerlink" title="其他调试模式"></a>其他调试模式</h2><p>如果你想研究内存池如何管理未确认交易，你可以在启动钱包时使用“-mempool”来记录有关 mempool 的调试记录详细信息。其他调试选项包括：</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*moSoRYu3G7FIzFBCAZwmyQ.jpeg" alt=""></p>
+<p>探索这些选项能产生什么有趣日志行留作练习，“miner”选项就看起来特别好玩。</p>
+<hr>
+<h2 id="坏事发生在好钱包"><a href="#坏事发生在好钱包" class="headerlink" title="坏事发生在好钱包"></a>坏事发生在好钱包</h2><p>如果你的钱包有问题，那你可能需要从 debug.log 文件中的错误报告中获得排除故障的提示，因为<em>调试文件是你的好朋友</em>。</p>
+<h3 id="1-网络连接断开"><a href="#1-网络连接断开" class="headerlink" title="1. 网络连接断开"></a>1. 网络连接断开</h3><p>Testnet 钱包将新区块同步到＃99,479，这时钱包突然断开以太网，因为有人 “意外” 失去互联网连接。从 20:46:46 开始强行关闭8个对等连接（听起来很痛苦）（为清晰起见，缩短了几行）：</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*pLKhietmDJdxROIeMQfDXg.jpeg" alt=""></p>
+<p>19分钟后，互联网连接在 21:03:09 恢复，但当前的区块是＃99,485（钱包落后6个区块），钱包开始迅速同步区块 99480,99481,99482,99483等。如果你看到 debug.log 文件中的这些“强制关闭”，你绝对应该与你的Internet服务提供商沟通。</p>
+<h3 id="2-时钟设置不正确"><a href="#2-时钟设置不正确" class="headerlink" title="2. 时钟设置不正确"></a>2. 时钟设置不正确</h3><p><img src="https://cdn-images-1.medium.com/max/960/1*35zGj9pklLSWSIf5Cgcrzg.jpeg" alt=""></p>
+<p>我一直强调人们在社交媒体上要把时钟设置正确，但现在我认为这对钱包来说更是个问题。钱包的参考时间是相当宽容的，钱包从它连接的所有对等点收集参考时间，并与当地时间交叉验证。Qtum 中的参考时间（继承自比特币）非常灵活，如果你在糟糕的时间启动它（Qtumd 不太确定），QT钱包会抱怨。 如果你的计算机时区和时钟设置正确，你可以执行“getinfo”命令，可以看到“timeoffset”接近零。</p>
+<p>如果你正在运行 qtumd 服务器钱包 - 它可以与许多对等点连接，那肯定会发现一些有错误时间戳的区块，记录有 “block timestamp too far in the future”。 成功挖到新区块但是搞错参考时间的钱包运气不太好。 debug.log 会显示 10 到 20 个或更多由其他对等点中继的相同坏区块。下面是来自 4 个节点的相同坏区块（为清楚起见，缩短了几行日志）：</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*2e5XbG-WJXDUVwMRgcxW3g.jpeg" alt=""></p>
+<p>qtumd 记录了网络所有或好或坏的行为。你可以把你的钱包想象成在吵闹聊天室里的一个公平而无情的管理员（向 Tony Sydney 大喊大叫），它必须拒绝，删除和禁止用户提供不适当的消息。钱包必须禁掉节点，断开不活动的节点，并拒绝具有错误请求头的区块。你的钱包和其他钱包都是被称为 Qtum Mainnet Ignition 网络节点的“聊天室”中的 24/7（7天24小时） 管理员。</p>
+<h3 id="3-钱包不同步区块"><a href="#3-钱包不同步区块" class="headerlink" title="3. 钱包不同步区块"></a>3. 钱包不同步区块</h3><p>老实说，很难通过防火墙阻止我的钱包连接到网络;钱包总是不停地穿过防火墙。 最后，我弄坏了钱包中的网络，因此它无法连接到其他对等点来获取本次启动的调试日志文件。钱包记录了 77 行，调试日志在“dnsseed thread exit”之后停止，没有同步区块。</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*r-x-uCZVbPYX_tjhleMrbA.jpeg" alt=""></p>
+<hr>
+<h2 id="特别奖主题：虚拟机日志"><a href="#特别奖主题：虚拟机日志" class="headerlink" title="特别奖主题：虚拟机日志"></a>特别奖主题：虚拟机日志</h2><p>每个节点都将每个合约交易保存到区块链的本地副本上。当节点验证包含了合约交易的新区块时，它会将区块链索引到存储合约的区块，再处理这些合约交易。节点将这些合约交易的结果记录到虚拟机日志 vm.log 中。</p>
+<p>你可以在 Qtum 文件夹中找到 vm.log 文件，以及 wallet.dat 和 debug.log。 vm.log 文件很简洁。 它列出了 UTC 交易时间和合约地址。如果发生错误，合约交易失败，它会将原因和时间、地址记录在一起。</p>
+<h2 id="好交易"><a href="#好交易" class="headerlink" title="好交易"></a>好交易</h2><p>这里有一些很好的合约交易，vm.log 中记录的：</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*8xU8iJK0LApxD5N7XF7GYw.jpeg" alt=""></p>
+<p>如何阅读：日志行通常比资源管理器时间戳晚几秒钟，而资源管理器每 16 秒显示一次。在 24 小时制 UTC 时间 12:49:54 显示有 <a href="https://explorer.qtum.org/block/528fd5c961ab9eae7c91d78b3a51ecd2fdec0982721c6e78863ae2cc8b34b7e9" target="_blank" rel="noopener">112,818</a> 块，这时资源管理器时间戳为 UTC 时间 12:49:52。合约地址 57931faffdec114056a49adfcaa1caac159a1a25 是区块链里的 <a href="https://explorer.qtum.org/token/57931faffdec114056a49adfcaa1caac159a1a25" target="_blank" rel="noopener">SpaceCash（SpaceChain）智能合约</a>，因此我们知道钱包处理了 SPC 代币交易，我们可以查看区块 112,818，可以看到有人交易了 3,960 个 SPC 代币：</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*alHQQjPR1BBT5kZLEVWweA.jpeg" alt=""></p>
+<hr>
+<p>你的博主坚信在资源管理器上浏览加密交易，较小的测试量是最好的开始。 如何才能进行代币交易？</p>
+<p>假设你是最近空投的接收者。你已将 QRC20 代币添加到钱包，现在你已准备好发送代币交易。你从之前的博客中了解到，所有代币交易都是通过将交易发送到智能合约来实现的，你可以观察所有智能合约交易的执行，包括你的交易。</p>
+<p>当你从钱包发送一些代币时，你可以查看<a href="https://explorer.qtum.org/token/6b8bf98ff497c064e8f0bde13e0c4f5ed5bf8ce7" target="_blank" rel="noopener">合约交易页面</a>并观察你测试的小交易。在确认交易进入智能合约后，无需更改钱包的其他内容，就可以放心发送剩余代币的交易。</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*Td6nS76BGJbCoXEJ19spzQ.jpeg" alt=""></p>
+<p>但是要是好的钱包发生了坏事 – 你的测试交易没有执行呢？</p>
+<h2 id="不太好"><a href="#不太好" class="headerlink" title="不太好"></a>不太好</h2><p>以下是 vm.log 中记录的一些有问题的交易：</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*Fd2RoS8HkIcgF56FJ7gteA.jpeg" alt=""></p>
+<p>如何阅读：在 06:30:16 的第一笔交易中，智能合约在执行交易前耗尽了gas。 有人将 gas 设置得太低，所以他们失去了那部分 gas，但有机会重试。</p>
+<p>在 10:05:39 的第二个例子中，合约报告有一个错误指令。我没有分析过这类错误，但是我认为如果你试图在 ICO 售罄后进行购买，它们可能会产生。</p>
+<p>对于失败的合约调用，资源管理器将显示该交易为空白（没有代币名称，没有交易金额），但据我所知，vm.log 是找出合约交易失败原因的唯一方法。 如果你在代币交易方面遇到问题，那虚拟机日志也是你的好朋友。</p>
+<hr>
+<p>我们今天在罗马这个永恒的城市写完博客。《总统杀局》(Ides of March)是在两天后的 3 月 15 日放映，但我不想等到那个时候才发布这个博客。根据 Nodemap，意大利有 6 个Qtum节点，其中一个在罗马。Qtum 真的是世界级的（甚至至少有一颗低地球轨道卫星） - 为什么不庆祝一下罗马的历史，大都会文化和 Qtum 节点呢？</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*OBYeHUd4YNI3b9-kqRWrLA.jpeg" alt=""></p>
+<p>这里希望你所有的交易都顺利进行，如果不的话，调试日志和虚拟机日志就是你的好朋友。</p>
+<p>保重，保持在线安全。</p>
+<p>Jackson</p>
+<hr>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
+<li><p>研究调试日志时听的音乐：<a href="http://streema.com/radios/Easy_and_Italy" target="_blank" rel="noopener">Radio Easy＆Italy</a> - Rome </p>
+</li>
+<li><p><a href="https://youtu.be/B4GvcCWzZZg" target="_blank" rel="noopener">无人机在古罗马斗兽场</a>，Yuneec Q500无人机，4k观看.</p>
+</li>
+<li><p>通过以下主题查看我过去的报告</p>
+</li>
+</ol>
+<p><a href="https://medium.com/@jb395official/qtum-capped-supply-the-halving-b650b7fb955e" target="_blank" rel="noopener">QTUM 的有限供应量</a> - 减半 - 2018年3月4日</p>
+<p>如何减半，以及为什么永远不会超过 107,822,406.25 QTUM</p>
+<p><a href="https://medium.com/@jb395official/qrc20-token-report-february-25-2018-ff397a1ac070" target="_blank" rel="noopener">QRC20 代币报告</a> - 2018年2月25日</p>
+<p>QRC20 代币如何工作，最近的空投为例。 （阿姆斯特丹）</p>
+<p><a href="https://medium.com/@jb395official/testnet-and-qtum-mainnet-performance-january-1-8-e7af03a5d430" target="_blank" rel="noopener">Testnet 和 Qtum Mainnet 性能 - 1月1日至8日</a></p>
+<p>Qtum 测试网络（testnet）。 （巴西里约热内卢）</p>
+<p>发布于2018年1月7日</p>
+<p><a href="https://medium.com/@jb395official/qtum-mainnet-results-december-25-31-891680ee5a52" target="_blank" rel="noopener">Qtum Mainnet 成果 – 12月25日至31日</a></p>
+<p>使用虚拟专用网络（VPN）进行 staking。（首尔）</p>
+<p>发布于2017年12月31日</p>
+<p><a href="https://medium.com/@jb395official/qtum-mainnet-results-december-18-24-8e43e51aca3b" target="_blank" rel="noopener">Qtum Mainnet 成果 – 12月18日至24日</a></p>
+<p>交易费用。</p>
+<p>发表于2017年12月24日</p>
+<p><a href="https://medium.com/@jb395official/qtum-mainnet-results-dec-11-17-d5548947fa1f" target="_blank" rel="noopener">Qtum Mainnet 成果 – 12月11日-17日</a></p>
+<p>Passphrases，一个密码短语猜测脚本。（日内瓦，瑞士）</p>
+<p>发布于2017年12月17日</p>
+<p><a href="https://medium.com/@jb395official/qtum-mainnet-results-dec-4-10-2d4bc438062d" target="_blank" rel="noopener">Qtum Mainnet 成果 – 12月4日至10日</a></p>
+<p>内存池（mempool）和未确认交易处理。 （悉尼）</p>
+<p>发布于2017年12月10日</p>
+<p><a href="https://medium.com/@jb395official/qtum-mainnet-results-nov-27-dec-3-327c1e9bc59c" target="_blank" rel="noopener">Qtum Mainnet 成果 – 11月27日 - 12月3日</a></p>
+<p>孤儿块（香港 - 大屿山）</p>
+<p>发布于2017年12月3日</p>
+<p><a href="https://medium.com/@jb395official/qtum-mainnet-results-november-20-26-ebde2cd0139" target="_blank" rel="noopener">Qtum Mainnet 成果 – 11 月 20 日至 26 日</a></p>
+<p>QTUM.explorer.io 合约页面（柏林）</p>
+<p>发布于2017年11月26日</p>
+<p><a href="https://medium.com/@jb395official/qtum-mainnet-results-november-13-19-bfbf45d0c153" target="_blank" rel="noopener">Qtum Mainnet 成果 – 11月13日至19日</a></p>
+<p>一个非常简单的 SHA-256 哈希算法示例（柏林 - 弗里德里希斯海因）</p>
+<p>发布于2017年11月20日</p>
+<p><a href="https://medium.com/@jb395official/qtum-mainnet-results-november-6-12-f59dd373ff3" target="_blank" rel="noopener">Qtum Mainnet 成果 – 11月6日至12日</a></p>
+<p>分发钱包获得区块奖励 ，五大网络权重(Big Five Network Weight )（北京）</p>
+<p>发布于2017年11月12日</p>
+<p><a href="https://medium.com/@jb395official/qtum-mainnet-results-october-30-november-5-d58164b811db" target="_blank" rel="noopener">Qtum Mainnet 成果 – 10月30日 - 11月5日</a></p>
+<p>SHA-256哈希算法，目标和难度（首尔）</p>
+<p>发布于2017年11月5日</p>
+<p><a href="https://medium.com/@jb395official/an-introduction-to-qtum-proof-of-stake-mining-a-racing-story-f11a3f48009f" target="_blank" rel="noopener">Qtum 权益证明挖矿 - 一个赛跑故事</a></p>
+<p>关于 PoS 采矿的故事（柏林马拉松）</p>
+<p>发布于2017年10月29日</p>
+<p><a href="https://medium.com/@jb395official/qtum-mainnet-results-october-23-29-527cd4ab887a" target="_blank" rel="noopener">Qtum Mainnet 成果 – 10月23日至29日</a></p>
+<p>基金会钱包的离开（柏林）</p>
+<p>发布于2017年10月29日</p>
+<p><a href="https://medium.com/@jb395official/qtum-mainnet-results-october-1-8-f413231c689a" target="_blank" rel="noopener">Qtum Mainnet 成果 – 10月1 - 8日</a></p>
+<p>非正式的 staking 常见问题。</p>
+<p>发布于2017年10月26日</p>
+<p><a href="https://medium.com/@jb395official/qtum-mainnet-results-october-16-22-9202990b8e8d" target="_blank" rel="noopener">Qtum Mainnet 成果 – 10月16 - 22日</a></p>
+<p>网络权重，奖励统计时间和节点图（2017年悉尼）</p>
+<p>发布于2017年10月22日</p>
+<p><a href="https://medium.com/@jb395official/simulating-proof-of-stake-mining-for-qtum-57401c08590a" target="_blank" rel="noopener">模拟 Qtum 的权益证明挖矿</a></p>
+<p>为 PoS挖矿模拟选择正确的UTXO大小</p>
+<p>发布于2017年10月21日</p>
+<p><a href="https://medium.com/@jb395official/qtum-proof-of-stake-mining-439d2b82802d" target="_blank" rel="noopener">Qtum 权益证明挖矿</a></p>
+<p>我的 1.0 版 PoS 挖矿模拟器</p>
+<p>发布于2017年10月16日</p>
+<p><a href="https://medium.com/@jb395official/qtum-mainnet-ignition-results-october-9-15-1efe30eb2658" target="_blank" rel="noopener">Qtum Mainnet 点火结果 – 10月9 - 15日</a></p>
+<p>Mainnet 图表介绍（新加坡）</p>
+<p>发布于2017年10月15日</p>
+
+                
+<p class="green-link-context prev-btn">
+    <a href="/2018/08/13/2018-08-13-翻译-QTUM的有限供应量-减半/" rel="next" title="【翻译】 QTUM 的有限供应量 - 减半">
+    Prev: 【翻译】 QTUM 的有限供应量 - 减半
+  </a>
+</p>
+
+
+
+<p class="green-link-context next-btn">
+    <a href="/2018/08/06/2018-08-06-翻译-测试网和Qtum主网性能/" rel="next" title="【翻译】 测试网和 Qtum 主网性能">
+    Next: 【翻译】 测试网和 Qtum 主网性能
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+
+
+
+    <div id="gitment_container"></div>
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <link rel="stylesheet" href="/css/gitment.css" media="screen" type="text/css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <script>
+    var gitment = new Gitment({
+        id: 'Mon Aug 13 2018 04:11:00 GMT+0800',
+        owner: 'linxueyuanstdio',
+        repo: 'linxueyuanstdio.github.io',
+        oauth: {
+            client_id: '2f7f71f1ba398039ff23',
+            client_secret: '3ebc908a7042fef2d56a83a2eb8c18777374a087',
+        },
+    })
+    gitment.render('gitment_container')
+    </script>
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large pink">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect green" title="Return to top"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse yellow darken-1"  data-activates="main-menu" title="Menu"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer indigo darken-1">
+    
+    <div class="footer-container container">
+        <div class="row">
+            
+            <div class="social-group col m4 s12">
+                <h5 class="white-text">Social</h5>
+                
+                    <a class="social-link" href="http://weibo.com/LinXueyuanStdio" target="_blank">
+                        <i class="fa fa-2x fa-weibo"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://github.com/LinXueyuanStdio" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://www.zhihu.com/people/lin-xue-yuan-86" target="_blank">
+                        <i class="fa fa-2x fa-graduation-cap"></i>
+                    </a>
+                
+                    <a class="social-link" href="http://twitter.com/cwBQ3A5cz3Jzso7" target="_blank">
+                        <i class="fa fa-2x fa-twitter"></i>
+                    </a>
+                
+                    <a class="social-link" href="mailto:761516186@qq.com" target="_blank">
+                        <i class="fa fa-2x fa-envelope"></i>
+                    </a>
+                
+                    <a class="social-link" href="/atom.xml" target="_blank">
+                        <i class="fa fa-2x fa-rss"></i>
+                    </a>
+                
+                
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+    </script>
+    <div class="site-visitors-container white-text">
+        <span>
+            <i class="fa fa-user"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+        </span>
+        <span>&nbsp;|&nbsp;</span>
+        <span>
+            <i class="fa fa-eye"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+        </span>
+    </div>
+
+
+            </div>
+            
+
+            
+            <div class="col m8 s12">
+                <h5 class="white-text">Links</h5>
+                
+                    <a class="social-link" href="http://raytaylorlin.com/" target="_blank">raytaylorism主题作者</a>
+                
+                    <a class="social-link" href="https://github.com/raytaylorlin" target="_blank">Github地址</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    
+
+    <div class="footer-copyright green-link-context">
+        <div class="container">
+            © 2018 xichen.pub, All rights reserved.
+            <p class="right" style="margin-top: 0;">Blog powered by <a href="https://hexo.io">Hexo</a> | Theme <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
+        </div>
+    </div>
+</footer>
+
+
+    <noscript>
+    <div class="noscript">
+        <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+    </div>
+</noscript>
+<div class="noscript">
+    <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+<script src="/js/canvas.js"></script>
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 隐藏禁用javascript（针对微信内置浏览器）的提示
+            $('.noscript').hide();
+
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
+
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed').each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt') || ' ');
+            }).materialbox();
+
+            // 优化表格的显示
+            $('table').each(function() {
+                var $table = $(this);
+                // 除去多行代码的情况
+                if ($table.find('pre').length == 0) {
+                    $table.addClass('responsive-table striped bordered');
+                }
+            });
+
+            // 首页幻灯片
+            $('.slider').slider({indicators: true, full_width: true, interval: 8000});
+
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+
+            // 目录随屏幕滚动（防止目录过长越过footer）
+            var $toc = $('.toc');
+            var scrollTargetTop = 0;
+            $(window).scroll(function() {
+                var $activeLink = $toc.find('a.active.section');
+                if ($(window).scrollTop() < 100) {
+                    scrollTargetTop = 0;
+                } else {
+                    if ($activeLink[0]) {
+                        scrollTargetTop = $activeLink.offset().top - $toc.offset().top;
+                    }
+                }
+                $toc.css('top', '-' + scrollTargetTop + 'px');
+            });
+
+            // 修正文章目录的left-border颜色
+            var color = $('.table-of-contents-text').css('color');
+            $('.table-of-contents-link').css('border-left-color', color);
+
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({
+                    scrollTop: 0
+                }, 500);
+            });
+
+            // 重置读书页面的Tab标签页的颜色
+            $('li.tab a').hover(function() {
+                $(this).toggleClass('text-lighten-4');
+            });
+            $('.indicator').addClass('pink lighten-2');
+
+            
+            // 添加new标签
+            $('.menu-apps').append('<span class="new badge pink"></span>');
+            
+
+            // 搜索功能
+            $('.modal-trigger').leanModal({
+                // 打开搜索框时自动聚焦
+                ready: function() {
+                    if ($('#search').is(":visible")) {
+                        $('#search-input').focus();
+                    }
+                }
+            });
+            var searchXml = "search.xml";
+            if (searchXml.length == 0) {
+             	searchXml = "search.xml";
+            }
+            var searchPath = "/" + searchXml;
+            initSearch(searchPath, 'search-input', 'search-result');
+        });
+
+        // 初始化搜索与匹配函数
+        var initSearch = function(path, search_id, content_id) {
+            'use strict';
+            $.ajax({
+                url: path,
+                dataType: "xml",
+                success: function(xmlResponse) {
+                    // get the contents from search data
+                    var datas = $("entry", xmlResponse).map(function() {
+                        return {
+                            title: $("title", this).text(),
+                            content: $("content", this).text(),
+                            url: $("url", this).text()
+                        };
+                    }).get();
+                    var $input = document.getElementById(search_id);
+                    var $resultContent = document.getElementById(content_id);
+                    $input.addEventListener('input', function() {
+                        var str = '<ul class=\"search-result-list\">';
+                        var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                        $resultContent.innerHTML = "";
+                        if (this.value.trim().length <= 0) {
+                            return;
+                        }
+                        // perform local searching
+                        datas.forEach(function(data) {
+                            var isMatch = true;
+                            var content_index = [];
+                            var data_title = data.title.trim().toLowerCase();
+                            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                            var data_url = data.url;
+                            var index_title = -1;
+                            var index_content = -1;
+                            var first_occur = -1;
+                            // only match artiles with not empty titles and contents
+                            if (data_title != '' && data_content != '') {
+                                keywords.forEach(function(keyword, i) {
+                                    index_title = data_title.indexOf(keyword);
+                                    index_content = data_content.indexOf(keyword);
+                                    if (index_title < 0 && index_content < 0) {
+                                        isMatch = false;
+                                    } else {
+                                        if (index_content < 0) {
+                                            index_content = 0;
+                                        }
+                                        if (i == 0) {
+                                            first_occur = index_content;
+                                        }
+                                    }
+                                });
+                            }
+                            // show search results
+                            if (isMatch) {
+                                keywords.forEach(function(keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword green lighten-2\">" + keyword + "</span>");
+                                });
+
+                                str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                                if (first_occur >= 0) {
+                                    // cut out 100 characters
+                                    var start = first_occur - 20;
+                                    var end = first_occur + 80;
+                                    if (start < 0) {
+                                        start = 0;
+                                    }
+                                    if (start == 0) {
+                                        end = 100;
+                                    }
+                                    if (end > content.length) {
+                                        end = content.length;
+                                    }
+                                    var match_content = content.substring(start, end);
+                                    // highlight all keywords
+                                    keywords.forEach(function(keyword) {
+                                        var regS = new RegExp(keyword, "gi");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword green lighten-2\">" + keyword + "</span>");
+                                    });
+
+                                    str += "<p class=\"search-result\">..." + match_content + "...</p>"
+                                }
+                                str += "</li>";
+                            }
+                        });
+                        str += "</ul>";
+                        $resultContent.innerHTML = str;
+                    });
+                }
+            });
+        }
+    })(jQuery);
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+</body>
+</html>

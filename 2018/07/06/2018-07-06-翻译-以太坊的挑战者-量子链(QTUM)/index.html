@@ -1,0 +1,944 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>【翻译】 以太坊的挑战者：量子链（QTUM） | XiChen&#39;s Blog</title>
+    <meta name="author" content="Lin Xueyuan">
+    
+    <meta name="description" content="嗨，我是兮尘，全栈数据学徒。这里没有花俏艳丽的魔法，没有苍蛮霸道的斗气，有的，仅仅是繁衍到巅峰的代码！">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="【翻译】 以太坊的挑战者：量子链（QTUM）"/>
+    <meta property="og:site_name" content="XiChen"/>
+
+    
+    <meta property="og:image" content=""/>
+    
+
+    <link rel="icon" type="image/png" href="/assets/images/favicon.ico" />
+    <link rel="alternate" href="/atom.xml" title="XiChen" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+    <link rel="stylesheet" href="//fonts.gdgdocs.org/css?family=Lobster" type="text/css">
+    
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
+
+    <nav class="indigo nav">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="">
+            <div style="font-family: Lobster, Monospace;">
+                <a href="/" class="brand-logo hide-on-med-and-down" style="font-family: Lobster, Monospace;">
+                    XiChen
+                </a>
+            </div>
+            <ul class="nav-menu right hide-on-med-and-down">
+                
+                    <li class="tab">
+                        <a class="menu-home " href="/"
+                            >
+                                <i class="fa fa-home "></i>
+                                
+                                    Home
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-archive " href="/archives"
+                            >
+                                <i class="fa fa-archive "></i>
+                                
+                                    Archives
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-category category-menu" href="javascript:;"
+                            data-activates="category-menu"
+                            >
+                                <i class="fa fa-bookmark "></i>
+                                
+                                    Categories
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-apps " href="/apps"
+                            >
+                                <i class="fa fa-link "></i>
+                                
+                                    App
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-tools " href="/tools"
+                            >
+                                <i class="fa fa-wrench "></i>
+                                
+                                    Tool
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-reading " href="/reading"
+                            >
+                                <i class="fa fa-book "></i>
+                                
+                                    Reading
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-about " href="/about"
+                            >
+                                <i class="fa fa-user "></i>
+                                
+                                    About
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-search modal-trigger " href="#search"
+                            >
+                                <i class="fa fa-search "></i>
+                                
+                                    Search
+                        </a>
+                    </li>
+                    
+            </ul>
+            <div>
+    <ul class="side-nav indigo darken-1" id="main-menu">
+        
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4 no-padding logo-a">
+                    <img class="avatar-image circle responsive-img logo" src="/assets/images/avatar.jpg" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper no-padding">
+                    <div class="valign">
+                        <p class="name">兮尘</p>
+                        <p class="desc">Web前端/Android/技术宅</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-home " href="/" >
+                    <i class="fa fa-home "></i>
+                    
+                    Home
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-archive " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    
+                    Archives
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    
+                    Categories
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-apps " href="/apps" >
+                    <i class="fa fa-link "></i>
+                    
+                    App
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-tools " href="/tools" >
+                    <i class="fa fa-wrench "></i>
+                    
+                    Tool
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-reading " href="/reading" >
+                    <i class="fa fa-book "></i>
+                    
+                    Reading
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-about " href="/about" >
+                    <i class="fa fa-user "></i>
+                    
+                    About
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-search modal-trigger " href="#search" >
+                    <i class="fa fa-search "></i>
+                    
+                    Search
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav indigo darken-1" id="category-menu">
+    
+
+            
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Linux/">
+                    Linux <span class="right">8</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tips/">
+                    Tips <span class="right">7</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Deep-Learning/">
+                    Deep-Learning <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Proxy/">
+                    Proxy <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tools/">
+                    Tools <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/GO/">
+                    GO <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Ubuntu/">
+                    Ubuntu <span class="right">4</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Spider/">
+                    Spider <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Algorithms/">
+                    Algorithms <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/区块链/">
+                    区块链 <span class="right">24</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/算法/">
+                    算法 <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/密码学/">
+                    密码学 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Web/">
+                    Web <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Latex/">
+                    Latex <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/杂思/">
+                    杂思 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Git/">
+                    Git <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Android/">
+                    Android <span class="right">30</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Github/">
+                    Github <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/计算机组成原理/">
+                    计算机组成原理 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+<div id="search" class="modal search-modal">
+    <div class="row">
+        <div class="input-field col s12">
+              <input id="search-input" type="text">
+              <label for="search-input">Search</label>
+        </div>
+
+    </div>
+    <div id="search-result" class="search-result col s12">
+
+    </div>
+</div>
+
+    <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper indigo">
+        <span class="breadcrumb">Current page(Categories)</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/区块链/">区块链</a>
+
+
+        
+
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>【翻译】 以太坊的挑战者：量子链（QTUM）</h1>
+    
+
+
+            </div>
+            <i class="fa fa-calendar"></i><time class="green-link-context" datetime="2018-07-06T06:11:00.000Z"><a href="/2018/07/06/2018-07-06-翻译-以太坊的挑战者-量子链(QTUM)/">2018-07-06</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/区块链/" class="chip green lighten-1">区块链</a>
+        
+            <a href="/tags/Qtum/" class="chip green lighten-1">Qtum</a>
+        
+            <a href="/tags/翻译/" class="chip green lighten-1">翻译</a>
+        
+    </div>
+    
+
+
+            <div class="toc green-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#以太坊的挑战者：量子链（QTUM）"><span class="section table-of-contents-number">1.</span> <span class="section table-of-contents-text">以太坊的挑战者：量子链（QTUM）</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#遇见-Qtum。发音为“Quantum”"><span class="section table-of-contents-number">1.1.</span> <span class="section table-of-contents-text">遇见 Qtum。发音为“Quantum”</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#UTXO-模型（BTC）vs-账户模型"><span class="section table-of-contents-number">1.2.</span> <span class="section table-of-contents-text">UTXO 模型（BTC）vs. 账户模型</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#比特币的简单支付验证"><span class="section table-of-contents-number">1.3.</span> <span class="section table-of-contents-text">比特币的简单支付验证</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#结合两种模型：Qtum"><span class="section table-of-contents-number">1.4.</span> <span class="section table-of-contents-text">结合两种模型：Qtum</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#为什么比特币脚本不够用"><span class="section table-of-contents-number">1.5.</span> <span class="section table-of-contents-text">为什么比特币脚本不够用</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#Qtum-帐户抽象层"><span class="section table-of-contents-number">1.6.</span> <span class="section table-of-contents-text">Qtum 帐户抽象层</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#新操作码"><span class="section table-of-contents-number">1.7.</span> <span class="section table-of-contents-text">新操作码</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#权益证明，模板和向后兼容性"><span class="section table-of-contents-number">1.8.</span> <span class="section table-of-contents-text">权益证明，模板和向后兼容性</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#Qtum-X86-虚拟机"><span class="section table-of-contents-number">1.9.</span> <span class="section table-of-contents-text">Qtum X86 虚拟机</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#Qtum-Enterprise（Qtum-X）"><span class="section table-of-contents-number">1.10.</span> <span class="section table-of-contents-text">Qtum Enterprise（Qtum X）</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#连接到世界"><span class="section table-of-contents-number">1.11.</span> <span class="section table-of-contents-text">连接到世界</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#Qtum如何回答我们的七大问题？"><span class="section table-of-contents-number">1.12.</span> <span class="section table-of-contents-text">Qtum如何回答我们的七大问题？</span></a></li></ol></li></ol>
+</div>
+
+
+            <div class="entry green-link-context">
+                <p>原文：<a href="https://strategiccoin.com/the-ethereum-challengers-qtum/" target="_blank" rel="noopener">https://strategiccoin.com/the-ethereum-challengers-qtum/</a><br>译者：中山大学数学学院（珠海）林学渊<br>大二时给量子做的翻译，转载注明出处，谢谢</p>
+<h1 id="以太坊的挑战者：量子链（QTUM）"><a href="#以太坊的挑战者：量子链（QTUM）" class="headerlink" title="以太坊的挑战者：量子链（QTUM）"></a>以太坊的挑战者：量子链（QTUM）</h1><p>– Guest Contributor</p>
+<p><a href="https://twitter.com/bitgenstein" target="_blank" rel="noopener">Peter Keay</a> 是 <a href="https://twitter.com/icoalert" target="_blank" rel="noopener">ICO Alert</a> 的全球化总监，也是 Bitgenstein’s Table加密哲学播客节目的主持人。他是“以太坊的挑战者”系列作者。 这篇文章最初发表在<a href="https://blog.icoalert.com/the-ethereum-challengers-ep-6-qtum-qtum-d3278493c61d" target="_blank" rel="noopener">这里</a>。 该系列涵盖的其他竞争对手包括 <a href="https://bitgenste.in/rsk" target="_blank" rel="noopener">RSK</a>，<a href="https://bitgenste.in/eos" target="_blank" rel="noopener">EOS</a>和<a href="https://bitgenste.in/ada" target="_blank" rel="noopener">Cardano</a>。</p>
+<p>很多加密货币用户和投资者都十分支持比特币或以太坊，甚至达到了“极端主义者”的程度。</p>
+<p>极端主义者们认为，他们喜欢的币将占据市场主导地位并广泛应用，而所有其他加密货币最终都会消亡 - 或者只是作为主导币的测试网络。</p>
+<p><img src="https://cdn-images-1.medium.com/max/640/1*WFAo_yOnaJnRnQNweUymow.jpeg" alt="有些人只看到辩论的幽默。"></p>
+<p>实际上，BTC和ETH货币是当今最重要的数字资产，而且在可预见的未来可能也是如此。 然而比特币和以太坊是完全不同的，它们的优点和缺点都不一样。</p>
+<p>所以，在2016年，一个简单的想法诞生了：</p>
+<p>如果加密货币同时拥有比特币和以太坊的优点会怎样？</p>
+<p><img src="https://cdn-images-1.medium.com/max/800/1*SXhk8TmWZlFV805WmRVgmw.png" alt="以太坊经典和比特币现金的优势，个人看法。（The Cryptos漫画）"></p>
+<h2 id="遇见-Qtum。发音为“Quantum”"><a href="#遇见-Qtum。发音为“Quantum”" class="headerlink" title="遇见 Qtum。发音为“Quantum”"></a>遇见 Qtum。发音为“Quantum”</h2><blockquote>
+<p>译者注：发音和中文“狂腾”相近</p>
+</blockquote>
+<p>Qtum 结合了比特币技术和以太坊技术。</p>
+<p>在“以太坊的挑战者”的系列中，我已经为大多数挑战者做了一些相关概念的总结。 例如，我们讨论了<a href="https://bitgenste.in/rsk" target="_blank" rel="noopener">图灵完整性和侧链与RSK</a>，<a href="https://bitgenste.in/eos" target="_blank" rel="noopener">PoS和DPoS与EOS</a>，以及<a href="https://bitgenste.in/ada" target="_blank" rel="noopener">用Cardano的形式验证</a>。</p>
+<p>自从 Qtum（请记住：在你的心里请读作“Quantum”）将其平台作为比特币和以太坊的结合来推广时，让我们来谈谈两个主要的区块链交易模型。 然后，我们将讨论 Qtum 的其他功能，包括一些近期的公告，并看看它如何处理我们的七大问题。</p>
+<p>所以，首先是交易模型。比特币使用 UTXO 模型。 以太坊使用帐户模型。 Qtum 想两者都要。</p>
+<h2 id="UTXO-模型（BTC）vs-账户模型"><a href="#UTXO-模型（BTC）vs-账户模型" class="headerlink" title="UTXO 模型（BTC）vs. 账户模型"></a>UTXO 模型（BTC）vs. 账户模型</h2><p>你是否曾把 BTC 从一个地址发送到另一个地址，结果在块浏览器中看到你的帐户实际发送了更多的BTC？</p>
+<p>这是 UTXO 模型的工作原理决定的，但对于习惯帐户模型的人来说，这并不直观。 事实上，看你的地址，显然发送的 BTC 比告诉你的要多得多，这十分可怕。</p>
+<p><img src="https://cdn-images-1.medium.com/max/640/1*-SBxQwqWIf1V5G94Uz1uCw.gif" alt="我把它交给了美联储。"></p>
+<p>你习惯帐户模型，在那里你的帐户有余额。</p>
+<p>例如，你的以太坊地址也是你的以太坊帐户。 你可以从余额中支出并接收余额付款。</p>
+<p>虽然建议仅使用一次地址 - 出于隐私和安全的原因 - 实际上帐户模型会激励用户重复使用地址，因为这是最简单的用钱方式。</p>
+<blockquote>
+<p>以太坊账户类型：以太坊有两种账户：由私钥控制的账户 - 如果你使用ETH，则为你所有 - 以及由合约代码控制的账户。<br>私钥帐户制作并签署要发送给其他帐户的信息，而合约帐户会在收到信息时激活其代码以执行各种交易（包括发送其他信息，签订合约以及读取或写入自己的存储）。请注意，区块链中的“信息”包括交易。</p>
+</blockquote>
+<p>帐户模型使用类似于银行帐户的余额管理系统。</p>
+<p>但是像比特币这样的 UTXO（Unspent Transaction Output，未花费的交易输出）模型是不同的。</p>
+<p>用 UTXO 模型的感觉类似于你只用支票付款，一直持有直到你需要用掉它。</p>
+<p><img src="https://cdn-images-1.medium.com/max/640/1*xY4xGhypSmxWvPgpdhwCPA.png" alt="比特币是你最卑微的仆人。 并且把财富作为支票的内容。"></p>
+<p>正如你不能在银行只兑现支票的某一部分，而是必须兑现全部。在比特币里，一个地址收到一定钱后又只想只花掉其中一点，这样不行，它必须花掉所有的钱。</p>
+<p>当你发送 BTC 时，你会花费 “vins” 并生成新的 “vouts”. UTXO 无法重复使用，所以通过花费 vins 并生成 vouts 后 UTXO 就被销毁了。</p>
+<p>因此，如果你收到一个声称有 3.152 BTC 的 UTXO vin，然后发送 2.1 BTC，你实际上必须发送整个 3.152 BTC - 在这种情况下，作为两个 vouts：〜2.1给你的收件人和~1.052给你自己。 （小的采矿费会略微降低实际数量。）你收到的 3.152 BTC的 UTXO 已完成使命且无法重复使用，但 BTC 仍然存在于新的 UTXO 中。</p>
+<p>在后台，你创建的 vout 脚本（发送）需要vin脚本的许可。 换句话说，为了花钱，你必须有一张有效的支票或多张支票，证明你过去收到过这笔钱（或者更多），并且支票一定不能撕掉。</p>
+<p>因此，在帐户模型中，你的余额会被检查并借记和贷记，这不是比特币的工作方式。</p>
+<p>如果你将BTC从Ledger钱包发送给其他人并在一个块代理商上检查交易，你可能已经注意到了这一点。</p>
+<p>看似任意数量的BTC会被发送出去。 但你发送的实际金额将发送给收件人，剩余部分将转到一个你能控制的新地址。 你没有发送给收件人的BTC仍然是你的，但会被发送到新地址。</p>
+<p>这是 UTXO 的工作原理决定的。 同样，如果你收到了两个分别为 1.1 BTC 和 0.8 BTC 的 UTXO，并且你想花费 1.3 BTC，那么两个 UTXO 都将 “被花费”，其余的将作为新的 UTXO 发送给你 - 在这种情况下，有 0.6 BTC，减去交易费用。</p>
+<p>为什么这可能比简单的账户余额系统更好？</p>
+<p>UTXO 模型激励用户限制他们对地址的重复使用，因为每次花费时 BTC 都会自动发送到新地址。</p>
+<p>这样更安全，即使是对于<a href="https://bitgenste.in/quantum" target="_blank" rel="noopener">量子计算（quantum computing）</a>这样的进步也是如此，因为在你的地址开始使用之前，你的公钥不会泄露。 你的公共地址是公钥的哈希，而不是你的公钥本身，即使很多人错误地使用这些术语。 公钥和地址是相关但不同的东西。</p>
+<p><img src="https://cdn-images-1.medium.com/max/640/1*9HAqy2m1Y0WHtSx2UQPvvw.png" alt="仅仅因为有人知道你的地址并不意味着他们有你的公钥。 除非你透露了它。"></p>
+<p>但是，一旦地址开始花钱，该地址的公钥就会发布到区块链，因此理论上容易受到攻击，立刻就暴露了。 但是，如果地址的余额为空，即使成功攻击你的公钥也毫无价值 - 它发送到了你控制的新地址，并带有未公开的公钥 - 因此当BTC将“零钱”发送到新地址时，你将重新获得未知公钥安全上的好处。</p>
+<p>一次性地址也具有隐私优势。 这种从地址到地址发送 BTC 的行为使得跟踪个人变得更加困难。 BTC 本身仍然可以很容易被跟踪，但在许多情况下，很难确定所涉及的大量地址的所有权。</p>
+<p>其他代币以其他方式实现了类似或更高级别的隐私优势和安全性，不仅拥有这些优点，同时还保留了重复使用地址的便利性。 然而，这些代币在测试时间上没有比特币长，或者程度上没有比特币剧烈，并且他们的解决方案可能存在无法预料的复杂情况。</p>
+<p>如果像以太坊这样的帐户模型加密货币的用户遵循仅使用每个地址一次的推荐做法，他们享有与UTXO提供的相同的安全和隐私权益。 但在比特币中，用户更有可能遵循这一最佳实践，因为它是默认行为。</p>
+<blockquote>
+<p>附注：这些优点不适用于不再受欢迎的单地址钱包。 单地址钱包将UTXO的“零钱”发送回同一地址。<br>它们适用于其他两种主要类型：<br>1）随机生成新地址的钱包，现在也不常见。 当发送BTC时，用过的UTXO的“零钱”被发送到新的随机地址。 这是有风险的，因为如果钱包丢失，自上次备份以来生成的随机地址也将丢失。</p>
+</blockquote>
+<p><img src="https://cdn-images-1.medium.com/max/640/1*aRc8XGDo6I7T_P0xmjMftw.jpeg" alt="而且，在至少一种情况下，密钥实际上不是随机生成的而是后来被盗。"></p>
+<blockquote>
+<p>2）能生成确定地址的钱包。 你今天用BTC的钱包可能会确定性地创建地址。 例如，硬件钱包和Electrum桌面钱包都是确定性的。 它们包含几乎无限的数学生成地址池。 无论何时发送BTC，这些钱包都会将用过的UTXO发送的“零钱”发送到新生成的地址。 确定性地址生成优于随机地址生成，因为一个种子可以重新生成所有相同的地址，从而提供更好的备份和恢复功能。</p>
+</blockquote>
+<h2 id="比特币的简单支付验证"><a href="#比特币的简单支付验证" class="headerlink" title="比特币的简单支付验证"></a>比特币的简单支付验证</h2><p>UTXO模型的一个优点是 SPV，(Simplified Payment Verification，简单支付验证），允许客户端验证一个交易是否包含在一个块中，而无需下载和验证整个区块链。</p>
+<p>简而言之，希望下载的数据更少，因为任何人一旦把钱用出去，UTXO输出就会被遗忘。</p>
+<p>块标题足以进行验证，因为它们可以提供 <a href="https://hackernoon.com/merkle-trees-181cb4bc30b4" target="_blank" rel="noopener">Merkle branchas</a> “包含证明（proof of inclusion）”在 Satoshi 的<a href="https://bitcoin.org/bitcoin.pdf" target="_blank" rel="noopener">原白皮书</a>中描述了 SPV 背后的想法，尽管不是所有的功能。</p>
+<p>这种轻量级验证方法确实存在一些风险，但是 <a href="https://bitcoin.org/en/developer-guide#application-of-bloom-filters" target="_blank" rel="noopener">Bloom 过滤器</a>和连接到多个节点而不是一个节点的各种措施用于缓解此方法带来的安全问题。否则，轻型比特币客户端联系的完整节点可能会有<br>1) 通过假装不存在的交易欺骗用户或<br>2）获得所需的数据轻松跟踪比特币用户。</p>
+<h2 id="结合两种模型：Qtum"><a href="#结合两种模型：Qtum" class="headerlink" title="结合两种模型：Qtum"></a>结合两种模型：Qtum</h2><p>Qtum 以 UTXO 模型及其 SPV 功能为基础运行，但增加了以太坊虚拟机 - 并且还支持其他虚拟机，我们稍后会介绍。</p>
+<p><img src="https://cdn-images-1.medium.com/max/800/1*xRqWbdSxhH6PKQOk4BLd5g.png" alt=""></p>
+<p>此外，尽管 UTXO 模型（BTC，BCH，LTC和DGB都是UTXO代币的例子）不支持退款，但 Qtum 可以通过创建新输出来退款。 在以太坊设置 “gas 限制” 并获得所有未使用的有作用的 gas 退款，因为以太坊没有运行在 UTXO 模型上。 但Qtum已成功启用此退款功能，即使它基于比特币的交易模式。</p>
+<p>使用比特币运行，Qtum 可以轻松采用比特币开发，如 SegWit 和闪电网络（Lightning Network），以及之后的<a href="https://github.com/bitcoin/bips" target="_blank" rel="noopener">比特币改进建议</a>。</p>
+<p>使用以太坊的虚拟机运行，允许 Qtum 支持 Turing 完整的智能合约，这是比特币无法支持的。</p>
+<h2 id="为什么比特币脚本不够用"><a href="#为什么比特币脚本不够用" class="headerlink" title="为什么比特币脚本不够用"></a>为什么比特币脚本不够用</h2><p>比特币的智能合约能力非常有限 - 尽管 RSK 和 CounterParty 正致力于以不同的方式在比特币区块链上实现智能合约。</p>
+<p>特别是，比特币的脚本语言没有循环功能。 根据给定的变量，代码不能执行多次。 这一点或其他因素使比特币语言只能完成最简单的任务。</p>
+<p>因此，Qtum 通过在比特币代码之上允许以太币虚拟机，在比特币代码库上实现图灵完备脚本 - 尽管不在实际比特币区块链上。</p>
+<p>为了做到这一点，它中间需要多一层。</p>
+<h2 id="Qtum-帐户抽象层"><a href="#Qtum-帐户抽象层" class="headerlink" title="Qtum 帐户抽象层"></a>Qtum 帐户抽象层</h2><p>为了使智能合约虚拟机及帐户模型适用于比特币的无帐户UTXO模型，Qtum包含了一个“帐户抽象层”。正如你可能想象的那样，让基于帐户的系统在无帐户底层上运行需要在 AAL（Account Abstract Layer，用户抽象层） 做一些复杂工作。</p>
+<p>最终结果是为用户提供了 UTXO 和开发人员优势的图灵完备的以太坊虚拟机的优势。</p>
+<p><img src="https://cdn-images-1.medium.com/max/640/1*VxxBCg15Nx_u7YLmPn06vg.png" alt="和区块链一样，它并不那么简单，但你 get 到了要点。"></p>
+<h2 id="新操作码"><a href="#新操作码" class="headerlink" title="新操作码"></a>新操作码</h2><blockquote>
+<p>操作码：代码行的一部分，用于标识将要执行的操作。 有关其他示例，请查看比特币的可用操作码。 这些操作码是比特币脚本语言的所有功能。</p>
+</blockquote>
+<p>寻求为比特币添加智能合约功能的解决方案，例如 RSK，通常需要一些新的操作码，且需要比特币来升级其代码。</p>
+<p>Qtum 不需要比特币分支来添加新的操作码，因为它已经将比特币的代码分配到一个新项目中，因此能够简单地添加新的操作码。</p>
+<blockquote>
+<p>技术说明：Qtum仍然使用比特币脚本语言，但是三个新的操作码使虚拟机能够在此基础上运行</p>
+<ul>
+<li>OP_EXEC：执行特定的以太坊虚拟机字节码。</li>
+<li>OP_EXEC_ASSIGN：与上述相同，可以包含合约地址和合约数据。它可选择将资金转移到智能合约上。</li>
+<li>OP_TXHASH：推送当前执行的交易的ID哈希。<br>Qtum 必须允许智能合约在添加到区块链时立即执行，因此前两个操作码将以特殊优先级进行处理。</li>
+</ul>
+</blockquote>
+<p>通过添加这些操作码及帐户抽象层，Qtum 成功允许比特币代码库支持以太坊虚拟机。</p>
+<p>现在，任何以太坊应用程序都可以在Qtum上运行，并享受UTXO基础带来的好处。</p>
+<p>但是等等……还有更多。</p>
+<h2 id="权益证明，模板和向后兼容性"><a href="#权益证明，模板和向后兼容性" class="headerlink" title="权益证明，模板和向后兼容性"></a>权益证明，模板和向后兼容性</h2><p>Qtum对以太坊虚拟机的实现并不意味着它包含了以太坊的局限性。</p>
+<p>像比特币一样，以太坊是建立在工作量证明之上的。节点消耗大量能量，首先解决非常困难的难题，并声称采矿奖励。我们在<a href="https://bitgenste.in/eos" target="_blank" rel="noopener">EOS第2章中</a>里讨论了的共识模型，包括工作量证明。</p>
+<p>Qtum取而代之的是建立在 Peercoin（PPC）之上的 Proof of Stake 模型，这是第一个使用赌注模型生效的加密货币。</p>
+<p><img src="https://cdn-images-1.medium.com/max/640/1*RyqgUQ-pGjYU47LX7LasHw.png" alt="Qtum延续了用权益证明征服强大神仙的悠久传统。"></p>
+<p>Stof of Stake共识模型允许Qtum在没有高计算能力需求和每秒更多交易数的情况下运行。</p>
+<p>如果您想详细阅读有关权益证明的信息，特别是与工作量证明相比较，我推荐以太坊团队成员撰写的<a href="https://github.com/ethereum/wiki/wiki/Proof-of-Stake-FAQ" target="_blank" rel="noopener">文章</a>。 不可否认，许多其他货币已经转移到了权益证明，以太坊计划在某些时候部分或全部这样做。</p>
+<p>Qtum 还在实施模板以简化 dApp 开发 - 这是 NEM 等备选方案的重点，也是通过Crowd Machine 等项目引入以太坊的。</p>
+<p>Qtum确实提供了一项功能，与 PoS 和模板不同，以太坊很可能永远不具备：向后兼容性。 Qtum 节点即使没有完全更新到最新版本的 Qtum，也可以参与共识。</p>
+<p><img src="https://cdn-images-1.medium.com/max/800/1*137VSsgkWHEwgn6lxK0tNA.png" alt=""></p>
+<h2 id="Qtum-X86-虚拟机"><a href="#Qtum-X86-虚拟机" class="headerlink" title="Qtum X86 虚拟机"></a>Qtum X86 虚拟机</h2><p>Qtum AAL最着名的是允许使用以太坊虚拟机，但它也允许用其他虚拟机。</p>
+<p>在5月23号，即本文发布的几个星期前，Qtum在<a href="https://blog.qtum.org/qtum-x86-virtual-machine-qtum-enterprise-version-progress-update-2ff249968e2b" target="_blank" rel="noopener">韩国 Qtum X86 虚拟机会议</a>上做了一个演讲。X86 VM 允许开发人员使用许多不同的编程语言。提到的C和C++已经支持了，其他像Rust, Python 和 Go 正在路上。</p>
+<p>目前的Qtum路线图将 X86 集成放在 2018 年末。</p>
+<h2 id="Qtum-Enterprise（Qtum-X）"><a href="#Qtum-Enterprise（Qtum-X）" class="headerlink" title="Qtum Enterprise（Qtum X）"></a>Qtum Enterprise（Qtum X）</h2><p>Qtum Enterprise（Qtum X）也在同一个5月23日的会议中描述，是一项旨在吸引企业的新举措。 Qtum X 将是一个权威证明（Proof of Authority）系统，允许每秒更多的交易。</p>
+<p>Qtum X 和 Qtum 是独立的产品，至少目前是这样。 我还没有找到关于这两种产品是否可以互通的任何信息，即它们是否将共享相同的货币。</p>
+<p>宣布之后可能还需要很长时间才能获得许多细节，特别是英语版，所以如果有读者有更多信息，我会十分感谢分享。</p>
+<h2 id="连接到世界"><a href="#连接到世界" class="headerlink" title="连接到世界"></a>连接到世界</h2><p>除了Qtum X和X86虚拟机之外，Qtum还有许多其他项目正在开发中，旨在吸引开发人员和企业加入Qtum生态系统。</p>
+<p>API。 模板。 功能齐全的SDK。 原子交换。 Qtum 卫星。</p>
+<p>原子交换：将一种加密货币交易给另一种货币而不涉及任何第三方。 在典型的原子交换中，在一个区块链上启动时间锁定的智能合约。 如果另一方未在规定时间内交付所交易的货币，则该交易将被取消。</p>
+<p>是的，我不是在开玩笑说卫星。 与Nexus一样，Qtum计划与SpaceChain合作发射卫星。 看来，与前者相比，Qtum在审查阻力之后，主要是在现阶段拉动宣传噱头 - 正如他们所说的那样，“无可争议地证明了我们决心成为世界领先的加密货币和区块链平台。”</p>
+<p>好吧，让我们把话题带回地球。</p>
+<h2 id="Qtum如何回答我们的七大问题？"><a href="#Qtum如何回答我们的七大问题？" class="headerlink" title="Qtum如何回答我们的七大问题？"></a>Qtum如何回答我们的七大问题？</h2><p><img src="https://cdn-images-1.medium.com/max/800/1*u1FBYguBW9JqCVrAL6l1JQ.png" alt=""></p>
+<p>1.可扩展性</p>
+<p>由于它是从比特币和以太坊构建的，因此Qtum每秒没有大量的交易。 权益证明（Proof of Stake）有助于实现 SegWit，将 TPS 提升至 60 左右。截至我看到的最新信息，Qtum 未来的可扩展性开发可能包括脱链渠道抑或类似于以太坊提议的分片的功能。 Qtum Enterprise（Qtum X）将使用授权证书来实现更高的交易吞吐量。 目前尚不清楚Qtum X和Qtum将如何或是否将在此时集成，但由于其可扩展性优势，企业可能对Qtum X感兴趣。</p>
+<p><img src="https://cdn-images-1.medium.com/max/480/0*-sNt1eVMIsXAVRif" alt=""></p>
+<p>2.治理</p>
+<p>Qtum的股权证明，最初建立在PeerCoin开创性的PoS代码之上。Qtum确实有一个分散治理协议（DGP）。 Qtum X 将在权威证明上运行。</p>
+<p>Qtum区块链基金会指导DGP范围之外的决策。</p>
+<p>3.开发复杂性</p>
+<p>虽然Qtum可以使用以太坊的EVM和Solidity，但新的Qtum X86虚拟机还是会允许 C 和 C++ 和之后其他语言比如 Ruby, Go, Python. 与以太坊不同，Qtum的EVM始终向后兼容。</p>
+<p>eSML是Qtum的计划语言，具有正式的验证能力。我们在<a href="https://bitgenste.in/ada" target="_blank" rel="noopener">episode #3 (Cardano)</a>讨论了正式验证。正式验证是 Cardano 的主要关注点。 公平地说，一些第三方解决方案以及可能即将推出的 Casper 也将为以太坊引进正式验证。</p>
+<p>4.时间轴</p>
+<p>Qtum 很活跃，新的 X86 虚拟机将在今年晚些时候集成。 Qtum X（Qtum Enterprise）项目时间表在撰写本文时尚不清楚。</p>
+<p>5.广义特征</p>
+<p>如上所述，模板计划为应用程序开发人员提供通用功能，减少重复性工作和错误倾向。 除此之外，尚未出现广义特征。 随着X86虚拟机的集成，我不会惊讶于看到许多有趣的功能。</p>
+<p>6.可采纳性</p>
+<p>几个基本的 Qtum 可采用性功能已经到位，例如 Ledger 钱包集成，但由于以业务为中心的 Qtum X 仍处于早期开发阶段，我怀疑我们不会知道最终的 Qtum dApp 生态系统以及后来的游戏有多么对用户友好。</p>
+<p>Qtum 确实有交易费用，但是像以太坊的费用一样，它们可能最终会被企业从用户那里抽象出来。 我没有找到有关 Qtum 上人类可读的地址计划的信息。</p>
+<p>7.市场地位</p>
+<p>据我所知，Qtum没有像我们迄今为止讨论过的大多数解决方案那样大的开发者社区。 然而，在Qtum上运行了一些dApp和ICO。 如果Qtum区块链基金会能够在加强Qtum营销的同时快速实现计划中的X86 VM，Qtum X和更多功能，那么它可能会使它们成为强大的以太坊挑战者。</p>
+<p><img src="https://cdn-images-1.medium.com/max/800/1*YbD8z2mQTGnDUvETLRg_WA.png" alt=""></p>
+<p>当然，随着我们通过市值进一步向下移动，我们应该期待看到处于早期阶段的项目。 他们根本没有顶级项目那么多的嗡嗡声 - 也没有多少钱。</p>
+<p>Qtum带来了其他智能合约平台的许多优势，以及它自己的一些重点。 因此，尽管我大声地认为Qtum确实需要一个新的标识，但我很高兴看到该项目的去向。</p>
+<p>毕竟，在<a href="https://bitgenste.in/neo" target="_blank" rel="noopener">NEO的第4集</a>中，我们讨论了中国项目在中国的表现如何比外国项目更好。 事实上，好多了。 中国的强大优势可能会使Qtum成为以太坊的严峻挑战者。</p>
+<p><img src="https://cdn-images-1.medium.com/max/640/1*8-ezmr50c9Frcnkc0ppQOg.gif" alt=""></p>
+<p>与本系列中的所有平台一样，我将密切关注 Qtum 及 X86 VM 和 Qtum X 的发布。</p>
+<p><a href="https://twitter.com/bitgenstein" target="_blank" rel="noopener">让我知道你对Twitter上Qtum的看法</a></p>
+
+                
+<p class="green-link-context prev-btn">
+    <a href="/2018/07/12/2018-07-12-翻译-钱包和密钥/" rel="next" title="【翻译】 钱包和密钥">
+    Prev: 【翻译】 钱包和密钥
+  </a>
+</p>
+
+
+
+<p class="green-link-context next-btn">
+    <a href="/2018/06/30/2018-06-30-翻译-深入理解以太坊虚拟机-EVM汇编代码简介/" rel="next" title="【翻译】 深入理解以太坊虚拟机 - 如何解释一个智能合约的方法调用">
+    Next: 【翻译】 深入理解以太坊虚拟机 - 如何解释一个智能合约的方法调用
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+
+
+
+    <div id="gitment_container"></div>
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <link rel="stylesheet" href="/css/gitment.css" media="screen" type="text/css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <script>
+    var gitment = new Gitment({
+        id: 'Fri Jul 06 2018 14:11:00 GMT+0800',
+        owner: 'linxueyuanstdio',
+        repo: 'linxueyuanstdio.github.io',
+        oauth: {
+            client_id: '2f7f71f1ba398039ff23',
+            client_secret: '3ebc908a7042fef2d56a83a2eb8c18777374a087',
+        },
+    })
+    gitment.render('gitment_container')
+    </script>
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large pink">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect green" title="Return to top"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse yellow darken-1"  data-activates="main-menu" title="Menu"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer indigo darken-1">
+    
+    <div class="footer-container container">
+        <div class="row">
+            
+            <div class="social-group col m4 s12">
+                <h5 class="white-text">Social</h5>
+                
+                    <a class="social-link" href="http://weibo.com/LinXueyuanStdio" target="_blank">
+                        <i class="fa fa-2x fa-weibo"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://github.com/LinXueyuanStdio" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://www.zhihu.com/people/lin-xue-yuan-86" target="_blank">
+                        <i class="fa fa-2x fa-graduation-cap"></i>
+                    </a>
+                
+                    <a class="social-link" href="http://twitter.com/cwBQ3A5cz3Jzso7" target="_blank">
+                        <i class="fa fa-2x fa-twitter"></i>
+                    </a>
+                
+                    <a class="social-link" href="mailto:761516186@qq.com" target="_blank">
+                        <i class="fa fa-2x fa-envelope"></i>
+                    </a>
+                
+                    <a class="social-link" href="/atom.xml" target="_blank">
+                        <i class="fa fa-2x fa-rss"></i>
+                    </a>
+                
+                
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+    </script>
+    <div class="site-visitors-container white-text">
+        <span>
+            <i class="fa fa-user"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+        </span>
+        <span>&nbsp;|&nbsp;</span>
+        <span>
+            <i class="fa fa-eye"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+        </span>
+    </div>
+
+
+            </div>
+            
+
+            
+            <div class="col m8 s12">
+                <h5 class="white-text">Links</h5>
+                
+                    <a class="social-link" href="http://raytaylorlin.com/" target="_blank">raytaylorism主题作者</a>
+                
+                    <a class="social-link" href="https://github.com/raytaylorlin" target="_blank">Github地址</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    
+
+    <div class="footer-copyright green-link-context">
+        <div class="container">
+            © 2018 xichen.pub, All rights reserved.
+            <p class="right" style="margin-top: 0;">Blog powered by <a href="https://hexo.io">Hexo</a> | Theme <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
+        </div>
+    </div>
+</footer>
+
+
+    <noscript>
+    <div class="noscript">
+        <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+    </div>
+</noscript>
+<div class="noscript">
+    <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+<script src="/js/canvas.js"></script>
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 隐藏禁用javascript（针对微信内置浏览器）的提示
+            $('.noscript').hide();
+
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
+
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed').each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt') || ' ');
+            }).materialbox();
+
+            // 优化表格的显示
+            $('table').each(function() {
+                var $table = $(this);
+                // 除去多行代码的情况
+                if ($table.find('pre').length == 0) {
+                    $table.addClass('responsive-table striped bordered');
+                }
+            });
+
+            // 首页幻灯片
+            $('.slider').slider({indicators: true, full_width: true, interval: 8000});
+
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+
+            // 目录随屏幕滚动（防止目录过长越过footer）
+            var $toc = $('.toc');
+            var scrollTargetTop = 0;
+            $(window).scroll(function() {
+                var $activeLink = $toc.find('a.active.section');
+                if ($(window).scrollTop() < 100) {
+                    scrollTargetTop = 0;
+                } else {
+                    if ($activeLink[0]) {
+                        scrollTargetTop = $activeLink.offset().top - $toc.offset().top;
+                    }
+                }
+                $toc.css('top', '-' + scrollTargetTop + 'px');
+            });
+
+            // 修正文章目录的left-border颜色
+            var color = $('.table-of-contents-text').css('color');
+            $('.table-of-contents-link').css('border-left-color', color);
+
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({
+                    scrollTop: 0
+                }, 500);
+            });
+
+            // 重置读书页面的Tab标签页的颜色
+            $('li.tab a').hover(function() {
+                $(this).toggleClass('text-lighten-4');
+            });
+            $('.indicator').addClass('pink lighten-2');
+
+            
+            // 添加new标签
+            $('.menu-apps').append('<span class="new badge pink"></span>');
+            
+
+            // 搜索功能
+            $('.modal-trigger').leanModal({
+                // 打开搜索框时自动聚焦
+                ready: function() {
+                    if ($('#search').is(":visible")) {
+                        $('#search-input').focus();
+                    }
+                }
+            });
+            var searchXml = "search.xml";
+            if (searchXml.length == 0) {
+             	searchXml = "search.xml";
+            }
+            var searchPath = "/" + searchXml;
+            initSearch(searchPath, 'search-input', 'search-result');
+        });
+
+        // 初始化搜索与匹配函数
+        var initSearch = function(path, search_id, content_id) {
+            'use strict';
+            $.ajax({
+                url: path,
+                dataType: "xml",
+                success: function(xmlResponse) {
+                    // get the contents from search data
+                    var datas = $("entry", xmlResponse).map(function() {
+                        return {
+                            title: $("title", this).text(),
+                            content: $("content", this).text(),
+                            url: $("url", this).text()
+                        };
+                    }).get();
+                    var $input = document.getElementById(search_id);
+                    var $resultContent = document.getElementById(content_id);
+                    $input.addEventListener('input', function() {
+                        var str = '<ul class=\"search-result-list\">';
+                        var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                        $resultContent.innerHTML = "";
+                        if (this.value.trim().length <= 0) {
+                            return;
+                        }
+                        // perform local searching
+                        datas.forEach(function(data) {
+                            var isMatch = true;
+                            var content_index = [];
+                            var data_title = data.title.trim().toLowerCase();
+                            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                            var data_url = data.url;
+                            var index_title = -1;
+                            var index_content = -1;
+                            var first_occur = -1;
+                            // only match artiles with not empty titles and contents
+                            if (data_title != '' && data_content != '') {
+                                keywords.forEach(function(keyword, i) {
+                                    index_title = data_title.indexOf(keyword);
+                                    index_content = data_content.indexOf(keyword);
+                                    if (index_title < 0 && index_content < 0) {
+                                        isMatch = false;
+                                    } else {
+                                        if (index_content < 0) {
+                                            index_content = 0;
+                                        }
+                                        if (i == 0) {
+                                            first_occur = index_content;
+                                        }
+                                    }
+                                });
+                            }
+                            // show search results
+                            if (isMatch) {
+                                keywords.forEach(function(keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword green lighten-2\">" + keyword + "</span>");
+                                });
+
+                                str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                                if (first_occur >= 0) {
+                                    // cut out 100 characters
+                                    var start = first_occur - 20;
+                                    var end = first_occur + 80;
+                                    if (start < 0) {
+                                        start = 0;
+                                    }
+                                    if (start == 0) {
+                                        end = 100;
+                                    }
+                                    if (end > content.length) {
+                                        end = content.length;
+                                    }
+                                    var match_content = content.substring(start, end);
+                                    // highlight all keywords
+                                    keywords.forEach(function(keyword) {
+                                        var regS = new RegExp(keyword, "gi");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword green lighten-2\">" + keyword + "</span>");
+                                    });
+
+                                    str += "<p class=\"search-result\">..." + match_content + "...</p>"
+                                }
+                                str += "</li>";
+                            }
+                        });
+                        str += "</ul>";
+                        $resultContent.innerHTML = str;
+                    });
+                }
+            });
+        }
+    })(jQuery);
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+</body>
+</html>

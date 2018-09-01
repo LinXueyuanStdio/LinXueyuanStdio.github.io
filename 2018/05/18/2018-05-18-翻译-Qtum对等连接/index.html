@@ -1,0 +1,926 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>【翻译】 Qtum 对等连接 | XiChen&#39;s Blog</title>
+    <meta name="author" content="Lin Xueyuan">
+    
+    <meta name="description" content="嗨，我是兮尘，全栈数据学徒。这里没有花俏艳丽的魔法，没有苍蛮霸道的斗气，有的，仅仅是繁衍到巅峰的代码！">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="【翻译】 Qtum 对等连接"/>
+    <meta property="og:site_name" content="XiChen"/>
+
+    
+    <meta property="og:image" content=""/>
+    
+
+    <link rel="icon" type="image/png" href="/assets/images/favicon.ico" />
+    <link rel="alternate" href="/atom.xml" title="XiChen" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+    <link rel="stylesheet" href="//fonts.gdgdocs.org/css?family=Lobster" type="text/css">
+    
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
+
+    <nav class="indigo nav">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="">
+            <div style="font-family: Lobster, Monospace;">
+                <a href="/" class="brand-logo hide-on-med-and-down" style="font-family: Lobster, Monospace;">
+                    XiChen
+                </a>
+            </div>
+            <ul class="nav-menu right hide-on-med-and-down">
+                
+                    <li class="tab">
+                        <a class="menu-home " href="/"
+                            >
+                                <i class="fa fa-home "></i>
+                                
+                                    Home
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-archive " href="/archives"
+                            >
+                                <i class="fa fa-archive "></i>
+                                
+                                    Archives
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-category category-menu" href="javascript:;"
+                            data-activates="category-menu"
+                            >
+                                <i class="fa fa-bookmark "></i>
+                                
+                                    Categories
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-apps " href="/apps"
+                            >
+                                <i class="fa fa-link "></i>
+                                
+                                    App
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-tools " href="/tools"
+                            >
+                                <i class="fa fa-wrench "></i>
+                                
+                                    Tool
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-reading " href="/reading"
+                            >
+                                <i class="fa fa-book "></i>
+                                
+                                    Reading
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-about " href="/about"
+                            >
+                                <i class="fa fa-user "></i>
+                                
+                                    About
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-search modal-trigger " href="#search"
+                            >
+                                <i class="fa fa-search "></i>
+                                
+                                    Search
+                        </a>
+                    </li>
+                    
+            </ul>
+            <div>
+    <ul class="side-nav indigo darken-1" id="main-menu">
+        
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4 no-padding logo-a">
+                    <img class="avatar-image circle responsive-img logo" src="/assets/images/avatar.jpg" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper no-padding">
+                    <div class="valign">
+                        <p class="name">兮尘</p>
+                        <p class="desc">Web前端/Android/技术宅</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-home " href="/" >
+                    <i class="fa fa-home "></i>
+                    
+                    Home
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-archive " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    
+                    Archives
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    
+                    Categories
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-apps " href="/apps" >
+                    <i class="fa fa-link "></i>
+                    
+                    App
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-tools " href="/tools" >
+                    <i class="fa fa-wrench "></i>
+                    
+                    Tool
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-reading " href="/reading" >
+                    <i class="fa fa-book "></i>
+                    
+                    Reading
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-about " href="/about" >
+                    <i class="fa fa-user "></i>
+                    
+                    About
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-search modal-trigger " href="#search" >
+                    <i class="fa fa-search "></i>
+                    
+                    Search
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav indigo darken-1" id="category-menu">
+    
+
+            
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Linux/">
+                    Linux <span class="right">8</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tips/">
+                    Tips <span class="right">7</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Deep-Learning/">
+                    Deep-Learning <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Proxy/">
+                    Proxy <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tools/">
+                    Tools <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/GO/">
+                    GO <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Ubuntu/">
+                    Ubuntu <span class="right">4</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Spider/">
+                    Spider <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Algorithms/">
+                    Algorithms <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/区块链/">
+                    区块链 <span class="right">24</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/算法/">
+                    算法 <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/密码学/">
+                    密码学 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Web/">
+                    Web <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Latex/">
+                    Latex <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/杂思/">
+                    杂思 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Git/">
+                    Git <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Android/">
+                    Android <span class="right">30</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Github/">
+                    Github <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/计算机组成原理/">
+                    计算机组成原理 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+<div id="search" class="modal search-modal">
+    <div class="row">
+        <div class="input-field col s12">
+              <input id="search-input" type="text">
+              <label for="search-input">Search</label>
+        </div>
+
+    </div>
+    <div id="search-result" class="search-result col s12">
+
+    </div>
+</div>
+
+    <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper indigo">
+        <span class="breadcrumb">Current page(Categories)</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/区块链/">区块链</a>
+
+
+        
+
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>【翻译】 Qtum 对等连接</h1>
+    
+
+
+            </div>
+            <i class="fa fa-calendar"></i><time class="green-link-context" datetime="2018-05-18T06:11:00.000Z"><a href="/2018/05/18/2018-05-18-翻译-Qtum对等连接/">2018-05-18</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/区块链/" class="chip green lighten-1">区块链</a>
+        
+            <a href="/tags/Qtum/" class="chip green lighten-1">Qtum</a>
+        
+            <a href="/tags/翻译/" class="chip green lighten-1">翻译</a>
+        
+    </div>
+    
+
+
+            <div class="toc green-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#Qtum-对等连接-—-2018年3月21日"><span class="section table-of-contents-number">1.</span> <span class="section table-of-contents-text">Qtum 对等连接 — 2018年3月21日</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#Qtum-主网性能"><span class="section table-of-contents-number">1.1.</span> <span class="section table-of-contents-text">Qtum 主网性能</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#反杀毒软件"><span class="section table-of-contents-number">1.2.</span> <span class="section table-of-contents-text">反杀毒软件</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#Qtum-对等连接"><span class="section table-of-contents-number">1.3.</span> <span class="section table-of-contents-text">Qtum 对等连接</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#全节点-8-vs-125-个连接"><span class="section table-of-contents-number">2.</span> <span class="section table-of-contents-text">全节点 - 8 vs. 125 个连接</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#路由器和家庭网络"><span class="section table-of-contents-number">2.1.</span> <span class="section table-of-contents-text">路由器和家庭网络</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#Netstat工具"><span class="section table-of-contents-number">2.2.</span> <span class="section table-of-contents-text">Netstat工具</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#Addnode-命令"><span class="section table-of-contents-number">2.3.</span> <span class="section table-of-contents-text">Addnode 命令</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#在启动时连接"><span class="section table-of-contents-number">2.4.</span> <span class="section table-of-contents-text">在启动时连接</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#用于网络事件的-Debug-log-文件"><span class="section table-of-contents-number">2.5.</span> <span class="section table-of-contents-text">用于网络事件的 Debug.log 文件</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#鸣谢"><span class="section table-of-contents-number">2.6.</span> <span class="section table-of-contents-text">鸣谢</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#参考资料"><span class="section table-of-contents-number">2.7.</span> <span class="section table-of-contents-text">参考资料</span></a></li></ol></li></ol>
+</div>
+
+
+            <div class="entry green-link-context">
+                <p>原文：<a href="https://medium.com/@jb395official/qtum-peer-connections-may-21-2018-ba12bda71e4f" target="_blank" rel="noopener">https://medium.com/@jb395official/qtum-peer-connections-may-21-2018-ba12bda71e4f</a><br>译者：中山大学数学学院（珠海）林学渊<br>大二时给量子做的翻译，转载注明出处，谢谢</p>
+<h1 id="Qtum-对等连接-—-2018年3月21日"><a href="#Qtum-对等连接-—-2018年3月21日" class="headerlink" title="Qtum 对等连接 — 2018年3月21日"></a>Qtum 对等连接 — 2018年3月21日</h1><p><img src="https://cdn-images-1.medium.com/max/2000/1*DLn-FMh3pWKz3nQTc9pHfg.jpeg" alt="圣巴西尔大教堂，莫斯科 - 简化的网络建筑 - 沙皇大炮，安德烈Chokhov，造于1586年"></p>
+<p>这篇文章深入探讨了运行 Qtum 全节点时其中一个最有趣的问题：钱包/节点如何连接到其他 Qtum 对等方，它需要多少连接，以及无法连接时如何排除错误？</p>
+<p>对大多数应用程序来说，家庭网络足够简单易用，但是当你使用 Qtum 节点遇到问题时，你打算怎么处理？ 路由器 - 防火墙 - 杀毒软件体系具有许多内置保护功能，可以确保你网络的安全和正常运行，但运行加密货币钱包可能会与这些内置保护措施发生冲突。</p>
+<p>我们使用社交媒体上的 “好友请求” 心智模型来探索节点连接。“好友请求” 就是你发送一个请求给你想聊天的人，比如在 Facebook，Telegram 等等。类似地，你的节点将 “好友请求” 发送出去，与其他节点连接，它们确认请求后就可以与你的节点聊天了。你的节点也能够从其他节点接收“好友请求”。</p>
+<p>我们将会了解什么是 Qtum 全节点，Qtum 网络与对等连接如何运作，以及如何覆盖可以阻止这些通信的防火墙和路由器。 我们将花一些时间在端口和网络协议上，并会涉及与 “netstat” 网络状态相关的工具。 我希望在我们完成这些工作之后，你将了解你的 Qtum 节点如何能愉快地与世界各地的同行聊天。</p>
+<p>我是一名独立的区块链研究员，偶尔写博客和主持社交媒体，十分中意 Qtum 团队的技术指导。 我希望在社交媒体上能够很快与大家聊天。 请在 Qtum 的<a href="https://t.me/joinchat/D5oBaw29NeOdpw6qqqf2lw" target="_blank" rel="noopener">电报</a>，<a href="https://www.reddit.com/r/Qtum/" target="_blank" rel="noopener">Reddit</a>，<a href="https://discordapp.com/channels/360663359433211905/360663359433211908" target="_blank" rel="noopener">Discord</a> 和 <a href="https://forum.qtum.org/" target="_blank" rel="noopener">Forum</a> 社交频道上搜索 “Jackson” 或 “JB395”。</p>
+<hr>
+<h2 id="Qtum-主网性能"><a href="#Qtum-主网性能" class="headerlink" title="Qtum 主网性能"></a>Qtum 主网性能</h2><p>Qtum 主网持续稳定运行，最近通过了 150,000 个区块和7,000 个完全分散的 权益证明 节点。 我的计算结果显示，网络权重为 2080 万，因为在一周内稳定的总余额 185 万的大型钱包赢得了8.9％的区块奖励。这表示 Qtum 权益节点的年回报率为4.2％：</p>
+<p><img src="https://cdn-images-1.medium.com/max/2000/1*KCSVoU82wzhlgFKLefQ4tg.jpeg" alt=""></p>
+<hr>
+<h2 id="反杀毒软件"><a href="#反杀毒软件" class="headerlink" title="反杀毒软件"></a>反杀毒软件</h2><blockquote>
+<p>TL;DR 由于历史原因，许多杀毒程序在下载 Qtum 钱包安装文件时会误报病毒错误，并隔离或删除这些下载。 要解决此问题，请为杀毒程序添加白名单，如果有问题，请从 <a href="https://github.com/qtumproject/qtum/releases" target="_blank" rel="noopener">Qtum GitHub 站点</a> 下载并使用验证文件校验。<br>译者注：<code>TL;DR</code> 是 “too long; don’t read” 的缩写，意思是太长别看。</p>
+</blockquote>
+<p>在运行我们的钱包并让它发出“好友请求”之前，我们必须安装钱包，但是在下载钱包安装文件时可能会出现一些问题，因为有杀毒软件。</p>
+<p>杀毒软件当然没有最完美的终端（台式机等）恶意软件保护技术，但它是我们大多数人使用的。 杀毒软件通过将文件签名与已知的恶意软件文件签名进行匹配来工作。 这可能是最令人沮丧的，因为你从开始下载钱包安装文件，下载完成，到最后它却消失了。 发生了什么？</p>
+<p>回到比特币历史中，人们曾在比特币挖矿文件中发现了一些恶意代码，并且自从杀毒程序标记比特币挖矿文件以来，这些文件与 Qtum 节点文件十分相近。</p>
+<p><img src="https://cdn-images-1.medium.com/max/1200/1*F0tBSjIUOR538NSEvvQtTg.jpeg" alt=""></p>
+<p>这是来自 McAfee 杀毒软件的下载警告消息，它在这方面表现很好，提供了一个“接受风险”选项以允许下载安装文件。 其他杀毒软件对用户不太方便，因为它们会在不发出警告的情况下隔离或删除文件。 如果你下载的钱包文件消失了，请在杀毒程序中寻找添加白名单的方法（或者最坏的情况下，暂时关闭杀毒软件进行下载）。 也可能你能够下载并安装钱包，这是因为文件只有在杀毒软件下一次完整扫描你的计算机时才会消失。 这可以通过在杀毒程序中添加白名单来解决。</p>
+<p>那么该怎么办？ 请到 Qtum GitHub 站点获取最新版本（<a href="https://github.com/qtumproject/qtum/releases）" target="_blank" rel="noopener">https://github.com/qtumproject/qtum/releases）</a> 下载正确版本的钱包来安装，并验证 SHA256 校验和。</p>
+<p><img src="https://cdn-images-1.medium.com/max/2000/1*RINDC-dDc1PzVB7L4aCezw.jpeg" alt=""></p>
+<p>将相应的校验和复制到你最喜欢的校验和工具中以验证文件：</p>
+<p><img src="https://cdn-images-1.medium.com/max/2000/1*_Iff43e3B7AQJYbmdkWrQA.jpeg" alt=""></p>
+<hr>
+<h2 id="Qtum-对等连接"><a href="#Qtum-对等连接" class="headerlink" title="Qtum 对等连接"></a>Qtum 对等连接</h2><blockquote>
+<p>TL;DR Qtum 节点（核心钱包）将连接多达 125 个对等点。 前 8 个连接仅出站：节点伸出以连接到其他 8 个节点。 如果路由器和家庭网络的端口 3888 处于打开状态，则该节点将接受对等点 9 到 125 的入站连接。如果该节点也用作 Staking 钱包，则它将通过 8 或 125 个连接同样获得块奖励。 具有多于 8 个对等连接的节点支持连接到网络的新节点，并将下载块来同步这些新节点。 有 8 个出站连接的节点不能这样做。</p>
+</blockquote>
+<p>现在我们已经绕过杀毒程序并安装了钱包，我们可以启动该节点并开始连接到其他节点。</p>
+<h1 id="全节点-8-vs-125-个连接"><a href="#全节点-8-vs-125-个连接" class="headerlink" title="全节点 - 8 vs. 125 个连接"></a>全节点 - 8 vs. 125 个连接</h1><p>在了解关于 Qtum 对等连接如何工作的细节之前，我们先看一下全节点的角色，Staking 钱包以及出站连接与入站连接的问题。</p>
+<p>Qtum 全节点（qtumd 或 qtum-qt Core 钱包）连接到 Qtum 对等网络，将整个区块链同步到本地存储中，并实时验证和传送每个区块和交易。 Qtum 节点以此验证来保护网络，然后将块/交易转发给其他节点。 一个 Qtum 节点不需要持有任何 QTUM 或者为了当这个重要的安全角色而 Staking。 只有 Qtum 核心钱包（ qtumd 和 qtum-qt）才能成为全节点，不过轻量级交易钱包提供商也可以运行全节点，可能基于 qtumd。</p>
+<p>一个 Qtum 全节点可能另外持有 QTUM 并 Staking 以赢取块奖励。 这些放大的全节点有助于保护网络，并有机会赢得块奖励。</p>
+<p>对 Qtum 来说，全节点始终是钱包，但钱包并不总是全节点，例如，Android 手机钱包和 Web 钱包不是全节点，也不能用于 Staking 。 在这篇文章中，我会写关于 “节点” 的内容，但请记住，这是真正的 Qtum 核心钱包，可能会或可能不会 Staking。</p>
+<p>按照设计，节点建立的前 8 个连接只是出站连接。 这意味着你的节点将主动发送 “好友请求” 与其他节点连接。 最初，我发现这个“出站”的概念令人困惑; 节点始终与其对等点进行双向通信（输入和输出），但解释是对于前 8 个连接，你的节点通过主动连接其他节点来启动连接。</p>
+<p><img src="https://cdn-images-1.medium.com/max/1200/1*0MPoIEkzK7wIsA_ZkVFyig.jpeg" alt=""></p>
+<p>任何大于 8 个的对等连接都是入站连接（除非使用出站的 addnode 命令）。 这意味着你的节点将接受来自其他节点的连接，即远程节点发送“好友请求”。具有入站连接的节点在 Qtum 网络上具有特殊功能：它们将允许新节点连接到网络，并且将它们以前存的块下载到这些新节点。 对于有入站连接的节点，我们应该特别感谢，没有它们，网络无法通过添加新节点来增长。</p>
+<p>我们将在下面看到，节点在主网上允许入站连接的能力取决于路由器到家庭网络的端口 3888 ，所以这些入站的好友请求可以实际到达节点。</p>
+<p>请注意，为了获得区块奖励，Staking 钱包有8个连接还是多达125个连接没有区别，事实上，就算只有一个对等连接，钱包也可以进行交易，甚至可以赢得区块奖励（参考文献1）。</p>
+<p>对于 qtumd（“无头”服务器钱包）用户，可以使用以下命令监听连接：</p>
+<p>“getconnectionscount” 将给出当前对等连接数，如 8 或 124.</p>
+<p>“getpeerinfo” 将提供有关当前对等连接的详细信息。</p>
+<h2 id="路由器和家庭网络"><a href="#路由器和家庭网络" class="headerlink" title="路由器和家庭网络"></a>路由器和家庭网络</h2><p>大多数家庭网络通过因特网服务提供商（ISP）提供的网络接入设备连接到因特网，该服务提供商可以是电缆调制解调器，DSL调制解调器或其他网络接口设备。 调制解调器通常有一个内置路由器，路由器的工作是提供从 ISP 提供的单个公共 Internet 地址到家庭网络上多个内部IP地址的地址转换。 这些内部IP地址通常由诸如 UPnP（universal plug and play）之类的协议自动分配，重要的是要知道，路由器将单个外部 IP 地址映射到家庭网络上连接的多个设备的内部IP地址。</p>
+<p>让我们看一下在家庭网络上运行的 Qtum 节点的简化图：</p>
+<p><img src="https://cdn-images-1.medium.com/max/2000/1*K-KaZ_IjqJ-S-e2CHIPAug.jpeg" alt=""></p>
+<p>这里有很多东西需要解释。 ISP 为这个宽带客户提供的公共 IP 地址是 123.24.67.89，因特网上的任何地方的计算机都可以发送消息到这个地址。 内部网络 IP 地址为运行 Qtum 节点的计算机 A 为 192.0.0.1，计算机 B 为 192.0.0.2，正在进行网络冲浪，以此类推计算机C.</p>
+<p>基于来回的流量，路由器知道如何将网页请求发送回计算机B，并将 Qtum 节点的出站节点请求发送回计算机A. 但是，在 Qtum 节点与前 8 个节点用那些出站的对等请求连接之后会发生什么？问题在于，对于入站的对等请求，路由器可能不够智能，无法将这些好友请求自动路由到计算机 A 中的节点，因此入站的对等请求会丢失，并且该节点无法连接到 8 个节点之上。</p>
+<p>要解决这个问题，并允许节点接收入站的对等请求，我们可以使用端口转发为计算机 A 打开端口 3888. 要打开端口 3888，我们配置路由器将端口 3888 的所有流量转发到 IP 地址 192.0.0.1，以到达计算机 A 节点。根据你的网络设置，还可以从钱包映射端口 3888，使用 UPnP 选择设置 - 选项 - 网络 - 映射端口。</p>
+<p><img src="https://cdn-images-1.medium.com/max/2000/1*zKiP5nhpSi1gQ-Yc2q0WLw.jpeg" alt=""></p>
+<p>网站 portforward.com 有程序和屏幕截图来设置数百个路由器上的端口转发（只需点击他们的广告），程序基本上是登录到你的路由器，找到设置端口转发的部分，并填写表格将 TCP 输入端口 3888 分配给你节点的本地IP地址。</p>
+<p>老实说，端口映射应该可以允许入站连接，但我无法使其工作。 如果有人可以提供一些指点，我可以更新这个博客。</p>
+<hr>
+<h2 id="Netstat工具"><a href="#Netstat工具" class="headerlink" title="Netstat工具"></a>Netstat工具</h2><p>在本节中，我们添加一些实用的网络程序和诊断技术。 通常，你的家庭网络允许 Qtum 节点自动同步，但如果没有，这些工具可能有助于排除错误。</p>
+<p>为了监控你的家庭网络，netstat（网络状态）程序是一个很好的开始。 从命令提示符运行此工具。 它内置于 Mac 和 Windows，在Linux上你可能需要安装它（apt-get install net-tools）。netstat 选项列表在参考2中给出。</p>
+<p>“netstat -n” 命令将以数字形式显示网络地址和端口，显示一个节点连接到端口 3888 上的远程节点：</p>
+<p><img src="https://cdn-images-1.medium.com/max/2000/1*UvSrPc9mfo_e1Zp4Fj8c7A.jpeg" alt=""></p>
+<h2 id="Addnode-命令"><a href="#Addnode-命令" class="headerlink" title="Addnode 命令"></a>Addnode 命令</h2><p>如果你的新节点没有与对等方连接，则需要使用 “addnode” 命令提供帮助。 你可以告诉节点向特定 IP 发送“好友请求”。但是你应该使用哪些 IP？</p>
+<p>addnode 命令的一个很好的对等 IP 地址来源是 coinexchange.io，它列出了来自其 Qtum 节点的 “getpeerinfo” 数据。要使用此站点中的IP地址，请将其输入为</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">addnode 123.45.67.89:3888 add</span><br></pre></td></tr></table></figure>
+<p>（这是一个合成的IP地址，你应该使用来自 coinexchange.io 的实际 IP 地址）</p>
+<p>对 addnode 命令的正确响应是 “null”，然后你的节点将尝试一两分钟连接到该对等点 IP 地址。 你可以尝试手动添加 5 个或 10 个对等连接。</p>
+<h2 id="在启动时连接"><a href="#在启动时连接" class="headerlink" title="在启动时连接"></a>在启动时连接</h2><p>在本节中，我们将了解节点如何在启动时建立连接，并使用 netstat 来监听网络并查看节点如何连接。 我们的 netstat 命令是 “netstat -an 30”，意思是每隔 30 秒以数字格式显示所有连接和监听端口。</p>
+<p>启动节点时，有几种方法可以找到要连接的对等点。如果节点先前已经运行，它将保存 IP 地址和时间在 peers.dat 文件中。 如果节点是新的或者在 peers.dat 文件中找不到一些好的IP地址，它将向 DNS 服务器查询当前 IP 地址的列表。 最后，你可以手动输入 IP 地址来尝试使用 “addnode” 命令。</p>
+<p>首先，我们安装时将节点设置为在全局启动，且不使用 peers.dat 文件中的历史记录（只需重命名 peers.dat 文件，使节点找不到它）。</p>
+<p>下面是一个新节点寻找其他节点的消息序列。 这个节点没有使用留有以前“朋友”的 peers.dat 文件。 在半小时的过程中，它将尝试多个IP地址，找到两个要连接的对等点：</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*XKVrxce8Y6ptxjfPnC6f3g.jpeg" alt=""></p>
+<p>Qtum 核心钱包有一个文件，其中包含所有“好友请求”，即 peers.dat 文件。 同一个节点使用 peer.dat 文件启动（将先前的文件名改回 “peers.dat”）可使钱包在 12 分钟内与 10 个对等点连接。 下面的图表显示钱包另找新朋友（没有 peers.dat 文件 - 如上所示）与仅仅联系以前的朋友（使用peers.dat 文件）时的差异：</p>
+<p><img src="https://cdn-images-1.medium.com/max/2000/1*j8WpDjh7d5yzpfg2zLbHcQ.jpeg" alt=""></p>
+<h2 id="用于网络事件的-Debug-log-文件"><a href="#用于网络事件的-Debug-log-文件" class="headerlink" title="用于网络事件的 Debug.log 文件"></a>用于网络事件的 Debug.log 文件</h2><p>Qtum 节点现在已经准备好了它的特写，我们将通过设置 debug.log 来捕获所有网络事件。 这是启动钱包时通过 debug=net 开关完成的：</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\<span class="function"><span class="keyword">Program</span></span> Files\Qtum&gt;qtum-qt.exe -debug=net</span><br></pre></td></tr></table></figure>
+<p>根据你的操作系统调整此命令。</p>
+<p>使用此命令后，节点将记录有关网络活动的所有详细信息。</p>
+<p>有关显示连接如何建立简单的列表（下面的参考文献7中给出了更完整的序列），日志显示：</p>
+<p><img src="https://cdn-images-1.medium.com/max/2000/1*hG_OEoziecwLYW259qzn5w.jpeg" alt=""></p>
+<p>（1）启动后，我们的节点尝试根据 peers.dat 文件连接到多个 IP。 它在十天前看到节点 59.189.111.143，但现在不能连接。</p>
+<p>（2）我们的节点连接到 DNS 种子服务器以获取最近的一些 IP 地址。</p>
+<p>（3）我们的节点试图连接到地址 35.226.31.206，要尝试的是第6个节点。</p>
+<p>（4）我们的节点在 35.226.31.206 处向节点发送版本消息（软件版本，块编号和时间参考）。 该版本消息是“好友请求”。远程节点将使用自己的版本消息进行响应。</p>
+<p>（5）节点交换 verack 消息（版本确认）以确认连接。 现在它们是好友，可以开始聊天了。 我们的节点将向远程节点请求额外的IP地址，发送其他“好友请求”。</p>
+<p>（6）我们的节点将其最新的块（它离线差了 4 块）发送到 35.226.31.206，并请求下载块以追上。</p>
+<p>（7）我们的节点开始接收来自节点 6 的块。</p>
+<p>请注意时间戳，节点启动后尝试连接节点 6（对等节点 1 到节点 5 未连接）需要45秒，然后等待一秒完成连接（verack 消息）并开始下载块。</p>
+<hr>
+<p>我在莫斯科写完博客，部分原因是我收到了来自 Qtum Telegram Russia 频道的管理员 Lisa L 的一个好友请求，要翻译之前的 Qtum Russian Community 博客，因为俄罗斯目前有 17 个 Qtum 节点，并且国际足联世界杯将于 6 月份来到俄罗斯。还要更好的理由在克里姆林宫和红场进行摄影漫步嘛？这个地区是俄罗斯的文化中心，列宁坟墓的所在地，圣巴西尔大教堂（建于 1561 年），众多的博物馆以及 2 月份记者访问时的寒冷天气。</p>
+<p><img src="https://cdn-images-1.medium.com/max/2000/1*czNb6yYM2zdTTMII4GXwFw.jpeg" alt="The Moscow Kremlin"></p>
+<hr>
+<h2 id="鸣谢"><a href="#鸣谢" class="headerlink" title="鸣谢"></a>鸣谢</h2><p>特别感谢 Liza L 的俄文翻译。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
+<li>我使用 Testnet 钱包来验证使用单个对等连接操作的节点，使用以下命令：</li>
+</ol>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">qtum-qt.exe -testnet -noconnect <span class="attribute">-connect</span>=35.197.132.10:13888</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*FIXpCZF2EVT4WDX2WmJtCQ.jpeg" alt="just the one peer!"></p>
+<ol>
+<li>netstat工具。</li>
+</ol>
+<p><img src="https://cdn-images-1.medium.com/max/2000/1*YFUuVNBnF9fv2na1pyIzuw.jpeg" alt=""></p>
+<p>Qtum 对等通信基于比特币，下面是一些相关的比特币参考：</p>
+<ol>
+<li>BitcoinCore — <a href="https://bitcoin.org/en/full-node" target="_blank" rel="noopener">运行完整节点</a></li>
+</ol>
+<ol>
+<li>Reddit <a href="https://www.reddit.com/r/Bitcoin/comments/1scd4z/im_running_a_full_node_and_so_should_you/cdw3lrh/?context=3" target="_blank" rel="noopener">bitcoin post</a>:我正在运行一个全节点，你也来吧</li>
+</ol>
+<p><img src="https://cdn-images-1.medium.com/max/1200/1*lvvUJCT7f79P9ASR3ljBRA.jpeg" alt=""></p>
+<ol>
+<li>区块链研究的音乐。 <a href="https://youtu.be/ucTcvj6iB6g" target="_blank" rel="noopener">柴可夫斯基 - 意大利随想曲</a> - Igor Manasherov，莫斯科爱乐乐团，柴可夫斯基音乐厅，2015年6月，莫斯科。</li>
+</ol>
+<p><img src="https://cdn-images-1.medium.com/max/1200/1*tGHDxDANUtKs8n9tOwHNfw.jpeg" alt=""></p>
+<ol>
+<li>无人机在克里姆林宫上，在 <a href="https://youtu.be/-yPrVC3-B2o?t=11m25s" target="_blank" rel="noopener">YouTube</a> 上看。</li>
+</ol>
+<ol>
+<li>以下是连接到 35.226.31.206 的节点 6 的更完整的日志列表：</li>
+</ol>
+<p><img src="https://cdn-images-1.medium.com/max/2000/1*-ZsallnwsnEpijqJ8956JQ.jpeg" alt=""></p>
+
+                
+<p class="green-link-context prev-btn">
+    <a href="/2018/05/24/2018-05-24-翻译-十大Qtum新用户会问的问题/" rel="next" title="【翻译】 十大 Qtum 新用户会问的问题">
+    Prev: 【翻译】 十大 Qtum 新用户会问的问题
+  </a>
+</p>
+
+
+
+<p class="green-link-context next-btn">
+    <a href="/2018/05/12/2018-05-12-翻译-孤儿块/" rel="next" title="【翻译】 孤儿块">
+    Next: 【翻译】 孤儿块
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+
+
+
+    <div id="gitment_container"></div>
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <link rel="stylesheet" href="/css/gitment.css" media="screen" type="text/css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <script>
+    var gitment = new Gitment({
+        id: 'Fri May 18 2018 14:11:00 GMT+0800',
+        owner: 'linxueyuanstdio',
+        repo: 'linxueyuanstdio.github.io',
+        oauth: {
+            client_id: '2f7f71f1ba398039ff23',
+            client_secret: '3ebc908a7042fef2d56a83a2eb8c18777374a087',
+        },
+    })
+    gitment.render('gitment_container')
+    </script>
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large pink">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect green" title="Return to top"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse yellow darken-1"  data-activates="main-menu" title="Menu"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer indigo darken-1">
+    
+    <div class="footer-container container">
+        <div class="row">
+            
+            <div class="social-group col m4 s12">
+                <h5 class="white-text">Social</h5>
+                
+                    <a class="social-link" href="http://weibo.com/LinXueyuanStdio" target="_blank">
+                        <i class="fa fa-2x fa-weibo"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://github.com/LinXueyuanStdio" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://www.zhihu.com/people/lin-xue-yuan-86" target="_blank">
+                        <i class="fa fa-2x fa-graduation-cap"></i>
+                    </a>
+                
+                    <a class="social-link" href="http://twitter.com/cwBQ3A5cz3Jzso7" target="_blank">
+                        <i class="fa fa-2x fa-twitter"></i>
+                    </a>
+                
+                    <a class="social-link" href="mailto:761516186@qq.com" target="_blank">
+                        <i class="fa fa-2x fa-envelope"></i>
+                    </a>
+                
+                    <a class="social-link" href="/atom.xml" target="_blank">
+                        <i class="fa fa-2x fa-rss"></i>
+                    </a>
+                
+                
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+    </script>
+    <div class="site-visitors-container white-text">
+        <span>
+            <i class="fa fa-user"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+        </span>
+        <span>&nbsp;|&nbsp;</span>
+        <span>
+            <i class="fa fa-eye"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+        </span>
+    </div>
+
+
+            </div>
+            
+
+            
+            <div class="col m8 s12">
+                <h5 class="white-text">Links</h5>
+                
+                    <a class="social-link" href="http://raytaylorlin.com/" target="_blank">raytaylorism主题作者</a>
+                
+                    <a class="social-link" href="https://github.com/raytaylorlin" target="_blank">Github地址</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    
+
+    <div class="footer-copyright green-link-context">
+        <div class="container">
+            © 2018 xichen.pub, All rights reserved.
+            <p class="right" style="margin-top: 0;">Blog powered by <a href="https://hexo.io">Hexo</a> | Theme <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
+        </div>
+    </div>
+</footer>
+
+
+    <noscript>
+    <div class="noscript">
+        <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+    </div>
+</noscript>
+<div class="noscript">
+    <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+<script src="/js/canvas.js"></script>
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 隐藏禁用javascript（针对微信内置浏览器）的提示
+            $('.noscript').hide();
+
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
+
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed').each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt') || ' ');
+            }).materialbox();
+
+            // 优化表格的显示
+            $('table').each(function() {
+                var $table = $(this);
+                // 除去多行代码的情况
+                if ($table.find('pre').length == 0) {
+                    $table.addClass('responsive-table striped bordered');
+                }
+            });
+
+            // 首页幻灯片
+            $('.slider').slider({indicators: true, full_width: true, interval: 8000});
+
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+
+            // 目录随屏幕滚动（防止目录过长越过footer）
+            var $toc = $('.toc');
+            var scrollTargetTop = 0;
+            $(window).scroll(function() {
+                var $activeLink = $toc.find('a.active.section');
+                if ($(window).scrollTop() < 100) {
+                    scrollTargetTop = 0;
+                } else {
+                    if ($activeLink[0]) {
+                        scrollTargetTop = $activeLink.offset().top - $toc.offset().top;
+                    }
+                }
+                $toc.css('top', '-' + scrollTargetTop + 'px');
+            });
+
+            // 修正文章目录的left-border颜色
+            var color = $('.table-of-contents-text').css('color');
+            $('.table-of-contents-link').css('border-left-color', color);
+
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({
+                    scrollTop: 0
+                }, 500);
+            });
+
+            // 重置读书页面的Tab标签页的颜色
+            $('li.tab a').hover(function() {
+                $(this).toggleClass('text-lighten-4');
+            });
+            $('.indicator').addClass('pink lighten-2');
+
+            
+            // 添加new标签
+            $('.menu-apps').append('<span class="new badge pink"></span>');
+            
+
+            // 搜索功能
+            $('.modal-trigger').leanModal({
+                // 打开搜索框时自动聚焦
+                ready: function() {
+                    if ($('#search').is(":visible")) {
+                        $('#search-input').focus();
+                    }
+                }
+            });
+            var searchXml = "search.xml";
+            if (searchXml.length == 0) {
+             	searchXml = "search.xml";
+            }
+            var searchPath = "/" + searchXml;
+            initSearch(searchPath, 'search-input', 'search-result');
+        });
+
+        // 初始化搜索与匹配函数
+        var initSearch = function(path, search_id, content_id) {
+            'use strict';
+            $.ajax({
+                url: path,
+                dataType: "xml",
+                success: function(xmlResponse) {
+                    // get the contents from search data
+                    var datas = $("entry", xmlResponse).map(function() {
+                        return {
+                            title: $("title", this).text(),
+                            content: $("content", this).text(),
+                            url: $("url", this).text()
+                        };
+                    }).get();
+                    var $input = document.getElementById(search_id);
+                    var $resultContent = document.getElementById(content_id);
+                    $input.addEventListener('input', function() {
+                        var str = '<ul class=\"search-result-list\">';
+                        var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                        $resultContent.innerHTML = "";
+                        if (this.value.trim().length <= 0) {
+                            return;
+                        }
+                        // perform local searching
+                        datas.forEach(function(data) {
+                            var isMatch = true;
+                            var content_index = [];
+                            var data_title = data.title.trim().toLowerCase();
+                            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                            var data_url = data.url;
+                            var index_title = -1;
+                            var index_content = -1;
+                            var first_occur = -1;
+                            // only match artiles with not empty titles and contents
+                            if (data_title != '' && data_content != '') {
+                                keywords.forEach(function(keyword, i) {
+                                    index_title = data_title.indexOf(keyword);
+                                    index_content = data_content.indexOf(keyword);
+                                    if (index_title < 0 && index_content < 0) {
+                                        isMatch = false;
+                                    } else {
+                                        if (index_content < 0) {
+                                            index_content = 0;
+                                        }
+                                        if (i == 0) {
+                                            first_occur = index_content;
+                                        }
+                                    }
+                                });
+                            }
+                            // show search results
+                            if (isMatch) {
+                                keywords.forEach(function(keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword green lighten-2\">" + keyword + "</span>");
+                                });
+
+                                str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                                if (first_occur >= 0) {
+                                    // cut out 100 characters
+                                    var start = first_occur - 20;
+                                    var end = first_occur + 80;
+                                    if (start < 0) {
+                                        start = 0;
+                                    }
+                                    if (start == 0) {
+                                        end = 100;
+                                    }
+                                    if (end > content.length) {
+                                        end = content.length;
+                                    }
+                                    var match_content = content.substring(start, end);
+                                    // highlight all keywords
+                                    keywords.forEach(function(keyword) {
+                                        var regS = new RegExp(keyword, "gi");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword green lighten-2\">" + keyword + "</span>");
+                                    });
+
+                                    str += "<p class=\"search-result\">..." + match_content + "...</p>"
+                                }
+                                str += "</li>";
+                            }
+                        });
+                        str += "</ul>";
+                        $resultContent.innerHTML = str;
+                    });
+                }
+            });
+        }
+    })(jQuery);
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+</body>
+</html>

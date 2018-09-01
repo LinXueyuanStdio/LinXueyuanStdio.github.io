@@ -1,0 +1,874 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>【翻译】 Qtum Mainnet 成果 | XiChen&#39;s Blog</title>
+    <meta name="author" content="Lin Xueyuan">
+    
+    <meta name="description" content="嗨，我是兮尘，全栈数据学徒。这里没有花俏艳丽的魔法，没有苍蛮霸道的斗气，有的，仅仅是繁衍到巅峰的代码！">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="【翻译】 Qtum Mainnet 成果"/>
+    <meta property="og:site_name" content="XiChen"/>
+
+    
+    <meta property="og:image" content=""/>
+    
+
+    <link rel="icon" type="image/png" href="/assets/images/favicon.ico" />
+    <link rel="alternate" href="/atom.xml" title="XiChen" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+    <link rel="stylesheet" href="//fonts.gdgdocs.org/css?family=Lobster" type="text/css">
+    
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
+
+    <nav class="indigo nav">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="">
+            <div style="font-family: Lobster, Monospace;">
+                <a href="/" class="brand-logo hide-on-med-and-down" style="font-family: Lobster, Monospace;">
+                    XiChen
+                </a>
+            </div>
+            <ul class="nav-menu right hide-on-med-and-down">
+                
+                    <li class="tab">
+                        <a class="menu-home " href="/"
+                            >
+                                <i class="fa fa-home "></i>
+                                
+                                    Home
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-archive " href="/archives"
+                            >
+                                <i class="fa fa-archive "></i>
+                                
+                                    Archives
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-category category-menu" href="javascript:;"
+                            data-activates="category-menu"
+                            >
+                                <i class="fa fa-bookmark "></i>
+                                
+                                    Categories
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-apps " href="/apps"
+                            >
+                                <i class="fa fa-link "></i>
+                                
+                                    App
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-tools " href="/tools"
+                            >
+                                <i class="fa fa-wrench "></i>
+                                
+                                    Tool
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-reading " href="/reading"
+                            >
+                                <i class="fa fa-book "></i>
+                                
+                                    Reading
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-about " href="/about"
+                            >
+                                <i class="fa fa-user "></i>
+                                
+                                    About
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-search modal-trigger " href="#search"
+                            >
+                                <i class="fa fa-search "></i>
+                                
+                                    Search
+                        </a>
+                    </li>
+                    
+            </ul>
+            <div>
+    <ul class="side-nav indigo darken-1" id="main-menu">
+        
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4 no-padding logo-a">
+                    <img class="avatar-image circle responsive-img logo" src="/assets/images/avatar.jpg" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper no-padding">
+                    <div class="valign">
+                        <p class="name">兮尘</p>
+                        <p class="desc">Web前端/Android/技术宅</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-home " href="/" >
+                    <i class="fa fa-home "></i>
+                    
+                    Home
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-archive " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    
+                    Archives
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    
+                    Categories
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-apps " href="/apps" >
+                    <i class="fa fa-link "></i>
+                    
+                    App
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-tools " href="/tools" >
+                    <i class="fa fa-wrench "></i>
+                    
+                    Tool
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-reading " href="/reading" >
+                    <i class="fa fa-book "></i>
+                    
+                    Reading
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-about " href="/about" >
+                    <i class="fa fa-user "></i>
+                    
+                    About
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-search modal-trigger " href="#search" >
+                    <i class="fa fa-search "></i>
+                    
+                    Search
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav indigo darken-1" id="category-menu">
+    
+
+            
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Linux/">
+                    Linux <span class="right">8</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tips/">
+                    Tips <span class="right">7</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Deep-Learning/">
+                    Deep-Learning <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Proxy/">
+                    Proxy <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tools/">
+                    Tools <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/GO/">
+                    GO <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Ubuntu/">
+                    Ubuntu <span class="right">4</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Spider/">
+                    Spider <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Algorithms/">
+                    Algorithms <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/区块链/">
+                    区块链 <span class="right">24</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/算法/">
+                    算法 <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/密码学/">
+                    密码学 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Web/">
+                    Web <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Latex/">
+                    Latex <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/杂思/">
+                    杂思 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Git/">
+                    Git <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Android/">
+                    Android <span class="right">30</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Github/">
+                    Github <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/计算机组成原理/">
+                    计算机组成原理 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+<div id="search" class="modal search-modal">
+    <div class="row">
+        <div class="input-field col s12">
+              <input id="search-input" type="text">
+              <label for="search-input">Search</label>
+        </div>
+
+    </div>
+    <div id="search-result" class="search-result col s12">
+
+    </div>
+</div>
+
+    <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper indigo">
+        <span class="breadcrumb">Current page(Categories)</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/区块链/">区块链</a>
+
+
+        
+
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>【翻译】 Qtum Mainnet 成果</h1>
+    
+
+
+            </div>
+            <i class="fa fa-calendar"></i><time class="green-link-context" datetime="2018-07-30T06:11:00.000Z"><a href="/2018/07/30/2018-07-30-翻译-QtumMainnet成果/">2018-07-30</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/区块链/" class="chip green lighten-1">区块链</a>
+        
+            <a href="/tags/Qtum/" class="chip green lighten-1">Qtum</a>
+        
+            <a href="/tags/翻译/" class="chip green lighten-1">翻译</a>
+        
+    </div>
+    
+
+
+            <div class="toc green-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#Qtum-Mainnet-成果-12-月-25-日至-31-日"><span class="section table-of-contents-number">1.</span> <span class="section table-of-contents-text">Qtum Mainnet 成果 12 月 25 日至 31 日</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#图表"><span class="section table-of-contents-number">1.1.</span> <span class="section table-of-contents-text">图表</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#独立奖励地址"><span class="section table-of-contents-number">1.1.1.</span> <span class="section table-of-contents-text">独立奖励地址</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#每日活跃交易数"><span class="section table-of-contents-number">1.1.2.</span> <span class="section table-of-contents-text">每日活跃交易数</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#块间​​距变化"><span class="section table-of-contents-number">1.1.3.</span> <span class="section table-of-contents-text">块间​​距变化</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#新网络权重"><span class="section table-of-contents-number">1.1.4.</span> <span class="section table-of-contents-text">新网络权重</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#更多关于交易费用的信息"><span class="section table-of-contents-number">1.1.5.</span> <span class="section table-of-contents-text">更多关于交易费用的信息</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#VPN-你能看见我嘛？"><span class="section table-of-contents-number">1.2.</span> <span class="section table-of-contents-text">VPN - 你能看见我嘛？</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#Ping-时间"><span class="section table-of-contents-number">1.2.1.</span> <span class="section table-of-contents-text">Ping 时间</span></a></li></ol></li></ol></li></ol>
+</div>
+
+
+            <div class="entry green-link-context">
+                <p>原文：<a href="https://medium.com/@jb395official/newbie-wallets-april-1-2018-26ea7a06489c" target="_blank" rel="noopener">https://medium.com/@jb395official/newbie-wallets-april-1-2018-26ea7a06489c</a><br>译者：中山大学数学学院（珠海）林学渊<br>大二时给量子做的翻译，转载注明出处，谢谢</p>
+<h1 id="Qtum-Mainnet-成果-12-月-25-日至-31-日"><a href="#Qtum-Mainnet-成果-12-月-25-日至-31-日" class="headerlink" title="Qtum Mainnet 成果 12 月 25 日至 31 日"></a>Qtum Mainnet 成果 12 月 25 日至 31 日</h1><p><img src="https://cdn-images-1.medium.com/max/2000/1*W8WwxhZCKQyshSbOSala2w.jpeg" alt=""></p>
+<p>以下是每周的 Qtum Mainnet 性能的图表评估，包括常用的图和表，以及使用虚拟专用网络（VPN）和 Qtum staking rig 的教程。有一万个理由你应该使用 VPN 上网，甚至你应该使用 VPN 挖加密货币。这个星期我们就着眼于 VPN 以及 Qtum 节点如何（以及在​​何处）通过 VPN 连接吧。</p>
+<p><img src="https://cdn-images-1.medium.com/max/960/1*hz1WsRESrjaRUX4fYmK0EA.jpeg" alt=""></p>
+<p>我是社区成员之一，也是独立研究者，还没加入量子团队，但非常欣赏他们的技术指导和社区中的高谈阔论，以及这些酷酷的贴纸。</p>
+<hr>
+<h2 id="图表"><a href="#图表" class="headerlink" title="图表"></a>图表</h2><p>Qtum Mainnet 性能评估的数据源来自 <a href="https://explorer.qtum.org/" target="_blank" rel="noopener">Qtum Explorer</a>，区块链(从 qtumd 服务器应用程序登录)以及来自 <a href="https://kojects.com/2015/08/03/pangyo-techno-valley-visit/" target="_blank" rel="noopener">Pangyo</a> 的加密电报消息。</p>
+<h3 id="独立奖励地址"><a href="#独立奖励地址" class="headerlink" title="独立奖励地址"></a>独立奖励地址</h3><p>这一周，每日独立地址数最高在 12 月 28 日达 294 个。整个星期里有 964 个独立地址，上周是 946 个，表示中小钱包正常参与。</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*4x59pN_0p2aov4MTUpIJPQ.jpeg" alt=""></p>
+<p>赢得多个区块的钱包数与上周基本持平。</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*Epqt09iTodvvOgciSiJiUQ.jpeg" alt=""></p>
+<h3 id="每日活跃交易数"><a href="#每日活跃交易数" class="headerlink" title="每日活跃交易数"></a>每日活跃交易数</h3><p>每日交易数从上周开始下滑，可能是因为放假。活跃交易为每个块提供的交易数高于保底交易数2。</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*IsGgm3sTegVcqirPIxLfYg.jpeg" alt=""></p>
+<p>你还可以在 <a href="https://qtumexplorer.io/" target="_blank" rel="noopener">QTUM Explorer.io</a> 和 <a href="https://explorer.qtum.org/" target="_blank" rel="noopener">Qtum Explorer</a> 主页底部查看交易图表。</p>
+<h3 id="块间​​距变化"><a href="#块间​​距变化" class="headerlink" title="块间​​距变化"></a>块间​​距变化</h3><p>从 12 月 25 日到 12 月 31 日，有 3 个区块有大于20 分钟的块间距，上个星期是 6 个。最大块间距是块 71,003，达 24 分 34 秒。平均块间距在 144 秒左右保持稳定。</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*ZP9yuGqgFdXUVByHF7NyoA.jpeg" alt=""></p>
+<h3 id="新网络权重"><a href="#新网络权重" class="headerlink" title="新网络权重"></a>新网络权重</h3><p>如下所示，每日“新网络权重”是基于计算随每日获奖块的 10 天指数而变的平均值和已知大钱包的余额的：</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*Pf4mIN4oZxQgD3lDlDH4iA.jpeg" alt=""></p>
+<p>如年度回报率表所示，网络权重为 1,990 万，年回报率为 4.4％：</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*h3m0WfiO939826ltmotV7A.jpeg" alt=""></p>
+<hr>
+<h3 id="更多关于交易费用的信息"><a href="#更多关于交易费用的信息" class="headerlink" title="更多关于交易费用的信息"></a>更多关于交易费用的信息</h3><p>这是上周关于交易费用报告的后续。我做了一些额外分析，发现了从硬件钱包发送的低费用交易 - 其中有47个。 现在这些交易都在区块链上，所以有一个快乐的结局。 <a href="https://medium.com/@jb395official/qtum-mainnet-results-december-18-24-8e43e51aca3b" target="_blank" rel="noopener">上周的报告</a>已经用这个信息更新了。</p>
+<h2 id="VPN-你能看见我嘛？"><a href="#VPN-你能看见我嘛？" class="headerlink" title="VPN - 你能看见我嘛？"></a>VPN - 你能看见我嘛？</h2><p>这周的教程我们研究虚拟专用网络（VPN），以及它们如何与 Qtum staking 钱包一起使用。</p>
+<p><img src="https://cdn-images-1.medium.com/max/960/1*kABDmEvHuU7qtlhXteDPhw.jpeg" alt=""></p>
+<p>你可能需要考虑使用 VPN 的安全和隐私功能进行加密货币挖矿活动。有 VPN 的话你的网络对以下是不可见的 1) 你的Internet服务提供商（ISP）2）<a href="https://torrentfreak.com/vpn-server-seized-to-investigate-russian-ambassadors-assassination-1171219/" target="_blank" rel="noopener">老大哥(big brother)</a> 3）黑客（但是你可能获得恶意软件）。VPN提供商提供在你的计算机上运行的应用程序，以便与其远程服务器建立加密连接，从而将你的流量解密并上传到网络上。</p>
+<blockquote>
+<p>译者注：2）老大哥的梗是 Big Brother is Watching You（老大哥在看着你），是出自英国著名政治小说《一九八四》的金句。</p>
+</blockquote>
+<p>你的 ISP 无法解析 VPN 加密流量来看你正在浏览的网站（等等，我的 ISP 怎么知道我正在搜索<a href="https://youtu.be/-M0PJ_mTtRU" target="_blank" rel="noopener">可食用的内衣</a>？），你的 IP 地址也被隐藏，通过你的VPN服务转换为提供的远程服务器的 IP 地址。你还可以使用 VPN 绕过地理限制。</p>
+<p>可能加密矿工也担心因为带宽使用情况的签名，将他们识别为持有比特币（Qtum）的矿工，这可能使他们成为黑客的目标。此外，有些应用程序可以监视节点对等 IP 地址并与区块链交易（发送）相关联，确定哪些 IP 地址赢得了块奖励。如果你通过 VPN 连接到网络，则不必担心任何这类问题，因为你的节点 IP 地址来自 VPN 服务器，而不是你的真实网络连接地址。</p>
+<p>你能玩些使用 VPN 通过国际服务器连接到你的 staking 设备的游戏。比如，定位在Qtum Nodemap上未显示的国家/地区，突然有个节点出现在 Casablanca 等等。开启 VPN 后，你的节点应该在大约一周内从 Nodemap 删除。</p>
+<p>我不会详细介绍如何选择VPN，但是在隐私和安全方面，有些服务比其他服务更好（在<a href="https://www.pcmag.com/article2/0,2817,2403388,00.asp" target="_blank" rel="noopener">这里</a>或<a href="https://www.cnet.com/best-vpn-services-directory/" target="_blank" rel="noopener">这里</a>阅读）。</p>
+<p><img src="https://cdn-images-1.medium.com/max/960/1*IStUSWYZxsg5JBvwR942fw.jpeg" alt=""></p>
+<p>如果你确实安装了一个VPN，那你应该选择附近的服务器以减少与 Internet 连接的延迟。不要连接到首尔的服务器（除非你的是 ROC 中的 600 多个节点之一）。我不得不微调 VPN 设置来让它稳定一点：为特定城市选择“最佳服务器”，并设置为“自动重新连接”。 此外，我建议你在激活 VPN 之前有一个稳定的 staking 设置，因为故障排除更难，比如，通过 VPN <a href="http://canyouseeme.org/" target="_blank" rel="noopener">CanYouSeeMe.org</a> 无法检查端口 3888 是否打开。</p>
+<p>我注意到的另一件事是打开 VPN 后，IPv6 连接都断了。你可能会担心甚至开着 VPN ，你的 IP 地址还是泄漏了。如果你返回到你的 ISP DNS（域名服务器）查找IP地址的话，则会发生这种情况，因此好的 VPN 应该提供自己的 DNS。另一个问题似乎是 IPv6 地址并不总是通过 VPN 路由，因此 VPN 可以将其切断。</p>
+<p>监控节点也可以连接到其他许多个节点（你在 Qtum 网络里可以轻易做到这个 - 我在看着你，Nodemap），以及寻找第一个中继新块的节点并记录该节点的 IP 地址。<a href="https://blockchain.info/blocks" target="_blank" rel="noopener">Blockchain.info</a> 做的事类似，通过“Relayed By”信息，它们能够识别大型比特币挖矿池。下面的“addrlocal”字段显示节点的 IP 地址，即显示启用 VPN 的对等点的 VPN 出口服务器地址。注意，这些块不携带任何IP地址，但可以监视网络上的节点，将节点 IP 地址与 Qtum 钱包地址相关联。</p>
+<h3 id="Ping-时间"><a href="#Ping-时间" class="headerlink" title="Ping 时间"></a>Ping 时间</h3><p>你知道，Qtum 权益证明（PoS）挖矿以 16 秒的增量慢慢运行，所以启用 VPN 的几毫秒延迟应该问题不大。我想通过查看 ping 时间来验证这一点。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash">qtum-cli getpeerinfo</span></span><br><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        "id": 1,</span><br><span class="line">        "addr": "42.33.140.123:3888",</span><br><span class="line">        "addrlocal": "135.23.65.157:23569",</span><br><span class="line">        "services": "000000000000000d",</span><br><span class="line">        "relaytxes": true,</span><br><span class="line">        "lastsend": 1563586912,</span><br><span class="line">        "lastrecv": 1563586910,</span><br><span class="line">        "bytessent": 204216,</span><br><span class="line">        "bytesrecv": 138312,</span><br><span class="line">        "conntime": 1563583815,</span><br><span class="line">        "timeoffset": 0,</span><br><span class="line">        "pingtime": 0.0781,</span><br><span class="line">        "minping": 0.068727,</span><br><span class="line">        "version": 70016,</span><br><span class="line">        "subver": "/Satoshi:0.14.8/",</span><br><span class="line">        "inbound": false,</span><br><span class="line">        "addnode": false,</span><br><span class="line">        "startingheight": 8607,</span><br><span class="line">        "banscore": 0,</span><br><span class="line">        "synced_headers": 75092,</span><br><span class="line">        "synced_blocks": 75092,</span><br><span class="line">        "inflight": [</span><br><span class="line">        ],</span><br></pre></td></tr></table></figure>
+<p>Ping 表示 Packet Internet Groper，它表示你的计算机可以与 Internet 上另一个节点通信的速度，例如，上面的对等点信息显示的 ping 时间是 78.1 毫秒。 我在网上看到的其他 Qtum 节点上最快的 ping 大约是 15 毫秒，如果节点位于世界的另一端，ping可以延长到几百毫秒。你知道接下来我会写什么：我爬了一堆数据，在Excel中处理它，并可视化出一些图表。</p>
+<p>我从使用 getpeerinfo 的对等连接列表开始，并在激活 VPN 之前获得了 ping 时间。对于这个节点，有 123 个连接，平均 ping 时间为 170 毫秒：</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*l2L2jeAF7BPeUKvZuPm3gQ.jpeg" alt=""></p>
+<p>启用 VPN（但不重新启动节点），连接计数降了一两个小时，然后平均 ping 时间为187毫秒。在 VPN 启用后，大约一半的对等点连接成功转移。但所有 IPv6 对等点连接都断了。</p>
+<p>为了研究 ping 时间和网络的影响，我选择了韩国首尔的 VPN 出口服务器，根据Nodemap，这个服务器托管着 270 个节点。难道用 VPN 可以更快 ping 到首尔的所有节点么？有 123 个连接，平均 ping 时间为 204 毫秒（在下图中，最长两个 755 和 797 毫秒的 ping 被切断）：</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*YBYJlAwNkNos-vNCepR4sA.jpeg" alt=""></p>
+<p>再来看看对等点在首尔 VPN 的出口位置。节点应该参与区域网络图的形成。记住，节点是通过在它们之间中继未经确认的交易和新块来工作。</p>
+<p>首先，这是今天早些时候 Nodemap 中前 10 个国家的分布：</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*ZF_hafRnF0Q70Fuvx0U4Sg.jpeg" alt=""></p>
+<p>韩国和美国领先。这两者谁第一几乎每天都在变化，现在中国（ROC，应该是Republic of China 中华民国）已经落后了。对于在首尔使用 VPN 服务器的节点，分布不会发生太大变化：</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*_RN4G5AQE5bCMIy_21xByw.jpeg" alt=""></p>
+<p>“其他”组里，这些国家都有一个节点：印度，印度尼西亚，伊朗，日本，马耳他，荷兰，挪威，波兰，俄罗斯，新加坡和瑞典。在你的家庭办公室或云托管服务提供商中运行节点，可以在全球范围内与全球各地的 Qtum 节点进行全球通信。</p>
+<p>下一周：你是这个邻域的新手，技术上很好奇，那么你在量子链上应该怎样玩耍？一步步安装钱包，练习备份和恢复钱包，甚至免费获得测试代币？下周：所有关于<a href="https://testnet.qtum.org/" target="_blank" rel="noopener">测试网</a>的那些事。<br><img src="https://cdn-images-1.medium.com/max/960/1*AOwG3MFc5Cx0M-zEvN_OaA.jpeg" alt=""></p>
+<p>我们在首尔与我们的 VPN 服务器一起写完报告，并祝大家健康快乐，享受有区块奖励的新年。干杯，2018 年！</p>
+<p>새해 복 많이받으세요（新年快乐）</p>
+<p>JB395</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*iX-Wrcjua3QlFp149HBoqQ.jpeg" alt=""></p>
+<hr>
+<p>参考：</p>
+<p>“窃听”攻击可以曝光多达 60％ 的比特币用户，<a href="https://www.coindesk.com/eavesdropping-attack-can-unmask-60-bitcoin-clients/" target="_blank" rel="noopener">Coindesk</a>，2014年6月</p>
+<p>如何查看比特币交易的IP地址？ <a href="https://bitcoin.stackexchange.com/questions/193/how-do-i-see-the-ip-address-of-a-bitcoin-transaction?" target="_blank" rel="noopener">StackExchange</a>，2012</p>
+<p>韩国无人机4K - 早晨平静的土地（釜山，巨济，首尔），<a href="https://youtu.be/9Vo68cjwOgA" target="_blank" rel="noopener">YouTube</a>，2017年11月<br><img src="https://cdn-images-1.medium.com/max/1280/1*Cy0XVKeezr-d7_SIzx1ABw.jpeg" alt=""></p>
+<p>请参阅我之前放在 <a href="https://medium.com/@jb395official/latest" target="_blank" rel="noopener">Medium</a> 上的报告。</p>
+
+                
+<p class="green-link-context prev-btn">
+    <a href="/2018/08/06/2018-08-06-翻译-测试网和Qtum主网性能/" rel="next" title="【翻译】 测试网和 Qtum 主网性能">
+    Prev: 【翻译】 测试网和 Qtum 主网性能
+  </a>
+</p>
+
+
+
+<p class="green-link-context next-btn">
+    <a href="/2018/07/24/2018-07-24-翻译-QRC20token报告/" rel="next" title="【翻译】 QRC20 token 报告">
+    Next: 【翻译】 QRC20 token 报告
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+
+
+
+    <div id="gitment_container"></div>
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <link rel="stylesheet" href="/css/gitment.css" media="screen" type="text/css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <script>
+    var gitment = new Gitment({
+        id: 'Mon Jul 30 2018 14:11:00 GMT+0800',
+        owner: 'linxueyuanstdio',
+        repo: 'linxueyuanstdio.github.io',
+        oauth: {
+            client_id: '2f7f71f1ba398039ff23',
+            client_secret: '3ebc908a7042fef2d56a83a2eb8c18777374a087',
+        },
+    })
+    gitment.render('gitment_container')
+    </script>
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large pink">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect green" title="Return to top"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse yellow darken-1"  data-activates="main-menu" title="Menu"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer indigo darken-1">
+    
+    <div class="footer-container container">
+        <div class="row">
+            
+            <div class="social-group col m4 s12">
+                <h5 class="white-text">Social</h5>
+                
+                    <a class="social-link" href="http://weibo.com/LinXueyuanStdio" target="_blank">
+                        <i class="fa fa-2x fa-weibo"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://github.com/LinXueyuanStdio" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://www.zhihu.com/people/lin-xue-yuan-86" target="_blank">
+                        <i class="fa fa-2x fa-graduation-cap"></i>
+                    </a>
+                
+                    <a class="social-link" href="http://twitter.com/cwBQ3A5cz3Jzso7" target="_blank">
+                        <i class="fa fa-2x fa-twitter"></i>
+                    </a>
+                
+                    <a class="social-link" href="mailto:761516186@qq.com" target="_blank">
+                        <i class="fa fa-2x fa-envelope"></i>
+                    </a>
+                
+                    <a class="social-link" href="/atom.xml" target="_blank">
+                        <i class="fa fa-2x fa-rss"></i>
+                    </a>
+                
+                
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+    </script>
+    <div class="site-visitors-container white-text">
+        <span>
+            <i class="fa fa-user"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+        </span>
+        <span>&nbsp;|&nbsp;</span>
+        <span>
+            <i class="fa fa-eye"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+        </span>
+    </div>
+
+
+            </div>
+            
+
+            
+            <div class="col m8 s12">
+                <h5 class="white-text">Links</h5>
+                
+                    <a class="social-link" href="http://raytaylorlin.com/" target="_blank">raytaylorism主题作者</a>
+                
+                    <a class="social-link" href="https://github.com/raytaylorlin" target="_blank">Github地址</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    
+
+    <div class="footer-copyright green-link-context">
+        <div class="container">
+            © 2018 xichen.pub, All rights reserved.
+            <p class="right" style="margin-top: 0;">Blog powered by <a href="https://hexo.io">Hexo</a> | Theme <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
+        </div>
+    </div>
+</footer>
+
+
+    <noscript>
+    <div class="noscript">
+        <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+    </div>
+</noscript>
+<div class="noscript">
+    <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+<script src="/js/canvas.js"></script>
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 隐藏禁用javascript（针对微信内置浏览器）的提示
+            $('.noscript').hide();
+
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
+
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed').each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt') || ' ');
+            }).materialbox();
+
+            // 优化表格的显示
+            $('table').each(function() {
+                var $table = $(this);
+                // 除去多行代码的情况
+                if ($table.find('pre').length == 0) {
+                    $table.addClass('responsive-table striped bordered');
+                }
+            });
+
+            // 首页幻灯片
+            $('.slider').slider({indicators: true, full_width: true, interval: 8000});
+
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+
+            // 目录随屏幕滚动（防止目录过长越过footer）
+            var $toc = $('.toc');
+            var scrollTargetTop = 0;
+            $(window).scroll(function() {
+                var $activeLink = $toc.find('a.active.section');
+                if ($(window).scrollTop() < 100) {
+                    scrollTargetTop = 0;
+                } else {
+                    if ($activeLink[0]) {
+                        scrollTargetTop = $activeLink.offset().top - $toc.offset().top;
+                    }
+                }
+                $toc.css('top', '-' + scrollTargetTop + 'px');
+            });
+
+            // 修正文章目录的left-border颜色
+            var color = $('.table-of-contents-text').css('color');
+            $('.table-of-contents-link').css('border-left-color', color);
+
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({
+                    scrollTop: 0
+                }, 500);
+            });
+
+            // 重置读书页面的Tab标签页的颜色
+            $('li.tab a').hover(function() {
+                $(this).toggleClass('text-lighten-4');
+            });
+            $('.indicator').addClass('pink lighten-2');
+
+            
+            // 添加new标签
+            $('.menu-apps').append('<span class="new badge pink"></span>');
+            
+
+            // 搜索功能
+            $('.modal-trigger').leanModal({
+                // 打开搜索框时自动聚焦
+                ready: function() {
+                    if ($('#search').is(":visible")) {
+                        $('#search-input').focus();
+                    }
+                }
+            });
+            var searchXml = "search.xml";
+            if (searchXml.length == 0) {
+             	searchXml = "search.xml";
+            }
+            var searchPath = "/" + searchXml;
+            initSearch(searchPath, 'search-input', 'search-result');
+        });
+
+        // 初始化搜索与匹配函数
+        var initSearch = function(path, search_id, content_id) {
+            'use strict';
+            $.ajax({
+                url: path,
+                dataType: "xml",
+                success: function(xmlResponse) {
+                    // get the contents from search data
+                    var datas = $("entry", xmlResponse).map(function() {
+                        return {
+                            title: $("title", this).text(),
+                            content: $("content", this).text(),
+                            url: $("url", this).text()
+                        };
+                    }).get();
+                    var $input = document.getElementById(search_id);
+                    var $resultContent = document.getElementById(content_id);
+                    $input.addEventListener('input', function() {
+                        var str = '<ul class=\"search-result-list\">';
+                        var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                        $resultContent.innerHTML = "";
+                        if (this.value.trim().length <= 0) {
+                            return;
+                        }
+                        // perform local searching
+                        datas.forEach(function(data) {
+                            var isMatch = true;
+                            var content_index = [];
+                            var data_title = data.title.trim().toLowerCase();
+                            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                            var data_url = data.url;
+                            var index_title = -1;
+                            var index_content = -1;
+                            var first_occur = -1;
+                            // only match artiles with not empty titles and contents
+                            if (data_title != '' && data_content != '') {
+                                keywords.forEach(function(keyword, i) {
+                                    index_title = data_title.indexOf(keyword);
+                                    index_content = data_content.indexOf(keyword);
+                                    if (index_title < 0 && index_content < 0) {
+                                        isMatch = false;
+                                    } else {
+                                        if (index_content < 0) {
+                                            index_content = 0;
+                                        }
+                                        if (i == 0) {
+                                            first_occur = index_content;
+                                        }
+                                    }
+                                });
+                            }
+                            // show search results
+                            if (isMatch) {
+                                keywords.forEach(function(keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword green lighten-2\">" + keyword + "</span>");
+                                });
+
+                                str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                                if (first_occur >= 0) {
+                                    // cut out 100 characters
+                                    var start = first_occur - 20;
+                                    var end = first_occur + 80;
+                                    if (start < 0) {
+                                        start = 0;
+                                    }
+                                    if (start == 0) {
+                                        end = 100;
+                                    }
+                                    if (end > content.length) {
+                                        end = content.length;
+                                    }
+                                    var match_content = content.substring(start, end);
+                                    // highlight all keywords
+                                    keywords.forEach(function(keyword) {
+                                        var regS = new RegExp(keyword, "gi");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword green lighten-2\">" + keyword + "</span>");
+                                    });
+
+                                    str += "<p class=\"search-result\">..." + match_content + "...</p>"
+                                }
+                                str += "</li>";
+                            }
+                        });
+                        str += "</ul>";
+                        $resultContent.innerHTML = str;
+                    });
+                }
+            });
+        }
+    })(jQuery);
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+</body>
+</html>

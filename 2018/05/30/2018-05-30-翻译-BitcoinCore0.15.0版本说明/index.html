@@ -1,0 +1,957 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>【翻译】 Bitcoin Core 0.15.0版本说明 | XiChen&#39;s Blog</title>
+    <meta name="author" content="Lin Xueyuan">
+    
+    <meta name="description" content="嗨，我是兮尘，全栈数据学徒。这里没有花俏艳丽的魔法，没有苍蛮霸道的斗气，有的，仅仅是繁衍到巅峰的代码！">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="【翻译】 Bitcoin Core 0.15.0版本说明"/>
+    <meta property="og:site_name" content="XiChen"/>
+
+    
+    <meta property="og:image" content=""/>
+    
+
+    <link rel="icon" type="image/png" href="/assets/images/favicon.ico" />
+    <link rel="alternate" href="/atom.xml" title="XiChen" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+    <link rel="stylesheet" href="//fonts.gdgdocs.org/css?family=Lobster" type="text/css">
+    
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
+
+    <nav class="indigo nav">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="">
+            <div style="font-family: Lobster, Monospace;">
+                <a href="/" class="brand-logo hide-on-med-and-down" style="font-family: Lobster, Monospace;">
+                    XiChen
+                </a>
+            </div>
+            <ul class="nav-menu right hide-on-med-and-down">
+                
+                    <li class="tab">
+                        <a class="menu-home " href="/"
+                            >
+                                <i class="fa fa-home "></i>
+                                
+                                    Home
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-archive " href="/archives"
+                            >
+                                <i class="fa fa-archive "></i>
+                                
+                                    Archives
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-category category-menu" href="javascript:;"
+                            data-activates="category-menu"
+                            >
+                                <i class="fa fa-bookmark "></i>
+                                
+                                    Categories
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-apps " href="/apps"
+                            >
+                                <i class="fa fa-link "></i>
+                                
+                                    App
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-tools " href="/tools"
+                            >
+                                <i class="fa fa-wrench "></i>
+                                
+                                    Tool
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-reading " href="/reading"
+                            >
+                                <i class="fa fa-book "></i>
+                                
+                                    Reading
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-about " href="/about"
+                            >
+                                <i class="fa fa-user "></i>
+                                
+                                    About
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-search modal-trigger " href="#search"
+                            >
+                                <i class="fa fa-search "></i>
+                                
+                                    Search
+                        </a>
+                    </li>
+                    
+            </ul>
+            <div>
+    <ul class="side-nav indigo darken-1" id="main-menu">
+        
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4 no-padding logo-a">
+                    <img class="avatar-image circle responsive-img logo" src="/assets/images/avatar.jpg" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper no-padding">
+                    <div class="valign">
+                        <p class="name">兮尘</p>
+                        <p class="desc">Web前端/Android/技术宅</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-home " href="/" >
+                    <i class="fa fa-home "></i>
+                    
+                    Home
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-archive " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    
+                    Archives
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    
+                    Categories
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-apps " href="/apps" >
+                    <i class="fa fa-link "></i>
+                    
+                    App
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-tools " href="/tools" >
+                    <i class="fa fa-wrench "></i>
+                    
+                    Tool
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-reading " href="/reading" >
+                    <i class="fa fa-book "></i>
+                    
+                    Reading
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-about " href="/about" >
+                    <i class="fa fa-user "></i>
+                    
+                    About
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-search modal-trigger " href="#search" >
+                    <i class="fa fa-search "></i>
+                    
+                    Search
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav indigo darken-1" id="category-menu">
+    
+
+            
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Linux/">
+                    Linux <span class="right">8</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tips/">
+                    Tips <span class="right">7</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Deep-Learning/">
+                    Deep-Learning <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Proxy/">
+                    Proxy <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tools/">
+                    Tools <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/GO/">
+                    GO <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Ubuntu/">
+                    Ubuntu <span class="right">4</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Spider/">
+                    Spider <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Algorithms/">
+                    Algorithms <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/区块链/">
+                    区块链 <span class="right">24</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/算法/">
+                    算法 <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/密码学/">
+                    密码学 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Web/">
+                    Web <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Latex/">
+                    Latex <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/杂思/">
+                    杂思 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Git/">
+                    Git <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Android/">
+                    Android <span class="right">30</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Github/">
+                    Github <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/计算机组成原理/">
+                    计算机组成原理 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+<div id="search" class="modal search-modal">
+    <div class="row">
+        <div class="input-field col s12">
+              <input id="search-input" type="text">
+              <label for="search-input">Search</label>
+        </div>
+
+    </div>
+    <div id="search-result" class="search-result col s12">
+
+    </div>
+</div>
+
+    <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper indigo">
+        <span class="breadcrumb">Current page(Categories)</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/区块链/">区块链</a>
+
+
+        
+
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>【翻译】 Bitcoin Core 0.15.0版本说明</h1>
+    
+
+
+            </div>
+            <i class="fa fa-calendar"></i><time class="green-link-context" datetime="2018-05-30T06:11:00.000Z"><a href="/2018/05/30/2018-05-30-翻译-BitcoinCore0.15.0版本说明/">2018-05-30</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/区块链/" class="chip green lighten-1">区块链</a>
+        
+            <a href="/tags/Qtum/" class="chip green lighten-1">Qtum</a>
+        
+            <a href="/tags/翻译/" class="chip green lighten-1">翻译</a>
+        
+    </div>
+    
+
+
+            <div class="toc green-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#0-15-0版本说明"><span class="section table-of-contents-number">1.</span> <span class="section table-of-contents-text">0.15.0版本说明</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#当前对隔离见证的支持"><span class="section table-of-contents-number">1.1.</span> <span class="section table-of-contents-text">当前对隔离见证的支持</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#加密钱包重新扫描"><span class="section table-of-contents-number">1.2.</span> <span class="section table-of-contents-text">加密钱包重新扫描</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#重大改动"><span class="section table-of-contents-number">2.</span> <span class="section table-of-contents-text">重大改动</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#性能改进"><span class="section table-of-contents-number">2.1.</span> <span class="section table-of-contents-text">性能改进</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#手续费评估的改进"><span class="section table-of-contents-number">2.2.</span> <span class="section table-of-contents-text">手续费评估的改进</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#内部逻辑和钱包行为的变化"><span class="section table-of-contents-number">2.2.1.</span> <span class="section table-of-contents-text">内部逻辑和钱包行为的变化</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#手续费评估-RPC-的变化"><span class="section table-of-contents-number">2.2.2.</span> <span class="section table-of-contents-text">手续费评估 RPC 的变化</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#多钱包支持"><span class="section table-of-contents-number">2.3.</span> <span class="section table-of-contents-text">多钱包支持</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#在GUI中-RBF-replace-by-fee-控制"><span class="section table-of-contents-number">2.4.</span> <span class="section table-of-contents-text">在GUI中 RBF(replace-by-fee)控制</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#移除币龄优先"><span class="section table-of-contents-number">2.5.</span> <span class="section table-of-contents-text">移除币龄优先</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#内存池持久化重启"><span class="section table-of-contents-number">2.6.</span> <span class="section table-of-contents-text">内存池持久化重启</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#新-RPC-方法"><span class="section table-of-contents-number">2.7.</span> <span class="section table-of-contents-text">新 RPC 方法</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#底层-RPC-更改"><span class="section table-of-contents-number">2.8.</span> <span class="section table-of-contents-text">底层 RPC 更改</span></a></li></ol></li></ol>
+</div>
+
+
+            <div class="entry green-link-context">
+                <p>原文：<a href="https://bitcoin.org/en/release/v0.15.0" target="_blank" rel="noopener">https://bitcoin.org/en/release/v0.15.0</a><br>译者：中山大学数学学院（珠海）林学渊<br>大二时给量子做的翻译，转载注明出处，谢谢</p>
+<h1 id="0-15-0版本说明"><a href="#0-15-0版本说明" class="headerlink" title="0.15.0版本说明"></a>0.15.0版本说明</h1><h2 id="当前对隔离见证的支持"><a href="#当前对隔离见证的支持" class="headerlink" title="当前对隔离见证的支持"></a>当前对隔离见证的支持</h2><p>版本0.15.0支持通过 <code>addwitnessaddress</code> RPC 添加隔离见证地址，但请注意，这是一个 测试/专家 RPC，它不保证从备份恢复。 要是你知道你在做什么，就使用这个 RPC 吧。下一个版本将提供更完整的隔离见证的钱包支持。</p>
+<h2 id="加密钱包重新扫描"><a href="#加密钱包重新扫描" class="headerlink" title="加密钱包重新扫描"></a>加密钱包重新扫描</h2><p>和以前的版本一样，当使用加密的 HD 钱包时，如果没有解锁钱包，密钥池不会被自动检测。 这意味着，目前，如果要从加密 HD 钱包的备份恢复，用户必须用非常长的时间解锁钱包并手动触发重新扫描，否则当自动检测程序无法运行时，会有可能丢失一些密钥。 不幸的是，在这个版本中没有 <code>rescan</code> RPC，它放在以后的版本中。所以现在重新扫描可以使用其中一个 <code>import*</code> 命令触发，同时要用另一个（可信）钱包生成的虚拟地址。</p>
+<h1 id="重大改动"><a href="#重大改动" class="headerlink" title="重大改动"></a>重大改动</h1><h2 id="性能改进"><a href="#性能改进" class="headerlink" title="性能改进"></a>性能改进</h2><p>版本0.15包含许多重要的性能改进，这使得初始块下载，启动，交易和块验证速度更快：</p>
+<ul>
+<li>链状态数据库 (用于跟踪 UTXO ) 已从每交易模型更改为每交易输出模型（请查看 <a href="https://github.com/bitcoin/bitcoin/pull/10195" target="_blank" rel="noopener">PR 10195</a>）。 这个模型的优点是它：<ul>
+<li>避免反序列化和序列化未使用输出的CPU开销；</li>
+<li>更可预测的内存使用情况;</li>
+<li>更简单的代码;</li>
+<li>适用于各种未来的缓存刷新策略。<br>因此，在初始块下载（IBD）和重新索引期间验证区块链的速度提高约30-40％，使用的内存减少10-20％，并且刷新到磁盘的频率要更低。 唯一的缺点是磁盘上的数据库大小增加15％。 在从以前的格式转换过来的过程中，可能会使用额外几千兆字节。</li>
+</ul>
+</li>
+<li>早期版本在刷新 UTXO 到磁盘时遇到了内存使用量激增。 结果，实际只有一半的可用内存用作缓存，而另一半则被保留以应付数据刷新。 不会再有这种情况了（请查看 <a href="https://github.com/bitcoin/bitcoin/pull/10148" target="_blank" rel="noopener">PR 10148</a>），并且整个可用缓存（请查看 <code>-dbcache</code>）现在确实用作缓存。 这将数据刷新频率降低了2倍甚至更多。</li>
+<li>在前面的版本中, 当交易被内存池接受时，交易的签名验证会被缓存。版本 0.15 版本0.15将其有效性扩展为缓存整个脚本（请查看 <a href="https://github.com/bitcoin/bitcoin/pull/10192" target="_blank" rel="noopener">PR 10192</a>）。 这意味着如果块中的交易已被内存池接受，私钥签名不需要重新计算。 经验测试表明，这使新块的验证速度提高40-50％。</li>
+<li>LevelDB 已经升级到版本1.20 (请查看 <a href="https://github.com/bitcoin/bitcoin/pull/10544" target="_blank" rel="noopener">PR 10544</a>). 这个版本包括用于在支持SSE 4.2的体系结构中 CRC 的硬件加速 。因此，同步和块验证现在更快。</li>
+<li>针对支持SSE 4的体系结构（参见 <a href="https://github.com/bitcoin/bitcoin/pull/10821" target="_blank" rel="noopener">PR 10821</a>），SHA256哈希已优化。 在支持的硬件上 SHA256 速度提高了约50％，这导致IBD和块验证速度提高了约5％。 在版本0.15中，默认情况下，发布版本中禁用SHA256硬件优化，但可以在构建时使用 <code>--enable-experimental-asm</code> 启用。 </li>
+<li>重新填充密钥池不再刷新每个密钥对应的钱包，使创建新钱包的速度提高了20倍。 部分加速用来将默认密钥池增加到1000个密钥，以使恢复能力更加健壮。（见 <a href="https://github.com/bitcoin/bitcoin/pull/10831" target="_blank" rel="noopener">PR 10831</a>).</li>
+</ul>
+<h2 id="手续费评估的改进"><a href="#手续费评估的改进" class="headerlink" title="手续费评估的改进"></a>手续费评估的改进</h2><p>版本0.15中，手续费评估速度有了明显提高，钱包使用的手续费评估更准确，而对于<code>estimatesmartfee</code> 和 <code>estimaterawfee</code> RPC（见 <a href="https://github.com/bitcoin/bitcoin/pull/10199" target="_blank" rel="noopener">PR 10199</a>）的高级用户而言，手续费评估的可选范围更广。</p>
+<h3 id="内部逻辑和钱包行为的变化"><a href="#内部逻辑和钱包行为的变化" class="headerlink" title="内部逻辑和钱包行为的变化"></a>内部逻辑和钱包行为的变化</h3><ul>
+<li>手续费评估现在在3个不同的时间范围内进行跟踪。这使更长远的目标和评估方法能更迅速地适应条件的变化。</li>
+<li>评估现在可以选择 <em>保守的</em> 或 <em>经济的</em>。 保守评估使用更长的时间范围来产生评估，不易受费用条件快速变化影响。经济评估使用更短的时间范围，受费用条件的短期变化影响更大。 在低交易活动期间（例如在周末），经济评估可能会相当低，但如果通行费用迅速增加，则可能导致交易未被证实。</li>
+<li>默认，钱包使用保守的手续费评估来增加在预期目标内被确认的交易的可靠性。对于被标记为可替换的交易，钱包默认会使用经济评估，因为如果费用条件迅速变化，费用可能会“冲突” (查看 <a href="https://github.com/bitcoin/bitcoin/pull/10589" target="_blank" rel="noopener">PR 10589</a>).</li>
+<li>现在可以对最多1008个块的确认目标进行评估（一周内）。</li>
+<li>存储更多关于历史收费率的数据，从而使手续费评估更精确。</li>
+<li>对由于驱逐或其他未确认的原因而离开内存池的交易，不再考虑手续费评估，使手续费评估更准确。</li>
+<li>手续费评估逻辑将确保收集到足够的数据以返回有意义的估算值。 如果数据不足，则使用后备的默认费用。</li>
+</ul>
+<h3 id="手续费评估-RPC-的变化"><a href="#手续费评估-RPC-的变化" class="headerlink" title="手续费评估 RPC 的变化"></a>手续费评估 RPC 的变化</h3><ul>
+<li><code>estimatefee</code> RPC 现在废弃了，建议使用 <code>estimatesmartfee</code> (支持 GUI)</li>
+<li><code>estimatesmartfee</code> RPC 接口改变 (查看 <a href="https://github.com/bitcoin/bitcoin/pull/10707" target="_blank" rel="noopener">PR 10707</a>):<ul>
+<li><code>nblocks</code> 参数重命名成 <code>conf_target</code> (与其他RPC方法一致).</li>
+<li>增加 <code>estimate_mode</code> 参数. 该参数为以下字符串之一： <code>CONSERVATIVE</code>, <code>ECONOMICAL</code> 或 <code>UNSET</code> (默认是 <code>CONSERVATIVE</code>).</li>
+<li>RPC返回对象现在包含一个 <code>error</code> 成员，它返回处理期间遇到的错误。</li>
+<li>如果 Bitcoin Core 运行时间不够长，并且没有足够的数据块或交易来产生准确的手续费评估，则会返回一个错误（之前使用-1表示错误，这可能会导致费率混淆）。</li>
+</ul>
+</li>
+<li>新增 <code>estimaterawfee</code> RPC 提供原始费用数据. 外部客户端可以在他们自己的手续费评估逻辑中查询和使用这些数据。</li>
+</ul>
+<h2 id="多钱包支持"><a href="#多钱包支持" class="headerlink" title="多钱包支持"></a>多钱包支持</h2><p>Bitcoin Core现在支持加载多个独立钱包 (查看 <a href="https://github.com/bitcoin/bitcoin/pull/8694" target="_blank" rel="noopener">PR 8694</a>, <a href="https://github.com/bitcoin/bitcoin/pull/10849" target="_blank" rel="noopener">PR 10849</a>).钱包是完全分开的，具有个人余额，钥匙和收到的交易.</p>
+<p>启动比特币时使用 <code>-wallet</code> 参数可启用多钱包，在命令行或比特币配置文件中都可以。</p>
+<p><strong>在Bitcoin-Qt中，只有第一个钱包才会显示并可用于创建和签署交易。</strong> 未来版本将支持 GUI 来选多个钱包。 但是，即使在版本0.15的其他加载的钱包中，仍然会与后台节点的当前提示保持同步。 这可能很有用，如果是运行一个修剪过的节点的话，因为加载一个最新同步超出修剪高度的钱包导致必须下载并重新验证整个区块链。 继续同步后台中的所有钱包可避免此问题。</p>
+<p>Bitcoin Core 0.15.0 包括下列RPC接口的改动及多钱包的 <code>bitcoin-cli</code> :</p>
+<ul>
+<li>当用一个钱包运行 Bitcoin Core 时，RPC 接口或  <code>bitcoin-cli</code> <strong>不会</strong> 变化。所有 RPC 调用和 <code>bitcoin-cli</code> 命令和之前一样继续运行.</li>
+<li>当用多钱包运行 Bitcoin Core 时, 所有 <em>节点级</em> RPC 方法和之前一样继续运行. HTTP RPC 请求应该发送至 <code>&lt;RPC IP address&gt;:&lt;RPC port&gt;</code> , 并且 <code>bitcoin-cli</code> 命令应该和之前一样继续运行. 一个 <em>节点级</em> RPC 方法是不需要访问钱包的任意方法。</li>
+<li>当用多钱包运行 Bitcoin Core 时, <em>钱包级</em> RPC 方法必须指定他们在每个请求中所针对的钱包。 HTTP RPC 请求应该发送至 <code>&lt;RPC IP address&gt;:&lt;RPC port&gt;/wallet/&lt;wallet name&gt;</code> , 例如 <code>127.0.0.1:8332/wallet/wallet1.dat</code>. <code>bitcoin-cli</code> 命令应该使用 <code>-rpcwallet</code> 选项运行, 例如 <code>bitcoin-cli -rpcwallet=wallet1.dat getbalance</code>.</li>
+<li>添加了一个新的 <em>节点级</em> <code>listwallets</code> RPC 方法来显示当前加载哪些钱包。 此方法返回的名称与HTTP端点和 <code>rpcwallet</code> 参数中使用的名称相同。</li>
+</ul>
+<p>请注意，虽然现在完全支持多钱包，但对于版本0.15.0，RPC多钱包界面应被视为不稳定，并且未来版本中可能存在向后不兼容的更改。</p>
+<h2 id="在GUI中-RBF-replace-by-fee-控制"><a href="#在GUI中-RBF-replace-by-fee-控制" class="headerlink" title="在GUI中 RBF(replace-by-fee)控制"></a>在GUI中 RBF(replace-by-fee)控制</h2><p>Bitcoin Core 支持从版本0.12.0开始创建 replace-by-fee（RBF）交易，并且自0.14.0版本开始包含一个 <code>bumpfee</code> RPC 方法，用支付更高费用的新交易取代未经证实的选择性RBF交易。</p>
+<p>在版本0.15中，创建一个选择性的RBF交易，和用更高费用的交易替换未确认的交易都在GUI中支持（见 <a href="https://github.com/bitcoin/bitcoin/pull/9592" target="_blank" rel="noopener">PR 9592</a>).</p>
+<h2 id="移除币龄优先"><a href="#移除币龄优先" class="headerlink" title="移除币龄优先"></a>移除币龄优先</h2><p>Bitcoin Core前面的版本中, 每块的一部分可以根据他们花费的 UTXO 的年龄和价值预留给交易。 这个概念（币龄优先）是矿工的一项政策选择，并且没有围绕包括币龄优先交易的共识规则。 在实践中，只有少数矿工继续使用币龄优先进行交易。 Bitcoin Core 0.15删除了币龄优先的所有支持（见 <a href="https://github.com/bitcoin/bitcoin/pull/9602" target="_blank" rel="noopener">PR 9602</a>）。 这具有以下意义：</p>
+<ul>
+<li><em>免费交易</em> 的概念已被移除。即使没有附加矿工费，高币龄优先交易也会允许进行转账。 这是不可能的，因为不再有币龄优先的概念。 控制免费交易的<code>-limitfreerelay</code> 和 <code>-relaypriority</code> 选项已被移除。</li>
+<li><code>-sendfreetransactions</code> 选项已被移除, 因为几乎所有的矿工都不要不附加交易费的交易。</li>
+<li><code>-blockprioritysize</code> 选项已被移除.</li>
+<li><code>estimatepriority</code> 和 <code>estimatesmartpriority</code> RPCs 已被移除.</li>
+<li><code>getmempoolancestors</code>, <code>getmempooldescendants</code>, <code>getmempoolentry</code> 和 <code>getrawmempool</code> RPCs 不再返回 <code>startingpriority</code> 和 <code>currentpriority</code>.</li>
+<li><code>prioritisetransaction</code> RPC 不再有 <code>priority_delta</code> 参数, 它替换成 <code>dummy</code> 参数，以便与使用位置参数的客户端向后兼容。 RPC 仍然适用于通过使用<code>fee_delta</code> 参数来改变交易的明显费率。</li>
+<li><code>-minrelaytxfee</code> 现在可以设为 0. 如果设置了 <code>minrelaytxfee</code> , 那么小于 <code>minrelaytxfee</code> (每 kB) 的费用拒绝中继，挖掘和创建交易。默认为1000 satoshi / kB。</li>
+<li><code>-printpriority</code> 选项升级为只在挖矿代码输出费率和包含在块中的交易哈希.</li>
+</ul>
+<h2 id="内存池持久化重启"><a href="#内存池持久化重启" class="headerlink" title="内存池持久化重启"></a>内存池持久化重启</h2><p>版本0.14 引入了内存池持久化重启（内存池在关闭之前保存到数据目录中的 <code>mempool.dat</code> 文件中，并在节点重新启动时恢复内存池）。 版本0.15允许使用<code>-persistmempool</code> 命令行选项打开或关闭此功能（请参阅 <a href="https://github.com/bitcoin/bitcoin/pull/9966" target="_blank" rel="noopener">PR 9966</a>）。 默认情况下，该选项设置为true，内存池在关机时保存并在启动时重新加载。 如果设置为false，则 <code>mempool.dat</code> 文件将不会在启动时加载或在关闭时保存。</p>
+<h2 id="新-RPC-方法"><a href="#新-RPC-方法" class="headerlink" title="新 RPC 方法"></a>新 RPC 方法</h2><p>版本 0.15 引入一些新的 RPC 方法:</p>
+<ul>
+<li><code>abortrescan</code> 停止当前钱包的重新扫描, 比如，在被一个 <code>importprivkey</code> 调用触发时 (查看 <a href="https://github.com/bitcoin/bitcoin/pull/10208" target="_blank" rel="noopener">PR 10208</a>).</li>
+<li><code>combinerawtransaction</code> 接受一个原始交易的JSON数组，将它们组合成一个原始交易 (查看 <a href="https://github.com/bitcoin/bitcoin/pull/10571" target="_blank" rel="noopener">PR 10571</a>).</li>
+<li><code>estimaterawfee</code> 返回原始费用数据，以便可以使用定制的逻辑来分析数据并计算估算值。 有关费用估算逻辑和接口更改的完整详细信息，请参阅 <a href="#fee-estimation-improvements">手续费评估的改进</a> </li>
+<li><code>getchaintxstats</code> 返回关于链中交易总数和速率的统计信息(查看 <a href="https://github.com/bitcoin/bitcoin/pull/9733" target="_blank" rel="noopener">PR 9733</a>).</li>
+<li><code>listwallets</code> 列出当前加载的钱包。查看<em>多钱包</em>  ( <a href="#multi-wallet-support">多钱包支持</a>) 获得更多细节。</li>
+<li><code>uptime</code> 返回自上次启动以来 <code>bitcoind</code> 服务器的总运行时间 (查看 <a href="https://github.com/bitcoin/bitcoin/pull/10400" target="_blank" rel="noopener">PR 10400</a>).</li>
+</ul>
+<h2 id="底层-RPC-更改"><a href="#底层-RPC-更改" class="headerlink" title="底层 RPC 更改"></a>底层 RPC 更改</h2><ul>
+<li><p>在使用 Bitcoin Core 的多钱包模式时, 钱包方法的RPC请求必须指定它们的用途。 有关完整的详细信息，请参阅 <a href="#multi-wallet-support">多钱包支持</a> 。</p>
+</li>
+<li><p>新的数据库模型不再存储关于未使用输出的交易版本的信息（请参阅 <a href="#performance-improvements">性能改进</a>). 这意味着:</p>
+<ul>
+<li><code>gettxout</code> RPC 的返回不再有 <code>version</code> 字段.</li>
+<li><code>gettxoutsetinfo</code> RPC 报告 <code>hash_serialized_2</code> 而不是<code>hash_serialized</code>, 后者没有提交未使用输出的交易版本，但确实提交了高度和coinbase 信息。</li>
+<li><code>getutxos</code> REST 路径不再以JSON格式报告 <code>txvers</code> 字段。<br>始终以二进制格式报告交易版本为0。</li>
+</ul>
+</li>
+<li><p><code>estimatefee</code> RPC 废弃. 用户应该转向使用 <code>estimatedmartfee</code> RPC，这会返回更好的费用估算。查看 <a href="#fee-estimation-improvements">手续费评估的改进</a> 详细了解费用估算逻辑和接口的变化。</p>
+</li>
+<li><p><code>gettxoutsetinfo</code> 的返回现在包含 <code>disk_size</code> 和 <code>bogosize</code> 而不是<br><code>bytes_serialized</code>。第一个是对实际磁盘使用情况的更准确的估计，但不是确定性的。 第二个与磁盘使用无关，但也与UTXO集大小无关，与数据库无关:它将每个UTXO条目计数为 50 + 其scriptPubKey长度 (查看 <a href="https://github.com/bitcoin/bitcoin/pull/10426" target="_blank" rel="noopener">PR 10426</a>).</p>
+</li>
+<li><p><code>signrawtransaction</code> 不能再用于将多个交易组合为单个交易. 作为替代, 使用新的 <code>combinerawtransaction</code> RPC (查看 <a href="https://github.com/bitcoin/bitcoin/pull/10571" target="_blank" rel="noopener">PR 10571</a>).</p>
+</li>
+<li><p><code>fundrawtransaction</code> 不再接受一个 <code>reserveChangeKey</code> 选项. 此选项用于允许 RPC 用户使用密钥池中的密钥为更改地址提供原始交易处理，而无需将其从密钥池中的可用密钥中移除。密匙能重用，通过调用 <code>getnewaddress</code> , 但这可能会导致混淆或危险的行为 (查看 <a href="https://github.com/bitcoin/bitcoin/pull/10784" target="_blank" rel="noopener">PR 10784</a>).</p>
+</li>
+<li><p><code>estimatepriority</code> 和 <code>estimatesmartpriority</code> 已被移除. 查看 <a href="#removal-of-coin-age-priority">移除币龄优先</a>.</p>
+</li>
+<li><p><code>listunspent</code> RPC 现在可以接受一个 <code>query_options</code> 参数 (查看 <a href="https://github.com/bitcoin/bitcoin/pull/8952" target="_blank" rel="noopener">PR 8952</a>), 它是一个包含一个或多个以下成员的JSON字段：</p>
+<ul>
+<li><code>minimumAmount</code> - 一个数字，指定每个UTXO的最小值</li>
+<li><code>maximumAmount</code> - 一个数字，指定每个UTXO的最大值</li>
+<li><code>maximumCount</code> - 一个数字，指定UTXO的最小数量</li>
+<li><code>minimumSumAmount</code> - 一个数字，指定UTXO的最大数量</li>
+</ul>
+</li>
+<li><p><code>getmempoolancestors</code>, <code>getmempooldescendants</code>, <code>getmempoolentry</code> 和 <code>getrawmempool</code> RPCs 不再返回 <code>startingpriority</code> 和 <code>currentpriority</code>. 查看 <a href="#removal-of-coin-age-priority">移除币龄优先</a>.</p>
+</li>
+<li><p><code>dumpwallet</code> RPC 现在返回虚拟钱包（dumped wallet）的完整绝对路径. 即使成功，它也不会返回任何值 (查看 <a href="https://github.com/bitcoin/bitcoin/pull/9740" target="_blank" rel="noopener">PR 9740</a>).</p>
+</li>
+</ul>
+<ul>
+<li><p><code>getpeerinfo</code> RPC中, 每个peer的返回对象现在返回一个 <code>addrbind</code> 成员，其中包含到peer的连接的IP地址和端口。 这是除了包含本地节点的IP地址和端口的 <code>addrlocal</code> 成员之外，由peer方报告的成员 (查看 <a href="https://github.com/bitcoin/bitcoin/pull/10478" target="_blank" rel="noopener">PR 10478</a>).</p>
+</li>
+<li><p><code>disconnectnode</code> RPC 现在可以断开由节点ID（以及IP地址/端口）指定的节点。 要根据节点ID断开节点，请使用新的 <code>nodeid</code> 参数 (查看 <a href="https://github.com/bitcoin/bitcoin/pull/10143" target="_blank" rel="noopener">PR 10143</a>).</p>
+</li>
+<li><p><code>prioritisetransaction</code> 的第二个参数已经从 <code>priority_delta</code> 重命名成 <code>dummy</code>，因为 Bitcoin Core 不再有币龄优先的概念。 <code>dummy</code> 参数没有功能影响，但为了兼容性保留位置。查看 <a href="#removal-of-coin-age-priority">移除币龄优先</a>.</p>
+</li>
+<li><p><code>resendwallettransactions</code> RPC 抛出错误如果 <code>-walletbroadcast</code> 选项设置为 false (查看 <a href="https://github.com/bitcoin/bitcoin/pull/10995" target="_blank" rel="noopener">PR 10995</a>).</p>
+</li>
+<li><p><code>submitblock</code> RPC 的第二个参数从 <code>parameters</code> 重命名为 <code>dummy</code>. 这个参数从来没有任何效果，重命名只是将这个事实传达给用户 (查看 <a href="https://github.com/bitcoin/bitcoin/pull/10191" target="_blank" rel="noopener">PR 10191</a>)<br>(用户应该，无论如何，使用 <code>submitblock</code> 的位置参数以便与BIP 22兼容。)</p>
+</li>
+<li><p><code>getblock</code> 的 <code>verbose</code> 参数重命名成 <code>verbosity</code> ，现在接受 0 到 2 的int整数. verbose等级0等同于 <code>verbose=false</code>。 verbose等级1相当于<code>verbose=true</code>. Verbose 等级 2 将给出由 <code>getrawtransaction</code> 给出的输出中每个交易的完整交易详情。为了兼容性，仍旧保留使用详细命名参数和布尔值的旧行为。</p>
+</li>
+<li>错误代码已更新为更准确的以下错误情况 (查看 <a href="https://github.com/bitcoin/bitcoin/pull/9853" target="_blank" rel="noopener">PR 9853</a>):<ul>
+<li><code>getblock</code> 现在返回 RPC_MISC_ERROR 如果区块在硬盘上找不到 (比如如果区块被修剪). 之前返回 RPC_INTERNAL_ERROR.</li>
+<li><code>pruneblockchain</code> 现在返回 RPC_MISC_ERROR 如果由于节点不是处于修剪模式而无法修剪区块。 之前返回 RPC_METHOD_NOT_FOUND.</li>
+<li><code>pruneblockchain</code> 现在返回 RPC_INVALID_PARAMETER 如果由于提供的时间戳太晚了而无法修剪区块. 之前返回 RPC_INTERNAL_ERROR.</li>
+<li><code>pruneblockchain</code> 现在返回 RPC_MISC_ERROR 如果由于区块链太短而无法修剪区块. 之前返回 RPC_INTERNAL_ERROR.</li>
+<li><code>setban</code> 现在返回 RPC_CLIENT_INVALID_IP_OR_SUBNET if the supplied IP address<br>or subnet is invalid. 之前返回 RPC_CLIENT_NODE_ALREADY_ADDED.</li>
+<li><code>setban</code> 现在返回 RPC_CLIENT_INVALID_IP_OR_SUBNET 如果提供的IP地址或子网无效. 之前返回 RPC_MISC_ERROR.</li>
+<li><code>removeprunedfunds</code> 现在返回 RPC_WALLET_ERROR 如果 <code>bitcoind</code> 无法移除交易. 之前返回 RPC_INTERNAL_ERROR.</li>
+<li><code>removeprunedfunds</code> 现在返回 RPC_INVALID_PARAMETER 如果在钱包中交易不存在. 之前返回 RPC_INTERNAL_ERROR.</li>
+<li><code>fundrawtransaction</code> 现在返回 RPC_INVALID_ADDRESS_OR_KEY 如果提供了无效的更改地址. 之前返回 RPC_INVALID_PARAMETER.</li>
+<li><code>fundrawtransaction</code> 现在返回 RPC_WALLET_ERROR 如果 <code>bitcoind</code> 不能创建一个交易. 错误消息提供了更多详细信息。. 之前返回  RPC_INTERNAL_ERROR.</li>
+<li><code>bumpfee</code> 现在返回 RPC_INVALID_PARAMETER 如果提供的交易在钱包中有后代. 之前返回 RPC_MISC_ERROR.</li>
+<li><code>bumpfee</code> 现在返回 RPC_INVALID_PARAMETER 如果提供的交易在内存池中有后代. 之前返回 RPC_MISC_ERROR.</li>
+<li><code>bumpfee</code> 现在返回 RPC_WALLET_ERROR 如果提供的交易已被开采或与挖矿交易发生冲突. 之前返回 RPC_INVALID_ADDRESS_OR_KEY.</li>
+<li><code>bumpfee</code> 现在返回 RPC_WALLET_ERROR 如果提供的交易不是BIP 125可替换. 之前返回 RPC_INVALID_ADDRESS_OR_KEY.</li>
+<li><code>bumpfee</code> 现在返回 RPC_WALLET_ERROR 如果提供的交易已经被不同的交易冲突. 之前返回 RPC_INVALID_REQUEST.</li>
+<li><code>bumpfee</code> 现在返回 RPC_WALLET_ERROR 如果提供的交易包含不属于该钱包的输入. 之前返回 RPC_INVALID_ADDRESS_OR_KEY.</li>
+<li><code>bumpfee</code> 现在返回 RPC_WALLET_ERROR 如果提供的交易有多个变更输出. 之前返回 RPC_MISC_ERROR.</li>
+<li><code>bumpfee</code> 现在返回 RPC_WALLET_ERROR 如果提供的交易没有变化输出. 之前返回 RPC_MISC_ERROR.</li>
+<li><code>bumpfee</code> 现在返回 RPC_WALLET_ERROR 如果手续费太高. 之前返回RPC_MISC_ERROR.</li>
+<li><code>bumpfee</code> 现在返回 RPC_WALLET_ERROR 如果手续费太低. 之前返回RPC_MISC_ERROR.</li>
+<li><code>bumpfee</code> 现在返回 RPC_WALLET_ERROR 如果变化的产出太小而不能收费. 之前返回 RPC_MISC_ERROR.</li>
+</ul>
+</li>
+</ul>
+
+                
+<p class="green-link-context prev-btn">
+    <a href="/2018/06/06/2018-06-06-翻译-QtumJS文档/" rel="next" title="【翻译】 QtumJS 文档">
+    Prev: 【翻译】 QtumJS 文档
+  </a>
+</p>
+
+
+
+<p class="green-link-context next-btn">
+    <a href="/2018/05/24/2018-05-24-翻译-十大Qtum新用户会问的问题/" rel="next" title="【翻译】 十大 Qtum 新用户会问的问题">
+    Next: 【翻译】 十大 Qtum 新用户会问的问题
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+
+
+
+    <div id="gitment_container"></div>
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <link rel="stylesheet" href="/css/gitment.css" media="screen" type="text/css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <script>
+    var gitment = new Gitment({
+        id: 'Wed May 30 2018 14:11:00 GMT+0800',
+        owner: 'linxueyuanstdio',
+        repo: 'linxueyuanstdio.github.io',
+        oauth: {
+            client_id: '2f7f71f1ba398039ff23',
+            client_secret: '3ebc908a7042fef2d56a83a2eb8c18777374a087',
+        },
+    })
+    gitment.render('gitment_container')
+    </script>
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large pink">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect green" title="Return to top"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse yellow darken-1"  data-activates="main-menu" title="Menu"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer indigo darken-1">
+    
+    <div class="footer-container container">
+        <div class="row">
+            
+            <div class="social-group col m4 s12">
+                <h5 class="white-text">Social</h5>
+                
+                    <a class="social-link" href="http://weibo.com/LinXueyuanStdio" target="_blank">
+                        <i class="fa fa-2x fa-weibo"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://github.com/LinXueyuanStdio" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://www.zhihu.com/people/lin-xue-yuan-86" target="_blank">
+                        <i class="fa fa-2x fa-graduation-cap"></i>
+                    </a>
+                
+                    <a class="social-link" href="http://twitter.com/cwBQ3A5cz3Jzso7" target="_blank">
+                        <i class="fa fa-2x fa-twitter"></i>
+                    </a>
+                
+                    <a class="social-link" href="mailto:761516186@qq.com" target="_blank">
+                        <i class="fa fa-2x fa-envelope"></i>
+                    </a>
+                
+                    <a class="social-link" href="/atom.xml" target="_blank">
+                        <i class="fa fa-2x fa-rss"></i>
+                    </a>
+                
+                
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+    </script>
+    <div class="site-visitors-container white-text">
+        <span>
+            <i class="fa fa-user"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+        </span>
+        <span>&nbsp;|&nbsp;</span>
+        <span>
+            <i class="fa fa-eye"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+        </span>
+    </div>
+
+
+            </div>
+            
+
+            
+            <div class="col m8 s12">
+                <h5 class="white-text">Links</h5>
+                
+                    <a class="social-link" href="http://raytaylorlin.com/" target="_blank">raytaylorism主题作者</a>
+                
+                    <a class="social-link" href="https://github.com/raytaylorlin" target="_blank">Github地址</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    
+
+    <div class="footer-copyright green-link-context">
+        <div class="container">
+            © 2018 xichen.pub, All rights reserved.
+            <p class="right" style="margin-top: 0;">Blog powered by <a href="https://hexo.io">Hexo</a> | Theme <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
+        </div>
+    </div>
+</footer>
+
+
+    <noscript>
+    <div class="noscript">
+        <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+    </div>
+</noscript>
+<div class="noscript">
+    <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+<script src="/js/canvas.js"></script>
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 隐藏禁用javascript（针对微信内置浏览器）的提示
+            $('.noscript').hide();
+
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
+
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed').each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt') || ' ');
+            }).materialbox();
+
+            // 优化表格的显示
+            $('table').each(function() {
+                var $table = $(this);
+                // 除去多行代码的情况
+                if ($table.find('pre').length == 0) {
+                    $table.addClass('responsive-table striped bordered');
+                }
+            });
+
+            // 首页幻灯片
+            $('.slider').slider({indicators: true, full_width: true, interval: 8000});
+
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+
+            // 目录随屏幕滚动（防止目录过长越过footer）
+            var $toc = $('.toc');
+            var scrollTargetTop = 0;
+            $(window).scroll(function() {
+                var $activeLink = $toc.find('a.active.section');
+                if ($(window).scrollTop() < 100) {
+                    scrollTargetTop = 0;
+                } else {
+                    if ($activeLink[0]) {
+                        scrollTargetTop = $activeLink.offset().top - $toc.offset().top;
+                    }
+                }
+                $toc.css('top', '-' + scrollTargetTop + 'px');
+            });
+
+            // 修正文章目录的left-border颜色
+            var color = $('.table-of-contents-text').css('color');
+            $('.table-of-contents-link').css('border-left-color', color);
+
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({
+                    scrollTop: 0
+                }, 500);
+            });
+
+            // 重置读书页面的Tab标签页的颜色
+            $('li.tab a').hover(function() {
+                $(this).toggleClass('text-lighten-4');
+            });
+            $('.indicator').addClass('pink lighten-2');
+
+            
+            // 添加new标签
+            $('.menu-apps').append('<span class="new badge pink"></span>');
+            
+
+            // 搜索功能
+            $('.modal-trigger').leanModal({
+                // 打开搜索框时自动聚焦
+                ready: function() {
+                    if ($('#search').is(":visible")) {
+                        $('#search-input').focus();
+                    }
+                }
+            });
+            var searchXml = "search.xml";
+            if (searchXml.length == 0) {
+             	searchXml = "search.xml";
+            }
+            var searchPath = "/" + searchXml;
+            initSearch(searchPath, 'search-input', 'search-result');
+        });
+
+        // 初始化搜索与匹配函数
+        var initSearch = function(path, search_id, content_id) {
+            'use strict';
+            $.ajax({
+                url: path,
+                dataType: "xml",
+                success: function(xmlResponse) {
+                    // get the contents from search data
+                    var datas = $("entry", xmlResponse).map(function() {
+                        return {
+                            title: $("title", this).text(),
+                            content: $("content", this).text(),
+                            url: $("url", this).text()
+                        };
+                    }).get();
+                    var $input = document.getElementById(search_id);
+                    var $resultContent = document.getElementById(content_id);
+                    $input.addEventListener('input', function() {
+                        var str = '<ul class=\"search-result-list\">';
+                        var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                        $resultContent.innerHTML = "";
+                        if (this.value.trim().length <= 0) {
+                            return;
+                        }
+                        // perform local searching
+                        datas.forEach(function(data) {
+                            var isMatch = true;
+                            var content_index = [];
+                            var data_title = data.title.trim().toLowerCase();
+                            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                            var data_url = data.url;
+                            var index_title = -1;
+                            var index_content = -1;
+                            var first_occur = -1;
+                            // only match artiles with not empty titles and contents
+                            if (data_title != '' && data_content != '') {
+                                keywords.forEach(function(keyword, i) {
+                                    index_title = data_title.indexOf(keyword);
+                                    index_content = data_content.indexOf(keyword);
+                                    if (index_title < 0 && index_content < 0) {
+                                        isMatch = false;
+                                    } else {
+                                        if (index_content < 0) {
+                                            index_content = 0;
+                                        }
+                                        if (i == 0) {
+                                            first_occur = index_content;
+                                        }
+                                    }
+                                });
+                            }
+                            // show search results
+                            if (isMatch) {
+                                keywords.forEach(function(keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword green lighten-2\">" + keyword + "</span>");
+                                });
+
+                                str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                                if (first_occur >= 0) {
+                                    // cut out 100 characters
+                                    var start = first_occur - 20;
+                                    var end = first_occur + 80;
+                                    if (start < 0) {
+                                        start = 0;
+                                    }
+                                    if (start == 0) {
+                                        end = 100;
+                                    }
+                                    if (end > content.length) {
+                                        end = content.length;
+                                    }
+                                    var match_content = content.substring(start, end);
+                                    // highlight all keywords
+                                    keywords.forEach(function(keyword) {
+                                        var regS = new RegExp(keyword, "gi");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword green lighten-2\">" + keyword + "</span>");
+                                    });
+
+                                    str += "<p class=\"search-result\">..." + match_content + "...</p>"
+                                }
+                                str += "</li>";
+                            }
+                        });
+                        str += "</ul>";
+                        $resultContent.innerHTML = str;
+                    });
+                }
+            });
+        }
+    })(jQuery);
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+</body>
+</html>
