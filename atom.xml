@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xichen.pub/"/>
-  <updated>2018-09-01T09:52:41.290Z</updated>
+  <updated>2018-09-04T08:37:25.492Z</updated>
   <id>http://xichen.pub/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>nodejs 中同步异步多种写法</title>
+    <link href="http://xichen.pub/2018/09/04/2018-09-04-js-async-await/"/>
+    <id>http://xichen.pub/2018/09/04/2018-09-04-js-async-await/</id>
+    <published>2018-09-03T20:11:00.000Z</published>
+    <updated>2018-09-04T08:37:25.492Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>nodejs 的同步异步写起来真爽，特别是结合 typescript，简直上天！感觉可以取代 go 的异步呢，哈哈。</p><h2 id="同步循环"><a href="#同步循环" class="headerlink" title="同步循环"></a>同步循环</h2><p>传统 for 循环：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; array.length; i++) &#123;</span><br><span class="line">  <span class="keyword">const</span> item = array[i]</span><br><span class="line">  <span class="comment">// do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>进阶 forEach：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">array.forEach(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">//do something</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><h2 id="异步循环"><a href="#异步循环" class="headerlink" title="异步循环"></a>异步循环</h2><h3 id="全部异步，不关心结果"><a href="#全部异步，不关心结果" class="headerlink" title="全部异步，不关心结果"></a>全部异步，不关心结果</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">doArray</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  array.forEach(<span class="keyword">async</span>(item) =&gt; &#123;</span><br><span class="line">    <span class="keyword">await</span> doItem(item)</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'loop done! But each item is sitll doing'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="依次同步"><a href="#依次同步" class="headerlink" title="依次同步"></a>依次同步</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">doArray</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> item <span class="keyword">of</span> array) &#123;</span><br><span class="line">    <span class="keyword">await</span> doItem(item)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'every item done!'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="异步执行，同步等结果"><a href="#异步执行，同步等结果" class="headerlink" title="异步执行，同步等结果"></a>异步执行，同步等结果</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">doArray</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> promises = array.map(<span class="function"><span class="params">item</span> =&gt;</span> doItem(item))</span><br><span class="line">  <span class="keyword">await</span> <span class="built_in">Promise</span>.all(promises)</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'every item done!'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h1&gt;&lt;p&gt;nodejs 的同步异步写起来真爽，特别是结合 typescript，简直上天！感觉可以取代 go 的异步呢，哈哈。&lt;/p&gt;
+&lt;h2 id=
+      
+    
+    </summary>
+    
+      <category term="区块链" scheme="http://xichen.pub/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+    
+      <category term="异步" scheme="http://xichen.pub/tags/%E5%BC%82%E6%AD%A5/"/>
+    
+      <category term="nodejs" scheme="http://xichen.pub/tags/nodejs/"/>
+    
+  </entry>
   
   <entry>
     <title>【翻译】 QTUM 的有限供应量 - 减半</title>
@@ -550,32 +578,6 @@
       
         &lt;h1 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h1&gt;&lt;p&gt;Android Studio 越用越卡，明明电脑配置不低了。。。&lt;/p&gt;
 &lt;h1 id=&quot;原因分析&quot;&gt;&lt;a href=&quot;#原因分析&quot; cla
-      
-    
-    </summary>
-    
-      <category term="Android" scheme="http://xichen.pub/categories/Android/"/>
-    
-    
-      <category term="Android Studio" scheme="http://xichen.pub/tags/Android-Studio/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【Android TimeCat】 解决cannot resolve symbol R</title>
-    <link href="http://xichen.pub/2018/04/08/2018-04-08-Android-TimeCat-%E8%A7%A3%E5%86%B3cant-resolve-symbol-R/"/>
-    <id>http://xichen.pub/2018/04/08/2018-04-08-Android-TimeCat-解决cant-resolve-symbol-R/</id>
-    <published>2018-04-08T06:11:00.000Z</published>
-    <updated>2018-05-20T03:51:36.836Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>莫名其妙出现了，鬼知道怎么来的。</p><h1 id="解决方法总结"><a href="#解决方法总结" class="headerlink" title="解决方法总结"></a>解决方法总结</h1><h2 id="1-推荐"><a href="#1-推荐" class="headerlink" title="1. 推荐"></a>1. 推荐</h2><p>解决90%的情况：</p><p><code>Build-&gt;Clean Project</code><br><code>Build-&gt;Rebuild Project</code></p><p><img src="/assets/blog/img/2018-04-8/0.png" width="700"></p><h2 id="2-不常见"><a href="#2-不常见" class="headerlink" title="2. 不常见"></a>2. 不常见</h2><p>Android Studio 有个奇葩的设置。。</p><p><img src="/assets/blog/img/2018-04-8/1.png" width="700"><br><img src="/assets/blog/img/2018-04-8/2.png" width="700"></p><p>欸，来搞一下分配的空间就行了。</p><p>打开ide配置</p><p><img src="/assets/blog/img/2018-04-8/3.png" width="700"></p><p>填入<code>idea.max.intellisense.filesize=99999999</code></p><p><img src="/assets/blog/img/2018-04-8/4.png" width="700"></p><p>清缓存然后重启Android Studio</p><p><img src="/assets/blog/img/2018-04-8/5.png" width="700"><br><img src="/assets/blog/img/2018-04-8/6.png" width="700"></p><h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><ul><li><a href="https://stackoverflow.com/questions/17054000/cannot-resolve-symbol-r-in-android-studio" target="_blank" rel="noopener">“cannot resolve symbol R” in Android Studio</a></li><li><a href="https://developer.android.com/studio/intro/studio-config?hl=zh-cn" target="_blank" rel="noopener">官方-配置 Android Studio</a></li><li><a href="https://stackoverflow.com/questions/23057988/file-size-exceeds-configured-limit-2560000-code-insight-features-not-availabl?utm_medium=organic&amp;utm_source=google_rich_qa&amp;utm_campaign=google_rich_qa" target="_blank" rel="noopener">File size exceeds configured limit (2560000), code insight features not available</a></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h1&gt;&lt;p&gt;莫名其妙出现了，鬼知道怎么来的。&lt;/p&gt;
-&lt;h1 id=&quot;解决方法总结&quot;&gt;&lt;a href=&quot;#解决方法总结&quot; class=&quot;headerli
       
     
     </summary>
