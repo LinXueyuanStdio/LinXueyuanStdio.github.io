@@ -1,0 +1,18 @@
+{
+  "title": "PIXEL MASTER",
+  "menu": {
+    "leaderboard": "리더보드",
+    "faq": "FAQ"
+  },
+  "faq": {
+    "title": "PIXEL MASTER FAQ",
+    "intro": "PIXEL MASTER는 블록 체인을 기반으로 만든 세계 최초의 합작 아트워크 dApp입니다. 툴바를 사용하여 픽셀을 그리세요. <1>{{EOS_CORE_SYMBOL}}</1> 토큰을 구입하여 픽셀을 확인하십시오. 이를 위해서는 <3>EOS 계정</3> 과 <5>Scatter</5>가 필요합니다.",
+    "questions": {
+      "credits": "누가 만들었습니까?"
+    },
+    "answers": {}
+  },
+  "drawer": "<0>PIXEL MASTER </0>은 블록체인을 기반으로 한 세계 최초의 합작 아트워크 dApp입니다. 픽셀로 그림을 그리고 토큰을 얻으십시오! <2> 자세히 알아보기 →</2>",
+  "connectWithScatter": "스캐터로 연결",
+  "depositTip": "미인출된 {{deposit}}의 예치금이 있습니다."
+}

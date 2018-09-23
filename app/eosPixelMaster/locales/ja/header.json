@@ -1,0 +1,18 @@
+{
+  "title": "EOSピクセルズ",
+  "menu": {
+    "leaderboard": "リーダーボード",
+    "faq": "FAQ"
+  },
+  "faq": {
+    "title": "EOSピクセルズのよくあるご質問（FAQ）",
+    "intro": "EOSピクセルズはブロックチェーンに基づく世界初のコラボレーションアートワークです。<1>EOS</1>トークンで購入してピクセルを確認する。これは<3>EOS アカウント</3>と<5>Scatter</5>が必要です。",
+    "questions": {
+      "credits": "誰がこれを作りましたか?"
+    },
+    "answers": {}
+  },
+  "drawer": "<0>PIXEL MASTER</0> はブロックチェインで世界初の共同制作作品です。 ピクセルをペイントしてトークンを獲得しましょう！ <2>Learn more →</2>",
+  "connectWithScatter": "Scatterと接続します",
+  "depositTip": "{{deposit}}未払いの預金があります。 "
+}

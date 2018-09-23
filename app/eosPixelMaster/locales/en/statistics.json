@@ -1,0 +1,13 @@
+{
+  "description": {
+    "totalValue": "Canvas is currently worth {{worth}} {{EOS_CORE_SYMBOL}}!",
+    "pot": "The Last Pixel Painter will receive 100% of this pot!",
+    "timeLeft": "This canvas will end if there are no new pixels",
+    "ended": "This canvas had ended",
+    "coordinate": "Current coordinate"
+  },
+  "totalValue": "Total Value: {{worth}} {{EOS_CORE_SYMBOL}}",
+  "timeLeft": "{{d}}{{h}}{{min}}{{s}} Left",
+  "ended": "Ended",
+  "pot": "Pot: {{pot}}"
+}

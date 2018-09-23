@@ -1,0 +1,7 @@
+{
+  "launchPartners": "출시 파트너사",
+  "dropzoneTip": {
+    "accept": "여기에 페인트 칠하기",
+    "reject": "지원되지 않는 파일형식입니다."
+  }
+}

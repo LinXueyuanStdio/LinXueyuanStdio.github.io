@@ -1,0 +1,11 @@
+{
+  "description": {
+    "totalValue": "{{worth}} {{EOS_CORE_SYMBOL}}의 가치가 있는 캔버스입니다.",
+    "timeLeft": "새 픽셀이 추가 되지 않으면 이 캔버스는 완성됩니다.",
+    "ended": "이 캔버스는 완성되었습니다.",
+    "coordinate": "현재 좌표"
+  },
+  "totalValue": "총 가치: {{EOS_CORE_SYMBOL}} {{worth}}",
+  "timeLeft": "{{d}}{{h}}{{min}}{{s}} 남았습니다",
+  "ended": "종료되었습니다."
+}

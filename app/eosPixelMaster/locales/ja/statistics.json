@@ -1,0 +1,11 @@
+{
+  "description": {
+    "totalValue": "この画布は現在価値があります{{worth}} {{EOS_CORE_SYMBOL}}",
+    "timeLeft": "この画布は新しいピクセルがない場合に終了します",
+    "ended": "この画布は終了しました",
+    "coordinate": "現在の座標"
+  },
+  "totalValue": "総価値: {{worth}} {{EOS_CORE_SYMBOL}}",
+  "timeLeft": "残り{{d}}{{h}}{{min}}{{s}}",
+  "ended": "終了しました"
+}

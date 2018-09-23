@@ -1,0 +1,45 @@
+{
+  "tools": {
+    "move": "이동",
+    "paint": {
+      "default": "픽셀 그리기",
+      "zoom": "그림 확대"
+    },
+    "eraser": "지우개",
+    "uploadImage": {
+      "default": "이미지 업로드",
+      "placing": "이미지 배치"
+    },
+    "eyedropper": "스포이드",
+    "grid": "그리드",
+    "zoomIn": "확대",
+    "zoomOut": "축소",
+    "undo": "실행취소",
+    "redo": "재실행",
+    "clear": "모두 지우기"
+  },
+  "uploadImage": {
+    "guide": {
+      "default": "캔버스에 이미지를 드래그하거나 아래 버튼을 사용하십시오.",
+      "uploaded": "이미지를 위치를 정하고 클릭하여 배치하십시오. (이 팝업을 숨기려면 I 또는 Esc를 누르세요.)"
+    },
+    "noImage": "이미지 없음",
+    "actionButton": {
+      "upload": "파일 업로드",
+      "replace": "파일 배치"
+    },
+    "dithering": {
+      "description": "이미지의 품질을 향상시킬 수 있습니다.",
+      "label": "디더링 적용"
+    },
+    "remove": "제거"
+  },
+  "info": {
+    "unavailablePrompt": "죄송합니다. 귀하의 기기에서 구입할 수 없습니다.",
+    "connecting": "연결중...",
+    "noScatter": "픽셀을 구입하려면 <1>스캐터</1>와 연결해야 합니다. <3>(가이드 참조)</3>",
+    "price": "그려진<1><0>{{pixelCount}}</0>픽셀</1> — 총 가격<3><0>{{totalPrice}}</0></3>",
+    "price_plural": "그려진 <1><0>{{pixelCount}}</0>픽셀들</1> — 총 가격<3><0>{{totalPrice}}</0></3>",
+    "viewDetail": "(세부사항 보기)"
+  }
+}
