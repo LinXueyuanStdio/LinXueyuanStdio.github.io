@@ -26,33 +26,6 @@
     </entry>
     
     <entry>
-      <title><![CDATA[【Android TimeCat】ANR in com.time.cat]]></title>
-      <url>/2019/03/14/2019-02-13-ANR/</url>
-      <content type="html"><![CDATA[<p>E/ANRManager: ANR in com.time.cat, time=428313880<br>    Reason: Broadcast of Intent { act=android.appwidget.action.APPWIDGET_UPDATE flg=0x114 cmp=com.time.cat/com.timecat.module.master.mvp.ui.widgets.NoteWidgetProvider (has extras) }</p>
-<p>引起这个错误的原因是，在一个BroadcastReceiver中的onReceive方法中的处理不能超过10秒，如果超过就会出现ANR错误。</p>
-<p>所有尽量不要在onReceive中做耗时的处理，最好用Service来处理。（不要另外开启线程，因为这个线程会随着onReceive的返回而终止。）</p>
-<p>以下在Google API中的原文：</p>
-<p>so you should never perform long-running operations in it (there is a timeout of 10 seconds that the system allows </p>
-<p>before considering the receiver to be blocked and a candidate to be killed). You cannot launch a popup dialog in your </p>
-<h2 id="implementation-of-onReceive"><a href="#implementation-of-onReceive" class="headerlink" title="implementation of onReceive()."></a>implementation of onReceive().</h2><p>作者：huangliop<br>来源：CSDN<br>原文：<a href="https://blog.csdn.net/huangliop/article/details/7615262" target="_blank" rel="noopener">https://blog.csdn.net/huangliop/article/details/7615262</a><br>版权声明：本文为博主原创文章，转载请附上博文链接！</p>
-]]></content>
-      
-        <categories>
-            
-            <category> Android </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> ANR </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[深度学习资料推荐]]></title>
       <url>/2019/03/14/2019-03-12-deeplearning_resources/</url>
       <content type="html"><![CDATA[<h1 id="深度学习资料推荐"><a href="#深度学习资料推荐" class="headerlink" title="深度学习资料推荐"></a>深度学习资料推荐</h1><p>深度学习火起来之后，网上关于深度学习的资料很多。但是其质量参差不齐。我从2013年开始就关注深度学习，见证了它从一个小圈子的领先技术到一个大众所追捧的热门技术的过程。也看了很多资料。我认为一个高质量的学习资料可以帮助你真正的理解深度学习的本质，并且更好地掌握这项技术，用于实践。</p>
@@ -92,8 +65,6 @@
       
         <categories>
             
-            <category> resource </category>
-            
             <category> Deep Learning </category>
             
         </categories>
@@ -101,7 +72,36 @@
         
         <tags>
             
+            <tag> resource </tag>
+            
             <tag> Deep Learning </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[【Android TimeCat】ANR in com.time.cat]]></title>
+      <url>/2019/03/14/2019-02-13-ANR/</url>
+      <content type="html"><![CDATA[<p>E/ANRManager: ANR in com.time.cat, time=428313880<br>    Reason: Broadcast of Intent { act=android.appwidget.action.APPWIDGET_UPDATE flg=0x114 cmp=com.time.cat/com.timecat.module.master.mvp.ui.widgets.NoteWidgetProvider (has extras) }</p>
+<p>引起这个错误的原因是，在一个BroadcastReceiver中的onReceive方法中的处理不能超过10秒，如果超过就会出现ANR错误。</p>
+<p>所有尽量不要在onReceive中做耗时的处理，最好用Service来处理。（不要另外开启线程，因为这个线程会随着onReceive的返回而终止。）</p>
+<p>以下在Google API中的原文：</p>
+<p>so you should never perform long-running operations in it (there is a timeout of 10 seconds that the system allows </p>
+<p>before considering the receiver to be blocked and a candidate to be killed). You cannot launch a popup dialog in your </p>
+<h2 id="implementation-of-onReceive"><a href="#implementation-of-onReceive" class="headerlink" title="implementation of onReceive()."></a>implementation of onReceive().</h2><p>作者：huangliop<br>来源：CSDN<br>原文：<a href="https://blog.csdn.net/huangliop/article/details/7615262" target="_blank" rel="noopener">https://blog.csdn.net/huangliop/article/details/7615262</a><br>版权声明：本文为博主原创文章，转载请附上博文链接！</p>
+]]></content>
+      
+        <categories>
+            
+            <category> Android </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> ANR </tag>
             
         </tags>
         
@@ -176,8 +176,6 @@
 ]]></content>
       
         <categories>
-            
-            <category> TensorFlow </category>
             
             <category> Deep Learning </category>
             
@@ -1819,7 +1817,7 @@
 <p>把 <code>a</code> 和 <code>b</code> 改成每个 16 字节：</p>
 <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">pragma</span> solidity<span class="regexp"> ^0.4.11</span>;</span><br><span class="line"><span class="attribute">contract</span> C &#123;</span><br><span class="line">    <span class="attribute">uint128</span> a;</span><br><span class="line">    <span class="attribute">uint128</span> b;</span><br><span class="line">    <span class="attribute">function</span> C() &#123;</span><br><span class="line">      <span class="attribute">a</span> = <span class="number">1</span>;</span><br><span class="line">      <span class="attribute">b</span> = <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>编译合约：</p>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ solc --<span class="keyword">bin </span>--asm <span class="built_in">c3</span>.sol</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> solc --bin --asm c3.sol</span></span><br></pre></td></tr></table></figure>
 <p>生成的汇编代码更复杂了：<br><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">tag_2:</span><br><span class="line">  // a = 1</span><br><span class="line">  0x1</span><br><span class="line">  0x0</span><br><span class="line">  dup1</span><br><span class="line">  0x100</span><br><span class="line">  exp</span><br><span class="line">  dup2</span><br><span class="line">  sload</span><br><span class="line">  dup2</span><br><span class="line">  0xffffffffffffffffffffffffffffffff</span><br><span class="line">  mul</span><br><span class="line">  not</span><br><span class="line">  and</span><br><span class="line">  swap1</span><br><span class="line">  dup4</span><br><span class="line">  0xffffffffffffffffffffffffffffffff</span><br><span class="line">  and</span><br><span class="line">  mul</span><br><span class="line">  or</span><br><span class="line">  swap1</span><br><span class="line">  sstore</span><br><span class="line">  pop</span><br><span class="line">  // b = 2</span><br><span class="line">  0x2</span><br><span class="line">  0x0</span><br><span class="line">  0x10</span><br><span class="line">  0x100</span><br><span class="line">  exp</span><br><span class="line">  dup2</span><br><span class="line">  sload</span><br><span class="line">  dup2</span><br><span class="line">  0xffffffffffffffffffffffffffffffff</span><br><span class="line">  mul</span><br><span class="line">  not</span><br><span class="line">  and</span><br><span class="line">  swap1</span><br><span class="line">  dup4</span><br><span class="line">  0xffffffffffffffffffffffffffffffff</span><br><span class="line">  and</span><br><span class="line">  mul</span><br><span class="line">  or</span><br><span class="line">  swap1</span><br><span class="line">  sstore</span><br><span class="line">  pop</span><br></pre></td></tr></table></figure></p>
 <p>上面的汇编代码把 2 个变量打包到1个存储地址( <code>0x0</code> )，像这样：</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">         b         </span>][<span class="symbol">         a         </span>]</span><br><span class="line">[<span class="string">16 bytes / 128 bits</span>][<span class="symbol">16 bytes / 128 bits</span>]</span><br></pre></td></tr></table></figure>
@@ -4819,7 +4817,7 @@
 <h1 id="与voting合约交互"><a href="#与voting合约交互" class="headerlink" title="与voting合约交互"></a>与voting合约交互</h1><p>成功部署合同后，现在应该能够获取投票计数并通过<code>truffle</code>控制台进行投票。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ truffle <span class="built_in">console</span></span><br><span class="line">truffle(<span class="keyword">default</span>)&gt; Voting.deployed().then(<span class="function"><span class="keyword">function</span>(<span class="params">contractInstance</span>) </span>&#123;contractInstance.voteForCandidate(<span class="string">'Rama'</span>).then(<span class="function"><span class="keyword">function</span>(<span class="params">v</span>) </span>&#123;<span class="built_in">console</span>.log(v)&#125;)&#125;)</span><br><span class="line"><span class="comment">// After a few seconds, you should see a transaction receipt like this:</span></span><br><span class="line">receipt:</span><br><span class="line">&#123; <span class="attr">blockHash</span>: <span class="string">'0x7229f668db0ac335cdd0c4c86e0394a35dd471a1095b8fafb52ebd7671433156'</span>,</span><br><span class="line">blockNumber: <span class="number">469628</span>,</span><br><span class="line">contractAddress: <span class="literal">null</span>,</span><br><span class="line">....</span><br><span class="line">....</span><br><span class="line">truffle(<span class="keyword">default</span>)&gt; Voting.deployed().then(<span class="function"><span class="keyword">function</span>(<span class="params">contractInstance</span>) </span>&#123;contractInstance.totalVotesFor.call(<span class="string">'Rama'</span>).then(<span class="function"><span class="keyword">function</span>(<span class="params">v</span>) </span>&#123;<span class="built_in">console</span>.log(v)&#125;)&#125;)</span><br><span class="line">&#123; [<span class="built_in">String</span>: <span class="string">'1'</span>] s: <span class="number">1</span>, <span class="attr">e</span>: <span class="number">0</span>, <span class="attr">c</span>: [ <span class="number">1</span>] &#125;</span><br></pre></td></tr></table></figure>
 <p>现在启动服务器</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm <span class="keyword">run</span><span class="bash"> dev</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> npm run dev</span></span><br></pre></td></tr></table></figure>
 <p>应该在<code>localhost：8080</code>看到投票页面，并且能够投票并看到所有候选人的投票数量。由于我们正在处理一个真正的区块链，所以每次写入区块链（voteForCandidate）将需要几秒钟的时间（矿工必须将您的交易包括在区块中，区块中包含区块链）。</p>
 <div class="image-package"><br><img src="/assets/blog/img/2018-01-26/0.png" width="700"><br></div>
 
@@ -6046,6 +6044,26 @@ id* | pid(FK) | finish | name | date | content
     </entry>
     
     <entry>
+      <title><![CDATA[区块链开发（二）部署并运行以太坊智能合约]]></title>
+      <url>/2017/12/06/2017-12-06-%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91%EF%BC%88%E4%BA%8C%EF%BC%89%E9%83%A8%E7%BD%B2%E5%B9%B6%E8%BF%90%E8%A1%8C%E4%BB%A5%E5%A4%AA%E5%9D%8A%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/</url>
+      <content type="html"></content>
+      
+        <categories>
+            
+            <category> 区块链 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 区块链 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[区块链开发（零）概念入门]]></title>
       <url>/2017/12/06/2017-11-27-%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91%EF%BC%88%E9%9B%B6%EF%BC%89%E6%A6%82%E5%BF%B5%E5%85%A5%E9%97%A8/</url>
       <content type="html"><![CDATA[<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><h2 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h2><p>比特币地址（例如：1DSrfJdB2AnWaFNgSbv3MZC2m74996JafV）由一串字符和数字组成，以阿拉伯数字“1”开头。就像别人向你的email地址发送电子邮件一样，他可以通过你的比特币地址向你发送比特币。</p>
@@ -6097,26 +6115,6 @@ id* | pid(FK) | finish | name | date | content
 <li><a href="http://zhibimo.com/read/wang-miao/mastering-bitcoin" target="_blank" rel="noopener">http://zhibimo.com/read/wang-miao/mastering-bitcoin</a></li>
 </ul>
 ]]></content>
-      
-        <categories>
-            
-            <category> 区块链 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> 区块链 </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[区块链开发（二）部署并运行以太坊智能合约]]></title>
-      <url>/2017/12/06/2017-12-06-%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91%EF%BC%88%E4%BA%8C%EF%BC%89%E9%83%A8%E7%BD%B2%E5%B9%B6%E8%BF%90%E8%A1%8C%E4%BB%A5%E5%A4%AA%E5%9D%8A%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/</url>
-      <content type="html"></content>
       
         <categories>
             
@@ -6693,9 +6691,9 @@ id* | pid(FK) | finish | name | date | content
         
         <tags>
             
-            <tag> Python </tag>
-            
             <tag> Proxy </tag>
+            
+            <tag> Python </tag>
             
         </tags>
         
@@ -7133,6 +7131,32 @@ id* | pid(FK) | finish | name | date | content
     </entry>
     
     <entry>
+      <title><![CDATA[代理]]></title>
+      <url>/2017/08/21/2017-08-21-%E4%BB%A3%E7%90%86/</url>
+      <content type="html"><![CDATA[<h2 id="1-lantern"><a href="#1-lantern" class="headerlink" title="1.lantern"></a>1.lantern</h2><h4 id="浏览器代理"><a href="#浏览器代理" class="headerlink" title="浏览器代理"></a>浏览器代理</h4><p><a href="https://github.com/getlantern/lantern" target="_blank" rel="noopener">https://github.com/getlantern/lantern</a></p>
+<h4 id="命令行代理"><a href="#命令行代理" class="headerlink" title="命令行代理"></a>命令行代理</h4><p>打开蓝灯后，终端下输入：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">export</span> <span class="attribute">http_proxy</span>=http://127.0.0.1:8787</span><br><span class="line"></span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">https_proxy</span>=http://127.0.0.1:8787</span><br></pre></td></tr></table></figure>
+<p>:8787是端口号，具体查看<code>系统设置</code>–<code>网络</code>–<code>网络代理</code></p>
+]]></content>
+      
+        <categories>
+            
+            <category> Proxy </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Proxy </tag>
+            
+            <tag> Lantern </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[GO的安装和配置]]></title>
       <url>/2017/08/21/2017-08-21-Go%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/</url>
       <content type="html"><![CDATA[<h2 id="0-Install-Go"><a href="#0-Install-Go" class="headerlink" title="0.Install Go"></a>0.Install Go</h2><blockquote>
@@ -7186,32 +7210,6 @@ id* | pid(FK) | finish | name | date | content
             <tag> Install </tag>
             
             <tag> Settings </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[代理]]></title>
-      <url>/2017/08/21/2017-08-21-%E4%BB%A3%E7%90%86/</url>
-      <content type="html"><![CDATA[<h2 id="1-lantern"><a href="#1-lantern" class="headerlink" title="1.lantern"></a>1.lantern</h2><h4 id="浏览器代理"><a href="#浏览器代理" class="headerlink" title="浏览器代理"></a>浏览器代理</h4><p><a href="https://github.com/getlantern/lantern" target="_blank" rel="noopener">https://github.com/getlantern/lantern</a></p>
-<h4 id="命令行代理"><a href="#命令行代理" class="headerlink" title="命令行代理"></a>命令行代理</h4><p>打开蓝灯后，终端下输入：</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">export</span> <span class="attribute">http_proxy</span>=http://127.0.0.1:8787</span><br><span class="line"></span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">https_proxy</span>=http://127.0.0.1:8787</span><br></pre></td></tr></table></figure>
-<p>:8787是端口号，具体查看<code>系统设置</code>–<code>网络</code>–<code>网络代理</code></p>
-]]></content>
-      
-        <categories>
-            
-            <category> Proxy </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Proxy </tag>
-            
-            <tag> Lantern </tag>
             
         </tags>
         
@@ -7955,25 +7953,22 @@ id* | pid(FK) | finish | name | date | content
     </entry>
     
     <entry>
-      <title><![CDATA[Ubuntu常用软件]]></title>
-      <url>/2017/06/23/2017-06-24-ubuntu%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/</url>
-      <content type="html"><![CDATA[<p>习惯了Arch的yaourt之后再使用ubuntu ppa就有一种就怕货比货的感觉。</p>
-<p>收集一下常用的ubuntu软件安装，便于下次无脑重装。</p>
+      <title><![CDATA[Ubuntu以及Arch Linux更换清华源]]></title>
+      <url>/2017/06/23/2017-06-23-ubuntu%E6%8D%A2%E6%BA%90%E4%BB%A5%E5%8F%8AArch-linux%E6%9B%B4%E6%8D%A2%E6%B8%85%E5%8D%8E%E6%BA%90/</url>
+      <content type="html"><![CDATA[<h3 id="Ubuntu"><a href="#Ubuntu" class="headerlink" title="Ubuntu"></a><strong>Ubuntu</strong></h3><p><a href="https://mirror.tuna.tsinghua.edu.cn/help/ubuntu/" target="_blank" rel="noopener">Ubuntu清华源更换网址</a></p>
+<p>这个地址里同样有其他Linux发行版的源使用帮助信息。</p>
+<p><strong>更换步骤</strong></p>
+<p>1.在上述网址选择ubuntu版本，生成对应的源地址；</p>
+<p>2.备份原始文件</p>
+<p><code>sudo cp /etc/apt/sources.list /etc/apt/sources.list.backup</code></p>
+<p>3.编辑源文件</p>
+<p><code>sudo vim /etc/apt/sources.list</code></p>
+<p>将<code>sources.list</code>中内容注释或者删除掉，然后将第一步中生成的源地址粘贴进去；</p>
+<p>4.然后更新软件包缓存<code>sudo apt update</code></p>
 <hr>
-<p><strong>1.Albert</strong></p>
-<p>这款软件是必装的了，一个很好用的Launcher。官方介绍如下：</p>
-<blockquote>
-<p>Access everything with virtually zero effort. Run applications, open files or their paths,open bookmarks in your browser, search the web, calculate things and a lot more …</p>
-</blockquote>
-<p><strong>Ubuntu-PPA(hotice/webupd8)</strong></p>
-<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo<span class="built_in"> add-apt-repository </span>ppa:nilarimogard/webupd8</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install albert</span><br></pre></td></tr></table></figure>
-<p><strong>2.chrome</strong></p>
-<p>1.将下载源添加到系统源：</p>
-<p><code>sudo wget https://repo.fdzh.org/chrome/google-chrome.list -P /etc/apt/sources.list.d/</code></p>
-<p>2.导入google软件公钥：</p>
-<p><code>wget -q -O - https://dl.google.com/linux/linux_signing_key.pub  | sudo apt-key add -</code></p>
-<p>3.更新源然后安装：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt <span class="keyword">update</span></span><br><span class="line">sudo apt <span class="keyword">install</span> google-chrome-stable</span><br></pre></td></tr></table></figure>
+<h3 id="Arch-Linux"><a href="#Arch-Linux" class="headerlink" title="Arch Linux"></a><strong>Arch Linux</strong></h3><p>编辑­<code>/etc/pacman.d/mirrorlist</code>,在文件最顶端添加：</p>
+<p><code>Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch</code></p>
+<p>然后更新软件包缓存<code>sudo pacman -Syy</code></p>
 ]]></content>
       
         <categories>
@@ -7994,22 +7989,25 @@ id* | pid(FK) | finish | name | date | content
     </entry>
     
     <entry>
-      <title><![CDATA[Ubuntu以及Arch Linux更换清华源]]></title>
-      <url>/2017/06/23/2017-06-23-ubuntu%E6%8D%A2%E6%BA%90%E4%BB%A5%E5%8F%8AArch-linux%E6%9B%B4%E6%8D%A2%E6%B8%85%E5%8D%8E%E6%BA%90/</url>
-      <content type="html"><![CDATA[<h3 id="Ubuntu"><a href="#Ubuntu" class="headerlink" title="Ubuntu"></a><strong>Ubuntu</strong></h3><p><a href="https://mirror.tuna.tsinghua.edu.cn/help/ubuntu/" target="_blank" rel="noopener">Ubuntu清华源更换网址</a></p>
-<p>这个地址里同样有其他Linux发行版的源使用帮助信息。</p>
-<p><strong>更换步骤</strong></p>
-<p>1.在上述网址选择ubuntu版本，生成对应的源地址；</p>
-<p>2.备份原始文件</p>
-<p><code>sudo cp /etc/apt/sources.list /etc/apt/sources.list.backup</code></p>
-<p>3.编辑源文件</p>
-<p><code>sudo vim /etc/apt/sources.list</code></p>
-<p>将<code>sources.list</code>中内容注释或者删除掉，然后将第一步中生成的源地址粘贴进去；</p>
-<p>4.然后更新软件包缓存<code>sudo apt update</code></p>
+      <title><![CDATA[Ubuntu常用软件]]></title>
+      <url>/2017/06/23/2017-06-24-ubuntu%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/</url>
+      <content type="html"><![CDATA[<p>习惯了Arch的yaourt之后再使用ubuntu ppa就有一种就怕货比货的感觉。</p>
+<p>收集一下常用的ubuntu软件安装，便于下次无脑重装。</p>
 <hr>
-<h3 id="Arch-Linux"><a href="#Arch-Linux" class="headerlink" title="Arch Linux"></a><strong>Arch Linux</strong></h3><p>编辑­<code>/etc/pacman.d/mirrorlist</code>,在文件最顶端添加：</p>
-<p><code>Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch</code></p>
-<p>然后更新软件包缓存<code>sudo pacman -Syy</code></p>
+<p><strong>1.Albert</strong></p>
+<p>这款软件是必装的了，一个很好用的Launcher。官方介绍如下：</p>
+<blockquote>
+<p>Access everything with virtually zero effort. Run applications, open files or their paths,open bookmarks in your browser, search the web, calculate things and a lot more …</p>
+</blockquote>
+<p><strong>Ubuntu-PPA(hotice/webupd8)</strong></p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo<span class="built_in"> add-apt-repository </span>ppa:nilarimogard/webupd8</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install albert</span><br></pre></td></tr></table></figure>
+<p><strong>2.chrome</strong></p>
+<p>1.将下载源添加到系统源：</p>
+<p><code>sudo wget https://repo.fdzh.org/chrome/google-chrome.list -P /etc/apt/sources.list.d/</code></p>
+<p>2.导入google软件公钥：</p>
+<p><code>wget -q -O - https://dl.google.com/linux/linux_signing_key.pub  | sudo apt-key add -</code></p>
+<p>3.更新源然后安装：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt <span class="keyword">update</span></span><br><span class="line">sudo apt <span class="keyword">install</span> google-chrome-stable</span><br></pre></td></tr></table></figure>
 ]]></content>
       
         <categories>
@@ -8205,6 +8203,37 @@ id* | pid(FK) | finish | name | date | content
     </entry>
     
     <entry>
+      <title><![CDATA[python Tips]]></title>
+      <url>/2017/05/20/2017-9-18-python-require-install/</url>
+      <content type="html"><![CDATA[<h1 id="自动生成和安装requirements-txt依赖"><a href="#自动生成和安装requirements-txt依赖" class="headerlink" title="自动生成和安装requirements.txt依赖"></a>自动生成和安装requirements.txt依赖</h1><p>requirements.txt可以通过pip命令自动生成和安装</p>
+<ul>
+<li><p>生成requirements.txt文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip freeze &gt; requirements.txt</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装requirements.txt依赖</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install -r requirements.txt</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> Tips </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Tips </tag>
+            
+            <tag> python </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[正则表达式入门笔记]]></title>
       <url>/2017/05/20/2017-05-20-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/</url>
       <content type="html"><![CDATA[<hr>
@@ -8304,37 +8333,6 @@ id* | pid(FK) | finish | name | date | content
         <tags>
             
             <tag> Linux </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[python Tips]]></title>
-      <url>/2017/05/20/2017-9-18-python-require-install/</url>
-      <content type="html"><![CDATA[<h1 id="自动生成和安装requirements-txt依赖"><a href="#自动生成和安装requirements-txt依赖" class="headerlink" title="自动生成和安装requirements.txt依赖"></a>自动生成和安装requirements.txt依赖</h1><p>requirements.txt可以通过pip命令自动生成和安装</p>
-<ul>
-<li><p>生成requirements.txt文件</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip freeze &gt; requirements.txt</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>安装requirements.txt依赖</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install -r requirements.txt</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-]]></content>
-      
-        <categories>
-            
-            <category> Tips </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Tips </tag>
-            
-            <tag> python </tag>
             
         </tags>
         
