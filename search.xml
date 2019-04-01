@@ -26,6 +26,33 @@
     </entry>
     
     <entry>
+      <title><![CDATA[【Android TimeCat】ANR in com.time.cat]]></title>
+      <url>/2019/03/14/2019-02-13-ANR/</url>
+      <content type="html"><![CDATA[<p>E/ANRManager: ANR in com.time.cat, time=428313880<br>    Reason: Broadcast of Intent { act=android.appwidget.action.APPWIDGET_UPDATE flg=0x114 cmp=com.time.cat/com.timecat.module.master.mvp.ui.widgets.NoteWidgetProvider (has extras) }</p>
+<p>引起这个错误的原因是，在一个BroadcastReceiver中的onReceive方法中的处理不能超过10秒，如果超过就会出现ANR错误。</p>
+<p>所有尽量不要在onReceive中做耗时的处理，最好用Service来处理。（不要另外开启线程，因为这个线程会随着onReceive的返回而终止。）</p>
+<p>以下在Google API中的原文：</p>
+<p>so you should never perform long-running operations in it (there is a timeout of 10 seconds that the system allows </p>
+<p>before considering the receiver to be blocked and a candidate to be killed). You cannot launch a popup dialog in your </p>
+<h2 id="implementation-of-onReceive"><a href="#implementation-of-onReceive" class="headerlink" title="implementation of onReceive()."></a>implementation of onReceive().</h2><p>作者：huangliop<br>来源：CSDN<br>原文：<a href="https://blog.csdn.net/huangliop/article/details/7615262" target="_blank" rel="noopener">https://blog.csdn.net/huangliop/article/details/7615262</a><br>版权声明：本文为博主原创文章，转载请附上博文链接！</p>
+]]></content>
+      
+        <categories>
+            
+            <category> Android </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> ANR </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[深度学习资料推荐]]></title>
       <url>/2019/03/14/2019-03-12-deeplearning_resources/</url>
       <content type="html"><![CDATA[<h1 id="深度学习资料推荐"><a href="#深度学习资料推荐" class="headerlink" title="深度学习资料推荐"></a>深度学习资料推荐</h1><p>深度学习火起来之后，网上关于深度学习的资料很多。但是其质量参差不齐。我从2013年开始就关注深度学习，见证了它从一个小圈子的领先技术到一个大众所追捧的热门技术的过程。也看了很多资料。我认为一个高质量的学习资料可以帮助你真正的理解深度学习的本质，并且更好地掌握这项技术，用于实践。</p>
@@ -67,39 +94,14 @@
             
             <category> resource </category>
             
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> deeplearning </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[【Android TimeCat】ANR in com.time.cat]]></title>
-      <url>/2019/03/14/2019-02-13-ANR/</url>
-      <content type="html"><![CDATA[<p>E/ANRManager: ANR in com.time.cat, time=428313880<br>    Reason: Broadcast of Intent { act=android.appwidget.action.APPWIDGET_UPDATE flg=0x114 cmp=com.time.cat/com.timecat.module.master.mvp.ui.widgets.NoteWidgetProvider (has extras) }</p>
-<p>引起这个错误的原因是，在一个BroadcastReceiver中的onReceive方法中的处理不能超过10秒，如果超过就会出现ANR错误。</p>
-<p>所有尽量不要在onReceive中做耗时的处理，最好用Service来处理。（不要另外开启线程，因为这个线程会随着onReceive的返回而终止。）</p>
-<p>以下在Google API中的原文：</p>
-<p>so you should never perform long-running operations in it (there is a timeout of 10 seconds that the system allows </p>
-<p>before considering the receiver to be blocked and a candidate to be killed). You cannot launch a popup dialog in your </p>
-<h2 id="implementation-of-onReceive"><a href="#implementation-of-onReceive" class="headerlink" title="implementation of onReceive()."></a>implementation of onReceive().</h2><p>作者：huangliop<br>来源：CSDN<br>原文：<a href="https://blog.csdn.net/huangliop/article/details/7615262" target="_blank" rel="noopener">https://blog.csdn.net/huangliop/article/details/7615262</a><br>版权声明：本文为博主原创文章，转载请附上博文链接！</p>
-]]></content>
-      
-        <categories>
-            
-            <category> Android </category>
+            <category> Deep Learning </category>
             
         </categories>
         
         
         <tags>
             
-            <tag> ANR </tag>
+            <tag> Deep Learning </tag>
             
         </tags>
         
@@ -177,7 +179,7 @@
             
             <category> TensorFlow </category>
             
-            <category> deeplearning </category>
+            <category> Deep Learning </category>
             
         </categories>
         
@@ -4114,6 +4116,39 @@
     </entry>
     
     <entry>
+      <title><![CDATA[【Android TimeCat】 跳转QQ加群]]></title>
+      <url>/2018/02/26/2018-02-26-Android-TimeCat-%E8%B7%B3%E8%BD%ACQQ%E5%8A%A0%E7%BE%A4/</url>
+      <content type="html"><![CDATA[<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>TimeCat项目内测需要用到</p>
+<h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><ol>
+<li>访问<a href="https://qun.qq.com/join.html" target="_blank" rel="noopener">https://qun.qq.com/join.html</a></li>
+<li>登录</li>
+<li>左边选择QQ群，右边有代码，直接复制到项目即可</li>
+</ol>
+<p><img src="/assets/blog/img/2018-02-26/30.png" width="700"></p>
+<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><ol>
+<li>必须明确QQ群号</li>
+<li>该用户必须是QQ群号的管理员或群主</li>
+</ol>
+]]></content>
+      
+        <categories>
+            
+            <category> Android </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Android </tag>
+            
+            <tag> QQ </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[【Android TimeCat】 Android Studio 高效配置]]></title>
       <url>/2018/02/26/2018-02-26-Android-TimeCat-Android%20Studio%E9%AB%98%E6%95%88%E9%85%8D%E7%BD%AE/</url>
       <content type="html"><![CDATA[<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><h1 id="1、代码提示不区分大小写"><a href="#1、代码提示不区分大小写" class="headerlink" title="1、代码提示不区分大小写"></a>1、代码提示不区分大小写</h1><p>File | Settings 打开设置，选择Editor | General | Code Completion</p>
@@ -4177,39 +4212,6 @@
             <tag> Android </tag>
             
             <tag> Android Studio </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[【Android TimeCat】 跳转QQ加群]]></title>
-      <url>/2018/02/26/2018-02-26-Android-TimeCat-%E8%B7%B3%E8%BD%ACQQ%E5%8A%A0%E7%BE%A4/</url>
-      <content type="html"><![CDATA[<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>TimeCat项目内测需要用到</p>
-<h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><ol>
-<li>访问<a href="https://qun.qq.com/join.html" target="_blank" rel="noopener">https://qun.qq.com/join.html</a></li>
-<li>登录</li>
-<li>左边选择QQ群，右边有代码，直接复制到项目即可</li>
-</ol>
-<p><img src="/assets/blog/img/2018-02-26/30.png" width="700"></p>
-<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><ol>
-<li>必须明确QQ群号</li>
-<li>该用户必须是QQ群号的管理员或群主</li>
-</ol>
-]]></content>
-      
-        <categories>
-            
-            <category> Android </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Android </tag>
-            
-            <tag> QQ </tag>
             
         </tags>
         
@@ -6691,9 +6693,9 @@ id* | pid(FK) | finish | name | date | content
         
         <tags>
             
-            <tag> Proxy </tag>
-            
             <tag> Python </tag>
+            
+            <tag> Proxy </tag>
             
         </tags>
         
@@ -8203,37 +8205,6 @@ id* | pid(FK) | finish | name | date | content
     </entry>
     
     <entry>
-      <title><![CDATA[python Tips]]></title>
-      <url>/2017/05/20/2017-9-18-python-require-install/</url>
-      <content type="html"><![CDATA[<h1 id="自动生成和安装requirements-txt依赖"><a href="#自动生成和安装requirements-txt依赖" class="headerlink" title="自动生成和安装requirements.txt依赖"></a>自动生成和安装requirements.txt依赖</h1><p>requirements.txt可以通过pip命令自动生成和安装</p>
-<ul>
-<li><p>生成requirements.txt文件</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip freeze &gt; requirements.txt</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>安装requirements.txt依赖</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install -r requirements.txt</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-]]></content>
-      
-        <categories>
-            
-            <category> Tips </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Tips </tag>
-            
-            <tag> python </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[正则表达式入门笔记]]></title>
       <url>/2017/05/20/2017-05-20-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/</url>
       <content type="html"><![CDATA[<hr>
@@ -8333,6 +8304,37 @@ id* | pid(FK) | finish | name | date | content
         <tags>
             
             <tag> Linux </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[python Tips]]></title>
+      <url>/2017/05/20/2017-9-18-python-require-install/</url>
+      <content type="html"><![CDATA[<h1 id="自动生成和安装requirements-txt依赖"><a href="#自动生成和安装requirements-txt依赖" class="headerlink" title="自动生成和安装requirements.txt依赖"></a>自动生成和安装requirements.txt依赖</h1><p>requirements.txt可以通过pip命令自动生成和安装</p>
+<ul>
+<li><p>生成requirements.txt文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip freeze &gt; requirements.txt</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装requirements.txt依赖</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install -r requirements.txt</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> Tips </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Tips </tag>
+            
+            <tag> python </tag>
             
         </tags>
         

@@ -44,31 +44,6 @@
   </entry>
   
   <entry>
-    <title>深度学习资料推荐</title>
-    <link href="http://xichen.pub/2019/03/14/2019-03-12-deeplearning_resources/"/>
-    <id>http://xichen.pub/2019/03/14/2019-03-12-deeplearning_resources/</id>
-    <published>2019-03-14T05:11:00.000Z</published>
-    <updated>2019-04-01T15:46:24.063Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="深度学习资料推荐"><a href="#深度学习资料推荐" class="headerlink" title="深度学习资料推荐"></a>深度学习资料推荐</h1><p>深度学习火起来之后，网上关于深度学习的资料很多。但是其质量参差不齐。我从2013年开始就关注深度学习，见证了它从一个小圈子的领先技术到一个大众所追捧的热门技术的过程。也看了很多资料。我认为一个高质量的学习资料可以帮助你真正的理解深度学习的本质，并且更好地掌握这项技术，用于实践。</p><p>以下是我所推荐的学习资料</p><h2 id="1-视频课程"><a href="#1-视频课程" class="headerlink" title="1. 视频课程"></a>1. 视频课程</h2><h3 id="Yaser-Abu-Mostafa"><a href="#Yaser-Abu-Mostafa" class="headerlink" title="Yaser Abu-Mostafa"></a>Yaser Abu-Mostafa</h3><p>加州理工的Yaser Abu-Mostafa教授出品的机器学习网络课程，非常系统地讲解了机器学习背后的原理，以及主要的技术。讲解非常深入浅出，让你不光理解机器学习有哪些技术，还能理解它们背后的思想，为什么要提出这项技术，机器学习的一些通用性问题的解决方法（比如用正则化方法解决过拟合）。强烈推荐。</p><ul><li>课程名称：Machine Learning Course - CS 156</li><li>视频地址：<a href="https://www.youtube.com/watch?v=mbyG85GZ0PI&amp;list=PLD63A284B7615313A" target="_blank" rel="noopener">https://www.youtube.com/watch?v=mbyG85GZ0PI&amp;list=PLD63A284B7615313A</a></li></ul><h3 id="Geoffrey-Hinton"><a href="#Geoffrey-Hinton" class="headerlink" title="Geoffrey Hinton"></a>Geoffrey Hinton</h3><p>深度学习最重要的研究者。也是他和另外几个人（Yann LeCun，Yoshua Bengio等）在神经网络被人工智能业界打入冷宫，进入低谷期的时候仍然不放弃研究，最终取得突破，才有了现在的深度学习热潮。他在Coursera上有一门深度学习的课程，其权威性自不待言，但是课程制作的质量以及易于理解的程度，实际上比不上前面Yaser Mostafa的。当然，因为其实力，课程的干货还是非常多的。</p><ul><li>课程名称：Neural Networks for Machine Learning</li><li>课程地址：<a href="https://www.coursera.org/learn/neural-networks" target="_blank" rel="noopener">https://www.coursera.org/learn/neural-networks</a></li></ul><h3 id="UdaCity"><a href="#UdaCity" class="headerlink" title="UdaCity"></a>UdaCity</h3><p>Google工程师出品的一个偏重实践的深度学习课程。讲解非常简明扼要，并且注重和实践相结合。推荐。</p><ul><li>课程名称：深度学习</li><li>课程地址：<a href="https://cn.udacity.com/course/deep-learning--ud730" target="_blank" rel="noopener">https://cn.udacity.com/course/deep-learning--ud730</a></li></ul><h3 id="小象学院"><a href="#小象学院" class="headerlink" title="小象学院"></a>小象学院</h3><p>国内小象学院出品的一个深度学习课程，理论与实践并重。由纽约城市大学的博士李伟主讲，优点是包含了很多业内最新的主流技术的讲解。值得一看。</p><ul><li>课程名称：深度学习（第四期）</li><li>课程地址： <a href="http://www.chinahadoop.cn/classroom/45/courses" target="_blank" rel="noopener">http://www.chinahadoop.cn/classroom/45/courses</a></li></ul><h2 id="2-书"><a href="#2-书" class="headerlink" title="2. 书"></a>2. 书</h2><h3 id="《Deep-Learning-the-Book》"><a href="#《Deep-Learning-the-Book》" class="headerlink" title="《Deep Learning the Book》"></a>《Deep Learning the Book》</h3><p>这本书是前面提到的大牛Yoshua Begio的博士生Goodfellow写的。Goodfellow是生成式对抗网络的提出者，生成式对抗网络被Yann LeCun认为是近年最激动人心的深度学习技术想法。这本书比较系统，专业，偏重理论，兼顾实践。是系统学习深度学习不可多得的好教材。</p><ul><li>英文版见 <a href="http://deeplearningthebook.com" target="_blank" rel="noopener">http://deeplearningthebook.com</a></li><li>目前Github上已经有人翻译出了中文版<a href="https://github.com/exacity/deeplearningbook-chinese。" target="_blank" rel="noopener">https://github.com/exacity/deeplearningbook-chinese。</a></li></ul><h2 id="3-推荐路径"><a href="#3-推荐路径" class="headerlink" title="3.推荐路径"></a>3.推荐路径</h2><p>不同的人有不同的需求，有些人希望掌握好理论基础，然后进行实践，有些人希望能够快速上手，马上做点东西，有些人希望理论与实践兼顾。下面推荐几条学习路径，照顾到不同的需求。大家可以根据自己的特点进行选择。</p><h3 id="Hard-way"><a href="#Hard-way" class="headerlink" title="Hard way"></a>Hard way</h3><p><code>Yaser -&gt; Geoffrey Hinton -&gt; UdaCity -&gt; 小象学院 -&gt; Good Fellow</code><br>特点：理论扎实，步步为营。最完整的学习路径，也是最“难”的。<br>推荐指数 4星</p><h3 id="Good-way"><a href="#Good-way" class="headerlink" title="Good way"></a>Good way</h3><p><code>Yaser -&gt; UdaCity -&gt; 小象学院 -&gt; Good Fellow</code><br>特点：理论扎实，紧跟潮流，兼顾实战，最后系统梳理。比较平衡的学习路径。<br>推荐指数 5星</p><h3 id="“Fast”-way"><a href="#“Fast”-way" class="headerlink" title="“Fast” way"></a>“Fast” way</h3><p><code>UdaCity -&gt; Good Fellow</code><br>特点：快速上手，然后完善理论。<br>推荐指数 4星</p><h3 id="“码农”-way"><a href="#“码农”-way" class="headerlink" title="“码农” way"></a>“码农” way</h3><p><code>UdaCity</code><br>特点：快速上手，注重实践。<br>推荐指数 3星</p><p>以上路径按照从完整到精简的顺序排列。如果要我只推荐一条路径的话，那么就是2 <code>Good way（Yaser -&gt; UdaCity -&gt; 小象学院 -&gt; Good Fellow）</code>，完整同时又兼顾效率，理论与实践并进的学习路径。强烈推荐。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;深度学习资料推荐&quot;&gt;&lt;a href=&quot;#深度学习资料推荐&quot; class=&quot;headerlink&quot; title=&quot;深度学习资料推荐&quot;&gt;&lt;/a&gt;深度学习资料推荐&lt;/h1&gt;&lt;p&gt;深度学习火起来之后，网上关于深度学习的资料很多。但是其质量参差不齐。我从2013年开始就关注
-      
-    
-    </summary>
-    
-      <category term="resource" scheme="http://xichen.pub/categories/resource/"/>
-    
-    
-      <category term="deeplearning" scheme="http://xichen.pub/tags/deeplearning/"/>
-    
-  </entry>
-  
-  <entry>
     <title>【Android TimeCat】ANR in com.time.cat</title>
     <link href="http://xichen.pub/2019/03/14/2019-02-13-ANR/"/>
     <id>http://xichen.pub/2019/03/14/2019-02-13-ANR/</id>
@@ -90,6 +65,33 @@
     
     
       <category term="ANR" scheme="http://xichen.pub/tags/ANR/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>深度学习资料推荐</title>
+    <link href="http://xichen.pub/2019/03/14/2019-03-12-deeplearning_resources/"/>
+    <id>http://xichen.pub/2019/03/14/2019-03-12-deeplearning_resources/</id>
+    <published>2019-03-14T05:11:00.000Z</published>
+    <updated>2019-04-01T15:52:08.059Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="深度学习资料推荐"><a href="#深度学习资料推荐" class="headerlink" title="深度学习资料推荐"></a>深度学习资料推荐</h1><p>深度学习火起来之后，网上关于深度学习的资料很多。但是其质量参差不齐。我从2013年开始就关注深度学习，见证了它从一个小圈子的领先技术到一个大众所追捧的热门技术的过程。也看了很多资料。我认为一个高质量的学习资料可以帮助你真正的理解深度学习的本质，并且更好地掌握这项技术，用于实践。</p><p>以下是我所推荐的学习资料</p><h2 id="1-视频课程"><a href="#1-视频课程" class="headerlink" title="1. 视频课程"></a>1. 视频课程</h2><h3 id="Yaser-Abu-Mostafa"><a href="#Yaser-Abu-Mostafa" class="headerlink" title="Yaser Abu-Mostafa"></a>Yaser Abu-Mostafa</h3><p>加州理工的Yaser Abu-Mostafa教授出品的机器学习网络课程，非常系统地讲解了机器学习背后的原理，以及主要的技术。讲解非常深入浅出，让你不光理解机器学习有哪些技术，还能理解它们背后的思想，为什么要提出这项技术，机器学习的一些通用性问题的解决方法（比如用正则化方法解决过拟合）。强烈推荐。</p><ul><li>课程名称：Machine Learning Course - CS 156</li><li>视频地址：<a href="https://www.youtube.com/watch?v=mbyG85GZ0PI&amp;list=PLD63A284B7615313A" target="_blank" rel="noopener">https://www.youtube.com/watch?v=mbyG85GZ0PI&amp;list=PLD63A284B7615313A</a></li></ul><h3 id="Geoffrey-Hinton"><a href="#Geoffrey-Hinton" class="headerlink" title="Geoffrey Hinton"></a>Geoffrey Hinton</h3><p>深度学习最重要的研究者。也是他和另外几个人（Yann LeCun，Yoshua Bengio等）在神经网络被人工智能业界打入冷宫，进入低谷期的时候仍然不放弃研究，最终取得突破，才有了现在的深度学习热潮。他在Coursera上有一门深度学习的课程，其权威性自不待言，但是课程制作的质量以及易于理解的程度，实际上比不上前面Yaser Mostafa的。当然，因为其实力，课程的干货还是非常多的。</p><ul><li>课程名称：Neural Networks for Machine Learning</li><li>课程地址：<a href="https://www.coursera.org/learn/neural-networks" target="_blank" rel="noopener">https://www.coursera.org/learn/neural-networks</a></li></ul><h3 id="UdaCity"><a href="#UdaCity" class="headerlink" title="UdaCity"></a>UdaCity</h3><p>Google工程师出品的一个偏重实践的深度学习课程。讲解非常简明扼要，并且注重和实践相结合。推荐。</p><ul><li>课程名称：深度学习</li><li>课程地址：<a href="https://cn.udacity.com/course/deep-learning--ud730" target="_blank" rel="noopener">https://cn.udacity.com/course/deep-learning--ud730</a></li></ul><h3 id="小象学院"><a href="#小象学院" class="headerlink" title="小象学院"></a>小象学院</h3><p>国内小象学院出品的一个深度学习课程，理论与实践并重。由纽约城市大学的博士李伟主讲，优点是包含了很多业内最新的主流技术的讲解。值得一看。</p><ul><li>课程名称：深度学习（第四期）</li><li>课程地址： <a href="http://www.chinahadoop.cn/classroom/45/courses" target="_blank" rel="noopener">http://www.chinahadoop.cn/classroom/45/courses</a></li></ul><h2 id="2-书"><a href="#2-书" class="headerlink" title="2. 书"></a>2. 书</h2><h3 id="《Deep-Learning-the-Book》"><a href="#《Deep-Learning-the-Book》" class="headerlink" title="《Deep Learning the Book》"></a>《Deep Learning the Book》</h3><p>这本书是前面提到的大牛Yoshua Begio的博士生Goodfellow写的。Goodfellow是生成式对抗网络的提出者，生成式对抗网络被Yann LeCun认为是近年最激动人心的深度学习技术想法。这本书比较系统，专业，偏重理论，兼顾实践。是系统学习深度学习不可多得的好教材。</p><ul><li>英文版见 <a href="http://deeplearningthebook.com" target="_blank" rel="noopener">http://deeplearningthebook.com</a></li><li>目前Github上已经有人翻译出了中文版<a href="https://github.com/exacity/deeplearningbook-chinese。" target="_blank" rel="noopener">https://github.com/exacity/deeplearningbook-chinese。</a></li></ul><h2 id="3-推荐路径"><a href="#3-推荐路径" class="headerlink" title="3.推荐路径"></a>3.推荐路径</h2><p>不同的人有不同的需求，有些人希望掌握好理论基础，然后进行实践，有些人希望能够快速上手，马上做点东西，有些人希望理论与实践兼顾。下面推荐几条学习路径，照顾到不同的需求。大家可以根据自己的特点进行选择。</p><h3 id="Hard-way"><a href="#Hard-way" class="headerlink" title="Hard way"></a>Hard way</h3><p><code>Yaser -&gt; Geoffrey Hinton -&gt; UdaCity -&gt; 小象学院 -&gt; Good Fellow</code><br>特点：理论扎实，步步为营。最完整的学习路径，也是最“难”的。<br>推荐指数 4星</p><h3 id="Good-way"><a href="#Good-way" class="headerlink" title="Good way"></a>Good way</h3><p><code>Yaser -&gt; UdaCity -&gt; 小象学院 -&gt; Good Fellow</code><br>特点：理论扎实，紧跟潮流，兼顾实战，最后系统梳理。比较平衡的学习路径。<br>推荐指数 5星</p><h3 id="“Fast”-way"><a href="#“Fast”-way" class="headerlink" title="“Fast” way"></a>“Fast” way</h3><p><code>UdaCity -&gt; Good Fellow</code><br>特点：快速上手，然后完善理论。<br>推荐指数 4星</p><h3 id="“码农”-way"><a href="#“码农”-way" class="headerlink" title="“码农” way"></a>“码农” way</h3><p><code>UdaCity</code><br>特点：快速上手，注重实践。<br>推荐指数 3星</p><p>以上路径按照从完整到精简的顺序排列。如果要我只推荐一条路径的话，那么就是2 <code>Good way（Yaser -&gt; UdaCity -&gt; 小象学院 -&gt; Good Fellow）</code>，完整同时又兼顾效率，理论与实践并进的学习路径。强烈推荐。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;深度学习资料推荐&quot;&gt;&lt;a href=&quot;#深度学习资料推荐&quot; class=&quot;headerlink&quot; title=&quot;深度学习资料推荐&quot;&gt;&lt;/a&gt;深度学习资料推荐&lt;/h1&gt;&lt;p&gt;深度学习火起来之后，网上关于深度学习的资料很多。但是其质量参差不齐。我从2013年开始就关注
+      
+    
+    </summary>
+    
+      <category term="resource" scheme="http://xichen.pub/categories/resource/"/>
+    
+      <category term="Deep Learning" scheme="http://xichen.pub/categories/resource/Deep-Learning/"/>
+    
+    
+      <category term="Deep Learning" scheme="http://xichen.pub/tags/Deep-Learning/"/>
     
   </entry>
   
@@ -152,7 +154,7 @@
     <link href="http://xichen.pub/2018/10/29/2019-02-12-tensorflow%E5%92%8Ctensorflow-gpu%E5%88%87%E6%8D%A2%E5%AE%89%E8%A3%85/"/>
     <id>http://xichen.pub/2018/10/29/2019-02-12-tensorflow和tensorflow-gpu切换安装/</id>
     <published>2018-10-29T05:11:00.000Z</published>
-    <updated>2019-04-01T15:48:06.206Z</updated>
+    <updated>2019-04-01T15:52:08.059Z</updated>
     
     <content type="html"><![CDATA[<h2 id="Step-0-Uninstall-protobuf"><a href="#Step-0-Uninstall-protobuf" class="headerlink" title="Step 0: Uninstall protobuf"></a>Step 0: Uninstall protobuf</h2><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">pip uninstall protobuf</span></span><br></pre></td></tr></table></figure><h3 id="Step-1-Uninstall-tensorflow"><a href="#Step-1-Uninstall-tensorflow" class="headerlink" title="Step 1: Uninstall tensorflow"></a>Step 1: Uninstall tensorflow</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip <span class="keyword">uninstall</span> tensorflow</span><br><span class="line">pip <span class="keyword">uninstall</span> tensorflow-gpu</span><br></pre></td></tr></table></figure><h3 id="Step-2-Force-reinstall-Tensorflow-with-GPU-support"><a href="#Step-2-Force-reinstall-Tensorflow-with-GPU-support" class="headerlink" title="Step 2: Force reinstall Tensorflow with GPU support"></a>Step 2: Force reinstall Tensorflow with GPU support</h3><figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">pip</span> <span class="comment">install</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">upgrade</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">force</span><span class="literal">-</span><span class="comment">reinstall</span> <span class="comment">tensorflow</span><span class="literal">-</span><span class="comment">gpu</span></span><br></pre></td></tr></table></figure><h3 id="Step-3-If-you-haven’t-already-set-CUDA-VISIBLE-DEVICES"><a href="#Step-3-If-you-haven’t-already-set-CUDA-VISIBLE-DEVICES" class="headerlink" title="Step 3: If you haven’t already, set CUDA_VISIBLE_DEVICES"></a>Step 3: If you haven’t already, set CUDA_VISIBLE_DEVICES</h3><p>So for me with 2 GPUs it would be<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">export</span> <span class="attribute">CUDA_VISIBLE_DEVICES</span>=0,1</span><br></pre></td></tr></table></figure></p><h1 id="windows"><a href="#windows" class="headerlink" title="windows"></a>windows</h1><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">C:</span><span class="regexp">/Users/</span>dlink<span class="regexp">/AppData/</span>Local<span class="regexp">/Programs/</span>Python<span class="regexp">/Python35/</span>python.exe -m pip install tensorflow-gpu -i <span class="string">https:</span><span class="comment">//pypi.douban.com/simple/</span></span><br></pre></td></tr></table></figure><h1 id="注"><a href="#注" class="headerlink" title="注"></a>注</h1><p>国内安装时可用<code>-i https://pypi.douban.com/simple/</code>豆瓣源加速</p>]]></content>
     
@@ -167,7 +169,7 @@
     
       <category term="TensorFlow" scheme="http://xichen.pub/categories/TensorFlow/"/>
     
-      <category term="deeplearning" scheme="http://xichen.pub/categories/TensorFlow/deeplearning/"/>
+      <category term="Deep Learning" scheme="http://xichen.pub/categories/TensorFlow/Deep-Learning/"/>
     
     
       <category term="TensorFlow" scheme="http://xichen.pub/tags/TensorFlow/"/>
