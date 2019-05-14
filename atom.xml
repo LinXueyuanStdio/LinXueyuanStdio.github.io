@@ -99,33 +99,6 @@
   </entry>
   
   <entry>
-    <title>关于git的各种chrome拓展</title>
-    <link href="http://xichen.pub/2019/03/14/2019-03-14-git-extension/"/>
-    <id>http://xichen.pub/2019/03/14/2019-03-14-git-extension/</id>
-    <published>2019-03-14T05:11:00.000Z</published>
-    <updated>2019-04-01T15:46:24.063Z</updated>
-    
-    <content type="html"><![CDATA[<p><a href="http://yifeng.studio/2017/09/06/recommended-extension-tools-about-github/" target="_blank" rel="noopener">http://yifeng.studio/2017/09/06/recommended-extension-tools-about-github/</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;&lt;a href=&quot;http://yifeng.studio/2017/09/06/recommended-extension-tools-about-github/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://yifeng.studio/2
-      
-    
-    </summary>
-    
-      <category term="Git" scheme="http://xichen.pub/categories/Git/"/>
-    
-    
-      <category term="Git" scheme="http://xichen.pub/tags/Git/"/>
-    
-      <category term="Chrome" scheme="http://xichen.pub/tags/Chrome/"/>
-    
-  </entry>
-  
-  <entry>
     <title>深度学习资料推荐</title>
     <link href="http://xichen.pub/2019/03/14/2019-03-12-deeplearning_resources/"/>
     <id>http://xichen.pub/2019/03/14/2019-03-12-deeplearning_resources/</id>
@@ -178,29 +151,29 @@
   </entry>
   
   <entry>
-    <title>【Android TimeCat】 解决魅族无法彻底卸载 app 问题</title>
-    <link href="http://xichen.pub/2018/10/29/2018-10-29-Android-TimeCat-%E8%A7%A3%E5%86%B3%E9%AD%85%E6%97%8FFlyme6%E6%97%A0%E6%B3%95%E5%BD%BB%E5%BA%95%E5%8D%B8%E8%BD%BDapp%E9%97%AE%E9%A2%98/"/>
-    <id>http://xichen.pub/2018/10/29/2018-10-29-Android-TimeCat-解决魅族Flyme6无法彻底卸载app问题/</id>
-    <published>2018-10-29T05:11:00.000Z</published>
-    <updated>2019-04-01T15:18:44.242Z</updated>
+    <title>关于git的各种chrome拓展</title>
+    <link href="http://xichen.pub/2019/03/14/2019-03-14-git-extension/"/>
+    <id>http://xichen.pub/2019/03/14/2019-03-14-git-extension/</id>
+    <published>2019-03-14T05:11:00.000Z</published>
+    <updated>2019-04-01T15:46:24.063Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>卸载重装老是提示不能重复安装。<br>卸载了某些软件（例如通过开发者模式调试安装的应用）后，实际这个应用还残留在系统，当用低版本或者其他签名的apk覆盖安装的时候会提示“安装失败”，要求卸载后重新安装。但是就是不提示安装在哪里，反正已安装列表里已经不见了。无论从应用列表寻找还是清理垃圾，都根本找不到这个应用。<br>现在介绍的这个方法不需要ROOT，不需要任何第三方软件。</p><h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><h2 id="1-进入手机的“设置”-“安全”-（指纹和安全）"><a href="#1-进入手机的“设置”-“安全”-（指纹和安全）" class="headerlink" title="1.进入手机的“设置”-“安全” （指纹和安全）"></a>1.进入手机的“设置”-“安全” （指纹和安全）</h2><div class="image-package"><br><img src="/assets/blog/img/2018-10-29/0.webp" width="700"><br><br><br><div class="image-caption"><br>1<br></div><br></div><h2 id="2-选择进入访客默认"><a href="#2-选择进入访客默认" class="headerlink" title="2.选择进入访客默认"></a>2.选择进入访客默认</h2><div class="image-package"><br><img src="/assets/blog/img/2018-10-29/1.webp" width="700"><br><br><br><div class="image-caption"><br>2<br></div><br></div><h2 id="3-打开访客模式，记住密码"><a href="#3-打开访客模式，记住密码" class="headerlink" title="3. 打开访客模式，记住密码"></a>3. 打开访客模式，记住密码</h2><p>默认密码一般是1234。如果你的密码是1234，那访客模式的密码是4321。</p><div class="image-package"><br><img src="/assets/blog/img/2018-10-29/2.webp" width="700"><br><br><br><div class="image-caption"><br>3<br></div><br></div><h2 id="4-锁屏，用刚刚的“访客密码”进入系统，记住是访客密码，不是你平时的密码"><a href="#4-锁屏，用刚刚的“访客密码”进入系统，记住是访客密码，不是你平时的密码" class="headerlink" title="4.锁屏，用刚刚的“访客密码”进入系统，记住是访客密码，不是你平时的密码"></a>4.锁屏，用刚刚的“访客密码”进入系统，记住是访客密码，不是你平时的密码</h2><div class="image-package"><br><img src="/assets/blog/img/2018-10-29/3.webp" width="700"><br><br><br><div class="image-caption"><br>4<br></div><br></div><h2 id="5-你会在访客模式中看到你要卸载的app，这里我们简称“幽灵App”，只要把对应的幽灵App删除，然后进入正常的模式就可以安装新的app了。"><a href="#5-你会在访客模式中看到你要卸载的app，这里我们简称“幽灵App”，只要把对应的幽灵App删除，然后进入正常的模式就可以安装新的app了。" class="headerlink" title="5.你会在访客模式中看到你要卸载的app，这里我们简称“幽灵App”，只要把对应的幽灵App删除，然后进入正常的模式就可以安装新的app了。"></a>5.你会在访客模式中看到你要卸载的app，这里我们简称“幽灵App”，只要把对应的幽灵App删除，然后进入正常的模式就可以安装新的app了。</h2><p>访客模式的桌面是使用了开源项目 <a href="https://github.com/LawnchairLauncher/Lawnchair" target="_blank" rel="noopener">LawnchairLauncher/Lawnchair</a>。</p><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://www.jianshu.com/p/7717fb3df4e8" target="_blank" rel="noopener">解决魅族Flyme6无法彻底卸载app问题</a></p>]]></content>
+    <content type="html"><![CDATA[<p><a href="http://yifeng.studio/2017/09/06/recommended-extension-tools-about-github/" target="_blank" rel="noopener">http://yifeng.studio/2017/09/06/recommended-extension-tools-about-github/</a></p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h1 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h1&gt;&lt;p&gt;卸载重装老是提示不能重复安装。&lt;br&gt;卸载了某些软件（例如通过开发者模式调试安装的应用）后，实际这个应用还残留在系统，当用低版本或者其他签名
+        &lt;p&gt;&lt;a href=&quot;http://yifeng.studio/2017/09/06/recommended-extension-tools-about-github/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://yifeng.studio/2
       
     
     </summary>
     
-      <category term="Android" scheme="http://xichen.pub/categories/Android/"/>
+      <category term="Git" scheme="http://xichen.pub/categories/Git/"/>
     
     
-      <category term="Android" scheme="http://xichen.pub/tags/Android/"/>
+      <category term="Git" scheme="http://xichen.pub/tags/Git/"/>
     
-      <category term="Keyboard" scheme="http://xichen.pub/tags/Keyboard/"/>
+      <category term="Chrome" scheme="http://xichen.pub/tags/Chrome/"/>
     
   </entry>
   
@@ -228,6 +201,33 @@
       <category term="TensorFlow" scheme="http://xichen.pub/tags/TensorFlow/"/>
     
       <category term="bug" scheme="http://xichen.pub/tags/bug/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【Android TimeCat】 解决魅族无法彻底卸载 app 问题</title>
+    <link href="http://xichen.pub/2018/10/29/2018-10-29-Android-TimeCat-%E8%A7%A3%E5%86%B3%E9%AD%85%E6%97%8FFlyme6%E6%97%A0%E6%B3%95%E5%BD%BB%E5%BA%95%E5%8D%B8%E8%BD%BDapp%E9%97%AE%E9%A2%98/"/>
+    <id>http://xichen.pub/2018/10/29/2018-10-29-Android-TimeCat-解决魅族Flyme6无法彻底卸载app问题/</id>
+    <published>2018-10-29T05:11:00.000Z</published>
+    <updated>2019-04-01T15:18:44.242Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>卸载重装老是提示不能重复安装。<br>卸载了某些软件（例如通过开发者模式调试安装的应用）后，实际这个应用还残留在系统，当用低版本或者其他签名的apk覆盖安装的时候会提示“安装失败”，要求卸载后重新安装。但是就是不提示安装在哪里，反正已安装列表里已经不见了。无论从应用列表寻找还是清理垃圾，都根本找不到这个应用。<br>现在介绍的这个方法不需要ROOT，不需要任何第三方软件。</p><h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><h2 id="1-进入手机的“设置”-“安全”-（指纹和安全）"><a href="#1-进入手机的“设置”-“安全”-（指纹和安全）" class="headerlink" title="1.进入手机的“设置”-“安全” （指纹和安全）"></a>1.进入手机的“设置”-“安全” （指纹和安全）</h2><div class="image-package"><br><img src="/assets/blog/img/2018-10-29/0.webp" width="700"><br><br><br><div class="image-caption"><br>1<br></div><br></div><h2 id="2-选择进入访客默认"><a href="#2-选择进入访客默认" class="headerlink" title="2.选择进入访客默认"></a>2.选择进入访客默认</h2><div class="image-package"><br><img src="/assets/blog/img/2018-10-29/1.webp" width="700"><br><br><br><div class="image-caption"><br>2<br></div><br></div><h2 id="3-打开访客模式，记住密码"><a href="#3-打开访客模式，记住密码" class="headerlink" title="3. 打开访客模式，记住密码"></a>3. 打开访客模式，记住密码</h2><p>默认密码一般是1234。如果你的密码是1234，那访客模式的密码是4321。</p><div class="image-package"><br><img src="/assets/blog/img/2018-10-29/2.webp" width="700"><br><br><br><div class="image-caption"><br>3<br></div><br></div><h2 id="4-锁屏，用刚刚的“访客密码”进入系统，记住是访客密码，不是你平时的密码"><a href="#4-锁屏，用刚刚的“访客密码”进入系统，记住是访客密码，不是你平时的密码" class="headerlink" title="4.锁屏，用刚刚的“访客密码”进入系统，记住是访客密码，不是你平时的密码"></a>4.锁屏，用刚刚的“访客密码”进入系统，记住是访客密码，不是你平时的密码</h2><div class="image-package"><br><img src="/assets/blog/img/2018-10-29/3.webp" width="700"><br><br><br><div class="image-caption"><br>4<br></div><br></div><h2 id="5-你会在访客模式中看到你要卸载的app，这里我们简称“幽灵App”，只要把对应的幽灵App删除，然后进入正常的模式就可以安装新的app了。"><a href="#5-你会在访客模式中看到你要卸载的app，这里我们简称“幽灵App”，只要把对应的幽灵App删除，然后进入正常的模式就可以安装新的app了。" class="headerlink" title="5.你会在访客模式中看到你要卸载的app，这里我们简称“幽灵App”，只要把对应的幽灵App删除，然后进入正常的模式就可以安装新的app了。"></a>5.你会在访客模式中看到你要卸载的app，这里我们简称“幽灵App”，只要把对应的幽灵App删除，然后进入正常的模式就可以安装新的app了。</h2><p>访客模式的桌面是使用了开源项目 <a href="https://github.com/LawnchairLauncher/Lawnchair" target="_blank" rel="noopener">LawnchairLauncher/Lawnchair</a>。</p><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://www.jianshu.com/p/7717fb3df4e8" target="_blank" rel="noopener">解决魅族Flyme6无法彻底卸载app问题</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h1&gt;&lt;p&gt;卸载重装老是提示不能重复安装。&lt;br&gt;卸载了某些软件（例如通过开发者模式调试安装的应用）后，实际这个应用还残留在系统，当用低版本或者其他签名
+      
+    
+    </summary>
+    
+      <category term="Android" scheme="http://xichen.pub/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="http://xichen.pub/tags/Android/"/>
+    
+      <category term="Keyboard" scheme="http://xichen.pub/tags/Keyboard/"/>
     
   </entry>
   
