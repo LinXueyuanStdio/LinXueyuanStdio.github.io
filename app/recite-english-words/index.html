@@ -770,10 +770,10 @@
             $("#word-meaning").fadeOut(100, function () {
                 $(this).html(data[currentWordIndex][1]);
                 $(this).fadeIn(100);
-                checkIfIKnowCurrentWord();
                 currentWordIndex = getNextWordIndex(currentWordIndex);
                 changeButton(iKnowCurrentWord);
             });
+            checkIfIKnowCurrentWord();
         }
         var startLearning = setInterval(showWord, 1000);
 
