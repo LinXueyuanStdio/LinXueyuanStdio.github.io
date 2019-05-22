@@ -761,6 +761,15 @@
             // 根据记忆曲线计算下一个要记的单词
             return (lastWordIndex + 1) % data.length;
         }
+        $("h3.keyword").fadeOut(100, function () {
+            $(this).html(data[currentWordIndex][0]);
+            document.getElementById("deleteIt").innerHTML = "剔除 " + data[currentWordIndex][0];
+            $(this).fadeIn(100);
+        });
+        $("#word-meaning").fadeOut(100, function () {
+            $(this).html(data[currentWordIndex][1]);
+            $(this).fadeIn(100);
+        });
         function showWord() {
             $("h3.keyword").fadeOut(100, function () {
                 $(this).html(data[currentWordIndex][0]);
@@ -770,10 +779,10 @@
             $("#word-meaning").fadeOut(100, function () {
                 $(this).html(data[currentWordIndex][1]);
                 $(this).fadeIn(100);
-                currentWordIndex = getNextWordIndex(currentWordIndex);
-                changeButton(iKnowCurrentWord);
             });
             checkIfIKnowCurrentWord();
+            currentWordIndex = getNextWordIndex(currentWordIndex);
+            changeButton(iKnowCurrentWord);
         }
         var startLearning = setInterval(showWord, 1000);
 
