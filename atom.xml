@@ -119,6 +119,31 @@
   </entry>
   
   <entry>
+    <title>【Android TimeCat】ANR in com.time.cat</title>
+    <link href="http://xichen.pub/2019/03/14/2019-02-13-ANR/"/>
+    <id>http://xichen.pub/2019/03/14/2019-02-13-ANR/</id>
+    <published>2019-03-14T05:11:00.000Z</published>
+    <updated>2019-04-01T15:47:12.261Z</updated>
+    
+    <content type="html"><![CDATA[<p>E/ANRManager: ANR in com.time.cat, time=428313880<br>    Reason: Broadcast of Intent { act=android.appwidget.action.APPWIDGET_UPDATE flg=0x114 cmp=com.time.cat/com.timecat.module.master.mvp.ui.widgets.NoteWidgetProvider (has extras) }</p><p>引起这个错误的原因是，在一个BroadcastReceiver中的onReceive方法中的处理不能超过10秒，如果超过就会出现ANR错误。</p><p>所有尽量不要在onReceive中做耗时的处理，最好用Service来处理。（不要另外开启线程，因为这个线程会随着onReceive的返回而终止。）</p><p>以下在Google API中的原文：</p><p>so you should never perform long-running operations in it (there is a timeout of 10 seconds that the system allows </p><p>before considering the receiver to be blocked and a candidate to be killed). You cannot launch a popup dialog in your </p><h2 id="implementation-of-onReceive"><a href="#implementation-of-onReceive" class="headerlink" title="implementation of onReceive()."></a>implementation of onReceive().</h2><p>作者：huangliop<br>来源：CSDN<br>原文：<a href="https://blog.csdn.net/huangliop/article/details/7615262" target="_blank" rel="noopener">https://blog.csdn.net/huangliop/article/details/7615262</a><br>版权声明：本文为博主原创文章，转载请附上博文链接！</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;E/ANRManager: ANR in com.time.cat, time=428313880&lt;br&gt;    Reason: Broadcast of Intent { act=android.appwidget.action.APPWIDGET_UPDATE flg=
+      
+    
+    </summary>
+    
+      <category term="Android" scheme="http://xichen.pub/categories/Android/"/>
+    
+    
+      <category term="ANR" scheme="http://xichen.pub/tags/ANR/"/>
+    
+  </entry>
+  
+  <entry>
     <title>深度学习资料推荐</title>
     <link href="http://xichen.pub/2019/03/14/2019-03-12-deeplearning_resources/"/>
     <id>http://xichen.pub/2019/03/14/2019-03-12-deeplearning_resources/</id>
@@ -139,9 +164,9 @@
       <category term="Deep Learning" scheme="http://xichen.pub/categories/Deep-Learning/"/>
     
     
-      <category term="Deep Learning" scheme="http://xichen.pub/tags/Deep-Learning/"/>
-    
       <category term="resource" scheme="http://xichen.pub/tags/resource/"/>
+    
+      <category term="Deep Learning" scheme="http://xichen.pub/tags/Deep-Learning/"/>
     
   </entry>
   
@@ -173,27 +198,29 @@
   </entry>
   
   <entry>
-    <title>【Android TimeCat】ANR in com.time.cat</title>
-    <link href="http://xichen.pub/2019/03/14/2019-02-13-ANR/"/>
-    <id>http://xichen.pub/2019/03/14/2019-02-13-ANR/</id>
-    <published>2019-03-14T05:11:00.000Z</published>
-    <updated>2019-04-01T15:47:12.261Z</updated>
+    <title>tensorflow GPU版安装问题</title>
+    <link href="http://xichen.pub/2018/10/29/2019-02-12-tensorflow%E5%92%8Ctensorflow-gpu%E5%88%87%E6%8D%A2%E5%AE%89%E8%A3%85/"/>
+    <id>http://xichen.pub/2018/10/29/2019-02-12-tensorflow和tensorflow-gpu切换安装/</id>
+    <published>2018-10-29T05:11:00.000Z</published>
+    <updated>2019-04-01T16:03:36.033Z</updated>
     
-    <content type="html"><![CDATA[<p>E/ANRManager: ANR in com.time.cat, time=428313880<br>    Reason: Broadcast of Intent { act=android.appwidget.action.APPWIDGET_UPDATE flg=0x114 cmp=com.time.cat/com.timecat.module.master.mvp.ui.widgets.NoteWidgetProvider (has extras) }</p><p>引起这个错误的原因是，在一个BroadcastReceiver中的onReceive方法中的处理不能超过10秒，如果超过就会出现ANR错误。</p><p>所有尽量不要在onReceive中做耗时的处理，最好用Service来处理。（不要另外开启线程，因为这个线程会随着onReceive的返回而终止。）</p><p>以下在Google API中的原文：</p><p>so you should never perform long-running operations in it (there is a timeout of 10 seconds that the system allows </p><p>before considering the receiver to be blocked and a candidate to be killed). You cannot launch a popup dialog in your </p><h2 id="implementation-of-onReceive"><a href="#implementation-of-onReceive" class="headerlink" title="implementation of onReceive()."></a>implementation of onReceive().</h2><p>作者：huangliop<br>来源：CSDN<br>原文：<a href="https://blog.csdn.net/huangliop/article/details/7615262" target="_blank" rel="noopener">https://blog.csdn.net/huangliop/article/details/7615262</a><br>版权声明：本文为博主原创文章，转载请附上博文链接！</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="Step-0-Uninstall-protobuf"><a href="#Step-0-Uninstall-protobuf" class="headerlink" title="Step 0: Uninstall protobuf"></a>Step 0: Uninstall protobuf</h2><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">pip uninstall protobuf</span></span><br></pre></td></tr></table></figure><h3 id="Step-1-Uninstall-tensorflow"><a href="#Step-1-Uninstall-tensorflow" class="headerlink" title="Step 1: Uninstall tensorflow"></a>Step 1: Uninstall tensorflow</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip <span class="keyword">uninstall</span> tensorflow</span><br><span class="line">pip <span class="keyword">uninstall</span> tensorflow-gpu</span><br></pre></td></tr></table></figure><h3 id="Step-2-Force-reinstall-Tensorflow-with-GPU-support"><a href="#Step-2-Force-reinstall-Tensorflow-with-GPU-support" class="headerlink" title="Step 2: Force reinstall Tensorflow with GPU support"></a>Step 2: Force reinstall Tensorflow with GPU support</h3><figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">pip</span> <span class="comment">install</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">upgrade</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">force</span><span class="literal">-</span><span class="comment">reinstall</span> <span class="comment">tensorflow</span><span class="literal">-</span><span class="comment">gpu</span></span><br></pre></td></tr></table></figure><h3 id="Step-3-If-you-haven’t-already-set-CUDA-VISIBLE-DEVICES"><a href="#Step-3-If-you-haven’t-already-set-CUDA-VISIBLE-DEVICES" class="headerlink" title="Step 3: If you haven’t already, set CUDA_VISIBLE_DEVICES"></a>Step 3: If you haven’t already, set CUDA_VISIBLE_DEVICES</h3><p>So for me with 2 GPUs it would be<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">export</span> <span class="attribute">CUDA_VISIBLE_DEVICES</span>=0,1</span><br></pre></td></tr></table></figure></p><h1 id="windows"><a href="#windows" class="headerlink" title="windows"></a>windows</h1><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">C:</span><span class="regexp">/Users/</span>dlink<span class="regexp">/AppData/</span>Local<span class="regexp">/Programs/</span>Python<span class="regexp">/Python35/</span>python.exe -m pip install tensorflow-gpu -i <span class="string">https:</span><span class="comment">//pypi.douban.com/simple/</span></span><br></pre></td></tr></table></figure><h1 id="注"><a href="#注" class="headerlink" title="注"></a>注</h1><p>国内安装时可用<code>-i https://pypi.douban.com/simple/</code>豆瓣源加速</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;E/ANRManager: ANR in com.time.cat, time=428313880&lt;br&gt;    Reason: Broadcast of Intent { act=android.appwidget.action.APPWIDGET_UPDATE flg=
+        &lt;h2 id=&quot;Step-0-Uninstall-protobuf&quot;&gt;&lt;a href=&quot;#Step-0-Uninstall-protobuf&quot; class=&quot;headerlink&quot; title=&quot;Step 0: Uninstall protobuf&quot;&gt;&lt;/a&gt;Step 0: Un
       
     
     </summary>
     
-      <category term="Android" scheme="http://xichen.pub/categories/Android/"/>
+      <category term="Deep Learning" scheme="http://xichen.pub/categories/Deep-Learning/"/>
     
     
-      <category term="ANR" scheme="http://xichen.pub/tags/ANR/"/>
+      <category term="TensorFlow" scheme="http://xichen.pub/tags/TensorFlow/"/>
+    
+      <category term="bug" scheme="http://xichen.pub/tags/bug/"/>
     
   </entry>
   
@@ -221,33 +248,6 @@
       <category term="Android" scheme="http://xichen.pub/tags/Android/"/>
     
       <category term="Keyboard" scheme="http://xichen.pub/tags/Keyboard/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>tensorflow GPU版安装问题</title>
-    <link href="http://xichen.pub/2018/10/29/2019-02-12-tensorflow%E5%92%8Ctensorflow-gpu%E5%88%87%E6%8D%A2%E5%AE%89%E8%A3%85/"/>
-    <id>http://xichen.pub/2018/10/29/2019-02-12-tensorflow和tensorflow-gpu切换安装/</id>
-    <published>2018-10-29T05:11:00.000Z</published>
-    <updated>2019-04-01T16:03:36.033Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="Step-0-Uninstall-protobuf"><a href="#Step-0-Uninstall-protobuf" class="headerlink" title="Step 0: Uninstall protobuf"></a>Step 0: Uninstall protobuf</h2><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">pip uninstall protobuf</span></span><br></pre></td></tr></table></figure><h3 id="Step-1-Uninstall-tensorflow"><a href="#Step-1-Uninstall-tensorflow" class="headerlink" title="Step 1: Uninstall tensorflow"></a>Step 1: Uninstall tensorflow</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip <span class="keyword">uninstall</span> tensorflow</span><br><span class="line">pip <span class="keyword">uninstall</span> tensorflow-gpu</span><br></pre></td></tr></table></figure><h3 id="Step-2-Force-reinstall-Tensorflow-with-GPU-support"><a href="#Step-2-Force-reinstall-Tensorflow-with-GPU-support" class="headerlink" title="Step 2: Force reinstall Tensorflow with GPU support"></a>Step 2: Force reinstall Tensorflow with GPU support</h3><figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">pip</span> <span class="comment">install</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">upgrade</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">force</span><span class="literal">-</span><span class="comment">reinstall</span> <span class="comment">tensorflow</span><span class="literal">-</span><span class="comment">gpu</span></span><br></pre></td></tr></table></figure><h3 id="Step-3-If-you-haven’t-already-set-CUDA-VISIBLE-DEVICES"><a href="#Step-3-If-you-haven’t-already-set-CUDA-VISIBLE-DEVICES" class="headerlink" title="Step 3: If you haven’t already, set CUDA_VISIBLE_DEVICES"></a>Step 3: If you haven’t already, set CUDA_VISIBLE_DEVICES</h3><p>So for me with 2 GPUs it would be<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">export</span> <span class="attribute">CUDA_VISIBLE_DEVICES</span>=0,1</span><br></pre></td></tr></table></figure></p><h1 id="windows"><a href="#windows" class="headerlink" title="windows"></a>windows</h1><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">C:</span><span class="regexp">/Users/</span>dlink<span class="regexp">/AppData/</span>Local<span class="regexp">/Programs/</span>Python<span class="regexp">/Python35/</span>python.exe -m pip install tensorflow-gpu -i <span class="string">https:</span><span class="comment">//pypi.douban.com/simple/</span></span><br></pre></td></tr></table></figure><h1 id="注"><a href="#注" class="headerlink" title="注"></a>注</h1><p>国内安装时可用<code>-i https://pypi.douban.com/simple/</code>豆瓣源加速</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;Step-0-Uninstall-protobuf&quot;&gt;&lt;a href=&quot;#Step-0-Uninstall-protobuf&quot; class=&quot;headerlink&quot; title=&quot;Step 0: Uninstall protobuf&quot;&gt;&lt;/a&gt;Step 0: Un
-      
-    
-    </summary>
-    
-      <category term="Deep Learning" scheme="http://xichen.pub/categories/Deep-Learning/"/>
-    
-    
-      <category term="TensorFlow" scheme="http://xichen.pub/tags/TensorFlow/"/>
-    
-      <category term="bug" scheme="http://xichen.pub/tags/bug/"/>
     
   </entry>
   
