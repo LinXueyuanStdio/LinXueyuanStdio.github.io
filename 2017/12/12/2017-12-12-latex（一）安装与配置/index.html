@@ -1,0 +1,860 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>latex（一）安装与配置 | XiChen&#39;s Blog</title>
+    <meta name="author" content="Lin Xueyuan">
+    
+    <meta name="description" content="嗨，我是兮尘，全栈数据学徒。这里没有花俏艳丽的魔法，没有苍蛮霸道的斗气，有的，仅仅是繁衍到巅峰的代码！">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="latex（一）安装与配置"/>
+    <meta property="og:site_name" content="XiChen"/>
+
+    
+    <meta property="og:image" content=""/>
+    
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" href="/atom.xml" title="XiChen" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
+
+    <nav class="indigo">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="">
+            <a href="/" class="brand-logo hide-on-med-and-down">XiChen</a>
+            <ul class="right hide-on-med-and-down">
+                
+                    <li>
+                        <a class="menu-home " href="/" >
+                            <i class="fa fa-home "></i>
+                            
+                            Home
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-archive " href="/archives" >
+                            <i class="fa fa-archive "></i>
+                            
+                            Archives
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                            <i class="fa fa-bookmark "></i>
+                            
+                            Categories
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-reading " href="/reading" >
+                            <i class="fa fa-book "></i>
+                            
+                            Reading
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-about " href="/about" >
+                            <i class="fa fa-user "></i>
+                            
+                            About
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-search modal-trigger " href="#search" >
+                            <i class="fa fa-search "></i>
+                            
+                            Search
+                        </a>
+                    </li>
+                
+            </ul>
+            <div>
+    <ul class="side-nav indigo darken-1" id="main-menu">
+        
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4 no-padding">
+                    <img class="avatar-image circle responsive-img" src="/assets/images/avatar.jpg" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper no-padding">
+                    <div class="valign">
+                        <p class="name">兮尘</p>
+                        <p class="desc">Android/深度学习/Web前端</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-home " href="/" >
+                    <i class="fa fa-home "></i>
+                    
+                    Home
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-archive " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    
+                    Archives
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    
+                    Categories
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-reading " href="/reading" >
+                    <i class="fa fa-book "></i>
+                    
+                    Reading
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-about " href="/about" >
+                    <i class="fa fa-user "></i>
+                    
+                    About
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-search modal-trigger " href="#search" >
+                    <i class="fa fa-search "></i>
+                    
+                    Search
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav indigo darken-1" id="category-menu">
+    
+
+            
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Linux/">
+                    Linux <span class="right">8</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tips/">
+                    Tips <span class="right">7</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/GO/">
+                    GO <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Proxy/">
+                    Proxy <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Ubuntu/">
+                    Ubuntu <span class="right">4</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Spider/">
+                    Spider <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/区块链/">
+                    区块链 <span class="right">25</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/密码学/">
+                    密码学 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/算法/">
+                    算法 <span class="right">4</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Latex/">
+                    Latex <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/杂思/">
+                    杂思 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Git/">
+                    Git <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Github/">
+                    Github <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Web/">
+                    Web <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Android/">
+                    Android <span class="right">33</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/计算机组成原理/">
+                    计算机组成原理 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Deep-Learning/">
+                    Deep-Learning <span class="right">5</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Mac/">
+                    Mac <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/练习/">
+                    练习 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tools/">
+                    Tools <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Algorithms/">
+                    Algorithms <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+<div id="search" class="modal search-modal">
+    <div class="row">
+        <div class="input-field col s12">
+              <input id="search-input" type="text">
+              <label for="search-input">Search</label>
+        </div>
+
+    </div>
+    <div id="search-result" class="search-result col s12">
+
+    </div>
+</div>
+
+
+    <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper indigo">
+        <span class="breadcrumb">Current page(Categories)</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/Latex/">Latex</a>
+
+
+        
+
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>latex（一）安装与配置</h1>
+    
+
+
+            </div>
+            <time class="pink-link-context" datetime="2017-12-12T22:16:00.000Z"><a href="/2017/12/12/2017-12-12-latex（一）安装与配置/">2017-12-12</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/Latex/" class="chip pink lighten-1">Latex</a>
+        
+    </div>
+
+
+            <div class="toc pink-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#Linux-发行版下原版-TeX-Live-2017-的安装"><span class="section table-of-contents-text">Linux 发行版下原版 TeX Live 2017 的安装</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#安装"><span class="section table-of-contents-text">安装</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#通过系统仓库"><span class="section table-of-contents-text">通过系统仓库</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#通过iso文件"><span class="section table-of-contents-text">通过iso文件</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#下载"><span class="section table-of-contents-text">下载</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#准备"><span class="section table-of-contents-text">准备</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#安装-1"><span class="section table-of-contents-text">安装</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#通过命令行边下载边安装"><span class="section table-of-contents-text">通过命令行边下载边安装</span></a></li></ol></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#修改环境变量，使编辑器等能找到texlive"><span class="section table-of-contents-text">修改环境变量，使编辑器等能找到texlive</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#测试"><span class="section table-of-contents-text">测试</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#更新"><span class="section table-of-contents-text">更新</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#其它"><span class="section table-of-contents-text">其它</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#配置"><span class="section table-of-contents-text">配置</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#安装LaTeX编辑器：TeXstudio"><span class="section table-of-contents-text">安装LaTeX编辑器：TeXstudio</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#其他宏包"><span class="section table-of-contents-text">其他宏包</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#XeLatex"><span class="section table-of-contents-text">XeLatex</span></a></li></ol></li></ol>
+</div>
+
+
+            <div class="entry pink-link-context">
+                <p>2017年不到20天就到2018年了，才开始把latex用在写论文上。<br>原来只是学了用latex写公式，嫌latex的配置太麻烦，总想拿mardown结合latex搞事情，结果啥也没做到。<br>只好亲自入用latex编译论文的坑了。</p>
+<p>latex就是为写论文带来便利。一定不能在安装和配置上花太多时间，不然就舍本逐末了。</p>
+<h1 id="Linux-发行版下原版-TeX-Live-2017-的安装"><a href="#Linux-发行版下原版-TeX-Live-2017-的安装" class="headerlink" title="Linux 发行版下原版 TeX Live 2017 的安装"></a>Linux 发行版下原版 TeX Live 2017 的安装</h1><blockquote>
+<p>在安装前，TeX Live 2017 的手册可以在 TUG 的 TeX Live 目录下找到：<a href="https://www.tug.org/texlive/doc/texlive-zh-cn/texlive-zh-cn.pdf" target="_blank" rel="noopener">https://www.tug.org/texlive/doc/texlive-zh-cn/texlive-zh-cn.pdf</a>。可以先阅读其中的安装部分。<br>在 Linux 上安装原版 TeX Live 2017，与在 Windows 等其他系统下安装并无区别。<br>可以从 CTAN 镜象下载 ISO 文件，然后挂载到一个目录下，运行里面的 install-tl 脚本进行安装；也可以在 CTAN 的网站上只下载 install-tl 脚本运行，在线安装。<br>install-tl 是一个 Perl 脚本，在绝大多数发行版下都可以直接运行。</p>
+</blockquote>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><h2 id="通过系统仓库"><a href="#通过系统仓库" class="headerlink" title="通过系统仓库"></a>通过系统仓库</h2><p>首先，对于 Arch 等滚动更新发行版的用户来说，推荐使用官方仓库来安装。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S texlive-most texlive-lang</span><br></pre></td></tr></table></figure>
+<p>但是 <code>Debian/Ubuntu</code> 等的软件源往往会比较旧，为了体验最新的 <code>TeX Live</code> （虽然并没有什么卵差别），因此还是要用 <code>ISO</code> 映像安装。</p>
+<h2 id="通过iso文件"><a href="#通过iso文件" class="headerlink" title="通过iso文件"></a>通过iso文件</h2><h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><ul>
+<li><a href="http://mirror.lzu.edu.cn/CTAN/systems/texlive/Images/" target="_blank" rel="noopener">官方镜像: texlive2017.iso</a></li>
+<li><a href="https://mirrors.xjtu.edu.cn/CTAN/systems/texlive/Images/" target="_blank" rel="noopener">XJTU 镜像: texlive2017.iso</a>（校内用户请选择该源）</li>
+<li><a href="http://mirrors.ustc.edu.cn/CTAN/systems/texlive/Images/" target="_blank" rel="noopener">USTC 镜像: texlive2017.iso</a>（校内用户请选择该源）</li>
+</ul>
+<p>镜像站目录里的 <code>texlive.iso</code> 就是最新的 <code>texlive2017.iso</code>。</p>
+<p>下载完成后可以选择进行校验避免出错，具体来说镜像站目录里会有 <code>md5</code> 和 <code>sha512</code> 两个 <code>hash</code> 文件以及一个 <code>GPG</code> 签名文件。<code>TeX Live 2016</code> 以后调整了基础架构，安装时会校验包的完整性，如果有 <code>GPG</code> 还会校验⽹络更新的签名。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># GnuPG 校验签名，不懂请跳过，根据我的校验应当无误</span></span><br><span class="line">gpg --verify texlive2017.iso.sha512.asc</span><br><span class="line"><span class="comment"># MD5 校验</span></span><br><span class="line">md5sum texlive2017.iso</span><br><span class="line"><span class="comment"># SHA-512 校验</span></span><br><span class="line">sha512sum texlive2017.iso</span><br><span class="line"><span class="comment"># 与官方提供的 Hash 对比</span></span><br><span class="line">cat texlive2017.iso.md5 texlive2017.iso.sha512</span><br></pre></td></tr></table></figure>
+<h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><p>如果之前系统里已经装过 TeX Live，建议先删除。</p>
+<p>对于 Linux 来说比较简单，只需要把安装目录（默认为 <code>/usr/local/texlive</code> 里的文件夹丢进 trash 即可），此外用户目录里修改过的一些配置也不要忘记。</p>
+<p>如果想把有关依赖也卸载了，参考<a href="https://linxueyuanstdio.github.io/2017/12/latex-二-完全卸载/" target="_blank" rel="noopener">下一篇blog</a></p>
+<p>如果是包管理安装的方式，例如 Ubuntu 用户，可以按照这样卸载：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="builtin-name">get</span> purge texlive*</span><br></pre></td></tr></table></figure>
+<p>因为 TeX Live 里的安装脚本是 Perl 写的，如果稍后要用图形界面安装，需要更新下依赖。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Debian/Ubuntu</span></span><br><span class="line">sudo apt-get install perl-tk</span><br><span class="line"><span class="comment"># CentOS/Fedora/RHEL</span></span><br><span class="line">sudo yum install perl-Tk</span><br><span class="line"><span class="comment"># Fedora 22+</span></span><br><span class="line">sudo dnf install perl-Tk</span><br><span class="line"><span class="comment"># OpenSUSE</span></span><br><span class="line">sudo zypper install perl-tk</span><br></pre></td></tr></table></figure>
+<h3 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h3><p>如果能借助软件或文管等方式解决映像挂载问题就直接跳过，否则就在下载好的镜像目录执行以下命令安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo mount -o loop texlive2017.iso /mnt</span><br><span class="line"><span class="built_in">cd</span> /mnt</span><br><span class="line"><span class="comment"># 在 shell 里直接安装</span></span><br><span class="line">sudo ./install-tl</span><br><span class="line"><span class="comment"># 以 GUI 方式安装</span></span><br><span class="line">sudo ./install-tl -gui=perltk</span><br></pre></td></tr></table></figure>
+<p>图形界面大概长这样：</p>
+<div class="image-package"><br><img src="/assets/blog/img/2017-12-12/2.png" width="700"><br><br><br><div class="image-caption"><br>图形界面<br></div><br></div>
+
+<p>默认是安装在 <code>/usr/local/texlive</code> 目录下，可以更改为 <code>/home</code> 等，否则无脑下一步即可。</p>
+<p>根据硬件性能不同，安装过程一般不会短于 3 分钟。</p>
+<div class="image-package"><br><img src="/assets/blog/img/2017-12-12/3.png" width="700"><br><br><br><div class="image-caption"><br>安装过程<br></div><br></div>
+
+<p>安装结束后可以卸载映像。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line">sudo umount /mnt</span><br></pre></td></tr></table></figure>
+<h3 id="通过命令行边下载边安装"><a href="#通过命令行边下载边安装" class="headerlink" title="通过命令行边下载边安装"></a>通过命令行边下载边安装</h3><p>去这里<a href="https://www.tug.org/texlive/" target="_blank" rel="noopener">https://www.tug.org/texlive/</a>找对应的安装包，我下载的是<code>install-tl-unx.tar.gz</code>。</p>
+<p>下载完后，随便找个临时目录解压。</p>
+<p>默认是安装在 <code>/usr/local/texlive/</code> 路径下，需要以超级用户权限安装，在解压下的目录运行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ./install-tl</span><br></pre></td></tr></table></figure></p>
+<p>然后在文本界面下按提示进行交互式安装。当然，也可以安装在本地的用户路径下（如 ~/texlive/），这样就不再需要特殊权限。</p>
+<p>如果是进行网络安装，默认会自动选择一个 CTAN 镜象。</p>
+<p>这种方法在国内安装很慢，1h才下300多个文件。</p>
+<p>国内往往需要用 <code>-repository</code> 选项手工指定镜象服务器地址，URL 地址需要指定到 <code>texlive/tlnet/</code> 路径下。</p>
+<p>推荐用清华的镜象：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ./install-tl -repository http://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/tlnet/</span><br></pre></td></tr></table></figure></p>
+<p>这种方法安装快，1h轻松安装完毕。</p>
+<p>更方便的方式则是在图形界面下进行安装，此时需要确保系统安装了 <code>perl-tk</code> 等相关 Perl 图形界面库。运行命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ./install-tl -gui</span><br></pre></td></tr></table></figure>
+<p>即可按界面中的提示安装。或者运行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ./install-tl -gui=wizard</span><br></pre></td></tr></table></figure>
+<p>使用图形界面的安装向导，向导方式比前面的方式配置项少一些，但更容易使用。</p>
+<p>不过没啥用。还是建议用清华镜像那个命令快一点，不需要这么花俏。</p>
+<h1 id="修改环境变量，使编辑器等能找到texlive"><a href="#修改环境变量，使编辑器等能找到texlive" class="headerlink" title="修改环境变量，使编辑器等能找到texlive"></a>修改环境变量，使编辑器等能找到texlive</h1><p>对于 <code>bash</code> 等 <code>Bourne</code> 兼容的 <code>shell</code>，在用户目录的 <code>~/.bashrc</code> 文件中添加一些环境变量，具体路径由安装的位置确定。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># TeX Live 2017</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$&#123;PATH&#125;</span>:/usr/<span class="built_in">local</span>/texlive/2017/bin/x86_64-linux</span><br><span class="line"><span class="comment"># 如果是32位最后改为'i386-linux'</span></span><br><span class="line"><span class="built_in">export</span> MANPATH=<span class="variable">$&#123;MANPATH&#125;</span>:/usr/<span class="built_in">local</span>/texlive/2017/texmf-dist/doc/man</span><br><span class="line"><span class="built_in">export</span> INFOPATH=<span class="variable">$&#123;INFOPATH&#125;</span>:/usr/<span class="built_in">local</span>/texlive/2017/texmf-dist/doc/info</span><br></pre></td></tr></table></figure>
+<p>如果是 <code>csh</code> 或 <code>tcsh</code>，则在 <code>~/.cshrc</code> 中添加内容。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># TeX Live 2017</span></span><br><span class="line">setenv PATH /usr/<span class="built_in">local</span>/texlive/2017/bin/x86_64-linux:<span class="variable">$PATH</span></span><br><span class="line">setenv MANPATH /usr/<span class="built_in">local</span>/texlive/2017/texmf-dist/doc/man:<span class="variable">$MANPATH</span></span><br><span class="line">setenv INFOPATH /usr/<span class="built_in">local</span>/texlive/2017/texmf-dist/doc/info:<span class="variable">$INFOPATH</span></span><br></pre></td></tr></table></figure>
+<p>对于 <code>Debian/Ubuntu</code> 用户，可以安装下我根据 官方说明 制作的 <code>texlive-local_2017-1_all.deb</code> 来申明下包管理里的依赖关系，避免版本冲突。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i texlive-local_2017-1_all.deb</span><br><span class="line"><span class="comment"># 显示安装的 TeX Live 版本信息</span></span><br><span class="line">dpkg -l | grep texlive-local</span><br></pre></td></tr></table></figure>
+<p>至于其他发行版的 <code>texlive-dummy</code> 可去 <code>CTAN</code> 搜索。</p>
+<h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><p>安装完成后，如果一切都设置好，那么运行以下一些简单测试命令，在当前目录应该会得到正确的输出，如果有命令报错，请自行解决。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 显示 TeX 版本应为 3.14159265</span></span><br><span class="line">tex --version</span><br><span class="line"><span class="comment"># 处理一个基本文件，显示无法找到说明环境变量设置有误</span></span><br><span class="line">latex sample2e.tex</span><br><span class="line"><span class="comment"># 预览上一步得到的 dvi 文件</span></span><br><span class="line">xdvi sample2e.dvi</span><br><span class="line"><span class="comment"># pdfTeX 编译直接输出一份 PDF</span></span><br><span class="line">pdftex sample2e.tex</span><br><span class="line"><span class="comment"># 测试 XeTeX 能否访问系统字体</span></span><br><span class="line">xetex opentype-info.tex</span><br></pre></td></tr></table></figure>
+<p>安装之后就可以使用 texdoc 命令阅读安装在本地手册了，对 TeX Live 不甚熟悉的用户最好运行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">texdoc texlive-zh</span><br></pre></td></tr></table></figure>
+<p>命令再次阅读 TeX Live 2017 的手册。</p>
+<h1 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h1><p>TeX Live 的更新工具 <code>tlmgr</code>（TeX Live Manager）图形性能比较差，特别是在 <code>Windows</code> 上，故推荐终端里直接更新。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># tlmgr 只能在 root 权限下运行</span></span><br><span class="line">su</span><br><span class="line"><span class="comment"># 更新 tlmgr 宏包管理器</span></span><br><span class="line">tlmgr update -self</span><br><span class="line"><span class="comment"># 更新所有宏包</span></span><br><span class="line">tlmgr update -all</span><br><span class="line"><span class="comment"># 官方的 CTAN 镜像源速度可能比较慢，校内用户推荐换成 XJTU，支持 http 或 https</span></span><br><span class="line">tlmgr update -all -repository https://mirrors.xjtu.edu.cn/CTAN/systems/texlive/tlnet/</span><br></pre></td></tr></table></figure>
+<p>如果钟爱图形界面，带上 <code>-gui</code> 参数即可。校内用户记得把默认软件包仓库改为 <code>XJTU</code> 的镜像源地址。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">su</span><br><span class="line"><span class="comment"># 指定图形界面语言为中文</span></span><br><span class="line">tlmgr -gui -gui-lang zh_CN</span><br></pre></td></tr></table></figure>
+<h1 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h1><ul>
+<li>关于 Linux 上的编辑器，理论上只要是文本编辑器均可。由于可选择的方案太多，取决于个人的使用习惯，这里只推荐两个适合入门的自由软件 <code>Texmaker</code> 和 <code>TeXstudio</code>（fork 自前者）。</li>
+<li>关于 Linux 上的字体，因为版权问题，所以 <code>Times New Roman</code> 和<code>宋体</code>就成了很多 LaTeX 初学者的困扰。</li>
+</ul>
+<p>推荐的办法是 <code>ctex</code> 宏集处理中文，使用 <code>Fandol 开源字体</code>，默认效果好于 Windows 的<code>中易宋体</code>，另外也可使用<code>思源宋体</code>；而西文和数学字符则用 <code>mathptmx</code> 或 <code>newtx</code> 宏包处理，使用开源的 <code>Nimbus Roman No9 L</code> 字体代替 <code>Times New Roman</code>，差别不大。</p>
+<p>对字体有严格要求，可以复制 Windows 下的字体到 <code>~/.fonts</code> 目录下，记得用 <code>fc-cache -fsv</code> 命令更新下字体缓存。</p>
+<p>关于 LaTeX 教程或者说手册，推荐两本 <a href="http://www.dralpha.com/zh/index.htm" target="_blank" rel="noopener">包太雷的 lnotes2</a> 和 <a href="https://github.com/CTeX-org/lshort-cn/" target="_blank" rel="noopener">lshort 中文版</a>。</p>
+<h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><p>按照 TeX Live 手册的说明，安装之后，还有一些工作需要做：</p>
+<ul>
+<li>如果在安装时没有选择在系统目录为可执行文件创建符号链接，就需要手工修改 ~/.profile 文件设置 PATH 环境变量。<ul>
+<li>export MANPATH=”/usr/local/texlive/2017/texmf-dist/doc/man”</li>
+<li>export INFOPATH=”/usr/local/texlive/2017/texmf-dist/doc/info”</li>
+<li>export PATH=”/usr/local/texlive/2017/bin/x86_64-linux:$PATH”</li>
+</ul>
+</li>
+<li>XeTeX 会使用 fontconfig 库来通过字体名搜索字体。TeX Live 的字体目录默认并不在 fongconfig 的搜索目录之列，因此需要按文档要求，将 TeX Live 安装目录下的 <code>texmf-var/fonts/conf/texlive-fontconfig.conf</code> 文件，复制到 <code>/etc/fonts/conf.d/09-texlive.conf</code>，然后运行 fc-cache，以确保 XeTeX 能搜索到字体。否则，TeX Live 自带的 OpenType 字体就只能以字体文件名的方式调用，非常不便。此外这样也能让系统的其他软件使用 TeX Live 安装的字体。<ul>
+<li>建议先复制到临时文件夹，改名后，再<code>sudo mv</code></li>
+</ul>
+</li>
+<li><p>如果需要以字体文件名调用 Linux 系统安装的字体，例如使用 CJK 宏包调用来自 Windows 的字体，那么还需要修改 TeX Live 安装目录的 texmf.cnf 文件，在其中设置 OSFONTDIR 变量，例如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">OSFONTDIR = ~/.fonts//;/usr/share/fonts//;/usr/share/fonts-droid//</span><br></pre></td></tr></table></figure>
+<p>可能需要用<code>sudo gedit texmf.cnf</code>才修改得了。当然，这一步骤对多数用户的用处并不大。</p>
+</li>
+<li>在<code>/usr/bin/</code>目录下创建符号链接才能用pdflatex进行编译<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ln -s /usr/<span class="built_in">local</span>/texlive/2017/bin/x86_64-linux/pdflatex pdflatex</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="安装LaTeX编辑器：TeXstudio"><a href="#安装LaTeX编辑器：TeXstudio" class="headerlink" title="安装LaTeX编辑器：TeXstudio"></a>安装LaTeX编辑器：TeXstudio</h1><p>去官网下deb包然后安装：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i XXX.deb</span><br></pre></td></tr></table></figure></p>
+<p>打开TeXstudio，在倒数第二个选项(o)配置一下。首先配置语言为中文，然后编译器选pdflatex，其他的千万不要动。</p>
+<div class="image-package"><br><img src="/assets/blog/img/2017-12-12/0.png" width="700"><br><br><br><div class="image-caption"><br>配置语言为中文<br></div><br></div>
+
+<div class="image-package"><br><img src="/assets/blog/img/2017-12-12/1.png" width="700"><br><br><br><div class="image-caption"><br>编译器选pdflatex<br></div><br></div>
+
+<h1 id="其他宏包"><a href="#其他宏包" class="headerlink" title="其他宏包"></a>其他宏包</h1><h2 id="XeLatex"><a href="#XeLatex" class="headerlink" title="XeLatex"></a>XeLatex</h2><p><code>XeLatex</code> 是 <code>texlive-xetex</code> 包的一部分，用来支持中文。<br>安装的话需要运行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install texlive-xetex</span><br></pre></td></tr></table></figure></p>
+<p>加上依赖有1G大小。</p>
+
+                
+<p class="pink-link-context">
+    <a href="/2017/12/28/2017-12-28-latex（二）完全卸载/" rel="next" title="latex（二）完全卸载">
+    Prev: latex（二）完全卸载
+  </a>
+</p>
+
+
+
+<p class="pink-link-context">
+    <a href="/2017/12/10/2017-12-10-web-app/" rel="next" title="Web App 相关技术">
+    Next: Web App 相关技术
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large pink">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect green" title="Return to top"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse yellow darken-1"  data-activates="main-menu" title="Menu"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer indigo darken-1">
+    
+    <div class="footer-container container">
+        <div class="row">
+            
+            <div class="social-group col m4 s12">
+                <h5 class="white-text">Social</h5>
+                
+                    <a class="social-link" href="http://weibo.com/LinXueyuanStdio" target="_blank">
+                        <i class="fa fa-2x fa-weibo"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://github.com/LinXueyuanStdio" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://www.zhihu.com/people/lin-xue-yuan-86" target="_blank">
+                        <i class="fa fa-2x fa-graduation-cap"></i>
+                    </a>
+                
+                    <a class="social-link" href="http://twitter.com/cwBQ3A5cz3Jzso7" target="_blank">
+                        <i class="fa fa-2x fa-twitter"></i>
+                    </a>
+                
+                    <a class="social-link" href="mailto:761516186@qq.com" target="_blank">
+                        <i class="fa fa-2x fa-envelope"></i>
+                    </a>
+                
+                    <a class="social-link" href="/atom.xml" target="_blank">
+                        <i class="fa fa-2x fa-rss"></i>
+                    </a>
+                
+                
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+    </script>
+    <div class="site-visitors-container white-text">
+        <span>
+            <i class="fa fa-user"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+        </span>
+        <span>&nbsp;|&nbsp;</span>
+        <span>
+            <i class="fa fa-eye"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+        </span>
+    </div>
+
+
+            </div>
+            
+
+            
+            <div class="col m8 s12">
+                <h5 class="white-text">Links</h5>
+                
+                    <a class="social-link" href="http://raytaylorlin.com/" target="_blank">raytaylorism主题作者</a>
+                
+                    <a class="social-link" href="https://github.com/raytaylorlin" target="_blank">Github地址</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    
+
+    <div class="footer-copyright pink-link-context">
+        <div class="container">
+            © 2016 example.com, All rights reserved.
+            <p class="right" style="margin-top: 0;">Blog powered by <a href="https://hexo.io">Hexo</a> | Theme <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
+        </div>
+    </div>
+</footer>
+
+
+    <noscript>
+    <div class="noscript">
+        <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+    </div>
+</noscript>
+<div class="noscript">
+    <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 隐藏禁用javascript（针对微信内置浏览器）的提示
+            $('.noscript').hide();
+
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
+
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed').each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt') || ' ');
+            }).materialbox();
+
+            // 优化表格的显示
+            $('table').each(function() {
+                var $table = $(this);
+                // 除去多行代码的情况
+                if ($table.find('pre').length == 0) {
+                    $table.addClass('responsive-table striped bordered');
+                }
+            });
+
+            // 首页幻灯片
+            $('.slider').slider({indicators: true, full_width: true, interval: 8000});
+
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+
+            // 目录随屏幕滚动（防止目录过长越过footer）
+            var $toc = $('.toc');
+            var scrollTargetTop = 0;
+            $(window).scroll(function() {
+                var $activeLink = $toc.find('a.active.section');
+                if ($(window).scrollTop() < 100) {
+                    scrollTargetTop = 0;
+                } else {
+                    if ($activeLink[0]) {
+                        scrollTargetTop = $activeLink.offset().top - $toc.offset().top;
+                    }
+                }
+                $toc.css('top', '-' + scrollTargetTop + 'px');
+            });
+
+            // 修正文章目录的left-border颜色
+            var color = $('.table-of-contents-text').css('color');
+            $('.table-of-contents-link').css('border-left-color', color);
+
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({
+                    scrollTop: 0
+                }, 500);
+            });
+
+            // 重置读书页面的Tab标签页的颜色
+            $('li.tab a').hover(function() {
+                $(this).toggleClass('text-lighten-4');
+            });
+            $('.indicator').addClass('pink lighten-2');
+
+            
+            // 添加new标签
+            $('.menu-apps').append('<span class="new badge pink"></span>');
+            
+
+            // 搜索功能
+            $('.modal-trigger').leanModal({
+                // 打开搜索框时自动聚焦
+                ready: function() {
+                    if ($('#search').is(":visible")) {
+                        $('#search-input').focus();
+                    }
+                }
+            });
+            var searchXml = "search.xml";
+            if (searchXml.length == 0) {
+             	searchXml = "search.xml";
+            }
+            var searchPath = "/" + searchXml;
+            initSearch(searchPath, 'search-input', 'search-result');
+        });
+
+        // 初始化搜索与匹配函数
+        var initSearch = function(path, search_id, content_id) {
+            'use strict';
+            $.ajax({
+                url: path,
+                dataType: "xml",
+                success: function(xmlResponse) {
+                    // get the contents from search data
+                    var datas = $("entry", xmlResponse).map(function() {
+                        return {
+                            title: $("title", this).text(),
+                            content: $("content", this).text(),
+                            url: $("url", this).text()
+                        };
+                    }).get();
+                    var $input = document.getElementById(search_id);
+                    var $resultContent = document.getElementById(content_id);
+                    $input.addEventListener('input', function() {
+                        var str = '<ul class=\"search-result-list\">';
+                        var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                        $resultContent.innerHTML = "";
+                        if (this.value.trim().length <= 0) {
+                            return;
+                        }
+                        // perform local searching
+                        datas.forEach(function(data) {
+                            var isMatch = true;
+                            var content_index = [];
+                            var data_title = data.title.trim().toLowerCase();
+                            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                            var data_url = data.url;
+                            var index_title = -1;
+                            var index_content = -1;
+                            var first_occur = -1;
+                            // only match artiles with not empty titles and contents
+                            if (data_title != '' && data_content != '') {
+                                keywords.forEach(function(keyword, i) {
+                                    index_title = data_title.indexOf(keyword);
+                                    index_content = data_content.indexOf(keyword);
+                                    if (index_title < 0 && index_content < 0) {
+                                        isMatch = false;
+                                    } else {
+                                        if (index_content < 0) {
+                                            index_content = 0;
+                                        }
+                                        if (i == 0) {
+                                            first_occur = index_content;
+                                        }
+                                    }
+                                });
+                            }
+                            // show search results
+                            if (isMatch) {
+                                keywords.forEach(function(keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                });
+
+                                str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                                if (first_occur >= 0) {
+                                    // cut out 100 characters
+                                    var start = first_occur - 20;
+                                    var end = first_occur + 80;
+                                    if (start < 0) {
+                                        start = 0;
+                                    }
+                                    if (start == 0) {
+                                        end = 100;
+                                    }
+                                    if (end > content.length) {
+                                        end = content.length;
+                                    }
+                                    var match_content = content.substring(start, end);
+                                    // highlight all keywords
+                                    keywords.forEach(function(keyword) {
+                                        var regS = new RegExp(keyword, "gi");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                    });
+
+                                    str += "<p class=\"search-result\">..." + match_content + "...</p>"
+                                }
+                                str += "</li>";
+                            }
+                        });
+                        str += "</ul>";
+                        $resultContent.innerHTML = str;
+                    });
+                }
+            });
+        }
+    })(jQuery);
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+</body>
+</html>

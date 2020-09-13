@@ -1,0 +1,840 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>Golang程序配置方案小结 | XiChen&#39;s Blog</title>
+    <meta name="author" content="Lin Xueyuan">
+    
+    <meta name="description" content="嗨，我是兮尘，全栈数据学徒。这里没有花俏艳丽的魔法，没有苍蛮霸道的斗气，有的，仅仅是繁衍到巅峰的代码！">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="Golang程序配置方案小结"/>
+    <meta property="og:site_name" content="XiChen"/>
+
+    
+    <meta property="og:image" content=""/>
+    
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" href="/atom.xml" title="XiChen" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
+
+    <nav class="indigo">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="">
+            <a href="/" class="brand-logo hide-on-med-and-down">XiChen</a>
+            <ul class="right hide-on-med-and-down">
+                
+                    <li>
+                        <a class="menu-home " href="/" >
+                            <i class="fa fa-home "></i>
+                            
+                            Home
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-archive " href="/archives" >
+                            <i class="fa fa-archive "></i>
+                            
+                            Archives
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                            <i class="fa fa-bookmark "></i>
+                            
+                            Categories
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-reading " href="/reading" >
+                            <i class="fa fa-book "></i>
+                            
+                            Reading
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-about " href="/about" >
+                            <i class="fa fa-user "></i>
+                            
+                            About
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-search modal-trigger " href="#search" >
+                            <i class="fa fa-search "></i>
+                            
+                            Search
+                        </a>
+                    </li>
+                
+            </ul>
+            <div>
+    <ul class="side-nav indigo darken-1" id="main-menu">
+        
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4 no-padding">
+                    <img class="avatar-image circle responsive-img" src="/assets/images/avatar.jpg" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper no-padding">
+                    <div class="valign">
+                        <p class="name">兮尘</p>
+                        <p class="desc">Android/深度学习/Web前端</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-home " href="/" >
+                    <i class="fa fa-home "></i>
+                    
+                    Home
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-archive " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    
+                    Archives
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    
+                    Categories
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-reading " href="/reading" >
+                    <i class="fa fa-book "></i>
+                    
+                    Reading
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-about " href="/about" >
+                    <i class="fa fa-user "></i>
+                    
+                    About
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-search modal-trigger " href="#search" >
+                    <i class="fa fa-search "></i>
+                    
+                    Search
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav indigo darken-1" id="category-menu">
+    
+
+            
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Linux/">
+                    Linux <span class="right">8</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tips/">
+                    Tips <span class="right">7</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/GO/">
+                    GO <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Proxy/">
+                    Proxy <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Ubuntu/">
+                    Ubuntu <span class="right">4</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Spider/">
+                    Spider <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/区块链/">
+                    区块链 <span class="right">25</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/密码学/">
+                    密码学 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/算法/">
+                    算法 <span class="right">4</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Latex/">
+                    Latex <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/杂思/">
+                    杂思 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Git/">
+                    Git <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Github/">
+                    Github <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Web/">
+                    Web <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Android/">
+                    Android <span class="right">33</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/计算机组成原理/">
+                    计算机组成原理 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Deep-Learning/">
+                    Deep-Learning <span class="right">5</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Mac/">
+                    Mac <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/练习/">
+                    练习 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tools/">
+                    Tools <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Algorithms/">
+                    Algorithms <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+<div id="search" class="modal search-modal">
+    <div class="row">
+        <div class="input-field col s12">
+              <input id="search-input" type="text">
+              <label for="search-input">Search</label>
+        </div>
+
+    </div>
+    <div id="search-result" class="search-result col s12">
+
+    </div>
+</div>
+
+
+    <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper indigo">
+        <span class="breadcrumb">Current page(Categories)</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/GO/">GO</a>
+
+
+        
+
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>Golang程序配置方案小结</h1>
+    
+
+
+            </div>
+            <time class="pink-link-context" datetime="2017-08-28T04:19:00.000Z"><a href="/2017/08/28/2017-08-28-Golang-setting/">2017-08-28</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/GO/" class="chip pink lighten-1">GO</a>
+        
+    </div>
+
+
+            <div class="toc pink-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#背景"><span class="section table-of-contents-text">背景</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#解析命令行选项和参数"><span class="section table-of-contents-text">解析命令行选项和参数</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#TOML，Go配置文件的事实标准（这个可能不能得到认同）"><span class="section table-of-contents-text">TOML，Go配置文件的事实标准（这个可能不能得到认同）</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#超越TOML"><span class="section table-of-contents-text">超越TOML</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#Viper"><span class="section table-of-contents-text">Viper</span></a></li></ol>
+</div>
+
+
+            <div class="entry pink-link-context">
+                <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>无论使用任何编程语言开发应用，都离不开配置数据。配置数据提供的形式有多样，不外乎命令行选项(options)、参数（parameters)，环境 变量（env vars)以及配置文件等。Golang也不例外。Golang内置flag标准库，可以用来支持部分命令行选项和参数的解析；Golang通过os包提 供的方法可以获取当前环境变量；但Golang没有规定标准配置文件格式(虽说内置支持xml、json)，多通过第三方 包来解决配置文件读取的问题。Golang配置相关的第三方包邮很多，作者在本文中给出的配置方案中就包含了主流的第三方配置数据操作包。</p>
+<p>一个良好的应用配置层次应该是这样的：</p>
+<ol>
+<li>程序内内置配置项的初始默认值</li>
+<li>配置文件中的配置项值可以覆盖(override)程序内配置项的默认值。</li>
+<li>命令行选项和参数值具有最高优先级，可以override前两层的配置项值。</li>
+</ol>
+<p>下面循序渐进探讨golang程序配置方案。</p>
+<h1 id="解析命令行选项和参数"><a href="#解析命令行选项和参数" class="headerlink" title="解析命令行选项和参数"></a>解析命令行选项和参数</h1><p>这一节关注golang程序如何访问命令行选项和参数。</p>
+<p>golang对访问到命令行参数提供了内建的支持：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//cmdlineargs.go</span></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="comment">//      "fmt"</span></span><br><span class="line">    <span class="string">"os"</span></span><br><span class="line">    <span class="string">"path/filepath"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="built_in">println</span>(<span class="string">"I am "</span>, os.Args[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">    baseName := filepath.Base(os.Args[<span class="number">0</span>])</span><br><span class="line">    <span class="built_in">println</span>(<span class="string">"The base name is "</span>, baseName)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// The length of array a can be discovered using the built-in function len</span></span><br><span class="line">    <span class="built_in">println</span>(<span class="string">"Argument # is "</span>, <span class="built_in">len</span>(os.Args))</span><br><span class="line"></span><br><span class="line">    <span class="comment">// the first command line arguments</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(os.Args) &gt; <span class="number">1</span> &#123;</span><br><span class="line">        <span class="built_in">println</span>(<span class="string">"The first command line argument: "</span>, os.Args[<span class="number">1</span>])</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>执行结果如下：<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$<span class="keyword">go</span> build cmdlineargs.<span class="keyword">go</span></span><br><span class="line">$cmdlineargs test one</span><br><span class="line">I <span class="keyword">am</span>  cmdlineargs</span><br><span class="line">The base name <span class="keyword">is</span>  cmdlineargs</span><br><span class="line">Argument # <span class="keyword">is</span>  <span class="number">3</span></span><br><span class="line">The <span class="keyword">first</span> <span class="keyword">command</span> <span class="built_in">line</span> argumen<span class="variable">t:</span>  test</span><br></pre></td></tr></table></figure></p>
+<p>对于命令行结构复杂一些的程序，我们最起码要用到golang标准库内置的flag包：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//cmdlineflag.go</span></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"flag"</span></span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">    <span class="string">"os"</span></span><br><span class="line">    <span class="string">"strconv"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> (</span><br><span class="line">    <span class="comment">// main operation modes</span></span><br><span class="line">    write = flag.Bool(<span class="string">"w"</span>, <span class="literal">false</span>, <span class="string">"write result back instead of stdout\n\t\tDefault: No write back"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// layout control</span></span><br><span class="line">    tabWidth = flag.Int(<span class="string">"tabwidth"</span>, <span class="number">8</span>, <span class="string">"tab width\n\t\tDefault: Standard"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// debugging</span></span><br><span class="line">    cpuprofile = flag.String(<span class="string">"cpuprofile"</span>, <span class="string">""</span>, <span class="string">"write cpu profile to this file\n\t\tDefault: no default"</span>)</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">usage</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">// Fprintf allows us to print to a specifed file handle or stream</span></span><br><span class="line">    fmt.Fprintf(os.Stderr, <span class="string">"\nUsage: %s [flags] file [path ...]\n\n"</span>,</span><br><span class="line">        <span class="string">"CommandLineFlag"</span>) <span class="comment">// os.Args[0]</span></span><br><span class="line">    flag.PrintDefaults()</span><br><span class="line">    os.Exit(<span class="number">0</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    fmt.Printf(<span class="string">"Before parsing the flags\n"</span>)</span><br><span class="line">    fmt.Printf(<span class="string">"T: %d\nW: %s\nC: '%s'\n"</span>,</span><br><span class="line">        *tabWidth, strconv.FormatBool(*write), *cpuprofile)</span><br><span class="line"></span><br><span class="line">    flag.Usage = usage</span><br><span class="line">    flag.Parse()</span><br><span class="line"></span><br><span class="line">    <span class="comment">// There is also a mandatory non-flag arguments</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(flag.Args()) &lt; <span class="number">1</span> &#123;</span><br><span class="line">        usage()</span><br><span class="line">    &#125;</span><br><span class="line">   </span><br><span class="line">    fmt.Printf(<span class="string">"Testing the flag package\n"</span>)</span><br><span class="line">    fmt.Printf(<span class="string">"T: %d\nW: %s\nC: '%s'\n"</span>,</span><br><span class="line">        *tabWidth, strconv.FormatBool(*write), *cpuprofile)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> index, element := <span class="keyword">range</span> flag.Args() &#123;</span><br><span class="line">        fmt.Printf(<span class="string">"I: %d C: '%s'\n"</span>, index, element)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这个例子中：</p>
+<ul>
+<li>说明了三种类型标志的用法：Int、String和Bool。</li>
+<li>说明了每个标志的定义都由类型、命令行选项文本、默认值以及含义解释组成。</li>
+<li>最后说明了如何处理标志选项(flag option)以及非option参数。</li>
+</ul>
+<p>不带参数运行：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">cmdlineflag</span></span><br><span class="line">Before parsing the flags</span><br><span class="line">T: 8</span><br><span class="line">W: false</span><br><span class="line">C: ''</span><br><span class="line"></span><br><span class="line">Usage: CommandLineFlag [flags] file [path ...]</span><br><span class="line"></span><br><span class="line">  -cpuprofile="": write cpu profile to this file</span><br><span class="line">        Default: no default</span><br><span class="line">  -tabwidth=8: tab width</span><br><span class="line">        Default: Standard</span><br><span class="line">  -w=false: write result back instead of stdout</span><br><span class="line">        Default: No write back</span><br></pre></td></tr></table></figure></p>
+<p>带命令行标志以及参数运行(一个没有flag，一个有两个flag)：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">cmdlineflag aa bb</span></span><br><span class="line">Before parsing the flags</span><br><span class="line">T: 8</span><br><span class="line">W: false</span><br><span class="line">C: ''</span><br><span class="line">Testing the flag package</span><br><span class="line">T: 8</span><br><span class="line">W: false</span><br><span class="line">C: ''</span><br><span class="line">I: 0 C: 'aa'</span><br><span class="line">I: 1 C: 'bb'</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash">cmdlineflag -tabwidth=2 -w aa</span></span><br><span class="line">Before parsing the flags</span><br><span class="line">T: 8</span><br><span class="line">W: false</span><br><span class="line">C: ''</span><br><span class="line">Testing the flag package</span><br><span class="line">T: 2</span><br><span class="line">W: true</span><br><span class="line">C: ''</span><br><span class="line">I: 0 C: 'aa'</span><br></pre></td></tr></table></figure></p>
+<p>从例子可以看出，简单情形下，你无需编写自己的命令行parser或使用第三方包，使用go内建的flag包即可以很好的完成工作。但是golang的 flag包与命令行Parser的事实标准：Posix getopt（C/C++/Perl/Shell脚本都可用）相比，还有较大差距，主要体现在：</p>
+<ol>
+<li>无法支持区分long option和short option，比如：-h和–help。</li>
+<li>不支持short options合并，比如：ls -l -h &lt;=&gt; ls -hl</li>
+<li>命令行标志的位置不能任意放置，比如无法放在non-flag parameter的后面。</li>
+</ol>
+<p>不过毕竟flag是golang内置标准库包，你无须付出任何cost，就能使用它的功能。另外支持bool型的flag也是其一大亮点。</p>
+<h1 id="TOML，Go配置文件的事实标准（这个可能不能得到认同）"><a href="#TOML，Go配置文件的事实标准（这个可能不能得到认同）" class="headerlink" title="TOML，Go配置文件的事实标准（这个可能不能得到认同）"></a>TOML，Go配置文件的事实标准（这个可能不能得到认同）</h1><p>命令行虽然是一种可选的配置方案，但更多的时候，我们使用配置文件来存储静态的配置数据。就像Java配xml，ruby配yaml，windows配 ini，Go也有自己的搭配组合，那就是TOML（Tom’s Obvious, Minimal Language）。</p>
+<p>初看toml语法有些类似windows ini，但细致研究你会发现它远比ini强大的多，下面是一个toml配置文件例子：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># This is a TOML document. Boom.</span></span><br><span class="line"></span><br><span class="line"><span class="attr">title</span> = <span class="string">"TOML Example"</span></span><br><span class="line"></span><br><span class="line"><span class="section">[owner]</span></span><br><span class="line"><span class="attr">name</span> = <span class="string">"Lance Uppercut"</span></span><br><span class="line"><span class="attr">dob</span> = <span class="number">1979</span>-<span class="number">05</span>-<span class="number">27</span>T07:<span class="number">32</span>:<span class="number">00</span>-<span class="number">08</span>:<span class="number">00</span> # First class dates? Why not?</span><br><span class="line"></span><br><span class="line"><span class="section">[database]</span></span><br><span class="line"><span class="attr">server</span> = <span class="string">"192.168.1.1"</span></span><br><span class="line"><span class="attr">ports</span> = [ <span class="number">8001</span>, <span class="number">8001</span>, <span class="number">8002</span> ]</span><br><span class="line"><span class="attr">connection_max</span> = <span class="number">5000</span></span><br><span class="line"><span class="attr">enabled</span> = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="section">[servers]</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># You can indent as you please. Tabs or spaces. TOML don't care.</span></span><br><span class="line"><span class="section">  [servers.alpha]</span></span><br><span class="line">  ip = "10.0.0.1"</span><br><span class="line">  dc = "eqdc10"</span><br><span class="line"></span><br><span class="line"><span class="section">  [servers.beta]</span></span><br><span class="line">  ip = "10.0.0.2"</span><br><span class="line">  dc = "eqdc10"</span><br><span class="line"></span><br><span class="line"><span class="section">[clients]</span></span><br><span class="line"><span class="attr">data</span> = [ [<span class="string">"gamma"</span>, <span class="string">"delta"</span>], [<span class="number">1</span>, <span class="number">2</span>] ]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Line breaks are OK when inside arrays</span></span><br><span class="line"><span class="attr">hosts</span> = [</span><br><span class="line">  "alpha",</span><br><span class="line">  "omega"</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
+<p>看起来很强大，也很复杂，但解析起来却很简单。以下面这个toml 文件为例：<br><figure class="highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">Age</span> = <span class="number">25</span></span><br><span class="line"><span class="attr">Cats</span> = [ <span class="string">"Cauchy"</span>, <span class="string">"Plato"</span> ]</span><br><span class="line"><span class="attr">Pi</span> = <span class="number">3.14</span></span><br><span class="line"><span class="attr">Perfection</span> = [ <span class="number">6</span>, <span class="number">28</span>, <span class="number">496</span>, <span class="number">8128</span> ]</span><br><span class="line"><span class="attr">DOB</span> = <span class="number">1987</span>-<span class="number">07</span>-<span class="number">05</span>T05:<span class="number">45</span>:<span class="number">00</span>Z</span><br></pre></td></tr></table></figure></p>
+<p>和所有其他配置文件parser类似，这个配置文件中的数据可以被直接解析成一个golang struct：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Config <span class="keyword">struct</span> &#123;</span><br><span class="line">  Age <span class="keyword">int</span></span><br><span class="line">  Cats []<span class="keyword">string</span></span><br><span class="line">  Pi <span class="keyword">float64</span></span><br><span class="line">  Perfection []<span class="keyword">int</span></span><br><span class="line">  DOB time.Time <span class="comment">// requires `import time`</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>其解析的步骤也很简单：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> conf Config</span><br><span class="line"><span class="keyword">if</span> _, err := toml.Decode(tomlData, &amp;conf); err != <span class="literal">nil</span> &#123;</span><br><span class="line">  <span class="comment">// handle error</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>是不是简单的不能简单了！</p>
+<p>不过toml也有其不足之处。想想如果你需要使用命令行选项的参数值来覆盖这些配置文件中的选项，你应该怎么做？事实上，我们常常会碰到类似下面这种三层配置结构的情况：</p>
+<ol>
+<li>程序内内置配置项的初始默认值</li>
+<li>配置文件中的配置项值可以覆盖(override)程序内配置项的默认值。</li>
+<li>命令行选项和参数值具有最高优先级，可以override前两层的配置项值。</li>
+</ol>
+<p>在go中，toml映射的结果体字段没有初始值。而且go内建flag包也没有将命令行参数值解析为一个go结构体，而是零散的变量。这些可以通过第三方工具来解决，但如果你不想用第三方工具，你也可以像下面这样自己解决，虽然难看一些。<br><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">func ConfigGet() *Config &#123;</span><br><span class="line">    <span class="built_in">var</span> err <span class="built_in">error</span></span><br><span class="line">    <span class="built_in">var</span> <span class="built_in">cf</span> *Config = NewConfig()</span><br><span class="line"></span><br><span class="line">    // set default <span class="built_in">values</span> defined <span class="keyword">in</span> the <span class="built_in">program</span></span><br><span class="line">    <span class="built_in">cf</span>.ConfigFromFlag()</span><br><span class="line">    //<span class="built_in">log</span>.Printf(<span class="string">"P: %d, B: '%s', F: '%s'\n"</span>, <span class="built_in">cf</span>.MaxProcs, <span class="built_in">cf</span>.Webapp.Path)</span><br><span class="line"></span><br><span class="line">    // Load config file, from flag <span class="keyword">or</span> env (<span class="keyword">if</span> specified)</span><br><span class="line">    <span class="symbol">_</span>, err = <span class="built_in">cf</span>.ConfigFromFile(*configFile, os.Getenv(<span class="string">"APPCONFIG"</span>))</span><br><span class="line">    <span class="keyword">if</span> err != nil &#123;</span><br><span class="line">        <span class="built_in">log</span>.Fatal(err)</span><br><span class="line">    &#125;</span><br><span class="line">    //<span class="built_in">log</span>.Printf(<span class="string">"P: %d, B: '%s', F: '%s'\n"</span>, <span class="built_in">cf</span>.MaxProcs, <span class="built_in">cf</span>.Webapp.Path)</span><br><span class="line"></span><br><span class="line">    // Override <span class="built_in">values</span> from command line flags</span><br><span class="line">    <span class="built_in">cf</span>.ConfigToFlag()</span><br><span class="line">    flag.Usage = usage</span><br><span class="line">    flag.Parse()</span><br><span class="line">    <span class="built_in">cf</span>.ConfigFromFlag()</span><br><span class="line">    //<span class="built_in">log</span>.Printf(<span class="string">"P: %d, B: '%s', F: '%s'\n"</span>, <span class="built_in">cf</span>.MaxProcs, <span class="built_in">cf</span>.Webapp.Path)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cf</span>.ConfigApply()</span><br><span class="line"></span><br><span class="line">    <span class="built_in">return</span> <span class="built_in">cf</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>就像上面代码中那样，你需要：</p>
+<ol>
+<li>用命令行标志默认值设置配置(cf)默认值。</li>
+<li>接下来加载配置文件</li>
+<li>用配置值(cf)覆盖命令行标志变量值</li>
+<li>解析命令行参数</li>
+<li>用命令行标志变量值覆盖配置(cf)值。</li>
+</ol>
+<p>少一步你都无法实现三层配置能力。</p>
+<h1 id="超越TOML"><a href="#超越TOML" class="headerlink" title="超越TOML"></a>超越TOML</h1><p>本节将关注如何克服TOML的各种局限。</p>
+<p>为了达成这个目标，很多人会说：使用viper，不过在介绍viper这一重量级选手 之前，我要为大家介绍另外一位不那么知名的选手：multiconfig。</p>
+<p>有些人总是认为大的就是好的，但我相信适合的还是更好的。因为：</p>
+<ol>
+<li>viper太重量级，使用viper时你需要pull另外20个viper依赖的第三方包</li>
+<li>事实上，viper单独使用还不足以满足需求，要想得到viper全部功能，你还需要另外一个包配合，而后者又依赖13个外部包</li>
+<li>与viper相比，multiconfig使用起来更简单。</li>
+</ol>
+<p>好了，我们再来回顾一下我们现在面临的问题：</p>
+<ol>
+<li>在程序里定义默认配置，这样我们就无需再在toml中定义它们了。</li>
+<li>用toml配置文件中的数据override默认配置</li>
+<li>用命令行或环境变量的值override从toml中读取的配置。</li>
+</ol>
+<p>下面是一个说明如何使用multiconfig的例子：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    m := multiconfig.NewWithPath(<span class="string">"config.toml"</span>) <span class="comment">// supports TOML and JSON</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// Get an empty struct for your configuration</span></span><br><span class="line">    serverConf := <span class="built_in">new</span>(Server)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Populated the serverConf struct</span></span><br><span class="line">    m.MustLoad(serverConf) <span class="comment">// Check for error</span></span><br><span class="line"></span><br><span class="line">    fmt.Println(<span class="string">"After Loading: "</span>)</span><br><span class="line">    fmt.Printf(<span class="string">"%+v\n"</span>, serverConf)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> serverConf.Enabled &#123;</span><br><span class="line">        fmt.Println(<span class="string">"Enabled field is set to true"</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        fmt.Println(<span class="string">"Enabled field is set to false"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这个例子中的toml文件如下：<br><figure class="highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">Name</span>              = <span class="string">"koding"</span></span><br><span class="line"><span class="attr">Enabled</span>           = <span class="literal">false</span></span><br><span class="line"><span class="attr">Port</span>              = <span class="number">6066</span></span><br><span class="line"><span class="attr">Users</span>             = [<span class="string">"ankara"</span>, <span class="string">"istanbul"</span>]</span><br><span class="line"></span><br><span class="line"><span class="section">[Postgres]</span></span><br><span class="line"><span class="attr">Enabled</span>           = <span class="literal">true</span></span><br><span class="line"><span class="attr">Port</span>              = <span class="number">5432</span></span><br><span class="line"><span class="attr">Hosts</span>             = [<span class="string">"192.168.2.1"</span>, <span class="string">"192.168.2.2"</span>, <span class="string">"192.168.2.3"</span>]</span><br><span class="line"><span class="attr">AvailabilityRatio</span> = <span class="number">8.23</span></span><br></pre></td></tr></table></figure></p>
+<p>toml映射后的go结构如下：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> (</span><br><span class="line">    <span class="comment">// Server holds supported types by the multiconfig package</span></span><br><span class="line">    Server <span class="keyword">struct</span> &#123;</span><br><span class="line">        Name     <span class="keyword">string</span></span><br><span class="line">        Port     <span class="keyword">int</span> <span class="string">`default:"6060"`</span></span><br><span class="line">        Enabled  <span class="keyword">bool</span></span><br><span class="line">        Users    []<span class="keyword">string</span></span><br><span class="line">        Postgres Postgres</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Postgres is here for embedded struct feature</span></span><br><span class="line">    Postgres <span class="keyword">struct</span> &#123;</span><br><span class="line">        Enabled           <span class="keyword">bool</span></span><br><span class="line">        Port              <span class="keyword">int</span></span><br><span class="line">        Hosts             []<span class="keyword">string</span></span><br><span class="line">        DBName            <span class="keyword">string</span></span><br><span class="line">        AvailabilityRatio <span class="keyword">float64</span></span><br><span class="line">    &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<p>multiconfig的使用是不是很简单，后续与viper对比后，你会同意我的观点的。</p>
+<p>multiconfig支持默认值，也支持显式的字段赋值需求。<br>支持toml、json、结构体标签（struct tags)以及环境变量。<br>你可以自定义配置源（例如一个远程服务器），如果你想这么做的话。<br>可高度扩展（通过loader接口），你可以创建你自己的loader。</p>
+<p>下面是例子的运行结果，首先是usage help：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">$cmdlinemulticonfig -help</span><br><span class="line">Usage of cmdlinemulticonfig:</span><br><span class="line">  -enabled=<span class="literal">false</span>: Change value of Enabled.</span><br><span class="line">  -name=koding: Change value of Name.</span><br><span class="line">  -port=<span class="number">6066</span>: Change value of Port.</span><br><span class="line">  -postgres-availabilityratio=<span class="number">8.23</span>: Change value of Postgres-AvailabilityRatio.</span><br><span class="line">  -postgres-dbname=: Change value of Postgres-DBName.</span><br><span class="line">  -postgres-enabled=<span class="literal">true</span>: Change value of Postgres-Enabled.</span><br><span class="line">  -postgres-hosts=[<span class="number">192.168</span><span class="number">.2</span><span class="number">.1</span> <span class="number">192.168</span><span class="number">.2</span><span class="number">.2</span> <span class="number">192.168</span><span class="number">.2</span><span class="number">.3</span>]: Change value of Postgres-Hosts.</span><br><span class="line">  -postgres-port=<span class="number">5432</span>: Change value of Postgres-Port.</span><br><span class="line">  -users=[ankara istanbul]: Change value of Users.</span><br><span class="line"></span><br><span class="line">Generated environment variables:</span><br><span class="line">   SERVER_NAME</span><br><span class="line">   SERVER_PORT</span><br><span class="line">   SERVER_ENABLED</span><br><span class="line">   SERVER_USERS</span><br><span class="line">   SERVER_POSTGRES_ENABLED</span><br><span class="line">   SERVER_POSTGRES_PORT</span><br><span class="line">   SERVER_POSTGRES_HOSTS</span><br><span class="line">   SERVER_POSTGRES_DBNAME</span><br><span class="line">   SERVER_POSTGRES_AVAILABILITYRATIO</span><br><span class="line"></span><br><span class="line">$cmdlinemulticonfig</span><br><span class="line">After Loading:</span><br><span class="line">&amp;&#123;Name:koding Port:<span class="number">6066</span> Enabled:<span class="literal">false</span> Users:[ankara istanbul] Postgres:&#123;Enabled:<span class="literal">true</span> Port:<span class="number">5432</span> Hosts:[<span class="number">192.168</span><span class="number">.2</span><span class="number">.1</span> <span class="number">192.168</span><span class="number">.2</span><span class="number">.2</span> <span class="number">192.168</span><span class="number">.2</span><span class="number">.3</span>] DBName: AvailabilityRatio:<span class="number">8.23</span>&#125;&#125;</span><br><span class="line">Enabled field is set to <span class="literal">false</span></span><br></pre></td></tr></table></figure></p>
+<p>检查一下输出结果吧，是不是每项都符合我们之前的预期呢！</p>
+<h1 id="Viper"><a href="#Viper" class="headerlink" title="Viper"></a>Viper</h1><p>我们的重量级选手<a href="https://github.com/spf13/viper" target="_blank" rel="noopener">viper</a>该出场了！</p>
+<p>毫无疑问，viper非常强大。但如果你想用命令行参数覆盖预定义的配置项值，viper自己还不足以。要想让viper爆发，你需要另外一个包配合，它就是<a href="https://github.com/spf13/cobra" target="_blank" rel="noopener">cobra</a>。</p>
+<p>不同于注重简化配置处理的multiconfig，viper让你拥有全面控制力。不幸的是，在得到这种控制力之前，你需要做一些体力活。</p>
+<p>我们再来回顾一下使用multiconfig处理配置的代码：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    m := multiconfig.NewWithPath(<span class="string">"config.toml"</span>) <span class="comment">// supports TOML and JSON</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// Get an empty struct for your configuration</span></span><br><span class="line">    serverConf := <span class="built_in">new</span>(Server)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Populated the serverConf struct</span></span><br><span class="line">    m.MustLoad(serverConf) <span class="comment">// Check for error</span></span><br><span class="line"></span><br><span class="line">    fmt.Println(<span class="string">"After Loading: "</span>)</span><br><span class="line">    fmt.Printf(<span class="string">"%+v\n"</span>, serverConf)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> serverConf.Enabled &#123;</span><br><span class="line">        fmt.Println(<span class="string">"Enabled field is set to true"</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        fmt.Println(<span class="string">"Enabled field is set to false"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这就是使用multiconfig时你要做的所有事情。现在我们来看看使用viper和cobra如何来完成同样的事情：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">init</span><span class="params">()</span></span> &#123;</span><br><span class="line">    mainCmd.AddCommand(versionCmd)</span><br><span class="line"></span><br><span class="line">    viper.SetEnvPrefix(<span class="string">"DISPATCH"</span>)</span><br><span class="line">    viper.AutomaticEnv()</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">      When AutomaticEnv called, Viper will check for an environment variable any</span></span><br><span class="line"><span class="comment">      time a viper.Get request is made. It will apply the following rules. It</span></span><br><span class="line"><span class="comment">      will check for a environment variable with a name matching the key</span></span><br><span class="line"><span class="comment">      uppercased and prefixed with the EnvPrefix if set.</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line"></span><br><span class="line">    flags := mainCmd.Flags()</span><br><span class="line"></span><br><span class="line">    flags.Bool(<span class="string">"debug"</span>, <span class="literal">false</span>, <span class="string">"Turn on debugging."</span>)</span><br><span class="line">    flags.String(<span class="string">"addr"</span>, <span class="string">"localhost:5002"</span>, <span class="string">"Address of the service"</span>)</span><br><span class="line">    flags.String(<span class="string">"smtp-addr"</span>, <span class="string">"localhost:25"</span>, <span class="string">"Address of the SMTP server"</span>)</span><br><span class="line">    flags.String(<span class="string">"smtp-user"</span>, <span class="string">""</span>, <span class="string">"User to authenticate with the SMTP server"</span>)</span><br><span class="line">    flags.String(<span class="string">"smtp-password"</span>, <span class="string">""</span>, <span class="string">"Password to authenticate with the SMTP server"</span>)</span><br><span class="line">    flags.String(<span class="string">"email-from"</span>, <span class="string">"noreply@example.com"</span>, <span class="string">"The from email address."</span>)</span><br><span class="line"></span><br><span class="line">    viper.BindPFlag(<span class="string">"debug"</span>, flags.Lookup(<span class="string">"debug"</span>))</span><br><span class="line">    viper.BindPFlag(<span class="string">"addr"</span>, flags.Lookup(<span class="string">"addr"</span>))</span><br><span class="line">    viper.BindPFlag(<span class="string">"smtp_addr"</span>, flags.Lookup(<span class="string">"smtp-addr"</span>))</span><br><span class="line">    viper.BindPFlag(<span class="string">"smtp_user"</span>, flags.Lookup(<span class="string">"smtp-user"</span>))</span><br><span class="line">    viper.BindPFlag(<span class="string">"smtp_password"</span>, flags.Lookup(<span class="string">"smtp-password"</span>))</span><br><span class="line">    viper.BindPFlag(<span class="string">"email_from"</span>, flags.Lookup(<span class="string">"email-from"</span>))</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Viper supports reading from yaml, toml and/or json files. Viper can</span></span><br><span class="line">  <span class="comment">// search multiple paths. Paths will be searched in the order they are</span></span><br><span class="line">  <span class="comment">// provided. Searches stopped once Config File found.</span></span><br><span class="line"></span><br><span class="line">    viper.SetConfigName(<span class="string">"CommandLineCV"</span>) <span class="comment">// name of config file (without extension)</span></span><br><span class="line">    viper.AddConfigPath(<span class="string">"/tmp"</span>)          <span class="comment">// path to look for the config file in</span></span><br><span class="line">    viper.AddConfigPath(<span class="string">"."</span>)             <span class="comment">// more path to look for the config files</span></span><br><span class="line"></span><br><span class="line">    err := viper.ReadInConfig()</span><br><span class="line">    <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">        <span class="built_in">println</span>(<span class="string">"No config file found. Using built-in defaults."</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>可以看出，你需要使用BindPFlag来让viper和cobra结合一起工作。但这还不算太糟。</p>
+<p>cobra的真正威力在于提供了subcommand能力。同时cobra还提供了与posix 全面兼容的命令行标志解析能力，包括长短标志、内嵌命令、为command定义你自己的help或usage等。</p>
+<p>下面是定义子命令的例子代码：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// The main command describes the service and defaults to printing the</span></span><br><span class="line"><span class="comment">// help message.</span></span><br><span class="line"><span class="keyword">var</span> mainCmd = &amp;cobra.Command&#123;</span><br><span class="line">    Use:   <span class="string">"dispatch"</span>,</span><br><span class="line">    Short: <span class="string">"Event dispatch service."</span>,</span><br><span class="line">    Long:  <span class="string">`HTTP service that consumes events and dispatches them to subscribers.`</span>,</span><br><span class="line">    Run: <span class="function"><span class="keyword">func</span><span class="params">(cmd *cobra.Command, args []<span class="keyword">string</span>)</span></span> &#123;</span><br><span class="line">        serve()</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// The version command prints this service.</span></span><br><span class="line"><span class="keyword">var</span> versionCmd = &amp;cobra.Command&#123;</span><br><span class="line">    Use:   <span class="string">"version"</span>,</span><br><span class="line">    Short: <span class="string">"Print the version."</span>,</span><br><span class="line">    Long:  <span class="string">"The version of the dispatch service."</span>,</span><br><span class="line">    Run: <span class="function"><span class="keyword">func</span><span class="params">(cmd *cobra.Command, args []<span class="keyword">string</span>)</span></span> &#123;</span><br><span class="line">        fmt.Println(version)</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>有了上面subcommand的定义，我们就可以得到如下的help信息了：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Usage:</span><br><span class="line">  dispatch [flags]</span><br><span class="line">  dispatch [command]</span><br><span class="line"></span><br><span class="line">Available Commands:</span><br><span class="line">  version     Print the version.</span><br><span class="line">  help        Help about any command</span><br><span class="line"></span><br><span class="line">Flags:</span><br><span class="line">      –addr="localhost:5002": Address of the service</span><br><span class="line">      –debug=false: Turn on debugging.</span><br><span class="line">      –email-from="noreply@example.com": The from email address.</span><br><span class="line">  -h, –help=false: help for dispatch</span><br><span class="line">      –smtp-addr="localhost:25": Address of the SMTP server</span><br><span class="line">      –smtp-password="": Password to authenticate with the SMTP server</span><br><span class="line">      –smtp-user="": User to authenticate with the SMTP server</span><br><span class="line"></span><br><span class="line">Use "dispatch help [command]" for more information about a command.</span><br></pre></td></tr></table></figure></p>
+
+                
+<p class="pink-link-context">
+    <a href="/2017/08/28/2017-08-28-Golang-concurency/" rel="next" title="Golang并发">
+    Prev: Golang并发
+  </a>
+</p>
+
+
+
+<p class="pink-link-context">
+    <a href="/2017/08/21/2017-08-21-代理/" rel="next" title="代理">
+    Next: 代理
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large pink">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect green" title="Return to top"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse yellow darken-1"  data-activates="main-menu" title="Menu"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer indigo darken-1">
+    
+    <div class="footer-container container">
+        <div class="row">
+            
+            <div class="social-group col m4 s12">
+                <h5 class="white-text">Social</h5>
+                
+                    <a class="social-link" href="http://weibo.com/LinXueyuanStdio" target="_blank">
+                        <i class="fa fa-2x fa-weibo"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://github.com/LinXueyuanStdio" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://www.zhihu.com/people/lin-xue-yuan-86" target="_blank">
+                        <i class="fa fa-2x fa-graduation-cap"></i>
+                    </a>
+                
+                    <a class="social-link" href="http://twitter.com/cwBQ3A5cz3Jzso7" target="_blank">
+                        <i class="fa fa-2x fa-twitter"></i>
+                    </a>
+                
+                    <a class="social-link" href="mailto:761516186@qq.com" target="_blank">
+                        <i class="fa fa-2x fa-envelope"></i>
+                    </a>
+                
+                    <a class="social-link" href="/atom.xml" target="_blank">
+                        <i class="fa fa-2x fa-rss"></i>
+                    </a>
+                
+                
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+    </script>
+    <div class="site-visitors-container white-text">
+        <span>
+            <i class="fa fa-user"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+        </span>
+        <span>&nbsp;|&nbsp;</span>
+        <span>
+            <i class="fa fa-eye"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+        </span>
+    </div>
+
+
+            </div>
+            
+
+            
+            <div class="col m8 s12">
+                <h5 class="white-text">Links</h5>
+                
+                    <a class="social-link" href="http://raytaylorlin.com/" target="_blank">raytaylorism主题作者</a>
+                
+                    <a class="social-link" href="https://github.com/raytaylorlin" target="_blank">Github地址</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    
+
+    <div class="footer-copyright pink-link-context">
+        <div class="container">
+            © 2016 example.com, All rights reserved.
+            <p class="right" style="margin-top: 0;">Blog powered by <a href="https://hexo.io">Hexo</a> | Theme <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
+        </div>
+    </div>
+</footer>
+
+
+    <noscript>
+    <div class="noscript">
+        <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+    </div>
+</noscript>
+<div class="noscript">
+    <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 隐藏禁用javascript（针对微信内置浏览器）的提示
+            $('.noscript').hide();
+
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
+
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed').each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt') || ' ');
+            }).materialbox();
+
+            // 优化表格的显示
+            $('table').each(function() {
+                var $table = $(this);
+                // 除去多行代码的情况
+                if ($table.find('pre').length == 0) {
+                    $table.addClass('responsive-table striped bordered');
+                }
+            });
+
+            // 首页幻灯片
+            $('.slider').slider({indicators: true, full_width: true, interval: 8000});
+
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+
+            // 目录随屏幕滚动（防止目录过长越过footer）
+            var $toc = $('.toc');
+            var scrollTargetTop = 0;
+            $(window).scroll(function() {
+                var $activeLink = $toc.find('a.active.section');
+                if ($(window).scrollTop() < 100) {
+                    scrollTargetTop = 0;
+                } else {
+                    if ($activeLink[0]) {
+                        scrollTargetTop = $activeLink.offset().top - $toc.offset().top;
+                    }
+                }
+                $toc.css('top', '-' + scrollTargetTop + 'px');
+            });
+
+            // 修正文章目录的left-border颜色
+            var color = $('.table-of-contents-text').css('color');
+            $('.table-of-contents-link').css('border-left-color', color);
+
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({
+                    scrollTop: 0
+                }, 500);
+            });
+
+            // 重置读书页面的Tab标签页的颜色
+            $('li.tab a').hover(function() {
+                $(this).toggleClass('text-lighten-4');
+            });
+            $('.indicator').addClass('pink lighten-2');
+
+            
+            // 添加new标签
+            $('.menu-apps').append('<span class="new badge pink"></span>');
+            
+
+            // 搜索功能
+            $('.modal-trigger').leanModal({
+                // 打开搜索框时自动聚焦
+                ready: function() {
+                    if ($('#search').is(":visible")) {
+                        $('#search-input').focus();
+                    }
+                }
+            });
+            var searchXml = "search.xml";
+            if (searchXml.length == 0) {
+             	searchXml = "search.xml";
+            }
+            var searchPath = "/" + searchXml;
+            initSearch(searchPath, 'search-input', 'search-result');
+        });
+
+        // 初始化搜索与匹配函数
+        var initSearch = function(path, search_id, content_id) {
+            'use strict';
+            $.ajax({
+                url: path,
+                dataType: "xml",
+                success: function(xmlResponse) {
+                    // get the contents from search data
+                    var datas = $("entry", xmlResponse).map(function() {
+                        return {
+                            title: $("title", this).text(),
+                            content: $("content", this).text(),
+                            url: $("url", this).text()
+                        };
+                    }).get();
+                    var $input = document.getElementById(search_id);
+                    var $resultContent = document.getElementById(content_id);
+                    $input.addEventListener('input', function() {
+                        var str = '<ul class=\"search-result-list\">';
+                        var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                        $resultContent.innerHTML = "";
+                        if (this.value.trim().length <= 0) {
+                            return;
+                        }
+                        // perform local searching
+                        datas.forEach(function(data) {
+                            var isMatch = true;
+                            var content_index = [];
+                            var data_title = data.title.trim().toLowerCase();
+                            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                            var data_url = data.url;
+                            var index_title = -1;
+                            var index_content = -1;
+                            var first_occur = -1;
+                            // only match artiles with not empty titles and contents
+                            if (data_title != '' && data_content != '') {
+                                keywords.forEach(function(keyword, i) {
+                                    index_title = data_title.indexOf(keyword);
+                                    index_content = data_content.indexOf(keyword);
+                                    if (index_title < 0 && index_content < 0) {
+                                        isMatch = false;
+                                    } else {
+                                        if (index_content < 0) {
+                                            index_content = 0;
+                                        }
+                                        if (i == 0) {
+                                            first_occur = index_content;
+                                        }
+                                    }
+                                });
+                            }
+                            // show search results
+                            if (isMatch) {
+                                keywords.forEach(function(keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                });
+
+                                str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                                if (first_occur >= 0) {
+                                    // cut out 100 characters
+                                    var start = first_occur - 20;
+                                    var end = first_occur + 80;
+                                    if (start < 0) {
+                                        start = 0;
+                                    }
+                                    if (start == 0) {
+                                        end = 100;
+                                    }
+                                    if (end > content.length) {
+                                        end = content.length;
+                                    }
+                                    var match_content = content.substring(start, end);
+                                    // highlight all keywords
+                                    keywords.forEach(function(keyword) {
+                                        var regS = new RegExp(keyword, "gi");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                    });
+
+                                    str += "<p class=\"search-result\">..." + match_content + "...</p>"
+                                }
+                                str += "</li>";
+                            }
+                        });
+                        str += "</ul>";
+                        $resultContent.innerHTML = str;
+                    });
+                }
+            });
+        }
+    })(jQuery);
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+</body>
+</html>

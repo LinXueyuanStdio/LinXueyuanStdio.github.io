@@ -1,0 +1,908 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>【翻译】 深入理解以太坊虚拟机 - EVM汇编代码简介 | XiChen&#39;s Blog</title>
+    <meta name="author" content="Lin Xueyuan">
+    
+    <meta name="description" content="嗨，我是兮尘，全栈数据学徒。这里没有花俏艳丽的魔法，没有苍蛮霸道的斗气，有的，仅仅是繁衍到巅峰的代码！">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="【翻译】 深入理解以太坊虚拟机 - EVM汇编代码简介"/>
+    <meta property="og:site_name" content="XiChen"/>
+
+    
+    <meta property="og:image" content=""/>
+    
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" href="/atom.xml" title="XiChen" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
+
+    <nav class="indigo">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="">
+            <a href="/" class="brand-logo hide-on-med-and-down">XiChen</a>
+            <ul class="right hide-on-med-and-down">
+                
+                    <li>
+                        <a class="menu-home " href="/" >
+                            <i class="fa fa-home "></i>
+                            
+                            Home
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-archive " href="/archives" >
+                            <i class="fa fa-archive "></i>
+                            
+                            Archives
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                            <i class="fa fa-bookmark "></i>
+                            
+                            Categories
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-reading " href="/reading" >
+                            <i class="fa fa-book "></i>
+                            
+                            Reading
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-about " href="/about" >
+                            <i class="fa fa-user "></i>
+                            
+                            About
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-search modal-trigger " href="#search" >
+                            <i class="fa fa-search "></i>
+                            
+                            Search
+                        </a>
+                    </li>
+                
+            </ul>
+            <div>
+    <ul class="side-nav indigo darken-1" id="main-menu">
+        
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4 no-padding">
+                    <img class="avatar-image circle responsive-img" src="/assets/images/avatar.jpg" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper no-padding">
+                    <div class="valign">
+                        <p class="name">兮尘</p>
+                        <p class="desc">Android/深度学习/Web前端</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-home " href="/" >
+                    <i class="fa fa-home "></i>
+                    
+                    Home
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-archive " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    
+                    Archives
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    
+                    Categories
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-reading " href="/reading" >
+                    <i class="fa fa-book "></i>
+                    
+                    Reading
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-about " href="/about" >
+                    <i class="fa fa-user "></i>
+                    
+                    About
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-search modal-trigger " href="#search" >
+                    <i class="fa fa-search "></i>
+                    
+                    Search
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav indigo darken-1" id="category-menu">
+    
+
+            
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Linux/">
+                    Linux <span class="right">8</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tips/">
+                    Tips <span class="right">7</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/GO/">
+                    GO <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Proxy/">
+                    Proxy <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Ubuntu/">
+                    Ubuntu <span class="right">4</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Spider/">
+                    Spider <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/区块链/">
+                    区块链 <span class="right">25</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/密码学/">
+                    密码学 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/算法/">
+                    算法 <span class="right">4</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Latex/">
+                    Latex <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/杂思/">
+                    杂思 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Git/">
+                    Git <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Github/">
+                    Github <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Web/">
+                    Web <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Android/">
+                    Android <span class="right">33</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/计算机组成原理/">
+                    计算机组成原理 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Deep-Learning/">
+                    Deep-Learning <span class="right">5</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Mac/">
+                    Mac <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/练习/">
+                    练习 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tools/">
+                    Tools <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Algorithms/">
+                    Algorithms <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+<div id="search" class="modal search-modal">
+    <div class="row">
+        <div class="input-field col s12">
+              <input id="search-input" type="text">
+              <label for="search-input">Search</label>
+        </div>
+
+    </div>
+    <div id="search-result" class="search-result col s12">
+
+    </div>
+</div>
+
+
+    <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper indigo">
+        <span class="breadcrumb">Current page(Categories)</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/区块链/">区块链</a>
+
+
+        
+
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>【翻译】 深入理解以太坊虚拟机 - EVM汇编代码简介</h1>
+    
+
+
+            </div>
+            <time class="pink-link-context" datetime="2018-06-12T14:11:00.000Z"><a href="/2018/06/12/2018-06-12-翻译-深入理解以太坊虚拟机-EVM汇编代码简介/">2018-06-12</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/区块链/" class="chip pink lighten-1">区块链</a>
+        
+            <a href="/tags/Qtum/" class="chip pink lighten-1">Qtum</a>
+        
+            <a href="/tags/翻译/" class="chip pink lighten-1">翻译</a>
+        
+    </div>
+
+
+            <div class="toc pink-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#EVM汇编代码简介"><span class="section table-of-contents-text">EVM汇编代码简介</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#一个简单的智能合约"><span class="section table-of-contents-text">一个简单的智能合约</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#蹒跚学步"><span class="section table-of-contents-text">蹒跚学步</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#模仿-EVM"><span class="section table-of-contents-text">模仿 EVM</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#2-个存储变量"><span class="section table-of-contents-text">2 个存储变量</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#打包存储"><span class="section table-of-contents-text">打包存储</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#更多优化"><span class="section table-of-contents-text">更多优化</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#gas-的使用"><span class="section table-of-contents-text">gas 的使用</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#总结"><span class="section table-of-contents-text">总结</span></a></li></ol>
+</div>
+
+
+            <div class="entry pink-link-context">
+                <p>原文：<a href="https://blog.qtum.org/diving-into-the-ethereum-vm-6e8d5d2f3c30" target="_blank" rel="noopener">https://blog.qtum.org/diving-into-the-ethereum-vm-6e8d5d2f3c30</a><br>译者：中山大学数学学院（珠海）林学渊<br>大二时给量子做的翻译，转载注明出处，谢谢</p>
+<h1 id="EVM汇编代码简介"><a href="#EVM汇编代码简介" class="headerlink" title="EVM汇编代码简介"></a>EVM汇编代码简介</h1><hr>
+<p>Solidity 提供了很多高级语言抽象，但这些功能很难让我理解程序运行时到底发生了什么。阅读 Solidity 的文档仍然使我对一些基础的东西感到疑惑。</p>
+<p>string, bytes32, byte[], bytes 有什么区别?</p>
+<ul>
+<li>什么时候应该用哪个？</li>
+<li>把 string 转为 bytes 发生了什么？转为 byte[] 呢？</li>
+<li>这些需要多少 gas ？</li>
+</ul>
+<p>mapping 在以太坊虚拟机里是怎么存的？</p>
+<ul>
+<li>为什么不能把 mapping 删了？</li>
+<li>能构建 maping 到 maping 的数据结构吗？(当然可以，但这是怎么实现的？)</li>
+<li>为什么有存储 mapping ，但是没有内存 mapping ?</li>
+</ul>
+<p>编译后的合约在以太坊虚拟机里长什么样？</p>
+<ul>
+<li>合约如何创建？</li>
+<li>构造方法是什么？真的吗？</li>
+<li>回退函数是什么？</li>
+</ul>
+<p>我想，学习一门在以太坊虚拟机( EVM )上运行的高级语言如 Solidity 会是一个好的自我投资。有以下原因。</p>
+<ol>
+<li>Solidity 不是最后一门语言。更好的 EVM 语言正在到来。(漂亮，对不对？)</li>
+<li>EVM是个数据库引擎。理解用任意一种 EVM 语言写的智能合约前，必须理解数据是如何被组织、存储和操控的。</li>
+<li>了解如何成为一个贡献者。以太坊工具链刚刚起步，深入理解EVM会帮助你给你自己或其他人造出惊艳的工具。</li>
+<li>智力挑战。EVM使得你能在密码学、数据结构和程序语言设计的交汇处获得最佳实践。</li>
+</ol>
+<p>在本系列文章中，我会解构一些简单的 Solidity 智能合约，以便理解它们作为 EVM 字节码时如何工作。</p>
+<p>我希望学习和写作的要点：</p>
+<ul>
+<li>EVM 字节码的基础</li>
+<li>不同数据类型( mapping, array )的表现形式</li>
+<li>合约创建时发生了什么</li>
+<li>一个方法调用时发生了什么</li>
+<li>ABI 桥如何区别了 EVM 语言</li>
+</ul>
+<p>我的终极目标是能够完全理解一个编译后的 Solidity 合约。先从一些基础的 EVM 字节码开始阅读吧！</p>
+<p>一个有用的引用：<a href="https://gist.github.com/hayeah/bd37a123c02fecffbe629bf98a8391df" target="_blank" rel="noopener">EVM 指令集</a></p>
+<h1 id="一个简单的智能合约"><a href="#一个简单的智能合约" class="headerlink" title="一个简单的智能合约"></a>一个简单的智能合约</h1><p>我们的第一个合约有构造函数和一个常量：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// c1.sol</span><br><span class="line">pragma solidity ^0.4.11;</span><br><span class="line">contract C &#123;</span><br><span class="line">    uint256 a;</span><br><span class="line">    function C() &#123;</span><br><span class="line">      a = 1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>用 <code>solc</code> 命令编译：</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">$ solc --<span class="keyword">bin </span>--asm <span class="built_in">c1</span>.sol</span><br><span class="line">======= <span class="built_in">c1</span>.sol:C =======</span><br><span class="line"><span class="symbol">EVM</span> assembly:</span><br><span class="line">    <span class="comment">/* "c1.sol":26:94  contract C &#123;... */</span></span><br><span class="line">  mstore(<span class="number">0x40</span>, <span class="number">0x60</span>)</span><br><span class="line">    <span class="comment">/* "c1.sol":59:92  function C() &#123;... */</span></span><br><span class="line">  jumpi(tag_1, iszero(callvalue))</span><br><span class="line">  <span class="number">0x0</span></span><br><span class="line">  dup1</span><br><span class="line">  <span class="keyword">revert</span></span><br><span class="line"><span class="keyword">tag_1:</span></span><br><span class="line"><span class="keyword">tag_2:</span></span><br><span class="line"><span class="keyword"> </span>   <span class="comment">/* "c1.sol":84:85  1 */</span></span><br><span class="line">  <span class="number">0x1</span></span><br><span class="line">    <span class="comment">/* "c1.sol":80:81  a */</span></span><br><span class="line">  <span class="number">0x0</span></span><br><span class="line">    <span class="comment">/* "c1.sol":80:85  a = 1 */</span></span><br><span class="line">  dup2</span><br><span class="line">  swap1</span><br><span class="line">  sstore</span><br><span class="line">  <span class="keyword">pop</span></span><br><span class="line"><span class="keyword"> </span>   <span class="comment">/* "c1.sol":59:92  function C() &#123;... */</span></span><br><span class="line"><span class="symbol">tag_3</span>:</span><br><span class="line">    <span class="comment">/* "c1.sol":26:94  contract C &#123;... */</span></span><br><span class="line"><span class="symbol">tag_4</span>:</span><br><span class="line">  dataSize(<span class="keyword">sub_0)</span></span><br><span class="line"><span class="keyword"> </span> dup1</span><br><span class="line">  dataOffset(<span class="keyword">sub_0)</span></span><br><span class="line"><span class="keyword"> </span> <span class="number">0x0</span></span><br><span class="line">  codecopy</span><br><span class="line">  <span class="number">0x0</span></span><br><span class="line">  return</span><br><span class="line"><span class="symbol">stop</span></span><br><span class="line"><span class="keyword">sub_0: </span>assembly &#123;</span><br><span class="line">        <span class="comment">/* "c1.sol":26:94  contract C &#123;... */</span></span><br><span class="line">      mstore(<span class="number">0x40</span>, <span class="number">0x60</span>)</span><br><span class="line"><span class="symbol">    tag_1:</span></span><br><span class="line">      <span class="number">0x0</span></span><br><span class="line">      dup1</span><br><span class="line">      <span class="keyword">revert</span></span><br><span class="line"><span class="keyword">auxdata: </span><span class="number">0xa165627a7a72305820af3193f6fd31031a0e0d2de1ad2c27352b1ce081b4f3c92b5650ca4dd542bb770029</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">Binary:</span></span><br><span class="line"><span class="keyword">60606040523415600e57600080fd5b5b60016000819055505b5b60368060266000396000f30060606040525b600080fd00a165627a7a72305820af3193f6fd31031a0e0d2de1ad2c27352b1ce081b4f3c92b5650ca4dd542bb770029</span></span><br></pre></td></tr></table></figure>
+<p>数字 <code>6060604052...</code> 是 EVM 真正运行的字节码。</p>
+<h1 id="蹒跚学步"><a href="#蹒跚学步" class="headerlink" title="蹒跚学步"></a>蹒跚学步</h1><p>一半的汇编是模板，以至于在大多数 Solidity 程序中都一样。我们等下再来看这些。现在，我们来实验我们合约独特的一部分，存储变量的声明：<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">a</span> = <span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<p>这个声明的字节码表示是 <code>6001600081905550</code> 。根据指令换行：<br><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">60 </span><span class="number">01</span></span><br><span class="line"><span class="symbol">60 </span><span class="number">00</span></span><br><span class="line"><span class="number">81</span></span><br><span class="line"><span class="number">90</span></span><br><span class="line"><span class="number">55</span></span><br><span class="line"><span class="number">50</span></span><br></pre></td></tr></table></figure></p>
+<p>EVM 底层循环是从上到下运行每一条指令。<br>我们注释一下汇编代码(以 <code>tag_2</code> 开头)以便阅读：<br><figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">tag_2:</span></span><br><span class="line">  <span class="comment">// 60 01</span></span><br><span class="line">  <span class="number">0x1</span></span><br><span class="line">  <span class="comment">// 60 00</span></span><br><span class="line">  <span class="number">0x0</span></span><br><span class="line">  <span class="comment">// 81</span></span><br><span class="line">  dup2</span><br><span class="line">  <span class="comment">// 90</span></span><br><span class="line">  swap1</span><br><span class="line">  <span class="comment">// 55</span></span><br><span class="line">  sstore</span><br><span class="line">  <span class="comment">// 50</span></span><br><span class="line">  pop</span><br></pre></td></tr></table></figure></p>
+<p>注意汇编中的 <code>0x1</code> 实际上是 <code>push(0x1)</code> 的缩写。这条指令表示吧数字 <code>1</code> 入栈。</p>
+<p>如果只盯着这个看，很难捕获到发生了什么。不要担心，模仿 EVM 一行一行地走，很简单的。</p>
+<h1 id="模仿-EVM"><a href="#模仿-EVM" class="headerlink" title="模仿 EVM"></a>模仿 EVM</h1><p>EVM 是堆栈机器。指令可以使用栈中的值作为参数，也可以把某一些值入栈作为结果。举个例子， <code>add</code> 指令。</p>
+<p>假设栈中有 2 个值：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>, <span class="number">2</span>]</span><br></pre></td></tr></table></figure></p>
+<p>当 EVM 看到 <code>add</code> 时，它把栈顶的 2 项出栈相加，然后把结果入栈回去，操作后：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">3</span>]</span><br></pre></td></tr></table></figure></p>
+<p>以后我们仍然用 <code>[]</code> 这个符号来表示栈：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 空栈</span></span><br><span class="line"><span class="built_in">stack</span>: []</span><br><span class="line"><span class="comment">// 有3个元素的栈. 栈顶元素是 3. 栈底元素是 1.</span></span><br><span class="line"><span class="built_in">stack</span>: [<span class="number">3</span> <span class="number">2</span> <span class="number">1</span>]</span><br></pre></td></tr></table></figure></p>
+<p>用 <code>{}</code> 来表示合约存储:<br><figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 空存储</span></span><br><span class="line"><span class="symbol">store:</span> &#123;&#125;</span><br><span class="line"><span class="comment">// 值 0x1 存储在地址 0x0.</span></span><br><span class="line"><span class="symbol">store:</span> &#123; <span class="number">0x0</span> =&gt; <span class="number">0x1</span> &#125;</span><br></pre></td></tr></table></figure></p>
+<p>现在我们来看一些实际的字节码。我们将模仿EVM运行字节序列 <code>6001600081905550</code> ，同时写出每一条指令运行后的机器状态：</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 60 01: 将1入栈</span></span><br><span class="line"><span class="number">0x1</span></span><br><span class="line"><span class="symbol">  stack:</span> [<span class="number">0x1</span>]</span><br><span class="line"><span class="comment">// 60 00: 将0入栈</span></span><br><span class="line"><span class="number">0x0</span></span><br><span class="line"><span class="symbol">  stack:</span> [<span class="number">0x0</span> <span class="number">0x1</span>]</span><br><span class="line"><span class="comment">// 81: 复制栈中的第二个元素，入栈</span></span><br><span class="line">dup2</span><br><span class="line"><span class="symbol">  stack:</span> [<span class="number">0x1</span> <span class="number">0x0</span> <span class="number">0x1</span>]</span><br><span class="line"><span class="comment">// 90: 交换栈顶2个元素</span></span><br><span class="line">swap1</span><br><span class="line"><span class="symbol">  stack:</span> [<span class="number">0x0</span> <span class="number">0x1</span> <span class="number">0x1</span>]</span><br><span class="line"><span class="comment">// 55: 把值 0x1 存储到地址 0x0</span></span><br><span class="line"><span class="comment">// 这条指令使用了栈顶的两个元素</span></span><br><span class="line">sstore</span><br><span class="line"><span class="symbol">  stack:</span> [<span class="number">0x1</span>]</span><br><span class="line"><span class="symbol">  store:</span> &#123; <span class="number">0x0</span> =&gt; <span class="number">0x1</span> &#125;</span><br><span class="line"><span class="comment">// 50: 出栈，即丢掉栈顶一个元素</span></span><br><span class="line">pop</span><br><span class="line"><span class="symbol">  stack:</span> []</span><br><span class="line"><span class="symbol">  store:</span> &#123; <span class="number">0x0</span> =&gt; <span class="number">0x1</span> &#125;</span><br></pre></td></tr></table></figure>
+<p>运行完了。栈空了，同时有一个元素存储到了存储器里。</p>
+<p>值得注意的是 Solidity 决定把状态变量 <code>uint256 a</code> 存储到地址 <code>0x0</code> 。很可能其他语言会把状态变量存到其他地方。</p>
+<p>写出伪代码， EVM 运行 <code>6001600081905550</code> 就像是这样：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// a = 1</span></span><br><span class="line"><span class="function"><span class="title">sstore</span><span class="params">(<span class="number">0</span>x0, <span class="number">0</span>x1)</span></span></span><br></pre></td></tr></table></figure>
+<p>看仔细一点，会发现 <code>dup2</code>, <code>swap1</code>, <code>pop</code> 是多余的。汇编代码可以更简单：</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0x1</span></span><br><span class="line"><span class="number">0x0</span></span><br><span class="line">sstore</span><br></pre></td></tr></table></figure>
+<p>你可以试着模拟运行上面的<code>3</code>条指令，肯定会惊喜地发现它们结束时的机器状态是一样的：</p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">stack:</span> []</span><br><span class="line"><span class="symbol">store:</span> &#123; <span class="number">0x0</span> =&gt; <span class="number">0x1</span> &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="2-个存储变量"><a href="#2-个存储变量" class="headerlink" title="2 个存储变量"></a>2 个存储变量</h1><p>添加另一个相同数据类型的存储变量：</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// c2.sol</span></span><br><span class="line">pragma solidity ^<span class="number">0.4</span><span class="number">.11</span>;</span><br><span class="line">contract C &#123;</span><br><span class="line">    uint256 a;</span><br><span class="line">    uint256 b;</span><br><span class="line">    function C() &#123;</span><br><span class="line">      a = <span class="number">1</span>;</span><br><span class="line">      b = <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译，注意 <code>tag_2</code>:<br><figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">$ solc --bin --asm c2.sol</span><br><span class="line"><span class="comment">// ... more stuff omitted</span></span><br><span class="line">tag_2:</span><br><span class="line">    <span class="comment">/* "c2.sol":99:100  1 */</span></span><br><span class="line">  <span class="number">0x1</span></span><br><span class="line">    <span class="comment">/* "c2.sol":95:96  a */</span></span><br><span class="line">  <span class="number">0x0</span></span><br><span class="line">    <span class="comment">/* "c2.sol":95:100  a = 1 */</span></span><br><span class="line">  dup2</span><br><span class="line">  swap1</span><br><span class="line">  sstore</span><br><span class="line">  <span class="keyword">pop</span></span><br><span class="line">    <span class="comment">/* "c2.sol":112:113  2 */</span></span><br><span class="line">  <span class="number">0x2</span></span><br><span class="line">    <span class="comment">/* "c2.sol":108:109  b */</span></span><br><span class="line">  <span class="number">0x1</span></span><br><span class="line">    <span class="comment">/* "c2.sol":108:113  b = 2 */</span></span><br><span class="line">  dup2</span><br><span class="line">  swap1</span><br><span class="line">  sstore</span><br><span class="line">  <span class="keyword">pop</span></span><br></pre></td></tr></table></figure></p>
+<p>汇编伪代码：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// a = 1</span></span><br><span class="line"><span class="function"><span class="title">sstore</span><span class="params">(<span class="number">0</span>x0, <span class="number">0</span>x1)</span></span></span><br><span class="line"><span class="comment">// b = 2</span></span><br><span class="line"><span class="function"><span class="title">sstore</span><span class="params">(<span class="number">0</span>x1, <span class="number">0</span>x2)</span></span></span><br></pre></td></tr></table></figure>
+<p>现在我们知道这两个存储变量是依次存储的，<code>a</code> 存储在地址 <code>0x0</code>，<code>b</code> 存储在地址 <code>0x1</code>。</p>
+<h1 id="打包存储"><a href="#打包存储" class="headerlink" title="打包存储"></a>打包存储</h1><p>每个存储单元能存 32 字节。如果全部使用 32 字节的话，如果一个变量只要 16 字节，那就很浪费了。 Solidity 通过把 2 个短的数据类型打包成 1 个来提高存储效率。</p>
+<p>把 <code>a</code> 和 <code>b</code> 改成每个 16 字节：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">pragma</span> solidity<span class="regexp"> ^0.4.11</span>;</span><br><span class="line"><span class="attribute">contract</span> C &#123;</span><br><span class="line">    <span class="attribute">uint128</span> a;</span><br><span class="line">    <span class="attribute">uint128</span> b;</span><br><span class="line">    <span class="attribute">function</span> C() &#123;</span><br><span class="line">      <span class="attribute">a</span> = <span class="number">1</span>;</span><br><span class="line">      <span class="attribute">b</span> = <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译合约：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> solc --bin --asm c3.sol</span></span><br></pre></td></tr></table></figure>
+<p>生成的汇编代码更复杂了：<br><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">tag_2:</span><br><span class="line">  // a = 1</span><br><span class="line">  0x1</span><br><span class="line">  0x0</span><br><span class="line">  dup1</span><br><span class="line">  0x100</span><br><span class="line">  exp</span><br><span class="line">  dup2</span><br><span class="line">  sload</span><br><span class="line">  dup2</span><br><span class="line">  0xffffffffffffffffffffffffffffffff</span><br><span class="line">  mul</span><br><span class="line">  not</span><br><span class="line">  and</span><br><span class="line">  swap1</span><br><span class="line">  dup4</span><br><span class="line">  0xffffffffffffffffffffffffffffffff</span><br><span class="line">  and</span><br><span class="line">  mul</span><br><span class="line">  or</span><br><span class="line">  swap1</span><br><span class="line">  sstore</span><br><span class="line">  pop</span><br><span class="line">  // b = 2</span><br><span class="line">  0x2</span><br><span class="line">  0x0</span><br><span class="line">  0x10</span><br><span class="line">  0x100</span><br><span class="line">  exp</span><br><span class="line">  dup2</span><br><span class="line">  sload</span><br><span class="line">  dup2</span><br><span class="line">  0xffffffffffffffffffffffffffffffff</span><br><span class="line">  mul</span><br><span class="line">  not</span><br><span class="line">  and</span><br><span class="line">  swap1</span><br><span class="line">  dup4</span><br><span class="line">  0xffffffffffffffffffffffffffffffff</span><br><span class="line">  and</span><br><span class="line">  mul</span><br><span class="line">  or</span><br><span class="line">  swap1</span><br><span class="line">  sstore</span><br><span class="line">  pop</span><br></pre></td></tr></table></figure></p>
+<p>上面的汇编代码把 2 个变量打包到1个存储地址( <code>0x0</code> )，像这样：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">         b         </span>][<span class="symbol">         a         </span>]</span><br><span class="line">[<span class="string">16 bytes / 128 bits</span>][<span class="symbol">16 bytes / 128 bits</span>]</span><br></pre></td></tr></table></figure>
+<p>打包的原因是目前最贵的操作就是存储空间的使用：</p>
+<ul>
+<li><code>sstore</code> 花费 20,000 gas 来第一次写入一个新地址</li>
+<li><code>sstore</code> 花费 5,000 gas 来随后写入一个已存在的地址</li>
+<li><code>sload</code> 花费 500 gas</li>
+<li>大多数指令只花费 3~10 gas</li>
+</ul>
+<p>通过使用相同的地址， Solidity 为第二个变量存储只支付 5,000 而不是 20,000，省了 15,000 gas。</p>
+<h1 id="更多优化"><a href="#更多优化" class="headerlink" title="更多优化"></a>更多优化</h1><p>不分别同 2 个 <code>sstore</code> 指令来保存 <code>a</code> 和 <code>b</code> ，而把2个128比特的数字打包到内存里再使用1个 <code>sstore</code> ，从而节省 5,000 gas。</p>
+<p>你可以通过 <code>optimize</code> 标志来让Solidity做这个操作：</p>
+<figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">$</span> <span class="comment">solc</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">bin</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">asm</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">optimize</span> <span class="comment">c3</span><span class="string">.</span><span class="comment">sol</span></span><br></pre></td></tr></table></figure>
+<p>这个方式生成的汇编代码只使用1个 <code>sload</code> 和1个 <code>sstore</code> :<br><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">tag_2:</span></span><br><span class="line">    <span class="comment">/* "c3.sol":95:96  a */</span></span><br><span class="line">  <span class="number">0x0</span></span><br><span class="line">    <span class="comment">/* "c3.sol":95:100  a = 1 */</span></span><br><span class="line">  dup1</span><br><span class="line">  sload</span><br><span class="line">    <span class="comment">/* "c3.sol":108:113  b = 2 */</span></span><br><span class="line">  <span class="number">0x200000000000000000000000000000000</span></span><br><span class="line">  not(<span class="keyword">sub(exp(0x2, </span><span class="number">0x80</span>), <span class="number">0x1</span>))</span><br><span class="line">    <span class="comment">/* "c3.sol":95:100  a = 1 */</span></span><br><span class="line">  <span class="keyword">swap1</span></span><br><span class="line"><span class="keyword"> </span> <span class="keyword">swap2</span></span><br><span class="line"><span class="keyword"> </span> <span class="keyword">and</span></span><br><span class="line"><span class="keyword"> </span>   <span class="comment">/* "c3.sol":99:100  1 */</span></span><br><span class="line">  <span class="number">0x1</span></span><br><span class="line">    <span class="comment">/* "c3.sol":95:100  a = 1 */</span></span><br><span class="line">  <span class="keyword">or</span></span><br><span class="line"><span class="keyword"> </span> <span class="keyword">sub(exp(0x2, </span><span class="number">0x80</span>), <span class="number">0x1</span>)</span><br><span class="line">    <span class="comment">/* "c3.sol":108:113  b = 2 */</span></span><br><span class="line">  <span class="keyword">and</span></span><br><span class="line"><span class="keyword"> </span> <span class="keyword">or</span></span><br><span class="line"><span class="keyword"> </span> <span class="keyword">swap1</span></span><br><span class="line"><span class="keyword"> </span> sstore</span><br></pre></td></tr></table></figure></p>
+<p>字节码是<br><figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">600080547002000000000000000000000000000000006001608060020</span>a03199091166001176001608060020a<span class="number">0316179055</span></span><br></pre></td></tr></table></figure></p>
+<p>格式化字节码成一行一条指令的形式：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// push 0x0</span></span><br><span class="line"><span class="number">60</span> <span class="number">00</span></span><br><span class="line"><span class="comment">// dup1</span></span><br><span class="line"><span class="number">80</span></span><br><span class="line"><span class="comment">// sload</span></span><br><span class="line"><span class="number">54</span></span><br><span class="line"><span class="comment">// push17 作为 32 字节的数字，把接下来的 17 字节入栈</span></span><br><span class="line"><span class="number">70</span> <span class="number">02</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br><span class="line"><span class="comment">/* not(sub(exp(0x2, 0x80), 0x1)) */</span></span><br><span class="line"><span class="comment">// push 0x1</span></span><br><span class="line"><span class="number">60</span> <span class="number">01</span></span><br><span class="line"><span class="comment">// push 0x80 (32)</span></span><br><span class="line"><span class="number">60</span> <span class="number">80</span></span><br><span class="line"><span class="comment">// push 0x80 (2)</span></span><br><span class="line"><span class="number">60</span> <span class="number">02</span></span><br><span class="line"><span class="comment">// exp</span></span><br><span class="line"><span class="number">0</span>a</span><br><span class="line"><span class="comment">// sub</span></span><br><span class="line"><span class="number">03</span></span><br><span class="line"><span class="comment">// not</span></span><br><span class="line"><span class="number">19</span></span><br><span class="line"><span class="comment">// swap1</span></span><br><span class="line"><span class="number">90</span></span><br><span class="line"><span class="comment">// swap2</span></span><br><span class="line"><span class="number">91</span></span><br><span class="line"><span class="comment">// and</span></span><br><span class="line"><span class="number">16</span></span><br><span class="line"><span class="comment">// push 0x1</span></span><br><span class="line"><span class="number">60</span> <span class="number">01</span></span><br><span class="line"><span class="comment">// or</span></span><br><span class="line"><span class="number">17</span></span><br><span class="line"><span class="comment">/* sub(exp(0x2, 0x80), 0x1) */</span></span><br><span class="line"><span class="comment">// push 0x1</span></span><br><span class="line"><span class="number">60</span> <span class="number">01</span></span><br><span class="line"><span class="comment">// push 0x80</span></span><br><span class="line"><span class="number">60</span> <span class="number">80</span></span><br><span class="line"><span class="comment">// push 0x02</span></span><br><span class="line"><span class="number">60</span> <span class="number">02</span></span><br><span class="line"><span class="comment">// exp</span></span><br><span class="line"><span class="number">0</span>a</span><br><span class="line"><span class="comment">// sub</span></span><br><span class="line"><span class="number">03</span></span><br><span class="line"><span class="comment">// and</span></span><br><span class="line"><span class="number">16</span></span><br><span class="line"><span class="comment">// or</span></span><br><span class="line"><span class="number">17</span></span><br><span class="line"><span class="comment">// swap1</span></span><br><span class="line"><span class="number">90</span></span><br><span class="line"><span class="comment">// sstore</span></span><br><span class="line"><span class="number">55</span></span><br></pre></td></tr></table></figure></p>
+<p>在汇编代码里有4个魔法变量：</p>
+<ul>
+<li><p>0x1 (16 字节), 使用低 16 位字节</p>
+<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 字节码表示 <span class="number">0</span>x01</span><br><span class="line"><span class="number">16</span>:<span class="number">32</span> <span class="number">0</span>x000000000000000000000<span class="number">00000000000</span></span><br><span class="line"><span class="number">00</span>:<span class="number">16</span> <span class="number">0</span>x000000000000000000000<span class="number">00000000001</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>0x2 (16 字节), 使用高 16 位字节</p>
+<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//字节码表示 <span class="number">0</span>x2000000000000000000000<span class="number">00000000000</span></span><br><span class="line"><span class="number">16</span>:<span class="number">32</span> <span class="number">0</span>x000000000000000000000<span class="number">00000000002</span></span><br><span class="line"><span class="number">00</span>:<span class="number">16</span> <span class="number">0</span>x000000000000000000000<span class="number">00000000000</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>not(sub(exp(0x2, 0x80), 0x1))</code></p>
+</li>
+</ul>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 高 16 字节的二进制掩码</span></span><br><span class="line"><span class="attribute">16</span>:<span class="number">32</span> <span class="number">0</span>xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</span><br><span class="line"><span class="number">00</span>:<span class="number">16</span> <span class="number">0</span>x00000000000000000000000000000000</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>sub(exp(0x2, 0x80), 0x1)</code></li>
+</ul>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 低 16 字节的二进制掩码</span></span><br><span class="line"><span class="attribute">16</span>:<span class="number">32</span> <span class="number">0</span>x00000000000000000000000000000000 </span><br><span class="line"><span class="number">00</span>:<span class="number">16</span> <span class="number">0</span>xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</span><br></pre></td></tr></table></figure>
+<p>代码对这些值做了位交换以获得需要的结果：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">16<span class="selector-pseudo">:32</span> 0<span class="selector-tag">x00000000000000000000000000000002</span> </span><br><span class="line">00<span class="selector-pseudo">:16</span> 0<span class="selector-tag">x00000000000000000000000000000001</span></span><br></pre></td></tr></table></figure></p>
+<p>最后，这个 32 字节的值存储在地址 0x0。</p>
+<h2 id="gas-的使用"><a href="#gas-的使用" class="headerlink" title="gas 的使用"></a>gas 的使用</h2><blockquote>
+<p>60008054700<strong>200000000000000000000000000000000</strong>6001608060020a03199091166001176001608060020a0316179055</p>
+</blockquote>
+<p>注意 <code>0x200000000000000000000000000000000</code> 嵌在字节码里了。但编译器也可能选择用指令 <code>exp(0x2, 0x81)</code> 计算值，这将生成更短的字节码序列。</p>
+<p>结果好像是 <code>0x200000000000000000000000000000000</code> 比 <code>exp(0x2, 0x81)</code> 更便宜。我们看一下分别需要花费的 gas：</p>
+<ul>
+<li>4 gas  花在一笔交易中的每一个为 0 的数据或代码</li>
+<li>68 gas 花在一笔交易中的每一个非 0 的数据或代码</li>
+</ul>
+<p>比较一下总的gas花费：</p>
+<ul>
+<li><p>字节码 <code>0x200000000000000000000000000000000</code>. 它有很多 0 ，更便宜<br>(1 <em> 68) + (16 </em> 4) = 196.</p>
+</li>
+<li><p>字节码 <code>608160020a</code>. 更短，但没有0.<br>5 * 68 = 340.</p>
+</li>
+</ul>
+<p>更长但有更多 0 的序列实际上更便宜！</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>EVM 编译器实际上没有优化字节码大小或速度抑或内存效率。取而代之的是，它优化了 gas 的使用，这是一个间接的层面，可以激励以太坊区块链进行高效计算。</p>
+<p>我们已经看到了 EVM 一些诡异的方面：</p>
+<ul>
+<li>EVM 是 256 比特机器。以 32 字节为块来操作数据最自然。</li>
+<li>持久化存储很贵。</li>
+<li>Solidity 编译器为了最小化 gas 的使用采取了有趣的做法。</li>
+</ul>
+<p>gas 成本的设定是任意的，以后可能会变。随着成本的变化，编译器会做出不同的选择。</p>
+<hr>
+<p>在本系列文章中，关于 EVM 我会写：</p>
+<ul>
+<li>EVM 汇编代码的介绍</li>
+<li>定长数据类型如何表示</li>
+<li>动态数据类型如何表示</li>
+<li>ABI编码的外部函数如何调用</li>
+<li>一个新合约创建时发生了什么</li>
+</ul>
+
+                
+<p class="pink-link-context">
+    <a href="/2018/06/18/2018-06-18-翻译-深入理解以太坊虚拟机-如何表示固定长度的数据类型/" rel="next" title="【翻译】 深入理解以太坊虚拟机 - 如何表示固定长度的数据类型">
+    Prev: 【翻译】 深入理解以太坊虚拟机 - 如何表示固定长度的数据类型
+  </a>
+</p>
+
+
+
+<p class="pink-link-context">
+    <a href="/2018/06/06/2018-06-06-翻译-QtumJS文档/" rel="next" title="【翻译】 QtumJS 文档">
+    Next: 【翻译】 QtumJS 文档
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large pink">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect green" title="Return to top"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse yellow darken-1"  data-activates="main-menu" title="Menu"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer indigo darken-1">
+    
+    <div class="footer-container container">
+        <div class="row">
+            
+            <div class="social-group col m4 s12">
+                <h5 class="white-text">Social</h5>
+                
+                    <a class="social-link" href="http://weibo.com/LinXueyuanStdio" target="_blank">
+                        <i class="fa fa-2x fa-weibo"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://github.com/LinXueyuanStdio" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://www.zhihu.com/people/lin-xue-yuan-86" target="_blank">
+                        <i class="fa fa-2x fa-graduation-cap"></i>
+                    </a>
+                
+                    <a class="social-link" href="http://twitter.com/cwBQ3A5cz3Jzso7" target="_blank">
+                        <i class="fa fa-2x fa-twitter"></i>
+                    </a>
+                
+                    <a class="social-link" href="mailto:761516186@qq.com" target="_blank">
+                        <i class="fa fa-2x fa-envelope"></i>
+                    </a>
+                
+                    <a class="social-link" href="/atom.xml" target="_blank">
+                        <i class="fa fa-2x fa-rss"></i>
+                    </a>
+                
+                
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+    </script>
+    <div class="site-visitors-container white-text">
+        <span>
+            <i class="fa fa-user"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+        </span>
+        <span>&nbsp;|&nbsp;</span>
+        <span>
+            <i class="fa fa-eye"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+        </span>
+    </div>
+
+
+            </div>
+            
+
+            
+            <div class="col m8 s12">
+                <h5 class="white-text">Links</h5>
+                
+                    <a class="social-link" href="http://raytaylorlin.com/" target="_blank">raytaylorism主题作者</a>
+                
+                    <a class="social-link" href="https://github.com/raytaylorlin" target="_blank">Github地址</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    
+
+    <div class="footer-copyright pink-link-context">
+        <div class="container">
+            © 2016 example.com, All rights reserved.
+            <p class="right" style="margin-top: 0;">Blog powered by <a href="https://hexo.io">Hexo</a> | Theme <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
+        </div>
+    </div>
+</footer>
+
+
+    <noscript>
+    <div class="noscript">
+        <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+    </div>
+</noscript>
+<div class="noscript">
+    <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 隐藏禁用javascript（针对微信内置浏览器）的提示
+            $('.noscript').hide();
+
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
+
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed').each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt') || ' ');
+            }).materialbox();
+
+            // 优化表格的显示
+            $('table').each(function() {
+                var $table = $(this);
+                // 除去多行代码的情况
+                if ($table.find('pre').length == 0) {
+                    $table.addClass('responsive-table striped bordered');
+                }
+            });
+
+            // 首页幻灯片
+            $('.slider').slider({indicators: true, full_width: true, interval: 8000});
+
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+
+            // 目录随屏幕滚动（防止目录过长越过footer）
+            var $toc = $('.toc');
+            var scrollTargetTop = 0;
+            $(window).scroll(function() {
+                var $activeLink = $toc.find('a.active.section');
+                if ($(window).scrollTop() < 100) {
+                    scrollTargetTop = 0;
+                } else {
+                    if ($activeLink[0]) {
+                        scrollTargetTop = $activeLink.offset().top - $toc.offset().top;
+                    }
+                }
+                $toc.css('top', '-' + scrollTargetTop + 'px');
+            });
+
+            // 修正文章目录的left-border颜色
+            var color = $('.table-of-contents-text').css('color');
+            $('.table-of-contents-link').css('border-left-color', color);
+
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({
+                    scrollTop: 0
+                }, 500);
+            });
+
+            // 重置读书页面的Tab标签页的颜色
+            $('li.tab a').hover(function() {
+                $(this).toggleClass('text-lighten-4');
+            });
+            $('.indicator').addClass('pink lighten-2');
+
+            
+            // 添加new标签
+            $('.menu-apps').append('<span class="new badge pink"></span>');
+            
+
+            // 搜索功能
+            $('.modal-trigger').leanModal({
+                // 打开搜索框时自动聚焦
+                ready: function() {
+                    if ($('#search').is(":visible")) {
+                        $('#search-input').focus();
+                    }
+                }
+            });
+            var searchXml = "search.xml";
+            if (searchXml.length == 0) {
+             	searchXml = "search.xml";
+            }
+            var searchPath = "/" + searchXml;
+            initSearch(searchPath, 'search-input', 'search-result');
+        });
+
+        // 初始化搜索与匹配函数
+        var initSearch = function(path, search_id, content_id) {
+            'use strict';
+            $.ajax({
+                url: path,
+                dataType: "xml",
+                success: function(xmlResponse) {
+                    // get the contents from search data
+                    var datas = $("entry", xmlResponse).map(function() {
+                        return {
+                            title: $("title", this).text(),
+                            content: $("content", this).text(),
+                            url: $("url", this).text()
+                        };
+                    }).get();
+                    var $input = document.getElementById(search_id);
+                    var $resultContent = document.getElementById(content_id);
+                    $input.addEventListener('input', function() {
+                        var str = '<ul class=\"search-result-list\">';
+                        var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                        $resultContent.innerHTML = "";
+                        if (this.value.trim().length <= 0) {
+                            return;
+                        }
+                        // perform local searching
+                        datas.forEach(function(data) {
+                            var isMatch = true;
+                            var content_index = [];
+                            var data_title = data.title.trim().toLowerCase();
+                            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                            var data_url = data.url;
+                            var index_title = -1;
+                            var index_content = -1;
+                            var first_occur = -1;
+                            // only match artiles with not empty titles and contents
+                            if (data_title != '' && data_content != '') {
+                                keywords.forEach(function(keyword, i) {
+                                    index_title = data_title.indexOf(keyword);
+                                    index_content = data_content.indexOf(keyword);
+                                    if (index_title < 0 && index_content < 0) {
+                                        isMatch = false;
+                                    } else {
+                                        if (index_content < 0) {
+                                            index_content = 0;
+                                        }
+                                        if (i == 0) {
+                                            first_occur = index_content;
+                                        }
+                                    }
+                                });
+                            }
+                            // show search results
+                            if (isMatch) {
+                                keywords.forEach(function(keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                });
+
+                                str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                                if (first_occur >= 0) {
+                                    // cut out 100 characters
+                                    var start = first_occur - 20;
+                                    var end = first_occur + 80;
+                                    if (start < 0) {
+                                        start = 0;
+                                    }
+                                    if (start == 0) {
+                                        end = 100;
+                                    }
+                                    if (end > content.length) {
+                                        end = content.length;
+                                    }
+                                    var match_content = content.substring(start, end);
+                                    // highlight all keywords
+                                    keywords.forEach(function(keyword) {
+                                        var regS = new RegExp(keyword, "gi");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                    });
+
+                                    str += "<p class=\"search-result\">..." + match_content + "...</p>"
+                                }
+                                str += "</li>";
+                            }
+                        });
+                        str += "</ul>";
+                        $resultContent.innerHTML = str;
+                    });
+                }
+            });
+        }
+    })(jQuery);
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+</body>
+</html>

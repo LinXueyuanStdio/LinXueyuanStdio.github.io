@@ -1,0 +1,13 @@
+{
+  "description": {
+    "totalValue": "当前画布价值 {{worth}} {{EOS_CORE_SYMBOL}}",
+    "pot": "给最后一个画像素的人的奖励",
+    "timeLeft": "如果没有新的像素，画布绘制将会结束",
+    "ended": "当前画布已经结束",
+    "coordinate": "当前坐标"
+  },
+  "totalValue": "总价值: {{worth}} {{EOS_CORE_SYMBOL}}",
+  "timeLeft": "剩余 {{d}}{{h}}{{min}}{{s}}",
+  "ended": "已结束",
+  "pot": "奖池: {{pot}}"
+}

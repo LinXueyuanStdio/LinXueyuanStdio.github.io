@@ -1,0 +1,10 @@
+{
+  "disconnect": "연결 끊기",
+  "fetching": "불러오는 중...",
+  "deposit": "입금",
+  "withdrawButton": {
+    "withdraw": "인출",
+    "processing": "처리중...",
+    "confirmed": "인출이 확인되었습니다!"
+  }
+}

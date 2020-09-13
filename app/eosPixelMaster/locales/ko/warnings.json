@@ -1,0 +1,12 @@
+{
+  "tooMuchPixels": "경고! 당신은 너무 많은 픽셀을 칠했습니다!",
+  "imageSize": {
+    "widthExceeded": "이미지의 너비({{width}}px)가 캔버스의 너비({{CANVAS_SIZE}}px)보다 큽니다. 이미지 크기를 조정하십시오.",
+    "heightExceeded": "이미지의 높이({{height}}px)가 캔버스의 높이({{CANVAS_SIZE}}px)보다 높습니다. 이미지 크기를 조정하십시오."
+  },
+  "revertedPixels": "일부 픽셀이 불안정한 네트워크로 인해 지워졌습니다. 다시 칠하고 싶습니까?",
+  "accountMissing": "필요한 계정이 없습니다. 스캐터 계정을 다시 연결하십시오.",
+  "insufficientBalance": "이 그림은 {{totalPrice}}가 필요하지만, 귀하의 잔고는 {{balance}}입니다.",
+  "beforeClear": "그리신 픽셀을 지우시겠습니까?",
+  "multipleTransactions": "귀하의 주문이 {{transactionCount}}개로 분리되었습니다. 이 주문을 완료하려면 하나씩 확인하십시오."
+}

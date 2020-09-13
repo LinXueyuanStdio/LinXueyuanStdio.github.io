@@ -1,0 +1,881 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>【翻译】 深入理解以太坊虚拟机 - 如何表示动态数据类型 | XiChen&#39;s Blog</title>
+    <meta name="author" content="Lin Xueyuan">
+    
+    <meta name="description" content="嗨，我是兮尘，全栈数据学徒。这里没有花俏艳丽的魔法，没有苍蛮霸道的斗气，有的，仅仅是繁衍到巅峰的代码！">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="【翻译】 深入理解以太坊虚拟机 - 如何表示动态数据类型"/>
+    <meta property="og:site_name" content="XiChen"/>
+
+    
+    <meta property="og:image" content=""/>
+    
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" href="/atom.xml" title="XiChen" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
+
+    <nav class="indigo">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="">
+            <a href="/" class="brand-logo hide-on-med-and-down">XiChen</a>
+            <ul class="right hide-on-med-and-down">
+                
+                    <li>
+                        <a class="menu-home " href="/" >
+                            <i class="fa fa-home "></i>
+                            
+                            Home
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-archive " href="/archives" >
+                            <i class="fa fa-archive "></i>
+                            
+                            Archives
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                            <i class="fa fa-bookmark "></i>
+                            
+                            Categories
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-reading " href="/reading" >
+                            <i class="fa fa-book "></i>
+                            
+                            Reading
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-about " href="/about" >
+                            <i class="fa fa-user "></i>
+                            
+                            About
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-search modal-trigger " href="#search" >
+                            <i class="fa fa-search "></i>
+                            
+                            Search
+                        </a>
+                    </li>
+                
+            </ul>
+            <div>
+    <ul class="side-nav indigo darken-1" id="main-menu">
+        
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4 no-padding">
+                    <img class="avatar-image circle responsive-img" src="/assets/images/avatar.jpg" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper no-padding">
+                    <div class="valign">
+                        <p class="name">兮尘</p>
+                        <p class="desc">Android/深度学习/Web前端</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-home " href="/" >
+                    <i class="fa fa-home "></i>
+                    
+                    Home
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-archive " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    
+                    Archives
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    
+                    Categories
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-reading " href="/reading" >
+                    <i class="fa fa-book "></i>
+                    
+                    Reading
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-about " href="/about" >
+                    <i class="fa fa-user "></i>
+                    
+                    About
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-search modal-trigger " href="#search" >
+                    <i class="fa fa-search "></i>
+                    
+                    Search
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav indigo darken-1" id="category-menu">
+    
+
+            
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Linux/">
+                    Linux <span class="right">8</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tips/">
+                    Tips <span class="right">7</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/GO/">
+                    GO <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Proxy/">
+                    Proxy <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Ubuntu/">
+                    Ubuntu <span class="right">4</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Spider/">
+                    Spider <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/区块链/">
+                    区块链 <span class="right">25</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/密码学/">
+                    密码学 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/算法/">
+                    算法 <span class="right">4</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Latex/">
+                    Latex <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/杂思/">
+                    杂思 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Git/">
+                    Git <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Github/">
+                    Github <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Web/">
+                    Web <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Android/">
+                    Android <span class="right">33</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/计算机组成原理/">
+                    计算机组成原理 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Deep-Learning/">
+                    Deep-Learning <span class="right">5</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Mac/">
+                    Mac <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/练习/">
+                    练习 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tools/">
+                    Tools <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Algorithms/">
+                    Algorithms <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+<div id="search" class="modal search-modal">
+    <div class="row">
+        <div class="input-field col s12">
+              <input id="search-input" type="text">
+              <label for="search-input">Search</label>
+        </div>
+
+    </div>
+    <div id="search-result" class="search-result col s12">
+
+    </div>
+</div>
+
+
+    <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper indigo">
+        <span class="breadcrumb">Current page(Categories)</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/区块链/">区块链</a>
+
+
+        
+
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>【翻译】 深入理解以太坊虚拟机 - 如何表示动态数据类型</h1>
+    
+
+
+            </div>
+            <time class="pink-link-context" datetime="2018-06-24T14:11:00.000Z"><a href="/2018/06/24/2018-06-24-翻译-深入理解以太坊虚拟机-如何表示动态数据类型/">2018-06-24</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/区块链/" class="chip pink lighten-1">区块链</a>
+        
+            <a href="/tags/Qtum/" class="chip pink lighten-1">Qtum</a>
+        
+            <a href="/tags/翻译/" class="chip pink lighten-1">翻译</a>
+        
+    </div>
+
+
+            <div class="toc pink-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#如何表示动态数据类型"><span class="section table-of-contents-text">如何表示动态数据类型</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#映射"><span class="section table-of-contents-text">映射</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#计算地址"><span class="section table-of-contents-text">计算地址</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#2-个映射"><span class="section table-of-contents-text">2 个映射</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#汇编里的-KECCAK256"><span class="section table-of-contents-text">汇编里的 KECCAK256</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#映射大数值"><span class="section table-of-contents-text">映射大数值</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#映射不打包"><span class="section table-of-contents-text">映射不打包</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#动态数组是-Mappings"><span class="section table-of-contents-text">动态数组是 Mappings++</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#简单数组"><span class="section table-of-contents-text">简单数组</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#动态数组打包"><span class="section table-of-contents-text">动态数组打包</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#字节数组-amp-字符串"><span class="section table-of-contents-text">字节数组 &amp; 字符串</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#长字节数组"><span class="section table-of-contents-text">长字节数组</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#小结"><span class="section table-of-contents-text">小结</span></a></li></ol>
+</div>
+
+
+            <div class="entry pink-link-context">
+                <p>原文：<a href="https://medium.com/@hayeah/diving-into-the-ethereum-vm-the-hidden-costs-of-arrays-28e119f04a9b" target="_blank" rel="noopener">https://medium.com/@hayeah/diving-into-the-ethereum-vm-the-hidden-costs-of-arrays-28e119f04a9b</a><br>译者：中山大学数学学院（珠海）林学渊<br>大二时给量子做的翻译，转载注明出处，谢谢</p>
+<h1 id="如何表示动态数据类型"><a href="#如何表示动态数据类型" class="headerlink" title="如何表示动态数据类型"></a>如何表示动态数据类型</h1><p>数组的隐性成本</p>
+<hr>
+<p>Solidity 提供了我们熟悉的数据结构。除了简单的如数字和结构体，也有其他数据类型，它们能随着数据的添加而动态变化。3个主要的动态类型是：</p>
+<ul>
+<li>映射：<code>mapping(bytes32 =&gt; uint256)</code>，<code>mapping(address =&gt; string)</code>，等等。</li>
+<li>数组：<code>[]uint256</code>，<code>[]byte</code>，等等。</li>
+<li>字节数组：只有两种，字符串和字节。</li>
+</ul>
+<p>在本系列第二篇文章中，我们已经看到固定长度的简单类型在存储中是如何表示的。</p>
+<ul>
+<li>基础类型：<code>uint256</code>，<code>byte</code>，等等。</li>
+<li>定长数组：<code>[10]uint8</code>，<code>[32]byte</code>，<code>bytes32</code>。</li>
+<li>结构体：用以上两种类型组装而成。</li>
+</ul>
+<p>固定长度的存储变量在存储中一个接一个存储，尽可能轻量地打包成32字节的块。</p>
+<blockquote>
+<p>如果对这个不熟，我建议看: <a href="https://medium.com/@hayeah/diving-into-the-ethereum-vm-part-2-storage-layout-bc5349cb11b7" target="_blank" rel="noopener">Diving Into The Ethereum VM Part II — Storage Cost</a></p>
+</blockquote>
+<p>在这篇文章中，我们深入理解 Solidity 是如何支持更多复杂的数据结构的。 Solidity 中的数组和映射可能看起来很熟悉，但它们的实现方式使它们具有本质的不同。</p>
+<p>我们从映射开始，这是三者中最简单的一种。 事实证明，数组和字节数组只是有更多的功能的映射。</p>
+<h1 id="映射"><a href="#映射" class="headerlink" title="映射"></a>映射</h1><p>在 <code>uint256 =&gt; uint256</code> 映射中存储一个值：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^<span class="number">0.4</span><span class="number">.11</span>;</span><br><span class="line">contract C &#123;</span><br><span class="line">    mapping(<span class="function"><span class="params">uint256</span> =&gt;</span> uint256) items;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">C</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      items[<span class="number">0xC0FEFE</span>] = <span class="number">0x42</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>编译:<br><figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">solc</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">bin</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">asm</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">optimize</span> <span class="comment">c</span><span class="literal">-</span><span class="comment">mapping</span><span class="string">.</span><span class="comment">sol</span></span><br></pre></td></tr></table></figure></p>
+<p>汇编代码:<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">tag_2:</span><br><span class="line">  <span class="comment">// 什么也没干. 可以优化.</span></span><br><span class="line">  <span class="number">0xc0fef</span>e</span><br><span class="line">  <span class="number">0x0</span></span><br><span class="line">  swap1</span><br><span class="line">  dup2</span><br><span class="line">  mstore</span><br><span class="line">  <span class="number">0x20</span></span><br><span class="line">  mstore</span><br><span class="line">  <span class="comment">// 存储 0x42 到地址 0x798...187c</span></span><br><span class="line">  <span class="number">0x42</span></span><br><span class="line">  <span class="number">0x79826054ee948a209ff4a6c9064d7398508d2c1909a392f899d301c6d</span>232187c</span><br><span class="line">  sstore</span><br></pre></td></tr></table></figure></p>
+<p>我们可以将 EVM 存储视为键值对数据库，每个键限制为 32 个字节。不是直接使用键 <code>0xC0FEFE</code> ，而是将键散列为 <code>0x798...187c</code>，并将值 <code>0x42</code> 存储在那里。使用的哈希函数是 <code>keccak256（SHA256）</code>。</p>
+<p>在这个例子里，我们没有看到 <code>keccak256</code> 指令，因为优化器已经预先计算结果并将其内联到字节码里了。可以从这些没用的 <code>mstore</code> 指令中看到这种计算的痕迹。</p>
+<h1 id="计算地址"><a href="#计算地址" class="headerlink" title="计算地址"></a>计算地址</h1><p>让我们用一些 Python 代码来将 <code>0xC0FEFE</code> 散列为 <code>0x798...187c</code>。如果你想跟着做，你需要 Python 3.6，或者安装 <a href="https://pypi.python.org/pypi/pysha3" target="_blank" rel="noopener">pysha3</a> 来获得 <code>keccak_256</code> 哈希函数。</p>
+<p>定义两个辅助函数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line"><span class="keyword">import</span> sha3</span><br><span class="line"><span class="comment"># 把一个数转化为 32 字节的数组</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bytes32</span><span class="params">(i)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> binascii.unhexlify(<span class="string">'%064x'</span> % i)</span><br><span class="line"><span class="comment"># 计算 32 字节数组的 keccak256 哈希</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">keccak256</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> sha3.keccak_256(x).hexdigest()</span><br></pre></td></tr></table></figure>
+<p>把一个数转化为 32 字节的数组:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; bytes32(1)</span></span><br><span class="line">b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01'</span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; bytes32(0xC0FEFE)</span></span><br><span class="line">b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xc0\xfe\xfe'</span><br></pre></td></tr></table></figure></p>
+<p>用 <code>+</code> 运算把两个字节数组接在一起：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; bytes32(1) + bytes32(2)</span></span><br><span class="line">b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02'</span><br></pre></td></tr></table></figure></p>
+<p>计算字节数组的 keccak256 哈希<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; keccak256(bytes(1))</span></span><br><span class="line">'bc36789e7a1e281436464229828f817d6612f7b477d66591ff96a9e064bcc98a'</span><br></pre></td></tr></table></figure></p>
+<p>现在我们可以计算 <code>0x798...187c</code>了。</p>
+<p>存储变量 <code>items</code> 的位置是 <code>0x0</code>（因为它是第一个存储变量）。要获取地址，将键 <code>0xc0fefe</code> 与 <code>items</code> 的位置接在一起：<br><figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># key = 0xC0FEFE, position = 0</span></span><br><span class="line">&gt;&gt;&gt; keccak256(bytes32(<span class="number">0</span>xC0FEFE) + bytes32(<span class="number">0</span>))</span><br><span class="line">'<span class="number">79826054</span>ee948a209ff4a6c<span class="number">9064</span>d<span class="number">739850</span>8d2c<span class="number">1909</span>a392f899d301c6d<span class="number">232187</span>c'</span><br></pre></td></tr></table></figure></p>
+<p>计算一个键的存储地址的公式为：<br><figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keccak256(<span class="name">bytes32</span>(<span class="name">key</span>) + bytes32(<span class="name">position</span>))</span><br></pre></td></tr></table></figure></p>
+<h1 id="2-个映射"><a href="#2-个映射" class="headerlink" title="2 个映射"></a>2 个映射</h1><p>让我们用公式来计算值会存储到哪个位置！假设我们有2个映射：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^0.4.11;</span><br><span class="line">contract C &#123;</span><br><span class="line">    mapping(uint256 =&gt; uint256) itemsA;</span><br><span class="line">    mapping(uint256 =&gt; uint256) itemsB;</span><br><span class="line">    function C() &#123;</span><br><span class="line">      itemsA[0xAAAA] = 0xAAAA;</span><br><span class="line">      itemsB[0xBBBB] = 0xBBBB;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>itemsA</code> 的位置为 <code>0</code>, 键为 <code>0xAAAA</code>:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> key = 0xAAAA, position = 0</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; keccak256(bytes32(0xAAAA) + bytes32(0))</span></span><br><span class="line">'839613f731613c3a2f728362760f939c8004b5d9066154aab51d6dadf74733f3'</span><br></pre></td></tr></table></figure></p>
+<p><code>itemsB</code> 的位置为 <code>1</code>, 键为 <code>0xBBBB</code>:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> key = 0xBBBB, position = 1</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; keccak256(bytes32(0xBBBB) + bytes32(1))</span></span><br><span class="line">'34cb23340a4263c995af18b23d9f53b67ff379ccaa3a91b75007b010c489d395'</span><br></pre></td></tr></table></figure></p>
+<p>我们用编译器证明我们的计算：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> solc --bin --asm --optimize  c-mapping-2.sol</span></span><br></pre></td></tr></table></figure></p>
+<p>汇编代码:<br><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">tag_2:</span></span><br><span class="line">  // ... 忽略内存优化，可以优化掉</span><br><span class="line">  <span class="number">0xaaaa</span></span><br><span class="line">  <span class="number">0x839613f731613c3a2f728362760f939c8004b5d9066154aab51d6dadf74733f3</span></span><br><span class="line">  sstore</span><br><span class="line">  <span class="number">0xbbbb</span></span><br><span class="line">  <span class="number">0x34cb23340a4263c995af18b23d9f53b67ff379ccaa3a91b75007b010c489d395</span></span><br><span class="line">  sstore</span><br></pre></td></tr></table></figure></p>
+<p>和我们想的一样。</p>
+<h1 id="汇编里的-KECCAK256"><a href="#汇编里的-KECCAK256" class="headerlink" title="汇编里的 KECCAK256"></a>汇编里的 KECCAK256</h1><p>编译器能预先计算一个键的地址，因为涉及的键是常量。如果键是一个变量，那么散列需要用汇编代码完成。现在我们要禁用这个优化，以便看到哈希如何在汇编中完成。</p>
+<p>事实证明，通过引入一个额外变量 <code>i</code> 可以简化优化器：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^0.4.11;</span><br><span class="line">contract C &#123;</span><br><span class="line">    mapping(uint256 =&gt; uint256) items;</span><br><span class="line">    // 这个变量使常值优化失败</span><br><span class="line">    uint256 i = 0xC0FEFE;</span><br><span class="line">    function C() &#123;</span><br><span class="line">      items[i] = 0x42;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>变量位置还是 <code>0x0</code>, 所以我们认为地址和前面一样。</p>
+<p>编译，但这次没有哈希预计算：<br><figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">$</span> <span class="comment">solc</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">bin</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">asm</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">optimize</span>  <span class="comment">c</span><span class="literal">-</span><span class="comment">mapping</span><span class="literal">-</span><span class="literal">-</span><span class="comment">no</span><span class="literal">-</span><span class="comment">constant</span><span class="literal">-</span><span class="comment">folding</span><span class="string">.</span><span class="comment">sol</span></span><br></pre></td></tr></table></figure></p>
+<p>汇编代码:<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">tag_2:</span><br><span class="line">  <span class="comment">// `i` 入栈</span></span><br><span class="line">  sload(<span class="number">0x1</span>)</span><br><span class="line">    [<span class="meta">0xC0FEFE</span>]</span><br><span class="line">  <span class="comment">// 存储键 `0xC0FEFE` 到内存 0x0, 准备哈希.</span></span><br><span class="line">  <span class="number">0x0</span></span><br><span class="line">    [<span class="meta">0x0 0xC0FEFE</span>]</span><br><span class="line">  swap1</span><br><span class="line">    [<span class="meta">0xC0FEFE 0x0</span>]</span><br><span class="line">  dup2</span><br><span class="line">    [<span class="meta">0x0 0xC0FEFE 0x0</span>]</span><br><span class="line">  mstore</span><br><span class="line">    [<span class="meta">0x0</span>]</span><br><span class="line">    memory: &#123;</span><br><span class="line">      <span class="number">0x00</span> =&gt; <span class="number">0xC0FEFE</span></span><br><span class="line">    &#125;</span><br><span class="line">  <span class="comment">// 保持位置 `0x0` 到内存 0x20 (32), 准备哈希.</span></span><br><span class="line">  <span class="number">0x20</span> <span class="comment">// 32</span></span><br><span class="line">    [<span class="meta">0x20 0x0</span>]</span><br><span class="line">  dup2</span><br><span class="line">    [<span class="meta">0x0 0x20 0x0</span>]</span><br><span class="line">  swap1</span><br><span class="line">    [<span class="meta">0x20 0x0 0x0</span>]</span><br><span class="line">  mstore</span><br><span class="line">    [<span class="meta">0x0</span>]</span><br><span class="line">    memory: &#123;</span><br><span class="line">      <span class="number">0x00</span> =&gt; <span class="number">0xC0FEFE</span></span><br><span class="line">      <span class="number">0x20</span> =&gt; <span class="number">0x0</span></span><br><span class="line">    &#125;</span><br><span class="line">  <span class="comment">// 从第 0 个字节开始，依次哈希内存中接下来的 0x40 (64) 字节</span></span><br><span class="line">  <span class="number">0x40</span> <span class="comment">// 64</span></span><br><span class="line">    [<span class="meta">0x40 0x0</span>]</span><br><span class="line">  swap1</span><br><span class="line">    [<span class="meta">0x0 0x40</span>]</span><br><span class="line">  keccak256</span><br><span class="line">    [<span class="meta">0x798...187c</span>]</span><br><span class="line">  <span class="comment">// 保存 0x42 到计算地址</span></span><br><span class="line">  <span class="number">0x42</span></span><br><span class="line">    [<span class="meta">0x42 0x798...187c</span>]</span><br><span class="line">  swap1</span><br><span class="line">    [<span class="meta">0x798...187c 0x42</span>]</span><br><span class="line">  sstore</span><br><span class="line">    store: &#123;</span><br><span class="line">      <span class="number">0x798</span>..<span class="number">.187</span>c =&gt; <span class="number">0x42</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>mstore</code> 指令在内存中写入 32 个字节。 内存要便宜得多，只需要 3 gas 来读写。汇编代码前半部分通过将键和位置加载到相邻的内存块中来“连接”键和位置：<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> 0                   31  32                 63</span><br><span class="line">[<span class="string">    key (32 bytes)    </span>][<span class="symbol"> position (32 bytes) </span>]</span><br></pre></td></tr></table></figure></p>
+<p>然后，<code>keccak256</code> 指令散列该内存区域中的数据。成本取决于有多少数据被散列：</p>
+<ul>
+<li>30 付给每个SHA3操作。</li>
+<li>6 付给每个32字节的字。</li>
+</ul>
+<p>对于 <code>uint256</code> 键，gas 成本是 42（<code>30 + 6 * 2</code>）。</p>
+<h1 id="映射大数值"><a href="#映射大数值" class="headerlink" title="映射大数值"></a>映射大数值</h1><p>每个存储单元只能存储 32 个字节。如果试图存储更大的结构会发生什么？</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^<span class="number">0</span>.<span class="number">4</span>.<span class="number">11</span><span class="comment">;</span></span><br><span class="line">contract C &#123;</span><br><span class="line">    mapping(uint256 =&gt; Tuple) tuples<span class="comment">;</span></span><br><span class="line">    struct Tuple &#123;</span><br><span class="line">      uint256 a<span class="comment">;</span></span><br><span class="line">      uint256 <span class="keyword">b;</span></span><br><span class="line"><span class="keyword"> </span>     uint256 c<span class="comment">;</span></span><br><span class="line">    &#125;</span><br><span class="line">    function C() &#123;</span><br><span class="line">      tuples[<span class="number">0x1</span>].a = <span class="number">0x1A</span><span class="comment">;</span></span><br><span class="line">      tuples[<span class="number">0x1</span>].<span class="keyword">b </span>= <span class="number">0x1B</span><span class="comment">;</span></span><br><span class="line">      tuples[<span class="number">0x1</span>].c = <span class="number">0x1C</span><span class="comment">;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译，你可以看到 3 个 sstore 指令：<br><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">tag_2:</span></span><br><span class="line">  // ...忽略未优化代码</span><br><span class="line">  <span class="number">0x1a</span></span><br><span class="line">  <span class="number">0xada5013122d395ba3c54772283fb069b10426056ef8ca54750cb9bb552a59e7d</span></span><br><span class="line">  sstore</span><br><span class="line">  <span class="number">0x1b</span></span><br><span class="line">  <span class="number">0xada5013122d395ba3c54772283fb069b10426056ef8ca54750cb9bb552a59e7e</span></span><br><span class="line">  sstore</span><br><span class="line">  <span class="number">0x1c</span></span><br><span class="line">  <span class="number">0xada5013122d395ba3c54772283fb069b10426056ef8ca54750cb9bb552a59e7f</span></span><br><span class="line">  sstore</span><br></pre></td></tr></table></figure></p>
+<p>注意，除了最后一位数字，计算出的地址都是相同的。<code>Tuple</code> 结构的字段一个接一个地排列（.7d，.7e，.7f）。</p>
+<h2 id="映射不打包"><a href="#映射不打包" class="headerlink" title="映射不打包"></a>映射不打包</h2><p>由于映射的设计方式，即使只存储 1 个字节，每一项的最小存储量也是 32 个字节：</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^<span class="number">0.4</span><span class="number">.11</span>;</span><br><span class="line">contract C &#123;</span><br><span class="line">    mapping(uint256 =&gt; uint8) items;</span><br><span class="line">    function C() &#123;</span><br><span class="line">      items[<span class="number">0xA</span>] = <span class="number">0xAA</span>;</span><br><span class="line">      items[<span class="number">0xB</span>] = <span class="number">0xBB</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果值大于 32 字节，则以 32 字节为单位支付存储费用。</p>
+<h1 id="动态数组是-Mappings"><a href="#动态数组是-Mappings" class="headerlink" title="动态数组是 Mappings++"></a>动态数组是 Mappings++</h1><p>（译者注：C和C++的梗）</p>
+<p>在经典程序语言中，数组只是一个在内存中连续排列数据项的列表。假设你有一个含 100 个 <code>uint8</code> 元素的数组，那么它将占用 100 个字节的内存。在此方案中，将整个阵列批量加载到 CPU 缓存中并循环遍历项目很便宜。</p>
+<p>对于大多数语言而言，数组比映射便宜。不过，对于 Solidity 而言，数组是一种更昂贵的映射。数组的数据项按顺序放置在存储中，如：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span>x290d...e563</span><br><span class="line"><span class="number">0</span>x290d...e564</span><br><span class="line"><span class="number">0</span>x290d...e565</span><br><span class="line"><span class="number">0</span>x290d...e566</span><br></pre></td></tr></table></figure></p>
+<p>但记住，每次对这些存储单元的访问实际上都是数据库中的键值查找。访问数组元素与访问映射元素没有区别。</p>
+<p>考虑类型 <code>[] uint256</code>，它与映射（<code>uint256 =&gt; uint256</code>）基本相同，并增加了使其“类似数组”的功能：</p>
+<ul>
+<li><code>length</code> 表示有多少数据项。</li>
+<li>绑定检查。读取或写入超出长度的索引时会引发错误。</li>
+<li>比映射更复杂的存储打包行为。</li>
+<li>数组缩小时自动释放未使用的存储单元。</li>
+<li>对 <code>bytes</code> 和 <code>string</code> 进行特殊优化，使短数组（小于31字节）的存储效率更高。</li>
+</ul>
+<h1 id="简单数组"><a href="#简单数组" class="headerlink" title="简单数组"></a>简单数组</h1><p>我们来看看存储三个数据项的数组：<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// c-darray.sol</span></span><br><span class="line"><span class="selector-tag">pragma</span> <span class="selector-tag">solidity</span> ^<span class="selector-tag">0</span><span class="selector-class">.4</span><span class="selector-class">.11</span>;</span><br><span class="line"><span class="selector-tag">contract</span> <span class="selector-tag">C</span> &#123;</span><br><span class="line">    <span class="selector-tag">uint256</span><span class="selector-attr">[]</span> <span class="selector-tag">chunks</span>;</span><br><span class="line">    <span class="selector-tag">function</span> <span class="selector-tag">C</span>() &#123;</span><br><span class="line">      <span class="selector-tag">chunks</span><span class="selector-class">.push</span>(<span class="number">0</span>xAA);</span><br><span class="line">      <span class="selector-tag">chunks</span><span class="selector-class">.push</span>(<span class="number">0</span>xBB);</span><br><span class="line">      <span class="selector-tag">chunks</span><span class="selector-class">.push</span>(<span class="number">0</span>xCC);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>数组访问的汇编代码太复杂，无法跟踪。我们用 Remix 调试器来运行合约：</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*9l0i7RLrlH0yq9BTb_oM-w.jpeg" alt=""></p>
+<p>可以看到使用了 4 个存储单元：<br><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">key:</span> <span class="number">0x0000000000000000000000000000000000000000000000000000000000000000</span></span><br><span class="line"><span class="symbol">value:</span> <span class="number">0x0000000000000000000000000000000000000000000000000000000000000003</span></span><br><span class="line"><span class="symbol">key:</span> <span class="number">0x290decd9548b62a8d60345a988386fc84ba6bc95484008f6362f93160ef3e563</span></span><br><span class="line"><span class="symbol">value:</span> <span class="number">0x00000000000000000000000000000000000000000000000000000000000000aa</span></span><br><span class="line"><span class="symbol">key:</span> <span class="number">0x290decd9548b62a8d60345a988386fc84ba6bc95484008f6362f93160ef3e564</span></span><br><span class="line"><span class="symbol">value:</span> <span class="number">0x00000000000000000000000000000000000000000000000000000000000000bb</span></span><br><span class="line"><span class="symbol">key:</span> <span class="number">0x290decd9548b62a8d60345a988386fc84ba6bc95484008f6362f93160ef3e565</span></span><br><span class="line"><span class="symbol">value:</span> <span class="number">0x00000000000000000000000000000000000000000000000000000000000000cc</span></span><br></pre></td></tr></table></figure></p>
+<p>一个块的位置是 <code>0x0</code>，它用于存储数组的长度（<code>0x3</code>）。散列变量的位置以查找数组数据项的地址：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> position = 0</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; keccak256(bytes32(0))</span></span><br><span class="line">'290decd9548b62a8d60345a988386fc84ba6bc95484008f6362f93160ef3e563'</span><br></pre></td></tr></table></figure></p>
+<p>数组中的每个数据项都从该地址（<code>0x29..63</code>，<code>0x29..64</code>，<code>0x29..65</code>）开始顺序布局。</p>
+<h1 id="动态数组打包"><a href="#动态数组打包" class="headerlink" title="动态数组打包"></a>动态数组打包</h1><p>你怎么看这些所有重要的打包行为？基于映射的数组的一个优点是打包。 四个数据项的 <code>uint128 []</code> 数组恰好填满两个存储单元（加 1 用于存储长度）。</p>
+<p>考虑：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^<span class="number">0.4</span><span class="number">.11</span>;</span><br><span class="line">contract C &#123;</span><br><span class="line">    uint128[] s;</span><br><span class="line">    function C() &#123;</span><br><span class="line">        s.length = <span class="number">4</span>;</span><br><span class="line">        s[<span class="number">0</span>] = <span class="number">0xAA</span>;</span><br><span class="line">        s[<span class="number">1</span>] = <span class="number">0xBB</span>;</span><br><span class="line">        s[<span class="number">2</span>] = <span class="number">0xCC</span>;</span><br><span class="line">        s[<span class="number">3</span>] = <span class="number">0xDD</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在 Remix 上运行, 最终存储的状态是：<br><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">key:</span> <span class="number">0x0000000000000000000000000000000000000000000000000000000000000000</span></span><br><span class="line"><span class="symbol">value:</span> <span class="number">0x0000000000000000000000000000000000000000000000000000000000000004</span></span><br><span class="line"><span class="symbol">key:</span> <span class="number">0x290decd9548b62a8d60345a988386fc84ba6bc95484008f6362f93160ef3e563</span></span><br><span class="line"><span class="symbol">value:</span> <span class="number">0x000000000000000000000000000000bb000000000000000000000000000000aa</span></span><br><span class="line"><span class="symbol">key:</span> <span class="number">0x290decd9548b62a8d60345a988386fc84ba6bc95484008f6362f93160ef3e564</span></span><br><span class="line"><span class="symbol">value:</span> <span class="number">0x000000000000000000000000000000dd000000000000000000000000000000cc</span></span><br></pre></td></tr></table></figure></p>
+<p>和我们想的一样，只用了 3 个存储单元。长度存储在 <code>0x0</code> 处，即存储变量的位置。四个数据项打包在两个独立的存储单元中。该数组的起始地址是变量位置的哈希值：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> position = 0</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; keccak256(bytes32(0))</span></span><br><span class="line">'290decd9548b62a8d60345a988386fc84ba6bc95484008f6362f93160ef3e563'</span><br></pre></td></tr></table></figure>
+<p>现在每增加两个数组元素，地址才会增加一次。看起来ok！</p>
+<p>但汇编代码本身并没有得到很好的优化。由于只使用两个存储单元，因此我们希望优化器也只使用两个 <code>sstore</code> 进行分配。然而，在引入边界检查（以及其他）情况下，不可能优化 <code>sstore</code> 指令。</p>
+<p>四个 <code>sstore</code> 指令用于分配：</p>
+<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/* <span class="string">"c-bytes--sstore-optimize-fail.sol"</span>:<span class="number">105</span>:<span class="number">116</span>  s<span class="string">[0]</span> = 0xAA */</span><br><span class="line">sstore</span><br><span class="line">/* <span class="string">"c-bytes--sstore-optimize-fail.sol"</span>:<span class="number">126</span>:<span class="number">137</span>  s<span class="string">[1]</span> = 0xBB */</span><br><span class="line">sstore</span><br><span class="line">/* <span class="string">"c-bytes--sstore-optimize-fail.sol"</span>:<span class="number">147</span>:<span class="number">158</span>  s<span class="string">[2]</span> = 0xCC */</span><br><span class="line">sstore</span><br><span class="line">/* <span class="string">"c-bytes--sstore-optimize-fail.sol"</span>:<span class="number">168</span>:<span class="number">179</span>  s<span class="string">[3]</span> = 0xDD */</span><br><span class="line">sstore</span><br></pre></td></tr></table></figure>
+<h1 id="字节数组-amp-字符串"><a href="#字节数组-amp-字符串" class="headerlink" title="字节数组 &amp; 字符串"></a>字节数组 &amp; 字符串</h1><p><code>bytes</code> 和 <code>string</code> 是分别针对字节和字符进行优化的特殊数组类型。如果数组的长度小于 31 个字节，则只用一个存储单元来存储整个数组。较长的字节数组与正常数组的表示方式大致相同。</p>
+<p>我们来看一个实际使用的短字节数组：</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// c-<span class="keyword">bytes--long.sol</span></span><br><span class="line"><span class="keyword">pragma </span>solidity ^<span class="number">0</span>.<span class="number">4</span>.<span class="number">11</span><span class="comment">;</span></span><br><span class="line"><span class="symbol">contract</span> C &#123;</span><br><span class="line">    <span class="keyword">bytes </span>s<span class="comment">;</span></span><br><span class="line">    <span class="meta">function</span> C() &#123;</span><br><span class="line">        s.<span class="keyword">push(0xAA);</span></span><br><span class="line"><span class="keyword"> </span>       s.<span class="keyword">push(0xBB);</span></span><br><span class="line"><span class="keyword"> </span>       s.<span class="keyword">push(0xCC);</span></span><br><span class="line"><span class="keyword"> </span>   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>由于数组只有 3 个字节（小于 31 个字节），因此它只占用一个存储单元。在 Remix 中运行，存储状态为：<br><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">key:</span> <span class="number">0x0000000000000000000000000000000000000000000000000000000000000000</span></span><br><span class="line"><span class="symbol">value:</span> <span class="number">0xaabbcc0000000000000000000000000000000000000000000000000000000006</span></span><br></pre></td></tr></table></figure></p>
+<p>数据 <code>0xaabbcc...</code> 从左到右存储。后面的 0 是空数据。最后一个字节 <code>0x06</code> 是数组的编码长度。 公式为 <code>encodedLength / 2 = length</code>。这种情况下，实际长度是 <code>6/2 = 3</code>。</p>
+<p>字符串的工作方式和这个完全相同。</p>
+<h1 id="长字节数组"><a href="#长字节数组" class="headerlink" title="长字节数组"></a>长字节数组</h1><p>如果数据量大于 31 字节，则字节数组就像 <code>[]byte</code>。让我们看看长度为 128 字节的字节数组：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// c-bytes--long.sol</span></span><br><span class="line">pragma solidity ^<span class="number">0.4</span><span class="number">.11</span>;</span><br><span class="line">contract C &#123;</span><br><span class="line">    bytes s;</span><br><span class="line">    function C() &#123;</span><br><span class="line">        s.length = <span class="number">32</span> * <span class="number">4</span>;</span><br><span class="line">        s[<span class="number">31</span>] = <span class="number">0x1</span>;</span><br><span class="line">        s[<span class="number">63</span>] = <span class="number">0x2</span>;</span><br><span class="line">        s[<span class="number">95</span>] = <span class="number">0x3</span>;</span><br><span class="line">        s[<span class="number">127</span>] = <span class="number">0x4</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在 Remix 运行，可以看到存储里使用了 4 个存储单元：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0x0000</span>..<span class="number">.0000</span></span><br><span class="line"><span class="number">0x0000</span>..<span class="number">.0101</span></span><br><span class="line"><span class="number">0x290d</span>...e563</span><br><span class="line"><span class="number">0x0000</span>..<span class="number">.0001</span></span><br><span class="line"><span class="number">0x290d</span>...e564</span><br><span class="line"><span class="number">0x0000</span>..<span class="number">.0002</span></span><br><span class="line"><span class="number">0x290d</span>...e565</span><br><span class="line"><span class="number">0x0000</span>..<span class="number">.0003</span></span><br><span class="line"><span class="number">0x290d</span>...e566</span><br><span class="line"><span class="number">0x0000</span>..<span class="number">.0004</span></span><br></pre></td></tr></table></figure></p>
+<p>存储单元 <code>0x0</code> 不再用于存储数据。整个存储单元现在存储编码后的数组长度。为了得到实际的长度，做 <code>length =（encodedLength - 1）/ 2</code>。在这种情况下，长度为 <code>128 =（0x101 - 1）/ 2</code>。实际字节存储在 <code>0x290d...e563</code> 中，以及按顺序排列的存储单元中。</p>
+<p>字节数组的汇编代码非常大。除了正常的边界检查和调整数组大小的东西，它还要编码/解码长度，以及在长和短字节数组之间进行转换。</p>
+<blockquote>
+<p>为什么要对长度进行编码？因为这种方式有一个简单的方法来检测一个字节数组是短还是长。注意，长数组的编码长度总是奇数，短数组的编码长度总是偶数。汇编只需要查看最后一位，看它是零（偶/短）还是非零（奇/长）。</p>
+</blockquote>
+<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>查看 Solidity 编译器的内部工作，我们发现熟悉的数据结构（如映射和数组）与传统的编程语言的完全不同。</p>
+<p>回顾一下：</p>
+<ul>
+<li>数组就像映射，效率不高。</li>
+<li>比映射更复杂的汇编代码。</li>
+<li>比较小类型（字节，uint8，字符串）映射更好的存储效率。</li>
+</ul>
+<p>汇编代码没有很好地优化。即使打包过了，还是每个分配要一个 <code>sstore</code> 。<br>EVM 存储是一个键值对数据库，非常像 git。如果你改变了任何东西，那么根节点的校验和就会改变。如果两个根节点具有相同的校验和，则存储的数据相同。</p>
+<p>要了解 Solidity 和 EVM 的独特之处，可以想象数组中的每个元素都是一个文件在 git 存储库中。当你改变一个数组元素的值时，你实际上正在创建一个 git commit。在遍历数组时，无法一次加载整个数组，您必须查看存储库并分别查找每个文件。</p>
+<p>不仅如此，每个文件被限制为 32 个字节！因为我们需要将数据结构分割成32个字节的块，所以 Solidity 的编译器由于各种逻辑和优化技巧而复杂化，所有这些都是在汇编中完成的。</p>
+<p>然而，32 字节的限制完全是任意的。备份键值存储可以使用键存储任意数量的字节。也许在将来我们可以添加一个新的 EVM 指令来存储任意字节和一个关键字。</p>
+<p>目前，EVM 存储是一个预先假定为32字节数组的键值对数据库。</p>
+<p>请参阅 <a href="https://github.com/ethereum/solidity/blob/3b07c4d38e40c52ee8a4d16e56e2afa1a0f27905/libsolidity/codegen/ArrayUtils.cpp#L624" target="_blank" rel="noopener">ArrayUtils::resizeDynamicArray</a>，了解编译器在调整数组大小时的作用。通常情况下，数据结构将作为标准库的一部分在语言中完成，但在 Solidity 中，它会被烧录入编译器。</p>
+<p>如果你喜欢这篇文章，你应该在 Twitter <a href="https://twitter.com/hayeah" target="_blank" rel="noopener">@hayeah</a> 上关注我。</p>
+
+                
+<p class="pink-link-context">
+    <a href="/2018/06/30/2018-06-30-翻译-深入理解以太坊虚拟机-EVM汇编代码简介/" rel="next" title="【翻译】 深入理解以太坊虚拟机 - 如何解释一个智能合约的方法调用">
+    Prev: 【翻译】 深入理解以太坊虚拟机 - 如何解释一个智能合约的方法调用
+  </a>
+</p>
+
+
+
+<p class="pink-link-context">
+    <a href="/2018/06/18/2018-06-18-翻译-深入理解以太坊虚拟机-如何表示固定长度的数据类型/" rel="next" title="【翻译】 深入理解以太坊虚拟机 - 如何表示固定长度的数据类型">
+    Next: 【翻译】 深入理解以太坊虚拟机 - 如何表示固定长度的数据类型
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large pink">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect green" title="Return to top"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse yellow darken-1"  data-activates="main-menu" title="Menu"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer indigo darken-1">
+    
+    <div class="footer-container container">
+        <div class="row">
+            
+            <div class="social-group col m4 s12">
+                <h5 class="white-text">Social</h5>
+                
+                    <a class="social-link" href="http://weibo.com/LinXueyuanStdio" target="_blank">
+                        <i class="fa fa-2x fa-weibo"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://github.com/LinXueyuanStdio" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://www.zhihu.com/people/lin-xue-yuan-86" target="_blank">
+                        <i class="fa fa-2x fa-graduation-cap"></i>
+                    </a>
+                
+                    <a class="social-link" href="http://twitter.com/cwBQ3A5cz3Jzso7" target="_blank">
+                        <i class="fa fa-2x fa-twitter"></i>
+                    </a>
+                
+                    <a class="social-link" href="mailto:761516186@qq.com" target="_blank">
+                        <i class="fa fa-2x fa-envelope"></i>
+                    </a>
+                
+                    <a class="social-link" href="/atom.xml" target="_blank">
+                        <i class="fa fa-2x fa-rss"></i>
+                    </a>
+                
+                
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+    </script>
+    <div class="site-visitors-container white-text">
+        <span>
+            <i class="fa fa-user"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+        </span>
+        <span>&nbsp;|&nbsp;</span>
+        <span>
+            <i class="fa fa-eye"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+        </span>
+    </div>
+
+
+            </div>
+            
+
+            
+            <div class="col m8 s12">
+                <h5 class="white-text">Links</h5>
+                
+                    <a class="social-link" href="http://raytaylorlin.com/" target="_blank">raytaylorism主题作者</a>
+                
+                    <a class="social-link" href="https://github.com/raytaylorlin" target="_blank">Github地址</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    
+
+    <div class="footer-copyright pink-link-context">
+        <div class="container">
+            © 2016 example.com, All rights reserved.
+            <p class="right" style="margin-top: 0;">Blog powered by <a href="https://hexo.io">Hexo</a> | Theme <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
+        </div>
+    </div>
+</footer>
+
+
+    <noscript>
+    <div class="noscript">
+        <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+    </div>
+</noscript>
+<div class="noscript">
+    <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 隐藏禁用javascript（针对微信内置浏览器）的提示
+            $('.noscript').hide();
+
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
+
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed').each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt') || ' ');
+            }).materialbox();
+
+            // 优化表格的显示
+            $('table').each(function() {
+                var $table = $(this);
+                // 除去多行代码的情况
+                if ($table.find('pre').length == 0) {
+                    $table.addClass('responsive-table striped bordered');
+                }
+            });
+
+            // 首页幻灯片
+            $('.slider').slider({indicators: true, full_width: true, interval: 8000});
+
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+
+            // 目录随屏幕滚动（防止目录过长越过footer）
+            var $toc = $('.toc');
+            var scrollTargetTop = 0;
+            $(window).scroll(function() {
+                var $activeLink = $toc.find('a.active.section');
+                if ($(window).scrollTop() < 100) {
+                    scrollTargetTop = 0;
+                } else {
+                    if ($activeLink[0]) {
+                        scrollTargetTop = $activeLink.offset().top - $toc.offset().top;
+                    }
+                }
+                $toc.css('top', '-' + scrollTargetTop + 'px');
+            });
+
+            // 修正文章目录的left-border颜色
+            var color = $('.table-of-contents-text').css('color');
+            $('.table-of-contents-link').css('border-left-color', color);
+
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({
+                    scrollTop: 0
+                }, 500);
+            });
+
+            // 重置读书页面的Tab标签页的颜色
+            $('li.tab a').hover(function() {
+                $(this).toggleClass('text-lighten-4');
+            });
+            $('.indicator').addClass('pink lighten-2');
+
+            
+            // 添加new标签
+            $('.menu-apps').append('<span class="new badge pink"></span>');
+            
+
+            // 搜索功能
+            $('.modal-trigger').leanModal({
+                // 打开搜索框时自动聚焦
+                ready: function() {
+                    if ($('#search').is(":visible")) {
+                        $('#search-input').focus();
+                    }
+                }
+            });
+            var searchXml = "search.xml";
+            if (searchXml.length == 0) {
+             	searchXml = "search.xml";
+            }
+            var searchPath = "/" + searchXml;
+            initSearch(searchPath, 'search-input', 'search-result');
+        });
+
+        // 初始化搜索与匹配函数
+        var initSearch = function(path, search_id, content_id) {
+            'use strict';
+            $.ajax({
+                url: path,
+                dataType: "xml",
+                success: function(xmlResponse) {
+                    // get the contents from search data
+                    var datas = $("entry", xmlResponse).map(function() {
+                        return {
+                            title: $("title", this).text(),
+                            content: $("content", this).text(),
+                            url: $("url", this).text()
+                        };
+                    }).get();
+                    var $input = document.getElementById(search_id);
+                    var $resultContent = document.getElementById(content_id);
+                    $input.addEventListener('input', function() {
+                        var str = '<ul class=\"search-result-list\">';
+                        var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                        $resultContent.innerHTML = "";
+                        if (this.value.trim().length <= 0) {
+                            return;
+                        }
+                        // perform local searching
+                        datas.forEach(function(data) {
+                            var isMatch = true;
+                            var content_index = [];
+                            var data_title = data.title.trim().toLowerCase();
+                            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                            var data_url = data.url;
+                            var index_title = -1;
+                            var index_content = -1;
+                            var first_occur = -1;
+                            // only match artiles with not empty titles and contents
+                            if (data_title != '' && data_content != '') {
+                                keywords.forEach(function(keyword, i) {
+                                    index_title = data_title.indexOf(keyword);
+                                    index_content = data_content.indexOf(keyword);
+                                    if (index_title < 0 && index_content < 0) {
+                                        isMatch = false;
+                                    } else {
+                                        if (index_content < 0) {
+                                            index_content = 0;
+                                        }
+                                        if (i == 0) {
+                                            first_occur = index_content;
+                                        }
+                                    }
+                                });
+                            }
+                            // show search results
+                            if (isMatch) {
+                                keywords.forEach(function(keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                });
+
+                                str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                                if (first_occur >= 0) {
+                                    // cut out 100 characters
+                                    var start = first_occur - 20;
+                                    var end = first_occur + 80;
+                                    if (start < 0) {
+                                        start = 0;
+                                    }
+                                    if (start == 0) {
+                                        end = 100;
+                                    }
+                                    if (end > content.length) {
+                                        end = content.length;
+                                    }
+                                    var match_content = content.substring(start, end);
+                                    // highlight all keywords
+                                    keywords.forEach(function(keyword) {
+                                        var regS = new RegExp(keyword, "gi");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                    });
+
+                                    str += "<p class=\"search-result\">..." + match_content + "...</p>"
+                                }
+                                str += "</li>";
+                            }
+                        });
+                        str += "</ul>";
+                        $resultContent.innerHTML = str;
+                    });
+                }
+            });
+        }
+    })(jQuery);
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+</body>
+</html>

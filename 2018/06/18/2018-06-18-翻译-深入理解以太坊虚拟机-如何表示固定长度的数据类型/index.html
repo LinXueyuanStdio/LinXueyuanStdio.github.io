@@ -1,0 +1,884 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>【翻译】 深入理解以太坊虚拟机 - 如何表示固定长度的数据类型 | XiChen&#39;s Blog</title>
+    <meta name="author" content="Lin Xueyuan">
+    
+    <meta name="description" content="嗨，我是兮尘，全栈数据学徒。这里没有花俏艳丽的魔法，没有苍蛮霸道的斗气，有的，仅仅是繁衍到巅峰的代码！">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="【翻译】 深入理解以太坊虚拟机 - 如何表示固定长度的数据类型"/>
+    <meta property="og:site_name" content="XiChen"/>
+
+    
+    <meta property="og:image" content=""/>
+    
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" href="/atom.xml" title="XiChen" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
+
+    <nav class="indigo">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="">
+            <a href="/" class="brand-logo hide-on-med-and-down">XiChen</a>
+            <ul class="right hide-on-med-and-down">
+                
+                    <li>
+                        <a class="menu-home " href="/" >
+                            <i class="fa fa-home "></i>
+                            
+                            Home
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-archive " href="/archives" >
+                            <i class="fa fa-archive "></i>
+                            
+                            Archives
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                            <i class="fa fa-bookmark "></i>
+                            
+                            Categories
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-reading " href="/reading" >
+                            <i class="fa fa-book "></i>
+                            
+                            Reading
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-about " href="/about" >
+                            <i class="fa fa-user "></i>
+                            
+                            About
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-search modal-trigger " href="#search" >
+                            <i class="fa fa-search "></i>
+                            
+                            Search
+                        </a>
+                    </li>
+                
+            </ul>
+            <div>
+    <ul class="side-nav indigo darken-1" id="main-menu">
+        
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4 no-padding">
+                    <img class="avatar-image circle responsive-img" src="/assets/images/avatar.jpg" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper no-padding">
+                    <div class="valign">
+                        <p class="name">兮尘</p>
+                        <p class="desc">Android/深度学习/Web前端</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-home " href="/" >
+                    <i class="fa fa-home "></i>
+                    
+                    Home
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-archive " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    
+                    Archives
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    
+                    Categories
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-reading " href="/reading" >
+                    <i class="fa fa-book "></i>
+                    
+                    Reading
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-about " href="/about" >
+                    <i class="fa fa-user "></i>
+                    
+                    About
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-search modal-trigger " href="#search" >
+                    <i class="fa fa-search "></i>
+                    
+                    Search
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav indigo darken-1" id="category-menu">
+    
+
+            
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Linux/">
+                    Linux <span class="right">8</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tips/">
+                    Tips <span class="right">7</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/GO/">
+                    GO <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Proxy/">
+                    Proxy <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Ubuntu/">
+                    Ubuntu <span class="right">4</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Spider/">
+                    Spider <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/区块链/">
+                    区块链 <span class="right">25</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/密码学/">
+                    密码学 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/算法/">
+                    算法 <span class="right">4</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Latex/">
+                    Latex <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/杂思/">
+                    杂思 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Git/">
+                    Git <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Github/">
+                    Github <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Web/">
+                    Web <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Android/">
+                    Android <span class="right">33</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/计算机组成原理/">
+                    计算机组成原理 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Deep-Learning/">
+                    Deep-Learning <span class="right">5</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Mac/">
+                    Mac <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/练习/">
+                    练习 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tools/">
+                    Tools <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Algorithms/">
+                    Algorithms <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+<div id="search" class="modal search-modal">
+    <div class="row">
+        <div class="input-field col s12">
+              <input id="search-input" type="text">
+              <label for="search-input">Search</label>
+        </div>
+
+    </div>
+    <div id="search-result" class="search-result col s12">
+
+    </div>
+</div>
+
+
+    <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper indigo">
+        <span class="breadcrumb">Current page(Categories)</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/区块链/">区块链</a>
+
+
+        
+
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>【翻译】 深入理解以太坊虚拟机 - 如何表示固定长度的数据类型</h1>
+    
+
+
+            </div>
+            <time class="pink-link-context" datetime="2018-06-18T14:11:00.000Z"><a href="/2018/06/18/2018-06-18-翻译-深入理解以太坊虚拟机-如何表示固定长度的数据类型/">2018-06-18</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/区块链/" class="chip pink lighten-1">区块链</a>
+        
+            <a href="/tags/Qtum/" class="chip pink lighten-1">Qtum</a>
+        
+            <a href="/tags/翻译/" class="chip pink lighten-1">翻译</a>
+        
+    </div>
+
+
+            <div class="toc pink-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#如何表示固定长度的数据类型"><span class="section table-of-contents-text">如何表示固定长度的数据类型</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#磁带解析"><span class="section table-of-contents-text">磁带解析</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#空白磁带"><span class="section table-of-contents-text">空白磁带</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#读取-0"><span class="section table-of-contents-text">读取 0</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#结构体的表示"><span class="section table-of-contents-text">结构体的表示</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#定长数组"><span class="section table-of-contents-text">定长数组</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#数组边界检测"><span class="section table-of-contents-text">数组边界检测</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#打包行为"><span class="section table-of-contents-text">打包行为</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#打破优化"><span class="section table-of-contents-text">打破优化</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#为什么优化器坏了"><span class="section table-of-contents-text">为什么优化器坏了</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#再次打破优化"><span class="section table-of-contents-text">再次打破优化</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#小结"><span class="section table-of-contents-text">小结</span></a></li></ol>
+</div>
+
+
+            <div class="entry pink-link-context">
+                <p>原文：<a href="https://medium.com/@hayeah/diving-into-the-ethereum-vm-part-2-storage-layout-bc5349cb11b7" target="_blank" rel="noopener">https://medium.com/@hayeah/diving-into-the-ethereum-vm-part-2-storage-layout-bc5349cb11b7</a><br>译者：中山大学数学学院（珠海）林学渊<br>大二时给量子做的翻译，转载注明出处，谢谢</p>
+<h1 id="如何表示固定长度的数据类型"><a href="#如何表示固定长度的数据类型" class="headerlink" title="如何表示固定长度的数据类型"></a>如何表示固定长度的数据类型</h1><p>我是怎样学会了担忧以及计算存储成本</p>
+<hr>
+<p>在本系列文章的第一篇中，我们看了一个简单 Solidity 合约的汇编代码：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">contract</span> C &#123;</span><br><span class="line">    <span class="attribute">uint256</span> a;</span><br><span class="line">    <span class="attribute">function</span> C() &#123;</span><br><span class="line">      <span class="attribute">a</span> = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>该合约实际上是调用了 <code>sstore</code> 指令：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// a = 1</span></span><br><span class="line"><span class="function"><span class="title">sstore</span><span class="params">(<span class="number">0</span>x0, <span class="number">0</span>x1)</span></span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>EVM 把值 0x1 保存在存储位置 0x0.</li>
+<li>每个存储位置实际上能存 32 字节 (或者 256 比特).<blockquote>
+<p>如果对这个不熟，我建议看: <a href="https://blog.qtum.org/diving-into-the-ethereum-vm-6e8d5d2f3c30" target="_blank" rel="noopener">Diving Into The Ethereum VM Part 1 — Assembly &amp; Bytecode</a></p>
+</blockquote>
+</li>
+</ul>
+<p>在本篇文章中，我们关注 Solidity 如何使用32字节的块来表示更多复杂的数据类型，比如结构体和数组。我们也能看到如何优化存储，及怎样可能优化失败。<br>在典型的程序语言中，理解数据类型在底层如何表示不是特别有用。但在 Solidity (或任何 EVM 语言) 这种知识至关重要，因为存储访问太贵了。</p>
+<ul>
+<li><code>sstore</code> 花费 20000 gas, 或者比基础算术指令贵约 5000倍.</li>
+<li><code>sload</code> 花费 200 gas, 或者比基础算术指令贵约 100倍.</li>
+</ul>
+<p>对于“花费”，我们这里谈的是真钱，不仅仅是性能上的多少毫秒。运行和使用合约的花费中，<code>sstore</code> 和 <code>sload</code> 占主导地位！</p>
+<h1 id="磁带解析"><a href="#磁带解析" class="headerlink" title="磁带解析"></a>磁带解析</h1><p><img src="https://cdn-images-1.medium.com/max/1600/1*BfkvMOBrd2aJQ46p9DeDtg.jpeg" alt="图灵机. Source: http://raganwald.com/"></p>
+<p>构建通用计算机的两个基本要素：</p>
+<ol>
+<li>一种循环方式，无论是跳转还是递归。</li>
+<li>无限内存</li>
+</ol>
+<p>EVM 汇编代码提供跳转，EVM 存储提供无限内存。这些对一切都够用了，包括模拟一个运行以太坊的世界，其以太坊又模拟了一个运行以太坊的世界…</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/0*WmSMw86hQrhFLhCo.gif" alt="Diving Into The Microverse Battery"></p>
+<p>EVM 存储一个合约像是一条没有尽头的磁带，磁带的每个单元有32字节，像这样：<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">32 字节</span>][<span class="symbol">32 字节</span>][<span class="string">32 字节</span>]...</span><br></pre></td></tr></table></figure></p>
+<p>我们会看到数据如何在无尽的磁带上变得生动起来的。</p>
+<blockquote>
+<p>磁带长度为 2²⁵⁶, 或者每个合约有大约10⁷⁷个单元。宇宙的可观测的粒子数是10⁸⁰。大约1000个合约就足以容纳所有质子，中子和电子。不要相信营销炒作，因为它比无限更短。</p>
+</blockquote>
+<h1 id="空白磁带"><a href="#空白磁带" class="headerlink" title="空白磁带"></a>空白磁带</h1><p>存储最初是空白的，默认为 0 。拥有无限磁带并不需要花费任何东西。</p>
+<p>我们来看一个简单的合约来说明零价值行为：<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">pragma</span> solidity<span class="regexp"> ^0.4.11</span>;</span><br><span class="line"><span class="attribute">contract</span> C &#123;</span><br><span class="line">    <span class="attribute">uint256</span> a;</span><br><span class="line">    <span class="attribute">uint256</span> b;</span><br><span class="line">    <span class="attribute">uint256</span> c;</span><br><span class="line">    <span class="attribute">uint256</span> d;</span><br><span class="line">    <span class="attribute">uint256</span> e;</span><br><span class="line">    <span class="attribute">uint256</span> f;</span><br><span class="line">    <span class="attribute">function</span> C() &#123;</span><br><span class="line">      <span class="attribute">f</span> = 0xc0fefe;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>存储中的布局很简单。</p>
+<ul>
+<li>变量 <code>a</code> 位于位置 <code>0x0</code></li>
+<li>变量 <code>b</code> 位于位置 <code>0x1</code></li>
+<li>如此下去…<br>关键问题: 如果我们只用 <code>f</code>, 我们给 <code>a</code>, <code>b</code>, <code>c</code>, <code>d</code>, <code>e</code>花多少?<br>编译看一下：<figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">$</span> <span class="comment">solc</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">bin</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">asm</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">optimize</span> <span class="comment">c</span><span class="literal">-</span><span class="comment">many</span><span class="literal">-</span><span class="comment">variables</span><span class="string">.</span><span class="comment">sol</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>汇编:<br><figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// sstore(0x5, 0xc0fefe)</span></span><br><span class="line"><span class="symbol">tag_2:</span></span><br><span class="line">  <span class="number">0xc0fefe</span></span><br><span class="line">  <span class="number">0x5</span></span><br><span class="line">  sstore</span><br></pre></td></tr></table></figure></p>
+<p>因此，存储变量的声明不需要任何费用，因为没有初始化。 Solidity 为该变量保留一个位置，并且只有当你存储某些内容时才支付 gas 。</p>
+<p>在这种情况下，我们只为存储到 <code>0x5</code> 花钱。</p>
+<p>如果我们手工编写汇编，我们可以任意选择存储位置而不必“扩展”存储：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 写入任意位置</span></span><br><span class="line"><span class="function"><span class="title">sstore</span><span class="params">(<span class="number">0</span>xc0fefe, <span class="number">0</span>x42)</span></span></span><br></pre></td></tr></table></figure>
+<h1 id="读取-0"><a href="#读取-0" class="headerlink" title="读取 0"></a>读取 0</h1><p>你不仅可以在存储的任何位置写入，还可以立即从任何位置读取。读取未初始化的位置仅返回 <code>0x0</code> 。</p>
+<p>让我们看一个读取未初始化位置的合约：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">pragma</span> solidity<span class="regexp"> ^0.4.11</span>;</span><br><span class="line"><span class="attribute">contract</span> C &#123;</span><br><span class="line">    <span class="attribute">uint256</span> a;</span><br><span class="line">    <span class="attribute">function</span> C() &#123;</span><br><span class="line">      <span class="attribute">a</span> = a + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译:<br><figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">$</span> <span class="comment">solc</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">bin</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">asm</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">optimize</span> <span class="comment">c</span><span class="literal">-</span><span class="comment">zero</span><span class="literal">-</span><span class="comment">value</span><span class="string">.</span><span class="comment">sol</span></span><br></pre></td></tr></table></figure></p>
+<p>汇编代码:<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">tag_2:</span><br><span class="line">  <span class="comment">// sload(0x0) returning 0x0</span></span><br><span class="line">  <span class="number">0x0</span></span><br><span class="line">  dup1</span><br><span class="line">  sload</span><br><span class="line">  <span class="comment">// a + 1; where a == 0</span></span><br><span class="line">  <span class="number">0x1</span></span><br><span class="line">  <span class="keyword">add</span></span><br><span class="line">  <span class="comment">// sstore(0x0, a + 1)</span></span><br><span class="line">  swap1</span><br><span class="line">  sstore</span><br></pre></td></tr></table></figure></p>
+<p>注意：生成从未初始化位置加载数据的代码是有效的。</p>
+<p>然而，我们可以比 Solidity 编译器更聪明。由于我们知道<code>tag_2</code>是构造函数，并且从未写入过，所以我们可以用<code>0x0</code>替换<code>sload</code>序列。这可以省 5,000 gas。</p>
+<h1 id="结构体的表示"><a href="#结构体的表示" class="headerlink" title="结构体的表示"></a>结构体的表示</h1><p>我们来看第一个复杂数据类型，一个有 6 个字段的结构体：<br><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^<span class="number">0</span>.<span class="number">4</span>.<span class="number">11</span><span class="comment">;</span></span><br><span class="line">contract C &#123;</span><br><span class="line">    struct Tuple &#123;</span><br><span class="line">      uint256 a<span class="comment">;</span></span><br><span class="line">      uint256 <span class="keyword">b;</span></span><br><span class="line"><span class="keyword"> </span>     uint256 c<span class="comment">;</span></span><br><span class="line">      uint256 d<span class="comment">;</span></span><br><span class="line">      uint256 e<span class="comment">;</span></span><br><span class="line">      uint256 f<span class="comment">;</span></span><br><span class="line">    &#125;</span><br><span class="line">    Tuple t<span class="comment">;</span></span><br><span class="line">    function C() &#123;</span><br><span class="line">      t.f = <span class="number">0xC0FEFE</span><span class="comment">;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>存储中的布局和状态变量一样。</p>
+<ul>
+<li>变量 <code>t.a</code> 位于位置 <code>0x0</code></li>
+<li>变量 <code>t.b</code> 位于位置 <code>0x1</code></li>
+<li>如此下去…</li>
+</ul>
+<p>和之前类似，我们可以直接向 <code>t.f</code> 写入而不用给初始化花钱。</p>
+<p>编译：<br><figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">$</span> <span class="comment">solc</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">bin</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">asm</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">optimize</span> <span class="comment">c</span><span class="literal">-</span><span class="comment">struct</span><span class="literal">-</span><span class="comment">fields</span><span class="string">.</span><span class="comment">sol</span></span><br></pre></td></tr></table></figure></p>
+<p>我们看到了一样的汇编代码：<br><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">tag_2:</span></span><br><span class="line">  <span class="number">0xc0fefe</span></span><br><span class="line">  <span class="number">0x5</span></span><br><span class="line">  sstore</span><br></pre></td></tr></table></figure></p>
+<h1 id="定长数组"><a href="#定长数组" class="headerlink" title="定长数组"></a>定长数组</h1><p>声明一个定长数组：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^<span class="number">0.4</span><span class="number">.11</span>;</span><br><span class="line">contract C &#123;</span><br><span class="line">    uint256[<span class="number">6</span>] numbers;</span><br><span class="line">    function C() &#123;</span><br><span class="line">      numbers[<span class="number">5</span>] = <span class="number">0xC0FEFE</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>由于编译器确切地知道有多少个 <code>uint256</code> （ 32 个字节），因此它可以简单地将数组元素放在存储器中，就像存储变量和结构体一样。</p>
+<p>在这份合约中，我们再次存储到位置 <code>0x5</code> 。</p>
+<p>编译：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ solc --bin --<span class="keyword">asm</span> --optimize c-<span class="keyword">static</span>-<span class="built_in">array</span>.sol</span><br></pre></td></tr></table></figure></p>
+<p>汇编代码：<br><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">tag_2:</span></span><br><span class="line">  <span class="number">0xc0fefe</span></span><br><span class="line">  <span class="number">0x0</span></span><br><span class="line">  <span class="number">0x5</span></span><br><span class="line"><span class="symbol">tag_4:</span></span><br><span class="line">  <span class="keyword">add</span></span><br><span class="line">  <span class="number">0x0</span></span><br><span class="line"><span class="symbol">tag_5:</span></span><br><span class="line">  <span class="keyword">pop</span></span><br><span class="line">  sstore</span><br></pre></td></tr></table></figure></p>
+<p>它稍微长一些，但如果你稍微眯起一点，你会发现它实际上是一样的。我们手动进一步优化：<br><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">tag_2:</span></span><br><span class="line">  <span class="number">0xc0fefe</span></span><br><span class="line">  // <span class="number">0</span>+<span class="number">5.</span> 用 <span class="number">0x5</span> 代替</span><br><span class="line">  <span class="number">0x0</span></span><br><span class="line">  <span class="number">0x5</span></span><br><span class="line">  <span class="keyword">add</span></span><br><span class="line">  // <span class="keyword">Push</span> then <span class="keyword">pop</span> immediately. Useless, just remove.</span><br><span class="line">  <span class="number">0x0</span></span><br><span class="line">  <span class="keyword">pop</span></span><br><span class="line">  sstore</span><br></pre></td></tr></table></figure></p>
+<p>除去标签和伪指令，我们再次得到相同的字节码序列：<br><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">tag_2:</span></span><br><span class="line">  <span class="number">0xc0fefe</span></span><br><span class="line">  <span class="number">0x5</span></span><br><span class="line">  sstore</span><br></pre></td></tr></table></figure></p>
+<h1 id="数组边界检测"><a href="#数组边界检测" class="headerlink" title="数组边界检测"></a>数组边界检测</h1><p>我们已经看到，定长数组与结构体或状态变量两者具有相同的存储布局，但生成的汇编代码是不同的。原因是 Solidity 为数组访问生成了边界检查。</p>
+<p>让我们再次编译数组合约，这次先关闭优化：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ solc --bin --<span class="keyword">asm</span> c-<span class="keyword">static</span>-<span class="built_in">array</span>.sol</span><br></pre></td></tr></table></figure></p>
+<p>注释一下，在每条指令后打印机器状态：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">tag_2:</span><br><span class="line">  <span class="number">0xc0fef</span>e</span><br><span class="line">    [<span class="number">0xc0fef</span>e]</span><br><span class="line">  <span class="number">0x5</span></span><br><span class="line">    [<span class="number">0x5</span> <span class="number">0xc0fef</span>e]</span><br><span class="line">  dup1</span><br><span class="line">  <span class="comment">/* 数组边界检测代码 */</span></span><br><span class="line">  <span class="comment">// 5 &lt; 6</span></span><br><span class="line">  <span class="number">0x6</span></span><br><span class="line">    [<span class="number">0x6</span> <span class="number">0x5</span> <span class="number">0xc0fef</span>e]</span><br><span class="line">  dup2</span><br><span class="line">    [<span class="number">0x5</span> <span class="number">0x6</span> <span class="number">0x5</span> <span class="number">0xc0fef</span>e]</span><br><span class="line">  lt</span><br><span class="line">    [<span class="number">0x1</span> <span class="number">0x5</span> <span class="number">0xc0fef</span>e]</span><br><span class="line">  <span class="comment">// bound_check_ok = 1 (TRUE)</span></span><br><span class="line">  <span class="comment">// if(bound_check_ok) &#123; goto tag5 &#125; else &#123; invalid &#125;</span></span><br><span class="line">  tag_5</span><br><span class="line">    [tag_5 <span class="number">0x1</span> <span class="number">0x5</span> <span class="number">0xc0fef</span>e]</span><br><span class="line">  jumpi</span><br><span class="line">    <span class="comment">// 测试情形是对的. 将跳转到 tag_5.</span></span><br><span class="line">    <span class="comment">// 并且 `jumpi` 消费了栈中 2 个元素.</span></span><br><span class="line">    [<span class="number">0x5</span> <span class="number">0xc0fef</span>e]</span><br><span class="line">  invalid</span><br><span class="line"><span class="comment">// 数组访问合法，继续</span></span><br><span class="line"><span class="comment">// stack: [0x5 0xc0fefe]</span></span><br><span class="line">tag_5:</span><br><span class="line">  sstore</span><br><span class="line">    []</span><br><span class="line">    storage: &#123; <span class="number">0x5</span> =&gt; <span class="number">0xc0fef</span>e &#125;</span><br></pre></td></tr></table></figure>
+<p>现在可以看到边界检测代码了。编译器能够优化这些东西，但并不完美。</p>
+<p>在本文的后面，我们将看到数组边界检测如何干扰编译器的优化，使得定长数组比存储变量或结构的效率低得多。</p>
+<h1 id="打包行为"><a href="#打包行为" class="headerlink" title="打包行为"></a>打包行为</h1><p>存储很贵（啊啊啊我已经说一百万次了）。一个关键的优化是尽可能多地将数据打包到一个 32 字节的单元中。</p>
+<p>考虑有四个存储变量（每个 64 比特）的合约，总共可以累加到 256 比特（ 32 字节）：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">pragma</span> solidity<span class="regexp"> ^0.4.11</span>;</span><br><span class="line"><span class="attribute">contract</span> C &#123;</span><br><span class="line">    <span class="attribute">uint64</span> a;</span><br><span class="line">    <span class="attribute">uint64</span> b;</span><br><span class="line">    <span class="attribute">uint64</span> c;</span><br><span class="line">    <span class="attribute">uint64</span> d;</span><br><span class="line">    <span class="attribute">function</span> C() &#123;</span><br><span class="line">      <span class="attribute">a</span> = 0xaaaa;</span><br><span class="line">      <span class="attribute">b</span> = 0xbbbb;</span><br><span class="line">      <span class="attribute">c</span> = 0xcccc;</span><br><span class="line">      <span class="attribute">d</span> = 0xdddd;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们希望编译器只用一个 <code>sstore</code> ，所以将它们放在同一个存储单元中。</p>
+<p>编译：<br><figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">$</span> <span class="comment">solc</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">bin</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">asm</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">optimize</span> <span class="comment">c</span><span class="literal">-</span><span class="comment">many</span><span class="literal">-</span><span class="comment">variables</span><span class="literal">-</span><span class="literal">-</span><span class="comment">packing</span><span class="string">.</span><span class="comment">sol</span></span><br></pre></td></tr></table></figure></p>
+<p>汇编代码：<br><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">tag_2:</span></span><br><span class="line">    /* <span class="string">"c-many-variables--packing.sol"</span>:<span class="number">121</span>:<span class="number">122</span>  a */</span><br><span class="line">  <span class="number">0x0</span></span><br><span class="line">    /* <span class="string">"c-many-variables--packing.sol"</span>:<span class="number">121</span>:<span class="number">131</span>  a = <span class="number">0xaaaa</span> */</span><br><span class="line">  dup1</span><br><span class="line">  sload</span><br><span class="line">    /* <span class="string">"c-many-variables--packing.sol"</span>:<span class="number">125</span>:<span class="number">131</span>  <span class="number">0xaaaa</span> */</span><br><span class="line">  <span class="number">0xaaaa</span></span><br><span class="line">  <span class="keyword">not</span>(<span class="number">0xffffffffffffffff</span>)</span><br><span class="line">    /* <span class="string">"c-many-variables--packing.sol"</span>:<span class="number">121</span>:<span class="number">131</span>  a = <span class="number">0xaaaa</span> */</span><br><span class="line">  swap1</span><br><span class="line">  swap2</span><br><span class="line">  <span class="keyword">and</span></span><br><span class="line">  <span class="keyword">or</span></span><br><span class="line">  <span class="keyword">not</span>(<span class="keyword">sub</span>(exp(<span class="number">0x2</span>, <span class="number">0x80</span>), exp(<span class="number">0x2</span>, <span class="number">0x40</span>)))</span><br><span class="line">    /* <span class="string">"c-many-variables--packing.sol"</span>:<span class="number">139</span>:<span class="number">149</span>  b = <span class="number">0xbbbb</span> */</span><br><span class="line">  <span class="keyword">and</span></span><br><span class="line">  <span class="number">0xbbbb0000000000000000</span></span><br><span class="line">  <span class="keyword">or</span></span><br><span class="line">  <span class="keyword">not</span>(<span class="keyword">sub</span>(exp(<span class="number">0x2</span>, <span class="number">0xc0</span>), exp(<span class="number">0x2</span>, <span class="number">0x80</span>)))</span><br><span class="line">    /* <span class="string">"c-many-variables--packing.sol"</span>:<span class="number">157</span>:<span class="number">167</span>  c = <span class="number">0xcccc</span> */</span><br><span class="line">  <span class="keyword">and</span></span><br><span class="line">  <span class="number">0xcccc00000000000000000000000000000000</span></span><br><span class="line">  <span class="keyword">or</span></span><br><span class="line">  <span class="keyword">sub</span>(exp(<span class="number">0x2</span>, <span class="number">0xc0</span>), <span class="number">0x1</span>)</span><br><span class="line">    /* <span class="string">"c-many-variables--packing.sol"</span>:<span class="number">175</span>:<span class="number">185</span>  d = <span class="number">0xdddd</span> */</span><br><span class="line">  <span class="keyword">and</span></span><br><span class="line">  <span class="number">0xdddd000000000000000000000000000000000000000000000000</span></span><br><span class="line">  <span class="keyword">or</span></span><br><span class="line">  swap1</span><br><span class="line">  sstore</span><br></pre></td></tr></table></figure></p>
+<p>有很多我无法破译的位交换，但不用在意这些细节。关键要注意的是，只用了一个 <code>sstore</code>。</p>
+<p>优化成功！</p>
+<h1 id="打破优化"><a href="#打破优化" class="headerlink" title="打破优化"></a>打破优化</h1><p>要是优化器可以一直完美工作就好了。让我们打破它。我们唯一的改变是我们使用帮助函数来设置存储变量：</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^<span class="number">0</span>.<span class="number">4</span>.<span class="number">11</span><span class="comment">;</span></span><br><span class="line">contract C &#123;</span><br><span class="line">    uint64 a<span class="comment">;</span></span><br><span class="line">    uint64 <span class="keyword">b;</span></span><br><span class="line"><span class="keyword"> </span>   uint64 c<span class="comment">;</span></span><br><span class="line">    uint64 d<span class="comment">;</span></span><br><span class="line">    function C() &#123;</span><br><span class="line">      setAB()<span class="comment">;</span></span><br><span class="line">      setCD()<span class="comment">;</span></span><br><span class="line">    &#125;</span><br><span class="line">    function setAB() internal &#123;</span><br><span class="line">      a = <span class="number">0xaaaa</span><span class="comment">;</span></span><br><span class="line">      <span class="keyword">b </span>= <span class="number">0xbbbb</span><span class="comment">;</span></span><br><span class="line">    &#125;</span><br><span class="line">    function setCD() internal &#123;</span><br><span class="line">      c = <span class="number">0xcccc</span><span class="comment">;</span></span><br><span class="line">      d = <span class="number">0xdddd</span><span class="comment">;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译<br><figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">$</span> <span class="comment">solc</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">bin</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">asm</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">optimize</span> <span class="comment">c</span><span class="literal">-</span><span class="comment">many</span><span class="literal">-</span><span class="comment">variables</span><span class="literal">-</span><span class="literal">-</span><span class="comment">packing</span><span class="literal">-</span><span class="comment">helpers</span><span class="string">.</span><span class="comment">sol</span></span><br></pre></td></tr></table></figure></p>
+<p>汇编输出太多了。我们将忽略大部分细节并关注结构：<br><figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">//</span> 构造函数</span><br><span class="line">tag_2:</span><br><span class="line">  <span class="string">//</span> <span class="string">...</span></span><br><span class="line">  <span class="string">//</span> 跳转到 tag_5，调用 <span class="keyword">set</span>AB<span class="params">()</span> </span><br><span class="line">  jump</span><br><span class="line">tag_4:</span><br><span class="line">  <span class="string">//</span> <span class="string">...</span></span><br><span class="line">  <span class="string">//</span> 跳转到 tag_7，调用 <span class="keyword">set</span>CD<span class="params">()</span></span><br><span class="line">  jump</span><br><span class="line"><span class="string">//</span> 函数 <span class="keyword">set</span>AB<span class="params">()</span></span><br><span class="line">tag_5:</span><br><span class="line">  <span class="string">//</span> 位交换，设置 a, b</span><br><span class="line">  <span class="string">//</span> <span class="string">...</span></span><br><span class="line">  sstore</span><br><span class="line">tag_9:</span><br><span class="line">  jump  <span class="string">//</span> 返回 <span class="keyword">set</span>AB<span class="params">()</span> 的调用者</span><br><span class="line"><span class="string">//</span> 函数 <span class="keyword">set</span>CD<span class="params">()</span></span><br><span class="line">tag_7:</span><br><span class="line">  <span class="string">//</span> 位交换，设置 c, d</span><br><span class="line">  <span class="string">//</span> <span class="string">...</span></span><br><span class="line">  sstore</span><br><span class="line">tag_10:</span><br><span class="line">  jump  <span class="string">//</span> 返回 <span class="keyword">set</span>CD<span class="params">()</span> 的调用者</span><br></pre></td></tr></table></figure></p>
+<p>现在有两个 <code>sstore</code> ，而不是一个。 Solidity 编译器可以在标签内进行优化，但不能跨标签进行优化。</p>
+<blockquote>
+<p>调用函数可能会花费更多，而不是太多，不仅因为函数调用很贵（它们只是跳转指令），而且因为 <code>sstore</code> 优化可能会失败。</p>
+</blockquote>
+<p>为了解决这个问题， Solidity 编译器需要学习如何内联函数，使得本质上得到的代码与不调用函数的相同：</p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">a</span> = <span class="number">0</span>xaaaa<span class="comment">;</span></span><br><span class="line"><span class="attribute">b</span> = <span class="number">0</span>xbbbb<span class="comment">;</span></span><br><span class="line"><span class="attribute">c</span> = <span class="number">0</span>xcccc<span class="comment">;</span></span><br><span class="line"><span class="attribute">d</span> = <span class="number">0</span>xdddd<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<p>如果我们仔细阅读完整的汇编输出，我们会看到函数 setAB（）和 setCD（）的汇编代码被包含了两次，使代码臃肿，还花费额外 gas 部署合约。我们稍后在了解合约生命周期时再讨论这一点。</p>
+<h1 id="为什么优化器坏了"><a href="#为什么优化器坏了" class="headerlink" title="为什么优化器坏了"></a>为什么优化器坏了</h1><p>优化器不会跨标签进行优化。考虑 “1 + 1” ，如果在同一标签下，它可以优化为 <code>0x2</code> ：<br><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 优化成功!</span><br><span class="line"><span class="symbol">tag_0:</span></span><br><span class="line">  <span class="number">0x1</span></span><br><span class="line">  <span class="number">0x1</span></span><br><span class="line">  <span class="keyword">add</span></span><br><span class="line">  ...</span><br></pre></td></tr></table></figure></p>
+<p>但会优化失败，如果指令被标签分开了的话：<br><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 优化失败!</span><br><span class="line"><span class="symbol">tag_0:</span></span><br><span class="line">  <span class="number">0x1</span></span><br><span class="line">  <span class="number">0x1</span></span><br><span class="line"><span class="symbol">tag_1:</span></span><br><span class="line">  <span class="keyword">add</span></span><br><span class="line">  ...</span><br></pre></td></tr></table></figure></p>
+<p>这个行为在 0.4.13 版时是真的。以后可能会变。</p>
+<h1 id="再次打破优化"><a href="#再次打破优化" class="headerlink" title="再次打破优化"></a>再次打破优化</h1><p>让我们看看优化失败的另一种方式。打包是否适用于定长数组？考虑：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^<span class="number">0.4</span><span class="number">.11</span>;</span><br><span class="line">contract C &#123;</span><br><span class="line">    uint64[<span class="number">4</span>] numbers;</span><br><span class="line">    function C() &#123;</span><br><span class="line">      numbers[<span class="number">0</span>] = <span class="number">0x0</span>;</span><br><span class="line">      numbers[<span class="number">1</span>] = <span class="number">0x1111</span>;</span><br><span class="line">      numbers[<span class="number">2</span>] = <span class="number">0x2222</span>;</span><br><span class="line">      numbers[<span class="number">3</span>] = <span class="number">0x3333</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>同样，我们希望只用一个 <code>sstore</code> 指令将 4 个 64 比特的数字打包到一个 32 字节的存储单元中。</p>
+<p>编译后的汇编代码太长了。作为替代，计算 <code>sstore</code> 和 <code>sload</code> 指令的数量：<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ solc --bin --<span class="keyword">asm</span> --optimize c-<span class="keyword">static</span>-<span class="keyword">array</span>--packing.sol | grep -E <span class="string">'(sstore|sload)'</span></span><br><span class="line">  sload</span><br><span class="line">  sstore</span><br><span class="line">  sload</span><br><span class="line">  sstore</span><br><span class="line">  sload</span><br><span class="line">  sstore</span><br><span class="line">  sload</span><br><span class="line">  sstore</span><br></pre></td></tr></table></figure></p>
+<p>嗷！不！！即使这个定长数组的存储布局与等效的结构体或存储变量完全相同，优化也会失败。它现在需要四对 <code>sload</code> 和 <code>sstore</code> 。</p>
+<p>快速浏览汇编代码可以发现，每个数组访问都有边界检测代码，并在不同的标签下进行组织。但标签边界打破了优化。</p>
+<p>然而有一点小小的安慰的是，3 个额外的 <code>sstore</code> 指令比第一个便宜：</p>
+<ul>
+<li><code>sstore</code> 花费 20,000 gas用于第一次写入新位置。</li>
+<li><code>sstore</code> 花费 5,000 gas用于后续写入现有位置。</li>
+</ul>
+<p>所以这个特定优化的失败花费我们 35k 而不是 20k ，多了 75％ 。</p>
+<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>如果 Solidity 编译器能够计算出存储变量的大小，它只须简单地将它们放在一个接一个的存储空间中。如果可能的话，编译器将数据紧密地打包成32字节的块。</p>
+<p>总结我们目前为止看到的打包行为：</p>
+<ul>
+<li>存储变量：有。</li>
+<li>结构字段：有。</li>
+<li>定长数组：无。理论上，有。</li>
+</ul>
+<p>由于存储访问成本非常高，因此应该将存储变量视为数据库架构。在编写合约时，可能会很有用的是做小型实验，并检查汇编代码以确定编译器是否正在优化。</p>
+<p>可以肯定， Solidity 编译器将来会有所改进。不幸的是，现在我们还不能盲目信任它的优化器。</p>
+<p>理解存储变量要花钱，字面意思，花钱。</p>
+
+                
+<p class="pink-link-context">
+    <a href="/2018/06/24/2018-06-24-翻译-深入理解以太坊虚拟机-如何表示动态数据类型/" rel="next" title="【翻译】 深入理解以太坊虚拟机 - 如何表示动态数据类型">
+    Prev: 【翻译】 深入理解以太坊虚拟机 - 如何表示动态数据类型
+  </a>
+</p>
+
+
+
+<p class="pink-link-context">
+    <a href="/2018/06/12/2018-06-12-翻译-深入理解以太坊虚拟机-EVM汇编代码简介/" rel="next" title="【翻译】 深入理解以太坊虚拟机 - EVM汇编代码简介">
+    Next: 【翻译】 深入理解以太坊虚拟机 - EVM汇编代码简介
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large pink">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect green" title="Return to top"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse yellow darken-1"  data-activates="main-menu" title="Menu"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer indigo darken-1">
+    
+    <div class="footer-container container">
+        <div class="row">
+            
+            <div class="social-group col m4 s12">
+                <h5 class="white-text">Social</h5>
+                
+                    <a class="social-link" href="http://weibo.com/LinXueyuanStdio" target="_blank">
+                        <i class="fa fa-2x fa-weibo"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://github.com/LinXueyuanStdio" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://www.zhihu.com/people/lin-xue-yuan-86" target="_blank">
+                        <i class="fa fa-2x fa-graduation-cap"></i>
+                    </a>
+                
+                    <a class="social-link" href="http://twitter.com/cwBQ3A5cz3Jzso7" target="_blank">
+                        <i class="fa fa-2x fa-twitter"></i>
+                    </a>
+                
+                    <a class="social-link" href="mailto:761516186@qq.com" target="_blank">
+                        <i class="fa fa-2x fa-envelope"></i>
+                    </a>
+                
+                    <a class="social-link" href="/atom.xml" target="_blank">
+                        <i class="fa fa-2x fa-rss"></i>
+                    </a>
+                
+                
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+    </script>
+    <div class="site-visitors-container white-text">
+        <span>
+            <i class="fa fa-user"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+        </span>
+        <span>&nbsp;|&nbsp;</span>
+        <span>
+            <i class="fa fa-eye"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+        </span>
+    </div>
+
+
+            </div>
+            
+
+            
+            <div class="col m8 s12">
+                <h5 class="white-text">Links</h5>
+                
+                    <a class="social-link" href="http://raytaylorlin.com/" target="_blank">raytaylorism主题作者</a>
+                
+                    <a class="social-link" href="https://github.com/raytaylorlin" target="_blank">Github地址</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    
+
+    <div class="footer-copyright pink-link-context">
+        <div class="container">
+            © 2016 example.com, All rights reserved.
+            <p class="right" style="margin-top: 0;">Blog powered by <a href="https://hexo.io">Hexo</a> | Theme <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
+        </div>
+    </div>
+</footer>
+
+
+    <noscript>
+    <div class="noscript">
+        <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+    </div>
+</noscript>
+<div class="noscript">
+    <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 隐藏禁用javascript（针对微信内置浏览器）的提示
+            $('.noscript').hide();
+
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
+
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed').each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt') || ' ');
+            }).materialbox();
+
+            // 优化表格的显示
+            $('table').each(function() {
+                var $table = $(this);
+                // 除去多行代码的情况
+                if ($table.find('pre').length == 0) {
+                    $table.addClass('responsive-table striped bordered');
+                }
+            });
+
+            // 首页幻灯片
+            $('.slider').slider({indicators: true, full_width: true, interval: 8000});
+
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+
+            // 目录随屏幕滚动（防止目录过长越过footer）
+            var $toc = $('.toc');
+            var scrollTargetTop = 0;
+            $(window).scroll(function() {
+                var $activeLink = $toc.find('a.active.section');
+                if ($(window).scrollTop() < 100) {
+                    scrollTargetTop = 0;
+                } else {
+                    if ($activeLink[0]) {
+                        scrollTargetTop = $activeLink.offset().top - $toc.offset().top;
+                    }
+                }
+                $toc.css('top', '-' + scrollTargetTop + 'px');
+            });
+
+            // 修正文章目录的left-border颜色
+            var color = $('.table-of-contents-text').css('color');
+            $('.table-of-contents-link').css('border-left-color', color);
+
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({
+                    scrollTop: 0
+                }, 500);
+            });
+
+            // 重置读书页面的Tab标签页的颜色
+            $('li.tab a').hover(function() {
+                $(this).toggleClass('text-lighten-4');
+            });
+            $('.indicator').addClass('pink lighten-2');
+
+            
+            // 添加new标签
+            $('.menu-apps').append('<span class="new badge pink"></span>');
+            
+
+            // 搜索功能
+            $('.modal-trigger').leanModal({
+                // 打开搜索框时自动聚焦
+                ready: function() {
+                    if ($('#search').is(":visible")) {
+                        $('#search-input').focus();
+                    }
+                }
+            });
+            var searchXml = "search.xml";
+            if (searchXml.length == 0) {
+             	searchXml = "search.xml";
+            }
+            var searchPath = "/" + searchXml;
+            initSearch(searchPath, 'search-input', 'search-result');
+        });
+
+        // 初始化搜索与匹配函数
+        var initSearch = function(path, search_id, content_id) {
+            'use strict';
+            $.ajax({
+                url: path,
+                dataType: "xml",
+                success: function(xmlResponse) {
+                    // get the contents from search data
+                    var datas = $("entry", xmlResponse).map(function() {
+                        return {
+                            title: $("title", this).text(),
+                            content: $("content", this).text(),
+                            url: $("url", this).text()
+                        };
+                    }).get();
+                    var $input = document.getElementById(search_id);
+                    var $resultContent = document.getElementById(content_id);
+                    $input.addEventListener('input', function() {
+                        var str = '<ul class=\"search-result-list\">';
+                        var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                        $resultContent.innerHTML = "";
+                        if (this.value.trim().length <= 0) {
+                            return;
+                        }
+                        // perform local searching
+                        datas.forEach(function(data) {
+                            var isMatch = true;
+                            var content_index = [];
+                            var data_title = data.title.trim().toLowerCase();
+                            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                            var data_url = data.url;
+                            var index_title = -1;
+                            var index_content = -1;
+                            var first_occur = -1;
+                            // only match artiles with not empty titles and contents
+                            if (data_title != '' && data_content != '') {
+                                keywords.forEach(function(keyword, i) {
+                                    index_title = data_title.indexOf(keyword);
+                                    index_content = data_content.indexOf(keyword);
+                                    if (index_title < 0 && index_content < 0) {
+                                        isMatch = false;
+                                    } else {
+                                        if (index_content < 0) {
+                                            index_content = 0;
+                                        }
+                                        if (i == 0) {
+                                            first_occur = index_content;
+                                        }
+                                    }
+                                });
+                            }
+                            // show search results
+                            if (isMatch) {
+                                keywords.forEach(function(keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                });
+
+                                str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                                if (first_occur >= 0) {
+                                    // cut out 100 characters
+                                    var start = first_occur - 20;
+                                    var end = first_occur + 80;
+                                    if (start < 0) {
+                                        start = 0;
+                                    }
+                                    if (start == 0) {
+                                        end = 100;
+                                    }
+                                    if (end > content.length) {
+                                        end = content.length;
+                                    }
+                                    var match_content = content.substring(start, end);
+                                    // highlight all keywords
+                                    keywords.forEach(function(keyword) {
+                                        var regS = new RegExp(keyword, "gi");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                    });
+
+                                    str += "<p class=\"search-result\">..." + match_content + "...</p>"
+                                }
+                                str += "</li>";
+                            }
+                        });
+                        str += "</ul>";
+                        $resultContent.innerHTML = str;
+                    });
+                }
+            });
+        }
+    })(jQuery);
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+</body>
+</html>

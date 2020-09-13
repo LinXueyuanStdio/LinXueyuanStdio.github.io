@@ -1,0 +1,900 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>【翻译】 QRC20 token 报告 | XiChen&#39;s Blog</title>
+    <meta name="author" content="Lin Xueyuan">
+    
+    <meta name="description" content="嗨，我是兮尘，全栈数据学徒。这里没有花俏艳丽的魔法，没有苍蛮霸道的斗气，有的，仅仅是繁衍到巅峰的代码！">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="【翻译】 QRC20 token 报告"/>
+    <meta property="og:site_name" content="XiChen"/>
+
+    
+    <meta property="og:image" content=""/>
+    
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" href="/atom.xml" title="XiChen" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
+
+    <nav class="indigo">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="">
+            <a href="/" class="brand-logo hide-on-med-and-down">XiChen</a>
+            <ul class="right hide-on-med-and-down">
+                
+                    <li>
+                        <a class="menu-home " href="/" >
+                            <i class="fa fa-home "></i>
+                            
+                            Home
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-archive " href="/archives" >
+                            <i class="fa fa-archive "></i>
+                            
+                            Archives
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                            <i class="fa fa-bookmark "></i>
+                            
+                            Categories
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-reading " href="/reading" >
+                            <i class="fa fa-book "></i>
+                            
+                            Reading
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-about " href="/about" >
+                            <i class="fa fa-user "></i>
+                            
+                            About
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-search modal-trigger " href="#search" >
+                            <i class="fa fa-search "></i>
+                            
+                            Search
+                        </a>
+                    </li>
+                
+            </ul>
+            <div>
+    <ul class="side-nav indigo darken-1" id="main-menu">
+        
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4 no-padding">
+                    <img class="avatar-image circle responsive-img" src="/assets/images/avatar.jpg" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper no-padding">
+                    <div class="valign">
+                        <p class="name">兮尘</p>
+                        <p class="desc">Android/深度学习/Web前端</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-home " href="/" >
+                    <i class="fa fa-home "></i>
+                    
+                    Home
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-archive " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    
+                    Archives
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    
+                    Categories
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-reading " href="/reading" >
+                    <i class="fa fa-book "></i>
+                    
+                    Reading
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-about " href="/about" >
+                    <i class="fa fa-user "></i>
+                    
+                    About
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-search modal-trigger " href="#search" >
+                    <i class="fa fa-search "></i>
+                    
+                    Search
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav indigo darken-1" id="category-menu">
+    
+
+            
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Linux/">
+                    Linux <span class="right">8</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tips/">
+                    Tips <span class="right">7</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/GO/">
+                    GO <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Proxy/">
+                    Proxy <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Ubuntu/">
+                    Ubuntu <span class="right">4</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Spider/">
+                    Spider <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/区块链/">
+                    区块链 <span class="right">25</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/密码学/">
+                    密码学 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/算法/">
+                    算法 <span class="right">4</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Latex/">
+                    Latex <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/杂思/">
+                    杂思 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Git/">
+                    Git <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Github/">
+                    Github <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Web/">
+                    Web <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Android/">
+                    Android <span class="right">33</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/计算机组成原理/">
+                    计算机组成原理 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Deep-Learning/">
+                    Deep-Learning <span class="right">5</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Mac/">
+                    Mac <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/练习/">
+                    练习 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tools/">
+                    Tools <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Algorithms/">
+                    Algorithms <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+<div id="search" class="modal search-modal">
+    <div class="row">
+        <div class="input-field col s12">
+              <input id="search-input" type="text">
+              <label for="search-input">Search</label>
+        </div>
+
+    </div>
+    <div id="search-result" class="search-result col s12">
+
+    </div>
+</div>
+
+
+    <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper indigo">
+        <span class="breadcrumb">Current page(Categories)</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/区块链/">区块链</a>
+
+
+        
+
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>【翻译】 QRC20 token 报告</h1>
+    
+
+
+            </div>
+            <time class="pink-link-context" datetime="2018-07-24T14:11:00.000Z"><a href="/2018/07/24/2018-07-24-翻译-QRC20token报告/">2018-07-24</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/区块链/" class="chip pink lighten-1">区块链</a>
+        
+            <a href="/tags/Qtum/" class="chip pink lighten-1">Qtum</a>
+        
+            <a href="/tags/翻译/" class="chip pink lighten-1">翻译</a>
+        
+    </div>
+
+
+            <div class="toc pink-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#QRC20-token-报告-2018年2月25日"><span class="section table-of-contents-text">QRC20  token 报告 - 2018年2月25日</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#主网性能"><span class="section table-of-contents-text">主网性能</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#独立奖励地址"><span class="section table-of-contents-text">独立奖励地址</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#节点数"><span class="section table-of-contents-text">节点数</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#交易费用"><span class="section table-of-contents-text">交易费用</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#块间距"><span class="section table-of-contents-text">块间距</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#网络权重"><span class="section table-of-contents-text">网络权重</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#token-时间"><span class="section table-of-contents-text">token 时间</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#合约创建"><span class="section table-of-contents-text">合约创建</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#交易所和钱包"><span class="section table-of-contents-text">交易所和钱包</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#快照"><span class="section table-of-contents-text">快照</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#空投"><span class="section table-of-contents-text">空投</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#与智能合约交流"><span class="section table-of-contents-text">与智能合约交流</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#查看你的-token-余额很容易"><span class="section table-of-contents-text">查看你的 token 余额很容易</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#资源管理器中的-token"><span class="section table-of-contents-text">资源管理器中的 token</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#烧币（Burning-Tokens）"><span class="section table-of-contents-text">烧币（Burning Tokens）</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#参考："><span class="section table-of-contents-text">参考：</span></a></li></ol></li></ol>
+</div>
+
+
+            <div class="entry pink-link-context">
+                <p>原文：<a href="https://medium.com/@jb395official/qrc20-token-report-february-25-2018-ff397a1ac070" target="_blank" rel="noopener">https://medium.com/@jb395official/qrc20-token-report-february-25-2018-ff397a1ac070</a><br>译者：中山大学数学学院（珠海）林学渊<br>大二时给量子做的翻译，转载注明出处，谢谢</p>
+<h1 id="QRC20-token-报告-2018年2月25日"><a href="#QRC20-token-报告-2018年2月25日" class="headerlink" title="QRC20  token 报告 - 2018年2月25日"></a>QRC20  token 报告 - 2018年2月25日</h1><p><img src="https://cdn-images-1.medium.com/max/1600/1*JGGMMQFeumk3QOj8412xgQ.jpeg" alt=""></p>
+<p>为了表达我对社区的感谢，这里有一个关于 Qtum QRC20  token 的教程：它们是什么，它们在哪里，如何与它们交互，如何查看它们以及如何创建和销毁它们，用最近的 token 空投为 Qtum 持有者解释 token 生命周期中的这些细节。</p>
+<p>我是一名独立研究员，偶尔写博客和主持社交媒体，十分中意Qtum的技术指导以及社区讨论。如果你对本文有想法或批评，请在社交软件上发给我或在下面评论。</p>
+<hr>
+<h2 id="主网性能"><a href="#主网性能" class="headerlink" title="主网性能"></a>主网性能</h2><p>首先，简要回顾最近的 Qtum 主网性能。</p>
+<h3 id="独立奖励地址"><a href="#独立奖励地址" class="headerlink" title="独立奖励地址"></a>独立奖励地址</h3><p>过去 7 天里，每日独立地址数最高于2月25日达 306 个，平均值是 291 个每天。这意味着每天 600 个区块的区块奖励中，几乎一半是小钱包赢得的。一周的独立地址数是 1,107。这些数字表示，与 10 天前相比，独立奖励地址数有略微增加，也暗示部署的小钱包更多了，这在我的<a href="https://medium.com/@jb395official/happy-new-year-qtum-mainnet-performance-february-9-15-a696e8e8396e" target="_blank" rel="noopener">新年报告</a>中有提到。</p>
+<h3 id="节点数"><a href="#节点数" class="headerlink" title="节点数"></a>节点数</h3><p><img src="https://cdn-images-1.medium.com/max/960/1*TmK1vTY41-kiWn6hcU_sIQ.jpeg" alt=""></p>
+<p><a href="https://qtum.org/en/nodemap" target="_blank" rel="noopener">节点地图(Nodemap)</a>显示，节点数在3,250左右，其中大约1,260个在中国。我想如果节点地图能跟上即将到来的节点数的数量级增加，其他区块链节点地图也能处理很多节点就好了，那么让我们祝愿节点地图更加健壮，足以应对这些增加的工作量吧！</p>
+<h3 id="交易费用"><a href="#交易费用" class="headerlink" title="交易费用"></a>交易费用</h3><p>去年，交易费用只占每天区块奖励的百分之几。两个星期前，交易费用大约占区块奖励的一半。刚过去的一个星期里，<a href="https://explorer.qtum.org/stats" target="_blank" rel="noopener">资源管理器</a>显示有几个时间段是交易费用比区块奖励还多(每个时间段是24小时制)。如果资源管理器计算正确，这意味着网络内交易数有很大的增幅，尤其是智能合约调用( token 和DAPP)，这一般会带有 0.1 QTUM 费用。随着空投的部署，交易费用出现了一些大高峰。</p>
+<h3 id="块间距"><a href="#块间距" class="headerlink" title="块间距"></a>块间距</h3><p>块间距稳定在 600 块每天附近。在2月11到2月24两个星期内，有14个区块，间隔超过20分钟，最长间隔是到区块 98,210 的 31 分 20 秒。</p>
+<h3 id="网络权重"><a href="#网络权重" class="headerlink" title="网络权重"></a>网络权重</h3><p>我计算网络权重的方法依赖于具有已知余额的大钱包所获得的块奖励百分比。这种方法提供了比钱包计算估计的网络权重更稳定和准确的数字。在上周，这些总余额为 664 万的大型钱包获得了 26.4％ 的块奖励，网络权重为 2520 万。网络权重为2520万表示年度回报率为3.5％。</p>
+<hr>
+<h2 id="token-时间"><a href="#token-时间" class="headerlink" title="token 时间"></a>token 时间</h2><p>如果你只想要理解 QRC20  token ，下面是太长不看版：</p>
+<p>QTUM QRC20  token 是标准化的数字资产，它们在 Qtum 智能合约中创建并活在这个智能合约中，永不离开合约。通过与合约交易可以将 token 分配给不同的所有者，合约存储 Qtum 地址列表和每个地址拥有的 token 。任何人都可以创建智能合约并创建 token ，而所有 token 的智能合约都存在于Qtum区块链中。 token 代表了区块链 2.0 平台的重要功能，性能和经济价值。</p>
+<p>为了更深入地了解 token ，我们在发现之旅中的陪同者将是爱丽丝，一位 150 岁的文学角色，对加密货币有着天生的好奇心：</p>
+<p>这时，爱丽丝跳了起来，她突然想到：从来没有见过穿着有口袋背心的兔子，更没有见到过兔子还能从口袋里拿出—块表来，她好奇地穿过田野，紧紧地追赶那只兔子，刚好看见兔子跳进了矮树下面的一个大洞。爱丽丝也紧跟着跳了进去，根本没考虑怎么再出来。爱丽丝梦游仙境，刘易斯卡罗尔，1865年。</p>
+<p><img src="https://cdn-images-1.medium.com/max/960/1*WV0uHmsnntYONJqpu9uwRw.jpeg" alt="1923年之前在美国出版"></p>
+<p>爱丽丝想向 <a href="https://en.wikipedia.org/wiki/Alice_and_Bob" target="_blank" rel="noopener">鲍勃</a> 发送10个 Wonderland（WON） token 。 但是，当爱丽丝试图用她的钱包中进行交易时，事情变得越来越怪。爱丽丝决定学习关于 QRC20  token 的所有内容，并跟随一只名叫 Satoshi 的白兔，她最终从兔子洞落到一个充满了 token 和智能合约的另一个宇宙中。</p>
+<p><img src="https://cdn-images-1.medium.com/max/960/1*kAq8FdtMgY11yJVJTFMNAQ.jpeg" alt=""></p>
+<p>如果你想加入爱丽丝并掉入兔子洞以了解关于 Qtum QRC20  token 的所有信息，请继续阅读，包括爱丽丝在吃完蘑菇后发现的两个秘密。</p>
+<p><img src="https://cdn-images-1.medium.com/max/960/1*QJCUoHDb6wZ1JAQWhZZ1XA.jpeg" alt="一些命运多舛的物理 token "></p>
+<p>让我们从一些基本的解释开始。 QRC20 token 是可编程数字资产，创建于 Qtum 区块链的智能合约。 Qtum 区块链及其 EVM（以太坊虚拟机，Ethereum Virtual Machine）提供可执行代码和存储数据的智能合约。 使用Qtum Core 钱包，Qtum 手机钱包和 Qtum Web 钱包可以轻松创建带有 token 的基础智能合约。目前，更复杂的智能合约可以用编程语言 solidity 编写并发布在区块链上。</p>
+<p>Qtum 继承了当前的虚拟机，用于执行来自以太坊有 token 的智能合约。 在以太坊中，基础 token 被称为 <a href="https://theethereum.wiki/w/index.php/ERC20_Token_Standard" target="_blank" rel="noopener">ERC20</a>，以Ethereum Request for Comments 20命名。这是添加 token 功能的协议，于 2015 年发布。 Qtum  token 命名为 QRC20，因为它遵循与 ERC20  token 相同的协议和标准。</p>
+<p>爱丽丝知道可视化区块链模型 - 智能合约 -  token 架构是可行的（并且在进行交易时更安全），这也有助于解释 token 和空投如何运作。</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*wd_2Plln8SKI-P3XBZi71Q.jpeg" alt=""></p>
+<p>智能合约在合约创建交易中发布到网络，该交易包含在特定区块中，在这个区块里智能合约将永久存在。上图显示了一个智能合约（测试网区块 34,546 中的 Bodhi 合约）管理 QRC20  token ，合约将有存储空间来跟踪余额信息并提供六个功能来创建 token ，在地址之间转移 token ，查看余额等等。</p>
+<h3 id="合约创建"><a href="#合约创建" class="headerlink" title="合约创建"></a>合约创建</h3><p>当合约创建交易发布到区块链时，智能合约在 Qtum 区块链上开始生效。 要看一下这样的合约创建交易，我们可以查看测试网上的 <a href="https://testnet.qtum.org/address/f6177bc9812eeb531907621af6641a41133dea9e" target="_blank" rel="noopener">Bodhi合约</a>（我在主网上找不到 Bodhi 合约）。</p>
+<p>开发人员使用测试网来评估和测试他们的软件，这正是Bodhi对这个智能合约做的。</p>
+<p><img src="https://cdn-images-1.medium.com/max/960/1*bJ-89iOHGgtktwQlGJ2QQQ.jpeg" alt=""></p>
+<p>Bodhi 测试智能合约开始生命周期于测试网块 35,456，2017年11月20.合约创建了 335,000 测试用的 BOT  token ，Bodhi 开发者能运行测试，确保代码准备好发布到主网了。</p>
+<h3 id="交易所和钱包"><a href="#交易所和钱包" class="headerlink" title="交易所和钱包"></a>交易所和钱包</h3><p>下面，我们来看一个交易所和钱包的简化模型，这有利于了解空投如何运作。</p>
+<p>注意，在下图中，为了清楚起见， Q 地址是有序的。实际上，块编号是有序的，但 Q地址是随机的。</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*kqQq7jeQwAyhva8BwaQleg.jpeg" alt=""></p>
+<p>如图所示，交易所客户可以自己买卖，不需要区块链交易。 交易所使用一个热钱包和一个冷钱包（可能是每个的倍数）保存余额。 对于这个例子，交易所具有6,000,000个币的余额，这些币作为交易存储在区块链中，但从不存储在交易所本身中。 后来，爱丽丝吃了蘑菇，并了解了这些币的秘密。</p>
+<p>我们考虑两个交易。首先，一个账户从交易中提现 300 币到个人钱包。为了实现这个，客户输入钱包地址（这里是Q 12），交易热钱包（可能通过交易所的中间地址）发送 300 个币的交易。其次，对于存入交易所的存款，客户输入其交易账户的存款地址，并将交易（可能通过交易所的一些中间地址）发送到交易所热钱包。</p>
+<p>现在让我们看看一些直接连接到区块链的钱包，而不是通过交易所。</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*Ryt8vgqj5bNTK2QVI01Osg.jpeg" alt=""></p>
+<p>前面我将钱包描述为区块链上可以管理货币的浏览器。作为早期的加密货币使用者，爱丽丝可以向我们提供钱包角色的更多细节：</p>
+<ul>
+<li>浏览区块链并根据过去的交易计算余额</li>
+<li>持有私钥并签署交易</li>
+<li>设置交易费用（将随时间变化）</li>
+<li>对于某些钱包，发布智能合约和合约调用（ token 交易等）</li>
+</ul>
+<p>只有全节点（含有整个区块链）可以将交易发送到网络以写进区块链中，因此上面使用简化支付验证的钱包（手机钱包）和其他轻量级钱包都必须通过全节点与区块链交互。</p>
+<p>爱丽丝想要指出钱包本身并没有持有任何货币或代币，因为货币或代币总是存放在区块链上。 我们将在下面看到（扰流警报）即使在区块链上， token 也永远不会离开创建它们的智能合约。 它们该有多么无聊！</p>
+<p><img src="https://cdn-images-1.medium.com/max/960/1*YkNZt1jTzxJCh7cPhvz6yg.jpeg" alt=""></p>
+<p>当我们沿着兔子洞向下走时，爱丽丝有一个关于货币分享的秘密。 她说 Qtum 区块链上没有真正的货币。钱包为地址计算未花费的交易额总和，因此“货币”更像是Excel电子表格SUM公式的结果。 另一方面，QRC20 token 值是单独的金额，如Excel中单个单元格中的值。</p>
+<hr>
+<h2 id="快照"><a href="#快照" class="headerlink" title="快照"></a>快照</h2><p><img src="https://cdn-images-1.medium.com/max/960/1*zq6vblhARhPm-SaJXJyisw.jpeg" alt=""></p>
+<p>当我们跟着爱丽丝走下兔子洞时，我们决定采取自拍或者说快照。空投快照​​是特定时间，特定区块的区块链读数。对于Bodhi空投，快照是在 2013 年 2 月 2 日 23:40:16 UTC 的 <a href="https://explorer.qtum.org/block/b14805dbcf2652075b185ea46322416186a5319861e9a317b7f1671368868078" target="_blank" rel="noopener">93,333 块</a>。爱丽丝指出，数字 3 和 9 在中国被认为是幸运的，代表着生活，生命和永恒。</p>
+<p>然后发生的（猜一猜……）是 Bodhi 取区块链中 0 到 93,333 块，解析所有交易，找到每个 Qtum 地址的余额。</p>
+<h3 id="空投"><a href="#空投" class="headerlink" title="空投"></a>空投</h3><p>这一节爱丽丝告诉你谁领到了空投，答案是：所有人。真正的问题是你是否有通过钱包或交易所来访问 token 的方法。</p>
+<p>Bodhi 报告称他们以 4：100 的比例为 Qtum 持有者空投了4,015,325.92 BOT 代币，这意味着他们空投了 100,383,148 QTUM（他们排除了少于 10 QTUM 的地址）。 根据流通图表中的QTUM，2月2日有 100,353,364 QTUM（到目前为止，创造了1亿+块奖励），这意味着几乎每个 Qtum 地址都收到了BOT</p>
+<p>空投的简单公平的方法是给每个活动地址提供 token 。为了检查快照所看到的区块链历史记录有多长，爱丽丝使用时光机（Explorer）来查看最早的块奖励获奖者。 她找不到创世块（1-5000）中任何活跃的钱包地址，但是这个家伙 <a href="https://explorer.qtum.org/address/QaHAXr7eqXZMvUp5HUXDZh1Pk4GhNMCh5b" target="_blank" rel="noopener">…Ch5b</a> 在 2017 年 9 月 8 日赢得了 <a href="https://explorer.qtum.org/block/6dbc7316f94cebff1dc27e13d4e698b97675f9924989d57bbb92ef85976c3fde" target="_blank" rel="noopener">5,041 块</a>，这是一个真正的 <a href="https://www.urbandictionary.com/define.php?term=OG" target="_blank" rel="noopener">OG</a> 钱包，在 2017 年 10 月之前挖了点矿。…Ch5b 仍有余额并确实收到了 BOT 空投。在看到合约调用工作后，我们将在下面看到实际的空投交易。</p>
+<p>我们可以从上面回到我们的图，看看空投如何填充各种区块链地址。</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*4WY94A6c--VwqISR6ixeWA.jpeg" alt=""></p>
+<p>现在我们可以在区块链的左侧看到 Bodhi 智能合约存储，其中 BOT 空投到所有的地址。例如，地址 Q2 的交易所冷钱包将有 200,000 个 BOT 空投。该图中有两个时序假设。1）如果 Q10 的存入发生在块 93,333 之后，那么该地址仍然有 10 个 BOT 来自空投。 2）如果 Q12 的提现发生在块 93,333 之前，那么它将收到空投。</p>
+<p>让我们看一下钱包在空投中的行为。</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*RYLM_ns6iOIUUG7zf6ssYQ.jpeg" alt=""></p>
+<p>这与预期非常符合，因为 BOT 被空投到每个活动地址（大于10 QTUM）。如上所述，这个包罗万象的空投问题是钱包是否可以访问 token ，这意味着钱包必须有办法添加 token 合约地址，并能够创建和发送 token 合约调用，而不是上面所有的钱包都可以做到这一点。</p>
+<h3 id="与智能合约交流"><a href="#与智能合约交流" class="headerlink" title="与智能合约交流"></a>与智能合约交流</h3><p>回到爱丽丝原来的问题，爱丽丝把我们带到了这个兔子洞，爱丽丝想要向鲍勃发送 10 个 WON  token 。 可以这样类似地想。如果爱丽丝想要向鲍勃发送 10 个 token ，她不能简单地将 10 个 token 从她的钱包发送到 Bob 的钱包，即他的 Q 地址。这种方法存在一些问题。首先，代币不在爱丽丝的钱包中，而是在智能合约中。其次， token 不会被发送到鲍勃的钱包，它们会被移到智能合约存储中的鲍勃的 Q 地址。</p>
+<p>不用担心交叉，爱丽丝的钱包知道如何与智能合约交流，因为她添加了 token 并输入了她钱包里的智能合约地址。向鲍勃“发送” token 的交易实际上被发送到智能合约，并且鲍勃的 Q 地址以及要转移给鲍勃的 token 的数量都作为数据被包含在合约调用交易中。 我们等下将在合约调用中查看数据，这之前先修复另一个易混淆因素。</p>
+<p>比特币地址和 Qtum Q 地址由人们显式输入为 Base58 编码的字母数字字符。你可能从未注意到它（爱丽丝从未这样做过）但比特币和Q地址从不包含数字零，大写字母O，大写字母 I 或小写字母 l。其他的数字和字母都还好，但是如果名叫 Satoshi 的白兔子发现未来的加密货币用户搞砸了，会完全输入 “0”“O”“I”“l”（这很难，是的），为了减少 Bithumb 和 Coinbase 痛苦的客户服务电话，当人们将他们的比特币发送到错误的地址的时候，他们只需忽略这些字符，这对于一只兔子来说是非常具有前瞻性的想法。 这是很复杂的因素。 人类可读的 Base58 地址被转换为更有效的十六进制地址，用于在合约调用交易中发送，以及在智能合约中存储。 要在Base58和十六进制之间进行转换，请使用此网页进行<a href="http://lenschulwitz.com/base58" target="_blank" rel="noopener">Base58编码，解码和验证</a>。</p>
+<p>现在我们可以查看合约调用中的数据，这是一个典型的例子：</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*5yaPFlbxtfjd_B4R1oMkhA.jpeg" alt=""></p>
+<p>数据显示：</p>
+<ul>
+<li>a9059cbb 表示这是一个转移操作</li>
+<li>e22843f9a4 …是要转给的地址，以十六进制表示</li>
+<li>3956ed39 转移的数量，十六进制，satoshis</li>
+</ul>
+<p>你对实际完成的空投怎么看？Bodhi 基金会不得不发出这么多合约调用。一旦智能合约启动，它很高兴在区块链中坐等指令。对于空投，这些指令将 BOT 从 Bodhi 基金会地址转移给所有的空投接收者。 例如，你可以在 2 月 15 日早上看到这种空投，比如 <a href="https://explorer.qtum.org/block/1405ac26eb8107936299c3103bb47c5ccd2764b4987f2d28956c7265e246a8c0" target="_blank" rel="noopener">100,719</a> 这样的块，有这么多、大的合约调用，它收 20  QTUM 的交易费！ 这些块包含多个合约调用，每个调用最多 200 个交易，因为Bodhi 更新了合约存储来执行空投。 以下是一些 Q 地址的空投交易：</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*pvkrR5sNL5UFERrlH3RAtA.jpeg" alt=""></p>
+<p>所有这些更新 Bodhi 智能合约的交易都已发布到区块链的 100,719 块和其他区块，但区块链中的智能合约存储实际上是如何更新的？ 显然，块奖励获奖钱包在区块链的本地副本中处理这些智能合约调用，将更新填充到其本地存储适当的块中。</p>
+<p>以下是爱丽丝想要分享的第二个秘密：所有的全节点验证新块，它们还在智能合约块的本地副本上处理智能合约交易。 爱丽丝的第二个秘密是 - 每个节点在发布块时执行每个合约调用。</p>
+<p>我们可以看看这些数据如何存储在智能合约中（再次使用令人困惑的十六进制地址）：</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*urwLCJ_jmRN_hIDdXDmhyg.jpeg" alt=""></p>
+<p>你想要的话，你可以浏览这个存储，找到你的地址，以及你地址的 token 数。不过不要试这个，有一个更简单的方法来看你的 token 余额，爱丽丝将在下面向我们展示。不过你知道我无法看着这样一个丰富的数据表而不抓着它运行一些 Excel 分析。</p>
+<p>在资源管理器的智能合约页面，点击“显示所有”按钮，然后等一杯咖啡的时间让你的浏览器加载 31,944 项。一些我看不懂的有趣数据：有许多地址有1或2个satoshis token （0.00000001或0.00000002 token ），在其他区块链上称为灰尘。忽略这些条目， token 分布是：</p>
+<p><img src="https://cdn-images-1.medium.com/max/1280/1*Flc-zyUqsIzrDo_o5hvG0Q.jpeg" alt=""></p>
+<p>10个最大的代币持有量如在下图所示。爱丽丝猜测，4000 万那个位置是 Bodhi 基金会，其余的是交易所。</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*Pt-Y_YNWLmIrUzGrXAYEOg.jpeg" alt=""></p>
+<h3 id="查看你的-token-余额很容易"><a href="#查看你的-token-余额很容易" class="headerlink" title="查看你的 token 余额很容易"></a>查看你的 token 余额很容易</h3><p>爱丽丝想要有一个超级简单的方式检查合约存储中的 token 余额。她说要导航到<a href="https://explorer.qtum.org/tokens/search" target="_blank" rel="noopener">代币</a> 页面</p>
+<p><img src="https://cdn-images-1.medium.com/max/960/1*krUT59IAL2elF-47wX8R9g.jpeg" alt=""></p>
+<p>我们找不到她的WON token ，所以在这个例子中会使用 BOT; 点击 “BOT - Bodhi Token” 这个名字</p>
+<p><img src="https://cdn-images-1.medium.com/max/960/1*rgAnhE_efD0Nm6m2RZkl9g.jpeg" alt=""></p>
+<p>选择“READ SMART CONTRACT”并将 Q 地址粘贴到 “BalanceOf” 字段中，然后选择“Query”。 将出现 satoshis 的余额。获取 token 中的余额，将小数点向左移动 8 位（仅这个 token ）。</p>
+<p>如果你可以在资源管理器中查看 token ，也可以通过在资源管理器中单击地址的 token 收藏来获取此页面的快捷方式。</p>
+<h3 id="资源管理器中的-token"><a href="#资源管理器中的-token" class="headerlink" title="资源管理器中的 token"></a>资源管理器中的 token</h3><p>空投后，爱丽丝感到很困惑，因为她无法在资源管理器中看到她的地址的代币，但有其他地址已经自豪地展示了他们的代币。</p>
+<p>要理解为什么资源管理器感觉不到空投代币，请记住空投是如何工作的：快照，一些处理，然后空投合约调用智能合约，没有任何东西触及区块链上的 Q 地址。</p>
+<p>资源管理器一直处于蒙蔽状态，直到你将 token 添加到钱包并使用你的 Q 地址进行 token 交易（无论多小）。或者重新加载你的钱包（爱丽丝必须与白兔核对这个），然后资源管理器才知道你拥有该 token ，查询智能合约并正确显示 token 余额。</p>
+<p>以太坊资源管理器内置了最受欢迎的 ERC20  token ，因此你可以查看给定地址的 token 。 也许 Qtum 资源管理器未来的版本中会也有这个功能。</p>
+<h3 id="烧币（Burning-Tokens）"><a href="#烧币（Burning-Tokens）" class="headerlink" title="烧币（Burning Tokens）"></a>烧币（Burning Tokens）</h3><p>现在我们已经到了爱丽丝兔子洞的底部，是时候讨论在它们的使用寿命结束时如何销毁或“烧毁” token 。例如，在 Qtum Mainnet Ignition 启动之前，Qtum  token 以Ethereum ERC20  token 的形式存在。 2017年10月初，各种交易所允许 Qtum 代币持有人提交他们的 Qtum ERC20 代币换成 QTUM Mainnet 代币，换掉的 Qtum ERC20 代币随后被烧毁。</p>
+<p><img src="https://cdn-images-1.medium.com/max/960/1*G-o_Li8O9erWSCtL4vN2Bw.jpeg" alt=""></p>
+<p>为什么有人想要收购好的 token ？也许 token 会升级为新的代币或代币，就像 Qtum 的情况一样。此外，组织可以回收一些代币库存以减少供应，支持价格，类似于公司回购自己股票。</p>
+<p>烧毁 token 你需要把他们发送给一个不存在的地址，将它们永久留在那里。例如，我们造个以太坊地址 0x1111111111111…，一个没有人拥有私钥的合法地址。我们告诉智能合约把 token 转移到那个地址，然后它们就被永久销毁了。我们可以在以太坊 Qtum ERC-20  token 页面查看这些可怜的 token ，并通过累计所有烧毁地址的百分比，看到 97.05％ 的旧 Qtum ERC20  token 已被烧毁：</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*PYIvcJLrmpFiiOBumwdD9Q.jpeg" alt=""></p>
+<p>如果你持有 Qtum ERC20 代币，那么建议在代币变得毫无价值之前，将这些 ERC20 代币转换为 Qtum Mainnet 代币。查一下社交媒体，看看是否还有可以完成这种交易的交易所。请快点，因为 Qtum ERC20  token 将永久埋葬在加密墓地，并且这些 token 将变成纪念品，因为不能再换成主网币。</p>
+<hr>
+<p>我不确定 Patrick 最近在哪儿环球旅行，但我认为 Earlz 最近参加完柏林的聚会，回到了阿姆斯特丹。我有几篇报告有柏林的照片，所以让我们在阿姆斯特丹完成。</p>
+<p>阿姆斯特丹是一座历史悠久的城市，拥有美丽的运河，提供“咖啡”的咖啡馆，以及全年提供特殊照明的红灯区。</p>
+<p><img src="https://cdn-images-1.medium.com/max/960/1*m49FhTcFoPWjQ3F7ITB90g.jpeg" alt="高买高卖"></p>
+<p>阿姆斯特丹是郁金香泡沫的家园（1637年内爆），有些人将其与所谓的加密货币泡沫相提并论。 但是，如果你做自己的研究（DYOR），你可以类比区块链2.0平台，如 Qtum（成立于2017年）类比荷兰东印度公司（成立于1602年），这是第一家具有重要新商业范例的全球性公司（第一家） ，在股票市场公开交易），在当时是世界上最有价值的公司。</p>
+<p>我们不要在风车上谈论泡沫。在阿姆斯特丹附近看一些精美的风车吧。今天，这些风车是优雅的历史宝石，但在它们的荣耀中，它们是锯木材，磨面粉和提取亚麻籽油的工业机器。</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*NjSFeijRaqW18QJ1efVEQA.jpeg" alt=""></p>
+<p>我很高兴地报告说，爱丽丝确实爬出了兔子洞，如果你看到她和白兔说话，不要担心，他们可能只是讨论区块链治理和扩展。</p>
+<p>我希望你和爱丽丝一起享受这段旅程，了解 token 以及你的代币将非常有用和有利可图。</p>
+<p>Jackson (JB395)</p>
+<hr>
+<h2 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h2><ol>
+<li><p>官方 Qtum Core 和 QRC20 Token 指南：<a href="https://blog.qtum.org/qtum-core-qrc-20-tokens-1c2734d6290c" target="_blank" rel="noopener">Medium</a></p>
+</li>
+<li><p>来自社区的一些出色的QRC20 token 资源：</p>
+</li>
+</ol>
+<ul>
+<li>Silverminer, 如何评价 Bodhi  token 。<a href="https://steemit.com/qtum/@silverminer/how-to-claim-bodhi-tokens" target="_blank" rel="noopener">Steemit</a></li>
+<li>Sam Suh，使用 QBao 钱包的 QTUM 钱包教程 - 用于 Bodhi（BOT）代币或其他 QRC20 代币。<a href="https://medium.com/@samsuh_33856/qtum-wallet-tutorial-for-bodhi-bot-tokens-qrc20-tokens-using-qbao-ac14f9445dc8" target="_blank" rel="noopener">Medium</a></li>
+</ul>
+<ol>
+<li><p><a href="https://bodhiproject.github.io/wiki/" target="_blank" rel="noopener">优秀参考资料</a>，关于移动端，QBao，qtum-qt 和qtumd / qtum-cli 等钱包从 Bodhi 基金会添加代币和代币交易。</p>
+</li>
+<li><p><a href="https://github.com/bodhiproject/bodhi-core/tree/master/contracts/tokens" target="_blank" rel="noopener">Github</a> 上的 Bodhi  token 合约。</p>
+</li>
+<li><p>我最喜欢的以太坊ERC20 token ，<a href="https://uetoken.com/" target="_blank" rel="noopener">UET</a>。 对不起，我忘记这个 ICO 了。</p>
+</li>
+<li><p>爱丽丝梦游仙境，<a href="http://www.alice-in-wonderland.net/resources/chapters-script/alices-adventures-in-wonderland/" target="_blank" rel="noopener">全文</a>。<br> <img src="https://cdn-images-1.medium.com/max/960/1*OqydpnY8pNUqdn8_1poDCQ.jpeg" alt=""></p>
+</li>
+<li><p>区块链研究时听的音乐：Be In The Moment with Amsterdam DJ Armin Van Buren 和他的每周视频博客<a href="https://www.youtube.com/channel/UCu5jfQcpRLm9xhmlSd5S8xw" target="_blank" rel="noopener">A State of Trance</a><br> 东南亚的<a href="https://youtu.be/fMLmtl6cUaA" target="_blank" rel="noopener">Armin</a><br> <img src="https://cdn-images-1.medium.com/max/960/1*NFYaY4LPjvsXUraQmB-fwQ.jpeg" alt=""></p>
+</li>
+<li><p>阿姆斯特丹的<a href="https://youtu.be/6Y6uPhquJbI" target="_blank" rel="noopener">无人机镜头</a>（DJI Mavic Pro），以4k观看</p>
+</li>
+</ol>
+
+                
+<p class="pink-link-context">
+    <a href="/2018/07/30/2018-07-30-翻译-QtumMainnet成果/" rel="next" title="【翻译】 Qtum Mainnet 成果">
+    Prev: 【翻译】 Qtum Mainnet 成果
+  </a>
+</p>
+
+
+
+<p class="pink-link-context">
+    <a href="/2018/07/18/2018-07-18-翻译-新手钱包/" rel="next" title="【翻译】 新手钱包">
+    Next: 【翻译】 新手钱包
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large pink">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect green" title="Return to top"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse yellow darken-1"  data-activates="main-menu" title="Menu"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer indigo darken-1">
+    
+    <div class="footer-container container">
+        <div class="row">
+            
+            <div class="social-group col m4 s12">
+                <h5 class="white-text">Social</h5>
+                
+                    <a class="social-link" href="http://weibo.com/LinXueyuanStdio" target="_blank">
+                        <i class="fa fa-2x fa-weibo"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://github.com/LinXueyuanStdio" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://www.zhihu.com/people/lin-xue-yuan-86" target="_blank">
+                        <i class="fa fa-2x fa-graduation-cap"></i>
+                    </a>
+                
+                    <a class="social-link" href="http://twitter.com/cwBQ3A5cz3Jzso7" target="_blank">
+                        <i class="fa fa-2x fa-twitter"></i>
+                    </a>
+                
+                    <a class="social-link" href="mailto:761516186@qq.com" target="_blank">
+                        <i class="fa fa-2x fa-envelope"></i>
+                    </a>
+                
+                    <a class="social-link" href="/atom.xml" target="_blank">
+                        <i class="fa fa-2x fa-rss"></i>
+                    </a>
+                
+                
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+    </script>
+    <div class="site-visitors-container white-text">
+        <span>
+            <i class="fa fa-user"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+        </span>
+        <span>&nbsp;|&nbsp;</span>
+        <span>
+            <i class="fa fa-eye"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+        </span>
+    </div>
+
+
+            </div>
+            
+
+            
+            <div class="col m8 s12">
+                <h5 class="white-text">Links</h5>
+                
+                    <a class="social-link" href="http://raytaylorlin.com/" target="_blank">raytaylorism主题作者</a>
+                
+                    <a class="social-link" href="https://github.com/raytaylorlin" target="_blank">Github地址</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    
+
+    <div class="footer-copyright pink-link-context">
+        <div class="container">
+            © 2016 example.com, All rights reserved.
+            <p class="right" style="margin-top: 0;">Blog powered by <a href="https://hexo.io">Hexo</a> | Theme <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
+        </div>
+    </div>
+</footer>
+
+
+    <noscript>
+    <div class="noscript">
+        <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+    </div>
+</noscript>
+<div class="noscript">
+    <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 隐藏禁用javascript（针对微信内置浏览器）的提示
+            $('.noscript').hide();
+
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
+
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed').each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt') || ' ');
+            }).materialbox();
+
+            // 优化表格的显示
+            $('table').each(function() {
+                var $table = $(this);
+                // 除去多行代码的情况
+                if ($table.find('pre').length == 0) {
+                    $table.addClass('responsive-table striped bordered');
+                }
+            });
+
+            // 首页幻灯片
+            $('.slider').slider({indicators: true, full_width: true, interval: 8000});
+
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+
+            // 目录随屏幕滚动（防止目录过长越过footer）
+            var $toc = $('.toc');
+            var scrollTargetTop = 0;
+            $(window).scroll(function() {
+                var $activeLink = $toc.find('a.active.section');
+                if ($(window).scrollTop() < 100) {
+                    scrollTargetTop = 0;
+                } else {
+                    if ($activeLink[0]) {
+                        scrollTargetTop = $activeLink.offset().top - $toc.offset().top;
+                    }
+                }
+                $toc.css('top', '-' + scrollTargetTop + 'px');
+            });
+
+            // 修正文章目录的left-border颜色
+            var color = $('.table-of-contents-text').css('color');
+            $('.table-of-contents-link').css('border-left-color', color);
+
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({
+                    scrollTop: 0
+                }, 500);
+            });
+
+            // 重置读书页面的Tab标签页的颜色
+            $('li.tab a').hover(function() {
+                $(this).toggleClass('text-lighten-4');
+            });
+            $('.indicator').addClass('pink lighten-2');
+
+            
+            // 添加new标签
+            $('.menu-apps').append('<span class="new badge pink"></span>');
+            
+
+            // 搜索功能
+            $('.modal-trigger').leanModal({
+                // 打开搜索框时自动聚焦
+                ready: function() {
+                    if ($('#search').is(":visible")) {
+                        $('#search-input').focus();
+                    }
+                }
+            });
+            var searchXml = "search.xml";
+            if (searchXml.length == 0) {
+             	searchXml = "search.xml";
+            }
+            var searchPath = "/" + searchXml;
+            initSearch(searchPath, 'search-input', 'search-result');
+        });
+
+        // 初始化搜索与匹配函数
+        var initSearch = function(path, search_id, content_id) {
+            'use strict';
+            $.ajax({
+                url: path,
+                dataType: "xml",
+                success: function(xmlResponse) {
+                    // get the contents from search data
+                    var datas = $("entry", xmlResponse).map(function() {
+                        return {
+                            title: $("title", this).text(),
+                            content: $("content", this).text(),
+                            url: $("url", this).text()
+                        };
+                    }).get();
+                    var $input = document.getElementById(search_id);
+                    var $resultContent = document.getElementById(content_id);
+                    $input.addEventListener('input', function() {
+                        var str = '<ul class=\"search-result-list\">';
+                        var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                        $resultContent.innerHTML = "";
+                        if (this.value.trim().length <= 0) {
+                            return;
+                        }
+                        // perform local searching
+                        datas.forEach(function(data) {
+                            var isMatch = true;
+                            var content_index = [];
+                            var data_title = data.title.trim().toLowerCase();
+                            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                            var data_url = data.url;
+                            var index_title = -1;
+                            var index_content = -1;
+                            var first_occur = -1;
+                            // only match artiles with not empty titles and contents
+                            if (data_title != '' && data_content != '') {
+                                keywords.forEach(function(keyword, i) {
+                                    index_title = data_title.indexOf(keyword);
+                                    index_content = data_content.indexOf(keyword);
+                                    if (index_title < 0 && index_content < 0) {
+                                        isMatch = false;
+                                    } else {
+                                        if (index_content < 0) {
+                                            index_content = 0;
+                                        }
+                                        if (i == 0) {
+                                            first_occur = index_content;
+                                        }
+                                    }
+                                });
+                            }
+                            // show search results
+                            if (isMatch) {
+                                keywords.forEach(function(keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                });
+
+                                str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                                if (first_occur >= 0) {
+                                    // cut out 100 characters
+                                    var start = first_occur - 20;
+                                    var end = first_occur + 80;
+                                    if (start < 0) {
+                                        start = 0;
+                                    }
+                                    if (start == 0) {
+                                        end = 100;
+                                    }
+                                    if (end > content.length) {
+                                        end = content.length;
+                                    }
+                                    var match_content = content.substring(start, end);
+                                    // highlight all keywords
+                                    keywords.forEach(function(keyword) {
+                                        var regS = new RegExp(keyword, "gi");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                    });
+
+                                    str += "<p class=\"search-result\">..." + match_content + "...</p>"
+                                }
+                                str += "</li>";
+                            }
+                        });
+                        str += "</ul>";
+                        $resultContent.innerHTML = str;
+                    });
+                }
+            });
+        }
+    })(jQuery);
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+</body>
+</html>

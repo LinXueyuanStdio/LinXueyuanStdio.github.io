@@ -1,0 +1,924 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>区块链开发（一）搭建环境-基于以太坊私有链 | XiChen&#39;s Blog</title>
+    <meta name="author" content="Lin Xueyuan">
+    
+    <meta name="description" content="嗨，我是兮尘，全栈数据学徒。这里没有花俏艳丽的魔法，没有苍蛮霸道的斗气，有的，仅仅是繁衍到巅峰的代码！">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="区块链开发（一）搭建环境-基于以太坊私有链"/>
+    <meta property="og:site_name" content="XiChen"/>
+
+    
+    <meta property="og:image" content=""/>
+    
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" href="/atom.xml" title="XiChen" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
+
+    <nav class="indigo">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="">
+            <a href="/" class="brand-logo hide-on-med-and-down">XiChen</a>
+            <ul class="right hide-on-med-and-down">
+                
+                    <li>
+                        <a class="menu-home " href="/" >
+                            <i class="fa fa-home "></i>
+                            
+                            Home
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-archive " href="/archives" >
+                            <i class="fa fa-archive "></i>
+                            
+                            Archives
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                            <i class="fa fa-bookmark "></i>
+                            
+                            Categories
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-reading " href="/reading" >
+                            <i class="fa fa-book "></i>
+                            
+                            Reading
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-about " href="/about" >
+                            <i class="fa fa-user "></i>
+                            
+                            About
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-search modal-trigger " href="#search" >
+                            <i class="fa fa-search "></i>
+                            
+                            Search
+                        </a>
+                    </li>
+                
+            </ul>
+            <div>
+    <ul class="side-nav indigo darken-1" id="main-menu">
+        
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4 no-padding">
+                    <img class="avatar-image circle responsive-img" src="/assets/images/avatar.jpg" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper no-padding">
+                    <div class="valign">
+                        <p class="name">兮尘</p>
+                        <p class="desc">Android/深度学习/Web前端</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-home " href="/" >
+                    <i class="fa fa-home "></i>
+                    
+                    Home
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-archive " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    
+                    Archives
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    
+                    Categories
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-reading " href="/reading" >
+                    <i class="fa fa-book "></i>
+                    
+                    Reading
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-about " href="/about" >
+                    <i class="fa fa-user "></i>
+                    
+                    About
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-search modal-trigger " href="#search" >
+                    <i class="fa fa-search "></i>
+                    
+                    Search
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav indigo darken-1" id="category-menu">
+    
+
+            
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Linux/">
+                    Linux <span class="right">8</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tips/">
+                    Tips <span class="right">7</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/GO/">
+                    GO <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Proxy/">
+                    Proxy <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Ubuntu/">
+                    Ubuntu <span class="right">4</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Spider/">
+                    Spider <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/区块链/">
+                    区块链 <span class="right">25</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/密码学/">
+                    密码学 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/算法/">
+                    算法 <span class="right">4</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Latex/">
+                    Latex <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/杂思/">
+                    杂思 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Git/">
+                    Git <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Github/">
+                    Github <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Web/">
+                    Web <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Android/">
+                    Android <span class="right">33</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/计算机组成原理/">
+                    计算机组成原理 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Deep-Learning/">
+                    Deep-Learning <span class="right">5</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Mac/">
+                    Mac <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/练习/">
+                    练习 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tools/">
+                    Tools <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Algorithms/">
+                    Algorithms <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+<div id="search" class="modal search-modal">
+    <div class="row">
+        <div class="input-field col s12">
+              <input id="search-input" type="text">
+              <label for="search-input">Search</label>
+        </div>
+
+    </div>
+    <div id="search-result" class="search-result col s12">
+
+    </div>
+</div>
+
+
+    <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper indigo">
+        <span class="breadcrumb">Current page(Categories)</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/区块链/">区块链</a>
+
+
+        
+
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>区块链开发（一）搭建环境-基于以太坊私有链</h1>
+    
+
+
+            </div>
+            <time class="pink-link-context" datetime="2017-11-30T21:52:00.000Z"><a href="/2017/11/30/2017-11-30-区块链开发（一）搭建环境-基于以太坊私有链/">2017-11-30</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/区块链/" class="chip pink lighten-1">区块链</a>
+        
+    </div>
+
+
+            <div class="toc pink-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#安装Geth和Mist"><span class="section table-of-contents-text">安装Geth和Mist</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#Ubuntu下安装Geth客户端"><span class="section table-of-contents-text">Ubuntu下安装Geth客户端</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#Windows下安装Geth客户端"><span class="section table-of-contents-text">Windows下安装Geth客户端</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#MAC-OSX下安装Geth客户端"><span class="section table-of-contents-text">MAC OSX下安装Geth客户端</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#安装图像化客户端Mist"><span class="section table-of-contents-text">安装图像化客户端Mist</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#准备创世块文件"><span class="section table-of-contents-text">准备创世块文件</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#启动私有链节点"><span class="section table-of-contents-text">启动私有链节点</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#在Ubuntu启动区块链节点"><span class="section table-of-contents-text">在Ubuntu启动区块链节点</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#在windows启动区块链节点"><span class="section table-of-contents-text">在windows启动区块链节点</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#使用节点创建账号"><span class="section table-of-contents-text">使用节点创建账号</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#Geth-JavaScript控制台环境使用说明"><span class="section table-of-contents-text">Geth JavaScript控制台环境使用说明</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#私有链图形节点"><span class="section table-of-contents-text">私有链图形节点</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#启动Ubuntu下私有链图形节点"><span class="section table-of-contents-text">启动Ubuntu下私有链图形节点</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#启动Windows下私有链图形节点"><span class="section table-of-contents-text">启动Windows下私有链图形节点</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#连接其他节点"><span class="section table-of-contents-text">连接其他节点</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#使用节点进行挖矿"><span class="section table-of-contents-text">使用节点进行挖矿</span></a></li></ol>
+</div>
+
+
+            <div class="entry pink-link-context">
+                <h1 id="安装Geth和Mist"><a href="#安装Geth和Mist" class="headerlink" title="安装Geth和Mist"></a>安装Geth和Mist</h1><h2 id="Ubuntu下安装Geth客户端"><a href="#Ubuntu下安装Geth客户端" class="headerlink" title="Ubuntu下安装Geth客户端"></a>Ubuntu下安装Geth客户端</h2><p>之所以采用Ubuntu，是因为以太坊的官方对Ubuntu支持的很好，是在各个linux系统中安装最简单。</p>
+<blockquote>
+<p>Geth官方安装指南：<br><a href="https://github.com/ethereum/go-ethereum/wiki/Building-Ethereum" target="_blank" rel="noopener">https://github.com/ethereum/go-ethereum/wiki/Building-Ethereum</a></p>
+</blockquote>
+<p>进入ubuntu命令行，执行如下命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get update</span><br><span class="line">$ sudo apt-get installsoftware-properties-common</span><br><span class="line">$ sudo add-apt-repository -yppa:ethereum/ethereum</span><br><span class="line">$ sudo add-apt-repository -yppa:ethereum/ethereum-dev</span><br><span class="line">$ sudo apt-get update</span><br><span class="line">$ sudo apt-get install ethereum</span><br></pre></td></tr></table></figure></p>
+<p>系统联网执行后，即完成了安装以太坊客户端，其中包括<code>geth</code>,<code>bootnode</code>,<code>evm</code>,<code>disasm</code>,<code>rlpdump</code>,<code>ethtest</code><br>此时如果输入 <code>geth</code> 命令，会出现启动以太坊启动的画面</p>
+<p>也可以源码编译安装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/ethereum/go-ethereum</span><br><span class="line">$ sudo apt-get install -y build-essential golang</span><br><span class="line">$ <span class="built_in">cd</span> go-ethereum</span><br><span class="line">$ make geth</span><br></pre></td></tr></table></figure></p>
+<h2 id="Windows下安装Geth客户端"><a href="#Windows下安装Geth客户端" class="headerlink" title="Windows下安装Geth客户端"></a>Windows下安装Geth客户端</h2><p>下载并安装 Geth for Windows.<br>Windows必须64位系统，从官方网站下载编译好的win64客户端，解压缩即可运行，下载地址如下（第二个地址备选）：</p>
+<blockquote>
+<p><a href="https://github.com/ethereum/go-ethereum/releases/" target="_blank" rel="noopener">https://github.com/ethereum/go-ethereum/releases/</a><br><a href="https://geth.ethereum.org/downloads/" target="_blank" rel="noopener">https://geth.ethereum.org/downloads/</a></p>
+</blockquote>
+<p>下载后，只有一个<code>Geth.exe</code>的文件。</p>
+<h2 id="MAC-OSX下安装Geth客户端"><a href="#MAC-OSX下安装Geth客户端" class="headerlink" title="MAC OSX下安装Geth客户端"></a>MAC OSX下安装Geth客户端</h2><p>首先确保已安装<code>homebrew</code>，没有安装过的可以在命令行下执行<br><code>/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</code>进行安装<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> brew tap ethereum/ethereum</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> brew install ethereum</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="安装图像化客户端Mist"><a href="#安装图像化客户端Mist" class="headerlink" title="安装图像化客户端Mist"></a>安装图像化客户端Mist</h2><p>依然是从官方地址下载编译好的客户端即可，下载地址：</p>
+<blockquote>
+<p><a href="https://github.com/ethereum/mist/releases/" target="_blank" rel="noopener">https://github.com/ethereum/mist/releases/</a></p>
+</blockquote>
+<p>下载解压缩后，Ethereum-Wallet 即为以太坊图形化界面。</p>
+<h1 id="准备创世块文件"><a href="#准备创世块文件" class="headerlink" title="准备创世块文件"></a>准备创世块文件</h1><p>配置自己的创世块是为了区分公有链，同一个网络中，创世块必须是一样的，否则无法联通，此方法在windows和Ubuntu下通用。<br>新建文件<code>piccgenesis.json</code>,输入如下内容并保存<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"config"</span>: &#123;</span><br><span class="line">    <span class="attr">"chainId"</span>: <span class="number">123456</span>,</span><br><span class="line">    <span class="attr">"homesteadBlock"</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="attr">"eip155Block"</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="attr">"eip158Block"</span>: <span class="number">0</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"nonce"</span>: <span class="string">"0x0000000000000042"</span>,</span><br><span class="line">  <span class="attr">"difficulty"</span>: <span class="string">"0x020000"</span>,</span><br><span class="line">  <span class="attr">"mixhash"</span>: <span class="string">"0x0000000000000000000000000000000000000000000000000000000000000000"</span>,</span><br><span class="line">  <span class="attr">"coinbase"</span>: <span class="string">"0x0000000000000000000000000000000000000000"</span>,</span><br><span class="line">  <span class="attr">"timestamp"</span>: <span class="string">"0x00"</span>,</span><br><span class="line">  <span class="attr">"parentHash"</span>: <span class="string">"0x0000000000000000000000000000000000000000000000000000000000000000"</span>,</span><br><span class="line">  <span class="attr">"extraData"</span>: <span class="string">"0x11bbe8db4e347b4e8c937c1c8370e4b5ed33adb3db69cbdb7a38e1e50b1b82fa"</span>,</span><br><span class="line">  <span class="attr">"gasLimit"</span>: <span class="string">"0x4c4b40"</span>,</span><br><span class="line">  <span class="attr">"alloc"</span>: &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>解释一下各个参数的作用：</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mixhash</td>
+<td>与nonce配合用于挖矿，由上一个区块的一部分生成的hash。注意他和nonce的设置需要满足以太坊的Yellow paper, 4.3.4. Block Header Validity, (44)章节所描述的条件。.</td>
+</tr>
+<tr>
+<td>nonce</td>
+<td>nonce就是一个64位随机数，用于挖矿，注意他和mixhash的设置需要满足以太坊的Yellow paper, 4.3.4. Block Header Validity, (44)章节所描述的条件。</td>
+</tr>
+<tr>
+<td>difficulty</td>
+<td>设置当前区块的难度，如果难度过大，cpu挖矿就很难，这里设置较小难度</td>
+</tr>
+<tr>
+<td>alloc</td>
+<td>用来预置账号以及账号的以太币数量，因为私有链挖矿比较容易，所以我们不需要预置有币的账号，需要的时候自己创建即可以。</td>
+</tr>
+<tr>
+<td>coinbase</td>
+<td>矿工的账号，随便填</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>设置创世块的时间戳</td>
+</tr>
+<tr>
+<td>parentHash</td>
+<td>上一个区块的hash值，因为是创世块，所以这个值是0</td>
+</tr>
+<tr>
+<td>extraData</td>
+<td>附加信息，随便填，可以填你的个性信息</td>
+</tr>
+<tr>
+<td>gasLimit</td>
+<td>该值设置对GAS的消耗总量限制，用来限制区块能包含的交易信息总和，因为我们是私有链，所以填最大。</td>
+</tr>
+</tbody>
+</table>
+<h1 id="启动私有链节点"><a href="#启动私有链节点" class="headerlink" title="启动私有链节点"></a>启动私有链节点</h1><p>启动Geth即可以启动以太坊的区块链，为了构建私有链 ，需要在Geth启动时加入一些参数，Geth参数含义如下： </p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>identity</td>
+<td>区块链的标示，随便填写，用于标示目前网络的名字</td>
+</tr>
+<tr>
+<td>init</td>
+<td>指定创世块文件的位置，并创建初始块</td>
+</tr>
+<tr>
+<td>datadir</td>
+<td>设置当前区块链网络数据存放的位置</td>
+</tr>
+<tr>
+<td>port</td>
+<td>网络监听端口</td>
+</tr>
+<tr>
+<td>rpc</td>
+<td>启动rpc通信，可以进行智能合约的部署和调试</td>
+</tr>
+<tr>
+<td>rpcapi</td>
+<td>设置允许连接的rpc的客户端，一般为db,eth,net,web3</td>
+</tr>
+<tr>
+<td>networkid</td>
+<td>设置当前区块链的网络ID，用于区分不同的网络，是一个数字</td>
+</tr>
+<tr>
+<td>console</td>
+<td>启动命令行模式，可以在Geth中执行命令</td>
+</tr>
+</tbody>
+</table>
+<h2 id="在Ubuntu启动区块链节点"><a href="#在Ubuntu启动区块链节点" class="headerlink" title="在Ubuntu启动区块链节点"></a>在Ubuntu启动区块链节点</h2><p>在Ubuntu下，首先切换到打算运行的目录，目录下应该有配置好的<code>piccgenesis.json</code>文件，获取当前的目录：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ basepath=$(<span class="built_in">cd</span> `dirname <span class="variable">$0</span>`; <span class="built_in">pwd</span>)</span><br></pre></td></tr></table></figure></p>
+<p>创建数据存放地址并初始化创世块：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ geth  --datadir <span class="string">"<span class="variable">$basepath</span>/chain"</span> init piccgenesis.json</span><br></pre></td></tr></table></figure></p>
+<p>启动节点：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ geth --identity <span class="string">"PICCetherum"</span>  --rpc  --rpccorsdomain <span class="string">"*"</span> --datadir <span class="string">"<span class="variable">$basepath</span>/chain"</span> --port <span class="string">"30303"</span>  --rpcapi <span class="string">"db,eth,net,web3"</span> --networkid 95518 console</span><br></pre></td></tr></table></figure></p>
+<p>启动后界面如下，光标停留在最后的命令行上，可以执行以太坊命令。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">I0707 00:45:43.680087 ethdb/database.go:82]Alloted 128MB cache and 1024 file handles to /home/lihe/桌面/chain/chaindata</span><br><span class="line">I0707 00:45:43.726008ethdb/database.go:169] closed db:/home/lihe/桌面/chain/chaindata</span><br><span class="line">I0707 00:45:43.728913 ethdb/database.go:82]Alloted 128MB cache and 1024 file handles to /home/lihe/桌面/chain/chaindata</span><br><span class="line">I0707 00:45:43.908795 ethdb/database.go:82]Alloted 16MB cache and 16 file handles to /home/lihe/桌面/chain/dapp</span><br><span class="line">I0707 00:45:43.969506 core/genesis.go:92]Genesis block already <span class="keyword">in</span> chain. Writing canonical number</span><br><span class="line">I0707 00:45:43.980337 eth/backend.go:274]Successfully wrote custom genesis block:6e92f8b23bcdfdf34dc813cfaf1d84b71beac80530506b5d63a2df10fe23a660</span><br><span class="line">I0707 00:45:43.980618 eth/backend.go:184]Protocol Versions: [63 62], Network Id: 95518</span><br><span class="line">I0707 00:45:43.981567core/blockchain.go:204] Last header: <span class="comment">#81 [6193c4b0…] TD=10836704</span></span><br><span class="line">I0707 00:45:43.981645core/blockchain.go:205] Last block: <span class="comment">#81 [6193c4b0…] TD=10836704</span></span><br><span class="line">I0707 00:45:43.981677core/blockchain.go:206] Fast block: <span class="comment">#81 [6193c4b0…] TD=10836704</span></span><br><span class="line">I0707 00:45:43.985253 p2p/server.go:313]Starting Server</span><br><span class="line">I0707 00:45:45.834488p2p/discover/udp.go:217] Listening,enode://134881790e54c803955715e3661c27f91caaf499be813e29c9f986e2eac62d47e02b13a8e51776c1caea554655614ed26ce0185d84e626da7ac48a83a60113ff@[::]:30303</span><br><span class="line">I0707 00:45:45.835853 node/node.go:366]HTTP endpoint opened: http://localhost:8545</span><br><span class="line">I0707 00:45:45.848008 p2p/server.go:556]Listening on [::]:30303</span><br><span class="line">I0707 00:45:45.849731 node/node.go:296] IPCendpoint opened: /home/lihe/桌面/chain/geth.ipc</span><br><span class="line">Welcome to the Geth JavaScript console!</span><br><span class="line"> </span><br><span class="line">instance:Geth/v1.5.0-unstable/linux/go1.5.1/PICCetherum</span><br><span class="line">coinbase:0x93509a2f4b2b974b07ef0b52e07c3992601f5de1</span><br><span class="line">at block: 81 (Tue, 05 Jul 2016 21:02:25CST)</span><br><span class="line"> datadir: /home/lihe/桌面/chain</span><br><span class="line"> modules: admin:1.0 debug:1.0 eth:1.0 miner:1.0net:1.0 personal:1.0 rpc:1.0 txpool:1.0 web3:1.0</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></p>
+<p>可以看到<code>Listening on [::]:30303</code>和<code>Welcome to the Geth JavaScript console!</code>的提示，说明已经启动成功</p>
+<blockquote>
+<p><strong>注意</strong>：如果想将Ubuntu作为永久区块链节点使用，当使用nohup命令时，Geth启动参数console必须去掉，否则Geth会自动停止。</p>
+</blockquote>
+<h2 id="在windows启动区块链节点"><a href="#在windows启动区块链节点" class="headerlink" title="在windows启动区块链节点"></a>在windows启动区块链节点</h2><p>进入Windows下<code>Geth</code>的目录 ，放置配置好的<code>piccgenesis.json</code>文件，执行如下命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ geth  --datadir <span class="string">"%cd%\chain"</span> init piccgenesis.json</span><br></pre></td></tr></table></figure></p>
+<p>创建数据存放地址并初始化创世块<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ geth--identity <span class="string">"PICCetherum"</span> --rpc--rpccorsdomain <span class="string">"*"</span> --datadir <span class="string">"%cd%\chain"</span> --port<span class="string">"30303"</span>  --rpcapi<span class="string">"db,eth,net,web3"</span> --networkid 95518 console</span><br></pre></td></tr></table></figure></p>
+<p>当看到<code>Listening on [::]:30303</code>和<code>Welcome to the Geth JavaScript console!</code>的提示，说明已经启动成功</p>
+<h1 id="使用节点创建账号"><a href="#使用节点创建账号" class="headerlink" title="使用节点创建账号"></a>使用节点创建账号</h1><p>启动节点成功后，会进入Geth的命令行模式，输入如下命令<br><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">personal.<span class="keyword">new</span><span class="type">Account</span>()</span><br></pre></td></tr></table></figure></p>
+<p>系统会提示你输入账号密码，并确认，最后会显示一个新生成的账号。</p>
+<h2 id="Geth-JavaScript控制台环境使用说明"><a href="#Geth-JavaScript控制台环境使用说明" class="headerlink" title="Geth JavaScript控制台环境使用说明"></a>Geth JavaScript控制台环境使用说明</h2><ul>
+<li>创建新账号<br><code>personal.newAccount()</code><br>或者 <code>personal.newAccount(&quot;123456&quot;)</code></li>
+<li>查看节点信息<br><code>admin.nodeInfo</code></li>
+<li>挖矿<ul>
+<li>开始挖矿<code>miner.start(1)</code></li>
+<li>停止挖矿<code>miner.stop()</code></li>
+</ul>
+</li>
+<li>查看当前矿工账号<br><code>eth.coinbase</code> 默认为第一个账户</li>
+<li>修改矿工账号<br><code>miner.setEtherbase(eth.accounts[1])</code></li>
+<li>查看账户信息<br><code>eth.accounts[0]</code></li>
+<li>查看账户余额<br><code>eth.getBalance(eth.accounts[0])</code><br>或者 <code>web3.fromWei(eth.getBalance(eth.accounts[0]), &quot;ether&quot;)</code></li>
+<li>解锁账号<br><code>personal.unlockAccount(eth.accounts[0])</code><br>使用账户资金前都需要先解锁账号</li>
+<li>转账<code>eth.sendTransaction({from:eth.accounts[0],to:&quot;0x587e57a516730381958f86703b1f8e970ff445d9&quot;,value:web3.toWei(3,&quot;ether&quot;)})</code><br>使用 <code>txpool.status</code>可以看到交易状态</li>
+<li>查看区块数据<ul>
+<li><code>eth.blockNumber</code></li>
+<li><code>eth.getTransaction(&quot;0x0c59f431068937cbe9e230483bc79f59bd7146edc8ff5ec37fea6710adcab825&quot;)</code></li>
+<li><code>eth.getBlock(1)</code> 通过区块号查看区块</li>
+</ul>
+</li>
+</ul>
+<h1 id="私有链图形节点"><a href="#私有链图形节点" class="headerlink" title="私有链图形节点"></a>私有链图形节点</h1><h2 id="启动Ubuntu下私有链图形节点"><a href="#启动Ubuntu下私有链图形节点" class="headerlink" title="启动Ubuntu下私有链图形节点"></a>启动Ubuntu下私有链图形节点</h2><p>首先按上面的步骤启动Geth并创建了账号，在geth运行的时候，再运行下面的命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ethereumwallet --gethpath /usr/bin/geth</span><br></pre></td></tr></table></figure></p>
+<p><code>--gethpath</code>改成你实际安装的geth的路径</p>
+<h2 id="启动Windows下私有链图形节点"><a href="#启动Windows下私有链图形节点" class="headerlink" title="启动Windows下私有链图形节点"></a>启动Windows下私有链图形节点</h2><p>首先按上面的步骤启动Geth并创建了账号，然后解压缩Ethereum-Wallet，运行<code>Ethereum-Wallet.exe</code>,即启动成功，如果区块链正常的话，会在右上角显示<code>“PRIVATE-NET”</code>，点击<code>“LAUNCH APPLICATION”</code>进入图形界面即可。</p>
+<h1 id="连接其他节点"><a href="#连接其他节点" class="headerlink" title="连接其他节点"></a>连接其他节点</h1><p>首先要知道自己的节点信息，在Geth命令行界面下输入命令,注意大小写<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">admin</span><span class="selector-class">.nodeInfo</span></span><br></pre></td></tr></table></figure></p>
+<p>系统会显示<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">enode:<span class="string">"enode://1e3c1727cd3bee9f25edeb5dbb3b880e03e41f8eec99566557f3ee0422734a8fcad17c161aa93d61bdbfb28ed152c143c7eb501db58bc63502a104a84b62d742@0.0.0.0:30303“</span></span><br></pre></td></tr></table></figure></p>
+<p>其中<code>enode://1e3c1727cd3bee9f25edeb5dbb3b880e03e41f8eec99566557f3ee0422734a8fcad17c161aa93d61bdbfb28ed152c143c7eb501db58bc63502a104a84b62d742@0.0.0.0:30303</code><br>就是自己节点的信息，注意要把<code>0.0.0.0</code>换成你自己的IP。将这个信息发送给其他节点，在其他节点的命令行中输入：<br><figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">admin.addPeer(‘enode://<span class="number">1e3</span><span class="keyword">c</span><span class="number">1727</span>cd<span class="number">3</span>bee<span class="number">9</span>f<span class="number">25</span>edeb<span class="number">5</span>dbb<span class="number">3</span>b<span class="number">880e03</span>e<span class="number">41</span>f<span class="number">8</span>eec<span class="number">99566557</span>f<span class="number">3</span>ee<span class="number">0422734</span>a<span class="number">8</span>fcad<span class="number">17</span><span class="keyword">c</span><span class="number">161</span>aa<span class="number">93</span>d<span class="number">61</span>bdbfb<span class="number">28</span>ed<span class="number">152</span><span class="keyword">c</span><span class="number">143</span><span class="keyword">c</span><span class="number">7</span>eb<span class="number">501</span>db<span class="number">58</span>bc<span class="number">63502</span>a<span class="number">104</span>a<span class="number">84</span>b<span class="number">62</span>d<span class="number">742</span><span class="title">@192</span>.<span class="number">168.1</span>.<span class="number">101</span>:<span class="number">30303</span>’)</span><br></pre></td></tr></table></figure></p>
+<p>如果添加成功，输入<code>admin.peers</code>会显示出新添加的节点。</p>
+<h1 id="使用节点进行挖矿"><a href="#使用节点进行挖矿" class="headerlink" title="使用节点进行挖矿"></a>使用节点进行挖矿</h1><p>在Geth命令行界面下，输入<code>miner.start()</code>即启动挖矿，挖矿后，会不停刷屏，输入<code>miner.stop()</code>即停止，不用管刷屏导致的命令不全，命令会正常执行。<br>到这一步，已经组建一个私有链的网络，可以像其他区块链一样不停的扩充这个网络，下一篇文章，我会介绍如何在私有链上编写、调试和部署智能合约。</p>
+<p>参考文章：</p>
+<ol>
+<li><a href="http://blog.csdn.net/sportshark/article/details/51855007" target="_blank" rel="noopener">http://blog.csdn.net/sportshark/article/details/51855007</a></li>
+<li><a href="http://tech.lab.carl.pro/kb/ethereum/testnet_setup" target="_blank" rel="noopener">http://tech.lab.carl.pro/kb/ethereum/testnet_setup</a></li>
+<li><a href="http://www.ethdocs.org/en/latest/network/test-networks.html#setting-up-a-local-private-testnet" target="_blank" rel="noopener">http://www.ethdocs.org/en/latest/network/test-networks.html#setting-up-a-local-private-testnet</a></li>
+<li><a href="https://github.com/ethereum/go-ethereum/wiki/Connecting-to-the-network" target="_blank" rel="noopener">https://github.com/ethereum/go-ethereum/wiki/Connecting-to-the-network</a></li>
+<li><a href="https://github.com/ethereum/go-ethereum/wiki/JavaScript-Console" target="_blank" rel="noopener">https://github.com/ethereum/go-ethereum/wiki/JavaScript-Console</a></li>
+<li><a href="https://github.com/ethereum/go-ethereum/wiki/Mining" target="_blank" rel="noopener">https://github.com/ethereum/go-ethereum/wiki/Mining</a></li>
+<li><a href="https://github.com/ethereum/go-ethereum/wiki/Managing-your-accounts" target="_blank" rel="noopener">https://github.com/ethereum/go-ethereum/wiki/Managing-your-accounts</a></li>
+<li><a href="https://github.com/janx/ethereum-bootstrap" target="_blank" rel="noopener">https://github.com/janx/ethereum-bootstrap</a></li>
+<li><a href="https://forum.qtum.org/topic/127/以太坊私链与智能合约部署入门教程/2" target="_blank" rel="noopener">https://forum.qtum.org/topic/127/以太坊私链与智能合约部署入门教程/2</a></li>
+</ol>
+
+                
+<p class="pink-link-context">
+    <a href="/2017/12/01/2017-12-01-迪菲-赫尔曼密钥交换/" rel="next" title="迪菲-赫尔曼密钥交换">
+    Prev: 迪菲-赫尔曼密钥交换
+  </a>
+</p>
+
+
+
+<p class="pink-link-context">
+    <a href="/2017/11/29/2017-11-29-apt-get-update-GPG错误/" rel="next" title="ubuntu--apt-get update（由于没有公钥，无法验证下列签名）">
+    Next: ubuntu--apt-get update（由于没有公钥，无法验证下列签名）
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large pink">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect green" title="Return to top"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse yellow darken-1"  data-activates="main-menu" title="Menu"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer indigo darken-1">
+    
+    <div class="footer-container container">
+        <div class="row">
+            
+            <div class="social-group col m4 s12">
+                <h5 class="white-text">Social</h5>
+                
+                    <a class="social-link" href="http://weibo.com/LinXueyuanStdio" target="_blank">
+                        <i class="fa fa-2x fa-weibo"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://github.com/LinXueyuanStdio" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://www.zhihu.com/people/lin-xue-yuan-86" target="_blank">
+                        <i class="fa fa-2x fa-graduation-cap"></i>
+                    </a>
+                
+                    <a class="social-link" href="http://twitter.com/cwBQ3A5cz3Jzso7" target="_blank">
+                        <i class="fa fa-2x fa-twitter"></i>
+                    </a>
+                
+                    <a class="social-link" href="mailto:761516186@qq.com" target="_blank">
+                        <i class="fa fa-2x fa-envelope"></i>
+                    </a>
+                
+                    <a class="social-link" href="/atom.xml" target="_blank">
+                        <i class="fa fa-2x fa-rss"></i>
+                    </a>
+                
+                
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+    </script>
+    <div class="site-visitors-container white-text">
+        <span>
+            <i class="fa fa-user"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+        </span>
+        <span>&nbsp;|&nbsp;</span>
+        <span>
+            <i class="fa fa-eye"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+        </span>
+    </div>
+
+
+            </div>
+            
+
+            
+            <div class="col m8 s12">
+                <h5 class="white-text">Links</h5>
+                
+                    <a class="social-link" href="http://raytaylorlin.com/" target="_blank">raytaylorism主题作者</a>
+                
+                    <a class="social-link" href="https://github.com/raytaylorlin" target="_blank">Github地址</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    
+
+    <div class="footer-copyright pink-link-context">
+        <div class="container">
+            © 2016 example.com, All rights reserved.
+            <p class="right" style="margin-top: 0;">Blog powered by <a href="https://hexo.io">Hexo</a> | Theme <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
+        </div>
+    </div>
+</footer>
+
+
+    <noscript>
+    <div class="noscript">
+        <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+    </div>
+</noscript>
+<div class="noscript">
+    <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 隐藏禁用javascript（针对微信内置浏览器）的提示
+            $('.noscript').hide();
+
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
+
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed').each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt') || ' ');
+            }).materialbox();
+
+            // 优化表格的显示
+            $('table').each(function() {
+                var $table = $(this);
+                // 除去多行代码的情况
+                if ($table.find('pre').length == 0) {
+                    $table.addClass('responsive-table striped bordered');
+                }
+            });
+
+            // 首页幻灯片
+            $('.slider').slider({indicators: true, full_width: true, interval: 8000});
+
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+
+            // 目录随屏幕滚动（防止目录过长越过footer）
+            var $toc = $('.toc');
+            var scrollTargetTop = 0;
+            $(window).scroll(function() {
+                var $activeLink = $toc.find('a.active.section');
+                if ($(window).scrollTop() < 100) {
+                    scrollTargetTop = 0;
+                } else {
+                    if ($activeLink[0]) {
+                        scrollTargetTop = $activeLink.offset().top - $toc.offset().top;
+                    }
+                }
+                $toc.css('top', '-' + scrollTargetTop + 'px');
+            });
+
+            // 修正文章目录的left-border颜色
+            var color = $('.table-of-contents-text').css('color');
+            $('.table-of-contents-link').css('border-left-color', color);
+
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({
+                    scrollTop: 0
+                }, 500);
+            });
+
+            // 重置读书页面的Tab标签页的颜色
+            $('li.tab a').hover(function() {
+                $(this).toggleClass('text-lighten-4');
+            });
+            $('.indicator').addClass('pink lighten-2');
+
+            
+            // 添加new标签
+            $('.menu-apps').append('<span class="new badge pink"></span>');
+            
+
+            // 搜索功能
+            $('.modal-trigger').leanModal({
+                // 打开搜索框时自动聚焦
+                ready: function() {
+                    if ($('#search').is(":visible")) {
+                        $('#search-input').focus();
+                    }
+                }
+            });
+            var searchXml = "search.xml";
+            if (searchXml.length == 0) {
+             	searchXml = "search.xml";
+            }
+            var searchPath = "/" + searchXml;
+            initSearch(searchPath, 'search-input', 'search-result');
+        });
+
+        // 初始化搜索与匹配函数
+        var initSearch = function(path, search_id, content_id) {
+            'use strict';
+            $.ajax({
+                url: path,
+                dataType: "xml",
+                success: function(xmlResponse) {
+                    // get the contents from search data
+                    var datas = $("entry", xmlResponse).map(function() {
+                        return {
+                            title: $("title", this).text(),
+                            content: $("content", this).text(),
+                            url: $("url", this).text()
+                        };
+                    }).get();
+                    var $input = document.getElementById(search_id);
+                    var $resultContent = document.getElementById(content_id);
+                    $input.addEventListener('input', function() {
+                        var str = '<ul class=\"search-result-list\">';
+                        var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                        $resultContent.innerHTML = "";
+                        if (this.value.trim().length <= 0) {
+                            return;
+                        }
+                        // perform local searching
+                        datas.forEach(function(data) {
+                            var isMatch = true;
+                            var content_index = [];
+                            var data_title = data.title.trim().toLowerCase();
+                            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                            var data_url = data.url;
+                            var index_title = -1;
+                            var index_content = -1;
+                            var first_occur = -1;
+                            // only match artiles with not empty titles and contents
+                            if (data_title != '' && data_content != '') {
+                                keywords.forEach(function(keyword, i) {
+                                    index_title = data_title.indexOf(keyword);
+                                    index_content = data_content.indexOf(keyword);
+                                    if (index_title < 0 && index_content < 0) {
+                                        isMatch = false;
+                                    } else {
+                                        if (index_content < 0) {
+                                            index_content = 0;
+                                        }
+                                        if (i == 0) {
+                                            first_occur = index_content;
+                                        }
+                                    }
+                                });
+                            }
+                            // show search results
+                            if (isMatch) {
+                                keywords.forEach(function(keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                });
+
+                                str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                                if (first_occur >= 0) {
+                                    // cut out 100 characters
+                                    var start = first_occur - 20;
+                                    var end = first_occur + 80;
+                                    if (start < 0) {
+                                        start = 0;
+                                    }
+                                    if (start == 0) {
+                                        end = 100;
+                                    }
+                                    if (end > content.length) {
+                                        end = content.length;
+                                    }
+                                    var match_content = content.substring(start, end);
+                                    // highlight all keywords
+                                    keywords.forEach(function(keyword) {
+                                        var regS = new RegExp(keyword, "gi");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                    });
+
+                                    str += "<p class=\"search-result\">..." + match_content + "...</p>"
+                                }
+                                str += "</li>";
+                            }
+                        });
+                        str += "</ul>";
+                        $resultContent.innerHTML = str;
+                    });
+                }
+            });
+        }
+    })(jQuery);
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+</body>
+</html>

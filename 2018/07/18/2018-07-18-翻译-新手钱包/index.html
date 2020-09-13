@@ -1,0 +1,819 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>【翻译】 新手钱包 | XiChen&#39;s Blog</title>
+    <meta name="author" content="Lin Xueyuan">
+    
+    <meta name="description" content="嗨，我是兮尘，全栈数据学徒。这里没有花俏艳丽的魔法，没有苍蛮霸道的斗气，有的，仅仅是繁衍到巅峰的代码！">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="【翻译】 新手钱包"/>
+    <meta property="og:site_name" content="XiChen"/>
+
+    
+    <meta property="og:image" content=""/>
+    
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" href="/atom.xml" title="XiChen" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
+
+    <nav class="indigo">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="">
+            <a href="/" class="brand-logo hide-on-med-and-down">XiChen</a>
+            <ul class="right hide-on-med-and-down">
+                
+                    <li>
+                        <a class="menu-home " href="/" >
+                            <i class="fa fa-home "></i>
+                            
+                            Home
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-archive " href="/archives" >
+                            <i class="fa fa-archive "></i>
+                            
+                            Archives
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                            <i class="fa fa-bookmark "></i>
+                            
+                            Categories
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-reading " href="/reading" >
+                            <i class="fa fa-book "></i>
+                            
+                            Reading
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-about " href="/about" >
+                            <i class="fa fa-user "></i>
+                            
+                            About
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-search modal-trigger " href="#search" >
+                            <i class="fa fa-search "></i>
+                            
+                            Search
+                        </a>
+                    </li>
+                
+            </ul>
+            <div>
+    <ul class="side-nav indigo darken-1" id="main-menu">
+        
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4 no-padding">
+                    <img class="avatar-image circle responsive-img" src="/assets/images/avatar.jpg" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper no-padding">
+                    <div class="valign">
+                        <p class="name">兮尘</p>
+                        <p class="desc">Android/深度学习/Web前端</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-home " href="/" >
+                    <i class="fa fa-home "></i>
+                    
+                    Home
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-archive " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    
+                    Archives
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    
+                    Categories
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-reading " href="/reading" >
+                    <i class="fa fa-book "></i>
+                    
+                    Reading
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-about " href="/about" >
+                    <i class="fa fa-user "></i>
+                    
+                    About
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-search modal-trigger " href="#search" >
+                    <i class="fa fa-search "></i>
+                    
+                    Search
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav indigo darken-1" id="category-menu">
+    
+
+            
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Linux/">
+                    Linux <span class="right">8</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tips/">
+                    Tips <span class="right">7</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/GO/">
+                    GO <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Proxy/">
+                    Proxy <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Ubuntu/">
+                    Ubuntu <span class="right">4</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Spider/">
+                    Spider <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/区块链/">
+                    区块链 <span class="right">25</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/密码学/">
+                    密码学 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/算法/">
+                    算法 <span class="right">4</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Latex/">
+                    Latex <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/杂思/">
+                    杂思 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Git/">
+                    Git <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Github/">
+                    Github <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Web/">
+                    Web <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Android/">
+                    Android <span class="right">33</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/计算机组成原理/">
+                    计算机组成原理 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Deep-Learning/">
+                    Deep-Learning <span class="right">5</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Mac/">
+                    Mac <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/练习/">
+                    练习 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tools/">
+                    Tools <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Algorithms/">
+                    Algorithms <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+<div id="search" class="modal search-modal">
+    <div class="row">
+        <div class="input-field col s12">
+              <input id="search-input" type="text">
+              <label for="search-input">Search</label>
+        </div>
+
+    </div>
+    <div id="search-result" class="search-result col s12">
+
+    </div>
+</div>
+
+
+    <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper indigo">
+        <span class="breadcrumb">Current page(Categories)</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/区块链/">区块链</a>
+
+
+        
+
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>【翻译】 新手钱包</h1>
+    
+
+
+            </div>
+            <time class="pink-link-context" datetime="2018-07-18T14:11:00.000Z"><a href="/2018/07/18/2018-07-18-翻译-新手钱包/">2018-07-18</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/区块链/" class="chip pink lighten-1">区块链</a>
+        
+            <a href="/tags/Qtum/" class="chip pink lighten-1">Qtum</a>
+        
+            <a href="/tags/翻译/" class="chip pink lighten-1">翻译</a>
+        
+    </div>
+
+
+            <div class="toc pink-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#新手钱包-–-2018年4月1日"><span class="section table-of-contents-text">新手钱包 – 2018年4月1日</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#网络权重（在家试试）"><span class="section table-of-contents-text">网络权重（在家试试）</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#节点地图-Nodemap"><span class="section table-of-contents-text">节点地图 Nodemap</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#新手钱包"><span class="section table-of-contents-text">新手钱包</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#参考"><span class="section table-of-contents-text">参考</span></a></li></ol></li></ol>
+</div>
+
+
+            <div class="entry pink-link-context">
+                <p>原文：<a href="https://medium.com/@jb395official/newbie-wallets-april-1-2018-26ea7a06489c" target="_blank" rel="noopener">https://medium.com/@jb395official/newbie-wallets-april-1-2018-26ea7a06489c</a><br>译者：中山大学数学学院（珠海）林学渊<br>大二时给量子做的翻译，转载注明出处，谢谢</p>
+<h1 id="新手钱包-–-2018年4月1日"><a href="#新手钱包-–-2018年4月1日" class="headerlink" title="新手钱包 – 2018年4月1日"></a>新手钱包 – 2018年4月1日</h1><p><img src="https://cdn-images-1.medium.com/max/1600/1*CoZWPEKSdUvkruolCf5urg.jpeg" alt=""></p>
+<p><img src="https://cdn-images-1.medium.com/max/960/1*KFZfenJ-o8iR3x-il9r1qg.jpeg" alt=""></p>
+<p>在本报告中，我们分析区块链，了解自今年年初以来新钱包对节点数增长的贡献。我们的区块链浏览器是<a href="https://qtum.info/" target="_blank" rel="noopener">qtum.info</a>，它本周增加了一个 <a href="https://qtum.info/misc/stake-calculator" target="_blank" rel="noopener">staking 奖励计算器</a>，需要输入地址或输入 stake 金额。这个新的资源管理器给我留下了深刻的印象，它具有明亮的背景，能够快速显示一个地址直到“出生日期”的所有交易。</p>
+<p>TL;DR 1月下旬，大约有2000个 staking 钱包，每个有 500 个代币，这可能与宣布给中国的 50,000 个节点的视频流平台有关。</p>
+<p>我是一名独立研究员，偶尔是博主，社交版主，并中意 Qtum 团队的技术指导和社区的高谈阔论。如果你对本文有任何意见或更正，请联系社交媒体。本博客假设你对Qtum 权益证明（Proof of Stake）和区块奖励机制有一些基本的了解，新的社区成员可以阅读我在以下参考文献中以前博客的链接来了解有关这些主题的更多信息。</p>
+<hr>
+<h2 id="网络权重（在家试试）"><a href="#网络权重（在家试试）" class="headerlink" title="网络权重（在家试试）"></a>网络权重（在家试试）</h2><p>经常看我博客的人知道我通过爬取资源管理器块奖励地址来计算网络权重的替代方法，识别具有稳定余额的大钱包，并使用这些大钱包赢得的总奖励和块奖励百分比来计算网络权重。在过去两周内，这个方法算的网络权重为 3340 万。</p>
+<p>使用新的资源管理器，你可以用这些步骤在家里玩玩网络权重。将你喜欢的浏览器导航到新的资源管理器<a href="https://qtum.info/misc/biggest-miners" target="_blank" rel="noopener">Biggest Miners</a>页面：</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*zMnbWpMRBMjx4EzlOsIlaw.jpeg" alt=""></p>
+<p>爬取数据并保存到文本文件。然后恰好一周后，再次爬取数据。对那些在两次爬取之间具有大致相同余额的大钱包（考虑到增加的块奖励），计算总余额和本周开采的块。</p>
+<p>网络权重 = 总余额 /（本周开采的块/每周4200块）。 如果你本周进行计算，你的应该接近我上面计算的网络权重（除非有人添加节点😊）</p>
+<hr>
+<h2 id="节点地图-Nodemap"><a href="#节点地图-Nodemap" class="headerlink" title="节点地图 Nodemap"></a>节点地图 Nodemap</h2><p>Nodemap 本周更新了，可以显示网络上超过 7,000 个节点。这里大事是 Qtum 节点在中国的增长，我不相信其他情况下所谓的“剧情反转”：目前 Qtum 在中国的节点数超过 4,400，是比特币或以太坊的中国节点的两倍多。下一步将是 Qtum 超过比特币的全球节点数，给它两个月。</p>
+<p>去年，在韩国退出之前，节点数第一在韩国和美国之间来回切换。 2017年10月21日，你可以在此屏幕截图中看到，staking 大城市是加州山景城（Google Cloud的主页）和首尔。</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*1S-VsFdLmsyBZS_mLyRxjg.jpeg" alt=""></p>
+<p>截至2017年底，网络权重为 2000 万，节点数约为 1,200。但从那时起，节点部署和网络权重增加的速度有所加快。</p>
+<p><img src="https://cdn-images-1.medium.com/max/960/1*DkgJumuKWajuIYQSFEg_Jg.jpeg" alt=""></p>
+<p>目前，中国有11个城市拥有 100 个以上节点，其中包括南京的1000个节点。看看今天这个屏幕截图，酷！南京是江苏省的省会，拥有 3000 万人口，感觉就像你走动的时候不可能不撞到 Qtum 节点，这可能就是正在发生的事情。这些新节点非常有趣，因此我有一个<a href="https://www.urbandictionary.com/define.php?term=scientific-wild-ass%20guess" target="_blank" rel="noopener">大胆的想法(SWAG，Scientific wild-ass guess)</a>，关于其目的的：位于便利店的终端/信息亭，允许人们在不使用银行或信用卡的情况下为视频流服务支付现金。但这是一个完整的猜测，如果实际情况和我想的不一样，这些句子将被神奇地编辑掉。</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*8okLn8l_ptzc-YF1_8Gs3Q.jpeg" alt=""></p>
+<p>下表显示，从2月中旬到本周末的节点数变化。每个国家的都有增长，韩国节点数今天刚刚达到四位数字，中国节点数的增长目前占总节点数的63％。</p>
+<p><img src="https://cdn-images-1.medium.com/max/1280/1*44a9XH-0tvlaG66U2Pn8bw.jpeg" alt=""></p>
+<p>下面的饼图显示了节点位置百分比。</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*4fl6MLjRDI7ajAi8sKqh1w.jpeg" alt=""></p>
+<hr>
+<h2 id="新手钱包"><a href="#新手钱包" class="headerlink" title="新手钱包"></a>新手钱包</h2><p>我们回到 Excel 表格分析，看看七天内块奖励获奖者。以下是它的工作原理：从资源管理器中删除块奖励获胜者的地址，在 Excel 中对独立地址排序，用宏记录程序将每个地址粘贴回资源管理器并爬取对应钱包余额和交易数。</p>
+<p>staking 地址的交易数很有意思，它提供了有关钱包年龄的线索，因为每个区块奖励的支付时间在 10 次交易内。 如果你看到一个包含 50 到 5,000 笔交易的 staking 钱包地址，则那个钱包已经存在了一段时间。 但如果你看到一个钱包赢得区块奖励时少于 10 次交易，那么这正是它的第一次区块奖励体验（第一次是最好的时间！）</p>
+<p>让我们进一步分析区块奖励获奖者。有趣的是一些新手钱包有500 QTUM，还有一些有400 QTUM。 人们喜欢整数，过去的研究显示，经常有 365,500,1000,2000 和 10000 QTUM 的钱包。但是现在有很多这种 500 QTUM 大小的新钱包。</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*-A2lIHByL3PCkwSOBFuerw.jpeg" alt=""></p>
+<p>上面的例子展示了<a href="https://qtum.info/address/QTkkpuhAdNddGEMp99v2BMdS3Qmo63TMm4" target="_blank" rel="noopener">这种钱包</a>中的一个，它有 500 QTUM，当时是 2018 年 1 月 30 日。你能看见转入 84, 854 QTUM 的交易和转出 84,354 QTUM 的交易。你能假定它下一次交易就是用这 84,354 QTUM 发送 500 QTUM 给<a href="https://qtum.info/address/Qjai23hm2YibnNL8JQWWbpUpAQMC24ARZ7/" target="_blank" rel="noopener">另一个钱包</a>，如此继续下去，造另外的 168 个钱包。</p>
+<p><img src="https://cdn-images-1.medium.com/max/960/1*vB2iPZEmh-OouhbBXxyUIQ.jpeg" alt=""></p>
+<p>我保证这些 staker 喜欢这 168 份交易费用，对此我只想用一个词来形容，“盲目发送(sendmanywithdupes)”。这本来只需一笔交易费即可为多个地址转入代币。在这次分析里，我看到了很多 sendmanywithdupes 交易的例子，包括去年发送 365 个 QTUM 到多个地址的那个著名系列，后来用来挖矿。注意，将 QTUM 拆分为单独的挖矿地址并没有改变赢得区块奖励的可能性，因为钱包软件保证了在有 27,375 个代币的单个钱包地址和分别有365个代币（共27,375个代币）的 75 个地址之间，赢得区块奖励的概率都是一样的。</p>
+<p>中国的节点增长源自哪里？一种可能是中国视频流媒体公司宣布他们将在商业网络中部署 50,000 个节点。 我们可以折腾区块链，看看是否可以发现有关新节点的什么模式或细节。我们截取 3 月 24 日至 3 月 30 日的获得区块奖励的钱包，其中对同时满足 QTUM 少于 600 且 2018 年 1 月 1 日之后有过代币交易的钱包进一步过滤：</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*-Mi-J1oN2KhPHpIRoD7l1A.jpeg" alt=""></p>
+<p>直方图显示的是在不同日期转入（创建）500 QTUM 的块奖励获奖钱包数。因为块奖励与钱包重量成正比（还有一些随机影响），我们可以反过来处理块奖励计算，并回答这个问题：如果网络权重为 3340 万，一周内赢得 129 块奖励所需的钱包大小是多少？ [参考1] 答案是大约100万枚代币。如果你按 500 QTUM 部署 100万个，那么你将有 2000 个钱包，这肯定在中国的增长范围内，甚至可能有点低。在任何情况下，概率论表明如果你有一个有着 100 万个代币的钱包，或者每个有 500 个代币的 2000 个钱包，都能在一周内赢得 129 个块奖励。</p>
+<hr>
+<p>我希望你能享受这次关于区块链操作的讨论，并学到点东西。4月1日是复活节星期天，如果你关注复活节，那我希望你复活节快乐。</p>
+<p>今天是复活节，我们在梵蒂冈写完博客。这里是基督教(Catholic Christianity)，圣彼得大教堂(St. Peter’s Basilica)和西斯廷教堂(the Sistine Chapel)之家。在西斯廷教堂，文艺复兴时期的艺术天才米开朗基罗花了10年（1502-1512）亲自画天花板和墙壁。 创世纪的标志性形象 – 创造亚当（所以亚当必须是人类的“<a href="https://qtum.info/block/1" target="_blank" rel="noopener">第1块(block 1)</a>”？）并给出了加密货币创世块的名称。</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*i9tS3hJOpurRxNIvv1eEjQ.jpeg" alt=""></p>
+<p>注意在线安全，我会在社交媒体上看到你</p>
+<p>Jackson</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*F4j_asy0MBUS2hb-Y5ByBw.jpeg" alt=""></p>
+<hr>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
+<li>在一周内获得 129 份块奖励，每天 600 块，也就是 4,200 块。钱包重量为：</li>
+</ol>
+<p><img src="https://cdn-images-1.medium.com/max/1280/1*DVu4tRWb7_ivXfJgGOEkew.jpeg" alt=""></p>
+<ol>
+<li>看我之前写在<a href="https://medium.com/@jb395official" target="_blank" rel="noopener">Medium</a>上的博客</li>
+</ol>
+<p><img src="https://cdn-images-1.medium.com/max/960/1*kuYpVPZtss0PO5Y2TbqyCw.jpeg" alt=""></p>
+<ol>
+<li>不是从无人机拍摄，而是一些<a href="https://www.youtube.com/watch?v=eMGL1_nSjIk" target="_blank" rel="noopener">不错的视频</a>,关于圣彼得广场和圣彼得大教堂的，1080P。</li>
+</ol>
+
+                
+<p class="pink-link-context">
+    <a href="/2018/07/24/2018-07-24-翻译-QRC20token报告/" rel="next" title="【翻译】 QRC20 token 报告">
+    Prev: 【翻译】 QRC20 token 报告
+  </a>
+</p>
+
+
+
+<p class="pink-link-context">
+    <a href="/2018/07/12/2018-07-12-翻译-钱包和密钥/" rel="next" title="【翻译】 钱包和密钥">
+    Next: 【翻译】 钱包和密钥
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large pink">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect green" title="Return to top"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse yellow darken-1"  data-activates="main-menu" title="Menu"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer indigo darken-1">
+    
+    <div class="footer-container container">
+        <div class="row">
+            
+            <div class="social-group col m4 s12">
+                <h5 class="white-text">Social</h5>
+                
+                    <a class="social-link" href="http://weibo.com/LinXueyuanStdio" target="_blank">
+                        <i class="fa fa-2x fa-weibo"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://github.com/LinXueyuanStdio" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://www.zhihu.com/people/lin-xue-yuan-86" target="_blank">
+                        <i class="fa fa-2x fa-graduation-cap"></i>
+                    </a>
+                
+                    <a class="social-link" href="http://twitter.com/cwBQ3A5cz3Jzso7" target="_blank">
+                        <i class="fa fa-2x fa-twitter"></i>
+                    </a>
+                
+                    <a class="social-link" href="mailto:761516186@qq.com" target="_blank">
+                        <i class="fa fa-2x fa-envelope"></i>
+                    </a>
+                
+                    <a class="social-link" href="/atom.xml" target="_blank">
+                        <i class="fa fa-2x fa-rss"></i>
+                    </a>
+                
+                
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+    </script>
+    <div class="site-visitors-container white-text">
+        <span>
+            <i class="fa fa-user"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+        </span>
+        <span>&nbsp;|&nbsp;</span>
+        <span>
+            <i class="fa fa-eye"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+        </span>
+    </div>
+
+
+            </div>
+            
+
+            
+            <div class="col m8 s12">
+                <h5 class="white-text">Links</h5>
+                
+                    <a class="social-link" href="http://raytaylorlin.com/" target="_blank">raytaylorism主题作者</a>
+                
+                    <a class="social-link" href="https://github.com/raytaylorlin" target="_blank">Github地址</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    
+
+    <div class="footer-copyright pink-link-context">
+        <div class="container">
+            © 2016 example.com, All rights reserved.
+            <p class="right" style="margin-top: 0;">Blog powered by <a href="https://hexo.io">Hexo</a> | Theme <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
+        </div>
+    </div>
+</footer>
+
+
+    <noscript>
+    <div class="noscript">
+        <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+    </div>
+</noscript>
+<div class="noscript">
+    <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 隐藏禁用javascript（针对微信内置浏览器）的提示
+            $('.noscript').hide();
+
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
+
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed').each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt') || ' ');
+            }).materialbox();
+
+            // 优化表格的显示
+            $('table').each(function() {
+                var $table = $(this);
+                // 除去多行代码的情况
+                if ($table.find('pre').length == 0) {
+                    $table.addClass('responsive-table striped bordered');
+                }
+            });
+
+            // 首页幻灯片
+            $('.slider').slider({indicators: true, full_width: true, interval: 8000});
+
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+
+            // 目录随屏幕滚动（防止目录过长越过footer）
+            var $toc = $('.toc');
+            var scrollTargetTop = 0;
+            $(window).scroll(function() {
+                var $activeLink = $toc.find('a.active.section');
+                if ($(window).scrollTop() < 100) {
+                    scrollTargetTop = 0;
+                } else {
+                    if ($activeLink[0]) {
+                        scrollTargetTop = $activeLink.offset().top - $toc.offset().top;
+                    }
+                }
+                $toc.css('top', '-' + scrollTargetTop + 'px');
+            });
+
+            // 修正文章目录的left-border颜色
+            var color = $('.table-of-contents-text').css('color');
+            $('.table-of-contents-link').css('border-left-color', color);
+
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({
+                    scrollTop: 0
+                }, 500);
+            });
+
+            // 重置读书页面的Tab标签页的颜色
+            $('li.tab a').hover(function() {
+                $(this).toggleClass('text-lighten-4');
+            });
+            $('.indicator').addClass('pink lighten-2');
+
+            
+            // 添加new标签
+            $('.menu-apps').append('<span class="new badge pink"></span>');
+            
+
+            // 搜索功能
+            $('.modal-trigger').leanModal({
+                // 打开搜索框时自动聚焦
+                ready: function() {
+                    if ($('#search').is(":visible")) {
+                        $('#search-input').focus();
+                    }
+                }
+            });
+            var searchXml = "search.xml";
+            if (searchXml.length == 0) {
+             	searchXml = "search.xml";
+            }
+            var searchPath = "/" + searchXml;
+            initSearch(searchPath, 'search-input', 'search-result');
+        });
+
+        // 初始化搜索与匹配函数
+        var initSearch = function(path, search_id, content_id) {
+            'use strict';
+            $.ajax({
+                url: path,
+                dataType: "xml",
+                success: function(xmlResponse) {
+                    // get the contents from search data
+                    var datas = $("entry", xmlResponse).map(function() {
+                        return {
+                            title: $("title", this).text(),
+                            content: $("content", this).text(),
+                            url: $("url", this).text()
+                        };
+                    }).get();
+                    var $input = document.getElementById(search_id);
+                    var $resultContent = document.getElementById(content_id);
+                    $input.addEventListener('input', function() {
+                        var str = '<ul class=\"search-result-list\">';
+                        var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                        $resultContent.innerHTML = "";
+                        if (this.value.trim().length <= 0) {
+                            return;
+                        }
+                        // perform local searching
+                        datas.forEach(function(data) {
+                            var isMatch = true;
+                            var content_index = [];
+                            var data_title = data.title.trim().toLowerCase();
+                            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                            var data_url = data.url;
+                            var index_title = -1;
+                            var index_content = -1;
+                            var first_occur = -1;
+                            // only match artiles with not empty titles and contents
+                            if (data_title != '' && data_content != '') {
+                                keywords.forEach(function(keyword, i) {
+                                    index_title = data_title.indexOf(keyword);
+                                    index_content = data_content.indexOf(keyword);
+                                    if (index_title < 0 && index_content < 0) {
+                                        isMatch = false;
+                                    } else {
+                                        if (index_content < 0) {
+                                            index_content = 0;
+                                        }
+                                        if (i == 0) {
+                                            first_occur = index_content;
+                                        }
+                                    }
+                                });
+                            }
+                            // show search results
+                            if (isMatch) {
+                                keywords.forEach(function(keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                });
+
+                                str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                                if (first_occur >= 0) {
+                                    // cut out 100 characters
+                                    var start = first_occur - 20;
+                                    var end = first_occur + 80;
+                                    if (start < 0) {
+                                        start = 0;
+                                    }
+                                    if (start == 0) {
+                                        end = 100;
+                                    }
+                                    if (end > content.length) {
+                                        end = content.length;
+                                    }
+                                    var match_content = content.substring(start, end);
+                                    // highlight all keywords
+                                    keywords.forEach(function(keyword) {
+                                        var regS = new RegExp(keyword, "gi");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                    });
+
+                                    str += "<p class=\"search-result\">..." + match_content + "...</p>"
+                                }
+                                str += "</li>";
+                            }
+                        });
+                        str += "</ul>";
+                        $resultContent.innerHTML = str;
+                    });
+                }
+            });
+        }
+    })(jQuery);
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+</body>
+</html>

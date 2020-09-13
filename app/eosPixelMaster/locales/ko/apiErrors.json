@@ -1,0 +1,9 @@
+{
+  "unsatisfiedAuthorization": "{{accountName}}@{{permission}}에 해당하는 개인 키를 사용하고 있는지 확인하십시오.",
+  "overdrawnBalance": "{{EOS_CORE_SYMBOL}}를 지불 할 만큼 충분하지 않아 거래에 실패했습니다.",
+  "ramUsageExceeded": "RAM 부족으로 거래에 실패했습니다.",
+  "cpuUsageExceeded": "스테이크 된 CPU 양의 부족으로 거래에 실패했습니다.",
+  "netUsageExceeded": "스테이크 된 NET 양의 부족으로 거래에 실패했습니다.",
+  "deadlineExceeded": "응답시간이 초과되었습니다. 다시 시도해주세요.",
+  "unexpectedError": "예기치 못한 오류가 발생했습니다."
+}

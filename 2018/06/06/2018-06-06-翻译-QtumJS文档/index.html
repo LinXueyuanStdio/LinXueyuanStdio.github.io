@@ -1,0 +1,1300 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>【翻译】 QtumJS 文档 | XiChen&#39;s Blog</title>
+    <meta name="author" content="Lin Xueyuan">
+    
+    <meta name="description" content="嗨，我是兮尘，全栈数据学徒。这里没有花俏艳丽的魔法，没有苍蛮霸道的斗气，有的，仅仅是繁衍到巅峰的代码！">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="【翻译】 QtumJS 文档"/>
+    <meta property="og:site_name" content="XiChen"/>
+
+    
+    <meta property="og:image" content=""/>
+    
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" href="/atom.xml" title="XiChen" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
+
+    <nav class="indigo">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="">
+            <a href="/" class="brand-logo hide-on-med-and-down">XiChen</a>
+            <ul class="right hide-on-med-and-down">
+                
+                    <li>
+                        <a class="menu-home " href="/" >
+                            <i class="fa fa-home "></i>
+                            
+                            Home
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-archive " href="/archives" >
+                            <i class="fa fa-archive "></i>
+                            
+                            Archives
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                            <i class="fa fa-bookmark "></i>
+                            
+                            Categories
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-reading " href="/reading" >
+                            <i class="fa fa-book "></i>
+                            
+                            Reading
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-about " href="/about" >
+                            <i class="fa fa-user "></i>
+                            
+                            About
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-search modal-trigger " href="#search" >
+                            <i class="fa fa-search "></i>
+                            
+                            Search
+                        </a>
+                    </li>
+                
+            </ul>
+            <div>
+    <ul class="side-nav indigo darken-1" id="main-menu">
+        
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4 no-padding">
+                    <img class="avatar-image circle responsive-img" src="/assets/images/avatar.jpg" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper no-padding">
+                    <div class="valign">
+                        <p class="name">兮尘</p>
+                        <p class="desc">Android/深度学习/Web前端</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-home " href="/" >
+                    <i class="fa fa-home "></i>
+                    
+                    Home
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-archive " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    
+                    Archives
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    
+                    Categories
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-reading " href="/reading" >
+                    <i class="fa fa-book "></i>
+                    
+                    Reading
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-about " href="/about" >
+                    <i class="fa fa-user "></i>
+                    
+                    About
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-search modal-trigger " href="#search" >
+                    <i class="fa fa-search "></i>
+                    
+                    Search
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav indigo darken-1" id="category-menu">
+    
+
+            
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Linux/">
+                    Linux <span class="right">8</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tips/">
+                    Tips <span class="right">7</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/GO/">
+                    GO <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Proxy/">
+                    Proxy <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Ubuntu/">
+                    Ubuntu <span class="right">4</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Spider/">
+                    Spider <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/区块链/">
+                    区块链 <span class="right">25</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/密码学/">
+                    密码学 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/算法/">
+                    算法 <span class="right">4</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Latex/">
+                    Latex <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/杂思/">
+                    杂思 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Git/">
+                    Git <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Github/">
+                    Github <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Web/">
+                    Web <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Android/">
+                    Android <span class="right">33</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/计算机组成原理/">
+                    计算机组成原理 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Deep-Learning/">
+                    Deep-Learning <span class="right">5</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Mac/">
+                    Mac <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/练习/">
+                    练习 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tools/">
+                    Tools <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Algorithms/">
+                    Algorithms <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+<div id="search" class="modal search-modal">
+    <div class="row">
+        <div class="input-field col s12">
+              <input id="search-input" type="text">
+              <label for="search-input">Search</label>
+        </div>
+
+    </div>
+    <div id="search-result" class="search-result col s12">
+
+    </div>
+</div>
+
+
+    <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper indigo">
+        <span class="breadcrumb">Current page(Categories)</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/区块链/">区块链</a>
+
+
+        
+
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>【翻译】 QtumJS 文档</h1>
+    
+
+
+            </div>
+            <time class="pink-link-context" datetime="2018-06-06T14:11:00.000Z"><a href="/2018/06/06/2018-06-06-翻译-QtumJS文档/">2018-06-06</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/区块链/" class="chip pink lighten-1">区块链</a>
+        
+            <a href="/tags/Qtum/" class="chip pink lighten-1">Qtum</a>
+        
+            <a href="/tags/翻译/" class="chip pink lighten-1">翻译</a>
+        
+    </div>
+
+
+            <div class="toc pink-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#介绍"><span class="section table-of-contents-text">介绍</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#运行-Qtum-RPC"><span class="section table-of-contents-text">运行 Qtum RPC</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#ERC20-实例"><span class="section table-of-contents-text">ERC20 实例</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#Qtum"><span class="section table-of-contents-text">Qtum</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#contract"><span class="section table-of-contents-text">contract</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#rawCall"><span class="section table-of-contents-text">rawCall</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#Contract"><span class="section table-of-contents-text">Contract</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#构造函数"><span class="section table-of-contents-text">构造函数</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#call"><span class="section table-of-contents-text">call</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#send"><span class="section table-of-contents-text">send</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#方法重载"><span class="section table-of-contents-text">方法重载</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#logs"><span class="section table-of-contents-text">logs</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#onLogs"><span class="section table-of-contents-text">onLogs</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#logEmitter"><span class="section table-of-contents-text">logEmitter</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#receipt"><span class="section table-of-contents-text">receipt</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#QtumRPC"><span class="section table-of-contents-text">QtumRPC</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#rawCall-1"><span class="section table-of-contents-text">rawCall</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#All-RPC-方法"><span class="section table-of-contents-text">All RPC 方法</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#实例-getblockcount"><span class="section table-of-contents-text">实例: getblockcount</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#实例-getnewaddress"><span class="section table-of-contents-text">实例: getnewaddress</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#实例-fromhexaddress"><span class="section table-of-contents-text">实例: fromhexaddress</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#实例-gettransactionreceipt"><span class="section table-of-contents-text">实例: gettransactionreceipt</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#类型词典"><span class="section table-of-contents-text">类型词典</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#IContractInfo"><span class="section table-of-contents-text">IContractInfo</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#IContractCallResult"><span class="section table-of-contents-text">IContractCallResult</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#IContractSendRequestOptions"><span class="section table-of-contents-text">IContractSendRequestOptions</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#IContractSendResult"><span class="section table-of-contents-text">IContractSendResult</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#参考"><span class="section table-of-contents-text">参考</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#IRPCGetTransactionResult"><span class="section table-of-contents-text">IRPCGetTransactionResult</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#IContractSendReceipt"><span class="section table-of-contents-text">IContractSendReceipt</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#参考-1"><span class="section table-of-contents-text">参考</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#IRPCWaitForLogsRequest"><span class="section table-of-contents-text">IRPCWaitForLogsRequest</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#IContractEventLogs"><span class="section table-of-contents-text">IContractEventLogs</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#IContractEventLog"><span class="section table-of-contents-text">IContractEventLog</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#IDecodedSolidityEvent"><span class="section table-of-contents-text">IDecodedSolidityEvent</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#IRPCGetTransactionReceiptBase"><span class="section table-of-contents-text">IRPCGetTransactionReceiptBase</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#IContractsRepoData"><span class="section table-of-contents-text">IContractsRepoData</span></a></li></ol></li></ol>
+</div>
+
+
+            <div class="entry pink-link-context">
+                <p>原文：<a href="https://github.com/qtumproject/qtumjs-doc" target="_blank" rel="noopener">https://github.com/qtumproject/qtumjs-doc</a><br>译者：中山大学数学学院（珠海）林学渊<br>大二时给量子做的翻译，转载注明出处，谢谢</p>
+<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><blockquote>
+<p>安装 qtumjs</p>
+</blockquote>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="keyword">install</span> qtumjs</span><br></pre></td></tr></table></figure>
+<p>QtumJS是一个用于在Qtum区块链上开发DApp的JavaScript库。您可以使用此库来开发在浏览器中运行的前端UI以及在NodeJS中运行的后端脚本。</p>
+<p>主要的类：<br>类 | 描述<br>——— | ———–<br>QtumRPCRaw | 使用 JSONRPC 1.0调用合约，直接访问 <code>qtumd</code> 的区块链 RPC 服务。<br>QtumRPC | <code>QtumRPCRaw</code> 的封装，提供像 JSONRPC 2.0 这样的接口。<br>Contract | 与智能合约交互的抽象层。使用 <a href="https://github.com/ethereum/wiki/wiki/Ethereum-Contract-ABI" target="_blank" rel="noopener">ABI encoding/decoding</a>.</p>
+<p>QtumJS 使用 <a href="https://www.typescriptlang.org/" target="_blank" rel="noopener">TypeScript</a> 开发, 因此为所有 API 提供了健壮的类型定义。 我们建议使用 <a href="https://code.visualstudio.com/" target="_blank" rel="noopener">VSCode</a> 来获得语言支持，例如类型提示和自动完成。</p>
+<p>当然，你愿意的话也可以选择使用普通的 JavaScript 和记事本。</p>
+<p>本文档是 QtumJS API 及其基本用法的参考文档。有关 QtumJS 的教程式介绍，查看: <a href="https://github.com/qtumproject/qtumbook/blob/master/part2/erc20-js.md" target="_blank" rel="noopener">QtumBook - ERC20 With QtumJS</a>.</p>
+<h2 id="运行-Qtum-RPC"><a href="#运行-Qtum-RPC" class="headerlink" title="运行 Qtum RPC"></a>运行 Qtum RPC</h2><blockquote>
+<p>开发模式运行 qtumd：</p>
+</blockquote>
+<figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker run -it --rm \</span><br><span class="line">  -<span class="ruby">-name myapp \</span></span><br><span class="line"><span class="ruby">  -v <span class="string">`pwd`</span><span class="symbol">:/dapp</span> \</span></span><br><span class="line"><span class="ruby">  -p <span class="number">3889</span><span class="symbol">:</span><span class="number">3889</span> \</span></span><br><span class="line"><span class="ruby">  hayeah/qtumportal</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>测试网络（testnet）运行 qtumd：</p>
+</blockquote>
+<figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker run -it --rm \</span><br><span class="line">  -<span class="ruby">-name myapp \</span></span><br><span class="line"><span class="ruby">  -e <span class="string">"QTUM_NETWORK=testnet"</span> \</span></span><br><span class="line"><span class="ruby">  -v <span class="string">`pwd`</span><span class="symbol">:/dapp</span> \</span></span><br><span class="line"><span class="ruby">  -p <span class="number">3889</span><span class="symbol">:</span><span class="number">3889</span> \</span></span><br><span class="line"><span class="ruby">  hayeah/qtumportal</span></span><br></pre></td></tr></table></figure>
+<p>QtumJS 依赖 <code>qtumd</code> 提供的访问 QTUM 区块链的 JSON-RPC 服务。</p>
+<p>更多细节请查看: <a href="https://github.com/qtumproject/qtumbook/blob/master/SUMMARY.md#part-1---running-qtum" target="_blank" rel="noopener">QtumBook - Running QTUM</a>.</p>
+<aside class="notice"><br>默认 JSON-RPC 是 “qtum：test”，运行端口为 3889<br></aside>
+
+<h1 id="ERC20-实例"><a href="#ERC20-实例" class="headerlink" title="ERC20 实例"></a>ERC20 实例</h1><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">  Qtum,</span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">"qtumjs"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> repoData = <span class="built_in">require</span>(<span class="string">"./solar.json"</span>)</span><br><span class="line"><span class="keyword">const</span> qtum = <span class="keyword">new</span> Qtum(<span class="string">"http://qtum:test@localhost:3889"</span>, repoData)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> myToken = qtum.contract(<span class="string">"zeppelin-solidity/contracts/token/CappedToken.sol"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">transfer</span>(<span class="params">fromAddr, toAddr, amount</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> tx = <span class="keyword">await</span> myToken.send(<span class="string">"transfer"</span>, [toAddr, amount], &#123;</span><br><span class="line">    senderAddress: fromAddr,</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"transfer tx:"</span>, tx.txid)</span><br><span class="line">  <span class="built_in">console</span>.log(tx)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">await</span> tx.confirm(<span class="number">3</span>)</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"transfer confirmed"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>假设 <code>solar.json</code> 包含已部署的合约，则可以使用 qtumjs 调用代币合约的方法来流通代币。</p>
+<p>一个实例 <a href="https://github.com/qtumproject/qtumbook-mytoken-qtumjs-cli/blob/29fab6dfcca55013c7efa8ee5e91bbc8c40ca55a/solar.development.json.example" target="_blank" rel="noopener">solar.json</a>. 这个可以使用 <a href="https://github.com/qtumproject/solar" target="_blank" rel="noopener">solar</a> 部署工具自动生成。</p>
+<p>完整实例: <a href="https://github.com/qtumproject/qtumbook-mytoken-qtumjs-cli" target="_blank" rel="noopener">qtumproject/qtumbook-mytoken-qtumjs-cli</a></p>
+<p>合约开发, 查看 <a href="https://github.com/qtumproject/solar" target="_blank" rel="noopener">Solar Smart Contract Deployment Tool</a>.</p>
+<p>为了充实教程, 查看 <a href="https://github.com/qtumproject/qtumbook/blob/master/part2/erc20-js.md" target="_blank" rel="noopener">QtumBook - ERC20 With QtumJS</a>.</p>
+<h1 id="Qtum"><a href="#Qtum" class="headerlink" title="Qtum"></a>Qtum</h1><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> repoData = <span class="built_in">require</span>(<span class="string">"./solar.json"</span>)</span><br><span class="line"><span class="keyword">const</span> qtum = <span class="keyword">new</span> Qtum(<span class="string">"http://qtum:test@localhost:3889"</span>, repoData)</span><br></pre></td></tr></table></figure>
+<p><code>Qtum</code> 是 <code>qtumjs</code> API 的一个对象. 它提供两个主要功能：</p>
+<ul>
+<li>对 <code>qtumd</code> RPC 服务的访问. 它是 <a href="#qtumrpc">QtumRPC</a> 的子类.</li>
+<li>实例化 <a href="#contract-2">Contract</a> 对象的工厂方法, 用于与已部署的合约进行交互。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>url</td>
+<td>string</td>
+</tr>
+<tr>
+<td></td>
+<td>qtumd RPC 服务的 URL</td>
+</tr>
+<tr>
+<td>repoData</td>
+<td><a href="#icontractsrepodata">IContractsRepoData</a></td>
+</tr>
+<tr>
+<td></td>
+<td>关于 Solidity 合约的信息.</td>
+</tr>
+</tbody>
+</table>
+<p><code>repoData</code> 包含所有已部署合约或库的 ABI 定义，以及它们的部署地址。这些信息用于实例化 <code>Contract</code> 实例。</p>
+<p>使用 <code>Qtum</code> 的工厂方法实例化的 <code>Contract</code> 对象能够解码所有在 <code>repoData</code> 里的事件类型. 但是手动构建的合约只能解码在其范围内定义的事件类型, 这也是 Solidity 编译器输出 ABI 定义的限制。</p>
+<p>建议使用 Qtum 来实例化 <code>Contract</code> 对象.</p>
+<h2 id="contract"><a href="#contract" class="headerlink" title="contract"></a>contract</h2><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> myToken = qtum.contract(<span class="string">"zeppelin-solidity/contracts/token/CappedToken.sol"</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>实例化这个合约使用了 <a href="https://github.com/qtumproject/qtumbook-mytoken-qtumjs-cli/blob/29fab6dfcca55013c7efa8ee5e91bbc8c40ca55a/solar.development.json.example#L3" target="_blank" rel="noopener">这些</a> 信息。</p>
+</blockquote>
+<p>实例化 <code>Contract</code> 对象的工厂方法，使用了 <code>repoData</code> 中的 ABI 定义和地址。合约对象是使用一个事件 log 解码器来配置的，这个解码器能解码所有 <code>repoData</code> 中已知的事件类型。</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+</tr>
+<tr>
+<td></td>
+<td>作为 <code>repoData.contracts</code> map 的 key，用于获取合约信息。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="rawCall"><a href="#rawCall" class="headerlink" title="rawCall"></a>rawCall</h2><p>继承自 <a href="#rawcall-2">QtumRPC#rawcall</a></p>
+<h1 id="Contract"><a href="#Contract" class="headerlink" title="Contract"></a>Contract</h1><p>与智能合约交互的抽象层。</p>
+<p>这比使用 <code>QtumRPC</code> 直接调用 RPC 的 <code>sendcontract</code> 和 <code>calltocontract</code> 方法更方便。它处理 ABI 编码，转换 JS 和 Solidity 值。</p>
+<ul>
+<li>有 API 用于确认交易。</li>
+<li>有 API 用于调用合约方法，使用 <code>call</code> 或 <code>send</code> .</li>
+<li>有 API 用于获取合约 log 事件。</li>
+</ul>
+<h2 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> rpc = <span class="keyword">new</span> QtumRPC(<span class="string">"http://qtum:test@localhost:3889"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> myToken = <span class="keyword">new</span> Contract(rpc, repo.contracts[</span><br><span class="line">  <span class="string">"zeppelin-solidity/contracts/token/CappedToken.sol"</span></span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>合约 <a href="https://github.com/qtumproject/qtumbook-mytoken-qtumjs-cli/blob/29fab6dfcca55013c7efa8ee5e91bbc8c40ca55a/solar.development.json.example#L3" target="_blank" rel="noopener">信息</a> 可以使用 <a href="https://github.com/qtumproject/solar" target="_blank" rel="noopener">solar</a>. 生成</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>rpc</td>
+<td>QtumRPC</td>
+<td>RPC 对象，用于与合约进行交互</td>
+</tr>
+<tr>
+<td>info</td>
+<td><a href="#icontractinfo">IContractInfo</a></td>
+<td>信息，用于部署合约</td>
+</tr>
+</tbody>
+</table>
+<p>建议使用 <a href="#contract">Qtum#contract</a> 而不是这个构造器。</p>
+<h2 id="call"><a href="#call" class="headerlink" title="call"></a>call</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">totalSupply</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> result = <span class="keyword">await</span> myToken.call(<span class="string">"totalSupply"</span>)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// supply is a BigNumber instance (see: bn.js)</span></span><br><span class="line">  <span class="keyword">const</span> supply = result.outputs[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"supply"</span>, supply.toNumber())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>实例输出:</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="attr">address</span>: <span class="string">'a778c05f1d0f70f1133f4bbf78c1a9a7bf84aed3'</span>,</span><br><span class="line">  executionResult:</span><br><span class="line">   &#123; <span class="attr">gasUsed</span>: <span class="number">21689</span>,</span><br><span class="line">     excepted: <span class="string">'None'</span>,</span><br><span class="line">     newAddress: <span class="string">'a778c05f1d0f70f1133f4bbf78c1a9a7bf84aed3'</span>,</span><br><span class="line">     output: <span class="string">'00000000000000000000000000000000000000000000000000000000000036b0'</span>,</span><br><span class="line">     codeDeposit: <span class="number">0</span>,</span><br><span class="line">     gasRefunded: <span class="number">0</span>,</span><br><span class="line">     depositSize: <span class="number">0</span>,</span><br><span class="line">     gasForDeposit: <span class="number">0</span> &#125;,</span><br><span class="line">  transactionReceipt:</span><br><span class="line">   &#123; <span class="attr">stateRoot</span>: <span class="string">'5a0d9cd5df18165c75755f4345ca81da94f9247c1c031171fd6e2ce1a368844c'</span>,</span><br><span class="line">     gasUsed: <span class="number">21689</span>,</span><br><span class="line">     bloom: <span class="string">'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</span></span><br><span class="line"><span class="string">0000000000000000000000000000000000000000000000000'</span>,</span><br><span class="line">     log: [] &#125;,</span><br><span class="line">  outputs: [ <span class="xml"><span class="tag">&lt;<span class="name">BN:</span> <span class="attr">36b0</span>&gt;</span> ] &#125;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>模拟 “mint” 调用:</p>
+</blockquote>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> result = <span class="keyword">await</span> myToken.call(<span class="string">"mint"</span>, [<span class="string">"dcd32b87270aeb980333213da2549c9907e09e94"</span>, <span class="number">1000</span>])</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>运行结果:</p>
+</blockquote>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"address"</span>: <span class="string">"a778c05f1d0f70f1133f4bbf78c1a9a7bf84aed3"</span>,</span><br><span class="line">  <span class="attr">"executionResult"</span>: &#123;</span><br><span class="line">    <span class="attr">"gasUsed"</span>: <span class="number">39306</span>,</span><br><span class="line">    <span class="attr">"excepted"</span>: <span class="string">"None"</span>,</span><br><span class="line">    <span class="attr">"newAddress"</span>: <span class="string">"a778c05f1d0f70f1133f4bbf78c1a9a7bf84aed3"</span>,</span><br><span class="line">    <span class="attr">"output"</span>: <span class="string">"0000000000000000000000000000000000000000000000000000000000000001"</span>,</span><br><span class="line">    <span class="attr">"codeDeposit"</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="attr">"gasRefunded"</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="attr">"depositSize"</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="attr">"gasForDeposit"</span>: <span class="number">0</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"transactionReceipt"</span>: &#123;</span><br><span class="line">    <span class="attr">"stateRoot"</span>: <span class="string">"9922edb770bd700a212427d3bc0764a9fed953a987952b2619b8a78dac7498aa"</span>,</span><br><span class="line">    <span class="attr">"gasUsed"</span>: <span class="number">39306</span>,</span><br><span class="line">    <span class="attr">"bloom"</span>: <span class="string">"00000000000000000000000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000020000000000008000000000000000000000000000000000000000000000000020000000020000000000800000000000000400000000010000000000000000000000000000000000000000000000000000000000000000000000000000080000000080000000000000000000000000000000000000000000000000000000002010000000000000000000000000000000200000000000000000020000000000000000000000000000000000000000000000000020000000000000000"</span>,</span><br><span class="line">    <span class="attr">"log"</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">"address"</span>: <span class="string">"a778c05f1d0f70f1133f4bbf78c1a9a7bf84aed3"</span>,</span><br><span class="line">        <span class="attr">"topics"</span>: [</span><br><span class="line">          <span class="string">"0f6798a560793a54c3bcfe86a93cde1e73087d944c0ea20544137d4121396885"</span>,</span><br><span class="line">          <span class="string">"000000000000000000000000dcd32b87270aeb980333213da2549c9907e09e94"</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="attr">"data"</span>: <span class="string">"00000000000000000000000000000000000000000000000000000000000003e8"</span></span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">"address"</span>: <span class="string">"a778c05f1d0f70f1133f4bbf78c1a9a7bf84aed3"</span>,</span><br><span class="line">        <span class="attr">"topics"</span>: [</span><br><span class="line">          <span class="string">"ddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef"</span>,</span><br><span class="line">          <span class="string">"0000000000000000000000000000000000000000000000000000000000000000"</span>,</span><br><span class="line">          <span class="string">"000000000000000000000000dcd32b87270aeb980333213da2549c9907e09e94"</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="attr">"data"</span>: <span class="string">"00000000000000000000000000000000000000000000000000000000000003e8"</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"outputs"</span>: [</span><br><span class="line">    <span class="literal">true</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"logs"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"type"</span>: <span class="string">"Mint"</span>,</span><br><span class="line">      <span class="attr">"to"</span>: <span class="string">"dcd32b87270aeb980333213da2549c9907e09e94"</span>,</span><br><span class="line">      <span class="attr">"amount"</span>: <span class="string">"3e8"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"type"</span>: <span class="string">"Transfer"</span>,</span><br><span class="line">      <span class="attr">"from"</span>: <span class="string">"0000000000000000000000000000000000000000"</span>,</span><br><span class="line">      <span class="attr">"to"</span>: <span class="string">"dcd32b87270aeb980333213da2549c9907e09e94"</span>,</span><br><span class="line">      <span class="attr">"value"</span>: <span class="string">"3e8"</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用 <code>callcontract</code> 在你本地 qtumd 节点 “模拟” 执行合约方法。这是免费的，实际上并不修改区块链。</p>
+<p>这个免费。</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>method</td>
+<td>string</td>
+</tr>
+<tr>
+<td></td>
+<td>合约方法名</td>
+</tr>
+<tr>
+<td>args</td>
+<td>Array\<any></any></td>
+</tr>
+<tr>
+<td></td>
+<td>调用方法的参数</td>
+</tr>
+<tr>
+<td>opts</td>
+<td>IContractCallRequestOptions</td>
+</tr>
+<tr>
+<td></td>
+<td>调用配置项</td>
+</tr>
+<tr>
+<td>@return</td>
+<td>Promise\&lt;<a href="#icontractcallresult">IContractCallResult</a>&gt;</td>
+</tr>
+<tr>
+<td></td>
+<td>调用结果，带有 ABI 解码的输出</td>
+</tr>
+</tbody>
+</table>
+<h2 id="send"><a href="#send" class="headerlink" title="send"></a>send</h2><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">mint</span>(<span class="params">toAddr, amount</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// Submit a `sendtocontract` transaction, invoking the `mint` method.</span></span><br><span class="line">  <span class="keyword">const</span> tx = <span class="keyword">await</span> myToken.send(<span class="string">"mint"</span>, [toAddr, amount])</span><br><span class="line"></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"tx:"</span>, tx)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Wait for 3 confirmations. The callback receives the</span></span><br><span class="line">  <span class="comment">// updated transaction info for each additional confirmation.</span></span><br><span class="line">  <span class="comment">//</span></span><br><span class="line">  <span class="comment">// Both arguments are optional. `await tx.confirm()` would do.</span></span><br><span class="line">  <span class="keyword">const</span> receipt = <span class="keyword">await</span> tx.confirm(<span class="number">3</span>, <span class="function">(<span class="params">updatedTx</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"new confirmation"</span>, updatedTx.txid, updatedTx.confirmations)</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"tx receipt:"</span>, <span class="built_in">JSON</span>.stringify(receipt, <span class="literal">null</span>, <span class="number">2</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>实例输出:</p>
+</blockquote>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">mint tx: <span class="number">858347704258506012</span>f538b19b9702d636dc350bc25a7e60d404bf3d2c08efd9</span><br><span class="line">&#123; amount: <span class="number">0</span>,</span><br><span class="line">  fee: -<span class="number">0.081064</span>,</span><br><span class="line">  confirmations: <span class="number">0</span>,</span><br><span class="line">  trusted: true,</span><br><span class="line">  txid: '<span class="number">85834770425850</span><span class="number">6012</span>f538b19b<span class="number">9702</span>d636dc350bc25a7e60d404bf3d2c08efd9',</span><br><span class="line">  walletconflicts: [],</span><br><span class="line">  time: <span class="number">1515475961</span>,</span><br><span class="line">  timereceived: <span class="number">1515475961</span>,</span><br><span class="line">  'bip125-replaceable': 'no',</span><br><span class="line">  details:</span><br><span class="line">   [ &#123; account: '',</span><br><span class="line">       category: 'send',</span><br><span class="line">       amount: <span class="number">0</span>,</span><br><span class="line">       vout: <span class="number">0</span>,</span><br><span class="line">       fee: -<span class="number">0.081064</span>,</span><br><span class="line">       abandoned: false &#125; ],</span><br><span class="line">  hex: '<span class="number">020000000100</span>6a977de<span class="number">7001</span>4fdc<span class="number">2546</span>ed19a<span class="number">53132608</span>6c6c<span class="number">9631</span>cb1c<span class="number">5352</span>db5f09e<span class="number">147736</span>b<span class="number">01000000494830</span><span class="number">45022100</span>b4ca<span class="number">3277</span>0a9f<span class="number">4267</span>9c6d20b7ddb5feb<span class="number">160303</span>fceafc2db0fedba18a22f0b<span class="number">64360220</span>3c<span class="number">2568</span>eb689fd324e76a12f<span class="number">367552</span>fe4cce36b29f<span class="number">8174738209</span>f<span class="number">881959</span>aadbab01feffffff<span class="number">02000000000000</span><span class="number">00006301040340</span>0d<span class="number">0301284440</span>c10f<span class="number">19000000000000</span><span class="number">000000000000</span>dcd32b<span class="number">8727</span>0aeb<span class="number">98033321</span>3da<span class="number">2549</span>c<span class="number">9907</span>e09e<span class="number">94000000</span></span><br><span class="line"><span class="number">00000000000000</span><span class="number">00000000000000</span><span class="number">00000000000000</span><span class="number">00000000000003</span>e814a778c05f1d0f70f<span class="number">1133</span>f4bbf78c1a9a7bf84aed3c<span class="number">2601</span>e<span class="number">7290</span>2e<span class="number">0000001976</span>a914dcd32b<span class="number">8727</span>0aeb<span class="number">98033321</span>3da<span class="number">2549</span>c<span class="number">9907</span>e09e<span class="number">9488</span>ac212e<span class="number">0000</span>',</span><br><span class="line">  method: 'mint',</span><br><span class="line">  confirm: [Function: confirm] &#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>回调打印 3 次，分别对应每次确认</p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">new</span> confirmation <span class="number">858347704258506012f</span>538b19b9702d636dc350bc25a7e60d404bf3d2c08efd9 <span class="number">1</span></span><br><span class="line"><span class="built_in">new</span> confirmation <span class="number">858347704258506012f</span>538b19b9702d636dc350bc25a7e60d404bf3d2c08efd9 <span class="number">2</span></span><br><span class="line"><span class="built_in">new</span> confirmation <span class="number">858347704258506012f</span>538b19b9702d636dc350bc25a7e60d404bf3d2c08efd9 <span class="number">3</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>确认后返回的交易收据：</p>
+</blockquote>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">"blockHash"</span>: <span class="string">"3b53ad132c26f9c30e5be9f664573428dad8b52e167becea4428d6903cb32740"</span>,</span><br><span class="line">  <span class="attr">"blockNumber"</span>: <span class="number">13917</span>,</span><br><span class="line">  <span class="attr">"transactionHash"</span>: <span class="string">"79338589bb75e1865be889142890a4e25d3b9dbd454ce3f3c2614587c85e2ed3"</span>,</span><br><span class="line">  <span class="attr">"transactionIndex"</span>: <span class="number">1</span>,</span><br><span class="line">  <span class="attr">"from"</span>: <span class="string">"dcd32b87270aeb980333213da2549c9907e09e94"</span>,</span><br><span class="line">  <span class="attr">"to"</span>: <span class="string">"a778c05f1d0f70f1133f4bbf78c1a9a7bf84aed3"</span>,</span><br><span class="line">  <span class="attr">"cumulativeGasUsed"</span>: <span class="number">39306</span>,</span><br><span class="line">  <span class="attr">"gasUsed"</span>: <span class="number">39306</span>,</span><br><span class="line">  <span class="attr">"contractAddress"</span>: <span class="string">"a778c05f1d0f70f1133f4bbf78c1a9a7bf84aed3"</span>,</span><br><span class="line">  <span class="attr">"logs"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"type"</span>: <span class="string">"Mint"</span>,</span><br><span class="line">      <span class="attr">"to"</span>: <span class="string">"dcd32b87270aeb980333213da2549c9907e09e94"</span>,</span><br><span class="line">      <span class="attr">"amount"</span>: <span class="string">"7d0"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"type"</span>: <span class="string">"Transfer"</span>,</span><br><span class="line">      <span class="attr">"from"</span>: <span class="string">"0000000000000000000000000000000000000000"</span>,</span><br><span class="line">      <span class="attr">"to"</span>: <span class="string">"dcd32b87270aeb980333213da2549c9907e09e94"</span>,</span><br><span class="line">      <span class="attr">"value"</span>: <span class="string">"7d0"</span></span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"rawlogs"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"address"</span>: <span class="string">"a778c05f1d0f70f1133f4bbf78c1a9a7bf84aed3"</span>,</span><br><span class="line">      <span class="attr">"topics"</span>: [</span><br><span class="line">        <span class="string">"0f6798a560793a54c3bcfe86a93cde1e73087d944c0ea20544137d4121396885"</span>,</span><br><span class="line">        <span class="string">"000000000000000000000000dcd32b87270aeb980333213da2549c9907e09e94"</span></span><br><span class="line">      ],</span><br><span class="line">      <span class="attr">"data"</span>: <span class="string">"00000000000000000000000000000000000000000000000000000000000007d0"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"address"</span>: <span class="string">"a778c05f1d0f70f1133f4bbf78c1a9a7bf84aed3"</span>,</span><br><span class="line">      <span class="attr">"topics"</span>: [</span><br><span class="line">        <span class="string">"ddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef"</span>,</span><br><span class="line">        <span class="string">"0000000000000000000000000000000000000000000000000000000000000000"</span>,</span><br><span class="line">        <span class="string">"000000000000000000000000dcd32b87270aeb980333213da2549c9907e09e94"</span></span><br><span class="line">      ],</span><br><span class="line">      <span class="attr">"data"</span>: <span class="string">"00000000000000000000000000000000000000000000000000000000000007d0"</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>创建一个交易，在网络全局执行合约方法，会改变区块链。</p>
+<p>这要花费 gas.</p>
+<p>对一个合约有 2 个异步步骤</p>
+<ol>
+<li>你提交交易到网络</li>
+<li>一旦提交，等待一个指定的确认数</li>
+</ol>
+<p>成功确认后，返回带有ABI解码的事件日志的交易收据 (<a href="#icontractsendreceipt">IContractSendReceipt</a>)</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>method</td>
+<td>string</td>
+</tr>
+<tr>
+<td></td>
+<td>合约方法名</td>
+</tr>
+<tr>
+<td>args</td>
+<td>Array\<any></any></td>
+</tr>
+<tr>
+<td></td>
+<td>所调用方法的参数</td>
+</tr>
+<tr>
+<td>opts</td>
+<td><a href="#icontractsendrequestoptions">IContractSendRequestOptions</a></td>
+</tr>
+<tr>
+<td></td>
+<td><em>可选</em> 发送配置项</td>
+</tr>
+<tr>
+<td>@return</td>
+<td>Promise\&lt;<a href="#icontractsendresult">IContractSendResult</a>&gt;</td>
+</tr>
+<tr>
+<td></td>
+<td>调用结果, 带有 ABI 解码的输出</td>
+</tr>
+</tbody>
+</table>
+<h2 id="方法重载"><a href="#方法重载" class="headerlink" title="方法重载"></a>方法重载</h2><p>如果没有歧义，使用方法名称来调用/发送方法。 如果相同方法名称具有多个定义，请使用方法签名来调用/发送方法。</p>
+<blockquote>
+<p>方法名 foo 可能有多个定义:</p>
+</blockquote>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">int256 _a</span>)</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">uint256 _a, uint256 _b</span>)</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">int256 _a, int256 _b</span>)</span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>foo</code> 方法有 0 个参数和有 1 个参数没有歧义。可以直接调用。</p>
+</blockquote>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">contract.call(<span class="string">"foo"</span>)</span><br><span class="line">contract.call(<span class="string">"foo"</span>, [<span class="number">1</span>])</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>foo</code> 方法带 2 个参数的有歧义，必须带完整方法签名：</p>
+</blockquote>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">contract.call(<span class="string">"foo(uint256,uint256)"</span>, [<span class="number">1</span>, <span class="number">2</span>])</span><br><span class="line">contract.call(<span class="string">"foo(int256,int256)"</span>, [<span class="number">1</span>, <span class="number">2</span>])</span><br></pre></td></tr></table></figure>
+<h2 id="logs"><a href="#logs" class="headerlink" title="logs"></a>logs</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">getLogs</span>(<span class="params">fromBlock=<span class="number">0</span>, toBlock=<span class="string">"latest"</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> logs = <span class="keyword">await</span> myToken.logs(&#123;</span><br><span class="line">    fromBlock,</span><br><span class="line">    toBlock,</span><br><span class="line">    minconf: <span class="number">1</span>,</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(logs, <span class="literal">null</span>, <span class="number">2</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>实例输出</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"entries"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"blockHash"</span>: <span class="string">"369c6ded05c27ae7efc97964cce083b0ea9b8b950e67c51e52cb1bf898b9c415"</span>,</span><br><span class="line">      <span class="string">"blockNumber"</span>: <span class="number">12184</span>,</span><br><span class="line">      <span class="string">"transactionHash"</span>: <span class="string">"d1638a53f38fd68c5763e2eef9d86b9fc6ee7ea3f018dae7b1e385b4a9a78bc7"</span>,</span><br><span class="line">      <span class="string">"transactionIndex"</span>: <span class="number">2</span>,</span><br><span class="line">      <span class="string">"from"</span>: <span class="string">"dcd32b87270aeb980333213da2549c9907e09e94"</span>,</span><br><span class="line">      <span class="string">"to"</span>: <span class="string">"a778c05f1d0f70f1133f4bbf78c1a9a7bf84aed3"</span>,</span><br><span class="line">      <span class="string">"cumulativeGasUsed"</span>: <span class="number">39306</span>,</span><br><span class="line">      <span class="string">"gasUsed"</span>: <span class="number">39306</span>,</span><br><span class="line">      <span class="string">"contractAddress"</span>: <span class="string">"a778c05f1d0f70f1133f4bbf78c1a9a7bf84aed3"</span>,</span><br><span class="line">      <span class="string">"topics"</span>: [</span><br><span class="line">        <span class="string">"0f6798a560793a54c3bcfe86a93cde1e73087d944c0ea20544137d4121396885"</span>,</span><br><span class="line">        <span class="string">"000000000000000000000000dcd32b87270aeb980333213da2549c9907e09e94"</span></span><br><span class="line">      ],</span><br><span class="line">      <span class="string">"data"</span>: <span class="string">"00000000000000000000000000000000000000000000000000000000000003e8"</span>,</span><br><span class="line">      <span class="string">"event"</span>: &#123;</span><br><span class="line">        <span class="string">"type"</span>: <span class="string">"Mint"</span>,</span><br><span class="line">        <span class="string">"to"</span>: <span class="string">"dcd32b87270aeb980333213da2549c9907e09e94"</span>,</span><br><span class="line">        <span class="string">"amount"</span>: <span class="string">"3e8"</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"blockHash"</span>: <span class="string">"369c6ded05c27ae7efc97964cce083b0ea9b8b950e67c51e52cb1bf898b9c415"</span>,</span><br><span class="line">      <span class="string">"blockNumber"</span>: <span class="number">12184</span>,</span><br><span class="line">      <span class="string">"transactionHash"</span>: <span class="string">"d1638a53f38fd68c5763e2eef9d86b9fc6ee7ea3f018dae7b1e385b4a9a78bc7"</span>,</span><br><span class="line">      <span class="string">"transactionIndex"</span>: <span class="number">2</span>,</span><br><span class="line">      <span class="string">"from"</span>: <span class="string">"dcd32b87270aeb980333213da2549c9907e09e94"</span>,</span><br><span class="line">      <span class="string">"to"</span>: <span class="string">"a778c05f1d0f70f1133f4bbf78c1a9a7bf84aed3"</span>,</span><br><span class="line">      <span class="string">"cumulativeGasUsed"</span>: <span class="number">39306</span>,</span><br><span class="line">      <span class="string">"gasUsed"</span>: <span class="number">39306</span>,</span><br><span class="line">      <span class="string">"contractAddress"</span>: <span class="string">"a778c05f1d0f70f1133f4bbf78c1a9a7bf84aed3"</span>,</span><br><span class="line">      <span class="string">"topics"</span>: [</span><br><span class="line">        <span class="string">"ddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef"</span>,</span><br><span class="line">        <span class="string">"0000000000000000000000000000000000000000000000000000000000000000"</span>,</span><br><span class="line">        <span class="string">"000000000000000000000000dcd32b87270aeb980333213da2549c9907e09e94"</span></span><br><span class="line">      ],</span><br><span class="line">      <span class="string">"data"</span>: <span class="string">"00000000000000000000000000000000000000000000000000000000000003e8"</span>,</span><br><span class="line">      <span class="string">"event"</span>: &#123;</span><br><span class="line">        <span class="string">"type"</span>: <span class="string">"Transfer"</span>,</span><br><span class="line">        <span class="string">"from"</span>: <span class="string">"0000000000000000000000000000000000000000"</span>,</span><br><span class="line">        <span class="string">"to"</span>: <span class="string">"dcd32b87270aeb980333213da2549c9907e09e94"</span>,</span><br><span class="line">        <span class="string">"value"</span>: <span class="string">"3e8"</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="string">"count"</span>: <span class="number">2</span>,</span><br><span class="line">  <span class="string">"nextblock"</span>: <span class="number">12185</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>获取由合约生成的 <a href="http://solidity.readthedocs.io/en/develop/abi-spec.html#events" target="_blank" rel="noopener">Solidity 事件日志</a> 。</p>
+<p>通过指定 <code>fromBlock</code> 和 <code>toBlock</code>，可以将事件日志查询限制块号范围。 例如，可以查询块 1000 到 1500 之间的事件日志。</p>
+<p>此外，你可以使用 <code>minconf</code> 指定事件日志之前确认的最小数量作为结果返回。</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>opts</td>
+<td><a href="#irpcwaitforlogsrequest">IRPCWaitForLogsRequest</a></td>
+</tr>
+<tr>
+<td></td>
+<td>事件日志查询参数</td>
+</tr>
+<tr>
+<td>@return</td>
+<td>Promise\&lt;<a href="#icontracteventlogs">IContractEventLogs</a>&gt;</td>
+</tr>
+<tr>
+<td></td>
+<td>日志查询结果，带有 ABI 解码的输出</td>
+</tr>
+</tbody>
+</table>
+<h2 id="onLogs"><a href="#onLogs" class="headerlink" title="onLogs"></a>onLogs</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">myToken.onLog(<span class="function">(<span class="params">entry</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(entry)</span><br><span class="line">&#125;, &#123; <span class="attr">minconf</span>: <span class="number">1</span> &#125;)</span><br></pre></td></tr></table></figure>
+<p>订阅合约新事件。每次收到新事件时都会调用回调。默认情况下，<code>onLog</code> 监听来自区块链顶端的日志。 使用 <code>fromBlock</code> 也可以接收较早的事件。</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>callback</td>
+<td>(entry: <a href="#icontracteventlog">IContractEventLog</a>) =&gt; void</td>
+</tr>
+<tr>
+<td>opts</td>
+<td><a href="#irpcwaitforlogsrequest">IRPCWaitForLogsRequest</a></td>
+</tr>
+<tr>
+<td></td>
+<td>事件日志查询参数</td>
+</tr>
+</tbody>
+</table>
+<h2 id="logEmitter"><a href="#logEmitter" class="headerlink" title="logEmitter"></a>logEmitter</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.emitter = myToken.logEmitter(&#123; <span class="attr">minconf</span>: <span class="number">1</span> &#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">this</span>.emitter.on(<span class="string">"Mint"</span>, (event) =&gt; &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">this</span>.emitter.on(<span class="string">"Transfer"</span>, (event) =&gt; &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">this</span>.emitter.on(<span class="string">"?"</span>, (event) =&gt; &#123;</span><br><span class="line">  <span class="comment">// all un-decodeable events</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>使用 <a href="https://github.com/primus/eventemitter3" target="_blank" rel="noopener">EventsEmitter</a> 接口订阅合约新事件。发出的事件是 <a href="#icontracteventlog">IContractEventLog</a> 对象。</p>
+<p>Solidity 事件名作为发出的事件名使用。</p>
+<p>缺失 ABI 定义的事件 (即不能解析) 会发送 “?”.</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>opts</td>
+<td><a href="#irpcwaitforlogsrequest">IRPCWaitForLogsRequest</a></td>
+</tr>
+<tr>
+<td></td>
+<td>事件日志查询参数</td>
+</tr>
+</tbody>
+</table>
+<h2 id="receipt"><a href="#receipt" class="headerlink" title="receipt"></a>receipt</h2><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> txid = <span class="string">"62fecfd27d71ddb260ac48c73c8f0f87e96d0b3a598ed2c2251caa4e6f9a9d97"</span></span><br><span class="line"><span class="keyword">const</span> receipt = <span class="keyword">await</span> qrcToken.receipt(txid)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(receipt, <span class="literal">null</span>, <span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>实例输出</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"blockHash"</span>: <span class="string">"af37cb8d9905521542243005fadc9f18c1498c9823e35fa277ea1c37174c289a"</span>,</span><br><span class="line">  <span class="string">"blockNumber"</span>: <span class="number">83981</span>,</span><br><span class="line">  <span class="string">"transactionHash"</span>: <span class="string">"62fecfd27d71ddb260ac48c73c8f0f87e96d0b3a598ed2c2251caa4e6f9a9d97"</span>,</span><br><span class="line">  <span class="string">"transactionIndex"</span>: <span class="number">28</span>,</span><br><span class="line">  <span class="string">"from"</span>: <span class="string">"57142e3bcf000f28890b5d979afc7ea90204e1de"</span>,</span><br><span class="line">  <span class="string">"to"</span>: <span class="string">"49665919e437a4bedb92faa45ed33ebb5a33ee63"</span>,</span><br><span class="line">  <span class="string">"cumulativeGasUsed"</span>: <span class="number">37029</span>,</span><br><span class="line">  <span class="string">"gasUsed"</span>: <span class="number">37029</span>,</span><br><span class="line">  <span class="string">"contractAddress"</span>: <span class="string">"49665919e437a4bedb92faa45ed33ebb5a33ee63"</span>,</span><br><span class="line">  <span class="string">"logs"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"type"</span>: <span class="string">"Transfer"</span>,</span><br><span class="line">      <span class="string">"from"</span>: <span class="string">"57142e3bcf000f28890b5d979afc7ea90204e1de"</span>,</span><br><span class="line">      <span class="string">"to"</span>: <span class="string">"c0ed80283c53c300c31c2bda6eca841e53cb6a21"</span>,</span><br><span class="line">      <span class="string">"value"</span>: <span class="string">"1ba5add5700"</span></span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="string">"rawlogs"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"address"</span>: <span class="string">"49665919e437a4bedb92faa45ed33ebb5a33ee63"</span>,</span><br><span class="line">      <span class="string">"topics"</span>: [</span><br><span class="line">        <span class="string">"ddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef"</span>,</span><br><span class="line">        <span class="string">"00000000000000000000000057142e3bcf000f28890b5d979afc7ea90204e1de"</span>,</span><br><span class="line">        <span class="string">"000000000000000000000000c0ed80283c53c300c31c2bda6eca841e53cb6a21"</span></span><br><span class="line">      ],</span><br><span class="line">      <span class="string">"data"</span>: <span class="string">"000000000000000000000000000000000000000000000000000001ba5add5700"</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>获取已被网络接受的交易收据。 如果交易尚未确认，则返回空值。</p>
+<p>交易事件日志是 ABI 编码</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>txid</td>
+<td>string</td>
+</tr>
+<tr>
+<td></td>
+<td>交易 ID</td>
+</tr>
+<tr>
+<td>@return</td>
+<td>Promise\&lt;<a href="#icontractsendreceipt">IContractSendReceipt</a>&gt;</td>
+</tr>
+<tr>
+<td></td>
+<td>交易收据, 带有事件日志.</td>
+</tr>
+</tbody>
+</table>
+<h1 id="QtumRPC"><a href="#QtumRPC" class="headerlink" title="QtumRPC"></a>QtumRPC</h1><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> rpc = <span class="keyword">new</span> QtumRPC(<span class="string">'http://qtum:test@localhost:3889'</span>);</span><br></pre></td></tr></table></figure>
+<p>这是一个用于直接访问 <code>qtumd</code> RPC API 的 JSON-RPC 客户端。它不会为你处理任何 ABI 编码或解码。</p>
+<p>有需要的话你可以把 RPC 用户名和密码包含到 URL 里。在例子中，用户名是 <code>qtum</code> ，密码是 <code>test</code>.</p>
+<p>QtumRPC类有一些在合约抽象内部使用的未公开的方法。 考虑将来可能会发生变化的任何未经证实的不受支持的内容。 现在，rawCall是唯一的公共API。<br>注意: <code>QtumRPC</code> 类有一些没文档的 public 方法在 <code>Contract</code> 抽象层内部使用到了. 你要考虑到之后可能不支持的无文档的内容. 现在 <code>rawCall</code> 是唯一发布的 API.</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>url</td>
+<td>string</td>
+</tr>
+<tr>
+<td></td>
+<td>qtumd RPC 服务的 URL</td>
+</tr>
+</tbody>
+</table>
+<h2 id="rawCall-1"><a href="#rawCall-1" class="headerlink" title="rawCall"></a>rawCall</h2><blockquote>
+<p>调用 <code>getinfo</code> RPC 方法以获取 Qutm 区块链的基本信息：</p>
+</blockquote>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> info = <span class="keyword">await</span> rpc.rawCall(<span class="string">"getinfo"</span>)</span><br><span class="line"><span class="built_in">console</span>.log(info)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>getinfo</code> 的输出:</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="attr">version</span>: <span class="number">141300</span>,</span><br><span class="line">  protocolversion: <span class="number">70016</span>,</span><br><span class="line">  walletversion: <span class="number">130000</span>,</span><br><span class="line">  balance: <span class="number">0</span>,</span><br><span class="line">  stake: <span class="number">0</span>,</span><br><span class="line">  blocks: <span class="number">85685</span>,</span><br><span class="line">  timeoffset: <span class="number">0</span>,</span><br><span class="line">  connections: <span class="number">8</span>,</span><br><span class="line">  proxy: <span class="string">''</span>,</span><br><span class="line">  difficulty:</span><br><span class="line">   &#123; <span class="string">'proof-of-work'</span>: <span class="number">0.0000152587890625</span>,</span><br><span class="line">     <span class="string">'proof-of-stake'</span>: <span class="number">5207642.8878753</span> &#125;,</span><br><span class="line">  testnet: <span class="literal">false</span>,</span><br><span class="line">  moneysupply: <span class="number">100322740</span>,</span><br><span class="line">  keypoololdest: <span class="number">1513325658</span>,</span><br><span class="line">  keypoolsize: <span class="number">100</span>,</span><br><span class="line">  paytxfee: <span class="number">0</span>,</span><br><span class="line">  relayfee: <span class="number">0.004</span>,</span><br><span class="line">  errors: <span class="string">''</span> &#125;</span><br></pre></td></tr></table></figure>
+<p>发起一个 JSON-RPC 1.0 方法调用, 返回调用结果. 如果 JSON API 返回不是 200 HTTP 结果，则抛出错误。</p>
+<blockquote>
+<p>使用 <code>try...catch</code> 处理错误:</p>
+</blockquote>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">main</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> result = <span class="keyword">await</span> rpc.rawCall(<span class="string">"unknown-method-hohoho"</span>)</span><br><span class="line">  &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"err"</span>, err)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="All-RPC-方法"><a href="#All-RPC-方法" class="headerlink" title="All RPC 方法"></a>All RPC 方法</h2><p>qtumd 支持的所有 RPC 方法 .</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br></pre></td><td class="code"><pre><span class="line">== Blockchain ==</span><br><span class="line">callcontract <span class="string">"address"</span> <span class="string">"data"</span> (<span class="built_in"> address </span>)</span><br><span class="line">getaccountinfo <span class="string">"address"</span></span><br><span class="line">getbestblockhash</span><br><span class="line">getblock <span class="string">"blockhash"</span> ( verbose )</span><br><span class="line">getblockchaininfo</span><br><span class="line">getblockcount</span><br><span class="line">getblockhash height</span><br><span class="line">getblockheader <span class="string">"hash"</span> ( verbose )</span><br><span class="line">getchaintips</span><br><span class="line">getdifficulty</span><br><span class="line">getmempoolancestors txid (verbose)</span><br><span class="line">getmempooldescendants txid (verbose)</span><br><span class="line">getmempoolentry txid</span><br><span class="line">getmempoolinfo</span><br><span class="line">getrawmempool ( verbose )</span><br><span class="line">getstorage <span class="string">"address"</span></span><br><span class="line">gettransactionreceipt <span class="string">"hash"</span></span><br><span class="line">gettxout <span class="string">"txid"</span> n ( include_mempool )</span><br><span class="line">gettxoutproof [<span class="string">"txid"</span>,<span class="built_in">..</span>.] ( blockhash )</span><br><span class="line">gettxoutsetinfo</span><br><span class="line">listcontracts (start maxDisplay)</span><br><span class="line">preciousblock <span class="string">"blockhash"</span></span><br><span class="line">pruneblockchain</span><br><span class="line">searchlogs &lt;fromBlock&gt; &lt;toBlock&gt; (address) (topics)</span><br><span class="line">verifychain ( checklevel nblocks )</span><br><span class="line">verifytxoutproof <span class="string">"proof"</span></span><br><span class="line">waitforlogs (fromBlock) (toBlock) (filter) (minconf)</span><br><span class="line"></span><br><span class="line">== Control ==</span><br><span class="line">getinfo</span><br><span class="line">getmemoryinfo</span><br><span class="line">help ( <span class="string">"command"</span> )</span><br><span class="line">stop</span><br><span class="line"></span><br><span class="line">== Generating ==</span><br><span class="line">generate nblocks ( maxtries )</span><br><span class="line">generatetoaddress nblocks<span class="built_in"> address </span>(maxtries)</span><br><span class="line"></span><br><span class="line">== Mining ==</span><br><span class="line">getblocktemplate ( TemplateRequest )</span><br><span class="line">getmininginfo</span><br><span class="line">getnetworkhashps ( nblocks height )</span><br><span class="line">getstakinginfo</span><br><span class="line">getsubsidy [nTarget]</span><br><span class="line">prioritisetransaction &lt;txid&gt; &lt;priority delta&gt; &lt;fee delta&gt;</span><br><span class="line">submitblock <span class="string">"hexdata"</span> ( <span class="string">"jsonparametersobject"</span> )</span><br><span class="line"></span><br><span class="line">==<span class="built_in"> Network </span>==</span><br><span class="line">addnode <span class="string">"node"</span> <span class="string">"add|remove|onetry"</span></span><br><span class="line">clearbanned</span><br><span class="line">disconnectnode <span class="string">"node"</span></span><br><span class="line">getaddednodeinfo ( <span class="string">"node"</span> )</span><br><span class="line">getconnectioncount</span><br><span class="line">getnettotals</span><br><span class="line">getnetworkinfo</span><br><span class="line">getpeerinfo</span><br><span class="line">listbanned</span><br><span class="line">ping</span><br><span class="line">setban <span class="string">"subnet"</span> <span class="string">"add|remove"</span> (bantime) (absolute)</span><br><span class="line">setnetworkactive <span class="literal">true</span>|<span class="literal">false</span></span><br><span class="line"></span><br><span class="line">== Rawtransactions ==</span><br><span class="line">createrawtransaction [&#123;<span class="string">"txid"</span>:<span class="string">"id"</span>,<span class="string">"vout"</span>:n&#125;,<span class="built_in">..</span>.] &#123;<span class="string">"address"</span>:amount,<span class="string">"data"</span>:<span class="string">"hex"</span>,<span class="built_in">..</span>.&#125; ( locktime )</span><br><span class="line">decoderawtransaction <span class="string">"hexstring"</span></span><br><span class="line">decodescript <span class="string">"hexstring"</span></span><br><span class="line">fromhexaddress <span class="string">"hexaddress"</span></span><br><span class="line">fundrawtransaction <span class="string">"hexstring"</span> ( options )</span><br><span class="line">gethexaddress <span class="string">"address"</span></span><br><span class="line">getrawtransaction <span class="string">"txid"</span> ( verbose )</span><br><span class="line">sendrawtransaction <span class="string">"hexstring"</span> ( allowhighfees )</span><br><span class="line">signrawtransaction <span class="string">"hexstring"</span> ( [&#123;<span class="string">"txid"</span>:<span class="string">"id"</span>,<span class="string">"vout"</span>:n,<span class="string">"scriptPubKey"</span>:<span class="string">"hex"</span>,<span class="string">"redeemScript"</span>:<span class="string">"hex"</span>&#125;,<span class="built_in">..</span>.] [<span class="string">"privatekey1"</span>,<span class="built_in">..</span>.] sighashtype )</span><br><span class="line"></span><br><span class="line">== Util ==</span><br><span class="line">createmultisig nrequired [<span class="string">"key"</span>,<span class="built_in">..</span>.]</span><br><span class="line">estimatefee nblocks</span><br><span class="line">estimatepriority nblocks</span><br><span class="line">estimatesmartfee nblocks</span><br><span class="line">estimatesmartpriority nblocks</span><br><span class="line">signmessagewithprivkey <span class="string">"privkey"</span> <span class="string">"message"</span></span><br><span class="line">validateaddress <span class="string">"address"</span></span><br><span class="line">verifymessage <span class="string">"address"</span> <span class="string">"signature"</span> <span class="string">"message"</span></span><br><span class="line"></span><br><span class="line">== Wallet ==</span><br><span class="line">abandontransaction <span class="string">"txid"</span></span><br><span class="line">addmultisigaddress nrequired [<span class="string">"key"</span>,<span class="built_in">..</span>.] ( <span class="string">"account"</span> )</span><br><span class="line">addwitnessaddress <span class="string">"address"</span></span><br><span class="line">backupwallet <span class="string">"destination"</span></span><br><span class="line">bumpfee <span class="string">"txid"</span> ( options )</span><br><span class="line">createcontract <span class="string">"bytecode"</span> (gaslimit gasprice <span class="string">"senderaddress"</span> broadcast)</span><br><span class="line">dumpprivkey <span class="string">"address"</span></span><br><span class="line">dumpwallet <span class="string">"filename"</span></span><br><span class="line">encryptwallet <span class="string">"passphrase"</span></span><br><span class="line">getaccount <span class="string">"address"</span></span><br><span class="line">getaccountaddress <span class="string">"account"</span></span><br><span class="line">getaddressesbyaccount <span class="string">"account"</span></span><br><span class="line">getbalance ( <span class="string">"account"</span> minconf include_watchonly )</span><br><span class="line">getnewaddress ( <span class="string">"account"</span> )</span><br><span class="line">getrawchangeaddress</span><br><span class="line">getreceivedbyaccount <span class="string">"account"</span> ( minconf )</span><br><span class="line">getreceivedbyaddress <span class="string">"address"</span> ( minconf )</span><br><span class="line">gettransaction <span class="string">"txid"</span> ( include_watchonly ) (waitconf)</span><br><span class="line">getunconfirmedbalance</span><br><span class="line">getwalletinfo</span><br><span class="line">importaddress <span class="string">"address"</span> ( <span class="string">"label"</span> rescan p2sh )</span><br><span class="line">importmulti <span class="string">"requests"</span> <span class="string">"options"</span></span><br><span class="line">importprivkey <span class="string">"qtum"</span> ( <span class="string">"label"</span> ) ( rescan )</span><br><span class="line">importprunedfunds</span><br><span class="line">importpubkey <span class="string">"pubkey"</span> ( <span class="string">"label"</span> rescan )</span><br><span class="line">importwallet <span class="string">"filename"</span></span><br><span class="line">keypoolrefill ( newsize )</span><br><span class="line">listaccounts ( minconf include_watchonly)</span><br><span class="line">listaddressgroupings</span><br><span class="line">listlockunspent</span><br><span class="line">listreceivedbyaccount ( minconf include_empty include_watchonly)</span><br><span class="line">listreceivedbyaddress ( minconf include_empty include_watchonly)</span><br><span class="line">listsinceblock ( <span class="string">"blockhash"</span> target_confirmations include_watchonly)</span><br><span class="line">listtransactions ( <span class="string">"account"</span> count skip include_watchonly)</span><br><span class="line">listunspent ( minconf maxconf  [<span class="string">"addresses"</span>,<span class="built_in">..</span>.] [include_unsafe] )</span><br><span class="line">lockunspent unlock ([&#123;<span class="string">"txid"</span>:<span class="string">"txid"</span>,<span class="string">"vout"</span>:n&#125;,<span class="built_in">..</span>.])</span><br><span class="line">move <span class="string">"fromaccount"</span> <span class="string">"toaccount"</span> amount ( minconf <span class="string">"comment"</span> )</span><br><span class="line">removeprunedfunds <span class="string">"txid"</span></span><br><span class="line">reservebalance [&lt;reserve&gt; [amount]]</span><br><span class="line">sendfrom <span class="string">"fromaccount"</span> <span class="string">"toaddress"</span> amount ( minconf <span class="string">"comment"</span> <span class="string">"comment_to"</span> )</span><br><span class="line">sendmany <span class="string">"fromaccount"</span> &#123;<span class="string">"address"</span>:amount,<span class="built_in">..</span>.&#125; ( minconf <span class="string">"comment"</span> [<span class="string">"address"</span>,<span class="built_in">..</span>.] )</span><br><span class="line">sendmanywithdupes <span class="string">"fromaccount"</span> &#123;<span class="string">"address"</span>:amount,<span class="built_in">..</span>.&#125; ( minconf <span class="string">"comment"</span> [<span class="string">"address"</span>,<span class="built_in">..</span>.] )</span><br><span class="line">sendtoaddress <span class="string">"address"</span> amount ( <span class="string">"comment"</span> <span class="string">"comment_to"</span> subtractfeefromamount )</span><br><span class="line">sendtocontract <span class="string">"contractaddress"</span> <span class="string">"data"</span> (amount gaslimit gasprice senderaddress broadcast)</span><br><span class="line">setaccount <span class="string">"address"</span> <span class="string">"account"</span></span><br><span class="line">settxfee amount</span><br><span class="line">signmessage <span class="string">"address"</span> <span class="string">"message"</span></span><br></pre></td></tr></table></figure>
+<h2 id="实例-getblockcount"><a href="#实例-getblockcount" class="headerlink" title="实例: getblockcount"></a>实例: getblockcount</h2><p>返回最长的区块链的块数。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> result = <span class="keyword">await</span> rpc.rawCall(<span class="string">"getblockcount"</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>结果</p>
+</blockquote>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">85687</span></span><br></pre></td></tr></table></figure>
+<h2 id="实例-getnewaddress"><a href="#实例-getnewaddress" class="headerlink" title="实例: getnewaddress"></a>实例: getnewaddress</h2><p>返回接收付款的新 Qtum 地址。可能对要为用户生成存款地址的交易所有用。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> result = <span class="keyword">await</span> rpc.rawCall(<span class="string">"getnewaddress"</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>结果</p>
+</blockquote>
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">QS<span class="symbol">nrDTj4</span>U<span class="symbol">NcRwKdhY8</span>sUZEd<span class="number">74</span>VzwqeAddW</span><br></pre></td></tr></table></figure>
+<h2 id="实例-fromhexaddress"><a href="#实例-fromhexaddress" class="headerlink" title="实例: fromhexaddress"></a>实例: fromhexaddress</h2><p>把一个 base58 pubkeyhash 地址转化成 16 进制地址用于智能合约。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> result = <span class="keyword">await</span> rpc.rawCall(<span class="string">"gethexaddress"</span>, [<span class="string">"QSnrDTj4UNcRwKdhY8sUZEd74VzwqeAddW"</span>])</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>结果</p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">43d</span>ebdac95a0eaa4ff92d6b873944a4d92beae59</span><br></pre></td></tr></table></figure>
+<h2 id="实例-gettransactionreceipt"><a href="#实例-gettransactionreceipt" class="headerlink" title="实例: gettransactionreceipt"></a>实例: gettransactionreceipt</h2><p>获得确认交易的收据。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> txid = <span class="string">"62fecfd27d71ddb260ac48c73c8f0f87e96d0b3a598ed2c2251caa4e6f9a9d97"</span></span><br><span class="line"><span class="keyword">const</span> result = <span class="keyword">await</span> rpc.rawCall(<span class="string">"gettransactionreceipt"</span>, [txid])</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>结果</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="string">"blockHash"</span>: <span class="string">"af37cb8d9905521542243005fadc9f18c1498c9823e35fa277ea1c37174c289a"</span>,</span><br><span class="line">    <span class="string">"blockNumber"</span>: <span class="number">83981</span>,</span><br><span class="line">    <span class="string">"transactionHash"</span>: <span class="string">"62fecfd27d71ddb260ac48c73c8f0f87e96d0b3a598ed2c2251caa4e6f9a9d97"</span>,</span><br><span class="line">    <span class="string">"transactionIndex"</span>: <span class="number">28</span>,</span><br><span class="line">    <span class="string">"from"</span>: <span class="string">"57142e3bcf000f28890b5d979afc7ea90204e1de"</span>,</span><br><span class="line">    <span class="string">"to"</span>: <span class="string">"49665919e437a4bedb92faa45ed33ebb5a33ee63"</span>,</span><br><span class="line">    <span class="string">"cumulativeGasUsed"</span>: <span class="number">37029</span>,</span><br><span class="line">    <span class="string">"gasUsed"</span>: <span class="number">37029</span>,</span><br><span class="line">    <span class="string">"contractAddress"</span>: <span class="string">"49665919e437a4bedb92faa45ed33ebb5a33ee63"</span>,</span><br><span class="line">    <span class="string">"log"</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="string">"address"</span>: <span class="string">"49665919e437a4bedb92faa45ed33ebb5a33ee63"</span>,</span><br><span class="line">        <span class="string">"topics"</span>: [</span><br><span class="line">          <span class="string">"ddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef"</span>,</span><br><span class="line">          <span class="string">"00000000000000000000000057142e3bcf000f28890b5d979afc7ea90204e1de"</span>,</span><br><span class="line">          <span class="string">"000000000000000000000000c0ed80283c53c300c31c2bda6eca841e53cb6a21"</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="string">"data"</span>: <span class="string">"000000000000000000000000000000000000000000000000000001ba5add5700"</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h1 id="类型词典"><a href="#类型词典" class="headerlink" title="类型词典"></a>类型词典</h1><h2 id="IContractInfo"><a href="#IContractInfo" class="headerlink" title="IContractInfo"></a>IContractInfo</h2><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">interface</span> IContractInfo &#123;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 合约的 ABI 定义, solc 生成.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  abi: IABIMethod[]</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 合约地址</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  address: <span class="built_in">string</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 合约所有者的地址</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  sender?: <span class="built_in">string</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>与部署合约交互所需的最少部署信息。</p>
+<h2 id="IContractCallResult"><a href="#IContractCallResult" class="headerlink" title="IContractCallResult"></a>IContractCallResult</h2><p>调用一个合约方法的返回结果，带有解码的输出和日志。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">interface</span> IContractCallResult <span class="keyword">extends</span> IRPCCallContractResult &#123;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * ABI 解码的输出</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  outputs: <span class="built_in">any</span>[]</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * ABI 解码的日志</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  logs: <span class="built_in">Array</span>&lt;IDecodedSolidityEvent | <span class="literal">null</span>&gt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">interface</span> IRPCCallContractResult &#123;</span><br><span class="line">  address: <span class="built_in">string</span></span><br><span class="line">  executionResult: IExecutionResult,</span><br><span class="line">  transactionReceipt: &#123;</span><br><span class="line">    stateRoot: <span class="built_in">string</span>,</span><br><span class="line">    gasUsed: <span class="built_in">string</span>,</span><br><span class="line">    bloom: <span class="built_in">string</span>,</span><br><span class="line">    log: <span class="built_in">any</span>[],</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">interface</span> IExecutionResult &#123;</span><br><span class="line">  gasUsed: <span class="built_in">number</span>,</span><br><span class="line">  excepted: <span class="built_in">string</span>,</span><br><span class="line">  newAddress: <span class="built_in">string</span>,</span><br><span class="line">  output: <span class="built_in">string</span>,</span><br><span class="line">  codeDeposit: <span class="built_in">number</span>,</span><br><span class="line">  gasRefunded: <span class="built_in">number</span>,</span><br><span class="line">  depositSize: <span class="built_in">number</span>,</span><br><span class="line">  gasForDeposit: <span class="built_in">number</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>实例:</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"address"</span>: <span class="string">"a778c05f1d0f70f1133f4bbf78c1a9a7bf84aed3"</span>,</span><br><span class="line">  <span class="string">"executionResult"</span>: &#123;</span><br><span class="line">    <span class="string">"gasUsed"</span>: <span class="number">39306</span>,</span><br><span class="line">    <span class="string">"excepted"</span>: <span class="string">"None"</span>,</span><br><span class="line">    <span class="string">"newAddress"</span>: <span class="string">"a778c05f1d0f70f1133f4bbf78c1a9a7bf84aed3"</span>,</span><br><span class="line">    <span class="string">"output"</span>: <span class="string">"0000000000000000000000000000000000000000000000000000000000000001"</span>,</span><br><span class="line">    <span class="string">"codeDeposit"</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="string">"gasRefunded"</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="string">"depositSize"</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="string">"gasForDeposit"</span>: <span class="number">0</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"transactionReceipt"</span>: &#123;</span><br><span class="line">    <span class="string">"stateRoot"</span>: <span class="string">"9922edb770bd700a212427d3bc0764a9fed953a987952b2619b8a78dac7498aa"</span>,</span><br><span class="line">    <span class="string">"gasUsed"</span>: <span class="number">39306</span>,</span><br><span class="line">    <span class="string">"bloom"</span>: <span class="string">"00000000000000000000000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000020000000000008000000000000000000000000000000000000000000000000020000000020000000000800000000000000400000000010000000000000000000000000000000000000000000000000000000000000000000000000000080000000080000000000000000000000000000000000000000000000000000000002010000000000000000000000000000000200000000000000000020000000000000000000000000000000000000000000000000020000000000000000"</span>,</span><br><span class="line">    <span class="string">"log"</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="string">"address"</span>: <span class="string">"a778c05f1d0f70f1133f4bbf78c1a9a7bf84aed3"</span>,</span><br><span class="line">        <span class="string">"topics"</span>: [</span><br><span class="line">          <span class="string">"0f6798a560793a54c3bcfe86a93cde1e73087d944c0ea20544137d4121396885"</span>,</span><br><span class="line">          <span class="string">"000000000000000000000000dcd32b87270aeb980333213da2549c9907e09e94"</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="string">"data"</span>: <span class="string">"00000000000000000000000000000000000000000000000000000000000003e8"</span></span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="string">"address"</span>: <span class="string">"a778c05f1d0f70f1133f4bbf78c1a9a7bf84aed3"</span>,</span><br><span class="line">        <span class="string">"topics"</span>: [</span><br><span class="line">          <span class="string">"ddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef"</span>,</span><br><span class="line">          <span class="string">"0000000000000000000000000000000000000000000000000000000000000000"</span>,</span><br><span class="line">          <span class="string">"000000000000000000000000dcd32b87270aeb980333213da2549c9907e09e94"</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="string">"data"</span>: <span class="string">"00000000000000000000000000000000000000000000000000000000000003e8"</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"outputs"</span>: [</span><br><span class="line">    <span class="literal">true</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="string">"logs"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"type"</span>: <span class="string">"Mint"</span>,</span><br><span class="line">      <span class="string">"to"</span>: <span class="string">"dcd32b87270aeb980333213da2549c9907e09e94"</span>,</span><br><span class="line">      <span class="string">"amount"</span>: <span class="string">"3e8"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"type"</span>: <span class="string">"Transfer"</span>,</span><br><span class="line">      <span class="string">"from"</span>: <span class="string">"0000000000000000000000000000000000000000"</span>,</span><br><span class="line">      <span class="string">"to"</span>: <span class="string">"dcd32b87270aeb980333213da2549c9907e09e94"</span>,</span><br><span class="line">      <span class="string">"value"</span>: <span class="string">"3e8"</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>Contract#call</code> 的返回类型.</p>
+<h2 id="IContractSendRequestOptions"><a href="#IContractSendRequestOptions" class="headerlink" title="IContractSendRequestOptions"></a>IContractSendRequestOptions</h2><p><a href="#send">Contract#send</a> 的配置项</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * `send` 合约方法的配置项.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">interface</span> IContractSendRequestOptions &#123;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 要发送的 QTUM 数. 例如 0.1, 默认: 0</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  amount?: <span class="built_in">number</span> | <span class="built_in">string</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * gasLimit, 默认: 200000, 最大: 40000000</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  gasLimit?: <span class="built_in">number</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 每 gas 的 Qtum 价格, 默认: 0.00000001, 最小:0.00000001</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  gasPrice?: <span class="built_in">number</span> | <span class="built_in">string</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 发送者的 quantum 地址</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  senderAddress?: <span class="built_in">string</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="IContractSendResult"><a href="#IContractSendResult" class="headerlink" title="IContractSendResult"></a>IContractSendResult</h2><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> tx = <span class="keyword">await</span> contract.send(method, args)</span><br><span class="line"><span class="keyword">await</span> tx.confirm(<span class="number">3</span>, <span class="function">(<span class="params">updatedTx, receipt</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">/// ...</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>返回 <a href="#send">Contract#send</a> 的值。</p>
+<p><code>confirm</code> 方法用来等待交易确认。</p>
+<p><code>confirm</code> 方法的参数:</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>n</td>
+<td>number</td>
+</tr>
+<tr>
+<td></td>
+<td><em>可选</em> 须等待的确认数</td>
+</tr>
+<tr>
+<td>callback</td>
+<td>IContractSendConfirmationHandler</td>
+</tr>
+<tr>
+<td></td>
+<td><em>可选</em> 回调函数，每次确认都会调用</td>
+</tr>
+</tbody>
+</table>
+<p>回调值为:</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>updatedTx</td>
+<td>IRPCGetTransactionResult</td>
+</tr>
+<tr>
+<td></td>
+<td>关于提交给网络的交易的基本信息</td>
+</tr>
+<tr>
+<td>receipt</td>
+<td>IContractSendReceipt</td>
+</tr>
+<tr>
+<td></td>
+<td>关于已确认交易的其他信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
+<li><a href="#irpcgettransactionresult">IRPCGetTransactionResult</a></li>
+<li><a href="#icontractsendreceipt">IContractSendReceipt</a></li>
+</ul>
+<h2 id="IRPCGetTransactionResult"><a href="#IRPCGetTransactionResult" class="headerlink" title="IRPCGetTransactionResult"></a>IRPCGetTransactionResult</h2><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">interface</span> IRPCGetTransactionResult &#123;</span><br><span class="line">  amount: <span class="built_in">number</span>,</span><br><span class="line">  fee: <span class="built_in">number</span>,</span><br><span class="line">  confirmations: <span class="built_in">number</span>,</span><br><span class="line">  blockhash: <span class="built_in">string</span>,</span><br><span class="line">  blockindex: <span class="built_in">number</span>,</span><br><span class="line">  blocktime: <span class="built_in">number</span>,</span><br><span class="line">  txid: <span class="built_in">string</span>,</span><br><span class="line">  walletconflicts: <span class="built_in">any</span>[],</span><br><span class="line">  time: <span class="built_in">number</span>,</span><br><span class="line">  timereceived: <span class="built_in">number</span>,</span><br><span class="line">  <span class="string">"bip125-replaceable"</span>: <span class="string">"no"</span> | <span class="string">"yes"</span> | <span class="string">"unknown"</span>,</span><br><span class="line">  details: <span class="built_in">any</span>[]</span><br><span class="line">  hex: <span class="built_in">string</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>关于提交给网络的交易的基本信息。</p>
+<h2 id="IContractSendReceipt"><a href="#IContractSendReceipt" class="headerlink" title="IContractSendReceipt"></a>IContractSendReceipt</h2><p><a href="#send">Contract#send</a> 的合约收据, 带有解码的事件日志</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">interface</span> IContractSendReceipt <span class="keyword">extends</span> IRPCGetTransactionReceiptBase &#123;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 使用 ABI 解码的日志</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  logs: IDecodedLog[],</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 未解码的日志</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  rawlogs: ITransactionLog[],</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 解码的 Solidity 事件日志</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">interface</span> IDecodedLog &#123;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 事件日志名称</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="keyword">type</span>: <span class="built_in">string</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 键值映射作为事件日志参数</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  [key: <span class="built_in">string</span>]: <span class="built_in">any</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>实例</p>
+</blockquote>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"blockHash"</span>: <span class="string">"3b53ad132c26f9c30e5be9f664573428dad8b52e167becea4428d6903cb32740"</span>,</span><br><span class="line">  <span class="attr">"blockNumber"</span>: <span class="number">13917</span>,</span><br><span class="line">  <span class="attr">"transactionHash"</span>: <span class="string">"79338589bb75e1865be889142890a4e25d3b9dbd454ce3f3c2614587c85e2ed3"</span>,</span><br><span class="line">  <span class="attr">"transactionIndex"</span>: <span class="number">1</span>,</span><br><span class="line">  <span class="attr">"from"</span>: <span class="string">"dcd32b87270aeb980333213da2549c9907e09e94"</span>,</span><br><span class="line">  <span class="attr">"to"</span>: <span class="string">"a778c05f1d0f70f1133f4bbf78c1a9a7bf84aed3"</span>,</span><br><span class="line">  <span class="attr">"cumulativeGasUsed"</span>: <span class="number">39306</span>,</span><br><span class="line">  <span class="attr">"gasUsed"</span>: <span class="number">39306</span>,</span><br><span class="line">  <span class="attr">"contractAddress"</span>: <span class="string">"a778c05f1d0f70f1133f4bbf78c1a9a7bf84aed3"</span>,</span><br><span class="line">  <span class="attr">"logs"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"type"</span>: <span class="string">"Mint"</span>,</span><br><span class="line">      <span class="attr">"to"</span>: <span class="string">"dcd32b87270aeb980333213da2549c9907e09e94"</span>,</span><br><span class="line">      <span class="attr">"amount"</span>: <span class="string">"7d0"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"type"</span>: <span class="string">"Transfer"</span>,</span><br><span class="line">      <span class="attr">"from"</span>: <span class="string">"0000000000000000000000000000000000000000"</span>,</span><br><span class="line">      <span class="attr">"to"</span>: <span class="string">"dcd32b87270aeb980333213da2549c9907e09e94"</span>,</span><br><span class="line">      <span class="attr">"value"</span>: <span class="string">"7d0"</span></span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"rawlogs"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"address"</span>: <span class="string">"a778c05f1d0f70f1133f4bbf78c1a9a7bf84aed3"</span>,</span><br><span class="line">      <span class="attr">"topics"</span>: [</span><br><span class="line">        <span class="string">"0f6798a560793a54c3bcfe86a93cde1e73087d944c0ea20544137d4121396885"</span>,</span><br><span class="line">        <span class="string">"000000000000000000000000dcd32b87270aeb980333213da2549c9907e09e94"</span></span><br><span class="line">      ],</span><br><span class="line">      <span class="attr">"data"</span>: <span class="string">"00000000000000000000000000000000000000000000000000000000000007d0"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"address"</span>: <span class="string">"a778c05f1d0f70f1133f4bbf78c1a9a7bf84aed3"</span>,</span><br><span class="line">      <span class="attr">"topics"</span>: [</span><br><span class="line">        <span class="string">"ddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef"</span>,</span><br><span class="line">        <span class="string">"0000000000000000000000000000000000000000000000000000000000000000"</span>,</span><br><span class="line">        <span class="string">"000000000000000000000000dcd32b87270aeb980333213da2549c9907e09e94"</span></span><br><span class="line">      ],</span><br><span class="line">      <span class="attr">"data"</span>: <span class="string">"00000000000000000000000000000000000000000000000000000000000007d0"</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="参考-1"><a href="#参考-1" class="headerlink" title="参考"></a>参考</h3><ul>
+<li><a href="#irpcgettransactionreceiptbase">IRPCGetTransactionReceiptBase</a></li>
+</ul>
+<h2 id="IRPCWaitForLogsRequest"><a href="#IRPCWaitForLogsRequest" class="headerlink" title="IRPCWaitForLogsRequest"></a>IRPCWaitForLogsRequest</h2><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">interface</span> IRPCWaitForLogsRequest &#123;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 查找日志的开始块号。</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  fromBlock?: <span class="built_in">number</span> | <span class="string">"latest"</span>,</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 查找日志的停止块号. 如果是 null, 会无限期等待</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  toBlock?: <span class="built_in">number</span> | <span class="string">"latest"</span>,</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 过滤日志的条件。 地址和主题分别指定为十六进制字符串数组</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  filter?: ILogFilter,</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 日志返回前的最少确认数</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  minconf?: <span class="built_in">number</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="IContractEventLogs"><a href="#IContractEventLogs" class="headerlink" title="IContractEventLogs"></a>IContractEventLogs</h2><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 查询合约事件日志的结果。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">interface</span> IContractEventLogs &#123;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 事件日志, ABI 解码.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  entries: IContractEventLog[]</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 返回的事件日志数</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  count: <span class="built_in">number</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 要开始查询新事件日志的块号</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  nextblock: <span class="built_in">number</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>查询合约事件日志的结果。</p>
+<p>要查询尚未出现的新日志，请在查询事件日志时将 <code>nextblock</code> 用作 <code>startBlock</code>：</p>
+<ul>
+<li><a href="#icontracteventlog">IContractEventLog</a></li>
+</ul>
+<h2 id="IContractEventLog"><a href="#IContractEventLog" class="headerlink" title="IContractEventLog"></a>IContractEventLog</h2><p>一条解码的合约事件日志</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">interface</span> IContractLogEntry <span class="keyword">extends</span> ILogEntry &#123;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Solidity 事件, ABI 解码. 如果没有找到 ABI 定义，为 Null</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  event?: ISolidityEvent</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  qtumd 返回的原始日志数据，不是 ABI 解码</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">interface</span> ILogEntry <span class="keyword">extends</span> IRPCGetTransactionReceiptBase &#123;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * EVM 日志主题</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  topics: <span class="built_in">string</span>[]</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * EVM 日志数据, 十六进制字符串</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  data: <span class="built_in">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * qtumd 返回的交易收据</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">interface</span> IRPCGetTransactionReceiptBase &#123;</span><br><span class="line">  blockHash: <span class="built_in">string</span></span><br><span class="line">  blockNumber: <span class="built_in">number</span></span><br><span class="line"></span><br><span class="line">  transactionHash: <span class="built_in">string</span></span><br><span class="line">  transactionIndex: <span class="built_in">number</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">from</span>: <span class="built_in">string</span></span><br><span class="line">  to: <span class="built_in">string</span></span><br><span class="line"></span><br><span class="line">  cumulativeGasUsed: <span class="built_in">number</span></span><br><span class="line">  gasUsed: <span class="built_in">number</span></span><br><span class="line"></span><br><span class="line">  contractAddress: <span class="built_in">string</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>实例</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"blockHash"</span>: <span class="string">"369c6ded05c27ae7efc97964cce083b0ea9b8b950e67c51e52cb1bf898b9c415"</span>,</span><br><span class="line">  <span class="string">"blockNumber"</span>: <span class="number">12184</span>,</span><br><span class="line">  <span class="string">"transactionHash"</span>: <span class="string">"d1638a53f38fd68c5763e2eef9d86b9fc6ee7ea3f018dae7b1e385b4a9a78bc7"</span>,</span><br><span class="line">  <span class="string">"transactionIndex"</span>: <span class="number">2</span>,</span><br><span class="line">  <span class="string">"from"</span>: <span class="string">"dcd32b87270aeb980333213da2549c9907e09e94"</span>,</span><br><span class="line">  <span class="string">"to"</span>: <span class="string">"a778c05f1d0f70f1133f4bbf78c1a9a7bf84aed3"</span>,</span><br><span class="line">  <span class="string">"cumulativeGasUsed"</span>: <span class="number">39306</span>,</span><br><span class="line">  <span class="string">"gasUsed"</span>: <span class="number">39306</span>,</span><br><span class="line">  <span class="string">"contractAddress"</span>: <span class="string">"a778c05f1d0f70f1133f4bbf78c1a9a7bf84aed3"</span>,</span><br><span class="line">  <span class="string">"topics"</span>: [</span><br><span class="line">    <span class="string">"0f6798a560793a54c3bcfe86a93cde1e73087d944c0ea20544137d4121396885"</span>,</span><br><span class="line">    <span class="string">"000000000000000000000000dcd32b87270aeb980333213da2549c9907e09e94"</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="string">"data"</span>: <span class="string">"00000000000000000000000000000000000000000000000000000000000003e8"</span>,</span><br><span class="line">  <span class="string">"event"</span>: &#123;</span><br><span class="line">    <span class="string">"type"</span>: <span class="string">"Mint"</span>,</span><br><span class="line">    <span class="string">"to"</span>: <span class="string">"dcd32b87270aeb980333213da2549c9907e09e94"</span>,</span><br><span class="line">    <span class="string">"amount"</span>: <span class="string">"3e8"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="IDecodedSolidityEvent"><a href="#IDecodedSolidityEvent" class="headerlink" title="IDecodedSolidityEvent"></a>IDecodedSolidityEvent</h2><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 一个解码的 Solidity 事件日志</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">interface</span> IDecodedSolidityEvent &#123;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 事件名称</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="keyword">type</span>: <span class="built_in">string</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 键值映射作为事件日志参数</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  [key: <span class="built_in">string</span>]: <span class="built_in">any</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Example</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"type"</span>: <span class="string">"Transfer"</span>,</span><br><span class="line">  <span class="string">"from"</span>: <span class="string">"0000000000000000000000000000000000000000"</span>,</span><br><span class="line">  <span class="string">"to"</span>: <span class="string">"dcd32b87270aeb980333213da2549c9907e09e94"</span>,</span><br><span class="line">  <span class="string">"value"</span>: <span class="string">"3e8"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>解码的 Solidity 事件日志。 事件参数存储在键值映射中。</p>
+<h2 id="IRPCGetTransactionReceiptBase"><a href="#IRPCGetTransactionReceiptBase" class="headerlink" title="IRPCGetTransactionReceiptBase"></a>IRPCGetTransactionReceiptBase</h2><p>网络接受的交易收据。它由 <code>gettransactionreceipt</code> RPC 调用返回。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">interface</span> IRPCGetTransactionReceiptBase &#123;</span><br><span class="line">  blockHash: <span class="built_in">string</span></span><br><span class="line">  blockNumber: <span class="built_in">number</span></span><br><span class="line"></span><br><span class="line">  transactionHash: <span class="built_in">string</span></span><br><span class="line">  transactionIndex: <span class="built_in">number</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">from</span>: <span class="built_in">string</span></span><br><span class="line">  to: <span class="built_in">string</span></span><br><span class="line"></span><br><span class="line">  cumulativeGasUsed: <span class="built_in">number</span></span><br><span class="line">  gasUsed: <span class="built_in">number</span></span><br><span class="line"></span><br><span class="line">  contractAddress: <span class="built_in">string</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="IContractsRepoData"><a href="#IContractsRepoData" class="headerlink" title="IContractsRepoData"></a>IContractsRepoData</h2><p>合约相关信息</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">interface</span> IContractsRepoData &#123;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 部署合约的相关信息</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  contracts: &#123;</span><br><span class="line">    [key: <span class="built_in">string</span>]: IContractInfo,</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 部署库的相关信息</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  libraries: &#123;</span><br><span class="line">    [key: <span class="built_in">string</span>]: IContractInfo,</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 部署合约/库引用的合约信息，但未部署</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  related: &#123;</span><br><span class="line">    [key: <span class="built_in">string</span>]: &#123;</span><br><span class="line">      abi: IABIMethod[],</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 与部署合约进行交互所需的最少部署信息。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">interface</span> IContractInfo &#123;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 合约的 ABI 定义, solc 生成.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  abi: IABIMethod[]</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 合约地址</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  address: <span class="built_in">string</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 合约所有者的地址</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  sender?: <span class="built_in">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">interface</span> IABIMethod &#123;</span><br><span class="line">  name: <span class="built_in">string</span>,</span><br><span class="line">  <span class="keyword">type</span>: <span class="built_in">string</span>,</span><br><span class="line">  payable: <span class="built_in">boolean</span>,</span><br><span class="line">  inputs: IABIInput[],</span><br><span class="line">  outputs: IABIOutput[],</span><br><span class="line">  constant: <span class="built_in">boolean</span>,</span><br><span class="line">  anonymous: <span class="built_in">boolean</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以使用开发工具 <a href="https://github.com/qtumproject/solar" target="_blank" rel="noopener">solar</a> 自动生成。</p>
+<p>样例 <a href="https://github.com/qtumproject/qtumbook-mytoken-qtumjs-cli/blob/29fab6dfcca55013c7efa8ee5e91bbc8c40ca55a/solar.development.json.example" target="_blank" rel="noopener">solar.json</a>.</p>
+
+                
+<p class="pink-link-context">
+    <a href="/2018/06/12/2018-06-12-翻译-深入理解以太坊虚拟机-EVM汇编代码简介/" rel="next" title="【翻译】 深入理解以太坊虚拟机 - EVM汇编代码简介">
+    Prev: 【翻译】 深入理解以太坊虚拟机 - EVM汇编代码简介
+  </a>
+</p>
+
+
+
+<p class="pink-link-context">
+    <a href="/2018/05/30/2018-05-30-翻译-BitcoinCore0.15.0版本说明/" rel="next" title="【翻译】 Bitcoin Core 0.15.0版本说明">
+    Next: 【翻译】 Bitcoin Core 0.15.0版本说明
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large pink">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect green" title="Return to top"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse yellow darken-1"  data-activates="main-menu" title="Menu"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer indigo darken-1">
+    
+    <div class="footer-container container">
+        <div class="row">
+            
+            <div class="social-group col m4 s12">
+                <h5 class="white-text">Social</h5>
+                
+                    <a class="social-link" href="http://weibo.com/LinXueyuanStdio" target="_blank">
+                        <i class="fa fa-2x fa-weibo"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://github.com/LinXueyuanStdio" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://www.zhihu.com/people/lin-xue-yuan-86" target="_blank">
+                        <i class="fa fa-2x fa-graduation-cap"></i>
+                    </a>
+                
+                    <a class="social-link" href="http://twitter.com/cwBQ3A5cz3Jzso7" target="_blank">
+                        <i class="fa fa-2x fa-twitter"></i>
+                    </a>
+                
+                    <a class="social-link" href="mailto:761516186@qq.com" target="_blank">
+                        <i class="fa fa-2x fa-envelope"></i>
+                    </a>
+                
+                    <a class="social-link" href="/atom.xml" target="_blank">
+                        <i class="fa fa-2x fa-rss"></i>
+                    </a>
+                
+                
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+    </script>
+    <div class="site-visitors-container white-text">
+        <span>
+            <i class="fa fa-user"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+        </span>
+        <span>&nbsp;|&nbsp;</span>
+        <span>
+            <i class="fa fa-eye"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+        </span>
+    </div>
+
+
+            </div>
+            
+
+            
+            <div class="col m8 s12">
+                <h5 class="white-text">Links</h5>
+                
+                    <a class="social-link" href="http://raytaylorlin.com/" target="_blank">raytaylorism主题作者</a>
+                
+                    <a class="social-link" href="https://github.com/raytaylorlin" target="_blank">Github地址</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    
+
+    <div class="footer-copyright pink-link-context">
+        <div class="container">
+            © 2016 example.com, All rights reserved.
+            <p class="right" style="margin-top: 0;">Blog powered by <a href="https://hexo.io">Hexo</a> | Theme <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
+        </div>
+    </div>
+</footer>
+
+
+    <noscript>
+    <div class="noscript">
+        <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+    </div>
+</noscript>
+<div class="noscript">
+    <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 隐藏禁用javascript（针对微信内置浏览器）的提示
+            $('.noscript').hide();
+
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
+
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed').each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt') || ' ');
+            }).materialbox();
+
+            // 优化表格的显示
+            $('table').each(function() {
+                var $table = $(this);
+                // 除去多行代码的情况
+                if ($table.find('pre').length == 0) {
+                    $table.addClass('responsive-table striped bordered');
+                }
+            });
+
+            // 首页幻灯片
+            $('.slider').slider({indicators: true, full_width: true, interval: 8000});
+
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+
+            // 目录随屏幕滚动（防止目录过长越过footer）
+            var $toc = $('.toc');
+            var scrollTargetTop = 0;
+            $(window).scroll(function() {
+                var $activeLink = $toc.find('a.active.section');
+                if ($(window).scrollTop() < 100) {
+                    scrollTargetTop = 0;
+                } else {
+                    if ($activeLink[0]) {
+                        scrollTargetTop = $activeLink.offset().top - $toc.offset().top;
+                    }
+                }
+                $toc.css('top', '-' + scrollTargetTop + 'px');
+            });
+
+            // 修正文章目录的left-border颜色
+            var color = $('.table-of-contents-text').css('color');
+            $('.table-of-contents-link').css('border-left-color', color);
+
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({
+                    scrollTop: 0
+                }, 500);
+            });
+
+            // 重置读书页面的Tab标签页的颜色
+            $('li.tab a').hover(function() {
+                $(this).toggleClass('text-lighten-4');
+            });
+            $('.indicator').addClass('pink lighten-2');
+
+            
+            // 添加new标签
+            $('.menu-apps').append('<span class="new badge pink"></span>');
+            
+
+            // 搜索功能
+            $('.modal-trigger').leanModal({
+                // 打开搜索框时自动聚焦
+                ready: function() {
+                    if ($('#search').is(":visible")) {
+                        $('#search-input').focus();
+                    }
+                }
+            });
+            var searchXml = "search.xml";
+            if (searchXml.length == 0) {
+             	searchXml = "search.xml";
+            }
+            var searchPath = "/" + searchXml;
+            initSearch(searchPath, 'search-input', 'search-result');
+        });
+
+        // 初始化搜索与匹配函数
+        var initSearch = function(path, search_id, content_id) {
+            'use strict';
+            $.ajax({
+                url: path,
+                dataType: "xml",
+                success: function(xmlResponse) {
+                    // get the contents from search data
+                    var datas = $("entry", xmlResponse).map(function() {
+                        return {
+                            title: $("title", this).text(),
+                            content: $("content", this).text(),
+                            url: $("url", this).text()
+                        };
+                    }).get();
+                    var $input = document.getElementById(search_id);
+                    var $resultContent = document.getElementById(content_id);
+                    $input.addEventListener('input', function() {
+                        var str = '<ul class=\"search-result-list\">';
+                        var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                        $resultContent.innerHTML = "";
+                        if (this.value.trim().length <= 0) {
+                            return;
+                        }
+                        // perform local searching
+                        datas.forEach(function(data) {
+                            var isMatch = true;
+                            var content_index = [];
+                            var data_title = data.title.trim().toLowerCase();
+                            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                            var data_url = data.url;
+                            var index_title = -1;
+                            var index_content = -1;
+                            var first_occur = -1;
+                            // only match artiles with not empty titles and contents
+                            if (data_title != '' && data_content != '') {
+                                keywords.forEach(function(keyword, i) {
+                                    index_title = data_title.indexOf(keyword);
+                                    index_content = data_content.indexOf(keyword);
+                                    if (index_title < 0 && index_content < 0) {
+                                        isMatch = false;
+                                    } else {
+                                        if (index_content < 0) {
+                                            index_content = 0;
+                                        }
+                                        if (i == 0) {
+                                            first_occur = index_content;
+                                        }
+                                    }
+                                });
+                            }
+                            // show search results
+                            if (isMatch) {
+                                keywords.forEach(function(keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                });
+
+                                str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                                if (first_occur >= 0) {
+                                    // cut out 100 characters
+                                    var start = first_occur - 20;
+                                    var end = first_occur + 80;
+                                    if (start < 0) {
+                                        start = 0;
+                                    }
+                                    if (start == 0) {
+                                        end = 100;
+                                    }
+                                    if (end > content.length) {
+                                        end = content.length;
+                                    }
+                                    var match_content = content.substring(start, end);
+                                    // highlight all keywords
+                                    keywords.forEach(function(keyword) {
+                                        var regS = new RegExp(keyword, "gi");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                    });
+
+                                    str += "<p class=\"search-result\">..." + match_content + "...</p>"
+                                }
+                                str += "</li>";
+                            }
+                        });
+                        str += "</ul>";
+                        $resultContent.innerHTML = str;
+                    });
+                }
+            });
+        }
+    })(jQuery);
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+</body>
+</html>

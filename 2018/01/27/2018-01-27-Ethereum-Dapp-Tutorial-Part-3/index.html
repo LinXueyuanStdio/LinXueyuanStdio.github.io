@@ -1,0 +1,813 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>Ethereum Dapp Tutorial — Part 3 | XiChen&#39;s Blog</title>
+    <meta name="author" content="Lin Xueyuan">
+    
+    <meta name="description" content="嗨，我是兮尘，全栈数据学徒。这里没有花俏艳丽的魔法，没有苍蛮霸道的斗气，有的，仅仅是繁衍到巅峰的代码！">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="Ethereum Dapp Tutorial — Part 3"/>
+    <meta property="og:site_name" content="XiChen"/>
+
+    
+    <meta property="og:image" content=""/>
+    
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" href="/atom.xml" title="XiChen" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
+
+    <nav class="indigo">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="">
+            <a href="/" class="brand-logo hide-on-med-and-down">XiChen</a>
+            <ul class="right hide-on-med-and-down">
+                
+                    <li>
+                        <a class="menu-home " href="/" >
+                            <i class="fa fa-home "></i>
+                            
+                            Home
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-archive " href="/archives" >
+                            <i class="fa fa-archive "></i>
+                            
+                            Archives
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                            <i class="fa fa-bookmark "></i>
+                            
+                            Categories
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-reading " href="/reading" >
+                            <i class="fa fa-book "></i>
+                            
+                            Reading
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-about " href="/about" >
+                            <i class="fa fa-user "></i>
+                            
+                            About
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-search modal-trigger " href="#search" >
+                            <i class="fa fa-search "></i>
+                            
+                            Search
+                        </a>
+                    </li>
+                
+            </ul>
+            <div>
+    <ul class="side-nav indigo darken-1" id="main-menu">
+        
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4 no-padding">
+                    <img class="avatar-image circle responsive-img" src="/assets/images/avatar.jpg" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper no-padding">
+                    <div class="valign">
+                        <p class="name">兮尘</p>
+                        <p class="desc">Android/深度学习/Web前端</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-home " href="/" >
+                    <i class="fa fa-home "></i>
+                    
+                    Home
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-archive " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    
+                    Archives
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    
+                    Categories
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-reading " href="/reading" >
+                    <i class="fa fa-book "></i>
+                    
+                    Reading
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-about " href="/about" >
+                    <i class="fa fa-user "></i>
+                    
+                    About
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-search modal-trigger " href="#search" >
+                    <i class="fa fa-search "></i>
+                    
+                    Search
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav indigo darken-1" id="category-menu">
+    
+
+            
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Linux/">
+                    Linux <span class="right">8</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tips/">
+                    Tips <span class="right">7</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/GO/">
+                    GO <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Proxy/">
+                    Proxy <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Ubuntu/">
+                    Ubuntu <span class="right">4</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Spider/">
+                    Spider <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/区块链/">
+                    区块链 <span class="right">25</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/密码学/">
+                    密码学 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/算法/">
+                    算法 <span class="right">4</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Latex/">
+                    Latex <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/杂思/">
+                    杂思 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Git/">
+                    Git <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Github/">
+                    Github <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Web/">
+                    Web <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Android/">
+                    Android <span class="right">33</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/计算机组成原理/">
+                    计算机组成原理 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Deep-Learning/">
+                    Deep-Learning <span class="right">5</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Mac/">
+                    Mac <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/练习/">
+                    练习 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tools/">
+                    Tools <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Algorithms/">
+                    Algorithms <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+<div id="search" class="modal search-modal">
+    <div class="row">
+        <div class="input-field col s12">
+              <input id="search-input" type="text">
+              <label for="search-input">Search</label>
+        </div>
+
+    </div>
+    <div id="search-result" class="search-result col s12">
+
+    </div>
+</div>
+
+
+    <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper indigo">
+        <span class="breadcrumb">Current page(Categories)</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/区块链/">区块链</a>
+
+
+        
+
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>Ethereum Dapp Tutorial — Part 3</h1>
+    
+
+
+            </div>
+            <time class="pink-link-context" datetime="2018-01-27T17:01:00.000Z"><a href="/2018/01/27/2018-01-27-Ethereum-Dapp-Tutorial-Part-3/">2018-01-27</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/区块链/" class="chip pink lighten-1">区块链</a>
+        
+            <a href="/tags/Ethereum/" class="chip pink lighten-1">Ethereum</a>
+        
+            <a href="/tags/Dapp/" class="chip pink lighten-1">Dapp</a>
+        
+    </div>
+
+
+            <div class="toc pink-link-context hide-on-med-and-down">
+    
+</div>
+
+
+            <div class="entry pink-link-context">
+                <ol>
+<li><a href="http://xichen.pub/2018/01/24/2018-01-24-Ethereum-Dapp-Tutorial-Part-0/">Part 0</a></li>
+<li><a href="http://xichen.pub/2018/01/25/2018-01-25-Ethereum-Dapp-Tutorial-Part-1/">Part 1</a></li>
+<li><a href="http://xichen.pub/2018/01/26/2018-01-26-Ethereum-Dapp-Tutorial-Part-2/">Part 2</a></li>
+<li><a href="http://xichen.pub/2018/01/27/2018-01-27-Ethereum-Dapp-Tutorial-Part-3/">Part 3</a></li>
+</ol>
+<p>在<a href="http://xichen.pub/2018/01/27/2018-01-25-Ethereum-Dapp-Tutorial-Part-1/">Part 1</a>中，我们构建了一个简单的投票dapp，并在本地机器上运行。在<a href="http://xichen.pub/2018/01/27/2018-01-26-Ethereum-Dapp-Tutorial-Part-2/">Part 2</a>中，我们将应用程序移动到使用<code>truffle</code>框架，并将其部署到公共Ropsten testnet，并通过<code>truffle</code>控制台和网页进行交互。在本节中，我们将添加更多的功能到我们的投票dapp</p>
+<p>学习内容：</p>
+<ol>
+<li>使用像struct这样的新数据类型来组织和存储区块链上的数据。</li>
+<li>tokens的概念及其用法。</li>
+<li>使用Ethereum区块链平台的货币Ether进行支付。</li>
+</ol>
+<p>可以在这个仓库的<code>chapter3</code>目录中找到所有的代码：<a href="https://github.com/maheshmurthy/ethereum_voting_dapp" target="_blank" rel="noopener">https://github.com/maheshmurthy/ethereum_voting_dapp</a></p>
+<p>在大选中，每个公民都会为自己喜欢的候选人投一票。然而，有的选举如选举股东的公司董事会，可以根据你在该公司拥有的股份数量进行投票。所以，你拥有的股票越多，得到的选票就越多。</p>
+<p>为了支持这种选举，我们来增强我们的投票权。我们将增加购买公司股票的功能。然后他们可以用这些股票投票给候选人。我们还将添加一个功能来查找选民信息。在以太坊区块链世界中，这些股票通常被称为代币，将这些共享作为tokens。</p>
+<p>如果你想跳过所有的解释，只想看看合同文件，你可以在这里找到它：<a href="https://github.com/maheshmurthy/ethereum_voting_dapp/blob/master/chapter3/contracts/Voting.sol。" target="_blank" rel="noopener">https://github.com/maheshmurthy/ethereum_voting_dapp/blob/master/chapter3/contracts/Voting.sol。</a></p>
+<p>第一步是声明我们需要存储所有我们感兴趣的信息的变量。下面是有解释的合同变量。</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">// We use the struct datatype to store the voter information.</span><br><span class="line">  struct voter &#123;</span><br><span class="line">    address voterAddress; // The address of the voter</span><br><span class="line">    uint tokensBought;    // The total no. of tokens this voter owns</span><br><span class="line">    uint[] tokensUsedPerCandidate; // Array to keep track of votes per candidate.</span><br><span class="line">    /* We have an<span class="built_in"> array </span>called candidateList initialized below.</span><br><span class="line">     Every time this voter votes with her tokens, the value at that</span><br><span class="line">     index is incremented. Example,<span class="built_in"> if </span>candidateList<span class="built_in"> array </span>declared</span><br><span class="line">     below has [<span class="string">"Rama"</span>, <span class="string">"Nick"</span>, <span class="string">"Jose"</span>]<span class="built_in"> and </span>this</span><br><span class="line">     voter votes 10 tokens to Nick, the tokensUsedPerCandidate[1] </span><br><span class="line">     will be incremented by 10.</span><br><span class="line">     */</span><br><span class="line">  &#125;</span><br><span class="line">/* mapping is equivalent to an associate<span class="built_in"> array </span>or hash.</span><br><span class="line"> The key of the mapping is candidate name stored as type bytes32 </span><br><span class="line"><span class="built_in"> and </span>value is an unsigned integer which used to store the vote </span><br><span class="line"> count</span><br><span class="line"> */</span><br><span class="line">mapping (bytes32 =&gt; uint)<span class="keyword"> public</span> votesReceived;</span><br><span class="line">mapping (address =&gt; voter)<span class="keyword"> public</span> voterInfo;</span><br><span class="line">/* Solidity doesn't let you<span class="built_in"> return </span>an<span class="built_in"> array </span>of strings yet. We will </span><br><span class="line"> use an<span class="built_in"> array </span>of bytes32 instead to store the list of candidates</span><br><span class="line"> */</span><br><span class="line">bytes32[]<span class="keyword"> public</span> candidate<span class="class">List;</span></span><br><span class="line">uint<span class="keyword"> public</span> totalTokens; // Total no. of tokens available for this election</span><br><span class="line">uint<span class="keyword"> public</span> balanceTokens; // Total no. of tokens still available for purchase</span><br><span class="line">uint<span class="keyword"> public</span> tokenPrice; // Price per token</span><br></pre></td></tr></table></figure>
+<p>在<a href="http://xichen.pub/2018/01/27/2018-01-25-Ethereum-Dapp-Tutorial-Part-1/">Part 1</a>和<a href="http://xichen.pub/2018/01/27/2018-01-26-Ethereum-Dapp-Tutorial-Part-2/">Part 2</a>中，我们初始化了在构造函数中竞争的候选者列表。但是，在合约部署在区块链上时，构造函数只会被调用一次。在这里，我们还必须初始化可用于销售的token总数和每个token的成本。所以，我们更新我们的合约构造函数，如下所示：</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* When the contract is deployed on the blockchain, we will </span></span><br><span class="line"><span class="comment"> initialize the total number of tokens for sale, cost per token and</span></span><br><span class="line"><span class="comment"> all the candidates</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">  function Voting(uint tokens, uint pricePerToken, <span class="keyword">bytes32[] </span>candidateNames) public &#123;</span><br><span class="line">    candidateList = candidateNames<span class="comment">;</span></span><br><span class="line">    totalTokens = tokens<span class="comment">;</span></span><br><span class="line">    <span class="keyword">balanceTokens </span>= tokens<span class="comment">;</span></span><br><span class="line">    tokenPrice = pricePerToken<span class="comment">;</span></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>在<code>truffle</code>中，使用<code>migration</code>将代码部署到区块链。可以在<a href="">这里</a>查看迁移文件。<code>truffle</code>的<code>migration</code>文件中的示例部署调用如下所示：</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">deployer</span><span class="selector-class">.deploy</span>(Voting, <span class="number">1000</span>, web3.toWei(<span class="string">'0.1'</span>, <span class="string">'ether'</span>), [<span class="string">'Rama'</span>, <span class="string">'Nick'</span>, <span class="string">'Jose'</span>]);</span><br></pre></td></tr></table></figure>
+<p>现在我们已经初始化了token并设置了价格，让我们看看有人可以通过支付以太币来购买这些<code>token</code>。这是购买<code>token</code>的函数。</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* This function is used to purchase the tokens. Note the keyword </span></span><br><span class="line"><span class="comment"> 'payable' below. By just adding that one keyword to a function, </span></span><br><span class="line"><span class="comment"> your contract can now accept Ether from anyone who calls this </span></span><br><span class="line"><span class="comment"> function. Accepting money can not get any easier than this!</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function">function <span class="title">buy</span>(<span class="params"></span>) payable <span class="keyword">public</span> <span class="title">returns</span> (<span class="params"><span class="keyword">uint</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">uint</span> tokensToBuy = msg.<span class="keyword">value</span> / tokenPrice;</span><br><span class="line">    <span class="keyword">if</span> (tokensToBuy &gt; balanceTokens) <span class="keyword">throw</span>;</span><br><span class="line">    voterInfo[msg.sender].voterAddress = msg.sender;</span><br><span class="line">    voterInfo[msg.sender].tokensBought += tokensToBuy;</span><br><span class="line">    balanceTokens -= tokensToBuy;</span><br><span class="line">    <span class="keyword">return</span> tokensToBuy;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>一个示例购买电话如下所示</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">truffle</span>(development)&gt; <span class="selector-tag">Voting</span><span class="selector-class">.deployed</span>()<span class="selector-class">.then</span>(function(contract) &#123;<span class="selector-tag">contract</span><span class="selector-class">.buy</span>(&#123;<span class="attribute">value</span>: web3.toWei(<span class="string">'1'</span>, <span class="string">'ether'</span>), <span class="attribute">from</span>: web3.eth.accounts[<span class="number">1</span>]&#125;)&#125;)</span><br></pre></td></tr></table></figure>
+<p><code>value: web3.toWei(‘1’, ‘ether’)</code>参数使用<code>msg.value</code>在<code>buy()</code>函数访问和<code>msg.sender</code>给我们<code>web3.eth.accounts[1]</code>的帐户地址。假设每个标记的值为0.1 Ether，则<code>web3.eth.accounts[1]</code>将接收1个Ether/0.1Ether=10tokens。</p>
+<p>让我们休息一会儿，看看代码，并可视化账户（选民）和合同之间的交互。</p>
+<div class="image-package"><br><img src="/assets/blog/img/2018-01-27/0.png" width="700"><br></div>
+
+<p><code>index.html</code>文件更新：</p>
+<ul>
+<li>为了投票给候选人，你现在必须指定否。您想要投票的标记。</li>
+<li>有一个新的部分，你可以购买令牌。</li>
+<li>现在可以查询选民信息 - 他们拥有多少令牌，不可以。他们投给了每个候选人。</li>
+<li>候选人不再被硬编码。我们从区块链中获取候选人并填充它。</li>
+<li>在app.js文件必须支持上述所有的UI功能的更新。</li>
+</ul>
+<p>更新部署文件<code>2_deploy_contracts.js</code>以传递总共令牌和令牌价格以及候选名称。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Voting = artifacts.require(<span class="string">"./Voting.sol"</span>);</span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">deployer</span>) </span>&#123;</span><br><span class="line">  deployer.deploy(Voting, <span class="number">1000</span>, web3.toWei(<span class="string">'0.1'</span>, <span class="string">'ether'</span>), [<span class="string">'Rama'</span>, <span class="string">'Nick'</span>, <span class="string">'Jose'</span>]);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>总而言之，在本教程中更新的四个文件是<code>Voting.sol</code>，<code>index.html</code>，<code>app.js</code>和<code>2_deploy_contracts.js</code>。一旦你用这些文件更新了<code>truffle</code>储存库，我们可以将合同部署到区块链。部署过程与之前的教程完全相同。</p>
+<p>只需要使用<code>truffle</code>命令进行编译和<code>migrate</code>。</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">$</span> truffle migrate</span><br><span class="line"><span class="keyword">Using</span> network <span class="string">'development'</span>.</span><br><span class="line">Compiling Migrations.sol...</span><br><span class="line">Compiling Voting.sol...</span><br><span class="line">Writing artifacts to ./build/contracts</span><br><span class="line">Running migration: <span class="number">1</span>_initial_migration.js</span><br><span class="line"><span class="function"><span class="title">Deploying</span></span> Migrations...</span><br><span class="line">Migrations: <span class="number">0xc9249947010675b8a3b1defb12334148f7f59010</span></span><br><span class="line"><span class="function"><span class="title">Saving</span></span> successful migration to network...</span><br><span class="line"><span class="function"><span class="title">Saving</span></span> artifacts...</span><br><span class="line">Running migration: <span class="number">2</span>_deploy_contracts.js</span><br><span class="line"><span class="function"><span class="title">Deploying</span></span> Voting...</span><br><span class="line">Voting: <span class="number">0x795d6d1f7cf467f27e48181da5f1ebd5bbd0a8df</span></span><br><span class="line"><span class="function"><span class="title">Saving</span></span> successful migration to network...</span><br><span class="line"><span class="function"><span class="title">Saving</span></span> artifacts...</span><br></pre></td></tr></table></figure>
+<p>如果您能够成功部署合同并启动您的Web服务器，则您的页面如下所示：</p>
+<div class="image-package"><br><img src="/assets/blog/img/2018-01-27/1.png" width="700"><br></div>
+
+<p>将能够购买<code>tokens</code>，使用<code>tokens</code>投票给候选人并根据他们的地址查找选举人信息。如果你能够得到所有这些功能，Congratulation！</p>
+
+                
+<p class="pink-link-context">
+    <a href="/2018/01/31/2018-01-31-gitment/" rel="next" title="添加Gitment评论系统踩过的坑">
+    Prev: 添加Gitment评论系统踩过的坑
+  </a>
+</p>
+
+
+
+<p class="pink-link-context">
+    <a href="/2018/01/26/2018-01-26-Ethereum-Dapp-Tutorial-Part-2/" rel="next" title="Ethereum Dapp Tutorial — Part 2">
+    Next: Ethereum Dapp Tutorial — Part 2
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large pink">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect green" title="Return to top"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse yellow darken-1"  data-activates="main-menu" title="Menu"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer indigo darken-1">
+    
+    <div class="footer-container container">
+        <div class="row">
+            
+            <div class="social-group col m4 s12">
+                <h5 class="white-text">Social</h5>
+                
+                    <a class="social-link" href="http://weibo.com/LinXueyuanStdio" target="_blank">
+                        <i class="fa fa-2x fa-weibo"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://github.com/LinXueyuanStdio" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://www.zhihu.com/people/lin-xue-yuan-86" target="_blank">
+                        <i class="fa fa-2x fa-graduation-cap"></i>
+                    </a>
+                
+                    <a class="social-link" href="http://twitter.com/cwBQ3A5cz3Jzso7" target="_blank">
+                        <i class="fa fa-2x fa-twitter"></i>
+                    </a>
+                
+                    <a class="social-link" href="mailto:761516186@qq.com" target="_blank">
+                        <i class="fa fa-2x fa-envelope"></i>
+                    </a>
+                
+                    <a class="social-link" href="/atom.xml" target="_blank">
+                        <i class="fa fa-2x fa-rss"></i>
+                    </a>
+                
+                
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+    </script>
+    <div class="site-visitors-container white-text">
+        <span>
+            <i class="fa fa-user"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+        </span>
+        <span>&nbsp;|&nbsp;</span>
+        <span>
+            <i class="fa fa-eye"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+        </span>
+    </div>
+
+
+            </div>
+            
+
+            
+            <div class="col m8 s12">
+                <h5 class="white-text">Links</h5>
+                
+                    <a class="social-link" href="http://raytaylorlin.com/" target="_blank">raytaylorism主题作者</a>
+                
+                    <a class="social-link" href="https://github.com/raytaylorlin" target="_blank">Github地址</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    
+
+    <div class="footer-copyright pink-link-context">
+        <div class="container">
+            © 2016 example.com, All rights reserved.
+            <p class="right" style="margin-top: 0;">Blog powered by <a href="https://hexo.io">Hexo</a> | Theme <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
+        </div>
+    </div>
+</footer>
+
+
+    <noscript>
+    <div class="noscript">
+        <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+    </div>
+</noscript>
+<div class="noscript">
+    <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 隐藏禁用javascript（针对微信内置浏览器）的提示
+            $('.noscript').hide();
+
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
+
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed').each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt') || ' ');
+            }).materialbox();
+
+            // 优化表格的显示
+            $('table').each(function() {
+                var $table = $(this);
+                // 除去多行代码的情况
+                if ($table.find('pre').length == 0) {
+                    $table.addClass('responsive-table striped bordered');
+                }
+            });
+
+            // 首页幻灯片
+            $('.slider').slider({indicators: true, full_width: true, interval: 8000});
+
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+
+            // 目录随屏幕滚动（防止目录过长越过footer）
+            var $toc = $('.toc');
+            var scrollTargetTop = 0;
+            $(window).scroll(function() {
+                var $activeLink = $toc.find('a.active.section');
+                if ($(window).scrollTop() < 100) {
+                    scrollTargetTop = 0;
+                } else {
+                    if ($activeLink[0]) {
+                        scrollTargetTop = $activeLink.offset().top - $toc.offset().top;
+                    }
+                }
+                $toc.css('top', '-' + scrollTargetTop + 'px');
+            });
+
+            // 修正文章目录的left-border颜色
+            var color = $('.table-of-contents-text').css('color');
+            $('.table-of-contents-link').css('border-left-color', color);
+
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({
+                    scrollTop: 0
+                }, 500);
+            });
+
+            // 重置读书页面的Tab标签页的颜色
+            $('li.tab a').hover(function() {
+                $(this).toggleClass('text-lighten-4');
+            });
+            $('.indicator').addClass('pink lighten-2');
+
+            
+            // 添加new标签
+            $('.menu-apps').append('<span class="new badge pink"></span>');
+            
+
+            // 搜索功能
+            $('.modal-trigger').leanModal({
+                // 打开搜索框时自动聚焦
+                ready: function() {
+                    if ($('#search').is(":visible")) {
+                        $('#search-input').focus();
+                    }
+                }
+            });
+            var searchXml = "search.xml";
+            if (searchXml.length == 0) {
+             	searchXml = "search.xml";
+            }
+            var searchPath = "/" + searchXml;
+            initSearch(searchPath, 'search-input', 'search-result');
+        });
+
+        // 初始化搜索与匹配函数
+        var initSearch = function(path, search_id, content_id) {
+            'use strict';
+            $.ajax({
+                url: path,
+                dataType: "xml",
+                success: function(xmlResponse) {
+                    // get the contents from search data
+                    var datas = $("entry", xmlResponse).map(function() {
+                        return {
+                            title: $("title", this).text(),
+                            content: $("content", this).text(),
+                            url: $("url", this).text()
+                        };
+                    }).get();
+                    var $input = document.getElementById(search_id);
+                    var $resultContent = document.getElementById(content_id);
+                    $input.addEventListener('input', function() {
+                        var str = '<ul class=\"search-result-list\">';
+                        var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                        $resultContent.innerHTML = "";
+                        if (this.value.trim().length <= 0) {
+                            return;
+                        }
+                        // perform local searching
+                        datas.forEach(function(data) {
+                            var isMatch = true;
+                            var content_index = [];
+                            var data_title = data.title.trim().toLowerCase();
+                            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                            var data_url = data.url;
+                            var index_title = -1;
+                            var index_content = -1;
+                            var first_occur = -1;
+                            // only match artiles with not empty titles and contents
+                            if (data_title != '' && data_content != '') {
+                                keywords.forEach(function(keyword, i) {
+                                    index_title = data_title.indexOf(keyword);
+                                    index_content = data_content.indexOf(keyword);
+                                    if (index_title < 0 && index_content < 0) {
+                                        isMatch = false;
+                                    } else {
+                                        if (index_content < 0) {
+                                            index_content = 0;
+                                        }
+                                        if (i == 0) {
+                                            first_occur = index_content;
+                                        }
+                                    }
+                                });
+                            }
+                            // show search results
+                            if (isMatch) {
+                                keywords.forEach(function(keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                });
+
+                                str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                                if (first_occur >= 0) {
+                                    // cut out 100 characters
+                                    var start = first_occur - 20;
+                                    var end = first_occur + 80;
+                                    if (start < 0) {
+                                        start = 0;
+                                    }
+                                    if (start == 0) {
+                                        end = 100;
+                                    }
+                                    if (end > content.length) {
+                                        end = content.length;
+                                    }
+                                    var match_content = content.substring(start, end);
+                                    // highlight all keywords
+                                    keywords.forEach(function(keyword) {
+                                        var regS = new RegExp(keyword, "gi");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                    });
+
+                                    str += "<p class=\"search-result\">..." + match_content + "...</p>"
+                                }
+                                str += "</li>";
+                            }
+                        });
+                        str += "</ul>";
+                        $resultContent.innerHTML = str;
+                    });
+                }
+            });
+        }
+    })(jQuery);
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+</body>
+</html>

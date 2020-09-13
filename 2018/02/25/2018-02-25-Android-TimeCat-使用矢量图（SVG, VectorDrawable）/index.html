@@ -1,0 +1,839 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>【Android TimeCat】 Android中使用矢量图（SVG, VectorDrawable） | XiChen&#39;s Blog</title>
+    <meta name="author" content="Lin Xueyuan">
+    
+    <meta name="description" content="嗨，我是兮尘，全栈数据学徒。这里没有花俏艳丽的魔法，没有苍蛮霸道的斗气，有的，仅仅是繁衍到巅峰的代码！">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="【Android TimeCat】 Android中使用矢量图（SVG, VectorDrawable）"/>
+    <meta property="og:site_name" content="XiChen"/>
+
+    
+    <meta property="og:image" content=""/>
+    
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" href="/atom.xml" title="XiChen" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
+
+    <nav class="indigo">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="">
+            <a href="/" class="brand-logo hide-on-med-and-down">XiChen</a>
+            <ul class="right hide-on-med-and-down">
+                
+                    <li>
+                        <a class="menu-home " href="/" >
+                            <i class="fa fa-home "></i>
+                            
+                            Home
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-archive " href="/archives" >
+                            <i class="fa fa-archive "></i>
+                            
+                            Archives
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                            <i class="fa fa-bookmark "></i>
+                            
+                            Categories
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-reading " href="/reading" >
+                            <i class="fa fa-book "></i>
+                            
+                            Reading
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-about " href="/about" >
+                            <i class="fa fa-user "></i>
+                            
+                            About
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-search modal-trigger " href="#search" >
+                            <i class="fa fa-search "></i>
+                            
+                            Search
+                        </a>
+                    </li>
+                
+            </ul>
+            <div>
+    <ul class="side-nav indigo darken-1" id="main-menu">
+        
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4 no-padding">
+                    <img class="avatar-image circle responsive-img" src="/assets/images/avatar.jpg" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper no-padding">
+                    <div class="valign">
+                        <p class="name">兮尘</p>
+                        <p class="desc">Android/深度学习/Web前端</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-home " href="/" >
+                    <i class="fa fa-home "></i>
+                    
+                    Home
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-archive " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    
+                    Archives
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    
+                    Categories
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-reading " href="/reading" >
+                    <i class="fa fa-book "></i>
+                    
+                    Reading
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-about " href="/about" >
+                    <i class="fa fa-user "></i>
+                    
+                    About
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-search modal-trigger " href="#search" >
+                    <i class="fa fa-search "></i>
+                    
+                    Search
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav indigo darken-1" id="category-menu">
+    
+
+            
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Linux/">
+                    Linux <span class="right">8</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tips/">
+                    Tips <span class="right">7</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/GO/">
+                    GO <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Proxy/">
+                    Proxy <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Ubuntu/">
+                    Ubuntu <span class="right">4</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Spider/">
+                    Spider <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/区块链/">
+                    区块链 <span class="right">25</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/密码学/">
+                    密码学 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/算法/">
+                    算法 <span class="right">4</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Latex/">
+                    Latex <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/杂思/">
+                    杂思 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Git/">
+                    Git <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Github/">
+                    Github <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Web/">
+                    Web <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Android/">
+                    Android <span class="right">33</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/计算机组成原理/">
+                    计算机组成原理 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Deep-Learning/">
+                    Deep-Learning <span class="right">5</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Mac/">
+                    Mac <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/练习/">
+                    练习 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tools/">
+                    Tools <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Algorithms/">
+                    Algorithms <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+<div id="search" class="modal search-modal">
+    <div class="row">
+        <div class="input-field col s12">
+              <input id="search-input" type="text">
+              <label for="search-input">Search</label>
+        </div>
+
+    </div>
+    <div id="search-result" class="search-result col s12">
+
+    </div>
+</div>
+
+
+    <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper indigo">
+        <span class="breadcrumb">Current page(Categories)</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/Android/">Android</a>
+
+
+        
+
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>【Android TimeCat】 Android中使用矢量图（SVG, VectorDrawable）</h1>
+    
+
+
+            </div>
+            <time class="pink-link-context" datetime="2018-02-25T11:28:00.000Z"><a href="/2018/02/25/2018-02-25-Android-TimeCat-使用矢量图（SVG, VectorDrawable）/">2018-02-25</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/Android/" class="chip pink lighten-1">Android</a>
+        
+            <a href="/tags/svg/" class="chip pink lighten-1">svg</a>
+        
+    </div>
+
+
+            <div class="toc pink-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#背景"><span class="section table-of-contents-text">背景</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#SVG-和-VectorDrawable"><span class="section table-of-contents-text">SVG 和 VectorDrawable</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#SVG"><span class="section table-of-contents-text">SVG</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#VectorDrawable"><span class="section table-of-contents-text">VectorDrawable</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#获取矢量图方式一：Android-Studio的Material-Icon"><span class="section table-of-contents-text">获取矢量图方式一：Android Studio的Material Icon</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#获取矢量图方式二：iconfont"><span class="section table-of-contents-text">获取矢量图方式二：iconfont</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#手动转化成xml"><span class="section table-of-contents-text">手动转化成xml</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#svgtoandroid插件"><span class="section table-of-contents-text">svgtoandroid插件</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#Android-Studio自带转化"><span class="section table-of-contents-text">Android Studio自带转化</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#项目应用"><span class="section table-of-contents-text">项目应用</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#前提："><span class="section table-of-contents-text">前提：</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#AppCompatImageView"><span class="section table-of-contents-text">AppCompatImageView</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#TextView"><span class="section table-of-contents-text">TextView</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#MenuItem"><span class="section table-of-contents-text">MenuItem</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#VectorDrawable-转-Bitmap"><span class="section table-of-contents-text">VectorDrawable 转 Bitmap</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#参考："><span class="section table-of-contents-text">参考：</span></a></li></ol>
+</div>
+
+
+            <div class="entry pink-link-context">
+                <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>TimeCat项目中需要根据不同的场景动态改变图标颜色，如果用png等格式，会使图片资源过多。明明图案是一样的，为什么改变个颜色就得多一张图?如果整体颜色风格改变，那之前的图片资源就都废了？所以选择用xml文件来描述图片颜色，想用什么色就用什么色。</p>
+<p>图片本质上是一个存像素点的矩阵，而svg高级一点，存一些点，比如一个圆，那么就存圆心和半径数据就行了，这是轨迹，然后再规定颜色，这样和png资源相比，内存大大减少，还容易自定义，改个图标颜色简直不要太方便！</p>
+<h1 id="SVG-和-VectorDrawable"><a href="#SVG-和-VectorDrawable" class="headerlink" title="SVG 和 VectorDrawable"></a>SVG 和 VectorDrawable</h1><h2 id="SVG"><a href="#SVG" class="headerlink" title="SVG"></a>SVG</h2><blockquote>
+<p>可缩放矢量图形（英语：Scalable Vector Graphics，SVG）是一种基于可扩展标记语言（XML），用于描述二维矢量图形的图形格式。SVG由W3C制定，是一个开放标准。——摘自维基百科</p>
+</blockquote>
+<p><code>.svg</code>格式相对于<code>.jpg</code>、<code>.png</code>甚至<code>.webp</code>具有较多优势，我认为核心有两点：</p>
+<ul>
+<li>省时间。图像与分辨率无关，收放自如，适配安卓机坑爹的分辨率真是一劳永逸；</li>
+<li>省空间。体积小，一般复杂图像也能在数KB搞定，图标更不在话下。</li>
+</ul>
+<h2 id="VectorDrawable"><a href="#VectorDrawable" class="headerlink" title="VectorDrawable"></a>VectorDrawable</h2><p><code>VectorDrawable</code>是Google从Android 5.0开始引入的一个新的<code>Drawable</code>子类，能够加载矢量图。到现在通过<code>support-library</code>已经至少能适配到Android 4.0了（通过AppBrain统计的Android版本分布来看，Android 4.1以下（api&lt;15）几乎可以不考虑了）。Android中的<code>VectorDrawable</code>只支持SVG的部分属性，相当于阉割版。</p>
+<p>它虽然是个类，但是一般通过配置xml再设置到要使用的控件上。在Android工程中，在资源文件夹<code>res/drawable/</code>的目录下（没有则需新建），通过<code>&lt;vector&gt;&lt;/vector&gt;</code>标签描述，例如<code>svg_ic_arrow_right.xml</code>：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">vector</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:width</span>=<span class="string">"8dp"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:height</span>=<span class="string">"8dp"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:viewportHeight</span>=<span class="string">"24.0"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:viewportWidth</span>=<span class="string">"24.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">path</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:fillColor</span>=<span class="string">"#ffffff"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:pathData</span>=<span class="string">"M12,4l-1.41,1.41L16.17,11H4v2h12.17l-5.58,5.59L12,20l8,-8z"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">vector</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>基本属性说明：</p>
+<ul>
+<li><code>width</code>, <code>height</code>：图片的宽高。可手动修改到需要尺寸；</li>
+<li><code>viewportHeight</code>, <code>viewportWidth</code>：对应将上面height width等分的份数。以svg_ic_arrow_right.xml举例，可以想象将长宽都为8dp的正方形均分为24x24的网格，在这个网格中就可以很方便地描述点的坐标，图像就是这些点连接起来构成的。</li>
+<li><code>fillColor</code>：填充颜色。最好直接在这里写明色值<code>#xxxxxxxx</code>，而不要用<code>@color/some_color</code>的形式，避免某些5.0以下机型可能会报错。</li>
+<li><code>pathData</code>：在2中描述的网格中作画的路径。具体语法不是本文的重点，故不展开。</li>
+</ul>
+<p>下面这段代码描述出来的是一个蓝色闹钟，可以从Android Studio的<code>preview</code>功能栏里预览到它的样子：</p>
+<p><img src="/assets/blog/img/2018-02-25/2.png" width="700"></p>
+<p>emm…既然xml资源作图标这么方便，应该怎么获取呢？</p>
+<h1 id="获取矢量图方式一：Android-Studio的Material-Icon"><a href="#获取矢量图方式一：Android-Studio的Material-Icon" class="headerlink" title="获取矢量图方式一：Android Studio的Material Icon"></a>获取矢量图方式一：<code>Android Studio</code>的<code>Material Icon</code></h1><p>鼠标选中<code>drawable</code>文件夹，右键， <code>New</code>， <code>Vector Asset</code></p>
+<p><img src="/assets/blog/img/2018-02-25/3.png" width="700"></p>
+<p>然后出现：</p>
+<p><img src="/assets/blog/img/2018-02-25/4.png" width="700"></p>
+<p>点击机器人进入搜索筛选：</p>
+<p><img src="/assets/blog/img/2018-02-25/5.png" width="700"></p>
+<p>左侧的搜索和分类可以快速索引。这里都是由谷歌官方制作的MD标准图标，建议先到这里搜索，如果没有再到网上搜索。</p>
+<h1 id="获取矢量图方式二：iconfont"><a href="#获取矢量图方式二：iconfont" class="headerlink" title="获取矢量图方式二：iconfont"></a>获取矢量图方式二：<a href="https://link.jianshu.com/?t=http://iconfont.cn" target="_blank" rel="noopener">iconfont</a></h1><p>墙裂安利一个网站，阿里的iconfont，海量在线矢量图，早收藏早致富！我已经离不开它了=￣ω￣=</p>
+<p>第一步，搜索你要的资源名字，中英文一般都会有结果。比如“arrow”，结果：</p>
+<p><img src="/assets/blog/img/2018-02-25/6.png" width="700"></p>
+<p>第二步，鼠标移动到某一图标上点击，比如上面第一排第二个，出现：</p>
+<p><img src="/assets/blog/img/2018-02-25/7.png" width="200"></p>
+<p>三个选项，第一相当于购物车，可不用登录，第二是收藏，第三是下载，均需要登录。如果未登录，点击后出现：</p>
+<p><img src="/assets/blog/img/2018-02-25/8.png" width="700"></p>
+<p>选择GitHub或微博都行。<br>第三步，登录成功，点击下载，弹出：</p>
+<p><img src="/assets/blog/img/2018-02-25/9.png" width="700"></p>
+<p>可以对图标属性进行编辑，如色值和大小（单位dp），然后点按钮“SVG下载”。下载成功后在下载目录找到一个.svg格式的文件，这个文件可以用浏览器打开-&gt;查看网页源码，或者用NotePad++等编辑器打开看到里面的内容，格式化后是这样：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> standalone=<span class="string">"no"</span><span class="meta">?&gt;</span></span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"</span></span><br><span class="line"><span class="meta">"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">t</span>=<span class="string">"1490517024583"</span> <span class="attr">class</span>=<span class="string">"icon"</span> <span class="attr">style</span>=<span class="string">""</span> <span class="attr">viewBox</span>=<span class="string">"0 0 1024 1024"</span> <span class="attr">version</span>=<span class="string">"1.1"</span> <span class="attr">xmlns</span>=<span class="string">"http://www.w3.org/2000/svg"</span> <span class="attr">p-id</span>=<span class="string">"1010"</span> <span class="attr">xmlns:xlink</span>=<span class="string">"http://www.w3.org/1999/xlink"</span> <span class="attr">width</span>=<span class="string">"16"</span> <span class="attr">height</span>=<span class="string">"16"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">defs</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">defs</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M288.86749 12.482601C272.260723-4.160867 245.369563-4.160867 228.720647 12.482601 212.15603 29.126068 212.15603 56.438425 228.720647 73.081892L704.289552 511.786622 228.720647 950.918109C212.15603 967.561574 212.15603 994.447175 228.720647 1011.517401 245.369563 1028.160866 272.260723 1028.160866 288.86749 1011.517401L794.952385 544.646802C803.803707 535.684935 807.597131 523.735776 807.007043 511.786622 807.597131 500.264224 803.803707 488.315065 794.952385 479.353198L288.86749 12.482601Z"</span> <span class="attr">p-id</span>=<span class="string">"1011"</span>&gt;</span><span class="tag">&lt;/<span class="name">path</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>文件里好多标签Android是不认识的。不过没关系，有三种解决办法</p>
+<h2 id="手动转化成xml"><a href="#手动转化成xml" class="headerlink" title="手动转化成xml"></a>手动转化成xml</h2><p>新建一个<code>&lt;vector&gt;&lt;/vector&gt;</code>标签的<code>xml文件</code>，通过观察文件内容，很容易获取到关键信息。</p>
+<ul>
+<li><code>width</code>, <code>height</code>自然对应<code>&lt;vector/&gt;</code>中宽高，</li>
+<li><code>viewBox</code>后两位数字是分别对应<code>&lt;vector/&gt;</code>中的<code>viewportWidth</code>和<code>viewportHeight</code>，</li>
+<li><code>&lt;path/&gt;</code>中的<code>d</code>的数据的对应<code>&lt;vector/&gt;</code>中<code>&lt;path/&gt;</code>中的<code>pathData</code>。</li>
+<li><code>fillColor</code>自己手动设置。</li>
+</ul>
+<h2 id="svgtoandroid插件"><a href="#svgtoandroid插件" class="headerlink" title="svgtoandroid插件"></a>svgtoandroid插件</h2><p>安装：File -&gt; Setting -&gt; Plugins -&gt; Browser repositories -&gt; 搜“svg2VectorDrawable” -&gt; 安装并重启Android Studio，再次进来后顶部工具栏会多一个图标：</p>
+<p><img src="/assets/blog/img/2018-02-25/10.png" width="200"></p>
+<p>点击图标弹出对话框：</p>
+<p><img src="/assets/blog/img/2018-02-25/12.png" width="700"></p>
+<p>勾选Batch选项，将对被选中文件夹中的.svg文件进行批量转换。nodpi会自动添加到没有后缀的drawable文件夹中。</p>
+<blockquote>
+<p>网上下载的svg资源往往一步到位，有个这个插件将会事半功倍。导入第一个svg文件时就命名成我们想要的名字，如果不满意再导入时无需再关注命名，将后面导入的pathData覆盖第一个观察效果，直到满意后删除不需要的文件。</p>
+</blockquote>
+<h2 id="Android-Studio自带转化"><a href="#Android-Studio自带转化" class="headerlink" title="Android Studio自带转化"></a>Android Studio自带转化</h2><p>鼠标选中drawable文件夹，右键， New， Vector Asset， Local file，然后出现：</p>
+<p><img src="/assets/blog/img/2018-02-25/13.png" width="700"></p>
+<p>先选本地文件（还能支持PSD，强吧），再到磁盘中找到之前下载的.svg矢量图。导入后可以为文件重命名（建议用svg_或者有区别于其它格式的前缀），默认导入宽高均为24dp，选中Override框则读取文件本来宽高，其它配置视需求而定。点击Next到下一页最后点Finish就导入了。自动导入需要格式化一下就是前面svg_ic_arrow_right.xml的样子了。</p>
+<blockquote>
+<p>海搜比较耗时间，线条粗细啦，位置没居中啦，大小不搭配啦，关键是这些问题都是导入项目或者运行到手机后才能发现（非强迫症当我没说）。<br>iconfont还有诸多成套的图标库，优点是风格大小一致，或者多彩图标。</p>
+</blockquote>
+<h1 id="项目应用"><a href="#项目应用" class="headerlink" title="项目应用"></a>项目应用</h1><h2 id="前提："><a href="#前提：" class="headerlink" title="前提："></a>前提：</h2><p>项目的<code>build.gradle</code>配置有：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">android&#123;</span><br><span class="line">  ...</span><br><span class="line">  defaultConfig &#123;</span><br><span class="line">    ...</span><br><span class="line">    vectorDrawables.useSupportLibrary = <span class="keyword">true</span></span><br><span class="line">   &#125;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line">dependencies &#123;</span><br><span class="line">  ...</span><br><span class="line">  compile <span class="string">"com.android.support:appcompat-v7:21+"</span> <span class="comment">// 至少Api21</span></span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>项目的Activity中都包含（通用做法是在BaseActivity中加）：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> &#123;</span><br><span class="line">  AppCompatDelegate.setCompatVectorFromResourcesEnabled(<span class="keyword">true</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="AppCompatImageView"><a href="#AppCompatImageView" class="headerlink" title="AppCompatImageView"></a>AppCompatImageView</h2><p>这是继承自ImageView用于5.0以下加载矢量图的控件，只需要替换src为srcCompat属性，其它没什么不同。例如：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">android.support.v7.widget.AppCompatImageView</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">app:srcCompat</span>=<span class="string">"@drawable/svg_ic_arrow_right"</span>/&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>如果你的<code>Activity</code>直接或间接继承自<code>AppCompatActivity</code>，当前视图中的<code>ImageView</code>在编译过程中会被自动转为<code>AppCompatImageView</code>（<code>support包</code>中所有含有<code>AppCompat</code>前缀的控件均受相同处理），因而在<code>Activity</code>中通过<code>findViewById()</code>的实例用<code>ImageView</code>或<code>AppCompatActivity</code>接收是没有区别的。<br>用以上条件的<code>Activity</code>中装载的<code>Fragment</code>，或者通过动态注入（如<code>Dialog</code>的<code>contentView</code>）的<code>ImageView</code>，均将被自动转为<code>AppCompatActivity</code>。<br>从<code>xml</code>文件中初始化<code>ImageView</code>并加载矢量图，必须使用<code>AppCompatImageView</code>的<code>srcCompat</code>属性。<br><code>ImageView</code>的染色属性tint同样适合矢量图。</p>
+<h2 id="TextView"><a href="#TextView" class="headerlink" title="TextView"></a>TextView</h2><p>在我的经验中，<code>TextView</code>可以用到矢量图的场景是最多的，主要是设置<code>CompoundDrawable</code>。例如：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:drawableRight</span>=<span class="string">"@drawable/svg_ic_arrow_right"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:drawablePadding</span>=<span class="string">"4dp"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:text</span>=<span class="string">"drawable right"</span>/&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>这样设置后，没有任何不适，编译器也不报错，可能你自己运行也没问题。但是！这才是深坑啊。5.0以下某些机型可能会崩溃的。</p>
+<p><code>AppCompatTextView</code>是没有对<code>CompoundDrawable</code>进行适配的，所以需要自己动手才能丰衣足食。简单原理是，判断系统版本如果小于5.0，就用<code>ContextCompat.getDrawable</code>获取到<code>Drawable</code>实例，再<code>setCompoundDrawablesWithIntrinsicBounds</code>。</p>
+<p>这个部分已经有人做好并开源了，地址：<a href="https://link.jianshu.com/?t=https://github.com/woxingxiao/VectorCompatTextView" target="_blank" rel="noopener">VectorCompatTextView</a>，轻松compile到项目中使用。他还特意添加了一个实用功能——tint染色——可以选择是否让图标与文字颜色一样，这样就不必关心xml里的fillColor属性了。用例：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">com.xw.repo.VectorCompatTextView</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:background</span>=<span class="string">"@color/color_gray_light"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:gravity</span>=<span class="string">"center_vertical"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:padding</span>=<span class="string">"16dp"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:text</span>=<span class="string">"Next"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:textSize</span>=<span class="string">"16sp"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">app:drawableRightCompat</span>=<span class="string">"@drawable/svg_ic_arrow_right"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">app:tintDrawableInTextColor</span>=<span class="string">"true"</span>/&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>效果：</p>
+<h2 id="MenuItem"><a href="#MenuItem" class="headerlink" title="MenuItem"></a>MenuItem</h2><p><code>MenuItem</code>就是在<code>res/menu/</code>目录下通过xml配置的菜单，适用于<code>NavigationView</code>的<code>menu属性</code>和<code>Activity</code>中<code>onCreateOptionsMenu()</code>注入的选项菜单。</p>
+<h2 id="VectorDrawable-转-Bitmap"><a href="#VectorDrawable-转-Bitmap" class="headerlink" title="VectorDrawable 转 Bitmap"></a>VectorDrawable 转 Bitmap</h2><p>自定义View中也可以自由使用矢量图。<br>首先需要将<code>VectorDrawable</code> 转为 <code>Bitmap</code>，看码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Bitmap <span class="title">getBitmapFromVectorDrawable</span><span class="params">(Context context, <span class="keyword">int</span> drawableId)</span> </span>&#123;</span><br><span class="line">        Drawable drawable = ContextCompat.getDrawable(context, drawableId);</span><br><span class="line">        <span class="keyword">if</span> (Build.VERSION.SDK_INT &lt; Build.VERSION_CODES.LOLLIPOP) &#123;</span><br><span class="line">            drawable = (DrawableCompat.wrap(drawable)).mutate();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(),</span><br><span class="line">                Bitmap.Config.ARGB_8888);</span><br><span class="line">        Canvas canvas = <span class="keyword">new</span> Canvas(bitmap);</span><br><span class="line">        drawable.setBounds(<span class="number">0</span>, <span class="number">0</span>, canvas.getWidth(), canvas.getHeight());</span><br><span class="line">        drawable.draw(canvas);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> bitmap;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>执行以上方法获得一个<code>Bitmap</code>的实例（设为<code>mVectorBitmap</code>），然后再在<code>ondraw()</code>里根据你的需求画出<code>bitmap</code>：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"> <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDraw</span><span class="params">(Canvas canvas)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.onDraw(canvas);</span><br><span class="line">     <span class="comment">///</span></span><br><span class="line">     canvas.drawBitmap(mVectorBitmap, left, top, paint);</span><br><span class="line">     <span class="comment">///</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h1><p><a href="https://www.jianshu.com/p/0555b8c1d26a" target="_blank" rel="noopener">https://www.jianshu.com/p/0555b8c1d26a</a></p>
+
+                
+<p class="pink-link-context">
+    <a href="/2018/02/26/2018-02-26-Android-TimeCat-懒加载需求下的BaseFragment封装/" rel="next" title="【Android TimeCat】 懒加载需求下的BaseFragment封装">
+    Prev: 【Android TimeCat】 懒加载需求下的BaseFragment封装
+  </a>
+</p>
+
+
+
+<p class="pink-link-context">
+    <a href="/2018/02/25/2018-02-25-Android-TimeCat-Android中用intent传递对象的三种方法/" rel="next" title="【Android TimeCat】 Android中用intent传递对象的三种方法">
+    Next: 【Android TimeCat】 Android中用intent传递对象的三种方法
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large pink">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect green" title="Return to top"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse yellow darken-1"  data-activates="main-menu" title="Menu"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer indigo darken-1">
+    
+    <div class="footer-container container">
+        <div class="row">
+            
+            <div class="social-group col m4 s12">
+                <h5 class="white-text">Social</h5>
+                
+                    <a class="social-link" href="http://weibo.com/LinXueyuanStdio" target="_blank">
+                        <i class="fa fa-2x fa-weibo"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://github.com/LinXueyuanStdio" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://www.zhihu.com/people/lin-xue-yuan-86" target="_blank">
+                        <i class="fa fa-2x fa-graduation-cap"></i>
+                    </a>
+                
+                    <a class="social-link" href="http://twitter.com/cwBQ3A5cz3Jzso7" target="_blank">
+                        <i class="fa fa-2x fa-twitter"></i>
+                    </a>
+                
+                    <a class="social-link" href="mailto:761516186@qq.com" target="_blank">
+                        <i class="fa fa-2x fa-envelope"></i>
+                    </a>
+                
+                    <a class="social-link" href="/atom.xml" target="_blank">
+                        <i class="fa fa-2x fa-rss"></i>
+                    </a>
+                
+                
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+    </script>
+    <div class="site-visitors-container white-text">
+        <span>
+            <i class="fa fa-user"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+        </span>
+        <span>&nbsp;|&nbsp;</span>
+        <span>
+            <i class="fa fa-eye"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+        </span>
+    </div>
+
+
+            </div>
+            
+
+            
+            <div class="col m8 s12">
+                <h5 class="white-text">Links</h5>
+                
+                    <a class="social-link" href="http://raytaylorlin.com/" target="_blank">raytaylorism主题作者</a>
+                
+                    <a class="social-link" href="https://github.com/raytaylorlin" target="_blank">Github地址</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    
+
+    <div class="footer-copyright pink-link-context">
+        <div class="container">
+            © 2016 example.com, All rights reserved.
+            <p class="right" style="margin-top: 0;">Blog powered by <a href="https://hexo.io">Hexo</a> | Theme <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
+        </div>
+    </div>
+</footer>
+
+
+    <noscript>
+    <div class="noscript">
+        <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+    </div>
+</noscript>
+<div class="noscript">
+    <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 隐藏禁用javascript（针对微信内置浏览器）的提示
+            $('.noscript').hide();
+
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
+
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed').each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt') || ' ');
+            }).materialbox();
+
+            // 优化表格的显示
+            $('table').each(function() {
+                var $table = $(this);
+                // 除去多行代码的情况
+                if ($table.find('pre').length == 0) {
+                    $table.addClass('responsive-table striped bordered');
+                }
+            });
+
+            // 首页幻灯片
+            $('.slider').slider({indicators: true, full_width: true, interval: 8000});
+
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+
+            // 目录随屏幕滚动（防止目录过长越过footer）
+            var $toc = $('.toc');
+            var scrollTargetTop = 0;
+            $(window).scroll(function() {
+                var $activeLink = $toc.find('a.active.section');
+                if ($(window).scrollTop() < 100) {
+                    scrollTargetTop = 0;
+                } else {
+                    if ($activeLink[0]) {
+                        scrollTargetTop = $activeLink.offset().top - $toc.offset().top;
+                    }
+                }
+                $toc.css('top', '-' + scrollTargetTop + 'px');
+            });
+
+            // 修正文章目录的left-border颜色
+            var color = $('.table-of-contents-text').css('color');
+            $('.table-of-contents-link').css('border-left-color', color);
+
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({
+                    scrollTop: 0
+                }, 500);
+            });
+
+            // 重置读书页面的Tab标签页的颜色
+            $('li.tab a').hover(function() {
+                $(this).toggleClass('text-lighten-4');
+            });
+            $('.indicator').addClass('pink lighten-2');
+
+            
+            // 添加new标签
+            $('.menu-apps').append('<span class="new badge pink"></span>');
+            
+
+            // 搜索功能
+            $('.modal-trigger').leanModal({
+                // 打开搜索框时自动聚焦
+                ready: function() {
+                    if ($('#search').is(":visible")) {
+                        $('#search-input').focus();
+                    }
+                }
+            });
+            var searchXml = "search.xml";
+            if (searchXml.length == 0) {
+             	searchXml = "search.xml";
+            }
+            var searchPath = "/" + searchXml;
+            initSearch(searchPath, 'search-input', 'search-result');
+        });
+
+        // 初始化搜索与匹配函数
+        var initSearch = function(path, search_id, content_id) {
+            'use strict';
+            $.ajax({
+                url: path,
+                dataType: "xml",
+                success: function(xmlResponse) {
+                    // get the contents from search data
+                    var datas = $("entry", xmlResponse).map(function() {
+                        return {
+                            title: $("title", this).text(),
+                            content: $("content", this).text(),
+                            url: $("url", this).text()
+                        };
+                    }).get();
+                    var $input = document.getElementById(search_id);
+                    var $resultContent = document.getElementById(content_id);
+                    $input.addEventListener('input', function() {
+                        var str = '<ul class=\"search-result-list\">';
+                        var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                        $resultContent.innerHTML = "";
+                        if (this.value.trim().length <= 0) {
+                            return;
+                        }
+                        // perform local searching
+                        datas.forEach(function(data) {
+                            var isMatch = true;
+                            var content_index = [];
+                            var data_title = data.title.trim().toLowerCase();
+                            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                            var data_url = data.url;
+                            var index_title = -1;
+                            var index_content = -1;
+                            var first_occur = -1;
+                            // only match artiles with not empty titles and contents
+                            if (data_title != '' && data_content != '') {
+                                keywords.forEach(function(keyword, i) {
+                                    index_title = data_title.indexOf(keyword);
+                                    index_content = data_content.indexOf(keyword);
+                                    if (index_title < 0 && index_content < 0) {
+                                        isMatch = false;
+                                    } else {
+                                        if (index_content < 0) {
+                                            index_content = 0;
+                                        }
+                                        if (i == 0) {
+                                            first_occur = index_content;
+                                        }
+                                    }
+                                });
+                            }
+                            // show search results
+                            if (isMatch) {
+                                keywords.forEach(function(keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                });
+
+                                str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                                if (first_occur >= 0) {
+                                    // cut out 100 characters
+                                    var start = first_occur - 20;
+                                    var end = first_occur + 80;
+                                    if (start < 0) {
+                                        start = 0;
+                                    }
+                                    if (start == 0) {
+                                        end = 100;
+                                    }
+                                    if (end > content.length) {
+                                        end = content.length;
+                                    }
+                                    var match_content = content.substring(start, end);
+                                    // highlight all keywords
+                                    keywords.forEach(function(keyword) {
+                                        var regS = new RegExp(keyword, "gi");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                    });
+
+                                    str += "<p class=\"search-result\">..." + match_content + "...</p>"
+                                }
+                                str += "</li>";
+                            }
+                        });
+                        str += "</ul>";
+                        $resultContent.innerHTML = str;
+                    });
+                }
+            });
+        }
+    })(jQuery);
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+</body>
+</html>

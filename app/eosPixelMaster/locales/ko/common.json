@@ -1,0 +1,10 @@
+{
+  "pixel": "픽셀",
+  "pixel_plural": "픽셀들",
+  "purchaseButton": {
+    "connectAndPay": "연결 및 지불",
+    "confirm": "구매확인",
+    "confirmed": "구매가 완료되었습니다!",
+    "processing": "처리중..."
+  }
+}
