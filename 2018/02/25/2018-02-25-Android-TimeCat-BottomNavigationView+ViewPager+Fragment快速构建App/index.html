@@ -22,12 +22,13 @@
     <meta property="og:image" content=""/>
     
 
-    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="icon" type="image/png" href="/assets/images/favicon.ico" />
     <link rel="alternate" href="/atom.xml" title="XiChen" type="application/atom+xml">
     <link rel="stylesheet" href="/css/lib/materialize.min.css">
     <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
     <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-
+    <link rel="stylesheet" href="//fonts.gdgdocs.org/css?family=Lobster" type="text/css">
+    
     
         <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
     
@@ -38,71 +39,100 @@
 <body>
     <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
 
-    <nav class="indigo">
+    <nav class="indigo nav">
     <div class="nav-wrapper">
         <a href="#" data-activates="main-menu" class="button-collapse">
             <i class="fa fa-navicon"></i>
         </a>
         <div class="">
-            <a href="/" class="brand-logo hide-on-med-and-down">XiChen</a>
-            <ul class="right hide-on-med-and-down">
+            <div style="font-family: Lobster, Monospace;">
+                <a href="/" class="brand-logo hide-on-med-and-down" style="font-family: Lobster, Monospace;">
+                    XiChen
+                </a>
+            </div>
+            <ul class="nav-menu right hide-on-med-and-down">
                 
-                    <li>
-                        <a class="menu-home " href="/" >
-                            <i class="fa fa-home "></i>
-                            
-                            Home
+                    <li class="tab">
+                        <a class="menu-home " href="/"
+                            >
+                                <i class="fa fa-home "></i>
+                                
+                                    Home
                         </a>
                     </li>
-                
-                    <li>
-                        <a class="menu-archive " href="/archives" >
-                            <i class="fa fa-archive "></i>
-                            
-                            Archives
+                    
+                    <li class="tab">
+                        <a class="menu-archive " href="/archives"
+                            >
+                                <i class="fa fa-archive "></i>
+                                
+                                    Archives
                         </a>
                     </li>
-                
-                    <li>
-                        <a class="menu-category category-menu" href="javascript:;" data-activates="category-menu" >
-                            <i class="fa fa-bookmark "></i>
-                            
-                            Categories
+                    
+                    <li class="tab">
+                        <a class="menu-category category-menu" href="javascript:;"
+                            data-activates="category-menu"
+                            >
+                                <i class="fa fa-bookmark "></i>
+                                
+                                    Categories
                         </a>
                     </li>
-                
-                    <li>
-                        <a class="menu-reading " href="/reading" >
-                            <i class="fa fa-book "></i>
-                            
-                            Reading
+                    
+                    <li class="tab">
+                        <a class="menu-apps " href="/apps"
+                            >
+                                <i class="fa fa-link "></i>
+                                
+                                    App
                         </a>
                     </li>
-                
-                    <li>
-                        <a class="menu-about " href="/about" >
-                            <i class="fa fa-user "></i>
-                            
-                            About
+                    
+                    <li class="tab">
+                        <a class="menu-tools " href="/tools"
+                            >
+                                <i class="fa fa-wrench "></i>
+                                
+                                    Tool
                         </a>
                     </li>
-                
-                    <li>
-                        <a class="menu-search modal-trigger " href="#search" >
-                            <i class="fa fa-search "></i>
-                            
-                            Search
+                    
+                    <li class="tab">
+                        <a class="menu-reading " href="/reading"
+                            >
+                                <i class="fa fa-book "></i>
+                                
+                                    Reading
                         </a>
                     </li>
-                
+                    
+                    <li class="tab">
+                        <a class="menu-about " href="/about"
+                            >
+                                <i class="fa fa-user "></i>
+                                
+                                    About
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-search modal-trigger " href="#search"
+                            >
+                                <i class="fa fa-search "></i>
+                                
+                                    Search
+                        </a>
+                    </li>
+                    
             </ul>
             <div>
     <ul class="side-nav indigo darken-1" id="main-menu">
         
         <li class="side-user">
             <div class="row">
-                <div class="col s4 no-padding">
-                    <img class="avatar-image circle responsive-img" src="/assets/images/avatar.jpg" alt="User Avatar">
+                <div class="col s4 no-padding logo-a">
+                    <img class="avatar-image circle responsive-img logo" src="/assets/images/avatar.jpg" alt="User Avatar">
                 </div>
                 <div class="info col s8 valign-wrapper no-padding">
                     <div class="valign">
@@ -136,6 +166,22 @@
                     <i class="fa fa-bookmark "></i>
                     
                     Categories
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-apps " href="/apps" >
+                    <i class="fa fa-link "></i>
+                    
+                    App
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-tools " href="/tools" >
+                    <i class="fa fa-wrench "></i>
+                    
+                    Tool
                 </a>
             </li>
         
@@ -179,6 +225,14 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Deep-Learning/">
+                    Deep-Learning <span class="right">5</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/Tips/">
                     Tips <span class="right">7</span></a>
                 </a>
@@ -211,6 +265,22 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tools/">
+                    Tools <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Algorithms/">
+                    Algorithms <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/Spider/">
                     Spider <span class="right">1</span></a>
                 </a>
@@ -227,16 +297,16 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/密码学/">
-                    密码学 <span class="right">1</span></a>
+                <a class="no-padding" href="/categories/算法/">
+                    算法 <span class="right">4</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/算法/">
-                    算法 <span class="right">4</span></a>
+                <a class="no-padding" href="/categories/密码学/">
+                    密码学 <span class="right">1</span></a>
                 </a>
             </li>
 
@@ -251,24 +321,8 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/杂思/">
-                    杂思 <span class="right">1</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/Git/">
                     Git <span class="right">2</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Github/">
-                    Github <span class="right">1</span></a>
                 </a>
             </li>
 
@@ -291,16 +345,24 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/计算机组成原理/">
-                    计算机组成原理 <span class="right">1</span></a>
+                <a class="no-padding" href="/categories/Github/">
+                    Github <span class="right">1</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Deep-Learning/">
-                    Deep-Learning <span class="right">5</span></a>
+                <a class="no-padding" href="/categories/杂思/">
+                    杂思 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/计算机组成原理/">
+                    计算机组成原理 <span class="right">1</span></a>
                 </a>
             </li>
 
@@ -317,22 +379,6 @@
             <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/练习/">
                     练习 <span class="right">1</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Tools/">
-                    Tools <span class="right">1</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Algorithms/">
-                    Algorithms <span class="right">1</span></a>
                 </a>
             </li>
 
@@ -357,7 +403,6 @@
 
     </div>
 </div>
-
 
     <main>
         <div class="container main-container">
@@ -390,7 +435,7 @@
 
 
             </div>
-            <time class="pink-link-context" datetime="2018-02-25T02:48:00.000Z"><a href="/2018/02/25/2018-02-25-Android-TimeCat-BottomNavigationView+ViewPager+Fragment快速构建App/">2018-02-25</a></time>
+            <i class="fa fa-calendar"></i><time class="green-link-context" datetime="2018-02-24T18:48:00.000Z"><a href="/2018/02/25/2018-02-25-Android-TimeCat-BottomNavigationView+ViewPager+Fragment快速构建App/">2018-02-25</a></time>
 
             <span id="busuanzi_container_page_pv" class="read-times-container">
     <i class="fa fa-eye"></i>
@@ -400,23 +445,24 @@
             
     <div class="tags-row">
         
-            <a href="/tags/Android/" class="chip pink lighten-1">Android</a>
+            <a href="/tags/Android/" class="chip green lighten-1">Android</a>
         
-            <a href="/tags/ViewPager/" class="chip pink lighten-1">ViewPager</a>
+            <a href="/tags/ViewPager/" class="chip green lighten-1">ViewPager</a>
         
-            <a href="/tags/Fragment/" class="chip pink lighten-1">Fragment</a>
+            <a href="/tags/Fragment/" class="chip green lighten-1">Fragment</a>
         
-            <a href="/tags/BottomNavigationView/" class="chip pink lighten-1">BottomNavigationView</a>
+            <a href="/tags/BottomNavigationView/" class="chip green lighten-1">BottomNavigationView</a>
         
     </div>
+    
 
 
-            <div class="toc pink-link-context hide-on-med-and-down">
-    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#创建项目"><span class="section table-of-contents-text">创建项目</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#创建布局"><span class="section table-of-contents-text">创建布局</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#创建三个Fragment-布局及类"><span class="section table-of-contents-text">创建三个Fragment(布局及类)</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#修改menu-navigation-xml文件"><span class="section table-of-contents-text">修改menu/navigation.xml文件</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#编辑MainActivity类"><span class="section table-of-contents-text">编辑MainActivity类</span></a></li></ol>
+            <div class="toc green-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#创建项目"><span class="section table-of-contents-number">1.</span> <span class="section table-of-contents-text">创建项目</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#创建布局"><span class="section table-of-contents-number">2.</span> <span class="section table-of-contents-text">创建布局</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#创建三个Fragment-布局及类"><span class="section table-of-contents-number">3.</span> <span class="section table-of-contents-text">创建三个Fragment(布局及类)</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#修改menu-navigation-xml文件"><span class="section table-of-contents-number">4.</span> <span class="section table-of-contents-text">修改menu/navigation.xml文件</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#编辑MainActivity类"><span class="section table-of-contents-number">5.</span> <span class="section table-of-contents-text">编辑MainActivity类</span></a></li></ol>
 </div>
 
 
-            <div class="entry pink-link-context">
+            <div class="entry green-link-context">
                 <p>先上图</p>
 <div class="image-package"><br><img src="/assets/blog/img/2018-02-25/0.gif" width="400"><br></div>
 
@@ -433,17 +479,17 @@
 <p>就是这么简单，快拿去添加自己的逻辑吧！</p>
 
                 
-<p class="pink-link-context">
-    <a href="/2018/02/25/2018-02-25-Android-TimeCat-比较Fragment中获取Context对象的两种方法/" rel="next" title="【Android TimeCat】 比较Fragment中获取Context对象的两种方法">
-    Prev: 【Android TimeCat】 比较Fragment中获取Context对象的两种方法
+<p class="green-link-context prev-btn">
+    <a href="/2018/02/25/2018-02-25-Android-TimeCat-java回调机制/" rel="next" title="【Android TimeCat】 Java 回调及其在项目中的运用">
+    Prev: 【Android TimeCat】 Java 回调及其在项目中的运用
   </a>
 </p>
 
 
 
-<p class="pink-link-context">
-    <a href="/2018/02/25/2018-02-25-Android-TimeCat-java回调机制/" rel="next" title="【Android TimeCat】 Java 回调及其在项目中的运用">
-    Next: 【Android TimeCat】 Java 回调及其在项目中的运用
+<p class="green-link-context next-btn">
+    <a href="/2018/01/31/2018-01-31-github-issue-usage/" rel="next" title="github issue 的用法">
+    Next: github issue 的用法
   </a>
 </p>
 
@@ -456,6 +502,23 @@
 
 
 
+
+    <div id="gitment_container"></div>
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <link rel="stylesheet" href="/css/gitment.css" media="screen" type="text/css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <script>
+    var gitment = new Gitment({
+        id: 'Sun Feb 25 2018 02:48:00 GMT+0800',
+        owner: 'linxueyuanstdio',
+        repo: 'linxueyuanstdio.github.io',
+        oauth: {
+            client_id: '2f7f71f1ba398039ff23',
+            client_secret: '3ebc908a7042fef2d56a83a2eb8c18777374a087',
+        },
+    })
+    gitment.render('gitment_container')
+    </script>
 
 
 
@@ -505,7 +568,7 @@
                     </a>
                 
                 
-    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
     </script>
     <div class="site-visitors-container white-text">
         <span>
@@ -537,9 +600,9 @@
     </div>
     
 
-    <div class="footer-copyright pink-link-context">
+    <div class="footer-copyright green-link-context">
         <div class="container">
-            © 2016 example.com, All rights reserved.
+            © 2018 xichen.pub, All rights reserved.
             <p class="right" style="margin-top: 0;">Blog powered by <a href="https://hexo.io">Hexo</a> | Theme <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
         </div>
     </div>
@@ -558,6 +621,7 @@
 
 <script src="/js/jquery.min.js"></script>
 <script src="/js/materialize.min.js"></script>
+<script src="/js/canvas.js"></script>
 
 <script>
     (function($) {
@@ -713,7 +777,7 @@
                             if (isMatch) {
                                 keywords.forEach(function(keyword) {
                                     var regS = new RegExp(keyword, "gi");
-                                    data_title = data_title.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword green lighten-2\">" + keyword + "</span>");
                                 });
 
                                 str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
@@ -735,7 +799,7 @@
                                     // highlight all keywords
                                     keywords.forEach(function(keyword) {
                                         var regS = new RegExp(keyword, "gi");
-                                        match_content = match_content.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword green lighten-2\">" + keyword + "</span>");
                                     });
 
                                     str += "<p class=\"search-result\">..." + match_content + "...</p>"
@@ -772,7 +836,7 @@ MathJax.Hub.Config({
 });
 </script>
 <script type="text/javascript" async
-  src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
 

@@ -22,12 +22,13 @@
     <meta property="og:image" content=""/>
     
 
-    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="icon" type="image/png" href="/assets/images/favicon.ico" />
     <link rel="alternate" href="/atom.xml" title="XiChen" type="application/atom+xml">
     <link rel="stylesheet" href="/css/lib/materialize.min.css">
     <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
     <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-
+    <link rel="stylesheet" href="//fonts.gdgdocs.org/css?family=Lobster" type="text/css">
+    
     
         <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
     
@@ -38,71 +39,100 @@
 <body>
     <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
 
-    <nav class="indigo">
+    <nav class="indigo nav">
     <div class="nav-wrapper">
         <a href="#" data-activates="main-menu" class="button-collapse">
             <i class="fa fa-navicon"></i>
         </a>
         <div class="">
-            <a href="/" class="brand-logo hide-on-med-and-down">XiChen</a>
-            <ul class="right hide-on-med-and-down">
+            <div style="font-family: Lobster, Monospace;">
+                <a href="/" class="brand-logo hide-on-med-and-down" style="font-family: Lobster, Monospace;">
+                    XiChen
+                </a>
+            </div>
+            <ul class="nav-menu right hide-on-med-and-down">
                 
-                    <li>
-                        <a class="menu-home " href="/" >
-                            <i class="fa fa-home "></i>
-                            
-                            Home
+                    <li class="tab">
+                        <a class="menu-home " href="/"
+                            >
+                                <i class="fa fa-home "></i>
+                                
+                                    Home
                         </a>
                     </li>
-                
-                    <li>
-                        <a class="menu-archive " href="/archives" >
-                            <i class="fa fa-archive "></i>
-                            
-                            Archives
+                    
+                    <li class="tab">
+                        <a class="menu-archive " href="/archives"
+                            >
+                                <i class="fa fa-archive "></i>
+                                
+                                    Archives
                         </a>
                     </li>
-                
-                    <li>
-                        <a class="menu-category category-menu" href="javascript:;" data-activates="category-menu" >
-                            <i class="fa fa-bookmark "></i>
-                            
-                            Categories
+                    
+                    <li class="tab">
+                        <a class="menu-category category-menu" href="javascript:;"
+                            data-activates="category-menu"
+                            >
+                                <i class="fa fa-bookmark "></i>
+                                
+                                    Categories
                         </a>
                     </li>
-                
-                    <li>
-                        <a class="menu-reading " href="/reading" >
-                            <i class="fa fa-book "></i>
-                            
-                            Reading
+                    
+                    <li class="tab">
+                        <a class="menu-apps " href="/apps"
+                            >
+                                <i class="fa fa-link "></i>
+                                
+                                    App
                         </a>
                     </li>
-                
-                    <li>
-                        <a class="menu-about " href="/about" >
-                            <i class="fa fa-user "></i>
-                            
-                            About
+                    
+                    <li class="tab">
+                        <a class="menu-tools " href="/tools"
+                            >
+                                <i class="fa fa-wrench "></i>
+                                
+                                    Tool
                         </a>
                     </li>
-                
-                    <li>
-                        <a class="menu-search modal-trigger " href="#search" >
-                            <i class="fa fa-search "></i>
-                            
-                            Search
+                    
+                    <li class="tab">
+                        <a class="menu-reading " href="/reading"
+                            >
+                                <i class="fa fa-book "></i>
+                                
+                                    Reading
                         </a>
                     </li>
-                
+                    
+                    <li class="tab">
+                        <a class="menu-about " href="/about"
+                            >
+                                <i class="fa fa-user "></i>
+                                
+                                    About
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-search modal-trigger " href="#search"
+                            >
+                                <i class="fa fa-search "></i>
+                                
+                                    Search
+                        </a>
+                    </li>
+                    
             </ul>
             <div>
     <ul class="side-nav indigo darken-1" id="main-menu">
         
         <li class="side-user">
             <div class="row">
-                <div class="col s4 no-padding">
-                    <img class="avatar-image circle responsive-img" src="/assets/images/avatar.jpg" alt="User Avatar">
+                <div class="col s4 no-padding logo-a">
+                    <img class="avatar-image circle responsive-img logo" src="/assets/images/avatar.jpg" alt="User Avatar">
                 </div>
                 <div class="info col s8 valign-wrapper no-padding">
                     <div class="valign">
@@ -136,6 +166,22 @@
                     <i class="fa fa-bookmark "></i>
                     
                     Categories
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-apps " href="/apps" >
+                    <i class="fa fa-link "></i>
+                    
+                    App
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-tools " href="/tools" >
+                    <i class="fa fa-wrench "></i>
+                    
+                    Tool
                 </a>
             </li>
         
@@ -179,6 +225,14 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Deep-Learning/">
+                    Deep-Learning <span class="right">5</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/Tips/">
                     Tips <span class="right">7</span></a>
                 </a>
@@ -211,6 +265,22 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tools/">
+                    Tools <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Algorithms/">
+                    Algorithms <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/Spider/">
                     Spider <span class="right">1</span></a>
                 </a>
@@ -227,16 +297,16 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/密码学/">
-                    密码学 <span class="right">1</span></a>
+                <a class="no-padding" href="/categories/算法/">
+                    算法 <span class="right">4</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/算法/">
-                    算法 <span class="right">4</span></a>
+                <a class="no-padding" href="/categories/密码学/">
+                    密码学 <span class="right">1</span></a>
                 </a>
             </li>
 
@@ -251,24 +321,8 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/杂思/">
-                    杂思 <span class="right">1</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/Git/">
                     Git <span class="right">2</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Github/">
-                    Github <span class="right">1</span></a>
                 </a>
             </li>
 
@@ -291,16 +345,24 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/计算机组成原理/">
-                    计算机组成原理 <span class="right">1</span></a>
+                <a class="no-padding" href="/categories/Github/">
+                    Github <span class="right">1</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Deep-Learning/">
-                    Deep-Learning <span class="right">5</span></a>
+                <a class="no-padding" href="/categories/杂思/">
+                    杂思 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/计算机组成原理/">
+                    计算机组成原理 <span class="right">1</span></a>
                 </a>
             </li>
 
@@ -317,22 +379,6 @@
             <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/练习/">
                     练习 <span class="right">1</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Tools/">
-                    Tools <span class="right">1</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Algorithms/">
-                    Algorithms <span class="right">1</span></a>
                 </a>
             </li>
 
@@ -357,7 +403,6 @@
 
     </div>
 </div>
-
 
     <main>
         <div class="container main-container">
@@ -390,7 +435,7 @@
 
 
             </div>
-            <time class="pink-link-context" datetime="2018-03-13T04:11:00.000Z"><a href="/2018/03/13/2018-03-13-计算机组成原理-八大思想之抽象/">2018-03-13</a></time>
+            <i class="fa fa-calendar"></i><time class="green-link-context" datetime="2018-03-12T20:11:00.000Z"><a href="/2018/03/13/2018-03-13-计算机组成原理-八大思想之抽象/">2018-03-13</a></time>
 
             <span id="busuanzi_container_page_pv" class="read-times-container">
     <i class="fa fa-eye"></i>
@@ -400,19 +445,20 @@
             
     <div class="tags-row">
         
-            <a href="/tags/计算机组成原理/" class="chip pink lighten-1">计算机组成原理</a>
+            <a href="/tags/计算机组成原理/" class="chip green lighten-1">计算机组成原理</a>
         
-            <a href="/tags/八大思想/" class="chip pink lighten-1">八大思想</a>
+            <a href="/tags/八大思想/" class="chip green lighten-1">八大思想</a>
         
     </div>
+    
 
 
-            <div class="toc pink-link-context hide-on-med-and-down">
+            <div class="toc green-link-context hide-on-med-and-down">
     
 </div>
 
 
-            <div class="entry pink-link-context">
+            <div class="entry green-link-context">
                 <p>计算机领域对我影响最大的思想是抽象。</p>
 <p>何为抽象？抽象就是隐藏具体，暴露功能。用通俗一点的话说，抽象就是你好好做自己的事，以及知道别人能帮你干什么事，至于别人是如何帮你完成的，你没必要知道。</p>
 <p>比如理发就是一个抽象，我想理发，我只需要知道理发师会理发就可以了，至于理发师是怎样理发的，我不用关心。当然，这个例子中我们通常喜欢选最好的理发师，这些理发师虽然都有理发的功能，但理发的速度等是有区别的，这里的区别也就是其实现的不同。甚至一个能理发的机器也是可以的，因为其也有理发的功能，虽然机器理发的具体实现有点奇怪。</p>
@@ -421,7 +467,7 @@
 <p>事实上，抽象可以放到人类社会的方方面面，上面理发是一个例子。各行各业都是抽象的，比如软件开发，也是提供接口给人类使用；比如平面设计，也是提供一个看的接口；比如学校、人民教师、官员等等，一步一步抽象下去，最后都是提供了为人民服务的接口。。。</p>
 
                 
-<p class="pink-link-context">
+<p class="green-link-context prev-btn">
     <a href="/2018/04/08/2018-04-08-Android-TimeCat-解决cant-resolve-symbol-R/" rel="next" title="【Android TimeCat】 解决cannot resolve symbol R">
     Prev: 【Android TimeCat】 解决cannot resolve symbol R
   </a>
@@ -429,7 +475,7 @@
 
 
 
-<p class="pink-link-context">
+<p class="green-link-context next-btn">
     <a href="/2018/03/06/2018-03-06-Android-TimeCat-解决Gradle-Resolvedependencies-classpath的办法/" rel="next" title="【Android TimeCat】 解决Gradle :Resolve dependencies :classpath的办法">
     Next: 【Android TimeCat】 解决Gradle :Resolve dependencies :classpath的办法
   </a>
@@ -444,6 +490,23 @@
 
 
 
+
+    <div id="gitment_container"></div>
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <link rel="stylesheet" href="/css/gitment.css" media="screen" type="text/css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <script>
+    var gitment = new Gitment({
+        id: 'Tue Mar 13 2018 04:11:00 GMT+0800',
+        owner: 'linxueyuanstdio',
+        repo: 'linxueyuanstdio.github.io',
+        oauth: {
+            client_id: '2f7f71f1ba398039ff23',
+            client_secret: '3ebc908a7042fef2d56a83a2eb8c18777374a087',
+        },
+    })
+    gitment.render('gitment_container')
+    </script>
 
 
 
@@ -493,7 +556,7 @@
                     </a>
                 
                 
-    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
     </script>
     <div class="site-visitors-container white-text">
         <span>
@@ -525,9 +588,9 @@
     </div>
     
 
-    <div class="footer-copyright pink-link-context">
+    <div class="footer-copyright green-link-context">
         <div class="container">
-            © 2016 example.com, All rights reserved.
+            © 2018 xichen.pub, All rights reserved.
             <p class="right" style="margin-top: 0;">Blog powered by <a href="https://hexo.io">Hexo</a> | Theme <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
         </div>
     </div>
@@ -546,6 +609,7 @@
 
 <script src="/js/jquery.min.js"></script>
 <script src="/js/materialize.min.js"></script>
+<script src="/js/canvas.js"></script>
 
 <script>
     (function($) {
@@ -701,7 +765,7 @@
                             if (isMatch) {
                                 keywords.forEach(function(keyword) {
                                     var regS = new RegExp(keyword, "gi");
-                                    data_title = data_title.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword green lighten-2\">" + keyword + "</span>");
                                 });
 
                                 str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
@@ -723,7 +787,7 @@
                                     // highlight all keywords
                                     keywords.forEach(function(keyword) {
                                         var regS = new RegExp(keyword, "gi");
-                                        match_content = match_content.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword green lighten-2\">" + keyword + "</span>");
                                     });
 
                                     str += "<p class=\"search-result\">..." + match_content + "...</p>"
@@ -760,7 +824,7 @@ MathJax.Hub.Config({
 });
 </script>
 <script type="text/javascript" async
-  src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
 

@@ -22,12 +22,13 @@
     <meta property="og:image" content=""/>
     
 
-    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="icon" type="image/png" href="/assets/images/favicon.ico" />
     <link rel="alternate" href="/atom.xml" title="XiChen" type="application/atom+xml">
     <link rel="stylesheet" href="/css/lib/materialize.min.css">
     <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
     <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-
+    <link rel="stylesheet" href="//fonts.gdgdocs.org/css?family=Lobster" type="text/css">
+    
     
         <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
     
@@ -38,71 +39,100 @@
 <body>
     <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
 
-    <nav class="indigo">
+    <nav class="indigo nav">
     <div class="nav-wrapper">
         <a href="#" data-activates="main-menu" class="button-collapse">
             <i class="fa fa-navicon"></i>
         </a>
         <div class="">
-            <a href="/" class="brand-logo hide-on-med-and-down">XiChen</a>
-            <ul class="right hide-on-med-and-down">
+            <div style="font-family: Lobster, Monospace;">
+                <a href="/" class="brand-logo hide-on-med-and-down" style="font-family: Lobster, Monospace;">
+                    XiChen
+                </a>
+            </div>
+            <ul class="nav-menu right hide-on-med-and-down">
                 
-                    <li>
-                        <a class="menu-home " href="/" >
-                            <i class="fa fa-home "></i>
-                            
-                            Home
+                    <li class="tab">
+                        <a class="menu-home " href="/"
+                            >
+                                <i class="fa fa-home "></i>
+                                
+                                    Home
                         </a>
                     </li>
-                
-                    <li>
-                        <a class="menu-archive " href="/archives" >
-                            <i class="fa fa-archive "></i>
-                            
-                            Archives
+                    
+                    <li class="tab">
+                        <a class="menu-archive " href="/archives"
+                            >
+                                <i class="fa fa-archive "></i>
+                                
+                                    Archives
                         </a>
                     </li>
-                
-                    <li>
-                        <a class="menu-category category-menu" href="javascript:;" data-activates="category-menu" >
-                            <i class="fa fa-bookmark "></i>
-                            
-                            Categories
+                    
+                    <li class="tab">
+                        <a class="menu-category category-menu" href="javascript:;"
+                            data-activates="category-menu"
+                            >
+                                <i class="fa fa-bookmark "></i>
+                                
+                                    Categories
                         </a>
                     </li>
-                
-                    <li>
-                        <a class="menu-reading " href="/reading" >
-                            <i class="fa fa-book "></i>
-                            
-                            Reading
+                    
+                    <li class="tab">
+                        <a class="menu-apps " href="/apps"
+                            >
+                                <i class="fa fa-link "></i>
+                                
+                                    App
                         </a>
                     </li>
-                
-                    <li>
-                        <a class="menu-about " href="/about" >
-                            <i class="fa fa-user "></i>
-                            
-                            About
+                    
+                    <li class="tab">
+                        <a class="menu-tools " href="/tools"
+                            >
+                                <i class="fa fa-wrench "></i>
+                                
+                                    Tool
                         </a>
                     </li>
-                
-                    <li>
-                        <a class="menu-search modal-trigger " href="#search" >
-                            <i class="fa fa-search "></i>
-                            
-                            Search
+                    
+                    <li class="tab">
+                        <a class="menu-reading " href="/reading"
+                            >
+                                <i class="fa fa-book "></i>
+                                
+                                    Reading
                         </a>
                     </li>
-                
+                    
+                    <li class="tab">
+                        <a class="menu-about " href="/about"
+                            >
+                                <i class="fa fa-user "></i>
+                                
+                                    About
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-search modal-trigger " href="#search"
+                            >
+                                <i class="fa fa-search "></i>
+                                
+                                    Search
+                        </a>
+                    </li>
+                    
             </ul>
             <div>
     <ul class="side-nav indigo darken-1" id="main-menu">
         
         <li class="side-user">
             <div class="row">
-                <div class="col s4 no-padding">
-                    <img class="avatar-image circle responsive-img" src="/assets/images/avatar.jpg" alt="User Avatar">
+                <div class="col s4 no-padding logo-a">
+                    <img class="avatar-image circle responsive-img logo" src="/assets/images/avatar.jpg" alt="User Avatar">
                 </div>
                 <div class="info col s8 valign-wrapper no-padding">
                     <div class="valign">
@@ -136,6 +166,22 @@
                     <i class="fa fa-bookmark "></i>
                     
                     Categories
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-apps " href="/apps" >
+                    <i class="fa fa-link "></i>
+                    
+                    App
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-tools " href="/tools" >
+                    <i class="fa fa-wrench "></i>
+                    
+                    Tool
                 </a>
             </li>
         
@@ -179,6 +225,14 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Deep-Learning/">
+                    Deep-Learning <span class="right">5</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/Tips/">
                     Tips <span class="right">7</span></a>
                 </a>
@@ -211,6 +265,22 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tools/">
+                    Tools <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Algorithms/">
+                    Algorithms <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/Spider/">
                     Spider <span class="right">1</span></a>
                 </a>
@@ -227,16 +297,16 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/密码学/">
-                    密码学 <span class="right">1</span></a>
+                <a class="no-padding" href="/categories/算法/">
+                    算法 <span class="right">4</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/算法/">
-                    算法 <span class="right">4</span></a>
+                <a class="no-padding" href="/categories/密码学/">
+                    密码学 <span class="right">1</span></a>
                 </a>
             </li>
 
@@ -251,24 +321,8 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/杂思/">
-                    杂思 <span class="right">1</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/Git/">
                     Git <span class="right">2</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Github/">
-                    Github <span class="right">1</span></a>
                 </a>
             </li>
 
@@ -291,16 +345,24 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/计算机组成原理/">
-                    计算机组成原理 <span class="right">1</span></a>
+                <a class="no-padding" href="/categories/Github/">
+                    Github <span class="right">1</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Deep-Learning/">
-                    Deep-Learning <span class="right">5</span></a>
+                <a class="no-padding" href="/categories/杂思/">
+                    杂思 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/计算机组成原理/">
+                    计算机组成原理 <span class="right">1</span></a>
                 </a>
             </li>
 
@@ -317,22 +379,6 @@
             <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/练习/">
                     练习 <span class="right">1</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Tools/">
-                    Tools <span class="right">1</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Algorithms/">
-                    Algorithms <span class="right">1</span></a>
                 </a>
             </li>
 
@@ -357,7 +403,6 @@
 
     </div>
 </div>
-
 
     <main>
         <div class="container main-container">
@@ -390,7 +435,7 @@
 
 
             </div>
-            <time class="pink-link-context" datetime="2018-02-25T11:28:00.000Z"><a href="/2018/02/25/2018-02-25-Android-TimeCat-使用矢量图（SVG, VectorDrawable）/">2018-02-25</a></time>
+            <i class="fa fa-calendar"></i><time class="green-link-context" datetime="2018-02-25T03:28:00.000Z"><a href="/2018/02/25/2018-02-25-Android-TimeCat-使用矢量图（SVG, VectorDrawable）/">2018-02-25</a></time>
 
             <span id="busuanzi_container_page_pv" class="read-times-container">
     <i class="fa fa-eye"></i>
@@ -400,19 +445,20 @@
             
     <div class="tags-row">
         
-            <a href="/tags/Android/" class="chip pink lighten-1">Android</a>
+            <a href="/tags/Android/" class="chip green lighten-1">Android</a>
         
-            <a href="/tags/svg/" class="chip pink lighten-1">svg</a>
+            <a href="/tags/svg/" class="chip green lighten-1">svg</a>
         
     </div>
+    
 
 
-            <div class="toc pink-link-context hide-on-med-and-down">
-    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#背景"><span class="section table-of-contents-text">背景</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#SVG-和-VectorDrawable"><span class="section table-of-contents-text">SVG 和 VectorDrawable</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#SVG"><span class="section table-of-contents-text">SVG</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#VectorDrawable"><span class="section table-of-contents-text">VectorDrawable</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#获取矢量图方式一：Android-Studio的Material-Icon"><span class="section table-of-contents-text">获取矢量图方式一：Android Studio的Material Icon</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#获取矢量图方式二：iconfont"><span class="section table-of-contents-text">获取矢量图方式二：iconfont</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#手动转化成xml"><span class="section table-of-contents-text">手动转化成xml</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#svgtoandroid插件"><span class="section table-of-contents-text">svgtoandroid插件</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#Android-Studio自带转化"><span class="section table-of-contents-text">Android Studio自带转化</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#项目应用"><span class="section table-of-contents-text">项目应用</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#前提："><span class="section table-of-contents-text">前提：</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#AppCompatImageView"><span class="section table-of-contents-text">AppCompatImageView</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#TextView"><span class="section table-of-contents-text">TextView</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#MenuItem"><span class="section table-of-contents-text">MenuItem</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#VectorDrawable-转-Bitmap"><span class="section table-of-contents-text">VectorDrawable 转 Bitmap</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#参考："><span class="section table-of-contents-text">参考：</span></a></li></ol>
+            <div class="toc green-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#背景"><span class="section table-of-contents-number">1.</span> <span class="section table-of-contents-text">背景</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#SVG-和-VectorDrawable"><span class="section table-of-contents-number">2.</span> <span class="section table-of-contents-text">SVG 和 VectorDrawable</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#SVG"><span class="section table-of-contents-number">2.1.</span> <span class="section table-of-contents-text">SVG</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#VectorDrawable"><span class="section table-of-contents-number">2.2.</span> <span class="section table-of-contents-text">VectorDrawable</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#获取矢量图方式一：Android-Studio的Material-Icon"><span class="section table-of-contents-number">3.</span> <span class="section table-of-contents-text">获取矢量图方式一：Android Studio的Material Icon</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#获取矢量图方式二：iconfont"><span class="section table-of-contents-number">4.</span> <span class="section table-of-contents-text">获取矢量图方式二：iconfont</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#手动转化成xml"><span class="section table-of-contents-number">4.1.</span> <span class="section table-of-contents-text">手动转化成xml</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#svgtoandroid插件"><span class="section table-of-contents-number">4.2.</span> <span class="section table-of-contents-text">svgtoandroid插件</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#Android-Studio自带转化"><span class="section table-of-contents-number">4.3.</span> <span class="section table-of-contents-text">Android Studio自带转化</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#项目应用"><span class="section table-of-contents-number">5.</span> <span class="section table-of-contents-text">项目应用</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#前提："><span class="section table-of-contents-number">5.1.</span> <span class="section table-of-contents-text">前提：</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#AppCompatImageView"><span class="section table-of-contents-number">5.2.</span> <span class="section table-of-contents-text">AppCompatImageView</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#TextView"><span class="section table-of-contents-number">5.3.</span> <span class="section table-of-contents-text">TextView</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#MenuItem"><span class="section table-of-contents-number">5.4.</span> <span class="section table-of-contents-text">MenuItem</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#VectorDrawable-转-Bitmap"><span class="section table-of-contents-number">5.5.</span> <span class="section table-of-contents-text">VectorDrawable 转 Bitmap</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#参考："><span class="section table-of-contents-number">6.</span> <span class="section table-of-contents-text">参考：</span></a></li></ol>
 </div>
 
 
-            <div class="entry pink-link-context">
+            <div class="entry green-link-context">
                 <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>TimeCat项目中需要根据不同的场景动态改变图标颜色，如果用png等格式，会使图片资源过多。明明图案是一样的，为什么改变个颜色就得多一张图?如果整体颜色风格改变，那之前的图片资源就都废了？所以选择用xml文件来描述图片颜色，想用什么色就用什么色。</p>
 <p>图片本质上是一个存像素点的矩阵，而svg高级一点，存一些点，比如一个圆，那么就存圆心和半径数据就行了，这是轨迹，然后再规定颜色，这样和png资源相比，内存大大减少，还容易自定义，改个图标颜色简直不要太方便！</p>
 <h1 id="SVG-和-VectorDrawable"><a href="#SVG-和-VectorDrawable" class="headerlink" title="SVG 和 VectorDrawable"></a>SVG 和 VectorDrawable</h1><h2 id="SVG"><a href="#SVG" class="headerlink" title="SVG"></a>SVG</h2><blockquote>
@@ -491,7 +537,7 @@
 <h1 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h1><p><a href="https://www.jianshu.com/p/0555b8c1d26a" target="_blank" rel="noopener">https://www.jianshu.com/p/0555b8c1d26a</a></p>
 
                 
-<p class="pink-link-context">
+<p class="green-link-context prev-btn">
     <a href="/2018/02/26/2018-02-26-Android-TimeCat-懒加载需求下的BaseFragment封装/" rel="next" title="【Android TimeCat】 懒加载需求下的BaseFragment封装">
     Prev: 【Android TimeCat】 懒加载需求下的BaseFragment封装
   </a>
@@ -499,7 +545,7 @@
 
 
 
-<p class="pink-link-context">
+<p class="green-link-context next-btn">
     <a href="/2018/02/25/2018-02-25-Android-TimeCat-Android中用intent传递对象的三种方法/" rel="next" title="【Android TimeCat】 Android中用intent传递对象的三种方法">
     Next: 【Android TimeCat】 Android中用intent传递对象的三种方法
   </a>
@@ -514,6 +560,23 @@
 
 
 
+
+    <div id="gitment_container"></div>
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <link rel="stylesheet" href="/css/gitment.css" media="screen" type="text/css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <script>
+    var gitment = new Gitment({
+        id: 'Sun Feb 25 2018 11:28:00 GMT+0800',
+        owner: 'linxueyuanstdio',
+        repo: 'linxueyuanstdio.github.io',
+        oauth: {
+            client_id: '2f7f71f1ba398039ff23',
+            client_secret: '3ebc908a7042fef2d56a83a2eb8c18777374a087',
+        },
+    })
+    gitment.render('gitment_container')
+    </script>
 
 
 
@@ -563,7 +626,7 @@
                     </a>
                 
                 
-    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
     </script>
     <div class="site-visitors-container white-text">
         <span>
@@ -595,9 +658,9 @@
     </div>
     
 
-    <div class="footer-copyright pink-link-context">
+    <div class="footer-copyright green-link-context">
         <div class="container">
-            © 2016 example.com, All rights reserved.
+            © 2018 xichen.pub, All rights reserved.
             <p class="right" style="margin-top: 0;">Blog powered by <a href="https://hexo.io">Hexo</a> | Theme <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
         </div>
     </div>
@@ -616,6 +679,7 @@
 
 <script src="/js/jquery.min.js"></script>
 <script src="/js/materialize.min.js"></script>
+<script src="/js/canvas.js"></script>
 
 <script>
     (function($) {
@@ -771,7 +835,7 @@
                             if (isMatch) {
                                 keywords.forEach(function(keyword) {
                                     var regS = new RegExp(keyword, "gi");
-                                    data_title = data_title.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword green lighten-2\">" + keyword + "</span>");
                                 });
 
                                 str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
@@ -793,7 +857,7 @@
                                     // highlight all keywords
                                     keywords.forEach(function(keyword) {
                                         var regS = new RegExp(keyword, "gi");
-                                        match_content = match_content.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword green lighten-2\">" + keyword + "</span>");
                                     });
 
                                     str += "<p class=\"search-result\">..." + match_content + "...</p>"
@@ -830,7 +894,7 @@ MathJax.Hub.Config({
 });
 </script>
 <script type="text/javascript" async
-  src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
 

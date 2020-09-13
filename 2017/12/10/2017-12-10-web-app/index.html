@@ -22,12 +22,13 @@
     <meta property="og:image" content=""/>
     
 
-    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="icon" type="image/png" href="/assets/images/favicon.ico" />
     <link rel="alternate" href="/atom.xml" title="XiChen" type="application/atom+xml">
     <link rel="stylesheet" href="/css/lib/materialize.min.css">
     <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
     <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-
+    <link rel="stylesheet" href="//fonts.gdgdocs.org/css?family=Lobster" type="text/css">
+    
     
         <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
     
@@ -38,71 +39,100 @@
 <body>
     <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
 
-    <nav class="indigo">
+    <nav class="indigo nav">
     <div class="nav-wrapper">
         <a href="#" data-activates="main-menu" class="button-collapse">
             <i class="fa fa-navicon"></i>
         </a>
         <div class="">
-            <a href="/" class="brand-logo hide-on-med-and-down">XiChen</a>
-            <ul class="right hide-on-med-and-down">
+            <div style="font-family: Lobster, Monospace;">
+                <a href="/" class="brand-logo hide-on-med-and-down" style="font-family: Lobster, Monospace;">
+                    XiChen
+                </a>
+            </div>
+            <ul class="nav-menu right hide-on-med-and-down">
                 
-                    <li>
-                        <a class="menu-home " href="/" >
-                            <i class="fa fa-home "></i>
-                            
-                            Home
+                    <li class="tab">
+                        <a class="menu-home " href="/"
+                            >
+                                <i class="fa fa-home "></i>
+                                
+                                    Home
                         </a>
                     </li>
-                
-                    <li>
-                        <a class="menu-archive " href="/archives" >
-                            <i class="fa fa-archive "></i>
-                            
-                            Archives
+                    
+                    <li class="tab">
+                        <a class="menu-archive " href="/archives"
+                            >
+                                <i class="fa fa-archive "></i>
+                                
+                                    Archives
                         </a>
                     </li>
-                
-                    <li>
-                        <a class="menu-category category-menu" href="javascript:;" data-activates="category-menu" >
-                            <i class="fa fa-bookmark "></i>
-                            
-                            Categories
+                    
+                    <li class="tab">
+                        <a class="menu-category category-menu" href="javascript:;"
+                            data-activates="category-menu"
+                            >
+                                <i class="fa fa-bookmark "></i>
+                                
+                                    Categories
                         </a>
                     </li>
-                
-                    <li>
-                        <a class="menu-reading " href="/reading" >
-                            <i class="fa fa-book "></i>
-                            
-                            Reading
+                    
+                    <li class="tab">
+                        <a class="menu-apps " href="/apps"
+                            >
+                                <i class="fa fa-link "></i>
+                                
+                                    App
                         </a>
                     </li>
-                
-                    <li>
-                        <a class="menu-about " href="/about" >
-                            <i class="fa fa-user "></i>
-                            
-                            About
+                    
+                    <li class="tab">
+                        <a class="menu-tools " href="/tools"
+                            >
+                                <i class="fa fa-wrench "></i>
+                                
+                                    Tool
                         </a>
                     </li>
-                
-                    <li>
-                        <a class="menu-search modal-trigger " href="#search" >
-                            <i class="fa fa-search "></i>
-                            
-                            Search
+                    
+                    <li class="tab">
+                        <a class="menu-reading " href="/reading"
+                            >
+                                <i class="fa fa-book "></i>
+                                
+                                    Reading
                         </a>
                     </li>
-                
+                    
+                    <li class="tab">
+                        <a class="menu-about " href="/about"
+                            >
+                                <i class="fa fa-user "></i>
+                                
+                                    About
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-search modal-trigger " href="#search"
+                            >
+                                <i class="fa fa-search "></i>
+                                
+                                    Search
+                        </a>
+                    </li>
+                    
             </ul>
             <div>
     <ul class="side-nav indigo darken-1" id="main-menu">
         
         <li class="side-user">
             <div class="row">
-                <div class="col s4 no-padding">
-                    <img class="avatar-image circle responsive-img" src="/assets/images/avatar.jpg" alt="User Avatar">
+                <div class="col s4 no-padding logo-a">
+                    <img class="avatar-image circle responsive-img logo" src="/assets/images/avatar.jpg" alt="User Avatar">
                 </div>
                 <div class="info col s8 valign-wrapper no-padding">
                     <div class="valign">
@@ -136,6 +166,22 @@
                     <i class="fa fa-bookmark "></i>
                     
                     Categories
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-apps " href="/apps" >
+                    <i class="fa fa-link "></i>
+                    
+                    App
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-tools " href="/tools" >
+                    <i class="fa fa-wrench "></i>
+                    
+                    Tool
                 </a>
             </li>
         
@@ -179,6 +225,14 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Deep-Learning/">
+                    Deep-Learning <span class="right">5</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/Tips/">
                     Tips <span class="right">7</span></a>
                 </a>
@@ -211,6 +265,22 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tools/">
+                    Tools <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Algorithms/">
+                    Algorithms <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/Spider/">
                     Spider <span class="right">1</span></a>
                 </a>
@@ -227,16 +297,16 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/密码学/">
-                    密码学 <span class="right">1</span></a>
+                <a class="no-padding" href="/categories/算法/">
+                    算法 <span class="right">4</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/算法/">
-                    算法 <span class="right">4</span></a>
+                <a class="no-padding" href="/categories/密码学/">
+                    密码学 <span class="right">1</span></a>
                 </a>
             </li>
 
@@ -251,24 +321,8 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/杂思/">
-                    杂思 <span class="right">1</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/Git/">
                     Git <span class="right">2</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Github/">
-                    Github <span class="right">1</span></a>
                 </a>
             </li>
 
@@ -291,16 +345,24 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/计算机组成原理/">
-                    计算机组成原理 <span class="right">1</span></a>
+                <a class="no-padding" href="/categories/Github/">
+                    Github <span class="right">1</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Deep-Learning/">
-                    Deep-Learning <span class="right">5</span></a>
+                <a class="no-padding" href="/categories/杂思/">
+                    杂思 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/计算机组成原理/">
+                    计算机组成原理 <span class="right">1</span></a>
                 </a>
             </li>
 
@@ -317,22 +379,6 @@
             <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/练习/">
                     练习 <span class="right">1</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Tools/">
-                    Tools <span class="right">1</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Algorithms/">
-                    Algorithms <span class="right">1</span></a>
                 </a>
             </li>
 
@@ -357,7 +403,6 @@
 
     </div>
 </div>
-
 
     <main>
         <div class="container main-container">
@@ -390,7 +435,7 @@
 
 
             </div>
-            <time class="pink-link-context" datetime="2017-12-10T14:06:05.000Z"><a href="/2017/12/10/2017-12-10-web-app/">2017-12-10</a></time>
+            <i class="fa fa-calendar"></i><time class="green-link-context" datetime="2017-12-10T06:06:05.000Z"><a href="/2017/12/10/2017-12-10-web-app/">2017-12-10</a></time>
 
             <span id="busuanzi_container_page_pv" class="read-times-container">
     <i class="fa fa-eye"></i>
@@ -400,37 +445,38 @@
             
     <div class="tags-row">
         
-            <a href="/tags/JavaScript/" class="chip pink lighten-1">JavaScript</a>
+            <a href="/tags/JavaScript/" class="chip green lighten-1">JavaScript</a>
         
-            <a href="/tags/HTML/" class="chip pink lighten-1">HTML</a>
+            <a href="/tags/HTML/" class="chip green lighten-1">HTML</a>
         
-            <a href="/tags/CSS/" class="chip pink lighten-1">CSS</a>
+            <a href="/tags/CSS/" class="chip green lighten-1">CSS</a>
         
-            <a href="/tags/Sass/" class="chip pink lighten-1">Sass</a>
+            <a href="/tags/Sass/" class="chip green lighten-1">Sass</a>
         
-            <a href="/tags/移动端/" class="chip pink lighten-1">移动端</a>
+            <a href="/tags/移动端/" class="chip green lighten-1">移动端</a>
         
-            <a href="/tags/XSS/" class="chip pink lighten-1">XSS</a>
+            <a href="/tags/XSS/" class="chip green lighten-1">XSS</a>
         
-            <a href="/tags/AMD/" class="chip pink lighten-1">AMD</a>
+            <a href="/tags/AMD/" class="chip green lighten-1">AMD</a>
         
-            <a href="/tags/requireJS/" class="chip pink lighten-1">requireJS</a>
+            <a href="/tags/requireJS/" class="chip green lighten-1">requireJS</a>
         
-            <a href="/tags/CommonJS/" class="chip pink lighten-1">CommonJS</a>
+            <a href="/tags/CommonJS/" class="chip green lighten-1">CommonJS</a>
         
-            <a href="/tags/性能优化/" class="chip pink lighten-1">性能优化</a>
+            <a href="/tags/性能优化/" class="chip green lighten-1">性能优化</a>
         
-            <a href="/tags/WebApp/" class="chip pink lighten-1">WebApp</a>
+            <a href="/tags/WebApp/" class="chip green lighten-1">WebApp</a>
         
     </div>
+    
 
 
-            <div class="toc pink-link-context hide-on-med-and-down">
-    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#概念"><span class="section table-of-contents-text">概念</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#head-标签"><span class="section table-of-contents-text">head 标签</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#页面切换动画"><span class="section table-of-contents-text">页面切换动画</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#CSS-Processing"><span class="section table-of-contents-text">CSS Processing</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#安装"><span class="section table-of-contents-text">安装</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#编译"><span class="section table-of-contents-text">编译</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#补充"><span class="section table-of-contents-text">补充</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#安全"><span class="section table-of-contents-text">安全</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#分类"><span class="section table-of-contents-text">分类</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#关于-XSS"><span class="section table-of-contents-text">关于 XSS</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#XSS-防护"><span class="section table-of-contents-text">XSS 防护</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#性能优化"><span class="section table-of-contents-text">性能优化</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#模块化"><span class="section table-of-contents-text">模块化</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#AMD规范"><span class="section table-of-contents-text">AMD规范</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#CommonJS规范"><span class="section table-of-contents-text">CommonJS规范</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#为什么要用-requireJS"><span class="section table-of-contents-text">为什么要用 requireJS</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#requireJS"><span class="section table-of-contents-text">requireJS</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#AMD和CMD"><span class="section table-of-contents-text">AMD和CMD</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#参考"><span class="section table-of-contents-text">参考</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#前端工程化"><span class="section table-of-contents-text">前端工程化</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#参考-1"><span class="section table-of-contents-text">参考</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#最终作品"><span class="section table-of-contents-text">最终作品</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#ToDo-WebApp-Version"><span class="section table-of-contents-text">ToDo WebApp Version</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#Details"><span class="section table-of-contents-text">Details</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#其他"><span class="section table-of-contents-text">其他</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#webkit-tap-highlight-color-属性"><span class="section table-of-contents-text">-webkit-tap-highlight-color 属性</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#textarea-标签-disabled-颜色"><span class="section table-of-contents-text">textarea 标签 disabled 颜色</span></a></li></ol></li></ol>
+            <div class="toc green-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#概念"><span class="section table-of-contents-number">1.</span> <span class="section table-of-contents-text">概念</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#head-标签"><span class="section table-of-contents-number">2.</span> <span class="section table-of-contents-text">head 标签</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#页面切换动画"><span class="section table-of-contents-number">3.</span> <span class="section table-of-contents-text">页面切换动画</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#CSS-Processing"><span class="section table-of-contents-number">4.</span> <span class="section table-of-contents-text">CSS Processing</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#安装"><span class="section table-of-contents-number">4.1.</span> <span class="section table-of-contents-text">安装</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#编译"><span class="section table-of-contents-number">4.2.</span> <span class="section table-of-contents-text">编译</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#补充"><span class="section table-of-contents-number">4.3.</span> <span class="section table-of-contents-text">补充</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#安全"><span class="section table-of-contents-number">5.</span> <span class="section table-of-contents-text">安全</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#分类"><span class="section table-of-contents-number">5.1.</span> <span class="section table-of-contents-text">分类</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#关于-XSS"><span class="section table-of-contents-number">5.2.</span> <span class="section table-of-contents-text">关于 XSS</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#XSS-防护"><span class="section table-of-contents-number">5.3.</span> <span class="section table-of-contents-text">XSS 防护</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#性能优化"><span class="section table-of-contents-number">6.</span> <span class="section table-of-contents-text">性能优化</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#模块化"><span class="section table-of-contents-number">7.</span> <span class="section table-of-contents-text">模块化</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#AMD规范"><span class="section table-of-contents-number">7.1.</span> <span class="section table-of-contents-text">AMD规范</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#CommonJS规范"><span class="section table-of-contents-number">7.2.</span> <span class="section table-of-contents-text">CommonJS规范</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#为什么要用-requireJS"><span class="section table-of-contents-number">7.3.</span> <span class="section table-of-contents-text">为什么要用 requireJS</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#requireJS"><span class="section table-of-contents-number">7.3.1.</span> <span class="section table-of-contents-text">requireJS</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#AMD和CMD"><span class="section table-of-contents-number">7.4.</span> <span class="section table-of-contents-text">AMD和CMD</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#参考"><span class="section table-of-contents-number">7.5.</span> <span class="section table-of-contents-text">参考</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#前端工程化"><span class="section table-of-contents-number">8.</span> <span class="section table-of-contents-text">前端工程化</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#参考-1"><span class="section table-of-contents-number">8.1.</span> <span class="section table-of-contents-text">参考</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#最终作品"><span class="section table-of-contents-number">9.</span> <span class="section table-of-contents-text">最终作品</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#ToDo-WebApp-Version"><span class="section table-of-contents-number">9.1.</span> <span class="section table-of-contents-text">ToDo WebApp Version</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#Details"><span class="section table-of-contents-number">9.2.</span> <span class="section table-of-contents-text">Details</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#其他"><span class="section table-of-contents-number">10.</span> <span class="section table-of-contents-text">其他</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#webkit-tap-highlight-color-属性"><span class="section table-of-contents-number">10.1.</span> <span class="section table-of-contents-text">-webkit-tap-highlight-color 属性</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#textarea-标签-disabled-颜色"><span class="section table-of-contents-number">10.2.</span> <span class="section table-of-contents-text">textarea 标签 disabled 颜色</span></a></li></ol></li></ol>
 </div>
 
 
-            <div class="entry pink-link-context">
+            <div class="entry green-link-context">
                 <p>把技能点点在移动前端…</p>
 <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><ul>
 <li>参考： <a href="http://junmer.github.io/mobile-dev-get-started/" target="_blank" rel="noopener">移动 Web 开发入门</a></li>
@@ -869,7 +915,7 @@ id* | pid(FK) | finish | name | date | content
 </ul>
 
                 
-<p class="pink-link-context">
+<p class="green-link-context prev-btn">
     <a href="/2017/12/12/2017-12-12-latex（一）安装与配置/" rel="next" title="latex（一）安装与配置">
     Prev: latex（一）安装与配置
   </a>
@@ -877,7 +923,7 @@ id* | pid(FK) | finish | name | date | content
 
 
 
-<p class="pink-link-context">
+<p class="green-link-context next-btn">
     <a href="/2017/12/09/2017-12-9-git-tips/" rel="next" title="Git Tips">
     Next: Git Tips
   </a>
@@ -892,6 +938,23 @@ id* | pid(FK) | finish | name | date | content
 
 
 
+
+    <div id="gitment_container"></div>
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <link rel="stylesheet" href="/css/gitment.css" media="screen" type="text/css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <script>
+    var gitment = new Gitment({
+        id: 'Sun Dec 10 2017 14:06:05 GMT+0800',
+        owner: 'linxueyuanstdio',
+        repo: 'linxueyuanstdio.github.io',
+        oauth: {
+            client_id: '2f7f71f1ba398039ff23',
+            client_secret: '3ebc908a7042fef2d56a83a2eb8c18777374a087',
+        },
+    })
+    gitment.render('gitment_container')
+    </script>
 
 
 
@@ -941,7 +1004,7 @@ id* | pid(FK) | finish | name | date | content
                     </a>
                 
                 
-    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
     </script>
     <div class="site-visitors-container white-text">
         <span>
@@ -973,9 +1036,9 @@ id* | pid(FK) | finish | name | date | content
     </div>
     
 
-    <div class="footer-copyright pink-link-context">
+    <div class="footer-copyright green-link-context">
         <div class="container">
-            © 2016 example.com, All rights reserved.
+            © 2018 xichen.pub, All rights reserved.
             <p class="right" style="margin-top: 0;">Blog powered by <a href="https://hexo.io">Hexo</a> | Theme <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
         </div>
     </div>
@@ -994,6 +1057,7 @@ id* | pid(FK) | finish | name | date | content
 
 <script src="/js/jquery.min.js"></script>
 <script src="/js/materialize.min.js"></script>
+<script src="/js/canvas.js"></script>
 
 <script>
     (function($) {
@@ -1149,7 +1213,7 @@ id* | pid(FK) | finish | name | date | content
                             if (isMatch) {
                                 keywords.forEach(function(keyword) {
                                     var regS = new RegExp(keyword, "gi");
-                                    data_title = data_title.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword green lighten-2\">" + keyword + "</span>");
                                 });
 
                                 str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
@@ -1171,7 +1235,7 @@ id* | pid(FK) | finish | name | date | content
                                     // highlight all keywords
                                     keywords.forEach(function(keyword) {
                                         var regS = new RegExp(keyword, "gi");
-                                        match_content = match_content.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword green lighten-2\">" + keyword + "</span>");
                                     });
 
                                     str += "<p class=\"search-result\">..." + match_content + "...</p>"
@@ -1208,7 +1272,7 @@ MathJax.Hub.Config({
 });
 </script>
 <script type="text/javascript" async
-  src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
 

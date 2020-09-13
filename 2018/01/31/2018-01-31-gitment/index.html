@@ -22,12 +22,13 @@
     <meta property="og:image" content=""/>
     
 
-    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="icon" type="image/png" href="/assets/images/favicon.ico" />
     <link rel="alternate" href="/atom.xml" title="XiChen" type="application/atom+xml">
     <link rel="stylesheet" href="/css/lib/materialize.min.css">
     <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
     <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-
+    <link rel="stylesheet" href="//fonts.gdgdocs.org/css?family=Lobster" type="text/css">
+    
     
         <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
     
@@ -38,71 +39,100 @@
 <body>
     <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
 
-    <nav class="indigo">
+    <nav class="indigo nav">
     <div class="nav-wrapper">
         <a href="#" data-activates="main-menu" class="button-collapse">
             <i class="fa fa-navicon"></i>
         </a>
         <div class="">
-            <a href="/" class="brand-logo hide-on-med-and-down">XiChen</a>
-            <ul class="right hide-on-med-and-down">
+            <div style="font-family: Lobster, Monospace;">
+                <a href="/" class="brand-logo hide-on-med-and-down" style="font-family: Lobster, Monospace;">
+                    XiChen
+                </a>
+            </div>
+            <ul class="nav-menu right hide-on-med-and-down">
                 
-                    <li>
-                        <a class="menu-home " href="/" >
-                            <i class="fa fa-home "></i>
-                            
-                            Home
+                    <li class="tab">
+                        <a class="menu-home " href="/"
+                            >
+                                <i class="fa fa-home "></i>
+                                
+                                    Home
                         </a>
                     </li>
-                
-                    <li>
-                        <a class="menu-archive " href="/archives" >
-                            <i class="fa fa-archive "></i>
-                            
-                            Archives
+                    
+                    <li class="tab">
+                        <a class="menu-archive " href="/archives"
+                            >
+                                <i class="fa fa-archive "></i>
+                                
+                                    Archives
                         </a>
                     </li>
-                
-                    <li>
-                        <a class="menu-category category-menu" href="javascript:;" data-activates="category-menu" >
-                            <i class="fa fa-bookmark "></i>
-                            
-                            Categories
+                    
+                    <li class="tab">
+                        <a class="menu-category category-menu" href="javascript:;"
+                            data-activates="category-menu"
+                            >
+                                <i class="fa fa-bookmark "></i>
+                                
+                                    Categories
                         </a>
                     </li>
-                
-                    <li>
-                        <a class="menu-reading " href="/reading" >
-                            <i class="fa fa-book "></i>
-                            
-                            Reading
+                    
+                    <li class="tab">
+                        <a class="menu-apps " href="/apps"
+                            >
+                                <i class="fa fa-link "></i>
+                                
+                                    App
                         </a>
                     </li>
-                
-                    <li>
-                        <a class="menu-about " href="/about" >
-                            <i class="fa fa-user "></i>
-                            
-                            About
+                    
+                    <li class="tab">
+                        <a class="menu-tools " href="/tools"
+                            >
+                                <i class="fa fa-wrench "></i>
+                                
+                                    Tool
                         </a>
                     </li>
-                
-                    <li>
-                        <a class="menu-search modal-trigger " href="#search" >
-                            <i class="fa fa-search "></i>
-                            
-                            Search
+                    
+                    <li class="tab">
+                        <a class="menu-reading " href="/reading"
+                            >
+                                <i class="fa fa-book "></i>
+                                
+                                    Reading
                         </a>
                     </li>
-                
+                    
+                    <li class="tab">
+                        <a class="menu-about " href="/about"
+                            >
+                                <i class="fa fa-user "></i>
+                                
+                                    About
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-search modal-trigger " href="#search"
+                            >
+                                <i class="fa fa-search "></i>
+                                
+                                    Search
+                        </a>
+                    </li>
+                    
             </ul>
             <div>
     <ul class="side-nav indigo darken-1" id="main-menu">
         
         <li class="side-user">
             <div class="row">
-                <div class="col s4 no-padding">
-                    <img class="avatar-image circle responsive-img" src="/assets/images/avatar.jpg" alt="User Avatar">
+                <div class="col s4 no-padding logo-a">
+                    <img class="avatar-image circle responsive-img logo" src="/assets/images/avatar.jpg" alt="User Avatar">
                 </div>
                 <div class="info col s8 valign-wrapper no-padding">
                     <div class="valign">
@@ -136,6 +166,22 @@
                     <i class="fa fa-bookmark "></i>
                     
                     Categories
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-apps " href="/apps" >
+                    <i class="fa fa-link "></i>
+                    
+                    App
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-tools " href="/tools" >
+                    <i class="fa fa-wrench "></i>
+                    
+                    Tool
                 </a>
             </li>
         
@@ -179,6 +225,14 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Deep-Learning/">
+                    Deep-Learning <span class="right">5</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/Tips/">
                     Tips <span class="right">7</span></a>
                 </a>
@@ -211,6 +265,22 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tools/">
+                    Tools <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Algorithms/">
+                    Algorithms <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/Spider/">
                     Spider <span class="right">1</span></a>
                 </a>
@@ -227,16 +297,16 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/密码学/">
-                    密码学 <span class="right">1</span></a>
+                <a class="no-padding" href="/categories/算法/">
+                    算法 <span class="right">4</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/算法/">
-                    算法 <span class="right">4</span></a>
+                <a class="no-padding" href="/categories/密码学/">
+                    密码学 <span class="right">1</span></a>
                 </a>
             </li>
 
@@ -251,24 +321,8 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/杂思/">
-                    杂思 <span class="right">1</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/Git/">
                     Git <span class="right">2</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Github/">
-                    Github <span class="right">1</span></a>
                 </a>
             </li>
 
@@ -291,16 +345,24 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/计算机组成原理/">
-                    计算机组成原理 <span class="right">1</span></a>
+                <a class="no-padding" href="/categories/Github/">
+                    Github <span class="right">1</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Deep-Learning/">
-                    Deep-Learning <span class="right">5</span></a>
+                <a class="no-padding" href="/categories/杂思/">
+                    杂思 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/计算机组成原理/">
+                    计算机组成原理 <span class="right">1</span></a>
                 </a>
             </li>
 
@@ -317,22 +379,6 @@
             <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/练习/">
                     练习 <span class="right">1</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Tools/">
-                    Tools <span class="right">1</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Algorithms/">
-                    Algorithms <span class="right">1</span></a>
                 </a>
             </li>
 
@@ -357,7 +403,6 @@
 
     </div>
 </div>
-
 
     <main>
         <div class="container main-container">
@@ -390,7 +435,7 @@
 
 
             </div>
-            <time class="pink-link-context" datetime="2018-01-31T14:26:00.000Z"><a href="/2018/01/31/2018-01-31-gitment/">2018-01-31</a></time>
+            <i class="fa fa-calendar"></i><time class="green-link-context" datetime="2018-01-31T06:26:00.000Z"><a href="/2018/01/31/2018-01-31-gitment/">2018-01-31</a></time>
 
             <span id="busuanzi_container_page_pv" class="read-times-container">
     <i class="fa fa-eye"></i>
@@ -400,21 +445,22 @@
             
     <div class="tags-row">
         
-            <a href="/tags/gitment/" class="chip pink lighten-1">gitment</a>
+            <a href="/tags/gitment/" class="chip green lighten-1">gitment</a>
         
-            <a href="/tags/github/" class="chip pink lighten-1">github</a>
+            <a href="/tags/github/" class="chip green lighten-1">github</a>
         
-            <a href="/tags/github-issue/" class="chip pink lighten-1">github issue</a>
+            <a href="/tags/github-issue/" class="chip green lighten-1">github issue</a>
         
     </div>
+    
 
 
-            <div class="toc pink-link-context hide-on-med-and-down">
-    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#备忘-配置流程"><span class="section table-of-contents-text">备忘-配置流程</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#在setting-OAuth-Application-注册页面完成注册"><span class="section table-of-contents-text">在setting - OAuth Application 注册页面完成注册</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#在-config-yaml添加"><span class="section table-of-contents-text">在_config.yaml添加</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#在comment-ejs添加"><span class="section table-of-contents-text">在comment.ejs添加</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#初始化"><span class="section table-of-contents-text">初始化</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#坑"><span class="section table-of-contents-text">坑</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#Error：NOT-FOUND"><span class="section table-of-contents-text">Error：NOT FOUND</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#Error-Comments-Not-Initialized"><span class="section table-of-contents-text">Error: Comments Not Initialized</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#初始化时在评论框点击登录，但是没有跳到授权页面"><span class="section table-of-contents-text">初始化时在评论框点击登录，但是没有跳到授权页面</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#Error：validation-failed"><span class="section table-of-contents-text">Error：validation failed</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#2018-02-25更新"><span class="section table-of-contents-text">2018-02-25更新</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#大小写问题"><span class="section table-of-contents-text">大小写问题</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#测试时产生的issue何去何从"><span class="section table-of-contents-text">测试时产生的issue何去何从</span></a></li></ol></li></ol>
+            <div class="toc green-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#备忘-配置流程"><span class="section table-of-contents-number">1.</span> <span class="section table-of-contents-text">备忘-配置流程</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#在setting-OAuth-Application-注册页面完成注册"><span class="section table-of-contents-number">1.1.</span> <span class="section table-of-contents-text">在setting - OAuth Application 注册页面完成注册</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#在-config-yaml添加"><span class="section table-of-contents-number">1.2.</span> <span class="section table-of-contents-text">在_config.yaml添加</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#在comment-ejs添加"><span class="section table-of-contents-number">1.3.</span> <span class="section table-of-contents-text">在comment.ejs添加</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#初始化"><span class="section table-of-contents-number">1.4.</span> <span class="section table-of-contents-text">初始化</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#坑"><span class="section table-of-contents-number">2.</span> <span class="section table-of-contents-text">坑</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#Error：NOT-FOUND"><span class="section table-of-contents-number">2.1.</span> <span class="section table-of-contents-text">Error：NOT FOUND</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#Error-Comments-Not-Initialized"><span class="section table-of-contents-number">2.2.</span> <span class="section table-of-contents-text">Error: Comments Not Initialized</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#初始化时在评论框点击登录，但是没有跳到授权页面"><span class="section table-of-contents-number">2.3.</span> <span class="section table-of-contents-text">初始化时在评论框点击登录，但是没有跳到授权页面</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#Error：validation-failed"><span class="section table-of-contents-number">2.4.</span> <span class="section table-of-contents-text">Error：validation failed</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#2018-02-25更新"><span class="section table-of-contents-number">2.4.1.</span> <span class="section table-of-contents-text">2018-02-25更新</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#大小写问题"><span class="section table-of-contents-number">2.5.</span> <span class="section table-of-contents-text">大小写问题</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#测试时产生的issue何去何从"><span class="section table-of-contents-number">2.6.</span> <span class="section table-of-contents-text">测试时产生的issue何去何从</span></a></li></ol></li></ol>
 </div>
 
 
-            <div class="entry pink-link-context">
+            <div class="entry green-link-context">
                 <h1 id="备忘-配置流程"><a href="#备忘-配置流程" class="headerlink" title="备忘-配置流程"></a>备忘-配置流程</h1><h2 id="在setting-OAuth-Application-注册页面完成注册"><a href="#在setting-OAuth-Application-注册页面完成注册" class="headerlink" title="在setting - OAuth Application 注册页面完成注册"></a>在<a href="https://github.com/settings/applications/new" target="_blank" rel="noopener">setting - OAuth Application 注册页面</a>完成注册</h2><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Application <span class="string">Name:</span> gitment 评论 <span class="comment">//随便填</span></span><br><span class="line">Homepage <span class="string">Url:</span> <span class="string">http:</span><span class="comment">//XiChen.pub //自己的域名</span></span><br><span class="line">Application <span class="string">description:</span> <span class="comment">//随便填，留空也可以</span></span><br><span class="line">Authorization Callback <span class="string">URL:</span> <span class="string">http:</span><span class="comment">//XiChen.pub //自己的域名</span></span><br></pre></td></tr></table></figure>
 <p>注册成功后会得到<code>Client ID</code>和<code>Client Secret</code></p>
 <h2 id="在-config-yaml添加"><a href="#在-config-yaml添加" class="headerlink" title="在_config.yaml添加"></a>在<code>_config.yaml</code>添加</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">gitment:</span></span><br><span class="line"><span class="attr">  enable:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">  id:</span> <span class="string">''</span> <span class="comment">#页面 ID, 可选。默认为 location.href</span></span><br><span class="line"><span class="attr">  owner:</span> <span class="string">linxueyuanstdio</span></span><br><span class="line"><span class="attr">  repo:</span> <span class="string">linxueyuanstdio.github.io</span> <span class="comment">#存储评论的 repo</span></span><br><span class="line"><span class="attr">  client_id:</span> <span class="string">'2f7f71f1ba398039ff23'</span> <span class="comment">#你的 Client ID</span></span><br><span class="line"><span class="attr">  client_secret:</span> <span class="string">'3ebc908a7042fef2d56a83a2eb8c18777374a087'</span> <span class="comment">#你的 Client secret</span></span><br></pre></td></tr></table></figure>
@@ -472,7 +518,7 @@
 </ul>
 
                 
-<p class="pink-link-context">
+<p class="green-link-context prev-btn">
     <a href="/2018/01/31/2018-01-31-github-issue-usage/" rel="next" title="github issue 的用法">
     Prev: github issue 的用法
   </a>
@@ -480,7 +526,7 @@
 
 
 
-<p class="pink-link-context">
+<p class="green-link-context next-btn">
     <a href="/2018/01/27/2018-01-27-Ethereum-Dapp-Tutorial-Part-3/" rel="next" title="Ethereum Dapp Tutorial — Part 3">
     Next: Ethereum Dapp Tutorial — Part 3
   </a>
@@ -495,6 +541,23 @@
 
 
 
+
+    <div id="gitment_container"></div>
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <link rel="stylesheet" href="/css/gitment.css" media="screen" type="text/css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <script>
+    var gitment = new Gitment({
+        id: 'Wed Jan 31 2018 14:26:00 GMT+0800',
+        owner: 'linxueyuanstdio',
+        repo: 'linxueyuanstdio.github.io',
+        oauth: {
+            client_id: '2f7f71f1ba398039ff23',
+            client_secret: '3ebc908a7042fef2d56a83a2eb8c18777374a087',
+        },
+    })
+    gitment.render('gitment_container')
+    </script>
 
 
 
@@ -544,7 +607,7 @@
                     </a>
                 
                 
-    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
     </script>
     <div class="site-visitors-container white-text">
         <span>
@@ -576,9 +639,9 @@
     </div>
     
 
-    <div class="footer-copyright pink-link-context">
+    <div class="footer-copyright green-link-context">
         <div class="container">
-            © 2016 example.com, All rights reserved.
+            © 2018 xichen.pub, All rights reserved.
             <p class="right" style="margin-top: 0;">Blog powered by <a href="https://hexo.io">Hexo</a> | Theme <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
         </div>
     </div>
@@ -597,6 +660,7 @@
 
 <script src="/js/jquery.min.js"></script>
 <script src="/js/materialize.min.js"></script>
+<script src="/js/canvas.js"></script>
 
 <script>
     (function($) {
@@ -752,7 +816,7 @@
                             if (isMatch) {
                                 keywords.forEach(function(keyword) {
                                     var regS = new RegExp(keyword, "gi");
-                                    data_title = data_title.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword green lighten-2\">" + keyword + "</span>");
                                 });
 
                                 str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
@@ -774,7 +838,7 @@
                                     // highlight all keywords
                                     keywords.forEach(function(keyword) {
                                         var regS = new RegExp(keyword, "gi");
-                                        match_content = match_content.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword green lighten-2\">" + keyword + "</span>");
                                     });
 
                                     str += "<p class=\"search-result\">..." + match_content + "...</p>"
@@ -811,7 +875,7 @@ MathJax.Hub.Config({
 });
 </script>
 <script type="text/javascript" async
-  src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
 

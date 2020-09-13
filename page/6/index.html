@@ -22,12 +22,13 @@
     <meta property="og:image" content=""/>
     
 
-    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="icon" type="image/png" href="/assets/images/favicon.ico" />
     <link rel="alternate" href="/atom.xml" title="XiChen" type="application/atom+xml">
     <link rel="stylesheet" href="/css/lib/materialize.min.css">
     <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
     <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-
+    <link rel="stylesheet" href="//fonts.gdgdocs.org/css?family=Lobster" type="text/css">
+    
     
         <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
     
@@ -38,71 +39,100 @@
 <body>
     <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
 
-    <nav class="indigo">
+    <nav class="indigo nav">
     <div class="nav-wrapper">
         <a href="#" data-activates="main-menu" class="button-collapse">
             <i class="fa fa-navicon"></i>
         </a>
         <div class="">
-            <a href="/" class="brand-logo hide-on-med-and-down">XiChen</a>
-            <ul class="right hide-on-med-and-down">
+            <div style="font-family: Lobster, Monospace;">
+                <a href="/" class="brand-logo hide-on-med-and-down" style="font-family: Lobster, Monospace;">
+                    XiChen
+                </a>
+            </div>
+            <ul class="nav-menu right hide-on-med-and-down">
                 
-                    <li>
-                        <a class="menu-home " href="/" >
-                            <i class="fa fa-home "></i>
-                            
-                            Home
+                    <li class="tab">
+                        <a class="menu-home " href="/"
+                            >
+                                <i class="fa fa-home "></i>
+                                
+                                    Home
                         </a>
                     </li>
-                
-                    <li>
-                        <a class="menu-archive " href="/archives" >
-                            <i class="fa fa-archive "></i>
-                            
-                            Archives
+                    
+                    <li class="tab">
+                        <a class="menu-archive " href="/archives"
+                            >
+                                <i class="fa fa-archive "></i>
+                                
+                                    Archives
                         </a>
                     </li>
-                
-                    <li>
-                        <a class="menu-category category-menu" href="javascript:;" data-activates="category-menu" >
-                            <i class="fa fa-bookmark "></i>
-                            
-                            Categories
+                    
+                    <li class="tab">
+                        <a class="menu-category category-menu" href="javascript:;"
+                            data-activates="category-menu"
+                            >
+                                <i class="fa fa-bookmark "></i>
+                                
+                                    Categories
                         </a>
                     </li>
-                
-                    <li>
-                        <a class="menu-reading " href="/reading" >
-                            <i class="fa fa-book "></i>
-                            
-                            Reading
+                    
+                    <li class="tab">
+                        <a class="menu-apps " href="/apps"
+                            >
+                                <i class="fa fa-link "></i>
+                                
+                                    App
                         </a>
                     </li>
-                
-                    <li>
-                        <a class="menu-about " href="/about" >
-                            <i class="fa fa-user "></i>
-                            
-                            About
+                    
+                    <li class="tab">
+                        <a class="menu-tools " href="/tools"
+                            >
+                                <i class="fa fa-wrench "></i>
+                                
+                                    Tool
                         </a>
                     </li>
-                
-                    <li>
-                        <a class="menu-search modal-trigger " href="#search" >
-                            <i class="fa fa-search "></i>
-                            
-                            Search
+                    
+                    <li class="tab">
+                        <a class="menu-reading " href="/reading"
+                            >
+                                <i class="fa fa-book "></i>
+                                
+                                    Reading
                         </a>
                     </li>
-                
+                    
+                    <li class="tab">
+                        <a class="menu-about " href="/about"
+                            >
+                                <i class="fa fa-user "></i>
+                                
+                                    About
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-search modal-trigger " href="#search"
+                            >
+                                <i class="fa fa-search "></i>
+                                
+                                    Search
+                        </a>
+                    </li>
+                    
             </ul>
             <div>
     <ul class="side-nav indigo darken-1" id="main-menu">
         
         <li class="side-user">
             <div class="row">
-                <div class="col s4 no-padding">
-                    <img class="avatar-image circle responsive-img" src="/assets/images/avatar.jpg" alt="User Avatar">
+                <div class="col s4 no-padding logo-a">
+                    <img class="avatar-image circle responsive-img logo" src="/assets/images/avatar.jpg" alt="User Avatar">
                 </div>
                 <div class="info col s8 valign-wrapper no-padding">
                     <div class="valign">
@@ -136,6 +166,22 @@
                     <i class="fa fa-bookmark "></i>
                     
                     Categories
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-apps " href="/apps" >
+                    <i class="fa fa-link "></i>
+                    
+                    App
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-tools " href="/tools" >
+                    <i class="fa fa-wrench "></i>
+                    
+                    Tool
                 </a>
             </li>
         
@@ -179,6 +225,14 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Deep-Learning/">
+                    Deep-Learning <span class="right">5</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/Tips/">
                     Tips <span class="right">7</span></a>
                 </a>
@@ -211,6 +265,22 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tools/">
+                    Tools <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Algorithms/">
+                    Algorithms <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/Spider/">
                     Spider <span class="right">1</span></a>
                 </a>
@@ -227,16 +297,16 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/密码学/">
-                    密码学 <span class="right">1</span></a>
+                <a class="no-padding" href="/categories/算法/">
+                    算法 <span class="right">4</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/算法/">
-                    算法 <span class="right">4</span></a>
+                <a class="no-padding" href="/categories/密码学/">
+                    密码学 <span class="right">1</span></a>
                 </a>
             </li>
 
@@ -251,24 +321,8 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/杂思/">
-                    杂思 <span class="right">1</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/Git/">
                     Git <span class="right">2</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Github/">
-                    Github <span class="right">1</span></a>
                 </a>
             </li>
 
@@ -291,16 +345,24 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/计算机组成原理/">
-                    计算机组成原理 <span class="right">1</span></a>
+                <a class="no-padding" href="/categories/Github/">
+                    Github <span class="right">1</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Deep-Learning/">
-                    Deep-Learning <span class="right">5</span></a>
+                <a class="no-padding" href="/categories/杂思/">
+                    杂思 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/计算机组成原理/">
+                    计算机组成原理 <span class="right">1</span></a>
                 </a>
             </li>
 
@@ -317,22 +379,6 @@
             <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/练习/">
                     练习 <span class="right">1</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Tools/">
-                    Tools <span class="right">1</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Algorithms/">
-                    Algorithms <span class="right">1</span></a>
                 </a>
             </li>
 
@@ -358,11 +404,22 @@
     </div>
 </div>
 
-
     <main>
         
 
 
+<section class="splash">
+    <div class="splash-bg" style="background-image:url('assets/images/bg.jpg')">
+        <canvas id="canvas" width="1483" height="344"></canvas>
+    </div>
+    <div class="splash-content container">
+        <img class="avatar reveal enter" src="/assets/images/avatar.jpg">
+        <h3 class="nickname">Xi Chen</h3>
+        <p class="desc" style="opacity: 1;">  醒来的时候 不知道自己为什么哭 时常会有的事情 做过的梦总是回想不起 只是 一种有什么消失的丧失感   ---
+            <cite>你的名字</cite>
+        </p>
+    </div>
+</section>
 
 <div id="article-list" class="container main-container">
     
@@ -378,23 +435,25 @@
 
             </div>
 
-            <time class="pink-link-context" datetime="2018-02-26T06:25:00.000Z"><a href="/2018/02/26/2018-02-26-Android-TimeCat-跳转QQ加群/">2018-02-26</a></time>
+            <i class="fa fa-calendar"></i><time class="green-link-context" datetime="2018-02-25T22:25:00.000Z"><a href="/2018/02/26/2018-02-26-Android-TimeCat-跳转QQ加群/">2018-02-26</a></time>
 
             
     <div class="tags-row">
         
-            <a href="/tags/Android/" class="chip pink lighten-1">Android</a>
+            <a href="/tags/Android/" class="chip green lighten-1">Android</a>
         
-            <a href="/tags/QQ/" class="chip pink lighten-1">QQ</a>
+            <a href="/tags/QQ/" class="chip green lighten-1">QQ</a>
         
     </div>
+    
 
 
 
             
         </div>
-
-        
+        <div class="card-action green-link-context">
+            <a href="/2018/02/26/2018-02-26-Android-TimeCat-跳转QQ加群/">READ MORE &gt;&gt;&gt;</a>
+        </div>
     </div>
 </article>
 
@@ -411,23 +470,25 @@
 
             </div>
 
-            <time class="pink-link-context" datetime="2018-02-26T05:37:00.000Z"><a href="/2018/02/26/2018-02-26-Android-TimeCat-Android Studio拾色器/">2018-02-26</a></time>
+            <i class="fa fa-calendar"></i><time class="green-link-context" datetime="2018-02-25T21:37:00.000Z"><a href="/2018/02/26/2018-02-26-Android-TimeCat-Android Studio拾色器/">2018-02-26</a></time>
 
             
     <div class="tags-row">
         
-            <a href="/tags/Android/" class="chip pink lighten-1">Android</a>
+            <a href="/tags/Android/" class="chip green lighten-1">Android</a>
         
-            <a href="/tags/Android-Studio/" class="chip pink lighten-1">Android Studio</a>
+            <a href="/tags/Android-Studio/" class="chip green lighten-1">Android Studio</a>
         
     </div>
+    
 
 
 
             
         </div>
-
-        
+        <div class="card-action green-link-context">
+            <a href="/2018/02/26/2018-02-26-Android-TimeCat-Android Studio拾色器/">READ MORE &gt;&gt;&gt;</a>
+        </div>
     </div>
 </article>
 
@@ -444,23 +505,25 @@
 
             </div>
 
-            <time class="pink-link-context" datetime="2018-02-26T04:37:00.000Z"><a href="/2018/02/26/2018-02-26-Android-TimeCat-懒加载需求下的BaseFragment封装/">2018-02-26</a></time>
+            <i class="fa fa-calendar"></i><time class="green-link-context" datetime="2018-02-25T20:37:00.000Z"><a href="/2018/02/26/2018-02-26-Android-TimeCat-懒加载需求下的BaseFragment封装/">2018-02-26</a></time>
 
             
     <div class="tags-row">
         
-            <a href="/tags/Android/" class="chip pink lighten-1">Android</a>
+            <a href="/tags/Android/" class="chip green lighten-1">Android</a>
         
-            <a href="/tags/Fragment/" class="chip pink lighten-1">Fragment</a>
+            <a href="/tags/Fragment/" class="chip green lighten-1">Fragment</a>
         
     </div>
+    
 
 
 
             
         </div>
-
-        
+        <div class="card-action green-link-context">
+            <a href="/2018/02/26/2018-02-26-Android-TimeCat-懒加载需求下的BaseFragment封装/">READ MORE &gt;&gt;&gt;</a>
+        </div>
     </div>
 </article>
 
@@ -477,23 +540,25 @@
 
             </div>
 
-            <time class="pink-link-context" datetime="2018-02-25T11:28:00.000Z"><a href="/2018/02/25/2018-02-25-Android-TimeCat-使用矢量图（SVG, VectorDrawable）/">2018-02-25</a></time>
+            <i class="fa fa-calendar"></i><time class="green-link-context" datetime="2018-02-25T03:28:00.000Z"><a href="/2018/02/25/2018-02-25-Android-TimeCat-使用矢量图（SVG, VectorDrawable）/">2018-02-25</a></time>
 
             
     <div class="tags-row">
         
-            <a href="/tags/Android/" class="chip pink lighten-1">Android</a>
+            <a href="/tags/Android/" class="chip green lighten-1">Android</a>
         
-            <a href="/tags/svg/" class="chip pink lighten-1">svg</a>
+            <a href="/tags/svg/" class="chip green lighten-1">svg</a>
         
     </div>
+    
 
 
 
             
         </div>
-
-        
+        <div class="card-action green-link-context">
+            <a href="/2018/02/25/2018-02-25-Android-TimeCat-使用矢量图（SVG, VectorDrawable）/">READ MORE &gt;&gt;&gt;</a>
+        </div>
     </div>
 </article>
 
@@ -510,21 +575,23 @@
 
             </div>
 
-            <time class="pink-link-context" datetime="2018-02-25T05:28:00.000Z"><a href="/2018/02/25/2018-02-25-Android-TimeCat-Android中用intent传递对象的三种方法/">2018-02-25</a></time>
+            <i class="fa fa-calendar"></i><time class="green-link-context" datetime="2018-02-24T21:28:00.000Z"><a href="/2018/02/25/2018-02-25-Android-TimeCat-Android中用intent传递对象的三种方法/">2018-02-25</a></time>
 
             
     <div class="tags-row">
         
-            <a href="/tags/Android/" class="chip pink lighten-1">Android</a>
+            <a href="/tags/Android/" class="chip green lighten-1">Android</a>
         
     </div>
+    
 
 
 
             
         </div>
-
-        
+        <div class="card-action green-link-context">
+            <a href="/2018/02/25/2018-02-25-Android-TimeCat-Android中用intent传递对象的三种方法/">READ MORE &gt;&gt;&gt;</a>
+        </div>
     </div>
 </article>
 
@@ -541,60 +608,25 @@
 
             </div>
 
-            <time class="pink-link-context" datetime="2018-02-25T04:37:00.000Z"><a href="/2018/02/25/2018-02-25-Android-TimeCat-比较Fragment中获取Context对象的两种方法/">2018-02-25</a></time>
+            <i class="fa fa-calendar"></i><time class="green-link-context" datetime="2018-02-24T20:37:00.000Z"><a href="/2018/02/25/2018-02-25-Android-TimeCat-比较Fragment中获取Context对象的两种方法/">2018-02-25</a></time>
 
             
     <div class="tags-row">
         
-            <a href="/tags/Android/" class="chip pink lighten-1">Android</a>
+            <a href="/tags/Android/" class="chip green lighten-1">Android</a>
         
-            <a href="/tags/Fragment/" class="chip pink lighten-1">Fragment</a>
+            <a href="/tags/Fragment/" class="chip green lighten-1">Fragment</a>
         
     </div>
+    
 
 
 
             
         </div>
-
-        
-    </div>
-</article>
-
-    
-        <article class="simple-article">
-    <div class="card">
-        <div class="card-content">
-            <div class="article-title">
-                
-    
-        <h1 class="indigo-link-context"><a href="/2018/02/25/2018-02-25-Android-TimeCat-BottomNavigationView+ViewPager+Fragment快速构建App/">【Android TimeCat】快速构建APP BottomNavigationView + ViewPager + Fragment</a></h1>
-    
-
-
-            </div>
-
-            <time class="pink-link-context" datetime="2018-02-25T02:48:00.000Z"><a href="/2018/02/25/2018-02-25-Android-TimeCat-BottomNavigationView+ViewPager+Fragment快速构建App/">2018-02-25</a></time>
-
-            
-    <div class="tags-row">
-        
-            <a href="/tags/Android/" class="chip pink lighten-1">Android</a>
-        
-            <a href="/tags/ViewPager/" class="chip pink lighten-1">ViewPager</a>
-        
-            <a href="/tags/Fragment/" class="chip pink lighten-1">Fragment</a>
-        
-            <a href="/tags/BottomNavigationView/" class="chip pink lighten-1">BottomNavigationView</a>
-        
-    </div>
-
-
-
-            
+        <div class="card-action green-link-context">
+            <a href="/2018/02/25/2018-02-25-Android-TimeCat-比较Fragment中获取Context对象的两种方法/">READ MORE &gt;&gt;&gt;</a>
         </div>
-
-        
     </div>
 </article>
 
@@ -611,25 +643,66 @@
 
             </div>
 
-            <time class="pink-link-context" datetime="2018-02-25T02:48:00.000Z"><a href="/2018/02/25/2018-02-25-Android-TimeCat-java回调机制/">2018-02-25</a></time>
+            <i class="fa fa-calendar"></i><time class="green-link-context" datetime="2018-02-24T18:48:00.000Z"><a href="/2018/02/25/2018-02-25-Android-TimeCat-java回调机制/">2018-02-25</a></time>
 
             
     <div class="tags-row">
         
-            <a href="/tags/Android/" class="chip pink lighten-1">Android</a>
+            <a href="/tags/Android/" class="chip green lighten-1">Android</a>
         
-            <a href="/tags/Java/" class="chip pink lighten-1">Java</a>
+            <a href="/tags/Java/" class="chip green lighten-1">Java</a>
         
-            <a href="/tags/回调/" class="chip pink lighten-1">回调</a>
+            <a href="/tags/回调/" class="chip green lighten-1">回调</a>
         
     </div>
+    
 
 
 
             
         </div>
+        <div class="card-action green-link-context">
+            <a href="/2018/02/25/2018-02-25-Android-TimeCat-java回调机制/">READ MORE &gt;&gt;&gt;</a>
+        </div>
+    </div>
+</article>
 
+    
+        <article class="simple-article">
+    <div class="card">
+        <div class="card-content">
+            <div class="article-title">
+                
+    
+        <h1 class="indigo-link-context"><a href="/2018/02/25/2018-02-25-Android-TimeCat-BottomNavigationView+ViewPager+Fragment快速构建App/">【Android TimeCat】快速构建APP BottomNavigationView + ViewPager + Fragment</a></h1>
+    
+
+
+            </div>
+
+            <i class="fa fa-calendar"></i><time class="green-link-context" datetime="2018-02-24T18:48:00.000Z"><a href="/2018/02/25/2018-02-25-Android-TimeCat-BottomNavigationView+ViewPager+Fragment快速构建App/">2018-02-25</a></time>
+
+            
+    <div class="tags-row">
         
+            <a href="/tags/Android/" class="chip green lighten-1">Android</a>
+        
+            <a href="/tags/ViewPager/" class="chip green lighten-1">ViewPager</a>
+        
+            <a href="/tags/Fragment/" class="chip green lighten-1">Fragment</a>
+        
+            <a href="/tags/BottomNavigationView/" class="chip green lighten-1">BottomNavigationView</a>
+        
+    </div>
+    
+
+
+
+            
+        </div>
+        <div class="card-action green-link-context">
+            <a href="/2018/02/25/2018-02-25-Android-TimeCat-BottomNavigationView+ViewPager+Fragment快速构建App/">READ MORE &gt;&gt;&gt;</a>
+        </div>
     </div>
 </article>
 
@@ -646,23 +719,25 @@
 
             </div>
 
-            <time class="pink-link-context" datetime="2018-01-31T15:26:00.000Z"><a href="/2018/01/31/2018-01-31-github-issue-usage/">2018-01-31</a></time>
+            <i class="fa fa-calendar"></i><time class="green-link-context" datetime="2018-01-31T07:26:00.000Z"><a href="/2018/01/31/2018-01-31-github-issue-usage/">2018-01-31</a></time>
 
             
     <div class="tags-row">
         
-            <a href="/tags/Github/" class="chip pink lighten-1">Github</a>
+            <a href="/tags/Github/" class="chip green lighten-1">Github</a>
         
-            <a href="/tags/Github-Issue/" class="chip pink lighten-1">Github Issue</a>
+            <a href="/tags/Github-Issue/" class="chip green lighten-1">Github Issue</a>
         
     </div>
+    
 
 
 
             
         </div>
-
-        
+        <div class="card-action green-link-context">
+            <a href="/2018/01/31/2018-01-31-github-issue-usage/">READ MORE &gt;&gt;&gt;</a>
+        </div>
     </div>
 </article>
 
@@ -679,25 +754,27 @@
 
             </div>
 
-            <time class="pink-link-context" datetime="2018-01-31T14:26:00.000Z"><a href="/2018/01/31/2018-01-31-gitment/">2018-01-31</a></time>
+            <i class="fa fa-calendar"></i><time class="green-link-context" datetime="2018-01-31T06:26:00.000Z"><a href="/2018/01/31/2018-01-31-gitment/">2018-01-31</a></time>
 
             
     <div class="tags-row">
         
-            <a href="/tags/gitment/" class="chip pink lighten-1">gitment</a>
+            <a href="/tags/gitment/" class="chip green lighten-1">gitment</a>
         
-            <a href="/tags/github/" class="chip pink lighten-1">github</a>
+            <a href="/tags/github/" class="chip green lighten-1">github</a>
         
-            <a href="/tags/github-issue/" class="chip pink lighten-1">github issue</a>
+            <a href="/tags/github-issue/" class="chip green lighten-1">github issue</a>
         
     </div>
+    
 
 
 
             
         </div>
-
-        
+        <div class="card-action green-link-context">
+            <a href="/2018/01/31/2018-01-31-gitment/">READ MORE &gt;&gt;&gt;</a>
+        </div>
     </div>
 </article>
 
@@ -783,7 +860,7 @@
                     </a>
                 
                 
-    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
     </script>
     <div class="site-visitors-container white-text">
         <span>
@@ -815,9 +892,9 @@
     </div>
     
 
-    <div class="footer-copyright pink-link-context">
+    <div class="footer-copyright green-link-context">
         <div class="container">
-            © 2016 example.com, All rights reserved.
+            © 2018 xichen.pub, All rights reserved.
             <p class="right" style="margin-top: 0;">Blog powered by <a href="https://hexo.io">Hexo</a> | Theme <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
         </div>
     </div>
@@ -836,6 +913,7 @@
 
 <script src="/js/jquery.min.js"></script>
 <script src="/js/materialize.min.js"></script>
+<script src="/js/canvas.js"></script>
 
 <script>
     (function($) {
@@ -991,7 +1069,7 @@
                             if (isMatch) {
                                 keywords.forEach(function(keyword) {
                                     var regS = new RegExp(keyword, "gi");
-                                    data_title = data_title.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword green lighten-2\">" + keyword + "</span>");
                                 });
 
                                 str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
@@ -1013,7 +1091,7 @@
                                     // highlight all keywords
                                     keywords.forEach(function(keyword) {
                                         var regS = new RegExp(keyword, "gi");
-                                        match_content = match_content.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword green lighten-2\">" + keyword + "</span>");
                                     });
 
                                     str += "<p class=\"search-result\">..." + match_content + "...</p>"
@@ -1050,7 +1128,7 @@ MathJax.Hub.Config({
 });
 </script>
 <script type="text/javascript" async
-  src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
 

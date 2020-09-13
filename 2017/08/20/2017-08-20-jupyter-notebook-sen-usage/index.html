@@ -22,12 +22,13 @@
     <meta property="og:image" content=""/>
     
 
-    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="icon" type="image/png" href="/assets/images/favicon.ico" />
     <link rel="alternate" href="/atom.xml" title="XiChen" type="application/atom+xml">
     <link rel="stylesheet" href="/css/lib/materialize.min.css">
     <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
     <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-
+    <link rel="stylesheet" href="//fonts.gdgdocs.org/css?family=Lobster" type="text/css">
+    
     
         <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
     
@@ -38,71 +39,100 @@
 <body>
     <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
 
-    <nav class="indigo">
+    <nav class="indigo nav">
     <div class="nav-wrapper">
         <a href="#" data-activates="main-menu" class="button-collapse">
             <i class="fa fa-navicon"></i>
         </a>
         <div class="">
-            <a href="/" class="brand-logo hide-on-med-and-down">XiChen</a>
-            <ul class="right hide-on-med-and-down">
+            <div style="font-family: Lobster, Monospace;">
+                <a href="/" class="brand-logo hide-on-med-and-down" style="font-family: Lobster, Monospace;">
+                    XiChen
+                </a>
+            </div>
+            <ul class="nav-menu right hide-on-med-and-down">
                 
-                    <li>
-                        <a class="menu-home " href="/" >
-                            <i class="fa fa-home "></i>
-                            
-                            Home
+                    <li class="tab">
+                        <a class="menu-home " href="/"
+                            >
+                                <i class="fa fa-home "></i>
+                                
+                                    Home
                         </a>
                     </li>
-                
-                    <li>
-                        <a class="menu-archive " href="/archives" >
-                            <i class="fa fa-archive "></i>
-                            
-                            Archives
+                    
+                    <li class="tab">
+                        <a class="menu-archive " href="/archives"
+                            >
+                                <i class="fa fa-archive "></i>
+                                
+                                    Archives
                         </a>
                     </li>
-                
-                    <li>
-                        <a class="menu-category category-menu" href="javascript:;" data-activates="category-menu" >
-                            <i class="fa fa-bookmark "></i>
-                            
-                            Categories
+                    
+                    <li class="tab">
+                        <a class="menu-category category-menu" href="javascript:;"
+                            data-activates="category-menu"
+                            >
+                                <i class="fa fa-bookmark "></i>
+                                
+                                    Categories
                         </a>
                     </li>
-                
-                    <li>
-                        <a class="menu-reading " href="/reading" >
-                            <i class="fa fa-book "></i>
-                            
-                            Reading
+                    
+                    <li class="tab">
+                        <a class="menu-apps " href="/apps"
+                            >
+                                <i class="fa fa-link "></i>
+                                
+                                    App
                         </a>
                     </li>
-                
-                    <li>
-                        <a class="menu-about " href="/about" >
-                            <i class="fa fa-user "></i>
-                            
-                            About
+                    
+                    <li class="tab">
+                        <a class="menu-tools " href="/tools"
+                            >
+                                <i class="fa fa-wrench "></i>
+                                
+                                    Tool
                         </a>
                     </li>
-                
-                    <li>
-                        <a class="menu-search modal-trigger " href="#search" >
-                            <i class="fa fa-search "></i>
-                            
-                            Search
+                    
+                    <li class="tab">
+                        <a class="menu-reading " href="/reading"
+                            >
+                                <i class="fa fa-book "></i>
+                                
+                                    Reading
                         </a>
                     </li>
-                
+                    
+                    <li class="tab">
+                        <a class="menu-about " href="/about"
+                            >
+                                <i class="fa fa-user "></i>
+                                
+                                    About
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-search modal-trigger " href="#search"
+                            >
+                                <i class="fa fa-search "></i>
+                                
+                                    Search
+                        </a>
+                    </li>
+                    
             </ul>
             <div>
     <ul class="side-nav indigo darken-1" id="main-menu">
         
         <li class="side-user">
             <div class="row">
-                <div class="col s4 no-padding">
-                    <img class="avatar-image circle responsive-img" src="/assets/images/avatar.jpg" alt="User Avatar">
+                <div class="col s4 no-padding logo-a">
+                    <img class="avatar-image circle responsive-img logo" src="/assets/images/avatar.jpg" alt="User Avatar">
                 </div>
                 <div class="info col s8 valign-wrapper no-padding">
                     <div class="valign">
@@ -136,6 +166,22 @@
                     <i class="fa fa-bookmark "></i>
                     
                     Categories
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-apps " href="/apps" >
+                    <i class="fa fa-link "></i>
+                    
+                    App
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-tools " href="/tools" >
+                    <i class="fa fa-wrench "></i>
+                    
+                    Tool
                 </a>
             </li>
         
@@ -179,6 +225,14 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Deep-Learning/">
+                    Deep-Learning <span class="right">5</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/Tips/">
                     Tips <span class="right">7</span></a>
                 </a>
@@ -211,6 +265,22 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tools/">
+                    Tools <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Algorithms/">
+                    Algorithms <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/Spider/">
                     Spider <span class="right">1</span></a>
                 </a>
@@ -227,16 +297,16 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/密码学/">
-                    密码学 <span class="right">1</span></a>
+                <a class="no-padding" href="/categories/算法/">
+                    算法 <span class="right">4</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/算法/">
-                    算法 <span class="right">4</span></a>
+                <a class="no-padding" href="/categories/密码学/">
+                    密码学 <span class="right">1</span></a>
                 </a>
             </li>
 
@@ -251,24 +321,8 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/杂思/">
-                    杂思 <span class="right">1</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/Git/">
                     Git <span class="right">2</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Github/">
-                    Github <span class="right">1</span></a>
                 </a>
             </li>
 
@@ -291,16 +345,24 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/计算机组成原理/">
-                    计算机组成原理 <span class="right">1</span></a>
+                <a class="no-padding" href="/categories/Github/">
+                    Github <span class="right">1</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Deep-Learning/">
-                    Deep-Learning <span class="right">5</span></a>
+                <a class="no-padding" href="/categories/杂思/">
+                    杂思 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/计算机组成原理/">
+                    计算机组成原理 <span class="right">1</span></a>
                 </a>
             </li>
 
@@ -317,22 +379,6 @@
             <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/练习/">
                     练习 <span class="right">1</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Tools/">
-                    Tools <span class="right">1</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Algorithms/">
-                    Algorithms <span class="right">1</span></a>
                 </a>
             </li>
 
@@ -357,7 +403,6 @@
 
     </div>
 </div>
-
 
     <main>
         <div class="container main-container">
@@ -390,7 +435,7 @@
 
 
             </div>
-            <time class="pink-link-context" datetime="2017-08-20T13:42:14.000Z"><a href="/2017/08/20/2017-08-20-jupyter-notebook-sen-usage/">2017-08-20</a></time>
+            <i class="fa fa-calendar"></i><time class="green-link-context" datetime="2017-08-20T05:42:14.000Z"><a href="/2017/08/20/2017-08-20-jupyter-notebook-sen-usage/">2017-08-20</a></time>
 
             <span id="busuanzi_container_page_pv" class="read-times-container">
     <i class="fa fa-eye"></i>
@@ -400,17 +445,18 @@
             
     <div class="tags-row">
         
-            <a href="/tags/jupyter-notebook/" class="chip pink lighten-1">jupyter notebook</a>
+            <a href="/tags/jupyter-notebook/" class="chip green lighten-1">jupyter notebook</a>
         
     </div>
+    
 
 
-            <div class="toc pink-link-context hide-on-med-and-down">
-    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#安装jupyter-notebook"><span class="section table-of-contents-text">安装jupyter-notebook</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#配置jupyter-notebook"><span class="section table-of-contents-text">配置jupyter-notebook</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#配置可以同时使用python2和python3内核"><span class="section table-of-contents-text">配置可以同时使用python2和python3内核</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#生成配置文件"><span class="section table-of-contents-text">生成配置文件</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#生成密码"><span class="section table-of-contents-text">生成密码</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#设置密码"><span class="section table-of-contents-text">设置密码</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#以服务方式运行"><span class="section table-of-contents-text">以服务方式运行</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#局域网访问jupyter-notebook"><span class="section table-of-contents-text">局域网访问jupyter notebook</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#安装额外插件或kernel"><span class="section table-of-contents-text">安装额外插件或kernel</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#安装主题、字体"><span class="section table-of-contents-text">安装主题、字体</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#jupyter支持的内核"><span class="section table-of-contents-text">jupyter支持的内核</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#多指针"><span class="section table-of-contents-text">多指针</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#隐藏代码只显示代码输出"><span class="section table-of-contents-text">隐藏代码只显示代码输出</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#全部显示"><span class="section table-of-contents-text">全部显示</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#末句函数不输出"><span class="section table-of-contents-text">末句函数不输出</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#在notebook中作图"><span class="section table-of-contents-text">在notebook中作图</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#Jupyter-notebook的magic操作"><span class="section table-of-contents-text">Jupyter notebook的magic操作</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#Jupyter-有自己的调试界面The-Python-Debugger-pdb"><span class="section table-of-contents-text">Jupyter 有自己的调试界面The Python Debugger (pdb)</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#运行Shell命令"><span class="section table-of-contents-text">运行Shell命令</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#Jupyter-Notebook-的快捷键"><span class="section table-of-contents-text">Jupyter-Notebook 的快捷键</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#命令模式-按键-Esc-开启"><span class="section table-of-contents-text">命令模式 (按键 Esc 开启)</span></a></li><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#编辑模式-Enter-键启动"><span class="section table-of-contents-text">编辑模式 ( Enter 键启动)</span></a></li></ol></li></ol></li></ol>
+            <div class="toc green-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#安装jupyter-notebook"><span class="section table-of-contents-number">1.</span> <span class="section table-of-contents-text">安装jupyter-notebook</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#配置jupyter-notebook"><span class="section table-of-contents-number">2.</span> <span class="section table-of-contents-text">配置jupyter-notebook</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#配置可以同时使用python2和python3内核"><span class="section table-of-contents-number">2.1.</span> <span class="section table-of-contents-text">配置可以同时使用python2和python3内核</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#生成配置文件"><span class="section table-of-contents-number">2.2.</span> <span class="section table-of-contents-text">生成配置文件</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#生成密码"><span class="section table-of-contents-number">2.3.</span> <span class="section table-of-contents-text">生成密码</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#设置密码"><span class="section table-of-contents-number">2.4.</span> <span class="section table-of-contents-text">设置密码</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#以服务方式运行"><span class="section table-of-contents-number">2.5.</span> <span class="section table-of-contents-text">以服务方式运行</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#局域网访问jupyter-notebook"><span class="section table-of-contents-number">2.6.</span> <span class="section table-of-contents-text">局域网访问jupyter notebook</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#安装额外插件或kernel"><span class="section table-of-contents-number">2.7.</span> <span class="section table-of-contents-text">安装额外插件或kernel</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#安装主题、字体"><span class="section table-of-contents-number">2.8.</span> <span class="section table-of-contents-text">安装主题、字体</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#jupyter支持的内核"><span class="section table-of-contents-number">2.9.</span> <span class="section table-of-contents-text">jupyter支持的内核</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#多指针"><span class="section table-of-contents-number">2.10.</span> <span class="section table-of-contents-text">多指针</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#隐藏代码只显示代码输出"><span class="section table-of-contents-number">2.11.</span> <span class="section table-of-contents-text">隐藏代码只显示代码输出</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#全部显示"><span class="section table-of-contents-number">2.12.</span> <span class="section table-of-contents-text">全部显示</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#末句函数不输出"><span class="section table-of-contents-number">2.13.</span> <span class="section table-of-contents-text">末句函数不输出</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#在notebook中作图"><span class="section table-of-contents-number">2.14.</span> <span class="section table-of-contents-text">在notebook中作图</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#Jupyter-notebook的magic操作"><span class="section table-of-contents-number">2.15.</span> <span class="section table-of-contents-text">Jupyter notebook的magic操作</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#Jupyter-有自己的调试界面The-Python-Debugger-pdb"><span class="section table-of-contents-number">2.16.</span> <span class="section table-of-contents-text">Jupyter 有自己的调试界面The Python Debugger (pdb)</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#运行Shell命令"><span class="section table-of-contents-number">2.17.</span> <span class="section table-of-contents-text">运行Shell命令</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#Jupyter-Notebook-的快捷键"><span class="section table-of-contents-number">2.18.</span> <span class="section table-of-contents-text">Jupyter-Notebook 的快捷键</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#命令模式-按键-Esc-开启"><span class="section table-of-contents-number">2.18.1.</span> <span class="section table-of-contents-text">命令模式 (按键 Esc 开启)</span></a></li><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#编辑模式-Enter-键启动"><span class="section table-of-contents-number">2.18.2.</span> <span class="section table-of-contents-text">编辑模式 ( Enter 键启动)</span></a></li></ol></li></ol></li></ol>
 </div>
 
 
-            <div class="entry pink-link-context">
+            <div class="entry green-link-context">
                 <h2 id="安装jupyter-notebook"><a href="#安装jupyter-notebook" class="headerlink" title="安装jupyter-notebook"></a>安装jupyter-notebook</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> pip install jupyter</span></span><br></pre></td></tr></table></figure>
 <hr>
 <h2 id="配置jupyter-notebook"><a href="#配置jupyter-notebook" class="headerlink" title="配置jupyter-notebook"></a>配置jupyter-notebook</h2><h3 id="配置可以同时使用python2和python3内核"><a href="#配置可以同时使用python2和python3内核" class="headerlink" title="配置可以同时使用python2和python3内核"></a>配置可以同时使用python2和python3内核</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ipython kernel install --user</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> python3 -m ipykernel install --user</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> pip2 install -U ipykernel</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> python2 -m ipykernel install --user</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> jupyter-notebook  //运行，会自动web界面，可以同时运行python2，python3，ctrl+c结束</span></span><br></pre></td></tr></table></figure>
@@ -474,15 +520,15 @@
 <h4 id="编辑模式-Enter-键启动"><a href="#编辑模式-Enter-键启动" class="headerlink" title="编辑模式 ( Enter 键启动)"></a>编辑模式 ( Enter 键启动)</h4><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">Tab : 代码补全或缩进</span><br><span class="line">Shift-Tab : 提示</span><br><span class="line">Ctrl-] : 缩进</span><br><span class="line">Ctrl-[ : 解除缩进</span><br><span class="line">Ctrl-A : 全选</span><br><span class="line">Ctrl-Z : 复原</span><br><span class="line">Ctrl-Shift-Z : 再做</span><br><span class="line">Ctrl-Y : 再做</span><br><span class="line">Ctrl-Home : 跳到单元开头</span><br><span class="line">Ctrl-Up : 跳到单元开头</span><br><span class="line">Ctrl-<span class="keyword">End</span> : 跳到单元末尾</span><br><span class="line">Ctrl-Down : 跳到单元末尾</span><br><span class="line">Ctrl-Left : 跳到左边一个字首</span><br><span class="line">Ctrl-Right : 跳到右边一个字首</span><br><span class="line">Ctrl-Backspace : 删除前面一个字</span><br><span class="line">Ctrl-Delete : 删除后面一个字</span><br><span class="line">Esc : 进入命令模式</span><br><span class="line">Ctrl-M : 进入命令模式</span><br><span class="line">Shift-Enter : 运行本单元，选中下一单元</span><br><span class="line">Ctrl-Enter : 运行本单元</span><br><span class="line">Alt-Enter : 运行本单元，在下面插入一单元</span><br><span class="line">Ctrl-Shift<span class="comment">-- : 分割单元</span></span><br><span class="line">Ctrl-Shift-Subtract : 分割单元</span><br><span class="line">Ctrl-S : 文件存盘</span><br><span class="line">Shift : 忽略</span><br><span class="line">Up : 光标上移或转入上一单元</span><br><span class="line">Down :光标下移或转入下一单元</span><br></pre></td></tr></table></figure>
 
                 
-<p class="pink-link-context">
-    <a href="/2017/08/21/2017-08-21-Go的安装和配置/" rel="next" title="GO的安装和配置">
-    Prev: GO的安装和配置
+<p class="green-link-context prev-btn">
+    <a href="/2017/08/21/2017-08-21-代理/" rel="next" title="代理">
+    Prev: 代理
   </a>
 </p>
 
 
 
-<p class="pink-link-context">
+<p class="green-link-context next-btn">
     <a href="/2017/08/09/2017-08-10-RNN/" rel="next" title="RNN">
     Next: RNN
   </a>
@@ -497,6 +543,23 @@
 
 
 
+
+    <div id="gitment_container"></div>
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <link rel="stylesheet" href="/css/gitment.css" media="screen" type="text/css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <script>
+    var gitment = new Gitment({
+        id: 'Sun Aug 20 2017 13:42:14 GMT+0800',
+        owner: 'linxueyuanstdio',
+        repo: 'linxueyuanstdio.github.io',
+        oauth: {
+            client_id: '2f7f71f1ba398039ff23',
+            client_secret: '3ebc908a7042fef2d56a83a2eb8c18777374a087',
+        },
+    })
+    gitment.render('gitment_container')
+    </script>
 
 
 
@@ -546,7 +609,7 @@
                     </a>
                 
                 
-    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
     </script>
     <div class="site-visitors-container white-text">
         <span>
@@ -578,9 +641,9 @@
     </div>
     
 
-    <div class="footer-copyright pink-link-context">
+    <div class="footer-copyright green-link-context">
         <div class="container">
-            © 2016 example.com, All rights reserved.
+            © 2018 xichen.pub, All rights reserved.
             <p class="right" style="margin-top: 0;">Blog powered by <a href="https://hexo.io">Hexo</a> | Theme <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
         </div>
     </div>
@@ -599,6 +662,7 @@
 
 <script src="/js/jquery.min.js"></script>
 <script src="/js/materialize.min.js"></script>
+<script src="/js/canvas.js"></script>
 
 <script>
     (function($) {
@@ -754,7 +818,7 @@
                             if (isMatch) {
                                 keywords.forEach(function(keyword) {
                                     var regS = new RegExp(keyword, "gi");
-                                    data_title = data_title.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword green lighten-2\">" + keyword + "</span>");
                                 });
 
                                 str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
@@ -776,7 +840,7 @@
                                     // highlight all keywords
                                     keywords.forEach(function(keyword) {
                                         var regS = new RegExp(keyword, "gi");
-                                        match_content = match_content.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword green lighten-2\">" + keyword + "</span>");
                                     });
 
                                     str += "<p class=\"search-result\">..." + match_content + "...</p>"
@@ -813,7 +877,7 @@ MathJax.Hub.Config({
 });
 </script>
 <script type="text/javascript" async
-  src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
 

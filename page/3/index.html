@@ -22,12 +22,13 @@
     <meta property="og:image" content=""/>
     
 
-    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="icon" type="image/png" href="/assets/images/favicon.ico" />
     <link rel="alternate" href="/atom.xml" title="XiChen" type="application/atom+xml">
     <link rel="stylesheet" href="/css/lib/materialize.min.css">
     <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
     <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-
+    <link rel="stylesheet" href="//fonts.gdgdocs.org/css?family=Lobster" type="text/css">
+    
     
         <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
     
@@ -38,71 +39,100 @@
 <body>
     <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
 
-    <nav class="indigo">
+    <nav class="indigo nav">
     <div class="nav-wrapper">
         <a href="#" data-activates="main-menu" class="button-collapse">
             <i class="fa fa-navicon"></i>
         </a>
         <div class="">
-            <a href="/" class="brand-logo hide-on-med-and-down">XiChen</a>
-            <ul class="right hide-on-med-and-down">
+            <div style="font-family: Lobster, Monospace;">
+                <a href="/" class="brand-logo hide-on-med-and-down" style="font-family: Lobster, Monospace;">
+                    XiChen
+                </a>
+            </div>
+            <ul class="nav-menu right hide-on-med-and-down">
                 
-                    <li>
-                        <a class="menu-home " href="/" >
-                            <i class="fa fa-home "></i>
-                            
-                            Home
+                    <li class="tab">
+                        <a class="menu-home " href="/"
+                            >
+                                <i class="fa fa-home "></i>
+                                
+                                    Home
                         </a>
                     </li>
-                
-                    <li>
-                        <a class="menu-archive " href="/archives" >
-                            <i class="fa fa-archive "></i>
-                            
-                            Archives
+                    
+                    <li class="tab">
+                        <a class="menu-archive " href="/archives"
+                            >
+                                <i class="fa fa-archive "></i>
+                                
+                                    Archives
                         </a>
                     </li>
-                
-                    <li>
-                        <a class="menu-category category-menu" href="javascript:;" data-activates="category-menu" >
-                            <i class="fa fa-bookmark "></i>
-                            
-                            Categories
+                    
+                    <li class="tab">
+                        <a class="menu-category category-menu" href="javascript:;"
+                            data-activates="category-menu"
+                            >
+                                <i class="fa fa-bookmark "></i>
+                                
+                                    Categories
                         </a>
                     </li>
-                
-                    <li>
-                        <a class="menu-reading " href="/reading" >
-                            <i class="fa fa-book "></i>
-                            
-                            Reading
+                    
+                    <li class="tab">
+                        <a class="menu-apps " href="/apps"
+                            >
+                                <i class="fa fa-link "></i>
+                                
+                                    App
                         </a>
                     </li>
-                
-                    <li>
-                        <a class="menu-about " href="/about" >
-                            <i class="fa fa-user "></i>
-                            
-                            About
+                    
+                    <li class="tab">
+                        <a class="menu-tools " href="/tools"
+                            >
+                                <i class="fa fa-wrench "></i>
+                                
+                                    Tool
                         </a>
                     </li>
-                
-                    <li>
-                        <a class="menu-search modal-trigger " href="#search" >
-                            <i class="fa fa-search "></i>
-                            
-                            Search
+                    
+                    <li class="tab">
+                        <a class="menu-reading " href="/reading"
+                            >
+                                <i class="fa fa-book "></i>
+                                
+                                    Reading
                         </a>
                     </li>
-                
+                    
+                    <li class="tab">
+                        <a class="menu-about " href="/about"
+                            >
+                                <i class="fa fa-user "></i>
+                                
+                                    About
+                        </a>
+                    </li>
+                    
+                    <li class="tab">
+                        <a class="menu-search modal-trigger " href="#search"
+                            >
+                                <i class="fa fa-search "></i>
+                                
+                                    Search
+                        </a>
+                    </li>
+                    
             </ul>
             <div>
     <ul class="side-nav indigo darken-1" id="main-menu">
         
         <li class="side-user">
             <div class="row">
-                <div class="col s4 no-padding">
-                    <img class="avatar-image circle responsive-img" src="/assets/images/avatar.jpg" alt="User Avatar">
+                <div class="col s4 no-padding logo-a">
+                    <img class="avatar-image circle responsive-img logo" src="/assets/images/avatar.jpg" alt="User Avatar">
                 </div>
                 <div class="info col s8 valign-wrapper no-padding">
                     <div class="valign">
@@ -136,6 +166,22 @@
                     <i class="fa fa-bookmark "></i>
                     
                     Categories
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-apps " href="/apps" >
+                    <i class="fa fa-link "></i>
+                    
+                    App
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-tools " href="/tools" >
+                    <i class="fa fa-wrench "></i>
+                    
+                    Tool
                 </a>
             </li>
         
@@ -179,6 +225,14 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Deep-Learning/">
+                    Deep-Learning <span class="right">5</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/Tips/">
                     Tips <span class="right">7</span></a>
                 </a>
@@ -211,6 +265,22 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tools/">
+                    Tools <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Algorithms/">
+                    Algorithms <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/Spider/">
                     Spider <span class="right">1</span></a>
                 </a>
@@ -227,16 +297,16 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/密码学/">
-                    密码学 <span class="right">1</span></a>
+                <a class="no-padding" href="/categories/算法/">
+                    算法 <span class="right">4</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/算法/">
-                    算法 <span class="right">4</span></a>
+                <a class="no-padding" href="/categories/密码学/">
+                    密码学 <span class="right">1</span></a>
                 </a>
             </li>
 
@@ -251,24 +321,8 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/杂思/">
-                    杂思 <span class="right">1</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/Git/">
                     Git <span class="right">2</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Github/">
-                    Github <span class="right">1</span></a>
                 </a>
             </li>
 
@@ -291,16 +345,24 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/计算机组成原理/">
-                    计算机组成原理 <span class="right">1</span></a>
+                <a class="no-padding" href="/categories/Github/">
+                    Github <span class="right">1</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Deep-Learning/">
-                    Deep-Learning <span class="right">5</span></a>
+                <a class="no-padding" href="/categories/杂思/">
+                    杂思 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/计算机组成原理/">
+                    计算机组成原理 <span class="right">1</span></a>
                 </a>
             </li>
 
@@ -317,22 +379,6 @@
             <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/练习/">
                     练习 <span class="right">1</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Tools/">
-                    Tools <span class="right">1</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Algorithms/">
-                    Algorithms <span class="right">1</span></a>
                 </a>
             </li>
 
@@ -358,11 +404,22 @@
     </div>
 </div>
 
-
     <main>
         
 
 
+<section class="splash">
+    <div class="splash-bg" style="background-image:url('assets/images/bg.jpg')">
+        <canvas id="canvas" width="1483" height="344"></canvas>
+    </div>
+    <div class="splash-content container">
+        <img class="avatar reveal enter" src="/assets/images/avatar.jpg">
+        <h3 class="nickname">Xi Chen</h3>
+        <p class="desc" style="opacity: 1;">  醒来的时候 不知道自己为什么哭 时常会有的事情 做过的梦总是回想不起 只是 一种有什么消失的丧失感   ---
+            <cite>你的名字</cite>
+        </p>
+    </div>
+</section>
 
 <div id="article-list" class="container main-container">
     
@@ -378,25 +435,27 @@
 
             </div>
 
-            <time class="pink-link-context" datetime="2018-06-24T14:11:00.000Z"><a href="/2018/06/24/2018-06-24-翻译-深入理解以太坊虚拟机-如何表示动态数据类型/">2018-06-24</a></time>
+            <i class="fa fa-calendar"></i><time class="green-link-context" datetime="2018-06-24T06:11:00.000Z"><a href="/2018/06/24/2018-06-24-翻译-深入理解以太坊虚拟机-如何表示动态数据类型/">2018-06-24</a></time>
 
             
     <div class="tags-row">
         
-            <a href="/tags/区块链/" class="chip pink lighten-1">区块链</a>
+            <a href="/tags/区块链/" class="chip green lighten-1">区块链</a>
         
-            <a href="/tags/Qtum/" class="chip pink lighten-1">Qtum</a>
+            <a href="/tags/Qtum/" class="chip green lighten-1">Qtum</a>
         
-            <a href="/tags/翻译/" class="chip pink lighten-1">翻译</a>
+            <a href="/tags/翻译/" class="chip green lighten-1">翻译</a>
         
     </div>
+    
 
 
 
             
         </div>
-
-        
+        <div class="card-action green-link-context">
+            <a href="/2018/06/24/2018-06-24-翻译-深入理解以太坊虚拟机-如何表示动态数据类型/">READ MORE &gt;&gt;&gt;</a>
+        </div>
     </div>
 </article>
 
@@ -413,25 +472,27 @@
 
             </div>
 
-            <time class="pink-link-context" datetime="2018-06-18T14:11:00.000Z"><a href="/2018/06/18/2018-06-18-翻译-深入理解以太坊虚拟机-如何表示固定长度的数据类型/">2018-06-18</a></time>
+            <i class="fa fa-calendar"></i><time class="green-link-context" datetime="2018-06-18T06:11:00.000Z"><a href="/2018/06/18/2018-06-18-翻译-深入理解以太坊虚拟机-如何表示固定长度的数据类型/">2018-06-18</a></time>
 
             
     <div class="tags-row">
         
-            <a href="/tags/区块链/" class="chip pink lighten-1">区块链</a>
+            <a href="/tags/区块链/" class="chip green lighten-1">区块链</a>
         
-            <a href="/tags/Qtum/" class="chip pink lighten-1">Qtum</a>
+            <a href="/tags/Qtum/" class="chip green lighten-1">Qtum</a>
         
-            <a href="/tags/翻译/" class="chip pink lighten-1">翻译</a>
+            <a href="/tags/翻译/" class="chip green lighten-1">翻译</a>
         
     </div>
+    
 
 
 
             
         </div>
-
-        
+        <div class="card-action green-link-context">
+            <a href="/2018/06/18/2018-06-18-翻译-深入理解以太坊虚拟机-如何表示固定长度的数据类型/">READ MORE &gt;&gt;&gt;</a>
+        </div>
     </div>
 </article>
 
@@ -448,25 +509,27 @@
 
             </div>
 
-            <time class="pink-link-context" datetime="2018-06-12T14:11:00.000Z"><a href="/2018/06/12/2018-06-12-翻译-深入理解以太坊虚拟机-EVM汇编代码简介/">2018-06-12</a></time>
+            <i class="fa fa-calendar"></i><time class="green-link-context" datetime="2018-06-12T06:11:00.000Z"><a href="/2018/06/12/2018-06-12-翻译-深入理解以太坊虚拟机-EVM汇编代码简介/">2018-06-12</a></time>
 
             
     <div class="tags-row">
         
-            <a href="/tags/区块链/" class="chip pink lighten-1">区块链</a>
+            <a href="/tags/区块链/" class="chip green lighten-1">区块链</a>
         
-            <a href="/tags/Qtum/" class="chip pink lighten-1">Qtum</a>
+            <a href="/tags/Qtum/" class="chip green lighten-1">Qtum</a>
         
-            <a href="/tags/翻译/" class="chip pink lighten-1">翻译</a>
+            <a href="/tags/翻译/" class="chip green lighten-1">翻译</a>
         
     </div>
+    
 
 
 
             
         </div>
-
-        
+        <div class="card-action green-link-context">
+            <a href="/2018/06/12/2018-06-12-翻译-深入理解以太坊虚拟机-EVM汇编代码简介/">READ MORE &gt;&gt;&gt;</a>
+        </div>
     </div>
 </article>
 
@@ -483,25 +546,27 @@
 
             </div>
 
-            <time class="pink-link-context" datetime="2018-06-06T14:11:00.000Z"><a href="/2018/06/06/2018-06-06-翻译-QtumJS文档/">2018-06-06</a></time>
+            <i class="fa fa-calendar"></i><time class="green-link-context" datetime="2018-06-06T06:11:00.000Z"><a href="/2018/06/06/2018-06-06-翻译-QtumJS文档/">2018-06-06</a></time>
 
             
     <div class="tags-row">
         
-            <a href="/tags/区块链/" class="chip pink lighten-1">区块链</a>
+            <a href="/tags/区块链/" class="chip green lighten-1">区块链</a>
         
-            <a href="/tags/Qtum/" class="chip pink lighten-1">Qtum</a>
+            <a href="/tags/Qtum/" class="chip green lighten-1">Qtum</a>
         
-            <a href="/tags/翻译/" class="chip pink lighten-1">翻译</a>
+            <a href="/tags/翻译/" class="chip green lighten-1">翻译</a>
         
     </div>
+    
 
 
 
             
         </div>
-
-        
+        <div class="card-action green-link-context">
+            <a href="/2018/06/06/2018-06-06-翻译-QtumJS文档/">READ MORE &gt;&gt;&gt;</a>
+        </div>
     </div>
 </article>
 
@@ -518,25 +583,27 @@
 
             </div>
 
-            <time class="pink-link-context" datetime="2018-05-30T14:11:00.000Z"><a href="/2018/05/30/2018-05-30-翻译-BitcoinCore0.15.0版本说明/">2018-05-30</a></time>
+            <i class="fa fa-calendar"></i><time class="green-link-context" datetime="2018-05-30T06:11:00.000Z"><a href="/2018/05/30/2018-05-30-翻译-BitcoinCore0.15.0版本说明/">2018-05-30</a></time>
 
             
     <div class="tags-row">
         
-            <a href="/tags/区块链/" class="chip pink lighten-1">区块链</a>
+            <a href="/tags/区块链/" class="chip green lighten-1">区块链</a>
         
-            <a href="/tags/Qtum/" class="chip pink lighten-1">Qtum</a>
+            <a href="/tags/Qtum/" class="chip green lighten-1">Qtum</a>
         
-            <a href="/tags/翻译/" class="chip pink lighten-1">翻译</a>
+            <a href="/tags/翻译/" class="chip green lighten-1">翻译</a>
         
     </div>
+    
 
 
 
             
         </div>
-
-        
+        <div class="card-action green-link-context">
+            <a href="/2018/05/30/2018-05-30-翻译-BitcoinCore0.15.0版本说明/">READ MORE &gt;&gt;&gt;</a>
+        </div>
     </div>
 </article>
 
@@ -553,25 +620,27 @@
 
             </div>
 
-            <time class="pink-link-context" datetime="2018-05-24T14:11:00.000Z"><a href="/2018/05/24/2018-05-24-翻译-十大Qtum新用户会问的问题/">2018-05-24</a></time>
+            <i class="fa fa-calendar"></i><time class="green-link-context" datetime="2018-05-24T06:11:00.000Z"><a href="/2018/05/24/2018-05-24-翻译-十大Qtum新用户会问的问题/">2018-05-24</a></time>
 
             
     <div class="tags-row">
         
-            <a href="/tags/区块链/" class="chip pink lighten-1">区块链</a>
+            <a href="/tags/区块链/" class="chip green lighten-1">区块链</a>
         
-            <a href="/tags/Qtum/" class="chip pink lighten-1">Qtum</a>
+            <a href="/tags/Qtum/" class="chip green lighten-1">Qtum</a>
         
-            <a href="/tags/翻译/" class="chip pink lighten-1">翻译</a>
+            <a href="/tags/翻译/" class="chip green lighten-1">翻译</a>
         
     </div>
+    
 
 
 
             
         </div>
-
-        
+        <div class="card-action green-link-context">
+            <a href="/2018/05/24/2018-05-24-翻译-十大Qtum新用户会问的问题/">READ MORE &gt;&gt;&gt;</a>
+        </div>
     </div>
 </article>
 
@@ -588,25 +657,27 @@
 
             </div>
 
-            <time class="pink-link-context" datetime="2018-05-18T14:11:00.000Z"><a href="/2018/05/18/2018-05-18-翻译-Qtum对等连接/">2018-05-18</a></time>
+            <i class="fa fa-calendar"></i><time class="green-link-context" datetime="2018-05-18T06:11:00.000Z"><a href="/2018/05/18/2018-05-18-翻译-Qtum对等连接/">2018-05-18</a></time>
 
             
     <div class="tags-row">
         
-            <a href="/tags/区块链/" class="chip pink lighten-1">区块链</a>
+            <a href="/tags/区块链/" class="chip green lighten-1">区块链</a>
         
-            <a href="/tags/Qtum/" class="chip pink lighten-1">Qtum</a>
+            <a href="/tags/Qtum/" class="chip green lighten-1">Qtum</a>
         
-            <a href="/tags/翻译/" class="chip pink lighten-1">翻译</a>
+            <a href="/tags/翻译/" class="chip green lighten-1">翻译</a>
         
     </div>
+    
 
 
 
             
         </div>
-
-        
+        <div class="card-action green-link-context">
+            <a href="/2018/05/18/2018-05-18-翻译-Qtum对等连接/">READ MORE &gt;&gt;&gt;</a>
+        </div>
     </div>
 </article>
 
@@ -623,25 +694,27 @@
 
             </div>
 
-            <time class="pink-link-context" datetime="2018-05-12T14:11:00.000Z"><a href="/2018/05/12/2018-05-12-翻译-孤儿块/">2018-05-12</a></time>
+            <i class="fa fa-calendar"></i><time class="green-link-context" datetime="2018-05-12T06:11:00.000Z"><a href="/2018/05/12/2018-05-12-翻译-孤儿块/">2018-05-12</a></time>
 
             
     <div class="tags-row">
         
-            <a href="/tags/区块链/" class="chip pink lighten-1">区块链</a>
+            <a href="/tags/区块链/" class="chip green lighten-1">区块链</a>
         
-            <a href="/tags/Qtum/" class="chip pink lighten-1">Qtum</a>
+            <a href="/tags/Qtum/" class="chip green lighten-1">Qtum</a>
         
-            <a href="/tags/翻译/" class="chip pink lighten-1">翻译</a>
+            <a href="/tags/翻译/" class="chip green lighten-1">翻译</a>
         
     </div>
+    
 
 
 
             
         </div>
-
-        
+        <div class="card-action green-link-context">
+            <a href="/2018/05/12/2018-05-12-翻译-孤儿块/">READ MORE &gt;&gt;&gt;</a>
+        </div>
     </div>
 </article>
 
@@ -658,21 +731,23 @@
 
             </div>
 
-            <time class="pink-link-context" datetime="2018-04-11T14:11:00.000Z"><a href="/2018/04/11/2018-04-11-Android-TimeCat-反编译/">2018-04-11</a></time>
+            <i class="fa fa-calendar"></i><time class="green-link-context" datetime="2018-04-11T06:11:00.000Z"><a href="/2018/04/11/2018-04-11-Android-TimeCat-反编译/">2018-04-11</a></time>
 
             
     <div class="tags-row">
         
-            <a href="/tags/Android-Studio/" class="chip pink lighten-1">Android Studio</a>
+            <a href="/tags/Android-Studio/" class="chip green lighten-1">Android Studio</a>
         
     </div>
+    
 
 
 
             
         </div>
-
-        
+        <div class="card-action green-link-context">
+            <a href="/2018/04/11/2018-04-11-Android-TimeCat-反编译/">READ MORE &gt;&gt;&gt;</a>
+        </div>
     </div>
 </article>
 
@@ -689,21 +764,23 @@
 
             </div>
 
-            <time class="pink-link-context" datetime="2018-04-09T14:11:00.000Z"><a href="/2018/04/09/2018-04-09-Android-TimeCat-让Android-Studio快十倍/">2018-04-09</a></time>
+            <i class="fa fa-calendar"></i><time class="green-link-context" datetime="2018-04-09T06:11:00.000Z"><a href="/2018/04/09/2018-04-09-Android-TimeCat-让Android-Studio快十倍/">2018-04-09</a></time>
 
             
     <div class="tags-row">
         
-            <a href="/tags/Android-Studio/" class="chip pink lighten-1">Android Studio</a>
+            <a href="/tags/Android-Studio/" class="chip green lighten-1">Android Studio</a>
         
     </div>
+    
 
 
 
             
         </div>
-
-        
+        <div class="card-action green-link-context">
+            <a href="/2018/04/09/2018-04-09-Android-TimeCat-让Android-Studio快十倍/">READ MORE &gt;&gt;&gt;</a>
+        </div>
     </div>
 </article>
 
@@ -789,7 +866,7 @@
                     </a>
                 
                 
-    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
     </script>
     <div class="site-visitors-container white-text">
         <span>
@@ -821,9 +898,9 @@
     </div>
     
 
-    <div class="footer-copyright pink-link-context">
+    <div class="footer-copyright green-link-context">
         <div class="container">
-            © 2016 example.com, All rights reserved.
+            © 2018 xichen.pub, All rights reserved.
             <p class="right" style="margin-top: 0;">Blog powered by <a href="https://hexo.io">Hexo</a> | Theme <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
         </div>
     </div>
@@ -842,6 +919,7 @@
 
 <script src="/js/jquery.min.js"></script>
 <script src="/js/materialize.min.js"></script>
+<script src="/js/canvas.js"></script>
 
 <script>
     (function($) {
@@ -997,7 +1075,7 @@
                             if (isMatch) {
                                 keywords.forEach(function(keyword) {
                                     var regS = new RegExp(keyword, "gi");
-                                    data_title = data_title.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword green lighten-2\">" + keyword + "</span>");
                                 });
 
                                 str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
@@ -1019,7 +1097,7 @@
                                     // highlight all keywords
                                     keywords.forEach(function(keyword) {
                                         var regS = new RegExp(keyword, "gi");
-                                        match_content = match_content.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword green lighten-2\">" + keyword + "</span>");
                                     });
 
                                     str += "<p class=\"search-result\">..." + match_content + "...</p>"
@@ -1056,7 +1134,7 @@ MathJax.Hub.Config({
 });
 </script>
 <script type="text/javascript" async
-  src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
 
