@@ -31,7 +31,7 @@ I started my PhD journey this year after working at [iwencai, Hithink RoyalFlush
 # 🚀 Projects
 
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">Open Source</div><img src='images/proj_latex_ocr.gif' alt="sym" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">*</div><img src='images/proj_latex_ocr.gif' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
 [LaTeX OCR PRO](https://github.com/LinXueyuanStdio/LaTeX_OCR_PRO)
@@ -41,7 +41,7 @@ Math Formula OCR Pro, supports handwrite, Chinese-mixed formulas and simple symb
 </div>
 </div>
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">Open Source</div><img src='images/proj_gpt.gif' alt="sym" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">*</div><img src='images/proj_gpt.gif' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
 [ChatGPT - Review & Rebuttal](https://microsoftedge.microsoft.com/addons/detail/review-rebuttal/aboaofpciadffeflfapkbnjciaefhmhi)
