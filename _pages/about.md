@@ -28,29 +28,62 @@ I started my PhD journey this year after working at [iwencai, Hithink RoyalFlush
 - *2022.02*: &nbsp;🎉🎉 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet.
 - *2022.02*: &nbsp;🎉🎉 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. -->
 
-# 📝 Publications
+# 🚀 Projects
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">CVPR 2016</div><img src='images/500x300.png' alt="sym" width="100%"></div></div>
+
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">Open Source</div><img src='images/proj_latex_ocr.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
-[Deep Residual Learning for Image Recognition](https://openaccess.thecvf.com/content_cvpr_2016/papers/He_Deep_Residual_Learning_CVPR_2016_paper.pdf)
+[LaTeX OCR PRO](https://github.com/LinXueyuanStdio/LaTeX-OCR-PRO)
 
-**Kaiming He**, Xiangyu Zhang, Shaoqing Ren, Jian Sun
+- Math Formula OCR Pro, supports handwrite, Chinese-mixed formulas and simple symbol reasoning.
 
-[**Project**](https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=DhtAFkwAAAAJ&citation_for_view=DhtAFkwAAAAJ:ALROH1vI_8AC) <strong><span class='show_paper_citations' data='DhtAFkwAAAAJ:ALROH1vI_8AC'></span></strong>
-- Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet.
 </div>
 </div>
 
-- [Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet](https://github.com), A, B, C, **CVPR 2020**
+# 📝 Publications
+
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">NIPS 2023</div><img src='images/TFLEX.png' alt="sym" width="100%"></div></div>
+<div class='paper-box-text' markdown="1">
+
+[**TFLEX: Temporal Feature-Logic Embedding Framework for Complex Reasoning over Temporal Knowledge Graph**](https://linxueyuanstdio.github.io/project-TFLEX)
+
+**Xueyuan Lin**, Haihong E*, Chengjin Xu*, Gengxian Zhou, Haoran Luo, Tianyi Hu, Fenglong Su, Ningyuan Li, and Mingzhi Sun. In Thirty-seventh Conference on Neural Information Processing Systems, 2023. **(NeurIPS 2023, CCF A)** [[paper]](https://openreview.net/forum?id=oaGdsgB18L) [[code]](http://github.com/LinXueyuanStdio/TFLEX) [[google]](https://scholar.google.com/citations?view_op=view_citation&hl=en&user=2_ssNsIAAAAJ&citation_for_view=2_ssNsIAAAAJ:d1gkVwhDpl0C) <strong><span class='show_paper_citations' data='DhtAFkwAAAAJ:ALROH1vI_8AC'></span></strong> [[project]](https://linxueyuanstdio.github.io/project-TFLEX)
+
+</div>
+</div>
+
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">AAAI 2023</div><img src='images/NQE.png' alt="sym" width="100%"></div></div>
+<div class='paper-box-text' markdown="1">
+
+[**NQE: N-ary Query Embedding for Complex Query Answering over Hyper-Relational Knowledge Graphs**](https://ojs.aaai.org/index.php/AAAI/article/view/25576)
+
+Haoran Luo, Haihong E*, Yuhao Yang, Gengxian Zhou, Yikai Guo, Tianyu Yao, Zichen Tang, **Xueyuan Lin**, Kaiyang Wan.  Proceedings of the AAAI Conference on Artificial Intelligence 37.4 (June 2023) pp. 4543–4551. 2023 **(AAAI 2023, CCF A)** [[paper]](https://ojs.aaai.org/index.php/AAAI/article/view/25576) [[code]](https://github.com/LHRLAB/NQE)
+
+</div>
+</div>
+
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">Computer Science 2023</div><img src='images/QubitE.png' alt="sym" width="100%"></div></div>
+<div class='paper-box-text' markdown="1">
+
+[**QubitE: Qubit Embedding for Knowledge Graph Completion**](https://www.jsjkx.com/EN/10.11896/jsjkx.221100217)
+
+**Xueyuan Lin**, Haihong E*, Wenyu Song, Haoran Luo and Meina Song. \[J\].Computer Science, 2023, 50(11): 201-209. **(CCF B)** [[paper]](https://www.jsjkx.com/EN/10.11896/jsjkx.221100217) [[code]](http://github.com/LinXueyuanStdio/QubitE)
+
+</div>
+</div>
 
 # 🎖 Honors and Awards
 - *2021.10* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet.
 - *2021.09* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet.
 
 # 📖 Educations
-- *2019.06 - 2022.04 (now)*, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet.
-- *2015.09 - 2019.06*, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet.
+- 🧑‍🎓 **The Hong Kong University of Science and Technology (Guangzhou)**, 2024 - Present
+    PhD, *Artificial Intelligence Thrust*, Information Hub, Guangzhou
+- 🧑‍🎓 **Beijing University of Posts and Telecommunications**, 2020 - 2023
+    Academic master, *Computer Science and Technology*, School of Computer Science (National Demonstrative Software School), Beijing
+- 👨‍🎓 **Sun Yat-Sen University**, 2016 - 2020
+    Undergraduate, *Information and Computing Science*, School of Mathematics (Zhuhai), Zhuhai
 
 <!-- # 💬 Invited Talks
 - *2021.06*, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet.
