@@ -58,7 +58,7 @@ A browser extension for generating reviews and rebuttals in openreview, powered 
 
 [**TFLEX: Temporal Feature-Logic Embedding Framework for Complex Reasoning over Temporal Knowledge Graph**](https://linxueyuanstdio.github.io/project-TFLEX)
 
-**Xueyuan Lin**, Haihong E*, Chengjin Xu*, Gengxian Zhou, Haoran Luo, Tianyi Hu, Fenglong Su, Ningyuan Li, and Mingzhi Sun. In Thirty-seventh Conference on Neural Information Processing Systems, 2023. **(NeurIPS 2023, CCF A)**
+**Xueyuan Lin**, Haihong E*, Chengjin Xu*, Gengxian Zhou, Haoran Luo, Tianyi Hu, Fenglong Su, Ningyuan Li, and Mingzhi Sun. In Thirty-seventh Conference on Neural Information Processing Systems, 2023.
 
 [[paper]](https://openreview.net/forum?id=oaGdsgB18L) [[code]](http://github.com/LinXueyuanStdio/TFLEX) [[google]](https://scholar.google.com/citations?view_op=view_citation&hl=en&user=2_ssNsIAAAAJ&citation_for_view=2_ssNsIAAAAJ:d1gkVwhDpl0C) <strong><span class='show_paper_citations' data='DhtAFkwAAAAJ:ALROH1vI_8AC'></span></strong> [[project]](https://linxueyuanstdio.github.io/project-TFLEX)
 
@@ -70,7 +70,7 @@ A browser extension for generating reviews and rebuttals in openreview, powered 
 
 [**NQE: N-ary Query Embedding for Complex Query Answering over Hyper-Relational Knowledge Graphs**](https://ojs.aaai.org/index.php/AAAI/article/view/25576)
 
-Haoran Luo, Haihong E*, Yuhao Yang, Gengxian Zhou, Yikai Guo, Tianyu Yao, Zichen Tang, **Xueyuan Lin**, Kaiyang Wan.  Proceedings of the AAAI Conference on Artificial Intelligence 37.4 (June 2023) pp. 4543–4551. 2023 **(AAAI 2023, CCF A)**
+Haoran Luo, Haihong E*, Yuhao Yang, Gengxian Zhou, Yikai Guo, Tianyu Yao, Zichen Tang, **Xueyuan Lin**, Kaiyang Wan.  Proceedings of the AAAI Conference on Artificial Intelligence 37.4 (June 2023) pp. 4543–4551. 2023
 
 [[paper]](https://ojs.aaai.org/index.php/AAAI/article/view/25576) [[code]](https://github.com/LHRLAB/NQE)
 
@@ -82,7 +82,7 @@ Haoran Luo, Haihong E*, Yuhao Yang, Gengxian Zhou, Yikai Guo, Tianyu Yao, Zichen
 
 [**QubitE: Qubit Embedding for Knowledge Graph Completion**](https://www.jsjkx.com/EN/10.11896/jsjkx.221100217)
 
-**Xueyuan Lin**, Haihong E*, Wenyu Song, Haoran Luo and Meina Song. \[J\].Computer Science, 2023, 50(11): 201-209. **(CCF B)**
+**Xueyuan Lin**, Haihong E*, Wenyu Song, Haoran Luo and Meina Song. \[J\].Computer Science, 2023, 50(11): 201-209.
 
 [[paper]](https://www.jsjkx.com/EN/10.11896/jsjkx.221100217) [[code]](http://github.com/LinXueyuanStdio/QubitE)
 
