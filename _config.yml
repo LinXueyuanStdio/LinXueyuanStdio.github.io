@@ -6,7 +6,7 @@
 # `jekyll serve`. If you change this file, please restart the server process.
 
 # Site Settings
-title                    : "Xueyuan Lin</br>林学渊"
+title                    : "Xueyuan Lin 林学渊"
 description              : "Full-stack researcher, focusing on multimodal agents, NLP, knowledge representation and reasoning."
 repository               : "LinXueyuanStdio/LinXueyuanStdio.github.io"
 google_scholar_stats_use_cdn : true
