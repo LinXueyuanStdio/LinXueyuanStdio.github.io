@@ -95,11 +95,11 @@ Haoran Luo, Haihong E*, Yuhao Yang, Gengxian Zhou, Yikai Guo, Tianyu Yao, Zichen
 
 # 📖 Educations
 - 🧑‍🎓 **The Hong Kong University of Science and Technology (Guangzhou)**, 2024 - Present
-    PhD, *Artificial Intelligence Thrust*, Information Hub, Guangzhou
+    - PhD, *Artificial Intelligence Thrust*, Information Hub, Guangzhou
 - 🧑‍🎓 **Beijing University of Posts and Telecommunications**, 2020 - 2023
-    Academic master, *Computer Science and Technology*, School of Computer Science (National Demonstrative Software School), Beijing
+    - Academic master, *Computer Science and Technology*, School of Computer Science (National Demonstrative Software School), Beijing
 - 👨‍🎓 **Sun Yat-Sen University**, 2016 - 2020
-    Undergraduate, *Information and Computing Science*, School of Mathematics (Zhuhai), Zhuhai
+    - Undergraduate, *Information and Computing Science*, School of Mathematics (Zhuhai), Zhuhai
 
 <!-- # 💬 Invited Talks
 - *2021.06*, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet.
