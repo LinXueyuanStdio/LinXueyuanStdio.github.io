@@ -31,44 +31,60 @@ I started my PhD journey this year after working at [iwencai, Hithink RoyalFlush
 # 🚀 Projects
 
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">Open Source</div><img src='images/proj_latex_ocr.png' alt="sym" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">Open Source</div><img src='images/proj_latex_ocr.gif' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
-[LaTeX OCR PRO](https://github.com/LinXueyuanStdio/LaTeX-OCR-PRO)
+[LaTeX OCR PRO](https://github.com/LinXueyuanStdio/LaTeX_OCR_PRO)
 
-- Math Formula OCR Pro, supports handwrite, Chinese-mixed formulas and simple symbol reasoning.
+Math Formula OCR Pro, supports handwrite, Chinese-mixed formulas and simple symbol reasoning.
+
+</div>
+</div>
+
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">Open Source</div><img src='images/proj_gpt.gif' alt="sym" width="100%"></div></div>
+<div class='paper-box-text' markdown="1">
+
+[ChatGPT - Review & Rebuttal](https://microsoftedge.microsoft.com/addons/detail/review-rebuttal/aboaofpciadffeflfapkbnjciaefhmhi)
+
+A browser extension for generating reviews and rebuttals in openreview, powered by ChatGPT.
 
 </div>
 </div>
 
 # 📝 Publications
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">NIPS 2023</div><img src='images/TFLEX.png' alt="sym" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">NIPS 2023, CCF A</div><img src='images/TFLEX.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
 [**TFLEX: Temporal Feature-Logic Embedding Framework for Complex Reasoning over Temporal Knowledge Graph**](https://linxueyuanstdio.github.io/project-TFLEX)
 
-**Xueyuan Lin**, Haihong E*, Chengjin Xu*, Gengxian Zhou, Haoran Luo, Tianyi Hu, Fenglong Su, Ningyuan Li, and Mingzhi Sun. In Thirty-seventh Conference on Neural Information Processing Systems, 2023. **(NeurIPS 2023, CCF A)** [[paper]](https://openreview.net/forum?id=oaGdsgB18L) [[code]](http://github.com/LinXueyuanStdio/TFLEX) [[google]](https://scholar.google.com/citations?view_op=view_citation&hl=en&user=2_ssNsIAAAAJ&citation_for_view=2_ssNsIAAAAJ:d1gkVwhDpl0C) <strong><span class='show_paper_citations' data='DhtAFkwAAAAJ:ALROH1vI_8AC'></span></strong> [[project]](https://linxueyuanstdio.github.io/project-TFLEX)
+**Xueyuan Lin**, Haihong E*, Chengjin Xu*, Gengxian Zhou, Haoran Luo, Tianyi Hu, Fenglong Su, Ningyuan Li, and Mingzhi Sun. In Thirty-seventh Conference on Neural Information Processing Systems, 2023. **(NeurIPS 2023, CCF A)**
+
+[[paper]](https://openreview.net/forum?id=oaGdsgB18L) [[code]](http://github.com/LinXueyuanStdio/TFLEX) [[google]](https://scholar.google.com/citations?view_op=view_citation&hl=en&user=2_ssNsIAAAAJ&citation_for_view=2_ssNsIAAAAJ:d1gkVwhDpl0C) <strong><span class='show_paper_citations' data='DhtAFkwAAAAJ:ALROH1vI_8AC'></span></strong> [[project]](https://linxueyuanstdio.github.io/project-TFLEX)
 
 </div>
 </div>
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">AAAI 2023</div><img src='images/NQE.png' alt="sym" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">AAAI 2023, CCF A</div><img src='images/NQE.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
 [**NQE: N-ary Query Embedding for Complex Query Answering over Hyper-Relational Knowledge Graphs**](https://ojs.aaai.org/index.php/AAAI/article/view/25576)
 
-Haoran Luo, Haihong E*, Yuhao Yang, Gengxian Zhou, Yikai Guo, Tianyu Yao, Zichen Tang, **Xueyuan Lin**, Kaiyang Wan.  Proceedings of the AAAI Conference on Artificial Intelligence 37.4 (June 2023) pp. 4543–4551. 2023 **(AAAI 2023, CCF A)** [[paper]](https://ojs.aaai.org/index.php/AAAI/article/view/25576) [[code]](https://github.com/LHRLAB/NQE)
+Haoran Luo, Haihong E*, Yuhao Yang, Gengxian Zhou, Yikai Guo, Tianyu Yao, Zichen Tang, **Xueyuan Lin**, Kaiyang Wan.  Proceedings of the AAAI Conference on Artificial Intelligence 37.4 (June 2023) pp. 4543–4551. 2023 **(AAAI 2023, CCF A)**
+
+[[paper]](https://ojs.aaai.org/index.php/AAAI/article/view/25576) [[code]](https://github.com/LHRLAB/NQE)
 
 </div>
 </div>
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">Computer Science 2023</div><img src='images/QubitE.png' alt="sym" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">Computer Science 2023, CCF B</div><img src='images/QubitE.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
 [**QubitE: Qubit Embedding for Knowledge Graph Completion**](https://www.jsjkx.com/EN/10.11896/jsjkx.221100217)
 
-**Xueyuan Lin**, Haihong E*, Wenyu Song, Haoran Luo and Meina Song. \[J\].Computer Science, 2023, 50(11): 201-209. **(CCF B)** [[paper]](https://www.jsjkx.com/EN/10.11896/jsjkx.221100217) [[code]](http://github.com/LinXueyuanStdio/QubitE)
+**Xueyuan Lin**, Haihong E*, Wenyu Song, Haoran Luo and Meina Song. \[J\].Computer Science, 2023, 50(11): 201-209. **(CCF B)**
+
+[[paper]](https://www.jsjkx.com/EN/10.11896/jsjkx.221100217) [[code]](http://github.com/LinXueyuanStdio/QubitE)
 
 </div>
 </div>

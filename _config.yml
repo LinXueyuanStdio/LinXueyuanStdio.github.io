@@ -7,7 +7,7 @@
 
 # Site Settings
 title                    : "Xueyuan Lin</br>林学渊"
-description              : "My research interests include multimodal agents, NLP, knowledge representation and reasoning."
+description              : "Full-stack researcher, focusing on multimodal agents, NLP, knowledge representation and reasoning."
 repository               : "LinXueyuanStdio/LinXueyuanStdio.github.io"
 google_scholar_stats_use_cdn : true
 
@@ -24,7 +24,7 @@ author:
   name             : "Xueyuan Lin"
   avatar           : "images/android-chrome-512x512.png"
   bio              : "Ph.D. Student @ <br/> HKUST(GZ) & IDEA"
-  location         : "Guangzhou/Shenzhen/Hangzhou, China"
+  location         : "Guangzhou, China"
   employer         :
   pubmed           :
   googlescholar    : "https://scholar.google.com/citations?user=2_ssNsIAAAAJ"
