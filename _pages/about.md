@@ -17,7 +17,15 @@ redirect_from:
 
 <span class='anchor' id='about-me'></span>
 
-I started my PhD journey this year after working at [iwencai, Hithink RoyalFlush Information Network Co.,Ltd.](https://www.iwencai.com/unifiedwap/home/index) for one year. I was admitted to the joint cultivation program between The Hong Kong University of Science and Technology (Guangzhou) and International Digital Economy Academy (IDEA). My advisors are Prof. [Hui Xiong](https://www.hkust-gz.edu.cn/people/hui-xiong/) at HKUST(GZ) and Prof. [Jian Guo](https://idea.edu.cn/person/guojian/) at IDEA. My research interests include multimodal agents and natural language processing. I also pay attention to topics such as time series, graphs, knowledge graphs and reinforcement learning.
+I started my PhD journey in 2024.09, admitted to the joint cultivation program between [HKUST(GZ)](https://www.hkust-gz.edu.cn) and [IDEA](https://www.idea.edu.cn). My supervisors are Prof. [XIONG Hui](https://www.hkust-gz.edu.cn/people/hui-xiong/) at HKUST(GZ) and Prof. [GUO Jian](https://idea.edu.cn/person/guojian/) at IDEA. Before that, I built the financial agent framework with [MA ye](https://scholar.google.com/citations?hl=zh-CN&user=EDr_qfQAAAAJ) at [iwencai](https://www.iwencai.com/unifiedwap/home/index) in three months. I have received my master's degree in [BUPT](https://www.bupt.edu.cn/) and bachelor's degree in [SYSU](https://www.sysu.edu.cn).
+
+My research interests include natural language processing and reinforcement learning, especially (multimodal) agents, LLM and RLAIF. I also pay attention to common machine learning topics, such as time series, graphs, and reinforcement learning.
+I have a pipeline to produce high-quality research. [Contact me](mailto:linxy59@mail2.sysu.edu.cn) if you are interested in my following research or want to collaborate with me.
+
+- Financial World Model
+- Multi-modal Agent
+- Time Series Forecasting & Graph Neural Network
+- Complex Reasoning over (Temporal) Knowledge Graph
 
 > Study for creating another world. Pursue eternity and truth. Ginkgo spans the ages, peonies flourish, AGI forges the path to my eternal journey.
 
