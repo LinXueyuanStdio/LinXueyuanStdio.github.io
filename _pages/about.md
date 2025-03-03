@@ -90,8 +90,13 @@ Haoran Luo, Haihong E*, Yuhao Yang, Gengxian Zhou, Yikai Guo, Tianyu Yao, Zichen
 </div>
 
 # 🎖 Honors and Awards
-- *2021.10* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet.
-- *2021.09* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet.
+
+- First-class Academic Scholarship of Beijing University of Posts and Telecommunications (**2021-2023**)
+- Encouragement and Excellence Scholarship of Sun Yat-sen University (**2020**)
+- Youmei Student Grant (**2016-2020**)
+- National Student Grant (**2016-2017**)
+- National Encouragement Scholarship (**2016-2017**)
+- National First Prize of the "Discovery Cup" APP Development Group (**2017**)
 
 # 📖 Educations
 - 🧑‍🎓 **The Hong Kong University of Science and Technology (Guangzhou)**, 2024 - Present
