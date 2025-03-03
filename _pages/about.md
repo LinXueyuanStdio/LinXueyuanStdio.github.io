@@ -21,7 +21,7 @@ I started my PhD journey this year after working at [iwencai, Hithink RoyalFlush
 
 > Study for creating another world. Pursue eternity and truth. Ginkgo spans the ages, peonies flourish, AGI forges the path to my eternal journey.
 
-<a href='https://scholar.google.com/citations?user=2_ssNsIAAAAJ'><img src="https://img.shields.io/endpoint?url={{ url | url_encode }}&logo=Google%20Scholar&labelColor=f6f6f6&color=9cf&style=flat&label=citations"></a>
+<a href='https://scholar.google.com/citations?user=2_ssNsIAAAAJ'><img src="https://img.shields.io/endpoint?url={{ url | url_encode }}&logo=Google%20Scholar&labelColor=f6f6f6&color=9cf&style=flat&label=citations"></a> [[cv]](https://linxueyuanstdio.github.io/cv) [[blog]](https://blog.linxueyuan.online)
 
 
 <!-- # 🔥 News
