@@ -17,10 +17,10 @@ redirect_from:
 
 <span class='anchor' id='about-me'></span>
 
-I started my AI PhD journey in 2024.09, admitted to the joint cultivation program between [HKUST(GZ)](https://www.hkust-gz.edu.cn) and [IDEA](https://www.idea.edu.cn). My supervisors are Prof. [XIONG Hui](https://www.hkust-gz.edu.cn/people/hui-xiong/) at HKUST(GZ) and Prof. [GUO Jian](https://idea.edu.cn/person/guojian/) at IDEA. Before that, I built the financial agent framework with [MA ye](https://scholar.google.com/citations?hl=zh-CN&user=EDr_qfQAAAAJ) at [iwencai](https://www.iwencai.com/unifiedwap/home/index) in three months. I have received my master's degree in [BUPT](https://www.bupt.edu.cn/) (computer) and bachelor's degree in [SYSU](https://www.sysu.edu.cn) (math).
+I started my AI PhD journey in 2024.09, admitted to the [HKUST(GZ)](https://www.hkust-gz.edu.cn)-[IDEA](https://www.idea.edu.cn) Joint PhD Program. My supervisors are Prof. [XIONG Hui](https://www.hkust-gz.edu.cn/people/hui-xiong/) at HKUST(GZ) and Prof. [GUO Jian](https://idea.edu.cn/person/guojian/) at IDEA. Before that, I built the financial agent framework with [MA ye](https://scholar.google.com/citations?hl=zh-CN&user=EDr_qfQAAAAJ) at [iwencai](https://www.iwencai.com/unifiedwap/home/index). I have received my master's degree in [BUPT](https://www.bupt.edu.cn/) (computer) and bachelor's degree in [SYSU](https://www.sysu.edu.cn) (math).
 
 My research interests include natural language processing and reinforcement learning, especially (multimodal) agents, LLM and RLAIF. I also pay attention to common machine learning topics, such as time series, graphs, and reinforcement learning.
-I have a pipeline to produce high-quality research. [Contact me](mailto:linxy59@mail2.sysu.edu.cn) if you are interested in my following research or want to collaborate with me.
+[Contact me](mailto:linxy59@mail2.sysu.edu.cn) if you are interested in my following research or want to collaborate with me.
 
 - Financial World Model
 - Multi-modal Agent
@@ -103,6 +103,7 @@ Haoran Luo, Haihong E*, Yuhao Yang, Gengxian Zhou, Yikai Guo, Tianyu Yao, Zichen
 
 # 🎖 Honors and Awards
 
+- Ph.D. Full Scholarship (**2024.09-2028.09**, ￥720,000)
 - First-class Academic Scholarship of Beijing University of Posts and Telecommunications (**2021-2023**)
 - Encouragement and Excellence Scholarship of Sun Yat-sen University (**2020**)
 - Youmei Student Grant (**2016-2020**)
