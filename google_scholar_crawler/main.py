@@ -3,8 +3,10 @@ import jsonpickle
 import json
 from datetime import datetime
 import os
-
-author: dict = scholarly.search_author_id(os.environ['GOOGLE_SCHOLAR_ID'])
+google_scholar_id = os.getenv('GOOGLE_SCHOLAR_ID', None)
+if not google_scholar_id:
+    raise ValueError("Please set the GOOGLE_SCHOLAR_ID environment variable.")
+author: dict = scholarly.search_author_id(google_scholar_id)
 scholarly.fill(author, sections=['basics', 'indices', 'counts', 'publications'])
 name = author['name']
 author['updated'] = str(datetime.now())
