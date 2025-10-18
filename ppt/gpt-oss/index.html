@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>GPT-OSS 深度解析</title>
     <meta name="description" content="GPT-OSS 与 Harmony 格式的核心意义：从 ChatML 到多通道架构的技术演进、对开发者与训练者的启发。">
     <meta name="theme-color" content="#0a0a0a">
@@ -22,9 +22,12 @@
             font-family: 'Microsoft YaHei', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: #0a0a0a;
             color: #ffffff;
+            /* 默认幻灯片按整屏展示；移动端将在媒体查询中开启纵向滚动 */
             overflow: hidden;
             position: relative;
         }
+        /* 避免偶发的横向滚动条 */
+        html, body { max-width: 100%; overflow-x: hidden; }
 
         /* 粒子背景 - 更轻柔的效果 */
         .particles {
@@ -84,7 +87,10 @@
             }
         }
 
-        /* 轻柔的网格背景 */
+    /* 防止 iOS 自动放大文本导致布局抖动 */
+    html, body { -webkit-text-size-adjust: 100%; }
+
+    /* 轻柔的网格背景 */
         .grid-background {
             position: fixed;
             top: 0;
@@ -99,6 +105,9 @@
             animation: gridMove 30s linear infinite;
         }
 
+    /* 媒体元素自适应屏幕宽度，避免横向溢出 */
+    img, video, canvas, svg { max-width: 100%; height: auto; }
+
         @keyframes gridMove {
             0% { transform: translate(0, 0); }
             100% { transform: translate(60px, 60px); }
@@ -108,7 +117,9 @@
         .container {
             position: relative;
             z-index: 10;
-            width: 100vw;
+            /* 避免 100vw 在移动端包含滚动条造成的水平溢出 */
+            width: 100%;
+            /* 使用 100vh，移动端在媒体查询中改为 100dvh/100svh */
             height: 100vh;
             display: flex;
             align-items: center;
@@ -250,6 +261,9 @@
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
+            min-height: 44px; /* 提升触控命中范围 */
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
+            white-space: nowrap; /* 防止中文按钮文字竖排换行 */
         }
 
         .nav-btn:hover {
@@ -373,14 +387,17 @@
             }
         }
 
-        /* 目录页（第2页）单列与标题左对齐 */
+        /* 目录页（第2页）单列与标题居中 */
         #page2 .page-title {
-            text-align: left;
+            text-align: center;
         }
         #page2 .outline-grid {
             grid-template-columns: 1fr !important;
             max-width: 820px !important;
         }
+
+        /* 提纲卡片内文本全部左对齐 */
+        .outline-card { text-align: left; }
 
         /* 目录卡片对比色变体 */
         .outline-card.red { border-color: rgba(255, 120, 120, 0.5); background: rgba(60, 20, 20, 0.6); }
@@ -392,13 +409,59 @@
         .outline-card.purple:hover { border-color: rgba(170, 140, 255, 0.85); }
         .outline-card.yellow:hover { border-color: rgba(255, 220, 120, 0.85); }
 
-        /* 第6页：缩小标题/副标题/列表，避免超出 */
-    #page6 { padding: 28px 20px; }
-    #page6 .page-title { font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: 16px; }
-        #page6 .subtitle { font-size: clamp(1rem, 2vw, 1.2rem); margin-top: 10px; }
-        #page6 .migration-title { font-size: 1.2rem; margin-bottom: 10px; }
-    #page6 .migration-wrap { padding: 0 8px; max-height: calc(100vh - var(--nav-space, 120px) - 180px); overflow-y: auto; }
-    #page6 .outline-list li { font-size: 0.9rem; line-height: 1.45; padding: 10px 14px; margin: 8px 0; }
+        /* 第6页：洞察卡片样式（精简版） */
+        #page6 { padding: 28px 20px; }
+        #page6 .page-title { font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: 10px; }
+        #page6 .subtitle { font-size: clamp(1rem, 2vw, 1.15rem); margin-top: 6px; color: #a7cbd6; }
+
+        #page6 .insight-grid {
+            display: grid;
+            gap: 14px;
+            grid-template-columns: 1fr;
+            max-width: 980px;
+            margin: 16px auto 0 auto;
+        }
+        @media (min-width: 900px) {
+            #page6 .insight-grid { grid-template-columns: repeat(2, minmax(280px, 1fr)); }
+        }
+        #page6 .insight-card {
+            background: rgba(0, 255, 255, 0.06);
+            border: 2px solid rgba(0, 255, 255, 0.22);
+            border-radius: 14px;
+            padding: 18px 20px;
+            text-align: left;
+            transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+        }
+        #page6 .insight-card:hover {
+            transform: translateY(-2px);
+            background: rgba(0, 255, 255, 0.12);
+            border-color: rgba(0, 255, 255, 0.45);
+            box-shadow: 0 10px 24px rgba(0, 255, 255, 0.08);
+        }
+        #page6 .insight-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 6px;
+            color: #e6f7ff;
+        }
+        #page6 .insight-body { color: #cfeaf2; font-size: 0.98rem; line-height: 1.55; }
+
+        /* 关键词高亮（对比色） */
+        .kw { font-weight: 700; text-shadow: 0 0 8px rgba(255,255,255,0.08); }
+        .kw-cyan { color: #00ffff; }
+        .kw-red { color: #ff6b6b; }
+        .kw-green { color: #78f0a8; }
+        .kw-amber { color: #ffd166; }
+        .kw-purple { color: #b18cff; }
+        .kw-blue { color: #54a0ff; }
+
+        /* 不同色系卡片边框背景（对比但低饱和） */
+        #page6 .insight-card.cyan { border-color: rgba(0,255,255,0.45); background: rgba(0, 90, 90, 0.25); }
+        #page6 .insight-card.red { border-color: rgba(255,120,120,0.45); background: rgba(95, 35, 35, 0.25); }
+        #page6 .insight-card.green { border-color: rgba(120,255,160,0.45); background: rgba(25, 70, 45, 0.25); }
+        #page6 .insight-card.purple { border-color: rgba(170,140,255,0.45); background: rgba(45, 35, 85, 0.25); }
+        #page6 .insight-card.yellow { border-color: rgba(255,220,120,0.45); background: rgba(85, 70, 25, 0.25); }
+        #page6 .insight-card.blue { border-color: rgba(84,160,255,0.45); background: rgba(25, 50, 85, 0.25); }
 
         /* 提纲卡片右侧“>”图标与动效 */
         .outline-chevron {
@@ -514,8 +577,13 @@
 
         /* 响应式设计 */
         @media (max-width: 768px) {
+            /* 移动端允许垂直滚动，避免内容被裁切；保持横向隐藏 */
+            body { overflow-y: auto; -webkit-overflow-scrolling: touch; }
+
             .page {
                 padding: 30px 20px;
+                /* 为底部固定导航预留空间，避免内容被遮挡（结合 JS 动态变量） */
+                padding-bottom: calc(20px + var(--nav-space, 120px));
             }
 
             .outline-list li {
@@ -524,16 +592,43 @@
             }
 
             .navigation {
-                bottom: 20px;
+                /* 为刘海屏底部安全区预留空间 */
+                bottom: calc(20px + env(safe-area-inset-bottom));
+                flex-wrap: nowrap; /* 防止按钮换行 */
             }
 
             .nav-btn {
-                padding: 10px 20px;
-                font-size: 0.9rem;
+                padding: 10px 18px;
+                font-size: 0.95rem;
             }
 
             /* 页码指示器随导航自适应，无需额外定位 */
                 /* 移动端无需特殊定位，随导航自适应 */
+
+            /* 处理标题在小屏不换行导致的溢出 */
+            .main-title .secondary { white-space: normal; }
+            /* 调整标题的负外边距，避免顶部被裁切 */
+            .main-title { margin-top: -40px; }
+
+            /* 容器在移动端顶部对齐，使用动态视口单位避免地址栏跳动 */
+            .container {
+                align-items: flex-start;
+                height: auto;
+                min-height: 100svh;
+            }
+
+            /* 演示区在移动端更紧凑，代码区高度自适应屏幕 */
+            .code-content { max-height: 35vh; }
+
+            /* 目录页（第2页）在移动端的字号与间距优化 */
+            #page2 .page-title { font-size: clamp(1.6rem, 5.5vw, 2.2rem); }
+            #page2 .outline-card { padding: 18px 16px; }
+            #page2 .outline-title { font-size: 1.05rem; }
+            #page2 .outline-desc { font-size: 0.9rem; }
+            #page2 .outline-icon { font-size: 1.3rem; }
+            #page2 .outline-chevron { font-size: 1.1rem; }
+            /* 页码指示器更紧凑 */
+            .navigation .page-indicator { font-size: 0.9rem; }
         }
 
         @media (max-width: 480px) {
@@ -543,6 +638,23 @@
 
             .page-title {
                 width: 95%;
+            }
+            /* 极小屏进一步压缩代码区高度 */
+            .code-content { max-height: 30vh; }
+            /* 极小屏再收缩导航按钮与间距，避免拥挤导致换行 */
+            .navigation { gap: 10px; }
+            .nav-btn { padding: 10px 14px; font-size: 0.9rem; }
+            .navigation .page-indicator { font-size: 0.85rem; }
+            /* 目录页极小屏更紧凑 */
+            #page2 .outline-card { padding: 16px 14px; }
+            #page2 .outline-title { font-size: 1rem; }
+            #page2 .outline-desc { font-size: 0.85rem; }
+        }
+
+        /* 支持 100dvh/100svh 的浏览器使用更准确的高度，减少地址栏显示/隐藏带来的抖动 */
+        @supports (height: 100dvh) {
+            @media (max-width: 768px) {
+                .container { height: auto; min-height: 100dvh; }
             }
         }
 
@@ -645,6 +757,7 @@
             color: #e0e0e0;
             text-align: left;
             white-space: pre-line;
+            -webkit-overflow-scrolling: touch;
         }
 
         .explanation-panel {
@@ -654,6 +767,7 @@
             border-radius: 10px;
             padding: 20px;
             overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
         .explanation-content {
@@ -1046,22 +1160,15 @@
                     </span>
                     <span class="outline-chevron">›</span>
                 </a>
-                <a class="outline-card" href="#6" role="listitem" aria-label="从 ChatML 迁移到 Harmony：建议">
-                    <span class="outline-icon">�</span>
+                <a class="outline-card" href="#6" role="listitem" aria-label="自研 AgentML 渲染器路线（Harmony 启发）">
+                    <span class="outline-icon">🛠️</span>
                     <span>
-                        <span class="outline-title">从 ChatML 迁移到 Harmony：建议</span>
-                        <span class="outline-desc">落地迁移清单与注意事项</span>
+                        <span class="outline-title">自研 AgentML 渲染器路线</span>
+                        <span class="outline-desc">不绑定 tokenizer/官方渲染器，Harmony 启发的多通道设计</span>
                     </span>
                     <span class="outline-chevron">›</span>
                 </a>
-                <a class="outline-card" href="#9" role="listitem" aria-label="观点总结">
-                    <span class="outline-icon">📌</span>
-                    <span>
-                        <span class="outline-title">观点总结</span>
-                        <span class="outline-desc">关键观点回顾与实践建议</span>
-                    </span>
-                    <span class="outline-chevron">›</span>
-                </a>
+
             </div>
         </div>
 
@@ -1226,18 +1333,39 @@
             </div>
         </div>
 
-        <!-- 第6页：从 ChatML 迁移到 Harmony：建议（原第10页） -->
+        <!-- 第6页：自研 AgentML 渲染器（Harmony 启发） -->
         <div class="page" id="page6">
-            <h1 class="page-title">从 ChatML 迁移到 Harmony：建议</h1>
-            <div class="subtitle">落地迁移 Checklist · 实操注意事项</div>
+            <h1 class="page-title">自研 AgentML 渲染器（Harmony 启发）</h1>
+            <div class="subtitle">批判式学习 · 不绑定官方实现 · 构建可验证的多通道协议</div>
             <div class="migration-wrap">
-                <h3 class="migration-title">建议清单</h3>
+                <h3 class="migration-title">基础原则</h3>
                 <ul class="outline-list migration-list">
-                    <li>使用官方 <a class="ref-link" href="https://github.com/openai/harmony" target="_blank" rel="noopener noreferrer">Harmony 渲染器</a>（Python/Rust）生成提示，避免手写拼接</li>
-                    <li>将工具调用迁移到 <span class="highlight-text">commentary</span> 通道，参数输出受 <span class="highlight-text">&lt;|constrain|&gt; json</span> 约束，并通过 <span class="highlight-text">&lt;|call|&gt;</span> 触发</li>
-                    <li>函数返回使用 <span class="highlight-text">to=assistant</span> 路由；仅将 <span class="highlight-text">final</span> 通道返回给用户，<span class="highlight-text">analysis</span> 仅用于可观测与调试</li>
-                    <li>采用 <span class="highlight-text">o200k_harmony</span> 分词器；关注上下文长度（128k）与 token 预算变化</li>
-                    <li>配合有状态服务：把工具结果与中间状态纳入会话上下文（memory/MCP/缓存），发挥多通道价值</li>
+                    <li>不“迁移”到 GPT‑OSS 栈；而是吸收 Harmony 的通道/路由/约束思想，自研 AgentML 渲染与协议。</li>
+                    <li>不绑定官方 Harmony 渲染器（Python/Rust）与 <code>o200k_harmony</code> 分词器；保持可替换与跨模型兼容性。</li>
+                    <li>多通道观测为一等公民：analysis（思考）、commentary（工具/外联）、final（用户可见）。</li>
+                    <li>“格式即架构”：严格的语法与验证驱动上层编排与下层能力解耦。</li>
+                </ul>
+
+                <h3 class="migration-title">体系结构（草案）</h3>
+                <ul class="outline-list migration-list">
+                    <li>AgentML 语法与 AST：定义 token 级边界、角色、通道、to= 路由、约束块（如 constrain json）、调用与返回。</li>
+                    <li>Renderer 抽象：将 AST 渲染为目标模型可消费的提示串；可插拔方言适配层（Harmony/ChatML/自定义）。</li>
+                    <li>Validator 校验器：对参数块、Schema、通道顺序与闭合性进行静态/运行时校验，失败即短路与可恢复策略。</li>
+                    <li>Runtime 执行器：对 commentary 的 &lt;|call|&gt; 进行函数派发；工具返回强制 to=assistant；仅 final 向用户回传。</li>
+                </ul>
+
+                <h3 class="migration-title">兼容与落地</h3>
+                <ul class="outline-list migration-list">
+                    <li>Tokenizer 兼容：提供最小依赖策略，优先与现有模型分词器兼容；必要时只在边界处做 normalization。</li>
+                    <li>双向桥接：保留 ChatML ↔ AgentML 互转器，保障现有对话数据可复用与 A/B 对比。</li>
+                    <li>状态服务对接：将工具结果、记忆、MCP 能力注入会话上下文，形成可回放的可观测轨迹。</li>
+                </ul>
+
+                <h3 class="migration-title">验证与测试</h3>
+                <ul class="outline-list migration-list">
+                    <li>语法/语义测试：快照测试（渲染前后等价）、Schema Fuzz、通道闭合与路由合法性检查。</li>
+                    <li>工具编排测试：模拟 get_weather / set_reminder 等典型链路，验证失败重试与幂等。</li>
+                    <li>可观测性：为 analysis/commentary/final 输出统一事件流，便于调试与可视化回放。</li>
                 </ul>
                 <p class="ref-note">参考：
                     <a class="ref-link" href="https://openai.com/index/introducing-gpt-oss/" target="_blank" rel="noopener noreferrer">OpenAI Blog</a>
