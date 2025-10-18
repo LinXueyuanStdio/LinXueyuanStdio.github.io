@@ -1337,40 +1337,48 @@
         <div class="page" id="page6">
             <h1 class="page-title">自研 AgentML 渲染器（Harmony 启发）</h1>
             <div class="subtitle">批判式学习 · 不绑定官方实现 · 构建可验证的多通道协议</div>
-            <div class="migration-wrap">
-                <h3 class="migration-title">基础原则</h3>
-                <ul class="outline-list migration-list">
-                    <li>不“迁移”到 GPT‑OSS 栈；而是吸收 Harmony 的通道/路由/约束思想，自研 AgentML 渲染与协议。</li>
-                    <li>不绑定官方 Harmony 渲染器（Python/Rust）与 <code>o200k_harmony</code> 分词器；保持可替换与跨模型兼容性。</li>
-                    <li>多通道观测为一等公民：analysis（思考）、commentary（工具/外联）、final（用户可见）。</li>
-                    <li>“格式即架构”：严格的语法与验证驱动上层编排与下层能力解耦。</li>
-                </ul>
+            <div class="insight-grid">
+                <div class="insight-card cyan">
+                    <div class="insight-title">1) 格式即架构：以通道解耦职责</div>
+                    <div class="insight-body">
+                        通过 <span class="kw kw-cyan">analysis</span> / <span class="kw kw-cyan">commentary</span> / <span class="kw kw-cyan">final</span> 多通道，将 <span class="kw kw-amber">思考</span>、<span class="kw kw-blue">工具交互</span> 与 <span class="kw kw-green">用户输出</span> 解耦；协议清晰，可观测、可编排。
+                    </div>
+                </div>
 
-                <h3 class="migration-title">体系结构（草案）</h3>
-                <ul class="outline-list migration-list">
-                    <li>AgentML 语法与 AST：定义 token 级边界、角色、通道、to= 路由、约束块（如 constrain json）、调用与返回。</li>
-                    <li>Renderer 抽象：将 AST 渲染为目标模型可消费的提示串；可插拔方言适配层（Harmony/ChatML/自定义）。</li>
-                    <li>Validator 校验器：对参数块、Schema、通道顺序与闭合性进行静态/运行时校验，失败即短路与可恢复策略。</li>
-                    <li>Runtime 执行器：对 commentary 的 &lt;|call|&gt; 进行函数派发；工具返回强制 to=assistant；仅 final 向用户回传。</li>
-                </ul>
+                <div class="insight-card red">
+                    <div class="insight-title">2) 渲染与分词解耦：保持可替换</div>
+                    <div class="insight-body">
+                        自研 <span class="kw kw-purple">AST</span>/<span class="kw kw-purple">Renderer</span>，不绑定官方渲染器与 <span class="kw kw-red">Tokenizer</span>；以 <span class="kw kw-green">方言适配</span> 兼容 Harmony/ChatML，兼顾跨模型与长期演进。
+                    </div>
+                </div>
 
-                <h3 class="migration-title">兼容与落地</h3>
-                <ul class="outline-list migration-list">
-                    <li>Tokenizer 兼容：提供最小依赖策略，优先与现有模型分词器兼容；必要时只在边界处做 normalization。</li>
-                    <li>双向桥接：保留 ChatML ↔ AgentML 互转器，保障现有对话数据可复用与 A/B 对比。</li>
-                    <li>状态服务对接：将工具结果、记忆、MCP 能力注入会话上下文，形成可回放的可观测轨迹。</li>
-                </ul>
+                <div class="insight-card green">
+                    <div class="insight-title">3) 精准路由与强约束：降低错误面</div>
+                    <div class="insight-body">
+                        用 <span class="kw kw-blue">to=</span> 精准路由工具/系统，用 <span class="kw kw-amber">constrain json</span> 强约束输出遵循 <span class="kw kw-amber">Schema</span>，减少解析错误与粘合代码。
+                    </div>
+                </div>
 
-                <h3 class="migration-title">验证与测试</h3>
-                <ul class="outline-list migration-list">
-                    <li>语法/语义测试：快照测试（渲染前后等价）、Schema Fuzz、通道闭合与路由合法性检查。</li>
-                    <li>工具编排测试：模拟 get_weather / set_reminder 等典型链路，验证失败重试与幂等。</li>
-                    <li>可观测性：为 analysis/commentary/final 输出统一事件流，便于调试与可视化回放。</li>
-                </ul>
-                <p class="ref-note">参考：
-                    <a class="ref-link" href="https://openai.com/index/introducing-gpt-oss/" target="_blank" rel="noopener noreferrer">OpenAI Blog</a>
-                    · <a class="ref-link" href="https://cookbook.openai.com/articles/openai-harmony" target="_blank" rel="noopener noreferrer">Harmony Cookbook</a>
-                </p>
+                <div class="insight-card purple">
+                    <div class="insight-title">4) 有状态与可观测：可回放的轨迹</div>
+                    <div class="insight-body">
+                        为各通道输出统一事件流，形成 <span class="kw kw-green">有状态</span>、可调试、可回放的 <span class="kw kw-cyan">Execution Trace</span>，助力定位与优化策略。
+                    </div>
+                </div>
+
+                <div class="insight-card yellow">
+                    <div class="insight-title">5) 工具编排 Runtime：幂等与重试</div>
+                    <div class="insight-body">
+                        在 <span class="kw kw-cyan">commentary</span> 执行 <span class="kw kw-blue">&lt;|call|&gt;</span>，返回强制 <span class="kw kw-blue">to=assistant</span>；内建 <span class="kw kw-amber">幂等</span>/<span class="kw kw-amber">重试</span> 策略，保障稳定与可恢复。
+                    </div>
+                </div>
+
+                <div class="insight-card blue">
+                    <div class="insight-title">6) 兼容与桥接：数据与生态复用</div>
+                    <div class="insight-body">
+                        保留 <span class="kw kw-purple">ChatML ↔ AgentML</span> 互转与 <span class="kw kw-red">Tokenizer</span> 边界 <span class="kw kw-green">Normalization</span>，平滑复用现有数据与工具链。
+                    </div>
+                </div>
             </div>
         </div>
 
