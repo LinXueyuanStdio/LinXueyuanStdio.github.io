@@ -29,7 +29,7 @@ My research interests include natural language processing and reinforcement lear
 
 > Study for creating another world. Pursue eternity and truth. Ginkgo spans the ages, peonies flourish, AGI forges the path to my eternal journey.
 
-<a href='https://scholar.google.com/citations?user=2_ssNsIAAAAJ'><img src="https://img.shields.io/endpoint?url={{ url | url_encode }}&logo=Google%20Scholar&labelColor=f6f6f6&color=9cf&style=flat&label=citations"></a> [[Blog]](https://blog.linxueyuan.online) [[PPT]](https://linxueyuan.online/ppt/)
+<a href='https://scholar.google.com/citations?user=2_ssNsIAAAAJ'><img src="https://img.shields.io/endpoint?url={{ url | url_encode }}&logo=Google%20Scholar&labelColor=f6f6f6&color=9cf&style=flat&label=citations"></a> [[Blog]](https://blog.linxueyuan.online) [[PPT]](https://linxueyuan.online/ppt/) [[APP]](https://linxueyuan.online/app/)
 
 
 <!-- # 🔥 News
