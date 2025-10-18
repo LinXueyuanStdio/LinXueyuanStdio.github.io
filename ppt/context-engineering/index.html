@@ -115,8 +115,9 @@
             /* Lower blur to reduce GPU compositing cost on low-end devices */
             backdrop-filter: blur(6px);
             display: flex;
-            justify-content: space-between;
+            justify-content: center; /* center nav buttons */
             align-items: center;
+            gap: 0.75rem; /* space between buttons */
             padding: 0.75rem 1.25rem calc(0.75rem + env(safe-area-inset-bottom));
             height: var(--nav-h);
             border-top: 1px solid #334155;
@@ -145,8 +146,18 @@
             transform: scale(1);
         }
         .slide-counter {
-            font-size: 1rem;
-            color: #94a3b8;
+            position: fixed;
+            top: calc(12px + env(safe-area-inset-top));
+            right: 12px;
+            z-index: 60; /* above content and nav */
+            font-size: 0.95rem;
+            color: #cbd5e1;
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid #334155;
+            padding: 0.35rem 0.6rem;
+            border-radius: 9999px;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.25);
         }
         .quote {
             background-color: #1e293b;
@@ -408,7 +419,7 @@
             li::before { width: 16px; height: 16px; top: 6px; }
             .nav-controls { padding: 0.5rem 1rem calc(0.5rem + env(safe-area-inset-bottom)); }
             .nav-button { padding: 0.6rem 1rem; min-width: 72px; }
-            .slide-counter { font-size: 0.9rem; }
+            .slide-counter { font-size: 0.85rem; right: 10px; top: calc(10px + env(safe-area-inset-top)); }
             .slide-content h1 { font-size: 2rem !important; line-height: 1.2; }
             .slide-content h2 { font-size: 1.25rem !important; line-height: 1.35; }
             .quote { font-size: 0.95rem; }
@@ -907,6 +918,7 @@
                         <button class="btn primary go-slide-btn" data-go="0">返回首页</button>
                         <button class="btn go-slide-btn" data-go="1">回到目录</button>
                         <button class="btn copy-ref copy-current-url" data-clipboard-text="" title="复制当前链接">复制链接</button>
+                        <a class="btn" href="https://linxueyuan.online/ppt" target="_blank" rel="noopener noreferrer">PPT 目录</a>
                     </div>
                     <!-- Author Info -->
                     <div class="mt-8 text-sm text-slate-400">
