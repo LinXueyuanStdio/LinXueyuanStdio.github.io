@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harmony vs ChatML 动态演示</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            overflow: hidden;
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        /* 粒子背景 - 更轻柔的效果 */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #00ffff;
+            border-radius: 50%;
+            opacity: 0;
+            box-shadow: 0 0 6px rgba(0, 255, 255, 0.8);
+            animation: particleFloat 12s infinite linear;
+        }
+
+        .particle.large {
+            width: 3px;
+            height: 3px;
+            box-shadow: 0 0 8px rgba(0, 255, 255, 0.6);
+        }
+
+        .particle.small {
+            width: 1px;
+            height: 1px;
+            box-shadow: 0 0 4px rgba(0, 255, 255, 0.9);
+        }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) translateX(0) scale(0);
+                opacity: 0;
+            }
+            5% {
+                opacity: 0.6;
+                transform: translateY(95vh) translateX(10px) scale(1);
+            }
+            50% {
+                opacity: 0.8;
+                transform: translateY(50vh) translateX(var(--random-x, 30px)) scale(1.2);
+            }
+            95% {
+                opacity: 0.4;
+                transform: translateY(5vh) translateX(calc(var(--random-x, 30px) * 2)) scale(0.8);
+            }
+            100% {
+                transform: translateY(-10vh) translateX(calc(var(--random-x, 30px) * 2.5)) scale(0);
+                opacity: 0;
+            }
+        }
+
+        /* 轻柔的网格背景 */
+        .grid-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(0, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 60px 60px;
+            z-index: 0;
+            animation: gridMove 30s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(60px, 60px); }
+        }
+
+        /* 模块化样式 - 透明背景，适配嵌入环境 */
+        .harmony-module {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: transparent;
+            color: #ffffff;
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
+            position: relative;
+            z-index: 10;
+        }
+
+        .harmony-module .container {
+            max-width: 100%;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .harmony-module .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            text-align: left;
+            padding: 8px 12px;
+            margin: 0;
+            flex-shrink: 0;
+        }
+
+        .harmony-module .title {
+            display: block;
+            font-size: clamp(1.4rem, 3vw, 2rem);
+            font-weight: 700;
+            color: #ffffff;
+            margin: 6px 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            flex: 1 1 auto;
+        }
+
+        .harmony-module .title .main {
+            background: linear-gradient(45deg, #ff6b6b, #00ffff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .harmony-module .title .subtitle {
+            opacity: 0.8;
+            font-size: 0.9em;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.85);
+            margin-left: 12px;
+        }
+
+        .harmony-module .switch-container {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin: 0;
+            flex-shrink: 0;
+        }
+
+        .harmony-module .format-button {
+            padding: 12px 24px;
+            border: 2px solid;
+            border-radius: 15px;
+            background: rgba(0, 0, 0, 0.4);
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+        }
+
+        .harmony-module .format-button.chatml {
+            border-color: #ff6b6b;
+        }
+
+        .harmony-module .format-button.harmony {
+            border-color: #00ffff;
+        }
+
+        .harmony-module .format-button.active.chatml {
+            background: rgba(255, 107, 107, 0.3);
+            box-shadow: 0 0 20px rgba(255, 107, 107, 0.4);
+        }
+
+        .harmony-module .format-button.active.harmony {
+            background: rgba(0, 255, 255, 0.3);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+        }
+
+        .harmony-module .demo-container {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 15px;
+            flex: 1;
+            min-height: 0;
+        }
+
+        .harmony-module .chat-panel {
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 12px;
+            padding: 15px;
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .harmony-module .code-panel {
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 12px;
+            padding: 15px;
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .harmony-module .panel-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 12px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .harmony-module .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding-right: 8px;
+        }
+
+        .harmony-module .message {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-left: 3px solid;
+            position: relative;
+            font-size: 1.1rem;
+        }
+
+        .harmony-module .message:hover {
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .harmony-module .message.active {
+            background: rgba(255, 255, 255, 0.18);
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.15);
+        }
+
+
+
+        .message-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .message-role {
+            font-weight: bold;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        .harmony-module .user-message {
+            border-left-color: #00ff00 !important;
+        }
+
+        .harmony-module .user-message .message-role {
+            background: rgba(0, 255, 0, 0.2);
+            color: #00ff00;
+        }
+
+        .harmony-module .assistant-message {
+            border-left-color: #0080ff !important;
+        }
+
+        .harmony-module .assistant-message .message-role {
+            background: rgba(0, 128, 255, 0.2);
+            color: #0080ff;
+        }
+
+        .harmony-module .system-message {
+            border-left-color: #ff4444 !important;
+        }
+
+        .harmony-module .system-message .message-role {
+            background: rgba(255, 68, 68, 0.2);
+            color: #ff4444;
+        }
+
+        .harmony-module .developer-message {
+            border-left-color: #9c27b0 !important;
+        }
+
+        .harmony-module .developer-message .message-role {
+            background: rgba(156, 39, 176, 0.2);
+            color: #9c27b0;
+        }
+
+        .round-badge {
+            background: rgba(255, 215, 0, 0.8);
+            color: #000;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+
+        .message-content {
+            font-size: 1.15rem;
+            line-height: 1.4;
+        }
+
+        .collapsible-section {
+            margin-top: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 10px;
+        }
+
+        .collapsible-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: bold;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .collapsible-header:hover {
+            opacity: 1;
+        }
+
+        .expand-icon {
+            transition: transform 0.3s ease;
+            font-size: 0.8rem;
+        }
+
+        .expand-icon.expanded {
+            transform: rotate(90deg);
+        }
+
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            margin-top: 8px;
+        }
+
+        .collapsible-content.expanded {
+            max-height: 500px;
+        }
+
+        .think-content {
+            background: rgba(156, 39, 176, 0.1);
+            border: 1px solid rgba(156, 39, 176, 0.3);
+            border-radius: 8px;
+            padding: 12px;
+            font-style: italic;
+            color: #ce93d8;
+            font-size: 0.9rem;
+        }
+
+        .tool-content {
+            background: rgba(255, 193, 7, 0.1);
+            border: 1px solid rgba(255, 193, 7, 0.3);
+            border-radius: 8px;
+            padding: 12px;
+            font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+            font-size: 0.85rem;
+            color: #fff176;
+        }
+
+        .harmony-module .code-container {
+            background: #1e1e1e;
+            border-radius: 8px;
+            padding: 15px;
+            overflow-x: hidden;
+            flex: 1;
+            overflow-y: auto;
+            font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+            font-size: 1.0rem;
+            line-height: 1.4;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+
+        .code-highlight {
+            background: rgba(255, 215, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            animation: highlight 0.5s ease;
+        }
+
+        @keyframes highlight {
+            0% { background: rgba(255, 215, 0, 0.5); }
+            100% { background: rgba(255, 215, 0, 0.2); }
+        }
+
+        /* 移除ChatML和Harmony格式特定的选中样式，使用角色特定的颜色 */
+
+        /* 滚动条样式 */
+        .harmony-module .chat-messages::-webkit-scrollbar,
+        .harmony-module .code-container::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .harmony-module .chat-messages::-webkit-scrollbar-track,
+        .harmony-module .code-container::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .harmony-module .chat-messages::-webkit-scrollbar-thumb,
+        .harmony-module .code-container::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 3px;
+        }
+
+        .harmony-module .chat-messages::-webkit-scrollbar-thumb:hover,
+        .harmony-module .code-container::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+
+
+        /* 语法高亮 */
+        .token.tag { color: #ff6b6b; }
+        .token.attr-name { color: #00ffff; }
+        .token.attr-value { color: #98d982; }
+        .token.string { color: #98d982; }
+        .token.keyword { color: #ff79c6; }
+        .token.function { color: #ffd700; }
+        .token.comment { color: #6272a4; font-style: italic; }
+
+        /* 模板消息项样式 */
+        .message-template {
+            margin-bottom: 20px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .message-template.selected {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid rgba(255, 215, 0, 0.4);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+        }
+
+        .message-template pre {
+            margin: 0;
+            padding: 15px;
+            background: transparent;
+            border: none;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+            word-break: break-all;
+            overflow-wrap: break-word;
+        }
+
+        @media (max-width: 768px) {
+            .demo-container {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            .harmony-module .header {
+                gap: 8px;
+                padding: 6px 8px;
+            }
+            .harmony-module .title {
+                font-size: clamp(1.1rem, 4.5vw, 1.6rem);
+            }
+            .harmony-module .switch-container {
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 轻柔的粒子背景 -->
+    <div class="particles" id="particles"></div>
+
+    <!-- 轻柔的网格背景 -->
+    <div class="grid-background"></div>
+
+<!-- 模块化内容 -->
+<div class="harmony-module">
+    <div class="container">
+        <div class="header">
+            <h1 class="title">
+                <span class="main">Harmony vs ChatML 动态演示</span>
+                <span class="subtitle">交互式对话格式对比演示</span>
+            </h1>
+            <div class="switch-container">
+                <button class="format-button chatml active" data-format="chatml">
+                    ChatML 格式
+                </button>
+                <button class="format-button harmony" data-format="harmony">
+                    Harmony 格式
+                </button>
+            </div>
+        </div>
+
+        <div class="demo-container">
+            <div class="chat-panel">
+                <h3 class="panel-title">聊天对话</h3>
+                <div class="chat-messages" id="chatMessages">
+                    <!-- 动态生成聊天消息 -->
+                </div>
+            </div>
+
+            <div class="code-panel">
+                <h3 class="panel-title">完整对话模板</h3>
+                <div class="code-container" id="codeContainer">
+                    <!-- 动态显示所有对话 -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script>
+        // 定义 ChatML 聊天数据
+        const chatmlMessages = [
+            {
+                id: 1,
+                round: 1,
+                role: "system",
+                content: "# Tools\n<tools>\n{\"type\": \"function\", \"function\": {\"name\": \"get_weather\", \"description\": \"Get weather for a city\", \"parameters\": {\"type\": \"object\", \"properties\": {\"city\": {\"type\": \"string\"}, \"unit\": {\"type\": \"string\", \"enum\": [\"celsius\", \"fahrenheit\"]}}}}}\n{\"type\": \"function\", \"function\": {\"name\": \"set_reminder\", \"description\": \"Set a reminder\", \"parameters\": {\"type\": \"object\", \"properties\": {\"time\": {\"type\": \"string\"}, \"message\": {\"type\": \"string\"}, \"priority\": {\"type\": \"string\", \"enum\": [\"low\", \"medium\", \"high\"]}}}}}\n{\"type\": \"function\", \"function\": {\"name\": \"search_restaurants\", \"description\": \"Search restaurants\", \"parameters\": {\"type\": \"object\", \"properties\": {\"city\": {\"type\": \"string\"}, \"cuisine\": {\"type\": \"string\"}, \"rating_min\": {\"type\": \"number\"}}}}}\n</tools>",
+                templateCode: `<|im_start|>system
+# Tools
+<tools>
+{"type": "function", "function": {"name": "get_weather", "description": "Get weather for a city", "parameters": {"type": "object", "properties": {"city": {"type": "string"}, "unit": {"type": "string", "enum": ["celsius", "fahrenheit"]}}}}}
+{"type": "function", "function": {"name": "set_reminder", "description": "Set a reminder", "parameters": {"type": "object", "properties": {"time": {"type": "string"}, "message": {"type": "string"}, "priority": {"type": "string", "enum": ["low", "medium", "high"]}}}}}
+{"type": "function", "function": {"name": "search_restaurants", "description": "Search restaurants", "parameters": {"type": "object", "properties": {"city": {"type": "string"}, "cuisine": {"type": "string"}, "rating_min": {"type": "number"}}}}}
+</tools><|im_end|>`
+            },
+            {
+                id: 2,
+                round: 1,
+                role: "user",
+                content: "我明天要去北京出差，帮我查一下明天北京的天气，如果下雨就提醒我带伞，然后推荐几家评分4分以上的川菜餐厅。",
+                templateCode: `<|im_start|>user
+我明天要去北京出差，帮我查一下明天北京的天气，如果下雨就提醒我带伞，然后推荐几家评分4分以上的川菜餐厅。<|im_end|>`
+            },
+            {
+                id: 3,
+                round: 1,
+                role: "assistant",
+                content: "我来帮您准备明天的北京出差。首先查询天气情况。",
+                think: "用户有一个复杂的出差准备任务：\n1. 查询北京明天的天气\n2. 根据天气情况决定是否设置带伞提醒\n3. 搜索北京评分4分以上的川菜餐厅\n\n由于ChatML是无状态的，我需要先查询天气，等用户返回结果后再决定后续步骤。",
+                toolCall: "{\"name\": \"get_weather\", \"arguments\": {\"city\": \"北京\", \"unit\": \"celsius\"}}",
+                templateCode: `<|im_start|>assistant
+<think>
+用户有一个复杂的出差准备任务：
+1. 查询北京明天的天气
+2. 根据天气情况决定是否设置带伞提醒
+3. 搜索北京评分4分以上的川菜餐厅
+
+由于ChatML是无状态的，我需要先查询天气，等用户返回结果后再决定后续步骤。
+</think>
+
+我来帮您准备明天的北京出差。首先查询天气情况。
+
+<tool_call>
+{"name": "get_weather", "arguments": {"city": "北京", "unit": "celsius"}}
+</tool_call><|im_end|>`
+            },
+            {
+                id: 4,
+                round: 2,
+                role: "user",
+                content: "工具返回结果：",
+                toolCall: "{\"temperature\": 15, \"condition\": \"rainy\", \"precipitation\": \"85%\", \"forecast\": \"明天有中雨\"}",
+                templateCode: `<|im_start|>user
+<tool_response>
+{"temperature": 15, "condition": "rainy", "precipitation": "85%", "forecast": "明天有中雨"}
+</tool_response><|im_end|>`
+            },
+            {
+                id: 5,
+                round: 2,
+                role: "assistant",
+                content: "明天北京有中雨，我来为您设置带伞提醒。",
+                think: "天气查询结果显示明天北京有中雨，降水概率85%。\n根据条件判断，需要设置带伞提醒。\n现在设置提醒，然后还需要搜索餐厅。",
+                toolCall: "{\"name\": \"set_reminder\", \"arguments\": {\"time\": \"明天早上8点\", \"message\": \"北京出差记得带伞，明天有中雨\", \"priority\": \"high\"}}",
+                templateCode: `<|im_start|>assistant
+<think>
+天气查询结果显示明天北京有中雨，降水概率85%。
+根据条件判断，需要设置带伞提醒。
+现在设置提醒，然后还需要搜索餐厅。
+</think>
+
+明天北京有中雨，我来为您设置带伞提醒。
+
+<tool_call>
+{"name": "set_reminder", "arguments": {"time": "明天早上8点", "message": "北京出差记得带伞，明天有中雨", "priority": "high"}}
+</tool_call><|im_end|>`
+            },
+            {
+                id: 6,
+                round: 3,
+                role: "user",
+                content: "工具返回结果：",
+                toolCall: "{\"status\": \"success\", \"reminder_id\": \"R001\", \"scheduled_time\": \"2024-01-16 08:00\"}",
+                templateCode: `<|im_start|>user
+<tool_response>
+{"status": "success", "reminder_id": "R001", "scheduled_time": "2024-01-16 08:00"}
+</tool_response><|im_end|>`
+            },
+            {
+                id: 7,
+                round: 3,
+                role: "assistant",
+                content: "提醒设置成功！现在为您搜索北京的优质川菜餐厅。",
+                think: "提醒设置成功。现在需要搜索北京评分4分以上的川菜餐厅。\n这是最后一个任务，完成后可以给用户完整的回复。",
+                toolCall: "{\"name\": \"search_restaurants\", \"arguments\": {\"city\": \"北京\", \"cuisine\": \"川菜\", \"rating_min\": 4.0}}",
+                templateCode: `<|im_start|>assistant
+<think>
+提醒设置成功。现在需要搜索北京评分4分以上的川菜餐厅。
+这是最后一个任务，完成后可以给用户完整的回复。
+</think>
+
+提醒设置成功！现在为您搜索北京的优质川菜餐厅。
+
+<tool_call>
+{"name": "search_restaurants", "arguments": {"city": "北京", "cuisine": "川菜", "rating_min": 4.0}}
+</tool_call><|im_end|>`
+            },
+            {
+                id: 8,
+                round: 4,
+                role: "user",
+                content: "工具返回结果：",
+                toolCall: "{\"restaurants\": [{\"name\": \"蜀大侠火锅\", \"rating\": 4.5, \"address\": \"朝阳区三里屯\", \"specialty\": \"正宗四川火锅\"}, {\"name\": \"川办餐厅\", \"rating\": 4.3, \"address\": \"西城区金融街\", \"specialty\": \"川菜家常菜\"}, {\"name\": \"巴国布衣\", \"rating\": 4.2, \"address\": \"海淀区中关村\", \"specialty\": \"川菜创新菜\"}]}",
+                templateCode: `<|im_start|>user
+<tool_response>
+{"restaurants": [{"name": "蜀大侠火锅", "rating": 4.5, "address": "朝阳区三里屯", "specialty": "正宗四川火锅"}, {"name": "川办餐厅", "rating": 4.3, "address": "西城区金融街", "specialty": "川菜家常菜"}, {"name": "巴国布衣", "rating": 4.2, "address": "海淀区中关村", "specialty": "川菜创新菜"}]}
+</tool_response><|im_end|>`
+            },
+            {
+                id: 9,
+                round: 4,
+                role: "assistant",
+                content: "为您的北京出差做好了准备：\n\n**天气情况**：明天北京有中雨，降水概率85%，气温15°C\n**提醒设置**：已为您设置明天早上8点的高优先级提醒\"记得带伞\"\n\n**推荐川菜餐厅**：\n1. **蜀大侠火锅** (4.5分) - 朝阳区三里屯，正宗四川火锅\n2. **川办餐厅** (4.3分) - 西城区金融街，川菜家常菜\n3. **巴国布衣** (4.2分) - 海淀区中关村，川菜创新菜\n\n祝您出差顺利！记得带伞哦 ☔",
+                think: "所有任务都完成了：\n1. ✅ 查询了北京天气（有雨）\n2. ✅ 设置了带伞提醒\n3. ✅ 搜索了川菜餐厅\n\n现在可以给用户一个完整的总结。",
+                templateCode: `<|im_start|>assistant
+<think>
+所有任务都完成了：
+1. ✅ 查询了北京天气（有雨）
+2. ✅ 设置了带伞提醒
+3. ✅ 搜索了川菜餐厅
+
+现在可以给用户一个完整的总结。
+</think>
+
+为您的北京出差做好了准备：
+
+**天气情况**：明天北京有中雨，降水概率85%，气温15°C
+**提醒设置**：已为您设置明天早上8点的高优先级提醒"记得带伞"
+
+**推荐川菜餐厅**：
+1. **蜀大侠火锅** (4.5分) - 朝阳区三里屯，正宗四川火锅
+2. **川办餐厅** (4.3分) - 西城区金融街，川菜家常菜
+3. **巴国布衣** (4.2分) - 海淀区中关村，川菜创新菜
+
+祝您出差顺利！记得带伞哦 ☔<|im_end|>`
+            }
+        ];
+
+        // 定义 Harmony 聊天数据
+        const harmonyMessages = [
+            {
+                id: 1,
+                round: 1,
+                role: "system",
+                content: "你是一个智能助手，基于大型语言模型训练。\n知识截止时间：2024-06\n当前日期：2025-01-16\n推理强度：low\n# 有效通道：analysis, commentary, final。每条消息都必须包含通道。\n\n# Tools\n## functions\nnamespace functions {\n// Get weather for a city\ntype get_weather = (_: {\n  city: string,\n  unit?: \"celsius\" | \"fahrenheit\"\n}) => any;\n\n// Set a reminder\ntype set_reminder = (_: {\n  time: string,\n  message: string,\n  priority?: \"low\" | \"medium\" | \"high\"\n}) => any;\n\n// Search for restaurants\ntype search_restaurants = (_: {\n  city: string,\n  cuisine?: string,\n  rating_min?: number\n}) => any;\n} // namespace functions",
+                templateCode: `<|start|>system<|message|>你是一个智能助手，基于大型语言模型训练。
+知识截止时间：2024-06
+当前日期：2025-01-16
+推理强度：low
+# 有效通道：analysis, commentary, final。每条消息都必须包含通道。
+
+# Tools
+## functions
+namespace functions {
+// Get weather for a city
+type get_weather = (_: {
+  city: string,
+  unit?: "celsius" | "fahrenheit"
+}) => any;
+
+// Set a reminder
+type set_reminder = (_: {
+  time: string,
+  message: string,
+  priority?: "low" | "medium" | "high"
+}) => any;
+
+// Search for restaurants
+type search_restaurants = (_: {
+  city: string,
+  cuisine?: string,
+  rating_min?: number
+}) => any;
+} // namespace functions<|end|>`
+            },
+            {
+                id: 2,
+                round: 1,
+                role: "developer",
+                content: "你是一个专业的AI助手，擅长多步骤推理和工具调用。请按照以下原则工作：\n1. 仔细分析用户需求，制定清晰的执行计划\n2. 合理使用工具，确保调用参数准确\n3. 根据工具返回结果做出明智的决策\n4. 提供清晰、有用的回复\n5. 在复杂任务中，优先考虑并行执行以提高效率",
+                templateCode: `<|start|>developer<|message|>你是一个专业的AI助手，擅长多步骤推理和工具调用。请按照以下原则工作：
+1. 仔细分析用户需求，制定清晰的执行计划
+2. 合理使用工具，确保调用参数准确
+3. 根据工具返回结果做出明智的决策
+4. 提供清晰、有用的回复
+5. 在复杂任务中，优先考虑并行执行以提高效率<|end|>`
+            },
+            {
+                id: 3,
+                round: 1,
+                role: "user",
+                content: "我明天要去北京出差，帮我查一下明天北京的天气，如果下雨就提醒我带伞，然后推荐几家评分4分以上的川菜餐厅。",
+                templateCode: `<|start|>user<|message|>我明天要去北京出差，帮我查一下明天北京的天气，如果下雨就提醒我带伞，然后推荐几家评分4分以上的川菜餐厅。<|end|>`
+            },
+            {
+                id: 4,
+                round: 1,
+                role: "assistant",
+                channel: "analysis",
+                content: "用户有一个复杂的出差准备任务，包含三个子任务：\n1. 查询北京明天的天气\n2. 根据天气情况决定是否设置带伞提醒\n3. 搜索北京评分4分以上的川菜餐厅\n\n这是一个典型的条件判断+多工具调用场景。我需要先查天气，根据结果决定是否设置提醒，然后并行搜索餐厅。",
+                templateCode: `<|start|>assistant<|channel|>analysis<|message|>
+用户有一个复杂的出差准备任务，包含三个子任务：
+1. 查询北京明天的天气
+2. 根据天气情况决定是否设置带伞提醒
+3. 搜索北京评分4分以上的川菜餐厅
+
+这是一个典型的条件判断+多工具调用场景。我需要先查天气，根据结果决定是否设置提醒，然后并行搜索餐厅。
+<|end|>`
+            },
+            {
+                id: 5,
+                round: 1,
+                role: "assistant",
+                channel: "commentary",
+                content: "我来帮您准备明天的北京出差。首先查询天气情况。",
+                toolCall: "{\"city\": \"北京\", \"unit\": \"celsius\"}\n\n工具返回：{\"temperature\": 15, \"condition\": \"rainy\", \"precipitation\": \"85%\", \"forecast\": \"明天有中雨\"}",
+                templateCode: `<|start|>assistant<|channel|>commentary<|message|>我来帮您准备明天的北京出差。首先查询天气情况。<|end|>
+<|start|>assistant<|channel|>commentary to=functions.get_weather<|constrain|>json<|message|>{"city": "北京", "unit": "celsius"}<|call|>
+<|start|>functions.get_weather to=assistant<|channel|>commentary<|message|>{"temperature": 15, "condition": "rainy", "precipitation": "85%", "forecast": "明天有中雨"}<|end|>`
+            },
+            {
+                id: 6,
+                round: 1,
+                role: "assistant",
+                channel: "analysis",
+                content: "天气查询结果显示明天北京有中雨，降水概率85%。需要设置带伞提醒。现在同时执行提醒设置和餐厅搜索两个任务。",
+                templateCode: `<|start|>assistant<|channel|>analysis<|message|>
+天气查询结果显示明天北京有中雨，降水概率85%。需要设置带伞提醒。
+现在同时执行提醒设置和餐厅搜索两个任务。
+<|end|>`
+            },
+            {
+                id: 7,
+                round: 1,
+                role: "assistant",
+                channel: "commentary",
+                content: "明天北京有雨，我来设置带伞提醒并搜索餐厅。",
+                toolCall: "设置提醒：{\"time\": \"明天早上8点\", \"message\": \"北京出差记得带伞，明天有中雨\", \"priority\": \"high\"}\n\n搜索餐厅：{\"city\": \"北京\", \"cuisine\": \"川菜\", \"rating_min\": 4.0}",
+                templateCode: `<|start|>assistant<|channel|>commentary<|message|>明天北京有雨，我来设置带伞提醒。<|end|>
+<|start|>assistant<|channel|>commentary to=functions.set_reminder<|constrain|>json<|message|>{"time": "明天早上8点", "message": "北京出差记得带伞，明天有中雨", "priority": "high"}<|call|>
+<|start|>functions.set_reminder to=assistant<|channel|>commentary<|message|>{"status": "success", "reminder_id": "R001", "scheduled_time": "2024-01-16 08:00"}<|end|>
+<|start|>assistant<|channel|>commentary<|message|>现在为您搜索北京的优质川菜餐厅。<|end|>
+<|start|>assistant<|channel|>commentary to=functions.search_restaurants<|constrain|>json<|message|>{"city": "北京", "cuisine": "川菜", "rating_min": 4.0}<|call|>
+<|start|>functions.search_restaurants to=assistant<|channel|>commentary<|message|>{"restaurants": [{"name": "蜀大侠火锅", "rating": 4.5, "address": "朝阳区三里屯", "specialty": "正宗四川火锅"}, {"name": "川办餐厅", "rating": 4.3, "address": "西城区金融街", "specialty": "川菜家常菜"}, {"name": "巴国布衣", "rating": 4.2, "address": "海淀区中关村", "specialty": "川菜创新菜"}]}<|end|>`
+            },
+            {
+                id: 8,
+                round: 1,
+                role: "assistant",
+                channel: "final",
+                content: "为您的北京出差做好了准备：\n\n**天气情况**：明天北京有中雨，降水概率85%，气温15°C\n**提醒设置**：已为您设置明天早上8点的高优先级提醒\"记得带伞\"\n\n**推荐川菜餐厅**：\n1. **蜀大侠火锅** (4.5分) - 朝阳区三里屯，正宗四川火锅\n2. **川办餐厅** (4.3分) - 西城区金融街，川菜家常菜\n3. **巴国布衣** (4.2分) - 海淀区中关村，川菜创新菜\n\n祝您出差顺利！记得带伞哦 ☔",
+                templateCode: `<|start|>assistant<|channel|>final<|message|>为您的北京出差做好了准备：
+
+**天气情况**：明天北京有中雨，降水概率85%，气温15°C
+**提醒设置**：已为您设置明天早上8点的高优先级提醒"记得带伞"
+
+**推荐川菜餐厅**：
+1. **蜀大侠火锅** (4.5分) - 朝阳区三里屯，正宗四川火锅
+2. **川办餐厅** (4.3分) - 西城区金融街，川菜家常菜
+3. **巴国布衣** (4.2分) - 海淀区中关村，川菜创新菜
+
+祝您出差顺利！记得带伞哦 ☔<|return|>`
+            }
+        ];
+
+        let currentFormat = 'chatml';
+        let currentMessage = 0;
+
+        // 初始化页面
+        function initPage() {
+            renderChatMessages();
+            renderAllCode();
+        }
+
+        // 渲染聊天消息
+        function renderChatMessages() {
+            const chatContainer = document.getElementById('chatMessages');
+            const messages = currentFormat === 'chatml' ? chatmlMessages : harmonyMessages;
+
+            chatContainer.innerHTML = '';
+            chatContainer.className = `chat-messages ${currentFormat}`;
+
+            messages.forEach((message, index) => {
+                const messageElement = document.createElement('div');
+                messageElement.className = `message ${message.role}-message ${index === currentMessage ? 'active' : ''}`;
+                messageElement.setAttribute('data-message', index);
+
+                let roleDisplay = message.role;
+                if (message.channel) {
+                    roleDisplay += ` (${message.channel})`;
+                }
+
+                let messageContent = `
+                    <div class="message-header">
+                        <span class="message-role">${roleDisplay}</span>
+                        <span class="round-badge">第${message.round}轮</span>
+                    </div>
+                `;
+
+                // 对于 system 和 developer 消息，只显示展开按钮
+                if (message.role === 'system' || message.role === 'developer') {
+                    messageContent += `
+                        <div class="collapsible-section">
+                            <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                                <span class="expand-icon">▶</span>
+                                <span>${message.role === 'system' ? '查看完整系统设置' : '查看完整开发者设置'}</span>
+                            </div>
+                            <div class="collapsible-content">
+                                <div class="message-content">${escapeHtml(message.content)}</div>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    messageContent += `<div class="message-content">${escapeHtml(message.content)}</div>`;
+                }
+
+                // 添加思考部分（如果有）
+                if (message.think) {
+                    messageContent += `
+                        <div class="collapsible-section">
+                            <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                                <span class="expand-icon">▶</span>
+                                <span>思考过程</span>
+                            </div>
+                            <div class="collapsible-content">
+                                <div class="think-content">${escapeHtml(message.think)}</div>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                // 添加工具调用部分（如果有）
+                if (message.toolCall) {
+                    messageContent += `
+                        <div class="collapsible-section">
+                            <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                                <span class="expand-icon">▶</span>
+                                <span>工具调用</span>
+                            </div>
+                            <div class="collapsible-content">
+                                <div class="tool-content">${escapeHtml(message.toolCall)}</div>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                messageElement.innerHTML = messageContent;
+
+                messageElement.addEventListener('click', () => {
+                    selectMessage(index);
+                });
+
+                chatContainer.appendChild(messageElement);
+            });
+        }
+
+        // 切换折叠内容
+        function toggleCollapsible(header) {
+            const content = header.nextElementSibling;
+            const icon = header.querySelector('.expand-icon');
+
+            content.classList.toggle('expanded');
+            icon.classList.toggle('expanded');
+
+            // 阻止事件冒泡
+            event.stopPropagation();
+        }
+
+        // HTML转义函数
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML.replace(/\n/g, '<br>');
+        }
+
+        // 渲染完整对话代码
+        function renderAllCode() {
+            const codeContainer = document.getElementById('codeContainer');
+            const messages = currentFormat === 'chatml' ? chatmlMessages : harmonyMessages;
+
+            let allCodeHtml = '';
+            messages.forEach((message, index) => {
+                let messageCode = message.templateCode;
+
+                // HTML转义
+                let highlightedCode = messageCode
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;')
+                    .replace(/"/g, '&quot;');
+
+                // 简单的语法高亮
+                highlightedCode = highlightedCode
+                    .replace(/(&lt;\|im_start\|&gt;|&lt;\|im_end\|&gt;)/g, '<span class="token tag">$1</span>')
+                    .replace(/(&lt;\|start\|&gt;|&lt;\|end\|&gt;|&lt;\|message\|&gt;|&lt;\|call\|&gt;|&lt;\|return\|&gt;|&lt;\|channel\|&gt;|&lt;\|constrain\|&gt;)/g, '<span class="token tag">$1</span>')
+                    .replace(/(^|\s)(system|user|assistant|developer|analysis|commentary|final)(\s|$)/g, '$1<span class="token keyword">$2</span>$3')
+                    .replace(/(to=[\w.]+)/g, '<span class="token attr-name">$1</span>')
+                    .replace(/(&quot;[\w\s\u4e00-\u9fff，。！？：、()【】\-+*%°☔✅]+?&quot;)/g, '<span class="token string">$1</span>')
+                    .replace(/(get_weather|set_reminder|search_restaurants|functions\.[\w_]+)/g, '<span class="token function">$1</span>')
+                    .replace(/(&lt;think&gt;[\s\S]*?&lt;\/think&gt;)/g, '<span class="token comment">$1</span>')
+                    .replace(/(&lt;tool_call&gt;[\s\S]*?&lt;\/tool_call&gt;)/g, '<span class="code-highlight">$1</span>')
+                    .replace(/(&lt;tool_response&gt;[\s\S]*?&lt;\/tool_response&gt;)/g, '<span class="code-highlight">$1</span>');
+
+                // 为每个消息模板创建一个可定位的容器
+                const isSelected = index === currentMessage;
+                allCodeHtml += `<div class="message-template ${isSelected ? 'selected' : ''}" data-message-index="${index}">
+                    <pre>${highlightedCode}</pre>
+                </div>\n`;
+            });
+
+            codeContainer.innerHTML = allCodeHtml;
+        }
+
+        // 选择消息
+        function selectMessage(messageIndex) {
+            currentMessage = messageIndex;
+
+            // 更新消息高亮
+            document.querySelectorAll('.message').forEach((msg, index) => {
+                msg.classList.toggle('active', index === messageIndex);
+            });
+
+            // 重新渲染所有代码（包含高亮）
+            renderAllCode();
+
+            // 滚动到对应的模板项
+            setTimeout(() => {
+                const codeContainer = document.getElementById('codeContainer');
+                const targetTemplate = codeContainer.querySelector(`[data-message-index="${messageIndex}"]`);
+
+                if (targetTemplate) {
+                    targetTemplate.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }, 100); // 等待DOM更新完成
+        }
+
+        // 切换格式
+        function switchFormat(format) {
+            currentFormat = format;
+            currentMessage = 0;
+
+            // 更新按钮状态
+            document.querySelectorAll('.format-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`[data-format="${format}"]`).classList.add('active');
+
+            // 重新渲染
+            renderChatMessages();
+            renderAllCode();
+        }
+
+        // 绑定事件
+        document.querySelectorAll('.format-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const format = button.getAttribute('data-format');
+                switchFormat(format);
+            });
+        });
+
+        // 创建轻柔的粒子效果
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50; // 增加粒子数量以获得更好效果
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+
+                // 随机选择粒子大小
+                const sizeRandom = Math.random();
+                if (sizeRandom < 0.3) {
+                    particle.className = 'particle small';
+                } else if (sizeRandom < 0.7) {
+                    particle.className = 'particle';
+                } else {
+                    particle.className = 'particle large';
+                }
+
+                // 随机水平位置
+                const leftPos = Math.random() * 100;
+                particle.style.left = leftPos + '%';
+
+                // 设置随机的水平偏移CSS变量
+                const randomX = (Math.random() - 0.5) * 200; // -100px 到 100px
+                particle.style.setProperty('--random-x', randomX + 'px');
+
+                // 随机动画延迟
+                particle.style.animationDelay = Math.random() * 12 + 's';
+
+                // 稍微变化的动画持续时间
+                particle.style.animationDuration = (Math.random() * 4 + 10) + 's';
+
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            initPage();
+        });
+    </script>
+</body>
+</html>
