@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>应用实验室 · App</title>
+	<meta name="description" content="Lin 的小应用与交互实验：FlappyBird 自进化、GAN 头像、在线预览、机器人跳舞、MikuTap、kimoji-birthday、被动背单词。" />
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;600;700&display=swap" rel="stylesheet" />
+	<script src="https://cdn.tailwindcss.com"></script>
+	<style>
+		:root { --page-max: 1120px; }
+		body {
+			font-family: 'Noto Sans SC', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+			background: #0f172a; /* slate-900 */
+			color: #e2e8f0; /* slate-200 */
+			min-height: 100vh;
+			line-height: 1.6;
+		}
+		/* Subtle starry gradient background (no WebGL) */
+		body::before {
+			content: '';
+			position: fixed; inset: 0; z-index: -1; pointer-events: none;
+			background:
+				radial-gradient(1200px 800px at 10% 10%, rgba(56,189,248,0.06), rgba(0,0,0,0)),
+				radial-gradient(900px 700px at 90% 20%, rgba(168,141,255,0.05), rgba(0,0,0,0)),
+				radial-gradient(900px 900px at 50% 90%, rgba(52,211,153,0.05), rgba(0,0,0,0));
+		}
+		.container-page { width: 100%; max-width: var(--page-max); margin: 0 auto; }
+
+		/* Card base */
+		.app-card {
+			position: relative;
+			background: rgba(15,23,42,0.85); /* slate-900/85 */
+			border: 1px solid #334155;      /* slate-700 */
+			border-radius: 0.75rem;         /* rounded-xl */
+			padding: 1rem 1.25rem 1.05rem 1.25rem;
+			display: grid; grid-template-columns: 44px 1fr; gap: 0.75rem 0.875rem; align-items: start;
+			transition: border-color .18s ease, transform .12s ease;
+		}
+		.app-card::before {
+			content: '';
+			position: absolute; left: 0; top: 0; bottom: 0; width: 4px; border-radius: 0.75rem 0 0 0.75rem;
+			background: var(--accent, #38bdf8); opacity: .92;
+		}
+		.app-card:hover { border-color: var(--accent, #38bdf8); transform: translateY(-1px); }
+		.app-icon { width: 44px; height: 44px; display: grid; place-items: center; }
+		.app-icon svg { width: 28px; height: 28px; color: var(--accent, #38bdf8); }
+		.app-title { display: block; font-weight: 700; color: #e2e8f0; font-size: clamp(1.05rem, 2.2vw, 1.35rem); line-height: 1.35; }
+		.app-desc { color: #a3b2c7; margin-top: 0.25rem; font-size: 0.98rem; }
+		.app-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.6rem; }
+		.btn {
+			border: 1px solid #334155; background: rgba(15,23,42,0.7);
+			color: #e2e8f0; padding: .55rem .9rem; border-radius: .65rem; min-width: 112px;
+			transition: border-color .18s ease, transform .1s ease;
+		}
+		.btn:hover { border-color: var(--accent, #38bdf8); transform: translateY(-1px); }
+		.btn.primary { border-color: var(--accent, #38bdf8); color: #e0f2fe; }
+
+		/* Accent variants */
+		.v-blue  { --accent: #38bdf8; }
+		.v-purple{ --accent: #8b5cf6; }
+		.v-emer  { --accent: #34d399; }
+		.v-amber { --accent: #f59e0b; }
+		.v-rose  { --accent: #fb7185; }
+		.v-sky   { --accent: #0ea5e9; }
+		.v-cyan  { --accent: #06b6d4; }
+
+		/* Hero */
+		.hero-title { font-size: clamp(1.9rem, 6vw, 3rem); line-height: 1.2; letter-spacing: .01em; }
+		.hero-sub  { font-size: clamp(1rem, 4vw, 1.25rem); color: #cbd5e1; }
+
+		/* A11y tweaks */
+		.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+		/* Mobile tweaks */
+		@media (max-width: 640px) {
+			.app-card { grid-template-columns: 36px 1fr; }
+			.app-icon { width: 36px; height: 36px; }
+		}
+	</style>
+</head>
+<body class="px-4 py-6 sm:px-6">
+	<header class="container-page">
+		<div class="text-center mt-2">
+			<h1 class="hero-title font-bold text-sky-400">应用实验室 · App</h1>
+			<p class="hero-sub mt-3">一些有趣的小应用与交互实验，欢迎随便点点玩玩～</p>
+			<div class="mt-4 text-sm text-slate-400">
+				<a href="/" class="text-sky-400 hover:text-sky-300">返回主页</a>
+				<span class="mx-2">·</span>
+				<a href="/ppt" class="text-sky-400 hover:text-sky-300">PPT 目录</a>
+			</div>
+		</div>
+	</header>
+
+	<main class="container-page mt-10">
+		<section aria-labelledby="appsSection">
+			<h2 id="appsSection" class="sr-only">应用列表</h2>
+			<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+				<!-- 1. FlappyBird -->
+				<article class="app-card v-blue" aria-labelledby="flappy-title">
+					<div class="app-icon" aria-hidden="true">
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25a3.75 3.75 0 1 1-7.5 0m-3 6.75h13.5a2.25 2.25 0 0 1 2.25 2.25v1.5A2.25 2.25 0 0 1 18.75 18H5.25A2.25 2.25 0 0 1 3 15.75v-1.5A2.25 2.25 0 0 1 5.25 12Z"/></svg>
+					</div>
+					<div>
+						<a id="flappy-title" class="app-title hover:text-sky-300" href="http://linxueyuan.online/app/flappy-learning/" target="_blank" rel="noopener" aria-label="打开 FlappyBird - 新窗口">
+							FlappyBird · 自进化版
+						</a>
+						<p class="app-desc">在 web 端实现了 Flappy Bird，并用神经网络作为后端，使小鸟自进化。</p>
+						<div class="app-actions">
+							<a class="btn primary" href="http://linxueyuan.online/app/flappy-learning/" target="_blank" rel="noopener" aria-label="访问 FlappyBird 应用">访问</a>
+							<a class="btn" href="https://linxueyuan.online/flappy-learning" target="_blank" rel="noopener" aria-label="查看 FlappyBird 说明页">说明</a>
+						</div>
+					</div>
+				</article>
+
+				<!-- 2. generate-girls -->
+				<article class="app-card v-purple" aria-labelledby="girls-title">
+					<div class="app-icon" aria-hidden="true">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.25a5.25 5.25 0 1 1 0 10.5 5.25 5.25 0 0 1 0-10.5ZM3.75 20.25a8.25 8.25 0 1 1 16.5 0V21H3.75v-.75Z"/></svg>
+					</div>
+					<div>
+						<a id="girls-title" class="app-title hover:text-sky-300" href="http://linxueyuan.online/app/generate-girls/" target="_blank" rel="noopener" aria-label="打开 generate-girls - 新窗口">
+							generate-girls · GAN 动漫头像
+						</a>
+						<p class="app-desc">用 GAN（对抗生成网络）生成动漫头像。</p>
+						<div class="app-actions">
+							<a class="btn primary" href="http://linxueyuan.online/app/generate-girls/" target="_blank" rel="noopener" aria-label="访问 generate-girls 应用">访问</a>
+						</div>
+					</div>
+				</article>
+
+				<!-- 3. preview -->
+				<article class="app-card v-emer" aria-labelledby="preview-title">
+					<div class="app-icon" aria-hidden="true">
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/></svg>
+					</div>
+					<div>
+						<a id="preview-title" class="app-title hover:text-sky-300" href="http://linxueyuan.online/app/preview/" target="_blank" rel="noopener" aria-label="打开 preview - 新窗口">
+							preview · 在线渲染 GitHub HTML
+						</a>
+						<p class="app-desc">可直接加载渲染 GitHub 上的 HTML 文件，而不需要单独部署网站。</p>
+						<div class="app-actions">
+							<a class="btn primary" href="http://linxueyuan.online/app/preview/" target="_blank" rel="noopener" aria-label="访问 preview 应用">访问</a>
+						</div>
+					</div>
+				</article>
+
+				<!-- 4. robot-dance -->
+				<article class="app-card v-amber" aria-labelledby="robot-title">
+					<div class="app-icon" aria-hidden="true">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M10.5 1.5a1.5 1.5 0 1 1 3 0v1.125a9.001 9.001 0 0 1 7.875 7.875H22.5a1.5 1.5 0 1 1 0 3h-1.125A9.001 9.001 0 0 1 13.5 21.375V22.5a1.5 1.5 0 1 1-3 0v-1.125A9.001 9.001 0 0 1 2.625 13.5H1.5a1.5 1.5 0 1 1 0-3h1.125A9.001 9.001 0 0 1 10.5 2.625V1.5Z"/></svg>
+					</div>
+					<div>
+						<a id="robot-title" class="app-title hover:text-sky-300" href="http://linxueyuan.online/app/robot-dance/" target="_blank" rel="noopener" aria-label="打开 robot-dance - 新窗口">
+							robot-dance · 机器人跳舞
+						</a>
+						<p class="app-desc">机器人跳舞，甩飞会变成巨人。</p>
+						<div class="app-actions">
+							<a class="btn primary" href="http://linxueyuan.online/app/robot-dance/" target="_blank" rel="noopener" aria-label="访问 robot-dance 应用">访问</a>
+						</div>
+					</div>
+				</article>
+
+				<!-- 5. mikutap -->
+				<article class="app-card v-rose" aria-labelledby="mikutap-title">
+					<div class="app-icon" aria-hidden="true">
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 9l10.5-6M9 9l10.5 6M9 9v6m0 0l10.5 6M9 15L3 9l6-6m0 12L3 21l6-6"/></svg>
+					</div>
+					<div>
+						<a id="mikutap-title" class="app-title hover:text-sky-300" href="http://linxueyuan.online/app/mikutap/" target="_blank" rel="noopener" aria-label="打开 mikutap - 新窗口">
+							mikutap 减压神器
+						</a>
+						<p class="app-desc">舞动的手指，让初音唱出动听的声音～</p>
+						<div class="app-actions">
+							<a class="btn primary" href="http://linxueyuan.online/app/mikutap/" target="_blank" rel="noopener" aria-label="访问 mikutap 应用">访问</a>
+						</div>
+					</div>
+				</article>
+
+				<!-- 6. kimoji-birthday -->
+				<article class="app-card v-sky" aria-labelledby="kimoji-title">
+					<div class="app-icon" aria-hidden="true">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.75 10.5v9.75h10.5V10.5H6.75Zm7.5-1.5V6a2.25 2.25 0 1 0-4.5 0v3h4.5Z"/></svg>
+					</div>
+					<div>
+						<a id="kimoji-title" class="app-title hover:text-sky-300" href="http://linxueyuan.online/kimoji-birthday/" target="_blank" rel="noopener" aria-label="打开 kimoji-birthday - 新窗口">
+							kimoji-birthday
+						</a>
+						<p class="app-desc">kimoji 生日快乐！</p>
+						<div class="app-actions">
+							<a class="btn primary" href="http://linxueyuan.online/kimoji-birthday/" target="_blank" rel="noopener" aria-label="访问 kimoji-birthday 应用">访问</a>
+						</div>
+					</div>
+				</article>
+
+				<!-- 7. 被动背单词 -->
+				<article class="app-card v-cyan" aria-labelledby="words-title">
+					<div class="app-icon" aria-hidden="true">
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"/></svg>
+					</div>
+					<div>
+						<a id="words-title" class="app-title hover:text-sky-300" href="http://linxueyuan.online/project-recite-words/" target="_blank" rel="noopener" aria-label="打开 被动背单词 - 新窗口">
+							被动背单词 · Passive Recite
+						</a>
+						<p class="app-desc">每 1000 毫秒显示一个单词，就算一个小时记住只 5%，也是 3600 × 0.05 = 180 个！只要重复次数足够多，效率低又有什么呢？</p>
+						<div class="app-actions">
+							<a class="btn primary" href="http://linxueyuan.online/project-recite-words/" target="_blank" rel="noopener" aria-label="访问 被动背单词 应用">访问</a>
+						</div>
+					</div>
+				</article>
+
+			</div>
+		</section>
+	</main>
+
+	<footer class="container-page mt-10 mb-8 text-center text-slate-400 text-sm">
+		<p>
+			作者：<span class="text-slate-300 font-semibold">兮尘</span>
+			· 主页：<a class="text-sky-400 hover:text-sky-300" href="https://linxueyuan.online/" target="_blank" rel="noopener">linxueyuan.online</a>
+		</p>
+	</footer>
+</body>
+</html>
