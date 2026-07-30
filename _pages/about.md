@@ -22,8 +22,8 @@ I started my AI PhD journey in 2024.09, admitted to the [HKUST(GZ)](https://www.
 My research interests include natural language processing and reinforcement learning, especially (multimodal) agents, LLM and RLAIF. I also pay attention to common machine learning topics, such as time series, graphs, and reinforcement learning.
 [Contact me](mailto:linxy59@mail2.sysu.edu.cn) if you are interested in my following research or want to collaborate with me.
 
-- Financial World Model
 - Agent Learning: from Post-Training to Self-Improving AI Systems
+- Financial World Model
 - Time Series Forecasting & Graph Neural Network
 - Complex Reasoning over (Temporal) Knowledge Graph
 
