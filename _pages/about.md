@@ -61,7 +61,8 @@ A browser extension for generating reviews and rebuttals in [openreview](https:/
 
 # 📝 Publications
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">NIPS 2023, CCF A</div><img src='images/TFLEX.png' alt="sym" width="100%"></div></div>
+<div class='paper-box'>
+<div class='paper-box-image'><div><div class="badge">NIPS 2023, CCF A</div><img src='images/TFLEX.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
 [**TFLEX: Temporal Feature-Logic Embedding Framework for Complex Reasoning over Temporal Knowledge Graph**](https://linxueyuanstdio.github.io/TFLEX)
@@ -71,8 +72,10 @@ A browser extension for generating reviews and rebuttals in [openreview](https:/
 [[paper]](https://openreview.net/forum?id=oaGdsgB18L) [[code]](http://github.com/LinXueyuanStdio/TFLEX) [[google]](https://scholar.google.com/citations?view_op=view_citation&hl=en&user=2_ssNsIAAAAJ&citation_for_view=2_ssNsIAAAAJ:d1gkVwhDpl0C) <strong><span class='show_paper_citations' data='DhtAFkwAAAAJ:ALROH1vI_8AC'></span></strong> [[project]](https://linxueyuanstdio.github.io/TFLEX)
 
 </div>
+</div>
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">AAAI 2023, CCF A</div><img src='images/NQE.png' alt="sym" width="100%"></div></div>
+<div class='paper-box'>
+<div class='paper-box-image'><div><div class="badge">AAAI 2023, CCF A</div><img src='images/NQE.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
 [**NQE: N-ary Query Embedding for Complex Query Answering over Hyper-Relational Knowledge Graphs**](https://ojs.aaai.org/index.php/AAAI/article/view/25576)
@@ -84,7 +87,8 @@ Haoran Luo, Haihong E*, Yuhao Yang, Gengxian Zhou, Yikai Guo, Tianyu Yao, Zichen
 </div>
 </div>
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">Computer Science 2023, CCF B</div><img src='images/QubitE.png' alt="sym" width="100%"></div></div>
+<div class='paper-box'>
+<div class='paper-box-image'><div><div class="badge">Computer Science 2023, CCF B</div><img src='images/QubitE.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
 [**QubitE: Qubit Embedding for Knowledge Graph Completion**](https://www.jsjkx.com/EN/10.11896/jsjkx.221100217)
@@ -137,57 +141,3 @@ Haoran Luo, Haihong E*, Yuhao Yang, Gengxian Zhou, Yikai Guo, Tianyu Yao, Zichen
 **Journal Reviewer**:
   - Neuralcomputing (2023, 2024, 2025) -->
 
-
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-  var copyButtons = document.querySelectorAll('.bibtex-copy-button');
-
-  copyButtons.forEach(function (button) {
-    var defaultMarkup = button.innerHTML;
-
-    button.addEventListener('click', async function () {
-      var targetId = button.getAttribute('data-copy-target');
-      var source = document.getElementById(targetId);
-
-      if (!source) {
-        return;
-      }
-
-      var textToCopy = source.textContent.trim();
-
-      try {
-        if (navigator.clipboard && window.isSecureContext) {
-          await navigator.clipboard.writeText(textToCopy);
-        } else {
-          var textArea = document.createElement('textarea');
-          textArea.value = textToCopy;
-          textArea.setAttribute('readonly', 'readonly');
-          textArea.style.position = 'fixed';
-          textArea.style.opacity = '0';
-          document.body.appendChild(textArea);
-          textArea.focus();
-          textArea.select();
-          document.execCommand('copy');
-          document.body.removeChild(textArea);
-        }
-
-        button.classList.add('is-copied');
-        button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i><span>Copied</span>';
-
-        window.setTimeout(function () {
-          button.classList.remove('is-copied');
-          button.innerHTML = defaultMarkup;
-        }, 1600);
-      } catch (error) {
-        button.classList.add('is-copy-failed');
-        button.innerHTML = '<i class="fas fa-times" aria-hidden="true"></i><span>Retry</span>';
-
-        window.setTimeout(function () {
-          button.classList.remove('is-copy-failed');
-          button.innerHTML = defaultMarkup;
-        }, 1800);
-      }
-    });
-  });
-});
-</script>
