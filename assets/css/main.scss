@@ -48,25 +48,73 @@
     flex-wrap: wrap;
     border-bottom: 1px #efefef solid;
     padding: 2em 0 2em 0;
-    
+
 
     .paper-box-image{
         justify-content: center;
         display: flex;
         width: 100%;
         order: 2;
+
+        .paper-box-figure {
+            position: relative;
+        }
+
         img {
             max-width: 400px;
             box-shadow: 3px 3px 6px #888;
             object-fit: cover;
         }
     }
-    
+
     .paper-box-text{
         max-width: 100%;
         order: 1;
+
+        .paper-title {
+            font-size: 1.1em;
+            font-weight: bold;
+            line-height: 1.35;
+            margin: 0 0 .5em;
+        }
+
+        .paper-authors,
+        .paper-venue {
+            margin: .35em 0;
+        }
+
+        .paper-links {
+            align-items: center;
+            display: flex;
+            flex-wrap: wrap;
+            gap: .4em .8em;
+            margin-top: .8em;
+        }
+
+        .paper-link {
+            align-items: center;
+            background: transparent;
+            border: 0;
+            color: $link-color;
+            cursor: pointer;
+            display: inline-flex;
+            font: inherit;
+            gap: .3em;
+            padding: 0;
+            text-decoration: none;
+
+            &:hover,
+            &:focus {
+                color: mix(#000, $link-color, 25%);
+                text-decoration: underline;
+            }
+        }
+
+        .paper-bibtex-source {
+            display: none;
+        }
     }
-    
+
     @include breakpoint($medium) {
         .paper-box-image{
             justify-content: left;
@@ -74,7 +122,7 @@
             max-width: 40%;
             order: 1;
         }
-        
+
         .paper-box-text{
             justify-content: left;
             padding-left: 2em;
@@ -88,12 +136,12 @@
 }
 
 $scroll_offset : 2em;
-h1:before, .anchor:before { 
-    content: ''; 
-    display: block; 
-    position: relative; 
-    width: 0; 
-    height: $scroll_offset; 
+h1:before, .anchor:before {
+    content: '';
+    display: block;
+    position: relative;
+    width: 0;
+    height: $scroll_offset;
     margin-top: -$scroll_offset;
 }
 

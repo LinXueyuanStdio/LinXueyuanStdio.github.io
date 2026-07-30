@@ -17,13 +17,13 @@ redirect_from:
 
 <span class='anchor' id='about-me'></span>
 
-I started my AI PhD journey in 2024.09, admitted to the [HKUST(GZ)](https://www.hkust-gz.edu.cn)-[IDEA](https://www.idea.edu.cn) Joint PhD Program. My supervisors are Prof. [XIONG Hui](https://www.hkust-gz.edu.cn/people/hui-xiong/) at HKUST(GZ) and Prof. [GUO Jian](https://idea.edu.cn/person/guojian/) at IDEA. Before that, I built the financial agent framework with [MA ye](https://scholar.google.com/citations?hl=zh-CN&user=EDr_qfQAAAAJ) at [iwencai](https://www.iwencai.com/unifiedwap/home/index). I have received my master's degree in [BUPT](https://www.bupt.edu.cn/) (computer) and bachelor's degree in [SYSU](https://www.sysu.edu.cn) (math).
+I started my AI PhD journey in 2024.09, admitted to the [HKUST(GZ)](https://www.hkust-gz.edu.cn)-[IDEA](https://www.idea.edu.cn) Joint PhD Program. My supervisors are Prof. [XIONG Hui](https://www.hkust-gz.edu.cn/people/hui-xiong/) at HKUST(GZ) and Prof. [GUO Jian](https://idea.edu.cn/person/guojian/) at IDEA. Before that, I built the financial agent framework with [MA ye](https://scholar.google.com/citations?hl=zh-CN&user=EDr_qfQAAAAJ) at [iwencai](https://www.iwencai.com/home/index). I have received my master's degree in [BUPT](https://www.bupt.edu.cn/) (computer) and bachelor's degree in [SYSU](https://www.sysu.edu.cn) (math).
 
 My research interests include natural language processing and reinforcement learning, especially (multimodal) agents, LLM and RLAIF. I also pay attention to common machine learning topics, such as time series, graphs, and reinforcement learning.
 [Contact me](mailto:linxy59@mail2.sysu.edu.cn) if you are interested in my following research or want to collaborate with me.
 
 - Financial World Model
-- Multi-modal Agent
+- Agent Learning: from Post-Training to Self-Improving AI Systems
 - Time Series Forecasting & Graph Neural Network
 - Complex Reasoning over (Temporal) Knowledge Graph
 
@@ -61,16 +61,49 @@ A browser extension for generating reviews and rebuttals in [openreview](https:/
 
 # 📝 Publications
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">NIPS 2023, CCF A</div><img src='images/TFLEX.png' alt="sym" width="100%"></div></div>
-<div class='paper-box-text' markdown="1">
+<div class="paper-box">
+  <div class="paper-box-image">
+    <div class="paper-box-figure">
+      <span class="badge">NeurIPS 2023, CCF A</span>
+      <img src="images/TFLEX.png" alt="TFLEX framework for temporal knowledge graph reasoning" width="100%">
+    </div>
+  </div>
 
-[**TFLEX: Temporal Feature-Logic Embedding Framework for Complex Reasoning over Temporal Knowledge Graph**](https://linxueyuanstdio.github.io/TFLEX)
-
-**Xueyuan Lin**, Haihong E*, Chengjin Xu*, Gengxian Zhou, Haoran Luo, Tianyi Hu, Fenglong Su, Ningyuan Li, and Mingzhi Sun. In Thirty-seventh Conference on Neural Information Processing Systems, 2023.
-
-[[paper]](https://openreview.net/forum?id=oaGdsgB18L) [[code]](http://github.com/LinXueyuanStdio/TFLEX) [[google]](https://scholar.google.com/citations?view_op=view_citation&hl=en&user=2_ssNsIAAAAJ&citation_for_view=2_ssNsIAAAAJ:d1gkVwhDpl0C) <strong><span class='show_paper_citations' data='DhtAFkwAAAAJ:ALROH1vI_8AC'></span></strong> [[project]](https://linxueyuanstdio.github.io/TFLEX)
-
-</div>
+  <div class="paper-box-text">
+    <p class="paper-title">TFLEX: Temporal Feature-Logic Embedding Framework for Complex Reasoning over Temporal Knowledge Graph</p>
+    <p class="paper-authors"><strong>Xueyuan Lin</strong>, Haihong E*, Chengjin Xu*, Gengxian Zhou, Haoran Luo, Tianyi Hu, Fenglong Su, Ningyuan Li, and Mingzhi Sun</p>
+    <p class="paper-venue"><em>Thirty-seventh Conference on Neural Information Processing Systems (NeurIPS), 2023</em></p>
+    <div class="paper-links">
+      <a class="paper-link icon-link" href="https://openreview.net/forum?id=oaGdsgB18L" target="_blank" rel="noopener noreferrer" aria-label="Read the TFLEX paper on OpenReview" title="Paper (OpenReview)">
+        <i class="fas fa-file-alt" aria-hidden="true"></i>
+        <span>Paper</span>
+      </a>
+      <a class="paper-link icon-link" href="https://github.com/LinXueyuanStdio/TFLEX" target="_blank" rel="noopener noreferrer" aria-label="View TFLEX source code on GitHub" title="Code (GitHub)">
+        <i class="fab fa-github" aria-hidden="true"></i>
+        <span>Code</span>
+      </a>
+      <a class="paper-link icon-link" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=2_ssNsIAAAAJ&amp;citation_for_view=2_ssNsIAAAAJ:d1gkVwhDpl0C" target="_blank" rel="noopener noreferrer" aria-label="View TFLEX citations on Google Scholar" title="Google Scholar">
+        <i class="ai ai-google-scholar" aria-hidden="true"></i>
+        <span>Google Scholar</span>
+      </a>
+      <a class="paper-link icon-link" href="https://linxueyuanstdio.github.io/TFLEX" target="_blank" rel="noopener noreferrer" aria-label="Open the TFLEX project page" title="Project Page">
+        <i class="fas fa-external-link-alt" aria-hidden="true"></i>
+        <span>Project</span>
+      </a>
+      <button type="button" class="paper-link bibtex-copy-button" data-copy-target="bibtex-tflex" aria-label="Copy TFLEX BibTeX" title="Copy BibTeX">
+        <i class="fas fa-quote-right" aria-hidden="true"></i>
+        <span>BibTeX</span>
+      </button>
+      <strong><span class="show_paper_citations" data="DhtAFkwAAAAJ:ALROH1vI_8AC"></span></strong>
+    </div>
+    <pre id="bibtex-tflex" class="paper-bibtex-source" aria-hidden="true">@inproceedings{xueyuan2023tflex,
+  title     = {TFLEX: Temporal Feature-Logic Embedding Framework for Complex Reasoning over Temporal Knowledge Graph},
+  author    = {Lin, Xueyuan and E, Haihong and Xu, Chengjin and Zhou, Gengxian and Luo, Haoran and Hu, Tianyi and Su, Fenglong and Li, Ningyuan and Sun, Mingzhi},
+  booktitle = {Thirty-seventh Conference on Neural Information Processing Systems},
+  year      = {2023},
+  url       = {https://openreview.net/forum?id=oaGdsgB18L}
+}</pre>
+  </div>
 </div>
 
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">AAAI 2023, CCF A</div><img src='images/NQE.png' alt="sym" width="100%"></div></div>
@@ -103,13 +136,15 @@ Haoran Luo, Haihong E*, Yuhao Yang, Gengxian Zhou, Yikai Guo, Tianyu Yao, Zichen
 
 # 🎖 Honors and Awards
 
-- Ph.D. Full Scholarship (**2024.09-2028.09**, ￥720,000)
-- First-class Academic Scholarship of Beijing University of Posts and Telecommunications (**2021-2023**)
-- Encouragement and Excellence Scholarship of Sun Yat-sen University (**2020**)
-- Youmei Student Grant (**2016-2020**)
-- National Student Grant (**2016-2017**)
-- National Encouragement Scholarship (**2016-2017**)
-- National First Prize of the "Discovery Cup" APP Development Group (**2017**)
+- Amblyrhynchus Cristatus Award of Hithink RoyalFlush Information Network <span style="opacity: 0.7;">(2025)</span>
+- Future Star of Hithink RoyalFlush Information Network <span style="opacity: 0.7;">(2025)</span>
+- Ph.D. Full Scholarship, HKUST(GZ)-IDEA Joint PhD Program <span style="opacity: 0.7;">(2024.09 - 2028.09, CNY 720,000)</span>
+- First-class Academic Scholarship of Beijing University of Posts and Telecommunications <span style="opacity: 0.7;">(2021 - 2023)</span>
+- Encouragement and Excellence Scholarship of Sun Yat-sen University <span style="opacity: 0.7;">(2020)</span>
+- Youmei Student Grant <span style="opacity: 0.7;">(2016 - 2020)</span>
+- National Student Grant <span style="opacity: 0.7;">(2016 - 2017)</span>
+- National Encouragement Scholarship <span style="opacity: 0.7;">(2016 - 2017)</span>
+- National First Prize of the "Discovery Cup" APP Development Group <span style="opacity: 0.7;">(2017)</span>
 
 # 📖 Educations
 - 🧑‍🎓 **The Hong Kong University of Science and Technology (Guangzhou)**, 2024 - Present
@@ -125,3 +160,68 @@ Haoran Luo, Haihong E*, Yuhao Yang, Gengxian Zhou, Yikai Guo, Tianyu Yao, Zichen
 
 # 💻 Internships
 - *2019.05 - 2020.02*, [Lorem](https://github.com/), China. -->
+<!--
+# 🎨 Academic Service
+**Program Committee Member**
+  - NeurIPS (2022, 2023, 2024, 2025, 2026)
+  - ICLR (2022, 2023, 2024, 2025, 2026)
+  - ICML (2022, 2023, 2024, 2025, 2026)
+  - AAAI (2022, 2023, 2024, 2025, 2026)
+  - ACL Rolling Review (2023, 2024, 2025, 2026)
+**Journal Reviewer**:
+  - Neuralcomputing (2023, 2024, 2025) -->
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var copyButtons = document.querySelectorAll('.bibtex-copy-button');
+
+  copyButtons.forEach(function (button) {
+    var defaultMarkup = button.innerHTML;
+
+    button.addEventListener('click', async function () {
+      var targetId = button.getAttribute('data-copy-target');
+      var source = document.getElementById(targetId);
+
+      if (!source) {
+        return;
+      }
+
+      var textToCopy = source.textContent.trim();
+
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(textToCopy);
+        } else {
+          var textArea = document.createElement('textarea');
+          textArea.value = textToCopy;
+          textArea.setAttribute('readonly', 'readonly');
+          textArea.style.position = 'fixed';
+          textArea.style.opacity = '0';
+          document.body.appendChild(textArea);
+          textArea.focus();
+          textArea.select();
+          document.execCommand('copy');
+          document.body.removeChild(textArea);
+        }
+
+        button.classList.add('is-copied');
+        button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i><span>Copied</span>';
+
+        window.setTimeout(function () {
+          button.classList.remove('is-copied');
+          button.innerHTML = defaultMarkup;
+        }, 1600);
+      } catch (error) {
+        button.classList.add('is-copy-failed');
+        button.innerHTML = '<i class="fas fa-times" aria-hidden="true"></i><span>Retry</span>';
+
+        window.setTimeout(function () {
+          button.classList.remove('is-copy-failed');
+          button.innerHTML = defaultMarkup;
+        }, 1800);
+      }
+    });
+  });
+});
+</script>
