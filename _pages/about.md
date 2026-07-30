@@ -61,49 +61,15 @@ A browser extension for generating reviews and rebuttals in [openreview](https:/
 
 # 📝 Publications
 
-<div class="paper-box">
-  <div class="paper-box-image">
-    <div class="paper-box-figure">
-      <span class="badge">NeurIPS 2023, CCF A</span>
-      <img src="images/TFLEX.png" alt="TFLEX framework for temporal knowledge graph reasoning" width="100%">
-    </div>
-  </div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">NIPS 2023, CCF A</div><img src='images/TFLEX.png' alt="sym" width="100%"></div></div>
+<div class='paper-box-text' markdown="1">
 
-  <div class="paper-box-text">
-    <p class="paper-title">TFLEX: Temporal Feature-Logic Embedding Framework for Complex Reasoning over Temporal Knowledge Graph</p>
-    <p class="paper-authors"><strong>Xueyuan Lin</strong>, Haihong E*, Chengjin Xu*, Gengxian Zhou, Haoran Luo, Tianyi Hu, Fenglong Su, Ningyuan Li, and Mingzhi Sun</p>
-    <p class="paper-venue"><em>Thirty-seventh Conference on Neural Information Processing Systems (NeurIPS), 2023</em></p>
-    <div class="paper-links">
-      <a class="paper-link icon-link" href="https://openreview.net/forum?id=oaGdsgB18L" target="_blank" rel="noopener noreferrer" aria-label="Read the TFLEX paper on OpenReview" title="Paper (OpenReview)">
-        <i class="fas fa-file-alt" aria-hidden="true"></i>
-        <span>Paper</span>
-      </a>
-      <a class="paper-link icon-link" href="https://github.com/LinXueyuanStdio/TFLEX" target="_blank" rel="noopener noreferrer" aria-label="View TFLEX source code on GitHub" title="Code (GitHub)">
-        <i class="fab fa-github" aria-hidden="true"></i>
-        <span>Code</span>
-      </a>
-      <a class="paper-link icon-link" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=2_ssNsIAAAAJ&amp;citation_for_view=2_ssNsIAAAAJ:d1gkVwhDpl0C" target="_blank" rel="noopener noreferrer" aria-label="View TFLEX citations on Google Scholar" title="Google Scholar">
-        <i class="ai ai-google-scholar" aria-hidden="true"></i>
-        <span>Google Scholar</span>
-      </a>
-      <a class="paper-link icon-link" href="https://linxueyuanstdio.github.io/TFLEX" target="_blank" rel="noopener noreferrer" aria-label="Open the TFLEX project page" title="Project Page">
-        <i class="fas fa-external-link-alt" aria-hidden="true"></i>
-        <span>Project</span>
-      </a>
-      <button type="button" class="paper-link bibtex-copy-button" data-copy-target="bibtex-tflex" aria-label="Copy TFLEX BibTeX" title="Copy BibTeX">
-        <i class="fas fa-quote-right" aria-hidden="true"></i>
-        <span>BibTeX</span>
-      </button>
-      <strong><span class="show_paper_citations" data="DhtAFkwAAAAJ:ALROH1vI_8AC"></span></strong>
-    </div>
-    <pre id="bibtex-tflex" class="paper-bibtex-source" aria-hidden="true">@inproceedings{xueyuan2023tflex,
-  title     = {TFLEX: Temporal Feature-Logic Embedding Framework for Complex Reasoning over Temporal Knowledge Graph},
-  author    = {Lin, Xueyuan and E, Haihong and Xu, Chengjin and Zhou, Gengxian and Luo, Haoran and Hu, Tianyi and Su, Fenglong and Li, Ningyuan and Sun, Mingzhi},
-  booktitle = {Thirty-seventh Conference on Neural Information Processing Systems},
-  year      = {2023},
-  url       = {https://openreview.net/forum?id=oaGdsgB18L}
-}</pre>
-  </div>
+[**TFLEX: Temporal Feature-Logic Embedding Framework for Complex Reasoning over Temporal Knowledge Graph**](https://linxueyuanstdio.github.io/TFLEX)
+
+**Xueyuan Lin**, Haihong E*, Chengjin Xu*, Gengxian Zhou, Haoran Luo, Tianyi Hu, Fenglong Su, Ningyuan Li, and Mingzhi Sun. In Thirty-seventh Conference on Neural Information Processing Systems, 2023.
+
+[[paper]](https://openreview.net/forum?id=oaGdsgB18L) [[code]](http://github.com/LinXueyuanStdio/TFLEX) [[google]](https://scholar.google.com/citations?view_op=view_citation&hl=en&user=2_ssNsIAAAAJ&citation_for_view=2_ssNsIAAAAJ:d1gkVwhDpl0C) <strong><span class='show_paper_citations' data='DhtAFkwAAAAJ:ALROH1vI_8AC'></span></strong> [[project]](https://linxueyuanstdio.github.io/TFLEX)
+
 </div>
 
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">AAAI 2023, CCF A</div><img src='images/NQE.png' alt="sym" width="100%"></div></div>
